@@ -12,5 +12,15 @@ public class Account {
         System.out.println("大家好");
         System.out.println("大家好");
         System.out.println("大家好");
+        System.out.println("大家好");
+        System.out.println("大家好");
+        System.out.println("大家好");
+        System.out.println("大家好");
+        System.out.println("你们好啊啊啊啊");
+        System.out.println("你们好啊啊啊啊");
+        System.out.println("你们好啊啊啊啊");
+        System.out.println("你们好啊啊啊啊");
+        System.out.println("你们好啊啊啊啊");
+        System.out.println("你们好啊啊啊啊");
     }
 }
