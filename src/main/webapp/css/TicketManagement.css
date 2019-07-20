@@ -1,0 +1,116 @@
+h1{
+	font-size:18px;
+	text-align:center;
+	padding-top:5px;
+}
+.TicketManagement{
+	position: absolute;
+	left: 300px;
+	height: 600px;
+	width: 700px;	
+}
+.TicketManagement_con{
+	margin: 0 auto;
+	margin-top: 50px;
+	width: 630px;
+	height: 500px;
+	background-color: rgba(255,255,255,0.6);
+	border-radius: 10px;
+}
+.TicketManagement_con .OnTheShelf{
+	width:616px;
+	margin:0 auto;
+}
+.TicketManagement_con .OnTheShelf table{
+	margin:0 auto;	
+	width:618px;
+	color:#FFFFFF;
+	cellspacing:0; 
+	cellpadding:0;
+}
+.TicketManagement_con .OnTheShelf table tr td{
+	width:75.2px;
+	background-color:#8fd68b;
+	text-align:center;
+	border-radius:5px;
+}
+.TicketManagement_con .Shelf{
+	width:616px;
+	margin:5px auto;
+}
+.TicketManagement_con .Shelf table{
+	margin:0 auto;	
+	width:618px;
+	color:#8fd68b;
+	font-size:12px;
+	cellspacing:0; 
+	cellpadding:0;
+}
+.TicketManagement_con .Shelf table tr td{
+	width:75.2px;
+	height:33px;
+	background-color: #FFFFFF;
+	text-align:center;
+	border-bottom:1px solid #8fd68b;
+	border-radius:5px;
+}
+.TicketManagement_con .Shelf table tr td a{	
+	text-decoration:none;
+	color:#8fd68b;
+}
+.TicketManagement_con .Shelf table tr td a:hover{
+	text-decoration:underline;
+}
+.TicketManagement_con .containerShelf{
+	width: 630px;
+	height:200px;
+}
+.TicketManagement_con .offTheShelf{
+	width:630px;
+	height:180px;
+}
+.pagination{
+	margin-top:0px;	
+}
+.pager{
+	overflow: hidden;
+	font-family: Arial;
+	display: block;
+	width: 100%;
+}
+.pages{
+	position:relative;
+	bottom:10px;
+	text-align:center;
+}
+.pager .pages .page-item{
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 700;
+	vertical-align: middle;	
+}
+.pager .pages .page-item button{
+	color: #222;
+	cursor: pointer;
+	outline: none;
+	text-align: center;
+	border-radius: 4px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	background-image: none;
+	transition: all .2s;
+	font-size: 14px;
+	min-width: 15px;
+	margin: 0 auto;
+	padding: 0 10px;
+	float: left;
+	display: block;
+	height: 30px;
+	line-height: 30px;
+}
+.pager .pages .page-item button:hover{
+	background-color:#8fd68b;	
+}
+.pager .pages .page-item .select{
+	background-color:#8fd68b;	
+}

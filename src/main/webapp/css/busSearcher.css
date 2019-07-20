@@ -1,0 +1,79 @@
+h1{
+	font-size:18px;
+	margin:0px;
+	text-align:center;
+}
+.busSearcher{
+    position: absolute;
+    left: 300px;
+    height: 600px;
+    width: 700px;
+}
+.busSearcher_con{
+    margin: 0 auto;
+    margin-top: 50px;
+	padding-top:20px;
+	width: 630px;
+    height: 480px;
+	background-color: rgba(255,255,255,0.6);
+	border-radius: 10px;
+}
+.busSearcher_con ul{
+	margin:20px auto;
+	line-height:30px;
+	width:400px;
+	height:30px;
+}
+.busSearcher_con ul input{
+    position: absolute;
+    left: 370px;
+	width: 120px;
+	height:22px;
+	padding:3px 0 3px 20px;
+	border:none;
+	-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	
+}
+.busSearcher_con ul select{
+    position: absolute;
+    left: 370px;
+	width: 140px;
+	height:28px;
+	padding-left:20px;
+	border:none;
+}
+..busSearcher_con ul option{
+	height:30px;
+	
+}
+.submit{
+	margin: 10px 0 0 332px;
+    width: 80px;
+	padding: 3px 5px;
+    background:#8fd68b;
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.8);
+	border-radius:5px;
+    font-weight: bold;
+    font-family: "微软雅黑", "Microsoft Yahei", "黑体", sans-serif
+}
+.success{
+	color:red;
+}
+.error{
+	color:#FF66FF;
+}
+.hint {
+	display: none;
+	position:absolute;
+    left: 520px;
+	width: 120px;
+	margin-top: -4px;
+	background-color: #8fd68b;
+	font-size:15px;
+	padding-left:10px;
+	border-radius: 5px;
+	color: #ffffff;
+}
