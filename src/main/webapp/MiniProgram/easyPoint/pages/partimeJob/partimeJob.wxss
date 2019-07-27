@@ -169,9 +169,3 @@ Page{
     width: 56rpx;
     height: 56rpx;
 }
-.doc-description{
-    font-size: 28rpx;
-    color: #999;
-    text-align: center;
-    margin: 12rpx 0rpx;
-}
