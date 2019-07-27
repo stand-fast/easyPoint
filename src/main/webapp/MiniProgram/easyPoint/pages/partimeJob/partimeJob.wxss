@@ -1,0 +1,169 @@
+/* pages/internship/internship.wxss */
+Page{
+    background-color: #f4f4f4;
+    font-family: 黑体;
+}
+.nav{
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: #ffffff;
+    height: 130rpx;
+}
+.nav_switch{
+    width: 30%;
+    border: 1rpx solid #eeeeee;
+    border-radius: 50rpx;
+    display: flex;
+    flex-direction: row;
+    height: 80rpx;
+    font-size: 36rpx;
+    color:#333333;
+    margin: auto 20rpx;
+    text-align: center;
+}
+.on{
+    color: #fff!important;
+    background-color: #56b4f6;
+    border-radius: 50rpx;
+}
+.nav_text_partime{
+    height: 80rpx;
+    line-height: 80rpx;
+    color: #bbb;
+    width: 50%;
+}
+.nav_search{
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+}
+.nav_search input{
+    width: 100%;
+    border: solid #fff;
+    background-color: #eeeeee;
+    height: 80rpx;
+    margin: auto 20rpx;
+    border-radius: 50rpx;
+    color: #bbb;
+    font-size: 32rpx;
+    padding-left: 40rpx;
+}
+.inputPh{
+    font-size: 32rpx;
+    color: #bbb;
+}
+.nav_search icon{
+    position: absolute;
+    right: 40rpx;
+    top:48rpx;
+    margin-right: 20rpx;
+}
+.leaveTop{
+    margin-top: 144rpx;
+}
+.contain{
+    width: 100%;
+    overflow: hidden;
+}
+.jobInfos{
+    margin:  16rpx auto;
+    width: 92%;
+    border-radius: 16rpx;
+    background-color: #fff;
+    height: 340rpx;
+}
+.job_text{
+    width: 100%;
+    display: flex;
+    height: 80rpx;
+    flex-direction: row;
+}
+.jobName{
+    width: 380rpx;
+    line-height: 30rpx;
+    font-size: 38rpx;
+    color: #333;
+    margin-left: 24rpx;
+    margin-top: 30rpx;
+}
+.jobSalary{
+    width: 140rpx;
+    font-size: 38rpx;
+    color: #56b4f6;
+    line-height: 30rpx;
+    margin-left: 60rpx;
+    margin-top: 30rpx;
+}
+.jobSettle{
+    width: 80rpx;
+    line-height: 30rpx;
+    margin-top: 30rpx;
+    margin-left: 10rpx;
+    font-size: 32rpx;
+    color: #bbb;
+}
+.remainPeople,.jobLocaTime,.lookDt{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 46rpx;
+    margin-top: 24rpx;
+    font-size: 30rpx;
+    color: #999;
+}
+.internship_text{
+    margin-left: 6rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+}
+.last{
+    width: 300rpx;
+}
+.jobLocaTime{
+    margin-bottom: 24rpx;
+}
+.endDate{
+    margin-left: 200rpx;
+    margin-right: 20rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+    width: 200rpx;
+}
+.lookDt{
+    font-size: 34rpx;
+    color: #56b4f6;
+    justify-content: center;
+}
+.look_text{
+    font-size: 34rpx;
+    margin-left: 24rpx;
+    margin-top: 10rpx;
+}
+.hr{
+    width: 100%;
+    height: 5rpx;
+    background-color: #eee;
+}
+.remainPeople image{
+    width: 40rpx;
+    height: 40rpx;
+    margin-left: 28rpx;
+}
+.jobLocaTime image{
+    width: 40rpx;
+    height: 40rpx;
+    margin-left: 25rpx;
+}
+.lookDt image{
+    width: 56rpx;
+    height: 56rpx;
+}
+.doc-description{
+    font-size: 28rpx;
+    color: #999;
+    text-align: center;
+    margin: 12rpx 0rpx;
+}

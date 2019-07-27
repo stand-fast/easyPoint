@@ -1,0 +1,127 @@
+<!--pages/internDetail/internDetail.wxml-->
+<view class="header">
+<view class='head' wx:for="{{jobCNS}}" wx:for-item="item" wx:key="id">
+    <view class='headJob'>
+        <view class='jobName'>{{item.jobName}}</view>
+        <view class='jobSalary'>￥{{item.jobSalary}}</view>
+        <view class='jobSettle'>{{item.jobSettle}}</view>
+    </view>
+    <view class='hr'></view>
+    <view class='jobContent'>
+        <view class='jobContent_menu'>工作内容：</view>
+        <view class='jobContent_text'>{{item.jobContent}}</view>
+    </view>
+</view>
+<view class='jobInfos' wx:for="{{jobDetail}}" wx:for-item="job" wx:key="jobId">
+    <view class='infos_header'>{{statusWord}}详情</view>
+    <view class='hr'></view>
+    <view class='infos_content'>
+        <text class='infos_contains' decode="true">性&emsp;&emsp;别：</text>
+        <view class='infos_contains_text'>{{job.jobSex}}</view>
+    </view>
+    <view class='infos_content'>
+        <view class='infos_contains'>工作地点：</view>
+        <view class='infos_contains_text'>{{job.jobLocation}}</view>
+    </view>
+    <view class='infos_content'>
+        <view class='infos_contains'>{{statusWord}}日期：</view>
+        <view class='infos_contains_text'>{{job.jobDate}}</view>
+    </view>
+    <view class='infos_content'>
+        <view class='infos_contains'>{{statusWord}}时间：</view>
+        <view class='infos_contains_text'>{{job.jobTime}}</view>
+    </view>
+    <view class='infos_content'>
+        <view class='infos_contains'>招聘人数：</view>
+        <view class='infos_contains_text'>{{job.jobNumber}} 人</view>
+    </view>
+    <view class='infos_content'>
+        <view class='infos_contains'>福利待遇：</view>
+        <view class='infos_contains_text'>{{job.jobWelfare}}</view>
+    </view>
+    <view class='infos_content last'>
+        <view class='infos_contains '>任职要求：</view>
+        <view class='infos_contains_text'>{{job.jobRequest}}</view>
+    </view>
+</view>
+<view class='firmInfo' wx:for="{{firmDetail}}" wx:for-item="firm" wx:key="firmId">
+    <view class='firm_header'>公司信息</view>
+    <view class='hr'></view>
+    <view class='infos_content'>
+        <view class='infos_contains'>联系人：</view>
+        <view class='infos_contains_text'>{{firm.firmContact}}</view>
+    </view>
+    <view class='infos_content'>
+        <view class='infos_contains'>联系电话：</view>
+        <view class='infos_contains_text'>{{firm.firmPhone}}</view>
+    </view>
+    <view class='infos_content last'>
+        <view class='infos_contains'>公司介绍：</view>
+        <view class='infos_contains_text'>{{firm.firmIntroduce}}</view>
+    </view>
+</view>
+</view>
+<button class='btn' bindtap="submiting" disabled="{{status}}" style=" background-color:{{btnColor}}">
+    <image src='/images/icon/packbw.png'></image>
+    <text class='btn_text'>{{word}}</text>
+</button>
+<block wx:if="{{currentab ==0 }}">
+    <block wx:if='{{showModal}}'>
+    <view class='mask_layer' bindtap='modal_click_Hidden' />
+    <view class='modal_box'>
+            <view class="title">协议须知</view>
+            <view class='content'>
+                <text>感谢您信任并使用我们的平台，请阅读以下的协议：\n1、您必须巴拉巴拉巴拉\n2、您不可以巴拉巴拉巴\n3、您可以至于至于至于\n4、您不能做违法的事情，坚守道德底线\n5、您必须巴拉巴拉巴拉\n6、您不可以巴拉巴拉巴\n7、您可以至于至于至于\n8、您不能做违法的事情，坚守道德底线</text>
+            </view>
+            <view class='btn1'>
+                <button bindtap='modal_click_Hidden' class='cancel'>取消返回</button>
+                <button bindtap='btnSure' class='Sure'>同意继续</button>
+            </view>
+        </view>
+    </block>
+    <block wx:if='{{successShowmodal}}'>
+        <view class='mask_layer' bindtap='modal_click_Hidden' />
+        <view class='modal_box'>
+            <icon type="success" color="blue" size="48"></icon>
+            <view class="model_success">报名成功</view>
+            <view class="success_text">报名成功，请留意服务号通知</view>
+            <button class="success_btn" bindtap="successBtn">确定</button>
+        </view>
+    </block>
+</block>
+<block wx:if="{{currentab==1}}">
+    <block wx:if='{{showModal}}'>
+    <view class='mask_layer' bindtap='modal_click_Hidden' />
+    <view class='modal_box'>
+            <view class="title">协议须知</view>
+            <view class='content'>
+                <text>感谢您信任并使用我们的平台，我们依据相关法律制定了协议，请仔细阅读以下的协议内容：\n1、您必须巴拉巴拉巴拉\n2、您不可以巴拉巴拉巴\n3、您可以至于至于至于\n4、您不能做违法的事情，坚守道德底线\n5、您必须巴拉巴拉巴拉\n6、您不可以巴拉巴拉巴\n7、您可以至于至于至于\n8、您不能做违法的事情，坚守道德底线</text>
+            </view>
+            <view class='btn1'>
+                <button bindtap='modal_click_Hidden' class='cancel'>取消返回</button>
+                <button bindtap='btnSure' class='Sure'>同意继续</button>
+            </view>
+        </view>
+    </block>
+    <block wx:if='{{successShowmodal}}'>
+         <view class='mask_layer' bindtap='modal_click_Hidden' />
+        <view class='modal_box'>
+            <view class="title">简历上传</view>
+            <view class='fileUnload'>
+                <view class="fileText">{{fileName}}</view>
+                <button class="chooseFileBtn" bindtap="chooseFile">选择文件</button>
+            </view>
+            <view class="tipText">提示：请提前将简历放在微信的文件上传助手哦！</view>
+            <button class="success_btn" bindtap="fileUnloadBtn">上传文件</button>
+        </view>
+    </block>
+    <block wx:if='{{finishShowmodal}}'>
+        <view class='mask_layer' bindtap='modal_click_Hidden' />
+        <view class='modal_box'>
+            <icon type="success" color="blue" size="48"></icon>
+            <view class="model_success">报名成功</view>
+            <view class="success_text">简历上传成功，具体面试信息请在“我的通知”查看</view>
+            <button class="success_btn" bindtap="successBtn">确定</button>
+        </view>
+    </block>
+</block>
