@@ -6,37 +6,26 @@ Page({
    */
   data: {
       currentTab:0,
-      intershipJson:[
+      part_time_job_info:[
       {
-        id: "0", jobName: "移动公司营销实习生", jobSalary: "80/天", jobSettle: "日结", remainPeople: "4", jobLocation: "天河区", endDate: "07-11"
+          part_time_job_id: "0", 
+          job_name: "移动公司营销实习生",
+          job_salary: "80/天", 
+          job_settle: "日结", 
+          recruit_num: "4", 
+          job_place: "天河区", 
+          end_time: "07-11"
       },
       {
-        id: "1", jobName: "银行经理实习生", jobSalary: "90/天", jobSettle: "日结", remainPeople: "2", jobLocation: "白云区", endDate: "07-10"
-      },
-      {
-        id: "2", jobName: "公司市场项目实习生", jobSalary: "70/天", jobSettle: "日结", remainPeople: "1", jobLocation: "番禺区", endDate: "07-08"
-      },
-      {
-        id: "3", jobName: "公司采购实习生", jobSalary: "90/天", jobSettle: "日结", remainPeople: "8", jobLocation: "天河区", endDate: "07-07"
-      },
-        {
-          id: "4", jobName: "公司采购实习生", jobSalary: "90/天", jobSettle: "日结", remainPeople: "8", jobLocation: "天河区", endDate: "07-07"
+          part_time_job_id: "0",
+          job_name: "移动公司营销实习生",
+          job_salary: "80/天",
+          job_settle: "日结",
+          recruit_num: "4",
+          job_place: "天河区",
+          end_time: "07-11"
         },
     ],
-      partimeJobJson:[
-      {
-        id: "0", jobName: "校内自助餐厅服务员", jobSalary: "80/天", jobSettle: "日结", remainPeople: "4", jobLocation: "天河区", endDate: "07-11"
-      },
-      {
-        id: "1", jobName: "百货商城导购员", jobSalary: "90/天", jobSettle: "日结", remainPeople: "2", jobLocation: "白云区", endDate: "07-10"
-      },
-      {
-        id: "2", jobName: "百州餐厅服务员", jobSalary: "70/天", jobSettle: "日结", remainPeople: "1", jobLocation: "番禺区", endDate: "07-08"
-      },
-      {
-        id: "3", jobName: "校内考试监考员", jobSalary: "90/天", jobSettle: "日结", remainPeople: "8", jobLocation: "天河区", endDate: "07-07"
-      },
-    ]
   },
 
   //获取输入框信息
@@ -51,7 +40,7 @@ Page({
   //跳转到工作详情界面
     jumbtodetail:function(e){
         wx.navigateTo({
-            url: '/pages/JobDetail/JobDetail',
+          url: '/pages/JobDetail/JobDetail?type='+this.data.currentTab,
         })
     },
 
@@ -64,20 +53,53 @@ Page({
             return false;
         }
         else {
-            that.setData({
+          that.setData({
                 currentTab: e.target.dataset.current
-            })
+          })
+          // var selt = this;
+          // wx.request({
+          //   url: '接口路径',
+          //   data: {
+          //     type: e.target.dataset.current,   //根据current请求数据
+          //   },
+          //   method: 'Post',
+          //   header: { 'content-type': 'application/x-www-form-urlencoded' },
+          //   success: function (res) {
+          //     console.log(res.data)
+          //     selt.setData({
+          //       part_time_job_info: res.data,
+          //     })
+          //   }
+          // })
         }
+      console.log(e.target.dataset.current)
     },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      intershipJson: this.data.intershipJson,
-      partimeJobJson: this.data.partimeJobJson
+    // this.getMessage();
+
+  },
+  //获得数据
+  getMessage: function () {
+    var selt = this;
+    wx.request({
+      url: '接口路径',
+      data: {
+        type: "0",   //请求兼职数据
+      },
+      method: 'Post',
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      success: function (res) {
+        console.log(res.data)
+        selt.setData({
+          part_time_job_info: res.data,
+        })
+      }
     })
+
   },
 
   /**

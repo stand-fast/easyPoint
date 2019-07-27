@@ -1,18 +1,18 @@
 <template name='internship'>
         <view class='jobInfos'>
             <view class='job_text'>
-                <view class='jobName'>{{item.jobName}}</view>
-                <view class='jobSalary'>￥{{item.jobSalary}}</view>
-                <view class='jobSettle'>{{item.jobSettle}}</view>
+                <view class='jobName'>{{item.job_name}}</view>
+                <view class='jobSalary'>￥{{item.job_salary}}</view>
+                <view class='jobSettle'>{{item.job_settle}}</view>
             </view>
             <view class='remainPeople'>
                 <image src='/images/icon/peopleNum.png'></image>
-                <view class='internship_text'>所剩名额：{{item.remainPeople}} 人</view>
+                <view class='internship_text'>所剩名额：{{item.recruit_num}} 人</view>
             </view>
             <view class='jobLocaTime'>
                 <image src='/images/icon/address.png'></image>
-                <view class='internship_text last'>工作地点：{{item.jobLocation}}</view>
-                <view class='endDate'>{{item.endDate}} 截止</view>
+                <view class='internship_text last'>工作地点：{{item.job_place}}</view>
+                <view class='endDate'>{{item.end_time}} 截止</view>
             </view>
             <view class='hr'></view>
             <view class='lookDt' bindtap='jumbtodetail'>

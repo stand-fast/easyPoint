@@ -13,22 +13,24 @@ Page({
         showModal:false,
         successShowmodal:false,
         finishShowmodal:false,
-        jobCNS:[{
-            jobName: "校内自助餐厅服务员", 
-            jobSalary: "80/天",
-             jobSettle: "日结",
-             jobContent:"负责在上菜区将菜品及时摆出，保证出餐窗口的整洁干净，及时跟进顾客的饮食情况，在结账窗口对顾客的菜品消费进行数目结账",
-            jobSex:"不限",
-            jobLocation:"本部北苑食堂二楼",
-            jobDate:"2019-09-01 到 2019-12-31",
-            jobTime:"10:00-15:00",
-            jobNumber:1,
-            jobWelfare:"中午包餐、不定时水果甜点小吃福利赠送",
-            jobRequest:"为人热情大方、开朗，性格活泼，做事负责",
-            firmContact:"陈先生",
-            firmPhone:"123-1234-1234",
-            firmIntroduce:"校内食堂，为广大师生提供早餐午餐、晚餐以及夜宵等叭叭叭叭叭叭叭叭........"
-        }]
+
+        jobCNS:{
+            job_name: "校内自助餐厅服务员", 
+            job_salary: "80/天",
+            job_settle: "日结",
+            job_content:"负责在上菜区将菜品及时摆出，保证出餐窗口的整洁干净，及时跟进顾客的饮食情况，在结账窗口对顾客的菜品消费进行数目结账",
+            sex: "不限",
+            job_time: "10:00-15:00",
+            job_place:"本部北苑食堂二楼",
+            job_date:"2019-09-01 到 2019-12-31",
+            recruit_num:1,
+            welfare:"中午包餐、不定时水果甜点小吃福利赠送",
+            requirement:"为人热情大方、开朗，性格活泼，做事负责",
+
+            legal_person:"陈先生",
+            phone:"123-1234-1234",
+            company_introduce:"校内食堂，为广大师生提供早餐午餐、晚餐以及夜宵等叭叭叭叭叭叭叭叭........"
+        }
     },
     //兼职部分JS事件响应
     submiting:function(){          //提交我要报名
@@ -94,22 +96,26 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
-        var that = this;
-        if (options.currentab === '1'){
-            this.setData({
-                currentab:options.currentab,
-                word: "投递简历",
-                statusWord: "实习",
-            })
-        }
-        if (options.remianum === '0') {
-            this.setData({
-                word: "人数已满",
-                btnColor: '#999',
-            })
-        } 
-    },
+  onLoad: function (options) {
+    var that = this;
+    this.setData({
+      type: options.type,
+      jobDetail:this.data.jobCNS
+    })
+    if (options.type == '1'){
+          this.setData({
+              currentab:options.currentab,
+              word: "投递简历",
+              statusWord: "实习",
+          })
+      }
+    // if (options.remianum === '0') {
+    //     this.setData({
+    //         word: "人数已满",
+    //         btnColor: '#999',
+    //     })
+    // } 
+  },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
