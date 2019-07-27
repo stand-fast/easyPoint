@@ -20,5 +20,14 @@
         <block wx:for="{{internshipInfo}}" wx:for-item="item" wx:key="id">
             <template is="internship" data='{{item}}'/>
         </block>
+        <block wx:if="{{internshipInfo.length > pageSize-1}}">
+            <block wx:if="{{updateLoadShow}}">
+                <text class="doc-description">—下拉加载更多—</text>
+                <updateLoad :loading="updateLoadShow"></updateLoad>
+            </block>
+            <view class="doc-description" wx:else>
+                <text>—我是有底线的—</text>
+            </view>
+        </block>
     </view>
 </view>

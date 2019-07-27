@@ -24,7 +24,7 @@ Page({
             jobLocation:"本部北苑食堂二楼",
             jobDate:"2019-09-01 到 2019-12-31",
             jobTime:"10:00-15:00",
-            jobNumber:1,
+            jobNumber:0,
             jobWelfare:"中午包餐、不定时水果甜点小吃福利赠送",
             jobRequest:"为人热情大方、开朗，性格活泼，做事负责"
         }],
@@ -63,36 +63,36 @@ Page({
     //选择上传文件
     chooseFiles:function(){
         var that=this
-        wx.chooseMessageFile({      //模拟机上会报错，真机上可运行，不会出现这种问题
-            count: 1,
-            type: 'file',
-            success(res) {
-                const tempFilePaths = res.tempFilePaths
-                this.setData({
-                    fileName:res.tempFilePaths
-                })
-            }
-        })
+        // wx.chooseMessageFile({      //模拟机会出现报错，真机上可运行，不会出现这种问题
+        //     count: 1,
+        //     type: 'file',
+        //     success(res) {
+        //         const tempFilePaths = res.tempFilePaths
+        //         this.setData({
+        //             fileName:res.tempFilePaths
+        //         })
+        //     }
+        // })
     },
     // 文件上传
-    fileUnloadBtn:function(){           //这里需要重新看代码，我不确定可不可以
-        wx.uploadFile({
-            url: '',        //服务器地址
-            filePath: this.data.fileName,
-            name: 'file',
-            formData:{
-                name:encodeURI(filePath),
-            },
-            success:function(res){
-                this.setData({
-                    successShowmodal: false,
-                    finishShowmodal: true,
-                })
-            },
-            fail:function(res){
+    fileUnloadBtn:function(){
+        // wx.uploadFile({
+        //     url: '',        //服务器地址
+        //     filePath: this.data.fileName,
+        //     name: 'file',
+        //     formData:{
+        //         name:encodeURI(filePath),
+        //     },
+        //     success:function(res){
+        //         this.setData({
+        //             successShowmodal: false,
+        //             finishShowmodal: true,
+        //         })
+        //     },
+        //     fail:function(res){
 
-            }
-        })
+        //     }
+        // })
     },
 
     /**

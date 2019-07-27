@@ -6,16 +6,17 @@ Page({
    * 页面的初始数据
    */
   data: {
+      updateLoadShow:false,
       currentTab:0,
   },
 
   //获取输入框信息
-    takeValue:function(e){              //这里JS还没写，主要是获取键盘输入的内容
+    takeValue:function(e){
       var that=this
       console.log(e);
   },
   //搜索功能
-    searchJob:function(){          //这里JS也还没写,对应点击搜索开始搜索功能
+    searchJob:function(){
         
     },
   //跳转到工作详情界面
@@ -34,7 +35,11 @@ Page({
             complete: function(res) {},
         })
     },
-
+    bindChange: function (e) {
+        this.setData({
+            currentTab: e.detail.current,
+            });
+    },
     /** 
      * 点击tab切换 
      */
@@ -49,7 +54,21 @@ Page({
             })
         }
     },
-
+// 获取数据
+getData() {
+        const pageNum = this.pageNum
+        api.get(recordURL + 'queryBalanceSub?start=' + pageNum + '&size=' + this.pageSize + '&sortStr=update_time&sortType=desc').then(({ data }) => {
+            if (pageNum === 1) {
+                this.recordList = data.list
+                this.pagtotal = data.totalRow
+            } else {
+                this.recordList = this.recordList.concat(data.list)
+            }
+            this.loadingShow = false
+            this.updateLoadShow = false
+            this.$apply()
+        })
+    },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -57,6 +76,13 @@ Page({
     this.setData({
     internshipInfo:localData.internshipInfo,
     partimeInfo: localData.partimeJobInfo
+    }),
+    wepy.getSystemInfo({
+        success: (res) => {
+            this.height = res.windowHeight
+            this.pageSize = Math.round(res.windowHeight / 103) + 1
+            this.$apply()
+        }
     })
   },
 
@@ -99,7 +125,21 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+      // 上拉加载更多loading
+      this.updateLoadShow = true
+      let _length = this.internshipInfo.length
+      // 列表长度与列表总数对比
+      if (_length === this.pagtotal) {
+          setTimeout(() => {
+              this.updateLoadShow = false
+              this.$apply()
+          }, 1000)
+      } else {
+          // 当前页码加一
+          this.pageNum++
+          // 更新数据
+          this.getData()
+      }
   },
 
   /**
