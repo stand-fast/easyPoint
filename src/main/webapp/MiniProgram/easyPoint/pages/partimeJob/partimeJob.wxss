@@ -83,11 +83,19 @@ Page{
 }
 .jobName{
     width: 380rpx;
-    line-height: 30rpx;
+    height: 44rpx;
+    line-height: 44rpx;
     font-size: 38rpx;
     color: #333;
     margin-left: 24rpx;
     margin-top: 30rpx;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: normal !important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 .jobSalary{
     width: 140rpx;

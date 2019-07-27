@@ -22,11 +22,18 @@ Page{
 .jobName{
     border-bottom: 2rpx solid #56b4f6;
     width: 380rpx;
-    line-height: 30rpx;
+    line-height: 44rpx;
     font-size: 38rpx;
     color: #333;
     padding-left: 24rpx;
     margin-top: 30rpx;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: normal !important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 .jobSalary{
     width: 140rpx;
