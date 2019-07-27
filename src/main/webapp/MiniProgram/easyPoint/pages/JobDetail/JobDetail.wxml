@@ -4,7 +4,8 @@
     <view class='headJob'>
         <view class='jobName'>{{jobDetail.job_name}}</view>
         <view class='jobSalary'>￥{{jobDetail.job_salary}}</view>
-        <view class='jobSettle'>{{jobDetail.job_settle}}</view>
+        <view class='jobSettle' wx:if="{{jobDetail.job_settle==1}}">日结</view>
+        <view class='jobSettle' wx:else>月结</view>
     </view>
     <view class='hr'></view>
     <view class='jobContent'>
@@ -17,7 +18,9 @@
     <view class='hr'></view>
     <view class='infos_content'>
         <text class='infos_contains' decode="true">性&emsp;&emsp;别：</text>
-        <view class='infos_contains_text'>{{jobDetail.sex}}</view>
+        <view class='infos_contains_text' wx:if="{{jobDetail.sex==1}}">男</view>
+        <view class='infos_contains_text' wx:if="{{jobDetail.sex==2}}">女</view>
+        <view class='infos_contains_text' wx:if="{{jobDetail.sex==3}}">不限</view>
     </view>
     <view class='infos_content'>
         <view class='infos_contains'>工作地点：</view>
@@ -67,6 +70,8 @@
     <image src='/images/icon/packbw.png'></image>
     <text class='btn_text'>{{word}}</text>
 </button>
+
+
 <block wx:if="{{type==0}}">
     <block wx:if='{{showModal}}'>
     <view class='mask_layer' bindtap='modal_click_Hidden' />

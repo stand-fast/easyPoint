@@ -13,14 +13,14 @@
     </view>
 
     <view wx:if="{{currentTab == 0}}" class="leaveTop">
-        <block wx:for="{{part_time_job_info}}" wx:for-item="item" wx:key="id">
-            <template is="internship" data='{{item}}'/>
+        <block wx:for="{{part_time_job_info}}" wx:for-item="item" wx:key="id" wx:for-index="idx">
+            <template is="internship" data="{{item,part_time_job_id:part_time_job_id}}"/>
         </block>
     </view>
 
     <view wx:if="{{currentTab == 1}}" class="leaveTop">
         <block wx:for="{{part_time_job_info}}" wx:for-item="item" wx:key="id">
-            <template is="internship" data='{{item}}'/>
+            <template is="internship" data="{{item,part_time_job_id:part_time_job_id}}" />
         </block>
     </view>
 </view>

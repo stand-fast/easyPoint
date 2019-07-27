@@ -13,19 +13,21 @@ Page({
         showModal:false,
         successShowmodal:false,
         finishShowmodal:false,
-
+        part_time_job_id:'',   
         jobCNS:{
             job_name: "校内自助餐厅服务员", 
             job_salary: "80/天",
-            job_settle: "日结",
+            job_settle: 2,
             job_content:"负责在上菜区将菜品及时摆出，保证出餐窗口的整洁干净，及时跟进顾客的饮食情况，在结账窗口对顾客的菜品消费进行数目结账",
-            sex: "不限",
+            sex: 3,
             job_time: "10:00-15:00",
             job_place:"本部北苑食堂二楼",
             job_date:"2019-09-01 到 2019-12-31",
             recruit_num:1,
             welfare:"中午包餐、不定时水果甜点小吃福利赠送",
             requirement:"为人热情大方、开朗，性格活泼，做事负责",
+            applicant_num:0,
+            state:1,
 
             legal_person:"陈先生",
             phone:"123-1234-1234",
@@ -33,7 +35,10 @@ Page({
         }
     },
     //兼职部分JS事件响应
-    submiting:function(){          //提交我要报名
+  submiting: function () {          //查询用户是否填写信息 提交我要报名  
+      //查询用户是否填写信息
+
+      //提交我要报名
         this.setData({
             showModal: true,
         })
@@ -50,11 +55,27 @@ Page({
         })
     },
     successBtn:function(){          //兼职报名成功事件
-        this.setData({
-            word:"已报名",
-            status:true,
-            successShowmodal:false
-        })
+      // wx.request({
+      //   url: '接口路径',
+      //   header: {
+      //     "Content-Type": "application/x-www-form-urlencoded"
+      //   },
+      //   method: "POST",
+      //   data: {
+      //     apply_id: app.globalData.open_id,
+      //     part_time_job_id: this.data.part_time_job_id,
+      //     uid: '',    //根据open_id去查询用户的信息表        
+      //   },
+      //   success: function (res) {
+      //     console.log(res.data);
+      //   }
+      // })
+
+      this.setData({
+          word:"已报名",
+          status:true,
+          successShowmodal:false
+      })
     },
 
     //实习JS事件响应
@@ -98,23 +119,39 @@ Page({
      */
   onLoad: function (options) {
     var that = this;
+    console.log(options.id)
+    this.data.part_time_job_id = options.id
+    // wx.request({
+    //   url: '接口路径',
+    //   data: {
+    //     part_time_job_id: options.id,   //根据part_time_job_id请求数据
+    //   },
+    //   method: 'Post',
+    //   header: { 'content-type': 'application/x-www-form-urlencoded' },
+    //   success: function (res) {
+    //     console.log(res.data)
+    //     selt.setData({
+    //       jobDetail: res.data,
+    //     })
+    //   }
+    // })
     this.setData({
       type: options.type,
-      jobDetail:this.data.jobCNS
+      jobDetail:this.data.jobCNS   //请求数据后删除这行
     })
     if (options.type == '1'){
           this.setData({
-              currentab:options.currentab,
               word: "投递简历",
               statusWord: "实习",
           })
       }
-    // if (options.remianum === '0') {
-    //     this.setData({
-    //         word: "人数已满",
-    //         btnColor: '#999',
-    //     })
-    // } 
+    if (this.data.jobDetail.applicant_num >= this.data.jobDetail.recruit_num) {
+        this.setData({
+            word: "人数已满",
+            btnColor: '#999',
+            status:true,
+        })
+    } 
   },
 
     /**
