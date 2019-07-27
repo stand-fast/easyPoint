@@ -1,8 +1,8 @@
 {
     "pages": [
-        "pages/index/index",
-        "pages/partimeJob/partimeJob",
-        "pages/JobDetail/JobDetail"
+      "pages/partimeJob/partimeJob",
+      "pages/JobDetail/JobDetail",
+      "pages/index/index"
     ],
     "window": {
         "backgroundTextStyle": "light",

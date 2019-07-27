@@ -17,18 +17,14 @@ Page({
             jobName: "校内自助餐厅服务员", 
             jobSalary: "80/天",
              jobSettle: "日结",
-             jobContent:"负责在上菜区将菜品及时摆出，保证出餐窗口的整洁干净，及时跟进顾客的饮食情况，在结账窗口对顾客的菜品消费进行数目结账"
-            }],
-        jobDetail:[{
+             jobContent:"负责在上菜区将菜品及时摆出，保证出餐窗口的整洁干净，及时跟进顾客的饮食情况，在结账窗口对顾客的菜品消费进行数目结账",
             jobSex:"不限",
             jobLocation:"本部北苑食堂二楼",
             jobDate:"2019-09-01 到 2019-12-31",
             jobTime:"10:00-15:00",
             jobNumber:1,
             jobWelfare:"中午包餐、不定时水果甜点小吃福利赠送",
-            jobRequest:"为人热情大方、开朗，性格活泼，做事负责"
-        }],
-        firmDetail:[{
+            jobRequest:"为人热情大方、开朗，性格活泼，做事负责",
             firmContact:"陈先生",
             firmPhone:"123-1234-1234",
             firmIntroduce:"校内食堂，为广大师生提供早餐午餐、晚餐以及夜宵等叭叭叭叭叭叭叭叭........"

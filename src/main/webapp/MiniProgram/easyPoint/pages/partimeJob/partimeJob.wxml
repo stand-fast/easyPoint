@@ -11,13 +11,15 @@
             <icon type='search' class='search_icon' size='20' bindtap='searchJob'></icon>
         </view>
     </view>
+
     <view wx:if="{{currentTab == 0}}" class="leaveTop">
-        <block wx:for="{{partimeInfo}}" wx:for-item="item" wx:key="id">
+        <block wx:for="{{intershipJson}}" wx:for-item="item" wx:key="id">
             <template is="internship" data='{{item}}'/>
         </block>
     </view>
+
     <view wx:if="{{currentTab == 1}}" class="leaveTop">
-        <block wx:for="{{internshipInfo}}" wx:for-item="item" wx:key="id">
+        <block wx:for="{{partimeJobJson}}" wx:for-item="item" wx:key="id">
             <template is="internship" data='{{item}}'/>
         </block>
     </view>
