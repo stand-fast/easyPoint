@@ -43,16 +43,15 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "partimeJob",
-					"pathName": "pages/partimeJob/partimeJob",
+					"name": "pages/partInternJob/partimeJob/partimeJob",
+					"pathName": "pages/partInternJob/partimeJob/partimeJob",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
 					"name": "JobDetail",
-					"pathName": "pages/JobDetail/JobDetail",
-					"query": "",
+					"pathName": "pages/partInternJob/JobDetail/JobDetail",
 					"scene": null
 				}
 			]

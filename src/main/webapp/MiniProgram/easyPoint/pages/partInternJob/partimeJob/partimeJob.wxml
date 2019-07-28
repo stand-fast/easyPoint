@@ -7,8 +7,8 @@
             <view class="{{currentTab==1 ? 'on' : ''}} nav_text_partime" data-current='1' bindtap="swichNav">实习</view>
         </view>
         <view class='nav_search'>
-            <input class='search_input' placeholder='请输入搜索信息'  type='text' placeholder-class='inputPh' bindinput="takeValue"></input>
-            <icon type='search' class='search_icon' size='20' bindtap='searchJob'></icon>
+            <input class='search_input' placeholder='请输入搜索信息'  type='text' placeholder-class='inputPh' bindinput="takeValue" confirm-type="search" bindconfirm="sendMsgTap"></input>
+            <icon type='search' class='search_icon' size='20'></icon>
         </view>
     </view>
 

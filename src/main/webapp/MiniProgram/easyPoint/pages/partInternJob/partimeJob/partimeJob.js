@@ -18,12 +18,12 @@ Page({
       },
       {
           part_time_job_id: "012213",
-          job_name: "移动公司营销实习生",
+          job_name: "移动实习生",
           job_salary: "80/天",
           job_settle: 2,
-          recruit_num: "4",
+          recruit_num: "3",
           job_place: "天河区",
-          end_time: "07-11"
+          end_time: "07-10"
         },
     ],
   },
@@ -37,7 +37,7 @@ Page({
       })
   },
   //搜索功能
-    searchJob:function(){          
+    sendMsgTap:function(){          
       console.log(this.data.inputText);
       var selt = this;
       // wx.request({

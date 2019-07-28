@@ -6,7 +6,6 @@ Page({
     data: {
         currentab:0,
         word:"我要报名",
-        statusWord:"兼职",
         btnColor:'#56b4f6',
         fileName:"wszhirijsdcdakjcjdk.doc",
         status:false,
@@ -16,14 +15,14 @@ Page({
         part_time_job_id:'',   
         jobCNS:{
             job_name: "校内自助餐厅服务员", 
-            job_salary: "80/天",
+            job_salary: "30/日",
             job_settle: 2,
             job_content:"负责在上菜区将菜品及时摆出，保证出餐窗口的整洁干净，及时跟进顾客的饮食情况，在结账窗口对顾客的菜品消费进行数目结账",
             sex: 3,
             job_time: "10:00-15:00",
             job_place:"本部北苑食堂二楼",
             job_date:"2019-09-01 到 2019-12-31",
-            recruit_num:1,
+            recruit_num:3,
             welfare:"中午包餐、不定时水果甜点小吃福利赠送",
             requirement:"为人热情大方、开朗，性格活泼，做事负责",
             applicant_num:0,
@@ -145,7 +144,7 @@ Page({
               statusWord: "实习",
           })
       }
-    if (this.data.jobDetail.applicant_num >= this.data.jobDetail.recruit_num) {
+    if ((this.data.jobDetail.applicant_num >= this.data.jobDetail.recruit_num) &&(options.type== '0')){
         this.setData({
             word: "人数已满",
             btnColor: '#999',

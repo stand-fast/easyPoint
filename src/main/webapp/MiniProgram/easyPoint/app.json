@@ -1,7 +1,7 @@
 {
     "pages": [
-      "pages/partimeJob/partimeJob",
-      "pages/JobDetail/JobDetail",
+      "pages/partInternJob/partimeJob/partimeJob",
+      "pages/partInternJob/JobDetail/JobDetail",
       "pages/index/index"
     ],
     "window": {
