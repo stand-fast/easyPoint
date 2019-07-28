@@ -60,7 +60,7 @@ Page({
       var id = e.currentTarget.dataset.id
       //console.log(id)
       wx.navigateTo({
-          url: '/pages/JobDetail/JobDetail?type='+this.data.currentTab+"&&id="+id
+        url: '/pages/partInternJob/JobDetail/JobDetail?type='+this.data.currentTab+"&&id="+id
         })
     },
 

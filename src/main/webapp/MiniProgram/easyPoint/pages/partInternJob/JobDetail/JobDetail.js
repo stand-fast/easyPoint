@@ -7,12 +7,12 @@ Page({
         currentab:0,
         word:"我要报名",
         btnColor:'#56b4f6',
-        fileName:"wszhirijsdcdakjcjdk.doc",
         status:false,
         showModal:false,
         successShowmodal:false,
         finishShowmodal:false,
-        part_time_job_id:'',   
+        part_time_job_id:'',
+        fileName:'',   
         jobCNS:{
             job_name: "校内自助餐厅服务员", 
             job_salary: "30/日",
@@ -28,6 +28,7 @@ Page({
             applicant_num:0,
             state:1,
 
+            boolean:false,     //判断是否报名该兼职
             legal_person:"陈先生",
             phone:"123-1234-1234",
             company_introduce:"校内食堂，为广大师生提供早餐午餐、晚餐以及夜宵等叭叭叭叭叭叭叭叭........"
@@ -35,10 +36,40 @@ Page({
     },
     //兼职部分JS事件响应
   submiting: function () {          //查询用户是否填写信息 提交我要报名  
+      var that=this;
       //查询用户是否填写信息
+      // wx.request({
+      //   url: '接口路径',
+      //   header: {
+      //     "Content-Type": "application/x-www-form-urlencoded"
+      //   },
+      //   method: "POST",
+      //   data: {
+      //     apply_id: app.globalData.open_id,     
+      //   },
+      //   success: function (res) {
+      //     console.log('请求数据成功')
+      //     console.log(res.data);
+      //     if(res.data==undefined){
+      //       wx.navigateTo({
+      //         url: '',    //跳转到信息界面添加数据
+      //       })
+      //     }
+      //     else{
+      //     that.data.uid=res.data;
+      //     //提交我要报名
+      //     that.setData({
+      //       showModal: true,
+      //       })
+      //     }
+      //   },
+      //   fail:function(res){
+      //     console.log('请求数据失败')
+      //   }
+      // })
 
       //提交我要报名
-        this.setData({
+        that.setData({
             showModal: true,
         })
     },
@@ -63,7 +94,7 @@ Page({
       //   data: {
       //     apply_id: app.globalData.open_id,
       //     part_time_job_id: this.data.part_time_job_id,
-      //     uid: '',    //根据open_id去查询用户的信息表        
+      //     uid: this.data.uid,    //根据open_id去查询用户的信息表
       //   },
       //   success: function (res) {
       //     console.log(res.data);
@@ -77,40 +108,48 @@ Page({
       })
     },
 
-    //实习JS事件响应
-    //选择上传文件
-    chooseFiles:function(){
+    //选择上传简历文件
+   chooseFile:function(){
         var that=this
-        wx.chooseMessageFile({      //模拟机上会报错，真机上可运行，不会出现这种问题
+        wx.chooseMessageFile({      
             count: 1,
             type: 'file',
             success(res) {
-                const tempFilePaths = res.tempFilePaths
-                this.setData({
-                    fileName:res.tempFilePaths
-                })
+              const tempFiles = res.tempFiles[0];
+              console.log(tempFiles);
+              that.setData({
+                fileName: tempFiles.name,
+                resumeFilePath: tempFiles.path,
+              })
             }
         })
     },
-    // 文件上传
-    fileUnloadBtn:function(){           //这里需要重新看代码，我不确定可不可以
-        wx.uploadFile({
-            url: '',        //服务器地址
-            filePath: this.data.fileName,
-            name: 'file',
-            formData:{
-                name:encodeURI(filePath),
-            },
-            success:function(res){
-                this.setData({
-                    successShowmodal: false,
-                    finishShowmodal: true,
-                })
-            },
-            fail:function(res){
-
-            }
-        })
+    // 简历文件上传
+    fileUnloadBtn:function(){           
+      var that=this;
+        // wx.uploadFile({
+        //     url: '',        //接口路径
+        //     filePath: that.data.resumeFilePath,
+        //     name: 'file',
+        //     formData:{
+        //       resumeName: that.data.fileName,
+        //     },
+        //   success: function (res) {
+        //     console.log('上传成功');
+        //         that.setData({
+        //             successShowmodal: false,
+        //             finishShowmodal: true,
+        //         })
+        //     },
+        //     fail:function(res){
+        //       console.log('上传失败');
+        //     }
+        // })
+      that.setData({       //成功接上服务器后删除
+        word: '已投递',
+        successShowmodal: false,
+        finishShowmodal: true,
+      })
     },
 
     /**
@@ -120,6 +159,10 @@ Page({
     var that = this;
     console.log(options.id)
     this.data.part_time_job_id = options.id
+    this.setData({
+      type: options.type,
+      jobDetail: this.data.jobCNS   //请求数据后删除这行
+    })
     // wx.request({
     //   url: '接口路径',
     //   data: {
@@ -129,28 +172,76 @@ Page({
     //   header: { 'content-type': 'application/x-www-form-urlencoded' },
     //   success: function (res) {
     //     console.log(res.data)
-    //     selt.setData({
+    //     that.setData({
     //       jobDetail: res.data,
     //     })
     //   }
     // })
-    this.setData({
-      type: options.type,
-      jobDetail:this.data.jobCNS   //请求数据后删除这行
-    })
-    if (options.type == '1'){
-          this.setData({
-              word: "投递简历",
-              statusWord: "实习",
-          })
-      }
-    if ((this.data.jobDetail.applicant_num >= this.data.jobDetail.recruit_num) &&(options.type== '0')){
+
+    //判断该用户是否报名该兼职
+    if (options.type == '0'){
+      if ((this.data.jobDetail.applicant_num >= this.data.jobDetail.recruit_num) && (options.type == '0')) {
         this.setData({
-            word: "人数已满",
-            btnColor: '#999',
-            status:true,
+          word: "人数已满",
+          btnColor: '#999',
+          status: true,
         })
-    } 
+      }
+      //this.judgingPartTime();
+    }
+    if (options.type == '1'){
+        this.setData({
+            word: "投递简历",
+            statusWord: "实习",
+        })
+      //this.judgingDeliver();     判断该用户是否投递实习
+      } 
+  },
+  judgingPartTime: function () {
+    var that=this;
+    wx.request({
+      url: '接口路径',
+      data: {
+        part_time_job_id: options.id,   //根据part_time_job_id请求数据
+        apply_id: app.globalData.open_id,   
+      },
+      method: 'Post',
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      success: function (res) {
+        console.log(res.data)
+        if(res.data==true){
+          that.setData({
+            word: "已报名",
+            status: true,
+            successShowmodal: false
+          })
+        }
+      }
+    })
+
+  },
+  judgingDeliver: function () {
+    var that=this;
+      wx.request({
+        url: '接口路径',
+        data: {
+          part_time_job_id: options.id,   //根据part_time_job_id请求数据
+          apply_id: app.globalData.open_id,   
+        },
+        method: 'Post',
+        header: { 'content-type': 'application/x-www-form-urlencoded' },
+        success: function (res) {
+          console.log(res.data)
+          if(res.data==true){
+            that.setData({     
+              word:'已投递',
+              successShowmodal: false,
+              finishShowmodal: true,
+            })
+          }
+        }
+      })
+
   },
 
     /**
