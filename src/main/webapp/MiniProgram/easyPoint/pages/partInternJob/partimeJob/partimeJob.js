@@ -6,6 +6,9 @@ Page({
    */
   data: {
       currentTab:0,
+      judegeSearch:false,
+      pagenum: 1, //初始页默认值为1
+      noData:false,
       part_time_job_info:[
       {
           part_time_job_id: "0asdasd", 
@@ -17,6 +20,33 @@ Page({
           end_time: "07-11"
       },
       {
+          part_time_job_id: "012213",
+          job_name: "移动实习生",
+          job_salary: "80/天",
+          job_settle: 2,
+          recruit_num: "3",
+          job_place: "天河区",
+          end_time: "07-10"
+        },
+        {
+          part_time_job_id: "012213",
+          job_name: "移动实习生",
+          job_salary: "80/天",
+          job_settle: 2,
+          recruit_num: "3",
+          job_place: "天河区",
+          end_time: "07-10"
+        },
+        {
+          part_time_job_id: "012213",
+          job_name: "移动实习生",
+          job_salary: "80/天",
+          job_settle: 2,
+          recruit_num: "3",
+          job_place: "天河区",
+          end_time: "07-10"
+        },
+        {
           part_time_job_id: "012213",
           job_name: "移动实习生",
           job_salary: "80/天",
@@ -37,9 +67,12 @@ Page({
       })
   },
   //搜索功能
-    sendMsgTap:function(){          
+  sendMsgTap:function(){          
       console.log(this.data.inputText);
       var selt = this;
+
+      this.data.judegeSearch=true;      //判定搜索状态接上服务器后清除
+
       // wx.request({
       //   url: '接口路径',
       //   data: {
@@ -51,6 +84,8 @@ Page({
       //     console.log(res.data)
       //     selt.setData({
       //       part_time_job_info: res.data,
+      //       judegeSearch:true,      //判定搜索状态
+      //       noData:true,          //显示没有更多数据了
       //     })
       //   }
       // })
@@ -74,13 +109,16 @@ Page({
         }
         else {
           that.setData({
-                currentTab: e.target.dataset.current
+                currentTab: e.target.dataset.current,
+                pageNum:1,  //切换界面将pageNum置为0
           })
           // var selt = this;
           // wx.request({
           //   url: '接口路径',
           //   data: {
           //     type: e.target.dataset.current,   //根据current请求数据
+          //     pageNum: that.data.pagenum, //从数据里获取当前页数
+          //     pageSize: 5, //每页显示条数
           //   },
           //   method: 'Post',
           //   header: { 'content-type': 'application/x-www-form-urlencoded' },
@@ -108,7 +146,9 @@ Page({
     wx.request({
       url: '接口路径',
       data: {
-        type: "0",   //请求兼职数据
+        type: "0",   //请求兼职数据，其中实习数据type为1
+        pageNum: that.data.pagenum, //从数据里获取当前页数
+        pageSize: 5, //每页显示条数
       },
       method: 'Post',
       header: { 'content-type': 'application/x-www-form-urlencoded' },
@@ -121,7 +161,86 @@ Page({
     })
 
   },
-
+  onReachBottom: function () {
+    var that = this;
+    if (this.data.judegeSearch == false) {   //判断是否为搜索状态，搜索状态上啦刷新
+      wx.showToast({
+        icon:'loading',
+        title: '正在加载',
+      })
+      var pagenum = that.data.pagenum + 1; //获取当前页数并+1
+      that.setData({
+        pagenum: pagenum, //更新当前页数
+      })
+      console.log('加载第'+this.data.pagenum+'页面数据')
+      //that.getdatalist();//重新调用请求获得数据
+    }
+  },
+  getdatalist:function(){
+    var that = this;
+      wx.request({
+        url: '请求地址',
+        data: {
+          type: that.data.currentTab,
+          pageNum: that.data.pagenum, //从数据里获取当前页数
+          pageSize: 5, //每页显示条数
+        },
+        method: "POST",
+        success: function (res) {
+          console.log('请求成功');
+          if(res.data==undefined){    //没有数据时候将显示没有数据显示出来
+            that.setData({
+              noData:true,
+            })
+          }
+          else{
+            var arr1 = that.data.part_time_job_info; //从data获取当前part_time_job_info数组
+            var arr2 = res.data; //从此次请求返回的数据中获取新数组
+            arr1 = arr1.concat(arr2); //合并数组
+            that.setData({
+              part_time_job_info: arr1 //合并后更新part_time_job_info
+            })
+          }
+        },
+        fail: function (err) { 
+          console.log('请求失败');
+        },//请求失败
+      })
+    
+  },
+  onPullDownRefresh: function () {
+    this.data.judegeSearch = false,
+    wx.showNavigationBarLoading()//在标题栏中显示加载     
+    //模拟加载        
+    //this.updateData();    //更新数据
+    wx.showToast({
+      icon:'loading',
+      title: '正在刷新',
+    })
+    setTimeout(function () {
+      wx.hideNavigationBarLoading()//完成停止加载      
+      wx.stopPullDownRefresh()//停止下拉刷新 
+    }, 1500);
+  },
+  updatData:function(){
+    var selt = this;
+    wx.request({
+      url: '接口路径',
+      data: {
+        type: e.target.dataset.current,   //根据current请求数据
+        pageNum: 1, //获取第一页数据
+        pageSize: 5, //每页显示条数
+      },
+      method: 'Post',
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      success: function (res) {
+        console.log(res.data)
+        selt.setData({
+          part_time_job_info: res.data,
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -150,19 +269,6 @@ Page({
 
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
 
   /**
    * 用户点击右上角分享

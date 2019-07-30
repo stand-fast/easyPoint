@@ -2,6 +2,8 @@
 Page{
     background-color: #f4f4f4;
     font-family: 黑体;
+    padding-bottom: 14rpx;
+    overflow-y:scroll;
 }
 .nav{
     position: fixed;
@@ -168,4 +170,8 @@ Page{
 .lookDt image{
     width: 56rpx;
     height: 56rpx;
+}
+.noData{
+  margin-left: 30rpx;
+  font-size: 28rpx;
 }

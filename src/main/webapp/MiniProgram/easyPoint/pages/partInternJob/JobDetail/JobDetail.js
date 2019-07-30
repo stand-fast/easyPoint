@@ -231,8 +231,8 @@ Page({
         method: 'Post',
         header: { 'content-type': 'application/x-www-form-urlencoded' },
         success: function (res) {
-          console.log(res.data)
-          if(res.data==true){
+          console.log(res.data)    
+          if (res.data.deliverNum=='3'){     //当投递次数为3的时候，显示已投递
             that.setData({     
               word:'已投递',
               successShowmodal: false,

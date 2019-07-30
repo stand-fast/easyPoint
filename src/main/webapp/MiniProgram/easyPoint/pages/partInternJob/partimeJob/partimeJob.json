@@ -1,5 +1,7 @@
 {
   "usingComponents": {},
   "navigationBarTitleText": "兼职实习",
-  "navigationBarTextStyle": "white"
+  "navigationBarTextStyle": "white",
+  "onReachBottomDistance": 50,
+  "enablePullDownRefresh": true
 }
