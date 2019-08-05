@@ -1,0 +1,90 @@
+<!--pages/easyPointCar/confirmTicket/confirmTicket.wxml-->
+<view class="confirm_header">
+    <view class="flex_left"></view>
+    <view class="flex_right">
+        <view class="flex_right_item">
+            <view class="dot_blue"></view>
+            <text>发车时间：</text>
+            <view class="item_text on">{{ticketInfos.startTime}}</view>
+        </view>
+        <view class="flex_right_item">
+            <view class="dot_blue"></view>
+            <text>出发地点：</text>
+            <view class="item_text">{{ticketInfos.startAdd}}</view>
+        </view>
+        <view class="flex_right_item">
+            <view class="dot_blue"></view>
+            <text>到达地点：</text>
+            <view class="item_text">{{ticketInfos.endAdd}}</view>
+        </view>
+    </view>
+</view>
+<view class="content_passby">
+    <view class="flex_left"></view>
+    <view class="flex_right">
+        <view class="flex_right_item">
+            <view class="dot_gray"></view>
+            <text>乘客姓名：</text>
+            <view class="item_text">{{ticketInfos.passbyName}}</view>
+        </view>
+            <view class="flex_right_item">
+            <view class="dot_gray"></view>
+            <text>联系方式：</text>
+            <view class="item_text">{{ticketInfos.passbyPhone}}</view>
+        </view>
+    </view>
+</view>
+<view class="content_price">
+    <view class="flex_left"></view>
+    <view class="flex_right">
+        <view class="price_item">
+            <view class="dot_gray"></view>
+            <text>票价</text>
+            <view class="price_item_text">{{tickeType}}票<text>￥{{ticketInfos.ticketPrice}}</text></view>
+        </view>
+    </view>
+</view>
+<view class="content_insurance">
+    <view class='{{radioStatus?"circle2":"circle1"}}' bindtap="radiochange">
+        <image src="/images/icon/right.png" wx:if="{{radioStatus}}"></image>
+    </view>
+    <text class="buytext">购买保险</text>
+    <text class="detail" bindtap="insuDetail">详情  ></text>
+</view>
+<view class="traBottom">
+    <view class="contactBtn"><button open-type="contact" session-from="weapp">
+        <image src="/images/icon/cservice.png"></image>
+    </button></view>
+    <view class="payMoney">
+        <view class="money_text">共计<text>￥{{ticketInfos.money}}</text></view>
+        <view class="pro">
+            <view class='{{procheck?"baosquare2":"baosquare1"}}' bindtap="proChange">
+                <image src="/images/icon/right.png" wx:if="{{procheck}}"></image>
+            </view>
+            <text class="Text" bindtap="showProtocal">浏览并同意易点协议</text>
+        </view>
+    </view>
+    <view wx:if="{{currentab==0}}" class="submitBtn" bindtap="toPay"><button form-type="submit">去支付</button></view>
+    <view wx:if="{{currentab==1}}" class="submitBtn" bindtap="toPay"><button form-type="submit">去预约</button></view>
+    <block wx:if='{{showmodal}}'>
+        <view class='mask_layer' bindtap="modal_click_Hidden"/>
+        <view class='modal_box'>
+            <view class="model_success">温馨提示</view>
+            <view wx:if="{{currentab==0}}"><view class="success_text">各位亲爱的同学们，支付后暂不支持退票，若私下换票需要联系平台客服进行信息更改，谢谢您的配合，若确认无误请继续支付。</view>
+            <button wx:if="{{currentab==0}}" class="success_btn" bindtap="confirmPay">确认支付</button></view>
+            <view wx:if="{{currentab==1}}"><view class="success_text">各位亲爱的同学们，预约票可预约包车报名，但最终是否能够成功发车将根据最后的报名总人数决定，考虑好请报名预约！</view>
+            <button wx:if="{{currentab==1}}" class="success_btn" bindtap="confirmPay">确认预约</button></view>
+        </view>
+    </block>
+     <block wx:if='{{successPay}}'>
+        <view class='mask_layer' bindtap='modal_click_Hidden' />
+        <view class='modal_box'>
+            <icon type="success" color="blue" size="48" color="#1296db"></icon>
+            <view wx:if="{{currentab==0}}" class="modal_box_title">支付成功</view>
+             <view wx:if="{{currentab==1}}" class="modal_box_title">预约成功</view>
+            <view wx:if="{{currentab==0}}" class="modal_box_content">感谢您的信任和使用，祝您旅途愉快！</view>
+            <view wx:if="{{currentab==1}}" class="modal_box_content">预约结果请留意消息通知，谢谢配合哈！</view>
+            <button class="modal_box_btn" bindtap="successBtn">确定</button>
+        </view>
+    </block>
+</view>

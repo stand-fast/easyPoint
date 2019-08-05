@@ -1,0 +1,39 @@
+<!--pages/easyPointCar/queryTicket/queryTicket.wxml-->
+<view wx:if="{{ticketLength!=0}}">
+    <block wx:for="{{ticketInfos}}" wx:for-item="item">
+        <view class="queryTicket" style="background-image:url(/images/ticketbgZh.png);">  <!--在真机上背景图片显示不出来，需要把照片放到服务器-->
+            <view class="ticket_left">
+                <view class="gotime">
+                    <text>出发时间</text>
+                    <view>{{item.starTime}}</view>
+                </view>
+                <view class="content_flex">
+                    <view class="flex_left"></view>
+                    <view class="flex_right">
+                        <view class="ticket_left_item">
+                            <view class="dot"></view>
+                            <text>出发</text>
+                            <view class="item_text">{{item.startAdd}}</view>
+                        </view>
+                        <view class="ticket_left_item">
+                            <view class="dot"></view>
+                            <text>到达</text>
+                            <view class="item_text">{{item.endAdd}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="ticket_right">
+                <view class="ticketType"><text>{{ticketType}}</text></view>
+                <view class="right_contain">
+                    <view class="ticketPrice">￥{{item.ticketPrice}}</view>
+                    <button bindtap="buyTicket">购票</button>
+                    <view class="ticketRemain">剩余{{item.ticketNumber}}张</view>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>
+<view wx:else class="noTicket">
+    <text>o(╥﹏╥)o  十分抱歉\n没有查询到相关车票信息</text>
+</view>

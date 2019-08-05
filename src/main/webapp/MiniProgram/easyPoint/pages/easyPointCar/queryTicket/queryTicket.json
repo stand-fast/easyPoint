@@ -1,4 +1,5 @@
 {
   "usingComponents": {},
+  "navigationBarTitleText": "查询车票",
   "navigationBarTextStyle": "white"
 }

@@ -8,11 +8,11 @@
             </view>
             <view class='remainPeople'>
                 <image src='/images/icon/peopleNum.png'></image>
-                <view class='internship_text'>所剩名额：{{item.recruit_num}} 人</view>
+                <view class='internship_text'>所剩名额：<text>{{item.recruit_num}} 人</text></view>
             </view>
             <view class='jobLocaTime'>
                 <image src='/images/icon/address.png'></image>
-                <view class='internship_text last'>工作地点：{{item.job_place}}</view>
+                <view class='internship_text last'>工作地点：<text>{{item.job_place}}</text></view>
                 <view class='endDate'>{{item.end_time}} 截止</view>
             </view>
             <view class='hr'></view>

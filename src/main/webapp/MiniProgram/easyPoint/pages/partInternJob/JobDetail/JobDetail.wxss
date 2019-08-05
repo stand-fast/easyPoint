@@ -17,16 +17,16 @@ Page{
 .headJob{
     display: flex;
     flex-direction: row;
-    height: 80rpx;
+    height: 70rpx;
 }
 .jobName{
     border-bottom: 2rpx solid #56b4f6;
     width: 380rpx;
-    line-height: 44rpx;
-    font-size: 38rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    font-size: 30rpx;
     color: #333;
     padding-left: 24rpx;
-    margin-top: 30rpx;
     display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -37,75 +37,81 @@ Page{
 }
 .jobSalary{
     width: 180rpx;
-    font-size: 36rpx;
+    font-size: 30rpx;
+    font-family: 微软雅黑;
     color: #56b4f6;
-    height: 44rpx;
-    line-height: 44rpx;
+    height: 70rpx;
+    line-height: 70rpx;
     text-align: right;
-    margin:30rpx 14rpx 0rpx 40rpx;
 }
 .jobSettle{
     width: 80rpx;
-    height: 44rpx;
-    line-height: 44rpx;
-    margin-top: 30rpx;
-    font-size: 32rpx;
-    color: #bbb;
+    height: 70rpx;
+    line-height: 70rpx;
+    font-size: 24rpx;
+    color: #999;
+    padding-left: 20rpx;
+    padding-top: 4rpx;
 }
 .jobContent{
     width: 100%;
     display: flex;
     flex-direction: row;
-    font-size: 29rpx;
+    font-size: 26rpx;
     margin: auto;
-    padding: 24rpx;
+    padding:14rpx 24rpx;
 }
 .jobContent_menu,.infos_contains{
     width: 150rpx;
-    color: #bbb;
+    color: #999;
     line-height: 40rpx;
 }
 .jobContent_text,.infos_contains_text{
     width: 500rpx;
-    color: #999;
+    color: #666;
     line-height: 40rpx;
 }
 .infos_header,.firm_header{
-    line-height: 30rpx;
     width: 200rpx;
-    height: 60rpx;
-    font-size: 38rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    font-size: 30rpx;
     color: #56b4f6;
-    margin-top: 30rpx;
     border-bottom: 2rpx solid #56b4f6;
-    padding-left: 24rpx;
+    padding-left: 30rpx;
 }
 .infos_content{
     display: flex;
     flex-direction: row;
-    font-size: 29rpx;
+    font-size: 26rpx;
     margin: auto;
-    padding: 20rpx 18rpx 0rpx 28rpx;
+    padding: 14rpx 18rpx 0rpx 28rpx;
 }
 .last{
-    padding-bottom:20rpx; 
+    margin-bottom:20rpx; 
 }
 .btn{
     position: fixed;
     bottom: 0rpx;
     width: 100%;
-    height: 92rpx;
+    height: 86rpx;
     display: flex;
     flex-direction: row;
     justify-content: center
 }
+button-hover{
+    background-color: #c3e6ff;
+}
 .btn image{
-    margin-top: 14rpx;
-    width:56rpx;
-    height: 56rpx;
+    margin-top: 17rpx;
+    width:50rpx;
+    height: 50rpx;
 }
 .btn_text{
-    margin-left: 16rpx;
+    font-size: 30rpx;
+    height: 86rpx;
+    line-height: 86rpx;
+    margin-left:12rpx;
     color: #fff;
 }
 .hr{
@@ -149,9 +155,9 @@ Page{
     color: #56b4f6;
 }
 .content {
-    font-size: 28rpx;
+    font-size: 26rpx;
     height: 250rpx;
-    color: #bbb;
+    color: #999;
     padding:0 30rpx;
     margin-bottom: 10rpx;
     overflow: hidden;
@@ -170,12 +176,13 @@ Page{
 }
 .cancel,.Sure{
     width: 230rpx;
-    height: 80rpx;
-    line-height: 80rpx;
+    height: 70rpx;
+    line-height: 70rpx;
     padding: 0 30rpx;
-    color: #bbb;
+    color: #999;
     background-color: #eee;
     text-align: center;
+    font-size: 30rpx;
     border-radius: 60rpx;
 }
 .Sure {
@@ -195,13 +202,37 @@ Page{
 .success_text{
     margin-bottom: 40rpx;
     text-align: center;
-    font-size: 30rpx;
-    color: #bbb;
+    font-size: 26rpx;
+    color: #999;
     height: 44rpx;
     line-height: 44rpx;
 }
 .success_btn{
     background-color: #56b4f6;
+    color: #fff;
+    margin-top: 60rpx;
+    margin-bottom: 20rpx;
+    width: 240rpx;
+    border-radius: 60rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+}
+.model_fail{
+    margin:20rpx 0 30rpx 0;
+    text-align: center;
+    font-size: 36rpx;
+    color: #ea3e4f;
+}
+.fail_text{
+    margin-bottom: 40rpx;
+    text-align: center;
+    font-size: 26rpx;
+    color: #999;
+    height: 44rpx;
+    line-height: 44rpx;
+}
+.fail_btn{
+    background-color: #ea3e4f;
     color: #fff;
     margin-top: 60rpx;
     margin-bottom: 20rpx;
@@ -217,8 +248,8 @@ button::after { border: none; }
 }
 .fileText{
     margin: 40rpx 0 14rpx 30rpx;
-    font-size: 34rpx;
-    color: #bbb;
+    font-size: 30rpx;
+    color: #999;
     background-color: #eee;
     text-overflow: -o-ellipsis-lastline;
     overflow: hidden;
@@ -243,7 +274,7 @@ button::after { border: none; }
 .tipText{
     font-size: 28rpx;
     text-align: center;
-    color: #bbb;
+    color: #999;
     height: 70rpx;
     line-height: 70rpx;
     margin-bottom:36rpx; 

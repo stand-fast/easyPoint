@@ -2,14 +2,17 @@
     "pages": [
       "pages/partInternJob/partimeJob/partimeJob",
       "pages/partInternJob/JobDetail/JobDetail",
-      "pages/index/index"
+      "pages/index/index",
+      "pages/easyPointCar/bookTicket/bookTicket",
+      "pages/easyPointCar/queryTicket/queryTicket",
+      "pages/easyPointCar/elecTicket/elecTicket",
+      "pages/easyPointCar/confirmTicket/confirmTicket"
     ],
     "window": {
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#56b4f6",
+        "navigationBarBackgroundColor": "#7ecef4",
         "navigationBarTitleText": "WeChat",
-        "navigationBarTextStyle": "black",
-        "enablePullDownRefresh": true
+        "navigationBarTextStyle": "black"
     },
     "sitemapLocation": "sitemap.json"
 }

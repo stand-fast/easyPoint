@@ -9,6 +9,7 @@ Page({
         btnColor:'#56b4f6',
         status:false,
         showModal:false,
+        failToSignUp:false,
         successShowmodal:false,
         finishShowmodal:false,
         part_time_job_id:'',
@@ -76,6 +77,7 @@ Page({
     modal_click_Hidden: function () {       //隐藏弹框
         this.setData({
             showModal: false,
+            finishShowmodal: false,
         })
     },
     btnSure:function(){         //同意继续事件
@@ -100,12 +102,16 @@ Page({
       //     console.log(res.data);
       //   }
       // })
-
       this.setData({
           word:"已报名",
           status:true,
           successShowmodal:false
       })
+    },
+    falseBtn:function(){
+        wx.navigateBack({
+            delta:1,
+        })
     },
 
     //选择上传简历文件
@@ -163,6 +169,16 @@ Page({
       type: options.type,
       jobDetail: this.data.jobCNS   //请求数据后删除这行
     })
+    if(options.type==0){
+        wx.setNavigationBarTitle({
+            title: '兼职详情',
+        })
+    }
+    else if(options.type==1){
+        wx.setNavigationBarTitle({
+            title: '实习详情',
+        })
+    }
     // wx.request({
     //   url: '接口路径',
     //   data: {

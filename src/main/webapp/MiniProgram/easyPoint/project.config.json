@@ -48,11 +48,39 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 5,
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/partInternJob/partimeJob/partimeJob",
+					"name": "bookTicket",
+					"pathName": "pages/easyPointCar/bookTicket/bookTicket",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "elecTicket",
+					"pathName": "pages/easyPointCar/elecTicket/elecTicket",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "confirmTicket",
+					"pathName": "pages/easyPointCar/confirmTicket/confirmTicket",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "queryTicket",
+					"pathName": "pages/easyPointCar/queryTicket/queryTicket",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "partimeJob",
 					"pathName": "pages/partInternJob/partimeJob/partimeJob",
 					"query": "",
 					"scene": null

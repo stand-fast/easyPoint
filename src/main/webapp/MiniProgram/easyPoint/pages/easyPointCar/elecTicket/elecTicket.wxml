@@ -1,0 +1,73 @@
+<!--pages/easyPointCar/elecTicket/elecTicket.wxml-->
+<form>
+    <view class="ticketContainer">
+        <view class="carInfos">
+            <view class="goTime">
+                <view class="goTime_title">发车时间：</view>
+                <view class="goTime_Text">{{carInfos.departureTime}}</view>
+            </view>
+            <view class="address">
+                <view class="startAdd">{{carInfos.startAdd}}</view>
+                <image src="/images/icon/upto.png"></image>
+                <view class="endAdd">{{carInfos.endAdd}}</view>
+            </view>
+            <view class="addressText">
+                <view class="addSta_text">出发地点</view>
+                <view class="addEnd_text">到达地点</view>
+            </view>
+        </view>
+        <view class="hr_dash"></view>
+        <view class="carFeatures">
+            <view class="carFeat_item">
+                <text class="carFeat_item_title">车牌号：</text>
+                <view class="carFeat_item_text">{{carInfos.carNumber}}</view>
+            </view>
+             <view class="carFeat_item">
+                <text class="carFeat_item_title">车辆类型：</text>
+                <view class="carFeat_item_text">{{carInfos.carType}}</view>
+            </view>
+             <view class="carFeat_item">
+                <text class="carFeat_item_title">车身颜色：</text>
+                <view class="carFeat_item_text">{{carInfos.carColor}}</view>
+            </view>
+        </view>
+        <view class="hr"></view>
+        <view class="contactPer lastline">
+            <view class="conPer_item">
+                <text class="conPer_item_title">司机姓名：</text>
+                <view class="conPer_item_text">{{carInfos.driverName}}</view>
+            </view>
+             <view class="conPer_item">
+                <text class="conPer_item_title">司机联系方式：</text>
+                <view class="conPer_item_text on">{{carInfos.driverPhone}}</view>
+            </view>
+             <view class="conPer_item">
+                <text class="conPer_item_title">乘客姓名：</text>
+                <view class="conPer_item_text">{{carInfos.passenName}}</view>
+            </view>
+            <view class="conPer_item">
+                <text class="conPer_item_title">乘客联系方式：</text>
+                <view class="conPer_item_text">{{carInfos.passenPhone}}</view>
+            </view>
+        </view>
+        <view class="hr"></view>
+        <view class="orderInfos">
+            <view class="orderInfos_item">
+                <text class="orderInfos_item_title">付款定金：</text>
+                <view class="orderInfos_item_text on">￥{{carInfos.payDeposit}} 元</view>
+            </view>
+             <view class="orderInfos_item">
+                <text class="orderInfos_item_title">订单状态：</text>
+                <view class="orderInfos_item_text">{{carInfos.payStatus}}</view>
+            </view>
+            <view class="orderInfos_item">
+                <text class="orderInfos_item_title">下单时间：</text>
+                <view class="orderInfos_item_text">{{carInfos.payTime}}</view>
+            </view>
+            <view class="orderInfos_item">
+                <text class="orderInfos_item_title">订单咨询：</text>
+                <button open-type="contact">联系客服</button>
+            </view>
+        </view>
+    </view>
+</form>
