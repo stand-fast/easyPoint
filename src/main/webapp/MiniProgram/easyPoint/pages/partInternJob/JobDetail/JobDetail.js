@@ -80,13 +80,8 @@ Page({
             finishShowmodal: false,
         })
     },
-    btnSure:function(){         //同意继续事件
-        this.setData({
-            successShowmodal:true,
-            showModal: false,
-        })
-    },
     successBtn:function(){          //兼职报名成功事件
+      var that=this;
       // wx.request({
       //   url: '接口路径',
       //   header: {
@@ -95,14 +90,34 @@ Page({
       //   method: "POST",
       //   data: {
       //     apply_id: app.globalData.open_id,
-      //     part_time_job_id: this.data.part_time_job_id,
-      //     uid: this.data.uid,    //根据open_id去查询用户的信息表
+      //     part_time_job_id: that.data.part_time_job_id,
+      //     uid: that.data.uid,    //根据open_id去查询用户的信息表
       //   },
-      //   success: function (res) {
-      //     console.log(res.data);
+      //   success: function (res) {   //反馈回报名是否成功的信息
+      //       console.log(res.data);
+      //       if (res.data==true){   //报名成功显示报名成功弹窗
+      //         that.setData({
+      //           successShowmodal: true,
+      //           showModal: false,
+      //           word: "已报名",
+      //           status: true,
+      //           successShowmodal: false
+      //         })
+      //       }
+      //       else{       //人数已满报名失败显示报名失败弹窗
+      //         that.setData({
+      //           failToSignUp: true,
+      //           showModal: false,
+      //           word: "人数已满",
+      //           btnColor: '#999',
+      //           status: true,
+      //         })
+      //       }
       //   }
       // })
-      this.setData({
+      
+      //接上服务器后删除
+      that.setData({
           word:"已报名",
           status:true,
           successShowmodal:false

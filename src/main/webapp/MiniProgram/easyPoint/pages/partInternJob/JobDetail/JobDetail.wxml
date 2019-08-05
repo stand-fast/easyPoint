@@ -87,7 +87,7 @@
             </view>
             <view class='btn1'>
                 <button bindtap='modal_click_Hidden' class='cancel'>取消返回</button>
-                <button bindtap='btnSure' class='Sure'>同意继续</button>
+                <button  bindtap="successBtn"  class='Sure'>同意继续</button>
             </view>
         </view>
     </block>
@@ -97,7 +97,7 @@
             <icon type="success" color="blue" size="48" color="#1296db"></icon>
             <view class="model_success">报名成功</view>
             <view class="success_text">报名成功，请留意服务号通知</view>
-            <button class="success_btn" bindtap="successBtn">确定</button>
+            <button class="success_btn">确定</button>
         </view>
     </block>
     <block wx:if='{{failToSignUp}}'>

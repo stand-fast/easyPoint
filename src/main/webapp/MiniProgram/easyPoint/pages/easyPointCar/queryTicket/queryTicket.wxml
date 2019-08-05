@@ -1,6 +1,6 @@
 <!--pages/easyPointCar/queryTicket/queryTicket.wxml-->
 <view wx:if="{{ticketLength!=0}}">
-    <block wx:for="{{ticketInfos}}" wx:for-item="item">
+    <block wx:for="{{ticketInfos}}" wx:for-item="item" wx:key="key">
         <view class="queryTicket" style="background-image:url(/images/ticketbgZh.png);">  <!--在真机上背景图片显示不出来，需要把照片放到服务器-->
             <view class="ticket_left">
                 <view class="gotime">

@@ -126,15 +126,15 @@ Page({
             atselect: false
         })
     },
-    //提交拉起支付功能
-    toPay:function(e){
-        this.setData({
-            successShowmodal: true,
-        })
-    },
-
-    //转到电子订单详情 
-    successBtn:function(){
+  //提交拉起支付功能
+  formSubmit:function(){
+    console.log(1);
+    // this.setData({
+    //   successShowmodal: true,
+    // })
+  },
+  //转到电子订单详情 
+  successBtn:function(){
         wx.navigateTo({
             url: '/pages/easyPointCar/elecTicket/elecTicket',
         })
