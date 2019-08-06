@@ -1,4 +1,4 @@
-package com.easyPoint;
+package com.easyPoint.test;
 
 import com.easyPoint.dao.TestDao;
 import com.easyPoint.pojo.TestPojo;
