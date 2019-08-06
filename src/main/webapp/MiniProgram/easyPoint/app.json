@@ -1,11 +1,11 @@
 {
     "pages": [
-      "pages/partInternJob/partimeJob/partimeJob",
       "pages/easyPointCar/bookTicket/bookTicket",
       "pages/easyPointCar/queryTicket/queryTicket",
-      "pages/easyPointCar/confirmTicket/confirmTicket",
       "pages/easyPointCar/elecTicket/elecTicket",
+      "pages/partInternJob/partimeJob/partimeJob",
       "pages/partInternJob/JobDetail/JobDetail",
+      "pages/easyPointCar/confirmTicket/confirmTicket",
       "pages/index/index"
     ],
     "window": {

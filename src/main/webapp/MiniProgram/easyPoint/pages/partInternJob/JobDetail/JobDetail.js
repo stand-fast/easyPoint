@@ -1,5 +1,4 @@
 Page({
-
     /**
      * 页面的初始数据
      */
@@ -38,7 +37,7 @@ Page({
     //兼职部分JS事件响应
   submiting: function () {          //查询用户是否填写信息 提交我要报名  
       var that=this;
-      //查询用户是否填写信息
+      //查询用户是否填写信息(进入小程序时候查询的话这段可删除)
       // wx.request({
       //   url: '接口路径',
       //   header: {
@@ -80,6 +79,12 @@ Page({
             finishShowmodal: false,
         })
     },
+    btnSure:function(){
+      this.setData({
+        showModal: false,
+        successShowmodal: true,
+      })
+    },
     successBtn:function(){          //兼职报名成功事件
       var that=this;
       // wx.request({
@@ -91,17 +96,18 @@ Page({
       //   data: {
       //     apply_id: app.globalData.open_id,
       //     part_time_job_id: that.data.part_time_job_id,
-      //     uid: that.data.uid,    //根据open_id去查询用户的信息表
+      //     username: that.data.userInformation.username,
+      //     phone: that.data.userInformation.phone,
+      //     gender: that.data.userInformation.gender,
       //   },
       //   success: function (res) {   //反馈回报名是否成功的信息
       //       console.log(res.data);
-      //       if (res.data==true){   //报名成功显示报名成功弹窗
+      //       if (res.data.status==true){   //判断是否报名成功，报名成功显示报名成功弹窗
       //         that.setData({
-      //           successShowmodal: true,
-      //           showModal: false,
-      //           word: "已报名",
-      //           status: true,
-      //           successShowmodal: false
+      //            successShowmodal: true,
+      //            showModal: false,
+      //            word: "已报名",
+      //            status: true,
       //         })
       //       }
       //       else{       //人数已满报名失败显示报名失败弹窗
@@ -118,17 +124,27 @@ Page({
       
       //接上服务器后删除
       that.setData({
-          word:"已报名",
-          status:true,
-          successShowmodal:false
+        successShowmodal:true,
+        showModal: false,
+        word: "已报名",
+        status: true,
       })
     },
-    falseBtn:function(){
+   partTimeDetermine:function(){
+     this.setData({
+       successShowmodal: false,
+     })
+   },
+  practiceDetermine: function () {
+    this.setData({
+      finishShowmodal: false,
+    })
+  },
+   falseBtn:function(){
         wx.navigateBack({
             delta:1,
         })
     },
-
     //选择上传简历文件
    chooseFile:function(){
         var that=this
@@ -194,6 +210,12 @@ Page({
             title: '实习详情',
         })
     }
+    //获取乘客姓名以及联系方式
+    // var userInformation = wx.getStorageSync('userInformation');
+    // this.setData({
+    //   userInformation: userInformation,
+    // })
+
     // wx.request({
     //   url: '接口路径',
     //   data: {

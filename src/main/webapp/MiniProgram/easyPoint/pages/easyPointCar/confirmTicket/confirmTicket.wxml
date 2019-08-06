@@ -5,17 +5,17 @@
         <view class="flex_right_item">
             <view class="dot_blue"></view>
             <text>发车时间：</text>
-            <view class="item_text on">{{ticketInfos.startTime}}</view>
+            <view class="item_text on">{{ticketInfos.departure_time}}</view>
         </view>
         <view class="flex_right_item">
             <view class="dot_blue"></view>
             <text>出发地点：</text>
-            <view class="item_text">{{ticketInfos.startAdd}}</view>
+            <view class="item_text">{{ticketInfos.departure_place}}</view>
         </view>
         <view class="flex_right_item">
             <view class="dot_blue"></view>
             <text>到达地点：</text>
-            <view class="item_text">{{ticketInfos.endAdd}}</view>
+            <view class="item_text">{{ticketInfos.destination}}</view>
         </view>
     </view>
 </view>
@@ -25,12 +25,12 @@
         <view class="flex_right_item">
             <view class="dot_gray"></view>
             <text>乘客姓名：</text>
-            <view class="item_text">{{ticketInfos.passbyName}}</view>
+            <view class="item_text">{{userInformation.username}}</view>
         </view>
             <view class="flex_right_item">
             <view class="dot_gray"></view>
             <text>联系方式：</text>
-            <view class="item_text">{{ticketInfos.passbyPhone}}</view>
+            <view class="item_text">{{userInformation.phone}}</view>
         </view>
     </view>
 </view>
@@ -40,7 +40,7 @@
         <view class="price_item">
             <view class="dot_gray"></view>
             <text>票价</text>
-            <view class="price_item_text">{{tickeType}}票<text>￥{{ticketInfos.ticketPrice}}</text></view>
+            <view class="price_item_text">{{tickeType}}<text>￥{{ticketInfos.price}}</text></view>
         </view>
     </view>
 </view>
@@ -56,7 +56,7 @@
         <image src="/images/icon/cservice.png"></image>
     </button></view>
     <view class="payMoney">
-        <view class="money_text">共计<text>￥{{ticketInfos.money}}</text></view>
+        <view class="money_text">共计<text>￥{{ticketInfos.sumprice}}</text></view>
         <view class="pro">
             <view class='{{procheck?"baosquare2":"baosquare1"}}' bindtap="proChange">
                 <image src="/images/icon/right.png" wx:if="{{procheck}}"></image>

@@ -76,7 +76,7 @@
     <text class='btn_text'>{{word}}</text>
 </button>
 
-
+<!-- 兼职板块 -->
 <block wx:if="{{type==0}}">
     <block wx:if='{{showModal}}'>
     <view class='mask_layer' bindtap='modal_click_Hidden' />
@@ -97,7 +97,7 @@
             <icon type="success" color="blue" size="48" color="#1296db"></icon>
             <view class="model_success">报名成功</view>
             <view class="success_text">报名成功，请留意服务号通知</view>
-            <button class="success_btn">确定</button>
+            <button class="success_btn" bindtap="partTimeDetermine">确定</button>
         </view>
     </block>
     <block wx:if='{{failToSignUp}}'>
@@ -110,6 +110,8 @@
         </view>
     </block>
 </block>
+
+<!-- 实习板块 -->
 <block wx:if="{{type==1}}">
     <block wx:if='{{showModal}}'>
     <view class='mask_layer' bindtap='modal_click_Hidden' />
@@ -142,7 +144,7 @@
             <icon type="success" color="blue" size="48" color="#1296db"></icon>
             <view class="model_success">报名成功</view>
             <view class="success_text">简历上传成功，具体面试信息请在“我的通知”查看</view>
-            <button class="success_btn" bindtap="successBtn">确定</button>
+            <button class="success_btn" bindtap="practiceDetermine">确定</button>
         </view>
     </block>
 </block>

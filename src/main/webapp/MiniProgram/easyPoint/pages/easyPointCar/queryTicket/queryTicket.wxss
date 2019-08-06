@@ -131,6 +131,21 @@ Page{
 .ticket_right button::after{
     border: none;
 }
+
+.ticket_right_beforehand button{
+    width: 120rpx;
+    height: 56rpx;
+    line-height: 56rpx;
+    border-radius: 0rpx;
+    font-size: 30rpx;
+    background-color: #5697be;
+    color: #fff;
+    margin-left: 42rpx;
+}
+.ticket_right_beforehand button::after{
+    border: none;
+}
+
 .ticketRemain{
     font-size: 26rpx;
     color: #999;

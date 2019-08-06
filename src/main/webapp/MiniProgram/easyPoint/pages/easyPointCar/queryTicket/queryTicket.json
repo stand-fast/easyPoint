@@ -1,5 +1,6 @@
 {
   "usingComponents": {},
   "navigationBarTitleText": "查询车票",
-  "navigationBarTextStyle": "white"
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true
 }

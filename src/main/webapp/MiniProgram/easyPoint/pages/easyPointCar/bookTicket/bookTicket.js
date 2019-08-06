@@ -16,6 +16,9 @@ Page({
         insucheck:false,
         radioStatus: false, 
         successShowmodal:false,
+        is_back:0,      //是否往返
+        is_insurance:0,   //是否购买保险
+        townsmen_association:null,  //乡会种类
         imgUrls: [
             "/images/ad.png",
             "/images/circle1.png",
@@ -24,6 +27,127 @@ Page({
         associations:["汕头同乡会","潮州同乡会","普宁同乡会"],
         seatNumber: ["35座大巴", "49座大巴", "53座大巴","57座大巴"]
     },
+
+  //提交拉起支付功能
+  formSubmit: function (e) {
+    var that=this;
+    if (this.data.radioStatus==true){
+      this.setData({
+        is_back:1,
+      })
+    } 
+    if (this.data.insucheck == true) {
+      this.setData({
+        is_insurance: 1,
+      })
+    }
+    
+    // if (e.detail.value.startAddress == "") {
+    //   wx.showToast({
+    //     title: '请输入出发地点',
+    //     icon: 'none',
+    //     duration: 2000
+    //   })
+    // }
+    // else if (e.detail.value.endAddress == "") {
+    //   wx.showToast({
+    //     title: '请输入目的地',
+    //     icon: 'none',
+    //     duration: 2000
+    //   })
+    // }
+    // else if (e.detail.value.startAddress == e.detail.value.endAddress) {
+    //   wx.showToast({
+    //     title: '出发地不能与终点一致',
+    //     icon: 'none',
+    //     duration: 2000
+    //   })
+    // }  
+    // else if(e.detail.value.perNumbers == "") {
+    //   wx.showToast({
+    //     title: '请输入出行人数',
+    //     icon: 'none',
+    //     duration: 2000
+    //   })
+    // }
+    // else if(this.data.carType == undefined) {
+    //   wx.showToast({
+    //     title: '请选择车辆类型',
+    //     icon: 'none',
+    //     duration: 2000
+    //   })
+    // }
+    // else if (this.data.startTime == undefined) {
+    //   wx.showToast({
+    //     title: '请输入出发日期',
+    //     icon: 'none',
+    //     duration: 2000
+    //   })
+    // }
+    // else if(this.data.radioStatus== true){
+    //   if (this.data.returnTime == undefined) {
+    //     wx.showToast({
+    //       title: '请输入返回日期',
+    //       icon: 'none',
+    //       duration: 2000
+    //     })
+    //   }
+    // }
+    // else if(this.data.check== true){
+    //   if (this.data.returnTime == undefined) {
+    //     wx.showToast({
+    //       title: '请浏览并同意易点包车协议',
+    //       icon: 'none',
+    //       duration: 2000
+    //     })
+    //   }
+    // }
+    // else {  
+    //   wx.request({
+    //     url: '接口路径',
+    //     header: {
+    //       "Content-Type": "application/x-www-form-urlencoded"
+    //     },
+    //     method: "POST",
+    //     data: {
+    //       departure_place: e.detail.value.startAddress,
+    //       destination: e.detail.value.endAddress,
+    //       travel_num: e.detail.value.perNumbers,
+    //       vehicle_type: that.data.carType,
+    //       departure_time: that.data.startTime,
+    //       is_back: that.data.is_back,
+    //       back_time: that.data.returnTime,
+    //       is_insurance: that.data.is_insurance,
+    //     },
+    //     success: function (res) {
+    //       console.log(res.data);
+    //       if (res.data.status == 0) {
+    //         wx.showToast({
+    //           title: '提交失败！！！',
+    //           icon: 'loading',
+    //           duration: 2000
+    //         })
+    //       } else {
+    //         wx.showToast({
+    //           title: '提交成功！！！',//这里打印出登录成功
+    //           icon: 'success',
+    //           duration: 2000
+    //         })
+    //         that.setData({
+    //           successShowmodal: true,
+    //         })
+    //       }
+    //     }
+    //   })
+    // }
+
+
+    //接上服务器后删除
+    that.setData({
+      successShowmodal: true,
+    })
+  },
+
     modal_click_Hidden: function () {       //隐藏弹框
         this.setData({
             successShowmodal: false,
@@ -120,19 +244,30 @@ Page({
         })
     },
     selectName: function (e) {
-        var name = e.currentTarget.dataset.name
+      var name = e.currentTarget.dataset.name;
+
+      //判断车票类型
+      if (name == '汕头同乡会') {
         this.setData({
+          townsmen_association: 0
+        })
+      }
+      else if (name == '潮州同乡会') {
+        this.setData({
+          townsmen_association: 1
+        })
+      }
+      else if (name == '普宁同乡会') {
+        this.setData({
+          townsmen_association: 2
+        })
+      }
+      //console.log(this.data.townsmen_association);
+      this.setData({
             assoName: name,
             atselect: false
         })
     },
-  //提交拉起支付功能
-  formSubmit:function(){
-    console.log(1);
-    // this.setData({
-    //   successShowmodal: true,
-    // })
-  },
   //转到电子订单详情 
   successBtn:function(){
         wx.navigateTo({
@@ -141,9 +276,18 @@ Page({
     },
     //转到车票查询
     searchAsso:function(){
-        wx.navigateTo({
-            url: '/pages/easyPointCar/queryTicket/queryTicket',
+      if (this.data.townsmen_association==null){
+        wx.showToast({
+          title: '请选择同乡会',
+          icon: 'none',
+          duration: 2000
         })
+      }
+      else(
+        wx.navigateTo({
+          url: '/pages/easyPointCar/queryTicket/queryTicket?townsmen_association=' + this.data.townsmen_association,
+        })
+      )
     },
     /**
      * 生命周期函数--监听页面加载
