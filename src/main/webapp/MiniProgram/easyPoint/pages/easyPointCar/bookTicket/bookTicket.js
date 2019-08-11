@@ -110,14 +110,16 @@ Page({
     //     },
     //     method: "POST",
     //     data: {
-    //       departure_place: e.detail.value.startAddress,
-    //       destination: e.detail.value.endAddress,
-    //       travel_num: e.detail.value.perNumbers,
-    //       vehicle_type: that.data.carType,
-    //       departure_time: that.data.startTime,
-    //       is_back: that.data.is_back,
-    //       back_time: that.data.returnTime,
-    //       is_insurance: that.data.is_insurance,
+    //        username: that.data.userInformation.username,
+    //        phone: that.data.userInformation.phone,
+    //        departure_place: e.detail.value.startAddress,
+    //        destination: e.detail.value.endAddress,
+    //        travel_num: e.detail.value.perNumbers,
+    //        vehicle_type: that.data.carType,
+    //        departure_time: that.data.startTime,
+    //        is_back: that.data.is_back,
+    //        back_time: that.data.returnTime,
+    //        is_insurance: that.data.is_insurance,
     //     },
     //     success: function (res) {
     //       console.log(res.data);
@@ -303,6 +305,12 @@ Page({
             dateTimeArray1: obj1.dateTimeArray,
             dateTime1: obj1.dateTime,
         });
+
+      //获取乘客姓名以及联系方式
+      // var userInformation = wx.getStorageSync('userInformation');
+      // this.setData({
+      //   userInformation: userInformation,
+      // })
     },
 
     /**
