@@ -20,7 +20,12 @@ function turnPage(page)
 	  var data_content = json.HistoryAnnouncement;
 	  totalItem = json.totalItem;
 	  curPage = json.page;
-   	  totalPage = totalItem/7+1;
+   	  if(totalItem%6==0){			//每页6条数据
+		totalPage = parseInt(totalItem/6);
+			}
+	  else{
+			totalPage = parseInt(totalItem/6)+1;
+			}
 	  var data_html = "";
 	  $.each(data_content,function(index,array) {     //添加新的分页数据（数据的显示样式根据自己页面来设置，这里只是一个简单的列表）
 		 if(array['type']==1){
@@ -80,7 +85,7 @@ function getPageBar()
   pageBar += "</ul>";
   document.getElementById('pageBar').innerHTML=pageBar;
 }
-//页面加载时初始化分页
+//页面加载时初始化分页50   9     5
 turnPage(1);
 //接上服务器后删掉
 getPageBar()
@@ -89,13 +94,18 @@ function turnPage(page){
 	getPageBar();
 	var json = {"HistoryAnnouncement":[
 	{"announcement":"广金","type":"1","underTime":"2019-07-10"},{"announcement":"广金肇庆","type":"2","underTime":"2019-02-10"}
-	],"totalItem":"50","page":"1"
+	],"totalItem":"21","page":"1"
 	};
-    $("#data-area").empty();       //移除原来的分页数据
+    //$("#data-area").empty();       //移除原来的分页数据
 	var data_content = json.HistoryAnnouncement;
 	totalItem = json.totalItem;
 	curPage = json.page;
-   	totalPage = parseInt(totalItem/7)+1;
+	if(totalItem%6==0){			//每页6条数据
+		totalPage = parseInt(totalItem/6);
+	}
+	else{
+		totalPage = parseInt(totalItem/6)+1;
+	}
 	var data_html = "";
 	$.each(data_content,function(index,array) {     //添加新的分页数据（数据的显示样式根据自己页面来设置，这里只是一个简单的列表）
 		 if(array['type']==1){

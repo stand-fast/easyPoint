@@ -20,13 +20,27 @@ function turnPage(page)
 	  $("#data-area").empty();       //移除原来的分页数据
 	  curPage = page;
 	  totalItem = json.totalItem;
-	  totalPage = parseInt(totalItem/8)+1;
+	  if(totalItem%11==0){			//每页11条数据
+		totalPage = parseInt(totalItem/11);
+		}
+	  else{
+			totalPage = parseInt(totalItem/11)+1;
+		}
 	  var data_content=json.CarRentalOrder;
 	  var data_html = "";
 	  $.each(data_content,function(index,array) {     //添加新的分页数据（数据的显示样式根据自己页面来设置，这里只是一个简单的列表）
-		data_html += "<div class='containerRentalOrder'><table><tr><td>"+array['departurePlace']+"</td><td>"+array['destination']+"</td><td>"+array['departureTime']+"</td><td>"+array['name']+"</td><td>"+array['phone']+"</td><td>"+array['cartype']+"</td><td><a href='javascript:CarRentalStatement("+array['RentalCarId']+")'>结单</a></td></tr></table></div>"; 
+		if(array['is_back']=="0"){
+			array['back_time']="无"
+		}
+		if(array['is_insurance']=="0"){
+			array['is_insurance']="否"
+		}
+		else if(array['is_insurance']=="1"){
+			array['is_insurance']="是"
+		}
+		data_html += "<div class='containerRentalOrder'><ul><li title="+array['departure_place']+">"+array['departure_place']+"</li><li title="+array['destination']+">"+array['destination']+"</li class='RentalOrderCenter'><li class='RentalOrderCenter'>"+array['travel_num']+"</li><li>"+array['departureTime']+"</li><li>"+array['back_time']+"</li><li>"+array['vehicle_type']+"</li><li class='RentalOrderCenter'>"+array['is_insurance']+"</li><li class='RentalOrderCenter'>"+array['username']+"</li><li>"+array['phone']+"</li><li class='RentalOrderCenter'><a href='javascript:CarRentalStatement("+array['RentalCarId']+")'>结单</a></li></ul></div>"; 
 		 });
-	  $("#data-area").append(data_html);
+		$("#data-area").append(data_html);
 	},
 	complete: function() {    //添加分页按钮栏
 	  getPageBar();
@@ -101,20 +115,34 @@ function CarRentalStatement(RentalCarId){
 //接上服务器后删掉
 getPageBar()
 function turnPage(page){
-    $("#data-area").empty();       //移除原来的分页数据
+    //$("#data-area").empty();       //移除原来的分页数据
 	curPage=page;  
 	getPageBar();
 	var json = {"CarRentalOrder":[
-	{"departurePlace":"广金","destination":"广金","departureTime":"2019-07-10","name":"肖奈","phone":"13045612312","cartype":"53座豪华大巴","RentalCarId":"123132"},
-	],"totalItem":"10","page":"1"
-	};  //测试数据
+	{"departure_place":"广州市区广州市区广州市区","destination":"广金广金广金广金广金广金广金广金","travel_num":"50","departureTime":"2019-07-10 14:01","is_back":"0","back_time":"2019-07-11 14:01","username":"肖奈","phone":"13045612312","vehicle_type":"53座豪华大巴","is_insurance":"1","tourism_id":"123132"},
+	],"totalItem":"20","page":"1"
+	};  //测试数据   每页11条数据
 	var data_content=json.CarRentalOrder;
 	totalItem = json.totalItem;
 	curPage = json.page;
-	totalPage = parseInt(totalItem/8)+1;
+	if(totalItem%11==0){			//每页11条数据
+		totalPage = parseInt(totalItem/11);
+	}
+	else{
+		totalPage = parseInt(totalItem/11)+1;
+	}
 	var data_html = "";
 	$.each(data_content,function(index,array) {     //添加新的分页数据（数据的显示样式根据自己页面来设置，这里只是一个简单的列表）
-		data_html += "<div class='containerRentalOrder'><table><tr><td>"+array['departurePlace']+"</td><td>"+array['destination']+"</td><td>"+array['departureTime']+"</td><td>"+array['name']+"</td><td>"+array['phone']+"</td><td>"+array['cartype']+"</td><td><a href='javascript:CarRentalStatement("+array['RentalCarId']+")'>结单</a></td></tr></table></div>"; 
+		if(array['is_back']=="0"){
+			array['back_time']="无"
+		}
+		if(array['is_insurance']=="0"){
+			array['is_insurance']="否"
+		}
+		else if(array['is_insurance']=="1"){
+			array['is_insurance']="是"
+		}
+		data_html += "<div class='containerRentalOrder'><ul><li title="+array['departure_place']+">"+array['departure_place']+"</li><li title="+array['destination']+">"+array['destination']+"</li class='RentalOrderCenter'><li class='RentalOrderCenter'>"+array['travel_num']+"</li><li>"+array['departureTime']+"</li><li>"+array['back_time']+"</li><li>"+array['vehicle_type']+"</li><li class='RentalOrderCenter'>"+array['is_insurance']+"</li><li class='RentalOrderCenter'>"+array['username']+"</li><li>"+array['phone']+"</li><li class='RentalOrderCenter'><a href='javascript:CarRentalStatement("+array['tourism_id']+")'>结单</a></li></ul></div>"; 
 		 });
 	$("#data-area").append(data_html);
 };

@@ -96,7 +96,7 @@ GetData();
 //接上服务器后删掉
 function GetData(){
 		  $("#data-area").empty();       //移除原来的分页数据
-		  var json = {"CurrentAnnouncement":[{"SmallProgram":"广金的","Merchant":"广金"}] };  //测试数据
+		  var json = {"CurrentAnnouncement":[{"SmallProgram":"广金的广金的广金的广金的广金的","Merchant":"广广金的广金的广金的广金的广金的广金的金"}] };  //测试数据
 		  var data_content = json.CurrentAnnouncement;
 		  var data_html = "";
 		  $.each(data_content,function(index,array) {     //添加新的分页数据（数据的显示样式根据自己页面来设置，这里只是一个简单的列表）
