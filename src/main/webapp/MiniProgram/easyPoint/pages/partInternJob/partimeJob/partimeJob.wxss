@@ -171,7 +171,10 @@ Page{
     width: 56rpx;
     height: 56rpx;
 }
-.noData{
-  margin-left: 30rpx;
-  font-size: 28rpx;
+.more-noData{
+  margin: 10px 0;
+  width: 100%;
+  text-align: center;
+  font-size: 26rpx;
+  color: #999;
 }

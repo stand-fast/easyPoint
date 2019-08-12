@@ -5,12 +5,12 @@
         <view class="flex_right_item">
             <view class="dot_blue"></view>
             <text>发车时间：</text>
-            <view class="item_text on">{{ticketInfos.departure_time}}</view>
+            <view class="item_text on">{{ticketInfos.departureTime}}</view>
         </view>
         <view class="flex_right_item">
             <view class="dot_blue"></view>
             <text>出发地点：</text>
-            <view class="item_text">{{ticketInfos.departure_place}}</view>
+            <view class="item_text">{{ticketInfos.departurePlace}}</view>
         </view>
         <view class="flex_right_item">
             <view class="dot_blue"></view>

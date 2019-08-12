@@ -112,14 +112,14 @@ Page({
     //     data: {
     //        username: that.data.userInformation.username,
     //        phone: that.data.userInformation.phone,
-    //        departure_place: e.detail.value.startAddress,
+    //        departurePlace: e.detail.value.startAddress,
     //        destination: e.detail.value.endAddress,
-    //        travel_num: e.detail.value.perNumbers,
-    //        vehicle_type: that.data.carType,
-    //        departure_time: that.data.startTime,
-    //        is_back: that.data.is_back,
-    //        back_time: that.data.returnTime,
-    //        is_insurance: that.data.is_insurance,
+    //        travelNum: e.detail.value.perNumbers,
+    //        vehicleType: that.data.carType,
+    //        departureTime: that.data.startTime,
+    //        isBack: that.data.is_back,
+    //        backTime: that.data.returnTime,
+    //        isInsurance: that.data.is_insurance,
     //     },
     //     success: function (res) {
     //       console.log(res.data);

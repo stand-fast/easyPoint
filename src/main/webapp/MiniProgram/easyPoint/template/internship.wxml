@@ -1,22 +1,22 @@
 <template name='internship'>
         <view class='jobInfos'>
             <view class='job_text'>
-                <view class='jobName'>{{item.job_name}}</view>
-                <view class='jobSalary'>￥{{item.job_salary}}</view>
+                <view class='jobName'>{{item.jobName}}</view>
+                <view class='jobSalary'>￥{{item.jobSalary}}</view>
                 <view class='jobSettle' wx:if="{{item.job_settle==1}}">日结</view>
                 <view class='jobSettle' wx:else>月结</view>
             </view>
             <view class='remainPeople'>
                 <image src='/images/icon/peopleNum.png'></image>
-                <view class='internship_text'>所剩名额：<text>{{item.recruit_num}} 人</text></view>
+                <view class='internship_text'>所剩名额：<text>{{item.recruitNum}} 人</text></view>
             </view>
             <view class='jobLocaTime'>
                 <image src='/images/icon/address.png'></image>
-                <view class='internship_text last'>工作地点：<text>{{item.job_place}}</text></view>
-                <view class='endDate'>{{item.end_time}} 截止</view>
+                <view class='internship_text last'>工作地点：<text>{{item.jobPlace}}</text></view>
+                <view class='endDate'>{{item.endTime}} 截止</view>
             </view>
             <view class='hr'></view>
-            <view class='lookDt' bindtap='jumbtodetail' data-id='{{item.part_time_job_id}}'> 
+            <view class='lookDt' bindtap='jumbtodetail' data-id='{{item.partTimeJobId}}'> 
                 <image src='/images/icon/packback.png'></image>
                 <view class='look_text'>查看详情</view>
             </view>

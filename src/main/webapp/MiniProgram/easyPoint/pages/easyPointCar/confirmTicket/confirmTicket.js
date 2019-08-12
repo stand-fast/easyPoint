@@ -73,13 +73,13 @@ Page({
       //   wx.request({
       //     url: '接口路径',
       //     data: {
-      //       ticket_id: selt.data.ticketInfos.ticket_id,   //请求车票数据
+      //       ticketId: selt.data.ticketInfos.ticket_id,   //请求车票数据
       //     },
       //     method: 'Post',
       //     header: { 'content-type': 'application/x-www-form-urlencoded' },
       //     success: function (res) {
       //       console.log('剩余座位数：'+res.data.seat_surplus)
-      //       if(res.data.seat_surplus==0 ){
+      //       if(res.data.seatSurplus==0 ){
       //           //剩余座位为0时候的弹窗
       //       }
       //       else{
@@ -90,9 +90,10 @@ Page({
       //           },
       //           method: "POST",
       //           data: {
-      //             ticket_id: selt.data.ticketInfos.ticket_id,
+      //             ticketId: selt.data.ticketInfos.ticket_id,
       //             price: selt.data.ticketInfos.sumprice,
-      //             is_insurance: selt.data.is_insurance,
+      //             isInsurance: selt.data.is_insurance,
+      //             type: selt.data.ticketInfos.type,
       //             username: userInformation.username,
       //             phone:userInformation.phone,
       //           },

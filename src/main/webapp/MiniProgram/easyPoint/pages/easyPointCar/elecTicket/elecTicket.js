@@ -7,19 +7,19 @@ Page({
     data: {
       //接上服务器后删除
         carInfos:{
-            tourism_id:"sdbchsdg3423das",
-            departure_time:"2019-07-01 08:30",
-            departure_place:"广东金融学院广州本部",
+            tourismId:"sdbchsdg3423das",
+            departureTime:"2019-07-01 08:30",
+            departurePlace:"广东金融学院广州本部",
             destination:"广东金融学院肇庆校区",
-            license_plate_number:"粤123456",
-            vehicle_type:"53座豪华大巴车",
+            licensePlateNumber:"粤123456",
+            vehicleType:"53座豪华大巴车",
             color:"白色",
-            driver_name:"梨花",
-            driver_phone:"13245991240",
+            driverName:"梨花",
+            driverPhone:"13245991240",
             username:"吴彦祖",
             phone: "13012938212",
             state: "未完成",
-            make_order_time: "2019-07-01 14:42",
+            makeOrderTime: "2019-07-01 14:42",
         }
     },
 
@@ -30,7 +30,7 @@ Page({
       var that=this;
       // console.log(options.tourism_id);   //获取tourism_id
       // that.setDate({
-      //   tourism_id: options.tourism_id
+      //   tourismId: options.tourism_id
       // })
       // wx.request({
       //   url: '接口路径',
@@ -39,8 +39,8 @@ Page({
       //   },
       //   method: "POST",
       //   data: {
-      //     apply_id: app.globalData.open_id,
-      //     tourism_id: this.data.tourism_id,
+      //     applyId: app.globalData.openId,
+      //     tourismId: this.data.tourismId,
       //   },
       //   success: function (res) {
       //     console.log(res.data);

@@ -1,13 +1,13 @@
 {
     "pages": [
-      "pages/easyPointCar/bookTicket/bookTicket",
-      "pages/easyPointCar/queryTicket/queryTicket",
-      "pages/easyPointCar/elecTicket/elecTicket",
-      "pages/partInternJob/partimeJob/partimeJob",
-      "pages/partInternJob/JobDetail/JobDetail",
-      "pages/easyPointCar/confirmTicket/confirmTicket",
       "pages/educationTrain/edTraIndex/edTraIndex",
+      "pages/easyPointCar/elecTicket/elecTicket",
+      "pages/easyPointCar/confirmTicket/confirmTicket",
+      "pages/partInternJob/partimeJob/partimeJob",
       "pages/educationTrain/driveSchoolDetail/driveSchoolDetail",
+      "pages/easyPointCar/queryTicket/queryTicket",
+      "pages/easyPointCar/bookTicket/bookTicket",
+      "pages/partInternJob/JobDetail/JobDetail",
       "pages/index/index"
     ],
     "window": {

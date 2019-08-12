@@ -23,5 +23,6 @@
             <template is="internship" data="{{item,part_time_job_id:part_time_job_id}}" />
         </block>
     </view>
-    <view wx:if="{{noData}}" class="noData">没有更多数据了</view>
+    <view wx:if="{{noData}}" class="more-noData">-我是有底线的-</view>
+    <view wx:else class="more-noData">-下拉查看更多-</view>
 </view>

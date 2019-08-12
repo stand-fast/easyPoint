@@ -10,32 +10,32 @@ Page({
         bgcolorYu:"#5697be",    //预约票颜色
         ticketInfos:[
         {   
-            ticket_id:"32hjfsdfs123",
-            departure_time:"07-01 18:00",
-            departure_place:"汕头",
+            ticketId:"32ASD3",
+            departureTime:"07-01 18:00",
+            departurePlace:"汕头",
             destination:"广金广州本部",
             price:130,
-            seat_surplus:23,
+            seatSurplus:23,
             type:1
         },
         {
-          ticket_id:"asdasg123",
-          departure_time: "07-01 18:00",
-          departure_place: "汕头",
+          ticketId: "32hjfsdfs123",
+          departureTime: "07-01 18:00",
+          departurePlace: "汕头",
           destination: "广金广州本部",
           price: 130,
-          seat_surplus: 23,
+          seatSurplus: 23,
           type: 1
         },
-        {
-            ticket_id: "351231s123",
-            departure_time:"07-01 18:00",
-            departure_place:"汕头",
-            destination:"广金广州本部",
-            price:130,
-            seat_surplus: 23,
-            type: 2,
-        }
+          {
+            ticketId: "32hjfsdfs123",
+            departureTime: "07-01 18:00",
+            departurePlace: "汕头",
+            destination: "广金广州本部",
+            price: 130,
+            seatSurplus: 23,
+            type: 2
+        },
       ],
     },
   buyTicket: function (res) {

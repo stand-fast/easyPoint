@@ -3,15 +3,15 @@
 
     <view class="head">
         <view class='headJob'>
-            <view class='jobName'>{{jobDetail.job_name}}</view>
-            <view class='jobSalary'>￥{{jobDetail.job_salary}}</view>
-            <view class='jobSettle' wx:if="{{jobDetail.job_settle==1}}">日结</view>
+            <view class='jobName'>{{jobDetail.jobName}}</view>
+            <view class='jobSalary'>￥{{jobDetail.jobSalary}}</view>
+            <view class='jobSettle' wx:if="{{jobDetail.jobSettle==1}}">日结</view>
             <view class='jobSettle' wx:else>月结</view>
         </view>
         <view class='hr'></view>
         <view class='jobContent'>
             <view class='jobContent_menu'>工作内容：</view>
-            <view class='jobContent_text'>{{jobDetail.job_content}}</view>
+            <view class='jobContent_text'>{{jobDetail.jobContent}}</view>
         </view>
     </view>
 
@@ -27,21 +27,21 @@
         </view>
         <view class='infos_content'>
             <view class='infos_contains'>工作地点：</view>
-            <view class='infos_contains_text'>{{jobDetail.job_place}}</view>
+            <view class='infos_contains_text'>{{jobDetail.jobPlace}}</view>
         </view>
         <view class='infos_content'>
             <view class='infos_contains'wx:if="{{type==0}}">兼职日期：</view>
             <view class='infos_contains'wx:else>实习日期：</view>
-            <view class='infos_contains_text'>{{jobDetail.job_date}}</view>
+            <view class='infos_contains_text'>{{jobDetail.jobDate}}</view>
         </view>
         <view class='infos_content'>
             <view class='infos_contains'wx:if="{{type==0}}">兼职时间：</view>
             <view class='infos_contains'wx:else>实习时间：</view>
-            <view class='infos_contains_text'>{{jobDetail.job_time}}</view>
+            <view class='infos_contains_text'>{{jobDetail.jobTime}}</view>
         </view>
         <view class='infos_content'>
             <view class='infos_contains'>招聘人数：</view>
-            <view class='infos_contains_text'>{{jobDetail.recruit_num}} 人</view>
+            <view class='infos_contains_text'>{{jobDetail.recruitNum}} 人</view>
         </view>
         <view class='infos_content'>
             <view class='infos_contains'>福利待遇：</view>
@@ -58,7 +58,7 @@
         <view class='hr'></view>
         <view class='infos_content'>
             <view class='infos_contains'>联系人：</view>
-            <view class='infos_contains_text'>{{jobDetail.legal_person}}</view>
+            <view class='infos_contains_text'>{{jobDetail.legalPerson}}</view>
         </view>
         <view class='infos_content'>
             <view class='infos_contains'>联系电话：</view>
@@ -66,7 +66,7 @@
         </view>
         <view class='infos_content last'>
             <view class='infos_contains'>公司介绍：</view>
-            <view class='infos_contains_text'>{{jobDetail.company_introduce}}</view>
+            <view class='infos_contains_text'>{{jobDetail.companyIntroduce}}</view>
         </view>
     </view>
 </view>

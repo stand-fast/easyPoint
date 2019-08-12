@@ -161,3 +161,10 @@ Page{
 .price view{
     font-size: 26rpx;
 }
+.more-noData{
+  margin: 10px 0;
+  width: 100%;
+  text-align: center;
+  font-size: 26rpx;
+  color: #999;
+}

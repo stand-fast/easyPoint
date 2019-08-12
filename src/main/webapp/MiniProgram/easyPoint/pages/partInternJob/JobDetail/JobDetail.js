@@ -14,24 +14,24 @@ Page({
         part_time_job_id:'',
         fileName:'',   
         jobCNS:{
-            job_name: "校内自助餐厅服务员", 
-            job_salary: "30/日",
-            job_settle: 2,
-            job_content:"负责在上菜区将菜品及时摆出，保证出餐窗口的整洁干净，及时跟进顾客的饮食情况，在结账窗口对顾客的菜品消费进行数目结账",
+            jobName: "校内自助餐厅服务员", 
+            jobSalary: "30/日",
+            jobSettle: 2,
+            jobContent:"负责在上菜区将菜品及时摆出，保证出餐窗口的整洁干净，及时跟进顾客的饮食情况，在结账窗口对顾客的菜品消费进行数目结账",
             sex: 3,
-            job_time: "10:00-15:00",
-            job_place:"本部北苑食堂二楼",
-            job_date:"2019-09-01 到 2019-12-31",
-            recruit_num:3,
+            jobTime: "10:00-15:00",
+            jobPlace:"本部北苑食堂二楼",
+            jobDate:"2019-09-01 到 2019-12-31",
+            recruitNum:3,
             welfare:"中午包餐、不定时水果甜点小吃福利赠送",
             requirement:"为人热情大方、开朗，性格活泼，做事负责",
-            applicant_num:0,
+            applicantNum:0,
             state:1,
 
             boolean:false,     //判断是否报名该兼职
-            legal_person:"陈先生",
+            legalPerson:"陈先生",
             phone:"123-1234-1234",
-            company_introduce:"校内食堂，为广大师生提供早餐午餐、晚餐以及夜宵等叭叭叭叭叭叭叭叭........"
+            companyIntroduce:"校内食堂，为广大师生提供早餐午餐、晚餐以及夜宵等叭叭叭叭叭叭叭叭........"
         }
     },
     //兼职部分JS事件响应
@@ -45,7 +45,7 @@ Page({
       //   },
       //   method: "POST",
       //   data: {
-      //     apply_id: app.globalData.open_id,     
+      //     applyId: app.globalData.open_id,     
       //   },
       //   success: function (res) {
       //     console.log('请求数据成功')
@@ -94,8 +94,8 @@ Page({
       //   },
       //   method: "POST",
       //   data: {
-      //     apply_id: app.globalData.open_id,
-      //     part_time_job_id: that.data.part_time_job_id,
+      //     applyId: app.globalData.open_id,
+      //     partTimeJobId: that.data.part_time_job_id,
       //     username: that.data.userInformation.username,
       //     phone: that.data.userInformation.phone,
       //     gender: that.data.userInformation.gender,
@@ -186,6 +186,7 @@ Page({
         word: '已投递',
         successShowmodal: false,
         finishShowmodal: true,
+        status: true,
       })
     },
 
@@ -219,7 +220,7 @@ Page({
     // wx.request({
     //   url: '接口路径',
     //   data: {
-    //     part_time_job_id: options.id,   //根据part_time_job_id请求数据
+    //     partTimeJobId: options.id,   //根据part_time_job_id请求数据
     //   },
     //   method: 'Post',
     //   header: { 'content-type': 'application/x-www-form-urlencoded' },
@@ -255,8 +256,8 @@ Page({
     wx.request({
       url: '接口路径',
       data: {
-        part_time_job_id: options.id,   //根据part_time_job_id请求数据
-        apply_id: app.globalData.open_id,   
+        partTimeJobId: options.id,   //根据part_time_job_id请求数据
+        applyId: app.globalData.open_id,   
       },
       method: 'Post',
       header: { 'content-type': 'application/x-www-form-urlencoded' },
@@ -278,8 +279,8 @@ Page({
       wx.request({
         url: '接口路径',
         data: {
-          part_time_job_id: options.id,   //根据part_time_job_id请求数据
-          apply_id: app.globalData.open_id,   
+          partTimeJobId: options.id,   //根据part_time_job_id请求数据
+          applyId: app.globalData.openId,   
         },
         method: 'Post',
         header: { 'content-type': 'application/x-www-form-urlencoded' },

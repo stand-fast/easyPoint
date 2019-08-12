@@ -26,7 +26,7 @@
                 <view class="title_text">热门专栏</view>
             </view>
             <scroll-view class="scroll_picture" scroll-x="true">
-                <view wx:for="{{images_group}}" wx:key="{{index}}">
+                <view wx:for="{{advertisementUrl}}" wx:key="{{index}}">
                     <image src="{{item}}"></image>
                 </view>
             </scroll-view>
@@ -46,18 +46,20 @@
                 <view class="shu"></view>
                 <view class="title_text">驾校一览({{number}})</view>
             </view>
-            <block wx:for="{{driveSchool}}" wx:key="{{id}}">
-                <view class="list" bindtap="lookDetail">
-                    <view class="list_img"><image src="{{item.imageUrl}}"></image></view>
-                    <view class="name">{{item.driverName}}</view>
-                    <view class="address">{{item.address}}</view>
+            <block wx:for="{{driveSchool}}" wx:key="key" wx:for-item="item" wx:for-index="key">
+                <view class="list" bindtap="lookDetail" data-drive_id="{{item.drivingSchoolId}}">
+                    <view class="list_img"><image src="{{item.defaultImgUrl}}"></image></view>
+                    <view class="name">{{item.drivingSchoolName}}</view>
+                    <view class="address">{{item.drivingSchoolAddress}}</view>
                     <view class="price">
-                        <view><text>￥{{item.price}}/</text>起</view>
+                        <view><text>￥{{item.lowestPrice}}/</text>起</view>
                         <image src="/images/icon/see.png"></image>
                     </view>
                 </view>
             </block>
         </view>
+        <view wx:if="{{noData}}" class="more-noData">-我是有底线的-</view>
+        <view wx:else class="more-noData">-下拉查看更多-</view>
     </block>
     <block wx:elif="{{currenTab==1}}">
         <view>我是考研</view>

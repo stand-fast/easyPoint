@@ -4,10 +4,10 @@
         <view class="carInfos">
             <view class="goTime">
                 <view class="goTime_title">发车时间：</view>
-                <view class="goTime_Text">{{carInfos.departure_time}}</view>
+                <view class="goTime_Text">{{carInfos.departureTime}}</view>
             </view>
             <view class="address">
-                <view class="startAdd">{{carInfos.departure_place}}</view>
+                <view class="startAdd">{{carInfos.departurePlace}}</view>
                 <image src="/images/icon/upto.png"></image>
                 <view class="endAdd">{{carInfos.destination}}</view>
             </view>
@@ -20,11 +20,11 @@
         <view class="carFeatures">
             <view class="carFeat_item">
                 <text class="carFeat_item_title">车牌号：</text>
-                <view class="carFeat_item_text">{{carInfos.license_plate_number}}</view>
+                <view class="carFeat_item_text">{{carInfos.licensePlateNumber}}</view>
             </view>
              <view class="carFeat_item">
                 <text class="carFeat_item_title">车辆类型：</text>
-                <view class="carFeat_item_text">{{carInfos.vehicle_type}}</view>
+                <view class="carFeat_item_text">{{carInfos.vehicleType}}</view>
             </view>
              <view class="carFeat_item">
                 <text class="carFeat_item_title">车身颜色：</text>
@@ -35,11 +35,11 @@
         <view class="contactPer lastline">
             <view class="conPer_item">
                 <text class="conPer_item_title">司机姓名：</text>
-                <view class="conPer_item_text">{{carInfos.driver_name}}</view>
+                <view class="conPer_item_text">{{carInfos.driverName}}</view>
             </view>
              <view class="conPer_item">
                 <text class="conPer_item_title">司机联系方式：</text>
-                <view class="conPer_item_text on">{{carInfos.driver_phone}}</view>
+                <view class="conPer_item_text on">{{carInfos.driverPhone}}</view>
             </view>
              <view class="conPer_item">
                 <text class="conPer_item_title">乘客姓名：</text>
@@ -62,7 +62,7 @@
             </view>
             <view class="orderInfos_item">
                 <text class="orderInfos_item_title">下单时间：</text>
-                <view class="orderInfos_item_text">{{carInfos.make_order_time}}</view>
+                <view class="orderInfos_item_text">{{carInfos.makeOrderTime}}</view>
             </view>
             <view class="orderInfos_item">
                 <text class="orderInfos_item_title">订单咨询：</text>

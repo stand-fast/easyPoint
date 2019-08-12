@@ -5,7 +5,7 @@
             <view class="ticket_left">
                 <view class="gotime">
                     <text>出发时间</text>
-                    <view>{{item.departure_time}}</view>
+                    <view>{{item.departureTime}}</view>
                 </view>
                 <view class="content_flex">
                     <view class="flex_left"></view>
@@ -13,7 +13,7 @@
                         <view class="ticket_left_item">
                             <view class="dot"></view>
                             <text>出发</text>
-                            <view class="item_text">{{item.departure_place}}</view>
+                            <view class="item_text">{{item.departurePlace}}</view>
                         </view>
                         <view class="ticket_left_item">
                             <view class="dot"></view>
@@ -28,7 +28,7 @@
                 <view class="right_contain">
                     <view class="ticketPrice">￥{{item.price}}</view>
                     <button bindtap="buyTicket"  data-id='{{idx}}' data-type="{{item.type}}">购票</button>
-                    <view class="ticketRemain">剩余{{item.seat_surplus}}张</view>
+                    <view class="ticketRemain">剩余{{item.seatSurplus}}张</view>
                 </view>
             </view>
         </view>
@@ -39,7 +39,7 @@
             <view class="ticket_left">
                 <view class="gotime">
                     <text>出发时间</text>
-                    <view>{{item.departure_time}}</view>
+                    <view>{{item.departureTime}}</view>
                 </view>
                 <view class="content_flex">
                     <view class="flex_left"></view>
@@ -47,7 +47,7 @@
                         <view class="ticket_left_item">
                             <view class="dot"></view>
                             <text>出发</text>
-                            <view class="item_text">{{item.departure_place}}</view>
+                            <view class="item_text">{{item.departurePlace}}</view>
                         </view>
                         <view class="ticket_left_item">
                             <view class="dot"></view>
@@ -62,7 +62,7 @@
                 <view class="right_contain">
                     <view class="ticketPrice">￥{{item.price}}</view>
                     <button bindtap="buyTicket"  data-id='{{idx}}' data-type="{{item.type}}">预约</button>
-                    <view class="ticketRemain">剩余{{item.seat_surplus}}张</view>
+                    <view class="ticketRemain">剩余{{item.seatSurplus}}张</view>
                 </view>
             </view>
         </view>

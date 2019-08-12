@@ -11,50 +11,41 @@ Page({
       noData:false,
       part_time_job_info:[
       {
-          part_time_job_id: "0asdasd", 
-          job_name: "移动公司营销实习生",
-          job_salary: "80/天", 
-          job_settle: 1, 
-          recruit_num: "4", 
-          job_place: "天河区", 
-          end_time: "07-11"
+          partTimeJobId: "0asdasd", 
+          jobName: "移动公司营销实习生",
+          jobSalary: "80/天", 
+          jobSettle: 1, 
+          recruitNum: "4", 
+          jobPlace: "天河区", 
+          endTime: "07-11"
       },
       {
-          part_time_job_id: "012213",
-          job_name: "移动实习生",
-          job_salary: "80/天",
-          job_settle: 2,
-          recruit_num: "3",
-          job_place: "天河区",
-          end_time: "07-10"
-        },
-        {
-          part_time_job_id: "012213",
-          job_name: "移动实习生",
-          job_salary: "80/天",
-          job_settle: 2,
-          recruit_num: "3",
-          job_place: "天河区",
-          end_time: "07-10"
-        },
-        {
-          part_time_job_id: "012213",
-          job_name: "移动实习生",
-          job_salary: "80/天",
-          job_settle: 2,
-          recruit_num: "3",
-          job_place: "天河区",
-          end_time: "07-10"
-        },
-        {
-          part_time_job_id: "012213",
-          job_name: "移动实习生",
-          job_salary: "80/天",
-          job_settle: 2,
-          recruit_num: "3",
-          job_place: "天河区",
-          end_time: "07-10"
-        },
+        partTimeJobId: "0asdasd",
+        jobName: "移动公司营销实习生",
+        jobSalary: "80/天",
+        jobSettle: 1,
+        recruitNum: "4",
+        jobPlace: "天河区",
+        endTime: "07-11"
+      },
+      {
+          partTimeJobId: "0asdasd",
+          jobName: "移动公司营销实习生",
+          jobSalary: "80/天",
+          jobSettle: 1,
+          recruitNum: "4",
+          jobPlace: "天河区",
+          endTime: "07-11"
+      },
+      {
+          partTimeJobId: "0asdasd",
+          jobName: "移动公司营销实习生",
+          jobSalary: "80/天",
+          jobSettle: 1,
+          recruitNum: "4",
+          jobPlace: "天河区",
+          endTime: "07-11"
+      },
     ],
   },
 
@@ -110,7 +101,7 @@ Page({
         else {
           that.setData({
                 currentTab: e.target.dataset.current,
-                pageNum:1,  //切换界面将pageNum置为0
+                pagenum:1,  //切换界面将pageNum置为0
           })
           // var selt = this;
           // wx.request({
@@ -210,6 +201,12 @@ Page({
   },
   onPullDownRefresh: function () {
     this.data.judegeSearch = false,
+
+    this.setData({
+      pagenum:1,
+    })
+    console.log("刷新界面，返回第1页数据")
+
     wx.showNavigationBarLoading()//在标题栏中显示加载     
     //模拟加载        
     //this.updateData();    //更新数据
@@ -227,7 +224,7 @@ Page({
     wx.request({
       url: '接口路径',
       data: {
-        type: e.target.dataset.current,   //根据current请求数据
+        type: selt.data.currentTab,   //根据current请求数据
         pageNum: 1, //获取第一页数据
         pageSize: 5, //每页显示条数
       },
