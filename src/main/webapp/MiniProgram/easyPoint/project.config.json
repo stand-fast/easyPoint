@@ -48,47 +48,19 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
-					"name": "bookTicket",
-					"pathName": "pages/easyPointCar/bookTicket/bookTicket",
+					"name": "edTraIndex",
+					"pathName": "pages/educationTrain/edTraIndex/edTraIndex",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "elecTicket",
-					"pathName": "pages/easyPointCar/elecTicket/elecTicket",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "confirmTicket",
-					"pathName": "pages/easyPointCar/confirmTicket/confirmTicket",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "queryTicket",
-					"pathName": "pages/easyPointCar/queryTicket/queryTicket",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "partimeJob",
-					"pathName": "pages/partInternJob/partimeJob/partimeJob",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "JobDetail",
-					"pathName": "pages/partInternJob/JobDetail/JobDetail",
+					"name": "driveSchoolDetail",
+					"pathName": "pages/educationTrain/driveSchoolDetail/driveSchoolDetail",
 					"scene": null
 				}
 			]
