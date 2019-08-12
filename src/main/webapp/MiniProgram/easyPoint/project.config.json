@@ -48,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -61,6 +61,13 @@
 					"id": -1,
 					"name": "driveSchoolDetail",
 					"pathName": "pages/educationTrain/driveSchoolDetail/driveSchoolDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "editInformation",
+					"pathName": "pages/myIndex/editInformation/editInformation",
 					"scene": null
 				}
 			]
