@@ -110,6 +110,7 @@ Page({
     //     },
     //     method: "POST",
     //     data: {
+    //        openId: app.globalData.openId,
     //        username: that.data.userInformation.username,
     //        phone: that.data.userInformation.phone,
     //        departurePlace: e.detail.value.startAddress,

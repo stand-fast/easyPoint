@@ -90,6 +90,7 @@ Page({
       //           },
       //           method: "POST",
       //           data: {
+      //             openId: app.globalData.openId,
       //             ticketId: selt.data.ticketInfos.ticket_id,
       //             price: selt.data.ticketInfos.sumprice,
       //             isInsurance: selt.data.is_insurance,

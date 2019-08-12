@@ -105,7 +105,7 @@ Page({
         //   },
         //   method: "POST",
         //   data: {
-        //     applyId: app.globalData.openId,
+        //     openId: app.globalData.openId,
         //     drivingSchoolId: that.data.driving_school_id,
         //     setmealName: that.data.setmealName,
         //     price: that.data.price,

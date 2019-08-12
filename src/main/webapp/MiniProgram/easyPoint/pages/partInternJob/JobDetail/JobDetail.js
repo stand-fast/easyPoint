@@ -45,7 +45,7 @@ Page({
       //   },
       //   method: "POST",
       //   data: {
-      //     applyId: app.globalData.open_id,     
+      //     openId: app.globalData.openId,
       //   },
       //   success: function (res) {
       //     console.log('请求数据成功')
@@ -94,7 +94,7 @@ Page({
       //   },
       //   method: "POST",
       //   data: {
-      //     applyId: app.globalData.open_id,
+      //     openId: app.globalData.openId,
       //     partTimeJobId: that.data.part_time_job_id,
       //     username: that.data.userInformation.username,
       //     phone: that.data.userInformation.phone,
@@ -257,7 +257,7 @@ Page({
       url: '接口路径',
       data: {
         partTimeJobId: options.id,   //根据part_time_job_id请求数据
-        applyId: app.globalData.open_id,   
+        openId: app.globalData.openId,   
       },
       method: 'Post',
       header: { 'content-type': 'application/x-www-form-urlencoded' },
@@ -280,7 +280,7 @@ Page({
         url: '接口路径',
         data: {
           partTimeJobId: options.id,   //根据part_time_job_id请求数据
-          applyId: app.globalData.openId,   
+          openId: app.globalData.openId,   
         },
         method: 'Post',
         header: { 'content-type': 'application/x-www-form-urlencoded' },

@@ -1,5 +1,6 @@
 {
     "pages": [
+      "pages/myIndex/editInformation/editInformation",
       "pages/easyPointCar/bookTicket/bookTicket",
       "pages/easyPointCar/queryTicket/queryTicket",
       "pages/easyPointCar/elecTicket/elecTicket",
@@ -8,7 +9,6 @@
       "pages/easyPointCar/confirmTicket/confirmTicket",
       "pages/educationTrain/edTraIndex/edTraIndex",
       "pages/educationTrain/driveSchoolDetail/driveSchoolDetail",
-      "pages/myIndex/editInformation/editInformation",
       "pages/index/index"
     ],
     "window": {

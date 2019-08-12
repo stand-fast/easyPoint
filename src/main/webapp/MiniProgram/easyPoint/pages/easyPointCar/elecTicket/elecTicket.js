@@ -39,7 +39,7 @@ Page({
       //   },
       //   method: "POST",
       //   data: {
-      //     applyId: app.globalData.openId,
+      //     openId: app.globalData.openId,
       //     tourismId: this.data.tourismId,
       //   },
       //   success: function (res) {
