@@ -8,6 +8,10 @@ Page({
         index:null,
         check:null,
         grade:0, //年级初始未设置
+        waitime:60,
+        phone:'',
+        word:"获取验证码",
+        disabled:false,
         gradeSeclect:["大一","大二","大三","大四"]
     },
 
@@ -37,27 +41,27 @@ Page({
     },
     formSubmit:function(e){
       console.log(this.data.check)
-      // if (e.detail.value.username){
-      //   wx.showToast({
-      //     title: '请输入您的真实姓名',
-      //     icon: 'none',
-      //     duration: 2000
-      //   })
-      // }
-      // else if (e.detail.value.phone){
-      //   wx.showToast({
-      //     title: '请输入您的手机号码',
-      //     icon: 'none',
-      //     duration: 2000
-      //   })
-      // }
-      // else if (this.data.check==null) {
-      //   wx.showToast({
-      //     title: '请填写您的性别',
-      //     icon: 'none',
-      //     duration: 2000
-      //   })
-      // }
+    //   if (e.detail.value.username){
+    //     wx.showToast({
+    //       title: '请输入您的真实姓名',
+    //       icon: 'none',
+    //       duration: 2000
+    //     })
+    //   }
+    //   else if (e.detail.value.phone){
+    //     wx.showToast({
+    //       title: '请输入您的手机号码',
+    //       icon: 'none',
+    //       duration: 2000
+    //     })
+    //   }
+    //   else if (this.data.check==null) {
+    //     wx.showToast({
+    //       title: '请选择您的性别',
+    //       icon: 'none',
+    //       duration: 2000
+    //     })
+    //   }
       // else{
       //   var that = this;
       //   wx.request({
@@ -73,6 +77,7 @@ Page({
       //       gender: that.data.check,
       //       grade: that.data.grade,
       //       major: e.detail.value.major,
+      //       verification:e.detail.value.verification,
       //     },
       //     success: function (res) {   //反馈回报名是否成功的信息
       //       console.log(res.data);
@@ -91,14 +96,16 @@ Page({
       //    })
       // }
     },
+    watchTel:function(e){
+        this.setData({
+            phone: e.detail.value
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
         var that = this;
-        this.setData({
-          index:2
-        })
         // wx.request({
         //   url: '接口路径',
         //   header: {
@@ -120,6 +127,7 @@ Page({
         //       check:data.gender,
         //       index:parseInt(data.grade)-1,
         //       major: data.major,
+        //       verification:dataverification
         //     })
         //    },
         //   fail:function(){
@@ -127,7 +135,58 @@ Page({
         //   }
         //  })
     },
-
+    //点击获取验证码
+    getVerification:function(e){
+        if(this.data.phone==''){
+            wx.showToast({
+                title: '手机号为空',
+                icon:"none",
+                duration:2000
+            })
+        }
+        else if (!(/^1[3|4|5|6|7|8|9]\d{9}$/.test(this.data.phone))) {
+           wx.showToast({
+               title: '手机号输入错误',
+               icon: "none",
+               duration: 2000
+           })
+        }
+        else{
+        var inter = setInterval(function () {
+            this.setData({
+                word: this.data.waitime + 's后重发',
+                waitime: this.data.waitime - 1,
+                disabled:true
+            });
+            if (this.data.waitime < 0) {
+                clearInterval(inter)
+                this.setData({
+                    word: '重新获取',
+                    waitime: 60,
+                    disabled: false
+                });
+            }
+        }.bind(this), 1000);}
+        // wx.request({
+        //     url: '',//服务器地址
+        //     data: {
+        //         phone:e.data.phone,
+        //     },
+        //     method: "POST",
+        //     header: {
+        //         'content-type': "application/x-www-form-urlencoded"
+        //     },
+        //     success(res) {
+        //         if (res.data.success) {
+        //             wx.showToast({
+        //                 title: '短信验证码发送成功，请注意查收',
+        //                 duration:2000,
+        //                 mask:true
+        //             })
+        //         }
+        //     }
+        // })
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

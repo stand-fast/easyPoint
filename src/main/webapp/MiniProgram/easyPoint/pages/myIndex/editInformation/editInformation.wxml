@@ -7,28 +7,33 @@
     <form class="form_item" bindsubmit="formSubmit">
         <input class="realname" name="username" placeholder-class="placehold" placeholder="请输入您的真实姓名" type="text" value="{{username}}"></input>
         <view class="item">
-            <text class="item_title">学号：</text>
-            <input placeholder="请输入学号" placeholder-class="placehold" name="studentId" type="number" maxlength="12" value="{{studentId}}"></input>
-        </view>
-        <view class="item">
-            <text class="item_title">手机：</text>
-            <input placeholder="请输入手机号码" placeholder-class="placehold" name="phoneNumber" type="number" maxlength="11" value="{{phone}}"></input>
-        </view>
-        <view class="item">
             <text class="item_title">性别：</text>
             <view class="{{check==1 ? 'man_yes':'man_nor'}}" bindtap="changeSex" data-index="1"><text>♂</text>男</view>
             <view class="{{check==2? 'female_yes':'female_nor'}}'" bindtap="changeSex" data-index="2"><text>♀</text>女</view>
         </view>
         <view class="item">
-            <text class="item_longtitle">请选择您的年级：</text>
+            <text class="item_title">学号：</text>
+            <input placeholder="请输入学号" placeholder-class="placehold" name="studentId" type="number" maxlength="12" value="{{studentId}}"></input>
+        </view>
+        <view class="item">
+            <text class="item_title">年级：</text>
             <picker bindchange="changePicker" value="{{index}}" range="{{gradeSeclect}}">
                 <input placeholder-class="placehold" placeholder="点击选择" disabled="true" value="{{gradeSeclect[index]}}"></input>
             </picker>
         </view>
         <view class="item">
-            <text class="item_longtitle">请输入您的专业：</text>
+            <text class="item_title">专业：</text>
             <input placeholder-class="placehold" placeholder="输入专业全称" value="{{major}}" name="major"></input>
         </view>
-        <button form-type="submit">保存</button>
+        <view class="item">
+            <text class="item_title">手机：</text>
+            <input placeholder="请输入手机号码" placeholder-class="placehold" name="phone" type="number" maxlength="11" value="{{phone}}" bindinput="watchTel"></input>
+        </view>
+         <view class="item_last">
+            <text class="item_title_last">验证码：</text>
+            <input placeholder="请输入验证码" placeholder-class="placehold" name="verification" type="number" maxlength="11" value="{{verification}}"></input>
+            <button bindtap="getVerification" disabled="{{disabled}}">{{word}}</button>
+        </view>
+        <view class="submitBtn"><button form-type="submit">保存</button></view>
     </form>
 </view>
