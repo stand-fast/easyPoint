@@ -12,6 +12,7 @@ Page({
         check:false,
         showmodal:false,
         showModalStatus:false,
+        disable_signup:false,
         driving_school_info:{
             defaultImgUrl: [
               "/images/guotai.png",
@@ -93,7 +94,8 @@ Page({
     successBtn:function(){
         this.setData({
             showmodal:false,
-            word:"已报名"
+            word:"已报名",
+            disable_signup:true,
         })
     },
     chooseSet:function(){     //确认提交报名

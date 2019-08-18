@@ -1,4 +1,4 @@
-<!--pages/educationTrain/driveSchoolDetail/driveSchoolDetail.wxml-->
+<!--pages/IdleAndRental/goodDetails/goodDetails.wxml-->
 <view class="header">
     <swiper indicator-dots="true"
     autoplay="true" interval="5000" duration="1000" circular="true" class="swiper_images" indicator-color="#fff" 
@@ -79,7 +79,7 @@
         </view>
         <text class="Text">浏览并同意易点协议</text>
     </view>
-    <view class="submitBtn"><button bindtap="toSignUp" disabled="{{disable_signup}}">{{word}}</button></view>
+    <view class="submitBtn"><button bindtap="toSignUp">{{word}}</button></view>
     <!-- 报名选择成功的弹窗 -->
     <block wx:if='{{showmodal}}'>
         <view class='mask_layer'/>
@@ -89,19 +89,4 @@
             <button class="success_btn" bindtap="successBtn">确定</button>
         </view>
     </block>
-</view>
-<!-- 显示底部弹框，选择套餐 -->
-<view class="dialog_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
-<view animation="{{animationData}}" class="dialog_attr_box" wx:if="{{showModalStatus}}">
-    <view class="dislog_item">
-        <view class='dialog_title'>套餐选择</view>
-        <view class="setprice">￥ <text>{{price}}</text></view>
-    </view>
-    <view class="hr"></view>
-    <view class="dialog_item_list">
-        <view wx:for="{{driving_school_info.driving_school_setmeal}}" wx:key="name" class='dialog_content' wx:for-item="item">
-            <view class="{{itemstatus==index?'type_pre':'type_nor'}}" bindtap='typeClick' data-index="{{index}}">{{item.setmealName}}</view>
-        </view>
-    </view>
-    <view class="confirmBtn"><button bindtap="chooseSet">确定</button></view>
 </view>
