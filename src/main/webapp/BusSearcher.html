@@ -12,6 +12,7 @@
 	<!--公用部分css-->
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	
+	<!--我要坐车部分css-->
 	<link rel="stylesheet" type="text/css" href="css/busSearcher.css">
 </head>
 <body>
@@ -39,25 +40,6 @@
 		<script type="text/javascript" src="js/Navigation.js"></script>
 		<script type="text/javascript"  src="js/jquery-3.4.1.min.js"></script>
 		
-		<script type="text/javascript">
-		$(function(){
-			var ruralCommittee='{"汕头同乡会":["广金广州本部","广金肇庆校区","汕头"],"普宁同乡会":["普宁1","普宁2","普宁3"],"丰顺同乡会":["丰顺1","丰顺2","丰顺3"]}';
-			var departureAndDestination=eval('('+ruralCommittee+')');
-			for(var key in departureAndDestination){
-				$("#ruralCommittee").append("<option value ='"+key+"'>"+key+"</option>");
-			}
-			$("#ruralCommittee").change(function(){
-				var nowRuralCommittee=$(this).val();
-				$("#departurePlace").html('<option value ="">选择出发地</option>');
-				$("#destination").html('<option value ="">选择出发地</option>')
-				for(var i in departureAndDestination[nowRuralCommittee]){
-					var nowAddress=departureAndDestination[nowRuralCommittee][i];
-					$("#departurePlace").append("<option value ='"+nowAddress+"'>"+nowAddress+"</option>")
-					$("#destination").append("<option value ='"+nowAddress+"'>"+nowAddress+"</option>")
-				}
-			})
-		})
-		</script>
 		<div class="busSearcher">
 			<div class="busSearcher_con">
 				<h1>添加车辆</h1>
@@ -126,7 +108,7 @@
 					</select>
 					<span class="hint">请选择是否预售</span>
 				</ul>
-					<input  class="submit" id="submit" type="submit" value="提交" />
+					<input  class="submit" id="submit" onClick="submit()" type="submit" value="提交" />
 			</div>
 		</div>
 		<script type="text/javascript" src="js/BusSearcher.js"></script>
