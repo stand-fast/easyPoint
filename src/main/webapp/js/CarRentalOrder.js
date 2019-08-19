@@ -38,7 +38,7 @@ function turnPage(page)
 		else if(array['is_insurance']=="1"){
 			array['is_insurance']="是"
 		}
-		data_html += "<div class='containerRentalOrder'><ul><li title="+array['departure_place']+">"+array['departure_place']+"</li><li title="+array['destination']+">"+array['destination']+"</li class='RentalOrderCenter'><li class='RentalOrderCenter'>"+array['travel_num']+"</li><li>"+array['departureTime']+"</li><li>"+array['back_time']+"</li><li>"+array['vehicle_type']+"</li><li class='RentalOrderCenter'>"+array['is_insurance']+"</li><li class='RentalOrderCenter'>"+array['username']+"</li><li>"+array['phone']+"</li><li class='RentalOrderCenter'><a href='javascript:CarRentalStatement("+array['RentalCarId']+")'>结单</a></li></ul></div>"; 
+		data_html += "<div class='containerRentalOrder'><ul><li title="+array['departure_place']+">"+array['departure_place']+"</li><li title="+array['destination']+">"+array['destination']+"</li class='RentalOrderCenter'><li class='RentalOrderCenter'>"+array['travel_num']+"</li><li>"+array['departureTime']+"</li><li>"+array['back_time']+"</li><li>"+array['vehicle_type']+"</li><li class='RentalOrderCenter'>"+array['is_insurance']+"</li><li class='RentalOrderCenter'>"+array['username']+"</li><li>"+array['phone']+"</li><li class='RentalOrderCenter'><a href='javascript:CarRentalStatement("+array['RentalCarId']+")'>进入</a></li></ul></div>"; 
 		 });
 		$("#data-area").append(data_html);
 	},
@@ -142,7 +142,8 @@ function turnPage(page){
 		else if(array['is_insurance']=="1"){
 			array['is_insurance']="是"
 		}
-		data_html += "<div class='containerRentalOrder'><ul><li title="+array['departure_place']+">"+array['departure_place']+"</li><li title="+array['destination']+">"+array['destination']+"</li class='RentalOrderCenter'><li class='RentalOrderCenter'>"+array['travel_num']+"</li><li>"+array['departureTime']+"</li><li>"+array['back_time']+"</li><li>"+array['vehicle_type']+"</li><li class='RentalOrderCenter'>"+array['is_insurance']+"</li><li class='RentalOrderCenter'>"+array['username']+"</li><li>"+array['phone']+"</li><li class='RentalOrderCenter'><a href='javascript:CarRentalStatement("+array['tourism_id']+")'>结单</a></li></ul></div>"; 
+		<!--<a href='javascript:CarRentalStatement("+array['tourism_id']+")'>进入</a>  -->
+		data_html += "<div class='containerRentalOrder'><ul><li title="+array['departure_place']+">"+array['departure_place']+"</li><li title="+array['destination']+">"+array['destination']+"</li class='RentalOrderCenter'><li class='RentalOrderCenter'>"+array['travel_num']+"</li><li>"+array['departureTime']+"</li><li>"+array['back_time']+"</li><li>"+array['vehicle_type']+"</li><li class='RentalOrderCenter'>"+array['is_insurance']+"</li><li class='RentalOrderCenter'>"+array['username']+"</li><li>"+array['phone']+"</li><li class='RentalOrderCenter'><a href='vehicle-information-entry.html?tourism_id="+array['tourism_id']+"'>进入</a></li></ul></div>"; 
 		 });
 	$("#data-area").append(data_html);
 };

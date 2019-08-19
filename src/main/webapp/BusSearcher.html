@@ -37,24 +37,63 @@
 		<input type="hidden" name="pageName" value="5">
 		<!--调用共同的二级导航栏-->
 		<script type="text/javascript" src="js/Navigation.js"></script>
+		<script type="text/javascript"  src="js/jquery-3.4.1.min.js"></script>
+		
+		<script type="text/javascript">
+		$(function(){
+			var ruralCommittee='{"汕头同乡会":["广金广州本部","广金肇庆校区","汕头"],"普宁同乡会":["普宁1","普宁2","普宁3"],"丰顺同乡会":["丰顺1","丰顺2","丰顺3"]}';
+			var departureAndDestination=eval('('+ruralCommittee+')');
+			for(var key in departureAndDestination){
+				$("#ruralCommittee").append("<option value ='"+key+"'>"+key+"</option>");
+			}
+			$("#ruralCommittee").change(function(){
+				var nowRuralCommittee=$(this).val();
+				$("#departurePlace").html('<option value ="">选择出发地</option>');
+				$("#destination").html('<option value ="">选择出发地</option>')
+				for(var i in departureAndDestination[nowRuralCommittee]){
+					var nowAddress=departureAndDestination[nowRuralCommittee][i];
+					$("#departurePlace").append("<option value ='"+nowAddress+"'>"+nowAddress+"</option>")
+					$("#destination").append("<option value ='"+nowAddress+"'>"+nowAddress+"</option>")
+				}
+			})
+		})
+		</script>
 		<div class="busSearcher">
 			<div class="busSearcher_con">
 				<h1>添加车辆</h1>
 				<ul>
-					<label>出发地：</label>
-					<select id="departurePlace">
+					<label>同乡会：</label>
+					<select id="ruralCommittee" name="ruralCommittee">
+						<option value ="">选择同乡会</option>
+						<!--
 					  <option value ="广金广州本部">广金广州本部</option>
 					  <option value ="广金肇庆校区">广金肇庆校区</option>
 					  <option value="汕头">汕头</option>
+					  -->
+					</select>
+					<span class="hint">请选择同乡会</span>
+				</ul>
+				<ul>
+					<label>出发地：</label>
+					<select id="departurePlace">
+						<option value ="">选择出发地</option>
+						<!--
+					  <option value ="广金广州本部">广金广州本部</option>
+					  <option value ="广金肇庆校区">广金肇庆校区</option>
+					  <option value="汕头">汕头</option>
+					  -->
 					</select>
 					<span class="hint">请选择出发地</span>
 				</ul>
 				<ul>
 					<label>目的地：</label>
 					<select id="destination">
+						<option value ="">选择目的地</option>
+						<!--
 					  <option value="汕头">汕头</option>
 					  <option value ="广金广州本部">广金广州本部</option>
 					  <option value ="广金肇庆校区">广金肇庆校区</option>
+					  -->
 					</select>
 					<span class="hint">请选择目的地</span>
 				</ul>

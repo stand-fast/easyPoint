@@ -1,7 +1,4 @@
-function $(id){
-	return document.getElementById(id);
-}   
-$('submit').onclick=submit;
+document.getElementById('submit').onclick=submit;
 
 var now = new Date();
 var year = now.getFullYear(); //得到年份
@@ -98,13 +95,13 @@ function check(smallint,price){
 }
 
 function submit(){
-	var departurePlace=$('departurePlace').value;
-	var destination=$('destination').value;
-	var departureDay=$('departureDay').value;
-	var departureTime=$('departureTime').value;
-	var smallint=$('smallint').value;
-	var price=$('price').value;
-	var type=$('type').value;
+	var departurePlace=$('#departurePlace').val();
+	var destination=$('#destination').val();
+	var departureDay=$('#departureDay').val();
+	var departureTime=$('#departureTime').val();
+	var smallint=$('#smallint').val();
+	var price=$('#price').val();
+	var type=$('#type').val();
 	var middletype;
 	if(type==1){
 		middletype="否";

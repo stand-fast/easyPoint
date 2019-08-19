@@ -6,6 +6,7 @@ return "没有这个参数";
 }
 var ticketId=GetQueryString("ticketId");
 console.log("车票订单ID："+ticketId);
+
 $(function(){
 	console.log("加载完成");
 });
