@@ -9,6 +9,9 @@
       "pages/easyPointCar/confirmTicket/confirmTicket",
       "pages/educationTrain/edTraIndex/edTraIndex",
       "pages/educationTrain/driveSchoolDetail/driveSchoolDetail",
+      "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
+      "pages/IdleAndRental/goodDetails/goodDetails",
+      "pages/IdleAndRental/confirmOrder/confirmOrder",
       "pages/index/index"
     ],
     "window": {
