@@ -2,10 +2,10 @@ var LocString=String(window.document.location.href);
 function GetQueryString(str){
 var rs=new RegExp("(^|)"+str+"=([^/&]*)(/&|$)","gi").exec(LocString),tmp;
 if(tmp=rs)return tmp[2];
-return "Ã»ÓĞÕâ¸ö²ÎÊı";
+return "æ²¡æœ‰è¿™ä¸ªå‚æ•°";
 }
 var tourism_id=GetQueryString("tourism_id");
-console.log("³µÆ±¶©µ¥ID£º"+tourism_id);
+console.log("è½¦ç¥¨è®¢å•IDï¼š"+tourism_id);
 
 function submitInformation(){
 	var license_plate_number=$('#license_plate_number').val();
@@ -13,10 +13,10 @@ function submitInformation(){
 	var color=$('#color').val();
 	var driver_name=$('#driver_name').val();
 	var driver_phone=$('#driver_phone').val();
-	if(confirm("³µÅÆºÅ : "+license_plate_number+"\r"+"³µÁ¾ÀàĞÍ £º"+vehicle_type+"\r"+"³µÉíÑÕÉ« : "+color+"\r"+"Ë¾»úĞÕÃû : "+driver_name+"\r"+"Ë¾»úÁªÏµ·½Ê½ : "+driver_phone)){
+	if(confirm("è½¦ç‰Œå· : "+license_plate_number+"\r"+"è½¦è¾†ç±»å‹ ï¼š"+vehicle_type+"\r"+"è½¦èº«é¢œè‰² : "+color+"\r"+"å¸æœºå§“å : "+driver_name+"\r"+"å¸æœºè”ç³»æ–¹å¼ : "+driver_phone)){
 		$.ajax({
-		type: "post",  //Êı¾İÌá½»·½Ê½£¨post/get£©
-		url: commentDataUrl,     //ÕâÀïÊÇÇëÇóµÄºóÌ¨µØÖ·£¬×Ô¼º¶¨Òå
+		type: "post",  //æ•°æ®æäº¤æ–¹å¼ï¼ˆpost/getï¼‰
+		url: commentDataUrl,     //è¿™é‡Œæ˜¯è¯·æ±‚çš„åå°åœ°å€ï¼Œè‡ªå·±å®šä¹‰
 		data: {
 		"tourism_id":tourism_id,
 		"license_plate_number":license_plate_number,
@@ -24,39 +24,54 @@ function submitInformation(){
 		"color":color,
 		"driver_name":driver_name,
 		"driver_phone":driver_phone,
-		},//Ìá½»µÄÊı¾İ
-		dataType: "json",//·µ»ØµÄÊı¾İÀàĞÍ¸ñÊ½
+		},//æäº¤çš„æ•°æ®
+		dataType: "json",//è¿”å›çš„æ•°æ®ç±»å‹æ ¼å¼
 		success: function(msg){
-			if (msg.success){  //ĞŞ¸Ä³É¹¦
-			   alert("Ìá½»³µÁ¾ĞÅÏ¢³É¹¦") //ĞŞ¸Ä³É¹¦´¦Àí´úÂë...
-			}else {  //ĞŞ¸ÄÊ§°Ü
-			   alert("Ìá½»³µÁ¾ĞÅÏ¢Ê§°Ü") //ĞŞ¸ÄÊ§°Ü´¦Àí´úÂë...
+			if (msg.success){  //ä¿®æ”¹æˆåŠŸ
+			   alert("æäº¤è½¦è¾†ä¿¡æ¯æˆåŠŸ") //ä¿®æ”¹æˆåŠŸå¤„ç†ä»£ç ...
+			}else {  //ä¿®æ”¹å¤±è´¥
+			   alert("æäº¤è½¦è¾†ä¿¡æ¯å¤±è´¥") //ä¿®æ”¹å¤±è´¥å¤„ç†ä»£ç ...
 			}
 		}
 		});
 	
 	}else{
-		alert("ÄãÈ¡ÏûÁËÌá½»")
+		alert("ä½ å–æ¶ˆäº†æäº¤")
 	}
 }
 function CarRentalStatement(){
-	if(confirm("È·¶¨ÊÇ·ñ½áµ¥")){
-		alert("×â³µID:"+tourism_id+"½áµ¥£¨½ÓÉÏÊı¾İ¿âºóÉ¾³ı£©");  
+	if(confirm("ç¡®å®šæ˜¯å¦ç»“å•")){
+		alert("ç§Ÿè½¦ID:"+tourism_id+"ç»“å•ï¼ˆæ¥ä¸Šæ•°æ®åº“ååˆ é™¤ï¼‰");  
 		$.ajax({
-				type: "post",  //Êı¾İÌá½»·½Ê½£¨post/get£©
-				url: commentDataUrl,     //ÕâÀïÊÇÇëÇóµÄºóÌ¨µØÖ·£¬×Ô¼º¶¨Òå
+				type: "post",  //æ•°æ®æäº¤æ–¹å¼ï¼ˆpost/getï¼‰
+				url: commentDataUrl,     //è¿™é‡Œæ˜¯è¯·æ±‚çš„åå°åœ°å€ï¼Œè‡ªå·±å®šä¹‰
 				data: {
-				"tourism_id":tourism_id},//Ìá½»µÄÊı¾İ
-				dataType: "json",//·µ»ØµÄÊı¾İÀàĞÍ¸ñÊ½
+				"tourism_id":tourism_id},//æäº¤çš„æ•°æ®
+				dataType: "json",//è¿”å›çš„æ•°æ®ç±»å‹æ ¼å¼
 				success: function(msg){
-					if (msg.success){  //ĞŞ¸Ä³É¹¦
-					   alert("½áµ¥³É¹¦") //ĞŞ¸Ä³É¹¦´¦Àí´úÂë...
-					}else {  //ĞŞ¸ÄÊ§°Ü
-					   alert("½áµ¥Ê§°Ü") //ĞŞ¸ÄÊ§°Ü´¦Àí´úÂë...
+					if (msg.success){  //ä¿®æ”¹æˆåŠŸ
+					   alert("ç»“å•æˆåŠŸ") //ä¿®æ”¹æˆåŠŸå¤„ç†ä»£ç ...
+					}else {  //ä¿®æ”¹å¤±è´¥
+					   alert("ç»“å•å¤±è´¥") //ä¿®æ”¹å¤±è´¥å¤„ç†ä»£ç ...
 					}
 				}
 			});
 	}else{
-		alert("ÄãÈ¡ÏûÁË½áµ¥");
+		alert("ä½ å–æ¶ˆäº†ç»“å•");
 	}
-}// JavaScript Document
+}
+
+$(function(){
+//	$.ajax({
+//	type: 'POST',
+//	url: commentDataUrl,     //è¿™é‡Œæ˜¯è¯·æ±‚çš„åå°åœ°å€ï¼Œè‡ªå·±å®šä¹‰
+//	data: {'tourism_id':tourism_id},
+//	dataType: 'json',
+//	success: function(json) {
+//		$('#license_plate_number').val(json.license_plate_number);
+//		$('#vehicle_type').val(json.vehicle_type);
+//		$('#color').val(json.color);
+//		$('#driver_name').val(json.driver_name);
+//		$('#driver_phone').val(json.driver_phone);
+	
+})
