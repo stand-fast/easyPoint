@@ -79,7 +79,7 @@
         </view>
         <text class="Text">浏览并同意易点协议</text>
     </view>
-    <view class="submitBtn"><button bindtap="toSignUp" disabled="{{disable_signup}}">{{word}}</button></view>
+    <view class="submitBtn"><button bindtap="toSignUp">{{word}}</button></view>
     <!-- 报名选择成功的弹窗 -->
     <block wx:if='{{showmodal}}'>
         <view class='mask_layer'/>

@@ -48,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -68,13 +68,6 @@
 					"id": -1,
 					"name": "editInformation",
 					"pathName": "pages/myIndex/editInformation/editInformation",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "goodDetails",
-					"pathName": "pages/IdleAndRental/goodDetails/goodDetails",
 					"scene": null
 				}
 			]
