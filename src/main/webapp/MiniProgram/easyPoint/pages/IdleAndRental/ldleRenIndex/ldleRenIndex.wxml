@@ -1,2 +1,36 @@
 <!--pages/IdleAndRental/ldleRenIndex/ldleRenIndex.wxml-->
-<text>pages/IdleAndRental/ldleRenIndex/ldleRenIndex.wxml</text>
+<import src='/template/IdleRent.wxml'/>
+<view class="header">
+    <view class='nav_switch'>
+        <view class="{{currentTab==0 ? 'on' :''}} nav_text" data-current='0' bindtap="swichNav">租赁物品</view>
+        <view class="{{currentTab==1 ? 'on' :''}} nav_text" data-current='1' bindtap="swichNav">闲置共享</view>
+    </view>
+</view>
+<block wx:if="{{currentTab==0}}">
+    <scroll-view class="scroll_picture" scroll-x="true">
+        <view wx:for="{{advertisementUrl}}" wx:key="{{index}}">
+            <image src="{{item}}"></image>
+        </view>
+    </scroll-view>
+      <view class="content">
+        <view class='left'>
+            <view wx:for="{{item_list}}" wx:key="index">
+                <view class="{{flag==index?'select':'normal'}}" data-id='{{index}}' bindtap='changeList'>{{item}}</view>
+            </view>
+        </view>
+        <view class='right'>
+            <view wx:for="{{item_list}}" wx:key="index">
+                <block wx:if="{{flag==index}}">
+                    <scroll-view scroll-y="true" scroll-into-view="{{flag}}">
+                        <view wx:for="{{rent_list[flag].item_list}}" wx:key="index" class="item_list" bindtap="lookDetail">
+                            <template is="idleRent" data="{{item}}"/>
+                        </view>
+                    </scroll-view>
+                </block>
+            </view>
+        </view>
+    </view>
+</block>
+<block wx:if="{{currentTab==1}}">
+    <view>这里是闲置</view>
+</block>

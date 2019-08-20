@@ -3,67 +3,72 @@
     <swiper indicator-dots="true"
     autoplay="true" interval="5000" duration="1000" circular="true" class="swiper_images" indicator-color="#fff" 
          indicator-active-color="#ffdd42">
-        <block wx:for="{{driving_school_info.defaultImgUrl}}" wx:key="key">
+        <block wx:for="{{good_details_info.defaultImgUrl}}" wx:key="key">
             <swiper-item>
                 <image src="{{item}}" class="slide-image"/>
             </swiper-item>
         </block>
     </swiper>
     <view class="head_title">
-        <view class="namePrice">
-            <view class="schoolName">{{driving_school_info.drivingSchoolName}}</view>
-            <view class="schoolPrice">￥<text>{{driving_school_info.lowestPrice}}</text>起</view>
+        <view class="head_title_item">
+            <view class="goodName">{{good_details_info.goodName}}</view>
+            <view class="goodPrice">￥
+                <text>{{good_details_info.goodPrice}}</text>
+                <view class="goodPrice_pledge">/押金{{good_details_info.cashPledge}}</view>
+            </view>
         </view>
-        <view class="schoolAddress">{{driving_school_info.drivingSchoolAddress}}</view>
+        <view class="head_title_item">
+            <view class="provider">提供商：{{good_details_info.provider}}</view>
+            <view class="hadrent">已租次数：{{good_details_info.hadRentTime}}</view>
+        </view>
     </view>
 </view>
 <view class="infomations">
     <view class='nav_switch'>
-        <view class="{{currentTab==0 ? 'on' :''}} nav_text" data-current='0' bindtap="swichNav">详情</view>
-        <view class="{{currentTab==1 ? 'on' :''}} nav_text" data-current='1' bindtap="swichNav">介绍</view>
-        <view class="{{currentTab==2 ? 'on' :''}} nav_text" data-current='2' bindtap="swichNav">套餐</view>
+        <view class="{{currentTab==0 ? 'on' :''}} nav_text" data-current='0' bindtap="swichNav">商品详情</view>
+        <view class="{{currentTab==1 ? 'on' :''}} nav_text" data-current='1' bindtap="swichNav">交易流程</view>
     </view>
     <view class="hr"></view>
     <block wx:if="{{currentTab==0}}">
         <view class="detail_item">
             <view class="item_title">
                 <view class="shu"></view>
-                <view class="title">学车时间：</view>
+                <view class="title">详细：</view>
             </view>
-            <view class="learntime_list"><view class="dot"></view>{{driving_school_info.studyTimeMorning}}</view>
-            <view class="learntime_list"><view class="dot"></view>{{driving_school_info.studyTimeNoon}}</view>
-            <view class="learntime_list"><view class="dot"></view>{{driving_school_info.studyTimeNight}}</view>
-            <view class="item_title next">
+            <view class="detail_item_content">{{good_details_info.goodContent}}</view>
+            <view class="item_title">
                 <view class="shu"></view>
-                <view class="title">报名须知：</view>
+                <view class="title">种类：</view>
             </view>
-            <view class="material"><text>驾校报道需携带资料：{{driving_school_info.conditionsOverleaf}}</text></view>
+            <view class="last">
+                <view wx:for="{{good_details_info.goodTypes}}" wx:key="{{index}}" wx:for-item="item">
+                    <view class="goodtype_list">{{item}}</view>
+                </view>
+            </view>
         </view>
     </block>
     <block wx:if="{{currentTab==1}}">
         <view class="detail_item">
-             <view class="item_title">
+            <view class="item_title">
                 <view class="shu"></view>
-                <view class="title">驾校简介：</view>
+                <view class="title">押金说明：</view>
             </view>
-            <view class="introduce"><view class="dot1">·</view><text>{{driving_school_info.drivingSchoolProfile}}</text></view>
-            <view class="item_title pass">
+            <view class="detail_item_content">{{good_details_info.cashExplain}}</view>
+            <view class="item_title">
                 <view class="shu"></view>
-                <view class="title pass_text">学员通过率：<text>{{driving_school_info.passRate}}</text></view>
+                <view class="title">取货：</view>
             </view>
-        </view>
-    </block>
-    <block wx:if="{{currentTab==2}}">
-        <view class="detail_item">
-            <view wx:for="{{driving_school_info.driving_school_setmeal}}" wx:key="{{index}}" wx:for-item="item" class="item_kong">
-                <view class="item_title" >
-                    <view class="shu"></view>
-                    <view class="title">{{item.setmealName}}:</view>
-                </view>
-                <view class="set_list"><view class="dot"></view>学车周期：{{item.studyCycle}}</view>
-                <view class="set_list"><view class="dot"></view>课程价格：{{item.price}}</view>
-                <view class="set_list"><view class="dot1">·</view>备注：{{item.note}}</view>
+            <view class="detail_item_content">{{good_details_info.takeGood}}</view>
+            <view class="item_title">
+                <view class="shu"></view>
+                <view class="title">还货：</view>
             </view>
+            <view class="detail_item_content">{{good_details_info.returnGood}}</view>
+            <view class="item_title">
+                <view class="shu"></view>
+                <view class="title">营业时间：</view>
+            </view>
+            <view class="detail_item_content">{{good_details_info.businessTime}}</view>
         </view>
     </block>
 </view>
@@ -79,14 +84,54 @@
         </view>
         <text class="Text">浏览并同意易点协议</text>
     </view>
-    <view class="submitBtn"><button bindtap="toSignUp">{{word}}</button></view>
-    <!-- 报名选择成功的弹窗 -->
-    <block wx:if='{{showmodal}}'>
-        <view class='mask_layer'/>
-        <view class='modal_box'>
-            <view class="model_success">支付成功</view>
-            <view class="success_text">您已报名成功，请保持手机畅通，我们会在24小时内联系您并进行后续手续办理</view>
-            <button class="success_btn" bindtap="successBtn">确定</button>
+    <view class="submitBtn"><button bindtap="toRent">{{word}}</button></view>
+</view>
+<!-- 底部选择租赁规格栏 -->
+<view class="dialog_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="dialog_attr_box" wx:if="{{showModalStatus}}">
+    <view class="dislog_item">
+        <image src="{{chooseImg}}"></image>
+        <view class="dislog_item_goods">
+            <view id="dislog_item_goods_price">￥ <text>{{setPrice}}</text></view>
+            <view id="dislog_item_goods_chooseType">已选择：{{chooseType}} + {{chooseSize}}码  ×{{chooseNumber}}</view>
         </view>
-    </block>
+    </view>
+    <view class="hr"></view>
+    <scroll-view scroll-y="true" class="scroll_bar">
+        <view class="dislog_item_title">选择类别</view>
+        <view class="dialog_item_list" style="height:{{typeHeight}}rpx">
+            <view wx:for="{{good_details_info.goodTypes_list}}" wx:key="name" class='dialog_content' wx:for-item="item">
+                <view class="{{typeclick==index?'type_pre':'type_nor'}}" bindtap='typeClick' data-index="{{index}}">{{item.list_name}}</view>
+            </view>
+        </view>
+        <view class="dislog_item_title">选择尺寸</view>
+        <view class="dialog_item_list" style="height:{{sizeHeight}}rpx">
+            <view wx:for="{{good_details_info.goodSize_list}}" wx:key="name" class='dialog_content size' wx:for-item="item">
+                <view class="{{sizeclick==index?'type_pre':'type_nor'}}" bindtap='sizeClick' data-index="{{index}}">{{item}}</view>
+            </view>
+        </view>
+        <view class="dislog_item_choose">
+            <view class="dislog_item_choose_title">选择数量</view>
+            <view class="dislog_item_choose_stepper">
+                <view class="jian" bindtap="bindMinus">-</view>
+                <input class="number" type="number" disabled="true" value="{{chooseNumber}}" bindinput="bindManual"></input>
+                <view class="jia" bindtap="bindPlus">+</view>
+            </view>
+        </view>
+        <view class="dislog_item_choose">
+            <view class="dislog_item_choose_title">选择租借天数</view>
+            <view class="dislog_item_choose_stepper">
+                <view class="jian" bindtap="bindMinus1">-</view>
+                <input class="number" type="number" disabled="true" value="{{rentDays}}" bindinput="bindManual"></input>
+                <view class="jia" bindtap="bindPlus1">+</view>
+            </view>
+        </view>
+        <view class="dislog_item_choose">
+            <view class="dislog_item_choose_title">选择取货时间</view>
+            <picker mode="multiSelector" value="{{dateTime}}" bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}" class="pickTime">
+                <input value="{{startTime}}" placeholder="请选择取货时间" placeholder-class="placehold" disabled="true"></input>
+            </picker>
+        </view>
+    </scroll-view>
+    <view class="confirmBtn"><button bindtap="toOrder">确定</button></view>
 </view>

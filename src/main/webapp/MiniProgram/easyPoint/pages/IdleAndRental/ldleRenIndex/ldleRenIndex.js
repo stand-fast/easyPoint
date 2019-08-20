@@ -5,9 +5,96 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        currentTab:0,
+        flag:0,
+        advertisementUrl:[
+            "/images/zulin.png",
+            "/images/zulin.png",
+            "/images/zulin.png",
+        ],
+        item_list: ["音响设备", "装饰灯具", "玩具套餐","正装用品"],
+        rent_list:[{
+            id:0,
+            item_list:[{
+                goodImg:"/images/goodImg.png",
+                goodName:"50米长充电灯带",
+                hadRenTime:7,
+                goodPrice:20
+            },{
+                goodImg: "/images/goodImg.png",
+                goodName: "10米长充电灯带",
+                hadRenTime: 7,
+                goodPrice: 20
+            }, {
+                goodImg: "/images/goodImg.png",
+                goodName: "10米长充电灯带",
+                hadRenTime: 7,
+                goodPrice: 20
+            }, {
+                goodImg: "/images/goodImg.png",
+                goodName: "10米长充电灯带",
+                hadRenTime: 7,
+                goodPrice: 20
+                }, {
+                goodImg: "/images/goodImg.png",
+                goodName: "10米长充电灯带",
+                hadRenTime: 7,
+                goodPrice: 20
+            }]
+        },{
+            id: 1,
+            item_list: [{
+                goodImg: "/images/goodImg.png",
+                goodName: "50米长充电灯带",
+                hadRenTime: 7,
+                goodPrice: 20
+            },{
+                goodImg: "/images/goodImg.png",
+                goodName: "10米长充电灯带",
+                hadRenTime: 7,
+                goodPrice: 20
+            }]
+            },{
+            id: 2,
+            item_list: [{
+                goodImg: "/images/goodImg.png",
+                goodName: "50米长充电灯带",
+                hadRenTime: 7,
+                goodPrice: 20
+            }, {
+                goodImg: "/images/goodImg.png",
+                goodName: "10米长充电灯带",
+                hadRenTime: 7,
+                goodPrice: 20
+            }]
+        }]
     },
-
+    swichNav: function (e) {
+        var that = this;
+        if (this.data.currentTab === e.target.dataset.current) {
+            return false;
+        }
+        else {
+            that.setData({
+                currentTab: e.target.dataset.current,
+            })
+        }
+    },
+    changeList: function (e) {
+        if (this.data.flag === e.target.dataset.id) {
+            return false;
+        }
+        else {
+            this.setData({
+                flag: e.target.dataset.id,
+            })
+        }
+    },
+    lookDetail:function(){
+        wx.navigateTo({
+            url: '/pages/IdleAndRental/goodDetails/goodDetails',
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */

@@ -48,33 +48,26 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 2,
 			"list": [
-				{
-					"id": -1,
-					"name": "edTraIndex",
-					"pathName": "pages/educationTrain/edTraIndex/edTraIndex",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "driveSchoolDetail",
-					"pathName": "pages/educationTrain/driveSchoolDetail/driveSchoolDetail",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "editInformation",
-					"pathName": "pages/myIndex/editInformation/editInformation",
-					"query": "",
-					"scene": null
-				},
 				{
 					"id": -1,
 					"name": "goodDetails",
 					"pathName": "pages/IdleAndRental/goodDetails/goodDetails",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "confirmOrder",
+					"pathName": "pages/IdleAndRental/confirmOrder/confirmOrder",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "ldleRenIndex",
+					"pathName": "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
 					"scene": null
 				}
 			]

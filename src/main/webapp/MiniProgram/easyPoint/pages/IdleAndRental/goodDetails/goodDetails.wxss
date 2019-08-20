@@ -12,20 +12,20 @@ Page{
     height: 136rpx;
     background-color: #fff;
 }
-.namePrice{
+.head_title_item{
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 60rpx;
     font-size: 32rpx;
-    color: #666;
-    padding-top: 10rpx;
 }
-.schoolName{
-    width: 72%;
-    height: 70rpx;
-    line-height: 70rpx;
+.goodName{
+    width: 500rpx;
+    height: 60rpx;
+    line-height: 60rpx;
     margin-left: 30rpx;
+    margin-top: 14rpx;
+    color: #666;
     display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -34,22 +34,48 @@ Page{
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
 }
-.schoolPrice text{
+.goodPrice text{
     margin-right: 4rpx;
     color: #ffdd42;
 }
-.schoolPrice{
-    width: 28%;
-    height: 70rpx;
-    line-height: 70rpx;
+.goodPrice{
+    width: 220rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    margin-top: 14rpx;
+    color: #666;
     font-family: 微软雅黑;
+    display: flex;
+    flex-direction: row;
 }
-.schoolAddress{
+.goodPrice_pledge{
+    width: 130rpx;
+    font-size: 24rpx!important;
+}
+.provider{
+    width: 300rpx;
     height: 60rpx;
     line-height: 60rpx;
     font-size: 28rpx;
     color: #999;
     margin-left: 30rpx;
+    margin-top: 10rpx;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: normal !important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.hadrent{
+    width: 200rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 28rpx;
+    color: #999;
+    margin-left: 220rpx;
+    margin-top: 10rpx;
 }
 .infomations{
     width: 100%;
@@ -83,7 +109,7 @@ Page{
     background-color: #f2f2f2;
 }
 .detail_item{
-    padding: 20rpx 24rpx;
+    padding: 20rpx 30rpx 20rpx 24rpx;
 }
 .item_kong{
     margin-bottom: 16rpx;
@@ -108,72 +134,23 @@ Page{
     font-size: 32rpx;
     color: #666;
 }
-.learntime_list{
+.goodtype_list{
+    margin-left: 26rpx;
     width: 100%;
     height: 40rpx;
     line-height: 40rpx;
     font-size: 28rpx;
     color: #999; 
-    display: flex;
-    flex-direction: row;
 }
-.next{
-    margin-top: 16rpx;
-}
-.dot{
-    width: 8rpx;
-    height: 8rpx;
-    border-radius: 50%;
-    background-color: #ffdd42;
-    margin: auto 10rpx;
-}
-.dot1{
-    width: 26rpx;
-    font-weight: bold;
-    font-size: 38rpx;
-    color: #ffdd42;
-}
-.material{
-    display: flex;
-    flex-direction: row;
+.detail_item_content{
     font-size: 28rpx;
     color: #999;
+    line-height: 40rpx;
     margin-bottom: 20rpx;
-    margin-left: 16rpx;
+    margin-left: 26rpx;
 }
-.material text{
-    line-height: 40rpx;
-}
-.introduce{
-    width: 100%;
-    line-height: 40rpx;
-    font-size: 28rpx;
-    color: #999; 
-    display: flex;
-    flex-direction: row;
-}
-.introduce text{
-    text-indent: 56rpx;
-    text-align: left;
-    padding: 0 10rpx;
-}
-.pass{
-    margin-top: 14rpx;
-}
-.pass_text{
-    display: flex;
-    flex-direction: row;
-}
-.pass text{
-    color: #999;
-}
-.set_list{
-    width: 100%;
-    line-height: 40rpx;
-    font-size: 28rpx;
-    color: #999; 
-    display: flex;
-    flex-direction: row;
+.last{
+    margin-bottom: 20rpx;
 }
 .footer{
     position: fixed;
@@ -257,50 +234,198 @@ Page{
     position: fixed;
     margin: 1rpx 0 1rpx -16rpx;
 }
-.mask_layer {
+.dialog_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.3;
+  overflow: hidden;
+  z-index: 1000;
+  color: #fff;
+}
+.dialog_attr_box {
     width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: 999;
-    left:0;top:0;
-    background: #000;
-    opacity: 0.5;
-    overflow: hidden;
-}
-.modal_box {
-    width: 90%;
-    height: 400rpx;
+    height: 900rpx;
     overflow: hidden;
     position: fixed;
-    top: 25%;
+    bottom: 0;
     left: 0;
-    z-index: 1001;
-    background: #fafafa;
-    margin: 5%;
-    border-radius: 20rpx;
+    z-index: 2000;
+    background: #fff;
+    padding-top: 2rpx;
+    border-top-left-radius: 20rpx;
+    border-top-right-radius: 20rpx;
 }
-.model_success{
-    margin:60rpx 0 30rpx 0;
-    text-align: center;
-    font-size: 36rpx;
-    color: #ffdd42;
+.dislog_item{
+    width: 100%;
+    height: 180rpx;
+    display: flex;
+    flex-direction: row;
+    position: relative;
 }
-.success_text{
-    text-align: center;
+.dislog_item image{
+    width: 120rpx;
+    height: 120rpx;
+    margin: 30rpx 20rpx 10rpx 40rpx;
+    border-radius: 10rpx;
+}
+.dislog_item_goods{
+    margin-top: 30rpx;
+}
+#dislog_item_goods_price{
+    width: 400rpx;
+    font-size: 30rpx;
+    font-family: 微软雅黑;
+    height: 60rpx;
+    line-height: 60rpx;
+    color:#ffdd42;
+}
+#dislog_item_goods_price text{
+    font-size: 40rpx;
+}
+#dislog_item_goods_chooseType{
+    width: 500rpx;
     font-size: 26rpx;
     color: #999;
-    height: 100rpx;
-    line-height: 44rpx;
-    padding: 0rpx 10%;
+    margin-top: 20rpx;
 }
-.success_btn{
+.dislog_item_title{
+    font-size: 30rpx;
+    color: #666;
+    margin-left: 30rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    margin-top: 20rpx;
+}
+.dialog_item_list{
+    margin: 0rpx 10rpx;
+}
+.dialog_content{
+  position: relative;
+  float: left;
+  font-size: 26rpx;
+  color: #999;
+  background-color: #f2f2f2;
+  width: 200rpx;
+  height: 60rpx;
+  box-sizing: border-box;
+  margin:18rpx 10rpx 14rpx 20rpx;
+  border-radius: 10rpx;
+}
+.size{
+    width: 80rpx!important;
+}
+.type_nor{
+    height: 60rpx;
+    line-height: 60rpx;
+    text-align: center;
+    border-radius: 14rpx;
+}
+.type_pre{
+    height: 58rpx;
+    line-height: 58rpx;
+    text-align: center;
+    border: 1rpx solid #ffdd42;
+    color: #333;
+    border-radius: 14rpx;
+}
+.dislog_item_choose_title{
+    width: 200rpx;
+    font-size: 30rpx;
+    color: #666;
+    margin-left: 30rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    margin-top: 20rpx;
+}
+.dislog_item_choose{
+    width: 100%;
+    height: 70rpx;
+    margin-top: 20rpx;
+    display: flex;
+    flex-direction: row;
+}
+.dislog_item_choose_stepper{
+    width: 180rpx;
+    height: 60rpx;
+    margin:16rpx 10rpx 0rpx 300rpx;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    color: #666;
+}
+.dislog_item_choose_stepper input{
+    width: 60rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+    margin:6rpx 4rpx;
+}
+.jian{
+    width: 36rpx;
+    height: 36rpx;
+    line-height: 30rpx;
+    border-radius: 50%;
+    font-size: 36rpx;
+    border:1rpx solid #999;
+    margin: 18rpx 0;
+    color: #666;
+}
+.jia{
+    width: 36rpx;
+    height: 36rpx;
+    line-height: 32rpx;
+    font-size: 36rpx;
+    border-radius: 50%;
+    color: #fff;
+    background-color:#666666;
+    border:1rpx solid #666;
+    margin: 18rpx 0;
+}
+.pickTime{
+    width: 300rpx;
+    font-size: 30rpx;
+    color: #666;
+    height: 60rpx;
+    margin:20rpx 0 0 200rpx;   
+}
+.pickTime input{
+    font-size: 30rpx;
+    color: #666;
+    height: 60rpx;
+    line-height: 60rpx;
+}
+.placehold{
+    width: 300rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+    color: #999;
+}
+.confirmBtn{
+    position: fixed;
+    bottom: 0rpx;
+    width: 100%;
+    height: 120rpx;
+    z-index: 1000;
+    background-color: #fff;
+}
+.confirmBtn button{
+    width: 700rpx;
+    height: 80rpx;
+    margin-top:20rpx;
+    line-height: 80rpx;
     background-color: #ffdd42;
     color: #fff;
     font-size: 30rpx;
-    margin-top: 60rpx;
-    margin-bottom: 20rpx;
-    width: 240rpx;
-    border-radius: 60rpx;
-    height: 70rpx;
-    line-height: 70rpx;
+}
+.confirmBtn button::after{
+    border: none;
+}
+.scroll_bar{
+    height: 590rpx;
 }

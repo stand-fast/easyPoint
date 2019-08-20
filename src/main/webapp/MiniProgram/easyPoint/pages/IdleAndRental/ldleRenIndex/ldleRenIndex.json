@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {},
+    "navigationBarTitleText": "租赁闲置",
+    "navigationBarBackgroundColor": "#ffdd42",
+    "navigationBarTextStyle": "black"
 }

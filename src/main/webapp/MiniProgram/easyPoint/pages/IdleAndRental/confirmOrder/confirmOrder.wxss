@@ -1,1 +1,231 @@
 /* pages/IdleAndRental/confirmOrder/confirmOrder.wxss */
+Page{
+    font-family: 黑体;
+    background-color: #f2f2f2;
+}
+.header{
+    width: 100%;
+    height: 250rpx;
+    background-color: #ffdd42;
+    display: flex;
+    flex-direction: row;
+    font-size: 36rpx;
+    color: #333;
+}
+.customer_name{
+    width: 200rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    margin: 30rpx 10rpx 0rpx 40rpx;
+}
+.customer_phone{
+    font-size: 30rpx;
+    width: 210rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    margin: 30rpx 10rpx 0rpx 20rpx;
+}
+.header image{
+    width: 36rpx;
+    height: 34rpx;
+    margin: 36rpx 10rpx 0rpx 150rpx;
+}
+.good_item{
+    width: 700rpx;
+    height: 280rpx;
+    border-radius: 20rpx;
+    position: absolute;
+    top: 110rpx;
+    background-color: #fff;
+    margin-left: 25rpx;
+}
+.provider{
+    width: 500rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 28rpx;
+    color: #666;
+    margin: 20rpx 0 10rpx 50rpx;
+}
+.good_content{
+    width: 700rpx;
+    height: 200rpx;
+    display: flex;
+    flex-direction: row;
+    margin-top: 20rpx;
+}
+.good_content image{
+    width: 160rpx;
+    height: 160rpx;
+    margin:0 30rpx 0 50rpx;
+}
+.content_item{
+    width: 400rpx;
+    height: 160rpx;
+    margin: 10rpx 0 0 20rpx;
+}
+.good_name{
+    width: 400rpx;
+    height: 88rpx;
+    line-height:44rpx;
+    font-size: 32rpx;
+    color: #333; 
+}
+.good_price{
+    height: 60rpx;
+    font-size: 32rpx;
+    color: #ffdd42;
+    font-family: 微软雅黑;
+    margin-top: 10rpx;
+}
+.good_price text{
+    font-size: 28rpx;
+    font-family: 黑体;
+    color: #999;
+    height: 60rpx;
+    line-height: 60rpx;
+    margin-left: 100rpx;
+}
+.order_items_list{
+    margin-top: 180rpx;
+    width: 100%;
+    background-color: #fff;
+}
+.order_item{
+    width: 600rpx;
+    display: flex;
+    flex-direction: row;
+    font-size: 28rpx;
+    margin: 30rpx 0 0 124rpx;
+}
+.first{
+    margin-top: 40rpx;
+}
+.last{
+    margin-bottom: 40rpx;
+}
+.order_item_title{
+    width: 120rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    margin-right: 40rpx;
+    color: #333;
+}
+.order_item_text{
+    width: 400rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    color: #666;
+}
+.money{
+    font-family: 微软雅黑;
+}
+.order_item input{
+    width: 400rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    color: #666;
+    margin-top: -6rpx
+}
+.footer{
+    width: 100%;
+    height: 120rpx;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+}
+.footer_total{
+    width: 550rpx;
+    height: 120rpx;
+    border-top: 2rpx solid #f2f2f2;
+    display: flex;
+    flex-direction: row;
+}
+.total{
+    width: 90rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 28rpx;
+    color: #333;
+    margin: 32rpx 0rpx 10rpx 272rpx;
+}
+.footer_total text{
+    width: 160rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 36rpx;
+    color: #ffdd42;
+    font-family: 微软雅黑;
+    margin: 30rpx 20rpx 10rpx 0rpx;
+}
+.footer button{
+    width: 200rpx;
+    height: 120rpx;
+    line-height: 120rpx;
+    background-color: #ffdd42;
+    color: #fff;
+    font-size: 36rpx;
+    border-radius: 0;
+}
+.footer button::after{
+    border: none
+}
+.mask_layer {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999;
+    left:0;top:0;
+    background: #000;
+    opacity: 0.5;
+    overflow: hidden;
+}
+.modal_box {
+    width: 90%;
+    height: 400rpx;
+    overflow: hidden;
+    position: fixed;
+    top: 25%;
+    left: 0;
+    z-index: 1001;
+    background: #fafafa;
+    margin: 5%;
+    border-radius: 20rpx;
+}
+.model_success,.model_fail{
+    margin:60rpx 0 30rpx 0;
+    text-align: center;
+    font-size: 36rpx;
+    color: #ffdd42;
+}
+.success_text{
+    text-align: center;
+    font-size: 26rpx;
+    color: #999;
+    height: 120rpx;
+    line-height: 40rpx;
+    padding: 10rpx 10%;
+    margin-top: 20rpx;
+}
+.success_btn,.fail_btn{
+    background-color: #ffdd42;
+    color: #fff;
+    font-size: 30rpx;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+    width: 240rpx;
+    border-radius: 60rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+}
+.modal_box button::after{
+    border: none;
+}
+.model_fail{
+    color: #ff0000!important;
+}
+.fail_btn{
+    background-color: #ff0000!important;
+}

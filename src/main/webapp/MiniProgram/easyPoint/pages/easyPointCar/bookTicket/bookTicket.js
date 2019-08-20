@@ -219,14 +219,6 @@ Page({
         //验证开始时间不能大于结束时间
         this.checkStartAndEndTime();
     },
-    changeDateTimeColumn1:function(e) {
-        let arr = this.data.dateTime1
-        let dateArr = this.data.dateTimeArray1;
-        arr[e.detail.column] = e.detail.value;
-        this.setData({
-            startTime: dateArr[0][arr[0]] + '-' + dateArr[1][arr[1]] + '-' + dateArr[2][arr[2]] + ' ' + dateArr[3][arr[3]] + ':' + dateArr[4][arr[4]]
-        });
-    },
 
 //下拉框
   bindShowMsg:function(){
