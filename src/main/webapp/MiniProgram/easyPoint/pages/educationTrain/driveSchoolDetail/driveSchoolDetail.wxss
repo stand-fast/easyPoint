@@ -222,10 +222,6 @@ Page{
     border-radius: 0rpx;
     border: none;
 }
-.submitBtn button[disabled]{
-    color: #fff!important;
-    background-color: #ffdd42!important;
-}
 .submitBtn button::after,.contactBtn button::after{
     border: none;
 }

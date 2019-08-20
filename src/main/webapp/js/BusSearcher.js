@@ -1,8 +1,3 @@
-function $(id){
-	return document.getElementById(id);
-}   
-$('submit').onclick=submit;
-
 var now = new Date();
 var year = now.getFullYear(); //得到年份
 var month = now.getMonth()+1;//得到月份
@@ -53,16 +48,15 @@ function prepareInputsForHints() {
 }
 addLoadEvent(prepareInputsForHints);
 
-
 function check(smallint,price){
 	function isInteger(obj) {
 		 return obj%1 === 0
 		}
-	if($('departurePlace').value==$('destination').value){
+	if($('#departurePlace').val()==$('#destination').val()){
 			alert('出发地和目的地不能相同');
 			return false
 	}
-	else if($('departureDay').value<time){
+	else if($('#departureDay').val()<time){
 			alert('出发日期不能为空或者以前时间');
 			return false
 	}
@@ -98,13 +92,13 @@ function check(smallint,price){
 }
 
 function submit(){
-	var departurePlace=$('departurePlace').value;
-	var destination=$('destination').value;
-	var departureDay=$('departureDay').value;
-	var departureTime=$('departureTime').value;
-	var smallint=$('smallint').value;
-	var price=$('price').value;
-	var type=$('type').value;
+	var departurePlace=$('#departurePlace').val();
+	var destination=$('#destination').val();
+	var departureDay=$('#departureDay').val();
+	var departureTime=$('#departureTime').val();
+	var smallint=$('#smallint').val();
+	var price=$('#price').val();
+	var type=$('#type').val();
 	var middletype;
 	if(type==1){
 		middletype="否";
@@ -140,6 +134,24 @@ function submit(){
 		}
 	}
 	
-		
-
 }
+
+//同乡会二级联动
+$(function(){
+	var ruralCommittee='{"汕头同乡会":["广金广州本部","广金肇庆校区","汕头"],"普宁同乡会":["普宁1","普宁2","普宁3"],"丰顺同乡会":["丰顺1","丰顺2","丰顺3"]}';
+	var departureAndDestination=eval('('+ruralCommittee+')');
+	for(var key in departureAndDestination){
+		$("#ruralCommittee").append("<option value ='"+key+"'>"+key+"</option>");
+	}
+	$("#ruralCommittee").change(function(){
+		var nowRuralCommittee=$(this).val();
+		$("#departurePlace").html('<option value ="">选择出发地</option>');
+		$("#destination").html('<option value ="">选择出发地</option>')
+		for(var i in departureAndDestination[nowRuralCommittee]){
+			var nowAddress=departureAndDestination[nowRuralCommittee][i];
+			$("#departurePlace").append("<option value ='"+nowAddress+"'>"+nowAddress+"</option>")
+			$("#destination").append("<option value ='"+nowAddress+"'>"+nowAddress+"</option>")
+		}
+	})
+})
+
