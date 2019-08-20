@@ -52,22 +52,23 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "goodDetails",
+					"name": "pages/IdleAndRental/goodDetails/goodDetails",
 					"pathName": "pages/IdleAndRental/goodDetails/goodDetails",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "confirmOrder",
+					"name": "pages/IdleAndRental/confirmOrder/confirmOrder",
 					"pathName": "pages/IdleAndRental/confirmOrder/confirmOrder",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "ldleRenIndex",
+					"name": "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
 					"pathName": "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
+					"query": "",
 					"scene": null
 				}
 			]

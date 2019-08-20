@@ -14,7 +14,6 @@ Page({
         ],
         item_list: ["音响设备", "装饰灯具", "玩具套餐","正装用品"],
         rent_list:[{
-            id:0,
             item_list:[{
                 goodImg:"/images/goodImg.png",
                 goodName:"50米长充电灯带",
@@ -42,7 +41,6 @@ Page({
                 goodPrice: 20
             }]
         },{
-            id: 1,
             item_list: [{
                 goodImg: "/images/goodImg.png",
                 goodName: "50米长充电灯带",
@@ -55,7 +53,6 @@ Page({
                 goodPrice: 20
             }]
             },{
-            id: 2,
             item_list: [{
                 goodImg: "/images/goodImg.png",
                 goodName: "50米长充电灯带",

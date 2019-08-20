@@ -139,14 +139,15 @@ swiper{
     font-size: 30rpx;
 }
 .see{
+    display: flex;
+    flex-direction: row;
     width:500rpx;
     height: 220rpx;
-    position: fixed;
-    margin:150rpx 20rpx 10rpx 430rpx;
 }
 .see image{
     width: 40rpx;
     height: 40rpx;
+    margin: 34rpx 10rpx 10rpx 130rpx;
 }
 .nogood{
     margin: auto;

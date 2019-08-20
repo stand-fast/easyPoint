@@ -3,9 +3,9 @@
     <view class="list_content">
         <view class="list_content_title">{{item.goodName}}</view>
         <view class="list_content_rend">已租{{item.hadRenTime}}次</view>
-        <view class="list_content_price">￥<text>{{item.goodPrice}}</text></view>
-    </view>
-    <view class="see">
-        <image src="/images/icon/see.png"></image>
+        <view class="see">
+            <view class="list_content_price">￥<text>{{item.goodPrice}}</text></view>
+            <image src="/images/icon/see.png"></image>
+        </view>
     </view>
 </template>
