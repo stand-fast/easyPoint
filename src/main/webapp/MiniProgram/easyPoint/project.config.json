@@ -48,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -69,6 +69,12 @@
 					"name": "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
 					"pathName": "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "editInformation",
+					"pathName": "pages/IdleAndRental/editInformation/editInformation",
 					"scene": null
 				}
 			]
