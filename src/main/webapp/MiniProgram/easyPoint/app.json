@@ -1,5 +1,6 @@
 {
     "pages": [
+      "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
       "pages/myIndex/editInformation/editInformation",
       "pages/easyPointCar/bookTicket/bookTicket",
       "pages/easyPointCar/queryTicket/queryTicket",
@@ -10,7 +11,6 @@
       "pages/educationTrain/edTraIndex/edTraIndex",
       "pages/educationTrain/driveSchoolDetail/driveSchoolDetail",
       "pages/IdleAndRental/goodDetails/goodDetails",
-      "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
       "pages/IdleAndRental/confirmOrder/confirmOrder",
       "pages/IdleAndRental/editInformation/editInformation",
       "pages/index/index"

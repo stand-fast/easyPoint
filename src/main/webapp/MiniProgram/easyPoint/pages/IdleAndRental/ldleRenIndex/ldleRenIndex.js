@@ -13,58 +13,60 @@ Page({
             "/images/zulin.png",
         ],
         item_list: ["音响设备", "装饰灯具", "玩具套餐","正装用品"],
-        rent_list:[{
+        rent_list:[
+          {
             item_list:[{
-                goodImg:"/images/goodImg.png",
+                goodId:"sdf12313456asdsa546",
+                pro_img:"/images/goodImg.png",
                 goodName:"50米长充电灯带",
-                hadRenTime:7,
-                goodPrice:20
+                leaseNum:7,
+                price:20
             },{
-                goodImg: "/images/goodImg.png",
-                goodName: "10米长充电灯带",
-                hadRenTime: 7,
-                goodPrice: 20
-            }, {
-                goodImg: "/images/goodImg.png",
-                goodName: "10米长充电灯带",
-                hadRenTime: 7,
-                goodPrice: 20
-            }, {
-                goodImg: "/images/goodImg.png",
-                goodName: "10米长充电灯带",
-                hadRenTime: 7,
-                goodPrice: 20
-                }, {
-                goodImg: "/images/goodImg.png",
-                goodName: "10米长充电灯带",
-                hadRenTime: 7,
-                goodPrice: 20
-            }]
-        },{
-            item_list: [{
-                goodImg: "/images/goodImg.png",
+                goodId: "sdf12313456asdsa546",
+                pro_img: "/images/goodImg.png",
                 goodName: "50米长充电灯带",
-                hadRenTime: 7,
-                goodPrice: 20
-            },{
-                goodImg: "/images/goodImg.png",
-                goodName: "10米长充电灯带",
-                hadRenTime: 7,
-                goodPrice: 20
-            }]
-            },{
-            item_list: [{
-                goodImg: "/images/goodImg.png",
-                goodName: "50米长充电灯带",
-                hadRenTime: 7,
-                goodPrice: 20
+                leaseNum: 7,
+                price: 20
             }, {
-                goodImg: "/images/goodImg.png",
-                goodName: "10米长充电灯带",
-                hadRenTime: 7,
-                goodPrice: 20
+                goodId: "sdf12313456asdsa546",
+                pro_img: "/images/goodImg.png",
+                goodName: "50米长充电灯带",
+                leaseNum: 7,
+                price: 20
+            }, 
+            ]
+        },
+        {
+            item_list: [{
+                goodId: "sdf12313456asdsa546",
+                pro_img: "/images/goodImg.png",
+                goodName: "50米长充电灯带",
+                leaseNum: 7,
+                price: 20
+            },{
+                goodId: "sdf12313456asdsa546",
+                pro_img: "/images/goodImg.png",
+                goodName: "50米长充电灯带",
+                leaseNum: 7,
+                price: 20
+            }]            
+        },
+        {
+            item_list: [{
+                goodId: "sdf12313456asdsa546",
+                pro_img: "/images/goodImg.png",
+                goodName: "50米长充电灯带",
+                leaseNum: 7,
+                price: 20
+            }, {
+                goodId: "sdf12313456asdsa546",
+                pro_img: "/images/goodImg.png",
+                goodName: "50米长充电灯带",
+                leaseNum: 7,
+                price: 20
             }]
-        }]
+        }
+      ]
     },
     swichNav: function (e) {
         var that = this;
