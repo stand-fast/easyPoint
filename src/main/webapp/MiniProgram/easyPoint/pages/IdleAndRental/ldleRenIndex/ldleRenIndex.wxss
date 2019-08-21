@@ -82,6 +82,9 @@ Page{
     height: 866rpx;
     overflow-y: scroll;
 }
+scroll-view:last-child{
+    height: 866rpx;
+}
 swiper{
     width: 550rpx;
     height: 866rpx;

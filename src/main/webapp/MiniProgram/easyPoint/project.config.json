@@ -48,33 +48,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 0,
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/IdleAndRental/goodDetails/goodDetails",
-					"pathName": "pages/IdleAndRental/goodDetails/goodDetails",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/IdleAndRental/confirmOrder/confirmOrder",
-					"pathName": "pages/IdleAndRental/confirmOrder/confirmOrder",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
+					"name": "ldleRenIndex",
 					"pathName": "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "editInformation",
-					"pathName": "pages/IdleAndRental/editInformation/editInformation",
 					"scene": null
 				}
 			]
