@@ -5,27 +5,27 @@
     <image src="/images/icon/rentEdit.png" bindtap="toEdit"></image>
 </view>
 <view class="good_item">
-    <view class="provider">{{good_details_info.provider}}</view>
+    <view class="provider">{{good_details_info.companyName}}</view>
     <view class="good_content">
-        <image src="{{good_details_info.goodImg}}"></image>
+        <image src="{{good_details_info.img}}"></image>
         <view class="content_item">
-            <view class="good_name">{{good_details_info.goodType}} <text> {{good_details_info.goodSize}}码</text></view>
-            <view class="good_price">￥{{good_details_info.goodPrice+good_details_info.cashPledge}} <text>×{{good_details_info.goodNumber}}</text></view>
+            <view class="good_name">{{good_details_info.variety}} <text> {{good_details_info.size}}码</text></view>
+            <view class="good_price">￥{{good_details_info.price}} <text>×{{good_details_info.number}}</text></view>
         </view>
     </view>
 </view>
 <view class="order_items_list">
     <view class="order_item">
         <view class="order_item_title first">租借天数</view>
-        <view class="order_item_text first">{{good_details_info.rendDays}}天</view>
+        <view class="order_item_text first">{{good_details_info.leaseDate}}天</view>
     </view>
     <view class="order_item">
         <view class="order_item_title">租借押金</view>
-        <view class="order_item_text money">￥{{good_details_info.cashPledge}}</view>
+        <view class="order_item_text money">￥{{good_details_info.deposit*good_details_info.number}}</view>
     </view>
     <view class="order_item">
         <view class="order_item_title">取货时间</view>
-        <view class="order_item_text">{{good_details_info.takeTime}}</view>
+        <view class="order_item_text">{{good_details_info.startTime}}</view>
     </view>
     <view class="order_item">
         <view class="order_item_title last">备注信息</view>
@@ -35,7 +35,7 @@
 <view class="footer">
     <view class="footer_total">
         <view class="total">合计：</view>
-        <text>￥{{good_details_info.goodPrice*good_details_info.goodNumber+good_details_info.cashPledge}}</text>
+        <text>￥{{good_details_info.price*good_details_info.number*good_details_info.leaseDate+good_details_info.deposit*good_details_info.number}}</text>
     </view>
     <button bindtap="toPay">支付</button>
 </view>

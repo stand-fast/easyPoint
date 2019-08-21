@@ -11,8 +11,8 @@ Page({
         rentDays:0,
         chooseType:'',
         chooseSize:'',
-        chooseNumber:0,
-        rentNumber:0,
+        number:0,
+        leaseDate:0,
         typeclick: null,
         sizeclick:null,
         sizeHeight:100,
@@ -21,9 +21,9 @@ Page({
         check: false,
         dateTime: null, //开始时间value
         dateTimeArray: null, //开始时间数组
-        showModalStatus: false,
+        showModalStatus: true,
         good_details_info:{
-            defaultImgUrl:[
+           detailsImg:[
                 "/images/guotai.png",
                 "/images/guotai.png",
                 "/images/guotai.png",
@@ -31,42 +31,37 @@ Page({
                 "/images/guotai.png",
             ],
             goodName:"西装男女全套",
-            goodPrice:30,
-            cashPledge:100,
-            provider:"小玖正装",
-            hadRentTime:7,
-            goodContent: "高级布料，防水质量男士西装可配领带领带有黑色，蓝色可供选择物品可保证已清洗整洁",
-            goodTypes:[
+            price:30,
+            deposit:100,
+            companyName:"小玖正装",
+            leaseNum:7,
+            detailInfo: "高级布料，防水质量男士西装可配领带领带有黑色，蓝色可供选择物品可保证已清洗整洁",
+            variety:[
                 "女士黑色面试正装全套，各种码数均有",
                 "男士黑色面试正装全套，各种码数均有"
             ],
-            cashExplain: "为了保证物品的，租借商品需先缴纳押金，以保证商品的完好归还，押金会在还货后如数归还，如有物品损坏丢失情况，会有客服进行商议，按情况另外扣去一定费用。",
-            takeGood: "由客服通知物品已经包装完毕，用户可以自行前往指定地点取货",
+            depositInstructions: "为了保证物品的，租借商品需先缴纳押金，以保证商品的完好归还，押金会在还货后如数归还，如有物品损坏丢失情况，会有客服进行商议，按情况另外扣去一定费用。",
+            receivedGood: "由客服通知物品已经包装完毕，用户可以自行前往指定地点取货",
             returnGood: "用户使用完毕后请确定清洗物品干净，即可送至指定地点归还，一般租借期限为3天",
-            businessTime:"早上10：30至晚上21：00",
-            goodTypes_list:[{
-                list_id:0,
-                list_picture:"/images/goodImg.png",
-                list_name:"男士正装全套",
-                list_price:"130",
-                },{
-                list_id:1,
-                list_picture:"/images/goodImg.png",
-                list_name:"女士正装全套",
-                list_price: "110",
-                },{
-                list_id: 2,
-                list_picture: "/images/goodImg.png",
-                list_name: "女士正装全套",
-                list_price: "110",
-                }, {
-                    list_id: 3,
-                    list_picture: "/images/goodImg.png",
-                    list_name: "女士正装全套",
-                    list_price: "110",
-                }],
-            goodSize_list: ["S", "M", "L", "XL", "XXL"],
-            maxRentDay: 5
+            businessHours:"早上10：30至晚上21：00",
+            goodVariety:[{
+                good_id:"sdhfjh21234",
+                img:"/images/goodImg.png",
+                variety:"男士正装全套",
+                price:"30",
+            }, {
+                good_id: "sdhfjh21234",
+                img: "/images/goodImg.png",
+                variety: "男士正装全套",
+                price: "20",
+              }, {
+                good_id: "sdhfjh21234",
+                img: "/images/goodImg.png",
+                variety: "男士正装全套",
+                price: "15",
+                }, 
+              ],
+            size: ["S", "M", "L", "XL", "XXL"],
         }
     },
     swichNav: function (e) {
@@ -144,14 +139,14 @@ Page({
     //点击选择类别
     typeClick: function (e) {
         var index = e.currentTarget.dataset.index;
-        var goodTypes_list = this.data.good_details_info.goodTypes_list
-        for (var i = 0; i < goodTypes_list.length; i++) {
+        var goodVariety = this.data.good_details_info.goodVariety
+        for (var i = 0; i < goodVariety.length; i++) {
             if (i == index) {
                 this.setData({
                     typeclick: i,
-                    chooseType:goodTypes_list[i].list_name,
-                    setPrice:goodTypes_list[i].list_price, 
-                    chooseImg: goodTypes_list[i].list_picture
+                    variety: goodVariety[i].variety,
+                    price: goodVariety[i].price, 
+                    img: goodVariety[i].img
                 })
                 break;
             }
@@ -160,16 +155,16 @@ Page({
     //点击选择码数
     sizeClick: function (e) {
         var index = e.currentTarget.dataset.index;
-        var goodSize_list = this.data.good_details_info.goodSize_list;
-        for (var i = 0; i < goodSize_list.length; i++) {
-            if (i == index) {
-                this.setData({
-                    sizeclick: i,
-                    chooseSize: goodSize_list[i],
-                })
-                break;
-            }
-        }
+        var size = this.data.good_details_info.size;
+        for (var i = 0; i < size.length; i++) {
+              if (i == index) {
+                  this.setData({
+                      sizeclick: i,
+                      size: size[i],
+                  })
+                  break;
+              }
+          }
     },
 //选择取货时间
     changeDateTime: function (e) {
@@ -190,7 +185,7 @@ Page({
     },
     //点击减号
     bindMinus: function () {
-        var num = this.data.chooseNumber; 
+        var num = this.data.number; 
         if (num >=1) {
             num--;
         }
@@ -198,11 +193,11 @@ Page({
             num=0;
         }
         this.setData({
-            chooseNumber: num,
+            number: num,
         });
     },
     bindMinus1: function () {
-        var num = this.data.rentDays;
+        var num = this.data.leaseDate;
         if (num >= 1) {
             num--;
         }
@@ -210,37 +205,94 @@ Page({
             num = 0;
         }
         this.setData({
-            rentDays: num,
+          leaseDate: num,
         });
     },
     /* 点击加号 */
     bindPlus: function () {
-        var num = this.data.chooseNumber;
+        var num = this.data.number;
         var maxNum=this.data.good_details_info.maxRentDay;
         num++; 
         if(num>maxNum){
             num=maxNum
         }
         this.setData({
-            chooseNumber: num,
+            number: num,
         });
     },
     bindPlus1: function () {
-        var num = this.data.rentDays;
+        var num = this.data.leaseDate;
         var maxNum = this.data.good_details_info.maxRentDay;
         num++;
         if(num>maxNum){
             num=maxNum
         }
         this.setData({
-           rentDays: num,
+          leaseDate: num,
         });
     },
     //跳转到订单详情
     toOrder:function(e){
-        wx.navigateTo({
-            url: '/pages/IdleAndRental/confirmOrder/confirmOrder',
-        })
+      // if (this.data.variety==undefined){
+      //     wx.showToast({
+      //     title: '请选择类别',
+      //     icon: 'none',
+      //     duration: 2000
+      //    })
+      // }
+      // else if (this.data.size == undefined) {
+      //   wx.showToast({
+      //     title: '请选择尺寸',
+      //     icon: 'none',
+      //     duration: 2000
+      //   })
+      // }
+      // else if (this.data.number == 0) {
+      //   wx.showToast({
+      //     title: '请添加数量',
+      //     icon: 'none',
+      //     duration: 2000
+      //   })
+      // }
+      // else if (this.data.leaseDate == 0) {
+      //   wx.showToast({
+      //     title: '请添加租接天数',
+      //     icon: 'none',
+      //     duration: 2000
+      //   })
+      // }
+      // else if (this.data.startTime == undefined) {
+      //   wx.showToast({
+      //     title: '请添加取货时间',
+      //     icon: 'none',
+      //     duration: 2000
+      //   })
+      // }
+      // else{
+      //   var goodDetails = [];
+      //   goodDetails.push({ variety: this.data.variety, size: this.data.size, number: this.data.number, leaseDate: this.data.leaseDate, startTime: this.data.startTime, img: this.data.img });
+      //   wx.setStorageSync("goodDetails", goodDetails);
+      //   wx.navigateTo({
+      //     url: '/pages/IdleAndRental/confirmOrder/confirmOrder',
+      //   })
+      // }
+
+      var goodDetails=[];
+      goodDetails.push({ 
+        variety: this.data.variety, 
+        size: this.data.size, 
+        number: this.data.number, 
+        leaseDate: this.data.leaseDate, 
+        startTime: this.data.startTime, 
+        img: this.data.img, price: 
+        this.data.price, 
+        companyName: this.data.good_details_info.companyName, 
+        deposit: this.data.good_details_info.deposit
+      });
+      wx.setStorageSync("goodDetails", goodDetails);
+      wx.navigateTo({
+          url: '/pages/IdleAndRental/confirmOrder/confirmOrder',
+      })
     },
     /**
      * 生命周期函数--监听页面加载
@@ -257,7 +309,7 @@ Page({
             dateTime: obj1.dateTime,
         });
 
-        var typenum = this.data.good_details_info.goodTypes_list.length
+       var typenum = this.data.good_details_info.goodVariety.length
         if(typenum>3){
             var time=typenum/3
             if(typenum%3!=0){
@@ -267,7 +319,7 @@ Page({
                 typeHeight:80*time
             })
         }
-        var sizenum=this.data.good_details_info.goodSize_list.length
+        var sizenum = this.data.good_details_info.size.length
         if(sizenum>6){
             var time=sizenum/6
             if(sizenum%6!=0){
@@ -277,6 +329,22 @@ Page({
                 sizeHeight:80*time
             })
         }
+        //console.log(options.id)
+        var selt = this;
+        // wx.request({
+        //   url: '接口路径',
+        //   data: {
+        //     goodId: options.id,   //根据goodId请求数据
+        //   },
+        //   method: 'Post',
+        //   header: { 'content-type': 'application/x-www-form-urlencoded' },
+        //   success: function (res) {
+        //     console.log(res.data)
+        //     selt.setData({
+        //       rent_list: res.data,
+        //     })
+        //   }
+        // })
     },
 
     /**

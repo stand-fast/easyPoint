@@ -14,15 +14,15 @@
     </scroll-view>
       <view class="content">
         <view class='left'>
-            <view wx:for="{{item_list}}" wx:key="index">
+            <view wx:for="{{goodsTypeInterface}}" wx:key="index">
                 <view class="{{flag==index?'select':'normal'}}" data-index='{{index}}' bindtap='changeList'>{{item}}</view>
             </view>
         </view>
         <view class='right'>
-            <block wx:for="{{item_list}}" wx:key="key" data-index="{{index}}">
+            <block wx:for="{{goodsTypeInterface}}" wx:key="key" data-index="{{index}}">
                 <block wx:if="{{flag==index}}">
                     <scroll-view scroll-y="true" scroll-into-view="{{flag}}" class="last_scroll_view">
-                        <view wx:for="{{rent_list}}" wx:key="index" class="item_list" bindtap="lookDetail">
+                        <view wx:for="{{rent_list}}" wx:key="index" class="item_list" bindtap="lookDetail" data-id='{{item.goodId}}'>
                             <template is="idleRent" data="{{item}}"/>
                         </view>
                     </scroll-view>

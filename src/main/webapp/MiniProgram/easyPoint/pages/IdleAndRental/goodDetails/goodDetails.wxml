@@ -3,7 +3,7 @@
     <swiper indicator-dots="true"
     autoplay="true" interval="5000" duration="1000" circular="true" class="swiper_images" indicator-color="#fff" 
          indicator-active-color="#ffdd42">
-        <block wx:for="{{good_details_info.defaultImgUrl}}" wx:key="key">
+        <block wx:for="{{good_details_info.detailsImg}}" wx:key="key">
             <swiper-item>
                 <image src="{{item}}" class="slide-image"/>
             </swiper-item>
@@ -13,13 +13,13 @@
         <view class="head_title_item">
             <view class="goodName">{{good_details_info.goodName}}</view>
             <view class="goodPrice">￥
-                <text>{{good_details_info.goodPrice}}</text>
-                <view class="goodPrice_pledge">/押金{{good_details_info.cashPledge}}</view>
+                <text>{{good_details_info.price}}</text>
+                <view class="goodPrice_pledge">/押金{{good_details_info.deposit}}</view>
             </view>
         </view>
         <view class="head_title_item">
-            <view class="provider">提供商：{{good_details_info.provider}}</view>
-            <view class="hadrent">已租次数：{{good_details_info.hadRentTime}}</view>
+            <view class="provider">提供商：{{good_details_info.companyName}}</view>
+            <view class="hadrent">已租次数：{{good_details_info.leaseNum }}</view>
         </view>
     </view>
 </view>
@@ -35,13 +35,13 @@
                 <view class="shu"></view>
                 <view class="title">详细：</view>
             </view>
-            <view class="detail_item_content">{{good_details_info.goodContent}}</view>
+            <view class="detail_item_content">{{good_details_info.detailInfo}}</view>
             <view class="item_title">
                 <view class="shu"></view>
                 <view class="title">种类：</view>
             </view>
             <view class="last">
-                <view wx:for="{{good_details_info.goodTypes}}" wx:key="{{index}}" wx:for-item="item">
+                <view wx:for="{{good_details_info.variety}}" wx:key="{{index}}" wx:for-item="item">
                     <view class="goodtype_list">{{item}}</view>
                 </view>
             </view>
@@ -53,12 +53,12 @@
                 <view class="shu"></view>
                 <view class="title">押金说明：</view>
             </view>
-            <view class="detail_item_content">{{good_details_info.cashExplain}}</view>
+            <view class="detail_item_content">{{good_details_info.depositInstructions}}</view>
             <view class="item_title">
                 <view class="shu"></view>
                 <view class="title">取货：</view>
             </view>
-            <view class="detail_item_content">{{good_details_info.takeGood}}</view>
+            <view class="detail_item_content">{{good_details_info.receivedGood}}</view>
             <view class="item_title">
                 <view class="shu"></view>
                 <view class="title">还货：</view>
@@ -68,7 +68,7 @@
                 <view class="shu"></view>
                 <view class="title">营业时间：</view>
             </view>
-            <view class="detail_item_content">{{good_details_info.businessTime}}</view>
+            <view class="detail_item_content">{{good_details_info.businessHours}}</view>
         </view>
     </block>
 </view>
@@ -90,23 +90,23 @@
 <view class="dialog_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
 <view animation="{{animationData}}" class="dialog_attr_box" wx:if="{{showModalStatus}}">
     <view class="dislog_item">
-        <image src="{{chooseImg}}"></image>
+        <image src="{{img}}"></image>
         <view class="dislog_item_goods">
-            <view id="dislog_item_goods_price">￥ <text>{{setPrice}}</text></view>
-            <view id="dislog_item_goods_chooseType">已选择：{{chooseType}} + {{chooseSize}}码  ×{{chooseNumber}}</view>
+            <view id="dislog_item_goods_price">￥ <text>{{price}}</text></view>
+            <view id="dislog_item_goods_chooseType">已选择：{{variety}} + {{size}}码  ×{{number}}</view>
         </view>
     </view>
     <view class="hr"></view>
     <scroll-view scroll-y="true" class="scroll_bar">
         <view class="dislog_item_title">选择类别</view>
         <view class="dialog_item_list" style="height:{{typeHeight}}rpx">
-            <view wx:for="{{good_details_info.goodTypes_list}}" wx:key="name" class='dialog_content' wx:for-item="item">
-                <view class="{{typeclick==index?'type_pre':'type_nor'}}" bindtap='typeClick' data-index="{{index}}">{{item.list_name}}</view>
+            <view wx:for="{{good_details_info.goodVariety}}" wx:key="name" class='dialog_content' wx:for-item="item">
+                <view class="{{typeclick==index?'type_pre':'type_nor'}}" bindtap='typeClick' data-index="{{index}}">{{item.variety}}</view>
             </view>
         </view>
         <view class="dislog_item_title">选择尺寸</view>
         <view class="dialog_item_list" style="height:{{sizeHeight}}rpx">
-            <view wx:for="{{good_details_info.goodSize_list}}" wx:key="name" class='dialog_content size' wx:for-item="item">
+            <view wx:for="{{good_details_info.size}}" wx:key="name" class='dialog_content size' wx:for-item="item">
                 <view class="{{sizeclick==index?'type_pre':'type_nor'}}" bindtap='sizeClick' data-index="{{index}}">{{item}}</view>
             </view>
         </view>
@@ -114,7 +114,7 @@
             <view class="dislog_item_choose_title">选择数量</view>
             <view class="dislog_item_choose_stepper">
                 <view class="jian" bindtap="bindMinus">-</view>
-                <input class="number" type="number" disabled="true" value="{{chooseNumber}}" bindinput="bindManual"></input>
+                <input class="number" type="number" disabled="true" value="{{number}}" bindinput="bindManual"></input>
                 <view class="jia" bindtap="bindPlus">+</view>
             </view>
         </view>
@@ -122,7 +122,7 @@
             <view class="dislog_item_choose_title">选择租借天数</view>
             <view class="dislog_item_choose_stepper">
                 <view class="jian" bindtap="bindMinus1">-</view>
-                <input class="number" type="number" disabled="true" value="{{rentDays}}" bindinput="bindManual"></input>
+                <input class="number" type="number" disabled="true" value="{{leaseDate}}" bindinput="bindManual"></input>
                 <view class="jia" bindtap="bindPlus1">+</view>
             </view>
         </view>

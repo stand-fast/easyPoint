@@ -10,20 +10,20 @@ Page({
         showmodal_success:false,
         showmodal_fail:false,
         good_details_info:{
-            provider:"小玖正装",
-            goodImg:"/images/goodImg.png",
-            goodPrice:30,
-            cashPledge:100,
-            rendDays:3,
-            goodType:"女士正装全套",
-            goodSize:"M",
-            goodNumber:2,
-            takeTime:"2019-8-19 10:00"
+            companyName:"小玖正装",
+            img:"/images/goodImg.png",
+            price:30,
+            deposit:120,
+            leaseDate:3,
+            variety:"女士正装全套",
+            size:"M",
+            number:2,
+            startTime:"2019-8-19 10:00"
         }
     },
     toEdit:function(){
         wx.navigateTo({
-            url: '',
+          url: '/pages/IdleAndRental/editInformation/editInformation',
         })
     },
     //调起支付功能
@@ -46,7 +46,11 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+      var goodDetails=wx.getStorageSync("goodDetails");
+      console.log(goodDetails[0])
+      this.setData({
+        good_details_info:goodDetails[0]
+      })
     },
 
     /**
