@@ -12,7 +12,7 @@ Page{
     flex-direction: row;
     width: 100%;
     background-color: #ffffff;
-    height: 130rpx;
+    height: 110rpx;
 }
 .nav_switch{
     width: 30%;
@@ -20,8 +20,8 @@ Page{
     border-radius: 50rpx;
     display: flex;
     flex-direction: row;
-    height: 80rpx;
-    font-size: 36rpx;
+    height: 60rpx;
+    font-size: 30rpx;
     color:#333333;
     margin: auto 20rpx;
     text-align: center;
@@ -32,8 +32,8 @@ Page{
     border-radius: 50rpx;
 }
 .nav_text_partime{
-    height: 80rpx;
-    line-height: 80rpx;
+    height: 60rpx;
+    line-height: 60rpx;
     color: #bbb;
     width: 50%;
 }
@@ -46,11 +46,11 @@ Page{
     width: 100%;
     border: solid #fff;
     background-color: #eeeeee;
-    height: 80rpx;
+    height: 60rpx;
     margin: auto 20rpx;
     border-radius: 50rpx;
     color: #bbb;
-    font-size: 32rpx;
+    font-size: 30rpx;
     padding-left: 40rpx;
 }
 .inputPh{
@@ -59,12 +59,13 @@ Page{
 }
 .nav_search icon{
     position: absolute;
-    right: 40rpx;
-    top:48rpx;
+    right: 30rpx;
+    top:38rpx;
     margin-right: 20rpx;
+    z-index: 100;
 }
 .leaveTop{
-    margin-top: 144rpx;
+    margin-top: 120rpx;
 }
 .contain{
     width: 100%;
@@ -72,10 +73,10 @@ Page{
 }
 .jobInfos{
     margin:  16rpx auto;
-    width: 92%;
+    width: 700rpx;
     border-radius: 16rpx;
     background-color: #fff;
-    height: 340rpx;
+    height: 288rpx;
 }
 .job_text{
     width: 100%;
@@ -87,7 +88,7 @@ Page{
     width: 380rpx;
     height: 44rpx;
     line-height: 44rpx;
-    font-size: 38rpx;
+    font-size: 30rpx;
     color: #333;
     margin-left: 24rpx;
     margin-top: 30rpx;
@@ -101,18 +102,21 @@ Page{
 }
 .jobSalary{
     width: 140rpx;
-    font-size: 38rpx;
+    font-size: 30rpx;
+    height: 44rpx;
+    line-height: 44rpx;
     color: #56b4f6;
-    line-height: 30rpx;
     margin-left: 60rpx;
     margin-top: 30rpx;
+    text-align: right;
 }
 .jobSettle{
     width: 80rpx;
-    line-height: 30rpx;
+    height: 44rpx;
+    line-height: 44rpx;
     margin-top: 30rpx;
     margin-left: 10rpx;
-    font-size: 32rpx;
+    font-size: 24rpx;
     color: #bbb;
 }
 .remainPeople,.jobLocaTime,.lookDt{
@@ -120,14 +124,17 @@ Page{
     flex-direction: row;
     width: 100%;
     height: 46rpx;
-    margin-top: 24rpx;
-    font-size: 30rpx;
+    margin-top: 10rpx;
+    font-size: 26rpx;
     color: #999;
 }
 .internship_text{
     margin-left: 6rpx;
     height: 44rpx;
     line-height: 44rpx;
+}
+.internship_text text{
+    color: #666;
 }
 .last{
     width: 300rpx;
@@ -148,7 +155,7 @@ Page{
     justify-content: center;
 }
 .look_text{
-    font-size: 34rpx;
+    font-size: 26rpx;
     margin-left: 24rpx;
     margin-top: 10rpx;
 }
@@ -158,18 +165,21 @@ Page{
     background-color: #eee;
 }
 .remainPeople image{
-    width: 40rpx;
-    height: 40rpx;
+    width: 28rpx;
+    height: 28rpx;
     margin-left: 28rpx;
+    margin-top:10rpx;
 }
 .jobLocaTime image{
-    width: 40rpx;
-    height: 40rpx;
+    width: 30rpx;
+    height: 26rpx;
     margin-left: 25rpx;
+    margin-top:10rpx;
 }
 .lookDt image{
-    width: 56rpx;
-    height: 56rpx;
+    width: 30rpx;
+    height: 30rpx;
+    margin-top: 15rpx;
 }
 .more-noData{
   margin: 10px 0;

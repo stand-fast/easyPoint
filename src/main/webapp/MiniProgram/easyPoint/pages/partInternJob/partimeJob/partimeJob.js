@@ -9,6 +9,7 @@ Page({
       judegeSearch:false,
       pagenum: 1, //初始页默认值为1
       noData:false,
+      endWord:"截止",
       part_time_job_info:[
       {
           partTimeJobId: "0asdasd", 
@@ -101,6 +102,7 @@ Page({
         else {
           that.setData({
                 currentTab: e.target.dataset.current,
+                endWord:"发布",
                 pagenum:1,  //切换界面将pageNum置为0
           })
           // var selt = this;

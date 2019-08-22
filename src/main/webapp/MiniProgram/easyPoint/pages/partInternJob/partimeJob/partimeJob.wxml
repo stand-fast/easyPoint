@@ -8,19 +8,19 @@
         </view>
         <view class='nav_search'>
             <input class='search_input' placeholder='请输入搜索信息'  type='text' placeholder-class='inputPh' bindinput="takeValue" confirm-type="search" bindconfirm="sendMsgTap"></input>
-            <icon type='search' class='search_icon' size='20'></icon>
+            <icon type='search' class='search_icon' size='18'></icon>
         </view>
     </view>
 
     <view wx:if="{{currentTab == 0}}" class="leaveTop">
         <block wx:for="{{part_time_job_info}}" wx:for-item="item" wx:key="id" wx:for-index="idx">
-            <template is="internship" data="{{item,part_time_job_id:part_time_job_id}}"/>
+            <template is="internship" data="{{item,part_time_job_id:part_time_job_id,currentTab}}"/>
         </block>
     </view>
 
     <view wx:if="{{currentTab == 1}}" class="leaveTop">
         <block wx:for="{{part_time_job_info}}" wx:for-item="item" wx:key="id">
-            <template is="internship" data="{{item,part_time_job_id:part_time_job_id}}" />
+            <template is="internship" data="{{item,part_time_job_id:part_time_job_id,currentTab}}" />
         </block>
     </view>
     <view wx:if="{{noData}}" class="more-noData">-我是有底线的-</view>

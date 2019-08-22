@@ -16,12 +16,16 @@ Page{
     display: flex;
     flex-direction: row;
     padding-top: 60rpx;
-    justify-content: center;
+    margin-left: 220rpx;
 }
 .content_title image{
     width: 50rpx;
     height: 50rpx;
     margin-right: 20rpx;
+}
+.content_title text{
+    margin-top: 8rpx;
+    margin-left: 160rpx;
 }
 .title_text{
     font-size: 36rpx;
@@ -60,6 +64,10 @@ Page{
 .item input{
     width: 300rpx;
     margin-top: 8rpx;
+    color: #666;
+}
+.customersex{
+    width: 100rpx;
     color: #666;
 }
 .item_title_last{

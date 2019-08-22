@@ -10,12 +10,19 @@ Page({
         grade:0, //年级初始未设置
         waitime:60,
         phone:'',
+        isEdit:false,
         word:"获取验证码",
+        isChangePhone:false,    //是否更改手机号码
         phoneVerificationCode:"",   //手机号码接收到的验证码
         disabled:false,
-        gradeSeclect:["大一","大二","大三","大四"]
+        gradeSeclect:["2016","2017","2018","2019"]
     },
-
+    toEdit:function(e){
+        var isEdit=this.data.isEdit
+        this.setData({
+            isEdit:!isEdit,
+        })
+    },
     changePicker:function(e){
         var that=this
         that.setData({
@@ -112,7 +119,10 @@ Page({
       //    })
       // }
     },
-    watchTel:function(e){
+    watchTel:function(e){    //这里需要判断手机号码是否改动，如有改动才显示验证码
+        wx.request({
+            url: '',
+        })
         this.setData({
             phone: e.detail.value
         })

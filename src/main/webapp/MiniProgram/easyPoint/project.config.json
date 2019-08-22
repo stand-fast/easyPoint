@@ -48,13 +48,26 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
 					"name": "ldleRenIndex",
 					"pathName": "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "editInformation",
+					"pathName": "pages/myIndex/editInformation/editInformation",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/partInternJob/partimeJob/partimeJob",
+					"pathName": "pages/partInternJob/partimeJob/partimeJob",
 					"scene": null
 				}
 			]
