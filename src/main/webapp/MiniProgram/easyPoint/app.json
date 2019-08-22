@@ -1,7 +1,7 @@
 {
     "pages": [
-      "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
       "pages/myIndex/editInformation/editInformation",
+      "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
       "pages/IdleAndRental/confirmOrder/confirmOrder",
       "pages/educationTrain/driveSchoolDetail/driveSchoolDetail",
       "pages/IdleAndRental/editInformation/editInformation",

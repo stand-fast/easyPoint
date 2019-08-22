@@ -48,6 +48,7 @@ Page({
         }
     },
     formSubmit:function(e){
+      // var that=this;
       // if (e.detail.value.username==""){
       //   wx.showToast({
       //     title: '请输入您的真实姓名',
@@ -120,9 +121,9 @@ Page({
       // }
     },
     watchTel:function(e){    //这里需要判断手机号码是否改动，如有改动才显示验证码
-        wx.request({
-            url: '',
-        })
+        // wx.request({
+        //     url: '',
+        // })
         this.setData({
             phone: e.detail.value
         })
@@ -202,27 +203,27 @@ Page({
         }.bind(this), 1000);
         var that=this;
 
-        wx.request({
-            url: '接口地址',
-            data: {
-                phone:that.data.phone,
-            },
-            method: "POST",
-            header: {
-                'content-type': "application/x-www-form-urlencoded"
-            },
-            success(res) {
-              wx.showToast({
-                  title: '短信验证码发送成功，请注意查收',
-                  duration:2000,
-                  mask:true
-              })
-              that.setData({
-                phoneVerificationCode:res.data
-              })
+        // wx.request({
+        //     url: '接口地址',
+        //     data: {
+        //         phone:that.data.phone,
+        //     },
+        //     method: "POST",
+        //     header: {
+        //         'content-type': "application/x-www-form-urlencoded"
+        //     },
+        //     success(res) {
+        //       wx.showToast({
+        //           title: '短信验证码发送成功，请注意查收',
+        //           duration:2000,
+        //           mask:true
+        //       })
+        //       that.setData({
+        //         phoneVerificationCode:res.data
+        //       })
 
-            }
-        })
+        //     }
+        // })
         
         }
     },
