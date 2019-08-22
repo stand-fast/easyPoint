@@ -2,12 +2,12 @@
 <form bindsubmit="formSubmit">
     <view class="title">名称</view>
     <view class="edit">
-        <input type="text" value="{{name}}" placeholder="请输入名称" placeholder-class="place"></input>
+        <input type="text" value="{{userInformation.username}}" placeholder="请输入名称" placeholder-class="place" name="username"></input>
         <text bindtap="clearName">×</text>
     </view>
     <view class="title">电话</view>
     <view class="edit">
-        <input type="number" value="{{phone}}" placeholder="请输入联系电话" placeholder-class="place" maxlength="11"></input>
+        <input type="number" value="{{userInformation.phone}}" placeholder="请输入联系电话" placeholder-class="place" maxlength="11" name="phone"></input>
         <text bindtap="clearPhone">×</text>
     </view>
     <view class="btn"><button form-type="submit">确定</button></view>

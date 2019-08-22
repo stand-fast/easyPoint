@@ -41,74 +41,76 @@ Page({
         }
     },
     formSubmit:function(e){
-      if (e.detail.value.username==""){
-        wx.showToast({
-          title: '请输入您的真实姓名',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-      else if (e.detail.value.phone==""){
-        wx.showToast({
-          title: '请输入您的手机号码',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-      else if (this.data.phoneVerificationCode=="") {
-        wx.showToast({
-          title: '验证码为空',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-      else if(e.detail.value.verification != this.data.phoneVerificationCode) {
-        wx.showToast({
-          title: '验证码输入错误',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-      else if (this.data.check==null) {
-        wx.showToast({
-          title: '请选择您的性别',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-      else{
-        // var that = this;
-        // wx.request({
-        //   url: '接口路径',
-        //   header: {
-        //     "Content-Type": "application/x-www-form-urlencoded"
-        //   },
-        //   method: "POST",
-        //   data: {
-        //     openId: app.globalData.openId,
-        //     username: e.detail.value.username,
-        //     studentId: e.detail.value.studentId,
-        //     gender: that.data.check,
-        //     grade: that.data.grade,
-        //     major: e.detail.value.major,
-        //     verification:e.detail.value.verification,
-        //   },
-        //   success: function (res) {   //反馈回报名是否成功的信息
-        //     console.log(res.data);
-        //     wx.setStorageSync("userInformation", res.data)
-        //     wx.showToast({
-        //       title: '保存成功',
-        //     })
+      // if (e.detail.value.username==""){
+      //   wx.showToast({
+      //     title: '请输入您的真实姓名',
+      //     icon: 'none',
+      //     duration: 2000
+      //   })
+      // }
+      // else if (this.data.check == null) {
+      //   wx.showToast({
+      //     title: '请选择您的性别',
+      //     icon: 'none',
+      //     duration: 2000
+      //   })
+      // }
+      // else if (e.detail.value.phone==""){
+      //   wx.showToast({
+      //     title: '请输入您的手机号码',
+      //     icon: 'none',
+      //     duration: 2000
+      //   })
+      // }
+      // else if (this.data.phoneVerificationCode=="") {
+      //   wx.showToast({
+      //     title: '验证码为空',
+      //     icon: 'none',
+      //     duration: 2000
+      //   })
+      // }
+      // else if(e.detail.value.verification != this.data.phoneVerificationCode) {
+      //   wx.showToast({
+      //     title: '验证码输入错误',
+      //     icon: 'none',
+      //     duration: 2000
+      //   })
+      // }
+      // else{
+      //   var userInformation = { "username": e.detail.value.username, "phone": e.detail.value.phone};
+      //   wx.setStorageSync("userInformation", userInformation);
+      //   var that = this;
+      //   wx.request({
+      //     url: '接口路径',
+      //     header: {
+      //       "Content-Type": "application/x-www-form-urlencoded"
+      //     },
+      //     method: "POST",
+      //     data: {
+      //       openId: app.globalData.openId,
+      //       username: e.detail.value.username,
+      //       phone: e.detail.value.phone,
+      //       studentId: e.detail.value.studentId,
+      //       gender: that.data.check,
+      //       grade: that.data.grade,
+      //       major: e.detail.value.major,
+      //       verification:e.detail.value.verification,
+      //     },
+      //     success: function (res) {   //反馈回报名是否成功的信息
+      //       console.log(res.data);
+      //       wx.showToast({
+      //         title: '保存成功',
+      //       })
               
-        //    },
-        //   fail:function(){
-        //     wx.showToast({
-        //       title: '保存失败，请稍后重试！！',
-        //       icon:'none'
-        //     })
-        //   }
-        //  })
-      }
+      //      },
+      //     fail:function(){
+      //       wx.showToast({
+      //         title: '保存失败，请稍后重试！！',
+      //         icon:'none'
+      //       })
+      //     }
+      //    })
+      // }
     },
     watchTel:function(e){
         this.setData({

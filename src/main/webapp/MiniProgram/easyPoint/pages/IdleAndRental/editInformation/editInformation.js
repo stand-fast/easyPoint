@@ -5,8 +5,10 @@ Page({
      * 页面的初始数据
      */
     data: {
-        name:"广金吴彦祖",
-        phone:"12345678910"
+      userInformation:{
+        username: "广金吴彦祖",
+        phone: "12345678910",
+      }
     },
     clearName:function(e){
         this.setData({
@@ -18,14 +20,29 @@ Page({
             phone: ""
         })
     },
-    formSubmit:function(){
-        
+    formSubmit: function (e) {
+      var pages = getCurrentPages();
+      var prevPage = pages[pages.length - 2]; //上一个页面
+      //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
+      prevPage.setData({
+        mydata: {
+          username: e.detail.value.username,
+          phone: e.detail.value.phone,
+        }
+      })
+      wx.navigateBack({//返回
+        delta: 1
+      })
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+      //获取乘客姓名以及联系方式
+      // var userInformation = wx.getStorageSync('userInformation');
+      // this.setData({
+      //   userInformation: userInformation,
+      // })
     },
 
     /**

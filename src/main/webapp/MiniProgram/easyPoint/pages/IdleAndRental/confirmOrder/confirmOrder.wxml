@@ -1,7 +1,8 @@
 <!--pages/IdleAndRental/confirmOrder/confirmOrder.wxml-->
+<form bindsubmit="formSubmit">
 <view class="header">
-    <view class="customer_name">{{customerName}}</view>
-    <view class="customer_phone">{{customerPhone}}</view>
+    <view class="customer_name">{{userInformation.username}}</view>
+    <view class="customer_phone">{{userInformation.phone}}</view>
     <image src="/images/icon/rentEdit.png" bindtap="toEdit"></image>
 </view>
 <view class="good_item">
@@ -29,7 +30,7 @@
     </view>
     <view class="order_item">
         <view class="order_item_title last">备注信息</view>
-        <input placeholder="选填，请先跟客服协商一致" placeholder-class="place" type="text"></input>
+        <input placeholder="选填，请先跟客服协商一致" name="note" placeholder-class="place" type="text"></input>
     </view>
 </view>
 <view class="footer">
@@ -37,8 +38,9 @@
         <view class="total">合计：</view>
         <text>￥{{good_details_info.price*good_details_info.number*good_details_info.leaseDate+good_details_info.deposit*good_details_info.number}}</text>
     </view>
-    <button bindtap="toPay">支付</button>
+    <button  form-type="submit">支付</button>
 </view>
+  </form>
 <block wx:if='{{showmodal_success}}'>
     <view class='mask_layer'/>
     <view class='modal_box'>
