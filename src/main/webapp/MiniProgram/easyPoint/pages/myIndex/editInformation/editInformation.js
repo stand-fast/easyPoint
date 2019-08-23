@@ -9,7 +9,7 @@ Page({
         check:null,
         grade:0, //年级初始未设置
         waitime:60,
-        phone:'',
+        phone:'12345678910',
         isEdit:false,
         word:"获取验证码",
         isChangePhone:false,    //是否更改手机号码
@@ -120,13 +120,24 @@ Page({
       //    })
       // }
     },
-    watchTel:function(e){    //这里需要判断手机号码是否改动，如有改动才显示验证码
-        // wx.request({
-        //     url: '',
-        // })
-        this.setData({
-            phone: e.detail.value
-        })
+    watchTel:function(e){       //实时监听input里面的值的变化
+        var currentPhone=e.detail.value;
+        //定义了一个customerPhone，获取数据库里的电话赋值给customerPhone
+        var customerPhone=this.data.phone;
+        //下面跟customerPhone比较，不一样就显示验证码那一栏
+        if(currentPhone!=customerPhone&&currentPhone.length==11){
+            this.setData({
+                phone: e.detail.value,
+                isChangePhone:true,
+            })
+        }
+        //跟数据库里面的号码一样就不显示
+        else if (currentPhone == currentPhone){
+            this.setData({
+                phone:this.data.phone,
+                isChangePhone:false
+            })
+        }
     },
     /**
      * 生命周期函数--监听页面加载

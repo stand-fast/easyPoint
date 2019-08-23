@@ -48,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -62,12 +62,6 @@
 					"name": "editInformation",
 					"pathName": "pages/myIndex/editInformation/editInformation",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/partInternJob/partimeJob/partimeJob",
-					"pathName": "pages/partInternJob/partimeJob/partimeJob",
 					"scene": null
 				}
 			]

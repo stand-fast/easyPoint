@@ -31,7 +31,7 @@
         </view>
         <view class="item">
             <text class="item_title">手机：</text>
-            <input placeholder="请输入手机号码" placeholder-class="placehold" name="phone" type="number" maxlength="11" value="{{phone}}" bindinput="watchTel" disabled="{{!isEdit}}"></input>
+            <input placeholder="请输入手机号码" placeholder-class="placehold" name="phone" type="number" maxlength="11" value="{{phone}}" bindinput="watchTel" bindblur="watchTel" bindconfirm="watchTel" disabled="{{!isEdit}}" ></input>
         </view>
          <view class="item_last" wx:if="{{isChangePhone}}">
             <text class="item_title_last">验证码：</text>
