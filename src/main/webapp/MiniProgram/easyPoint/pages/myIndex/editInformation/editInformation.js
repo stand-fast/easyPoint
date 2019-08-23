@@ -11,6 +11,7 @@ Page({
         waitime:60,
         phone:'12345678910',
         isEdit:false,
+        isbutton:false,
         word:"获取验证码",
         isChangePhone:false,    //是否更改手机号码
         phoneVerificationCode:"",   //手机号码接收到的验证码
@@ -21,6 +22,7 @@ Page({
         var isEdit=this.data.isEdit
         this.setData({
             isEdit:!isEdit,
+            isbutton:true,
         })
     },
     changePicker:function(e){
@@ -48,6 +50,10 @@ Page({
         }
     },
     formSubmit:function(e){
+        this.setData({
+            isbutton: false,
+            isEdit:false
+        })
       // var that=this;
       // if (e.detail.value.username==""){
       //   wx.showToast({
@@ -109,7 +115,10 @@ Page({
       //       wx.showToast({
       //         title: '保存成功',
       //       })
-              
+            //   that.setData({
+            //       isbutton:false,
+            //       isEdit:true
+            //   })
       //      },
       //     fail:function(){
       //       wx.showToast({
@@ -132,7 +141,7 @@ Page({
             })
         }
         //跟数据库里面的号码一样就不显示
-        else if (currentPhone == currentPhone){
+        else if (currentPhone == customerPhone&&currentPhone.length==11){
             this.setData({
                 phone:this.data.phone,
                 isChangePhone:false

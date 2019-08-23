@@ -1,9 +1,9 @@
 <!--pages/myIndex/editInformation/editInformation.wxml-->
 <view class="content">
     <view class="content_title">
-        <image src="/images/icon/edit.png"></image>
+        <view class="firstImg"><image src="/images/icon/edit.png"></image></view>
         <view class="title_text">个人信息</view>
-        <text class="iconfont icon-edit" style='font-size:36rpx;color:#65b8e2' bindtap="toEdit"></text>
+        <button bindtap="toEdit" class="firstbtn" disabled="{{isbutton}}"><image src="/images/icon/cusEdit.png"></image></button>
     </view>
     <form class="form_item" bindsubmit="formSubmit">
         <input class="realname" name="username" placeholder-class="placehold" placeholder="请输入您的真实姓名" type="text" value="{{username}}" disabled="{{!isEdit}}"></input>
@@ -31,13 +31,13 @@
         </view>
         <view class="item">
             <text class="item_title">手机：</text>
-            <input placeholder="请输入手机号码" placeholder-class="placehold" name="phone" type="number" maxlength="11" value="{{phone}}" bindinput="watchTel" bindblur="watchTel" bindconfirm="watchTel" disabled="{{!isEdit}}" ></input>
+            <input placeholder="请输入手机号码" placeholder-class="placehold" name="phone" type="number" maxlength="11" value="{{phone}}" bindinput="watchTel" disabled="{{!isEdit}}" ></input>
         </view>
          <view class="item_last" wx:if="{{isChangePhone}}">
             <text class="item_title_last">验证码：</text>
             <input placeholder="请输入验证码" placeholder-class="placehold" name="verification" type="number" maxlength="11" value="{{verification}}"></input>
             <button bindtap="getVerification" disabled="{{disabled}}">{{word}}</button>
         </view>
-        <view class="submitBtn"><button form-type="submit">保存</button></view>
+        <view class="submitBtn" wx:if="{{isEdit}}"><button form-type="submit">保存</button></view>
     </form>
 </view>

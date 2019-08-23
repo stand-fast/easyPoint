@@ -12,26 +12,44 @@ Page{
 }
 .content_title{
     width: 700rpx;
-    height: 110rpx;
+    height: 180rpx;
     display: flex;
     flex-direction: row;
-    padding-top: 60rpx;
-    margin-left: 220rpx;
 }
-.content_title image{
+.firstImg image{
     width: 50rpx;
     height: 50rpx;
     margin-right: 20rpx;
+    margin-top: 60rpx;
+    margin-left: 220rpx;
 }
-.content_title text{
-    margin-top: 8rpx;
-    margin-left: 160rpx;
+.content_title button{
+    width: 60rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    border-radius: 0rpx;
+    background-color: #fff;
+    margin-left: 140rpx;
+    margin-top: 60rpx;
+}
+.content_title button::after{
+    border: none;
+}
+.content_title button[disabled]{
+    background-color: #fff;
+}
+.firstbtn image{
+    width: 36rpx;
+    height: 36rpx;
+    margin: -12rpx;
 }
 .title_text{
     font-size: 36rpx;
     color: #65b8e2;
     height: 60rpx;
     line-height: 60rpx;
+    margin-top: 60rpx;
+    margin-left: 10rpx;
 }
 .form_item{
     width: 700rpx;
