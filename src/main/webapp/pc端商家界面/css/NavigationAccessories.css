@@ -1,0 +1,31 @@
+/* CSS Document */
+.secondLevel span{
+	background-image: url(../images/NabigationSecond.png);
+	background-repeat:no-repeat;
+	background-position:inherit;
+	background-size:100%;
+	position: absolute;
+	display:block;
+	width:150px;
+	height:150px;
+	color:#ff4157;
+	font-size: 21px;
+	font-weight: normal;
+	line-height:150px;
+	text-align:center;
+}
+.navigation span{
+	background-image:url(../images/NabigationModel.png);
+	background-repeat:no-repeat;
+	background-position:inherit;
+	background-size:100%;
+	position: absolute;
+	display:block;
+	width:130px;
+	height:130px;
+	color:#ffffff;
+	font-size: 23px;
+	font-weight: normal;
+	line-height:115px;
+	text-align:center;
+}
