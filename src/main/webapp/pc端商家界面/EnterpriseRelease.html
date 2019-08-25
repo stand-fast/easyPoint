@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 ">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>商家发布</title>
+    <title>企业发布</title>
     <!-- 收藏用logo图标 -->
     <link rel="bookmark" type="image/x-icon" href="images/favicon.ico" />
     <!-- 网站显示页logo图标 -->
@@ -46,7 +46,7 @@
 		<div class="model">
 			<p class="modelTitle">工作类型</p>
 			<form> 
-				<label><input name="JobType" type="radio" value="1" checked="checked" />日结</label> 
+				<label><input name="JobType" type="radio" value="1" />日结</label> 
 				<label><input name="JobType" type="radio" value="2" />月结</label> 
 			</form> 
 		</div>
@@ -57,8 +57,8 @@
 		
 		<div class="BusinessTitle">
 			<div class="Title-container">
-				<p>兼</p>
-				<p>职</p>
+				<p>实</p>
+				<p>习</p>
 				<p>详</p>
 				<p>情</p>
 			</div>
@@ -69,14 +69,14 @@
 					<input class="model-Input" id="WorkPlace">
 				</div>
 				<div class="modelDetails">
-					<p class="modelTitle">兼职日期</p>
-					<input id="departureDayBegin"  class="departure" max="2025-01-01" type="date" /> -
-					<input id="departureDayEnd"  class="departure" max="2025-01-01" type="date" />
+					<p class="modelTitle">实习日期</p>
+					<input id="departureDay"  class="departure" max="2025-01-01" type="date" /> -
+					<input id="departureDay"  class="departure" max="2025-01-01" type="date" />
 				</div>
 				<div class="modelDetails">
-					<p class="modelTitle">兼职时间</p>
-					<input id="departureTimeBegin" class="departure" value="09:00" type="Time" /> -
-					<input id="departureTimeEnd" class="departure" value="15:00" type="Time" />
+					<p class="modelTitle">实习时间</p>
+					<input id="departureTime" class="departure" value="09:00" type="Time" /> -
+					<input id="departureTime" class="departure" value="15:00" type="Time" />
 				</div>
 				<div class="modelDetails">
 					<p class="modelTitle">招聘人数</p>
@@ -88,7 +88,7 @@
 				</div>			
 				<div class="modelDetails">
 					<p class="modelTitle">性别要求</p>
-				<form id="GenderRequirement"> 
+				<form> 
 					<label><input name="GenderRequirement" type="radio" value="1" />男</label> 
 					<label><input name="GenderRequirement" type="radio" value="2" />女</label> 
 					<label><input name="GenderRequirement" type="radio" value="3" />不限</label> 
@@ -115,50 +115,11 @@
 			<textarea id="CompanyIntroduction"></textarea>
 		</div>
 		<div class="Part-time-Button-container">
-			<button id='save' class="Part-timeButton save">保存</button>
+			<button class="Part-timeButton save">保存</button>
 			<button class="Part-timeButton uploadReview">上传审核</button>
 		</div>
 	</div>
 	<script type="text/javascript"  src="js/jquery-3.4.1.min.js"></script>
-	<script>
-	$(function(){
-		$('#save').click(function(){
-			var JobTitle=$('#JobTitle').val();
-			var WorkContent=$('#WorkContent').val();
-			var JobType=$('input[name="JobType"]:checked').val();  
-			var Wages=$('#Wages').val();
-			var WorkPlace=$('#WorkPlace').val();
-			var departureDayBegin=$('#departureDayBegin').val();
-			var departureDayEnd=$('#departureDayEnd').val();
-			var departureTimeBegin=$('#departureTimeBegin').val();
-			var departureTimeEnd=$('#departureTimeEnd').val();
-			var Hiring=$('#Hiring').val();
-			var WelfareTreatment=$('#WelfareTreatment').val();
-			var GenderRequirement=$('input[name="GenderRequirement"]:checked').val(); 
-			var JobRequirements=$('#JobRequirements').val();
-			var ContactsPeople=$('#ContactsPeople').val();
-			var ContactsPhone=$('#ContactsPhone').val();
-			var CompanyIntroduction=$('#CompanyIntroduction').val();
-			
-			if(JobType==1)
-				JobType="日结";
-			else if(JobType==2)
-				JobType="月结";
-				
-			if(GenderRequirement==1)
-				GenderRequirement="男";
-			else if(GenderRequirement==2)
-				GenderRequirement="女";
-			else if(GenderRequirement==3)
-				GenderRequirement="不限";
-			if(confirm("岗位名称:"+JobTitle+"\r工作内容:"+WorkContent+"\r工作类型:"+JobType+"\r工资:"+Wages+"\r工作地点:"+ WorkPlace+"\r兼职日期:"+departureDayBegin+" 至 "+departureDayEnd+"\r兼职时间:"+departureTimeBegin+" 至 "+departureTimeEnd+"\r招聘人数:"+Hiring+"人\r福利待遇:"+WelfareTreatment+"\r性别要求:"+GenderRequirement+"\r任职要求:"+JobRequirements+"\r联系人:"+ContactsPeople+"\r联系电话:"+ContactsPhone+"\r公司介绍:"+CompanyIntroduction)){
-				alert("保存成功");
-			}else{
-				console.log("你取消了保存");
-			}
-		})
-	})
-	</script>
 </body>
 
 </html>

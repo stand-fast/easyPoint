@@ -1,0 +1,72 @@
+/* CSS Document */
+.Part-time-MyPreservation{
+	position:absolute;
+	top:20px;
+	width:800px;
+	height:650px;
+	border-radius:10px;
+	background-color:#ffffff;
+	overflow-x: hidden;
+	overflow-y:scroll;
+}
+.MyPreservation-model{
+	margin:10px auto 0;
+	width:700px;
+	height:100px;
+	color:#535353;
+	border-radius:10px;
+	background-color:#efefef;
+	
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, .4);	
+}
+.model-JobTitle-salary{
+	margin:0 auto;
+	width:650px;
+	height:30px;
+	line-height:30px;	
+	display:flex;	
+}
+.model-JobTitle{
+	width:500px;
+	overflow:hidden;
+	word-break:keep-all;
+	white-space:nowrap;
+	text-overflow:ellipsis;	
+}
+.model-salary{
+	width:75px;
+	text-align:right;
+}
+.model-WorkPlace-Deadline{
+	margin:0 auto;
+	width:650px;
+	height:30px;
+	line-height:30px;	
+	display:flex;	
+
+}
+.model-WorkPlace{
+	width:572px;
+	overflow:hidden;
+	word-break:keep-all;
+	white-space:nowrap;
+	text-overflow:ellipsis;			
+}
+.model-Deadline{
+	width:45px;		
+}
+.model-Button-container{
+	margin:5px auto 0px;
+	width:650px;
+	text-align:center;
+}
+.model-Button{
+	position:relative;			
+	width:100px;
+	height:25px;
+	background-color:#ff4157;
+	border-radius:4px;
+	color:#ffffff;
+	font-size:14px;
+	border:none;
+}

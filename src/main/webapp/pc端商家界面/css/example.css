@@ -5,7 +5,10 @@ body {
     margin: 0;
     padding: 0;
 }
-
+*{
+	margin:0px;
+	padding:0px;
+}
 
 /* 背景图片 */
 body>img {
