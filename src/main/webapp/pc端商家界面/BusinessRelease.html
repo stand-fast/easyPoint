@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="css/BusinessRelease.css">
     <!-- 网站模板块部分 -->
     <link rel="stylesheet" href="css/model.css">
+	
 </head>
 
 <body>
@@ -46,13 +47,17 @@
 		<div class="model">
 			<p class="modelTitle">工作类型</p>
 			<form> 
-				<label><input name="JobType" type="radio" value="1" checked="checked" />日结</label> 
+				<label><input name="JobType" type="radio" value="1" />日结</label> 
 				<label><input name="JobType" type="radio" value="2" />月结</label> 
 			</form> 
 		</div>
 		<div class="model">
 			<p class="modelTitle">工资</p>
-			<input class="model-Input" id="Wages">
+			<input class="model-Input Wages" id="Wages">
+			<form> 
+				<label><input name="JobWagesType" type="radio" value="1" />每小时</label> 
+				<label><input name="JobWagesType" type="radio" value="2" />每天</label> 
+			</form> 
 		</div>
 		
 		<div class="BusinessTitle">
@@ -116,49 +121,11 @@
 		</div>
 		<div class="Part-time-Button-container">
 			<button id='save' class="Part-timeButton save">保存</button>
-			<button class="Part-timeButton uploadReview">上传审核</button>
+			<button id='uploadReview' class="Part-timeButton uploadReview">上传审核</button>
 		</div>
 	</div>
 	<script type="text/javascript"  src="js/jquery-3.4.1.min.js"></script>
-	<script>
-	$(function(){
-		$('#save').click(function(){
-			var JobTitle=$('#JobTitle').val();
-			var WorkContent=$('#WorkContent').val();
-			var JobType=$('input[name="JobType"]:checked').val();  
-			var Wages=$('#Wages').val();
-			var WorkPlace=$('#WorkPlace').val();
-			var departureDayBegin=$('#departureDayBegin').val();
-			var departureDayEnd=$('#departureDayEnd').val();
-			var departureTimeBegin=$('#departureTimeBegin').val();
-			var departureTimeEnd=$('#departureTimeEnd').val();
-			var Hiring=$('#Hiring').val();
-			var WelfareTreatment=$('#WelfareTreatment').val();
-			var GenderRequirement=$('input[name="GenderRequirement"]:checked').val(); 
-			var JobRequirements=$('#JobRequirements').val();
-			var ContactsPeople=$('#ContactsPeople').val();
-			var ContactsPhone=$('#ContactsPhone').val();
-			var CompanyIntroduction=$('#CompanyIntroduction').val();
-			
-			if(JobType==1)
-				JobType="日结";
-			else if(JobType==2)
-				JobType="月结";
-				
-			if(GenderRequirement==1)
-				GenderRequirement="男";
-			else if(GenderRequirement==2)
-				GenderRequirement="女";
-			else if(GenderRequirement==3)
-				GenderRequirement="不限";
-			if(confirm("岗位名称:"+JobTitle+"\r工作内容:"+WorkContent+"\r工作类型:"+JobType+"\r工资:"+Wages+"\r工作地点:"+ WorkPlace+"\r兼职日期:"+departureDayBegin+" 至 "+departureDayEnd+"\r兼职时间:"+departureTimeBegin+" 至 "+departureTimeEnd+"\r招聘人数:"+Hiring+"人\r福利待遇:"+WelfareTreatment+"\r性别要求:"+GenderRequirement+"\r任职要求:"+JobRequirements+"\r联系人:"+ContactsPeople+"\r联系电话:"+ContactsPhone+"\r公司介绍:"+CompanyIntroduction)){
-				alert("保存成功");
-			}else{
-				console.log("你取消了保存");
-			}
-		})
-	})
-	</script>
+	<script type="text/javascript"  src="js/BusinessRelease.js"></script>
 </body>
 
 </html>
