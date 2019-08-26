@@ -4,8 +4,8 @@ var rs=new RegExp("(^|)"+str+"=([^/&]*)(/&|$)","gi").exec(LocString),tmp;
 if(tmp=rs)return tmp[2];
 return "没有这个参数";
 }
-var tourism_id=GetQueryString("tourism_id");
-console.log("车票订单ID："+tourism_id);
+var tourismId=GetQueryString("tourism_id");
+console.log("车票订单ID："+tourismId);
 
 function submitInformation(){
 	var license_plate_number=$('#license_plate_number').val();
@@ -18,12 +18,12 @@ function submitInformation(){
 		type: "post",  //数据提交方式（post/get）
 		url: commentDataUrl,     //这里是请求的后台地址，自己定义
 		data: {
-		"tourism_id":tourism_id,
-		"license_plate_number":license_plate_number,
-		"vehicle_type":vehicle_type,
+		"tourismId":tourismId,
+		"licensePlateNumber":licensePlateNumber,
+		"vehicleType":vehicleType,
 		"color":color,
-		"driver_name":driver_name,
-		"driver_phone":driver_phone,
+		"driverName":driverName,
+		"driverPhone":driverPhone,
 		},//提交的数据
 		dataType: "json",//返回的数据类型格式
 		success: function(msg){
@@ -46,7 +46,7 @@ function CarRentalStatement(){
 				type: "post",  //数据提交方式（post/get）
 				url: commentDataUrl,     //这里是请求的后台地址，自己定义
 				data: {
-				"tourism_id":tourism_id},//提交的数据
+				"tourismId":tourismId},//提交的数据
 				dataType: "json",//返回的数据类型格式
 				success: function(msg){
 					if (msg.success){  //修改成功
@@ -73,5 +73,5 @@ $(function(){
 //		$('#color').val(json.color);
 //		$('#driver_name').val(json.driver_name);
 //		$('#driver_phone').val(json.driver_phone);
-	
+//  }	
 })
