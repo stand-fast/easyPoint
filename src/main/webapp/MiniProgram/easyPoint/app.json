@@ -1,5 +1,6 @@
 {
     "pages": [
+      "pages/partInternJob/partimeJob/partimeJob",
       "pages/myIndex/editInformation/editInformation",
       "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
       "pages/IdleAndRental/confirmOrder/confirmOrder",
@@ -9,7 +10,6 @@
       "pages/easyPointCar/bookTicket/bookTicket",
       "pages/easyPointCar/queryTicket/queryTicket",
       "pages/easyPointCar/elecTicket/elecTicket",
-      "pages/partInternJob/partimeJob/partimeJob",
       "pages/partInternJob/JobDetail/JobDetail",
       "pages/easyPointCar/confirmTicket/confirmTicket",
       "pages/educationTrain/edTraIndex/edTraIndex",
