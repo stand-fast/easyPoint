@@ -53,6 +53,10 @@
 		<div class="model">
 			<p class="modelTitle">工资</p>
 			<input class="model-Input" id="Wages">
+			<form> 
+				<label><input name="JobWagesType" type="radio" value="1" />每小时</label> 
+				<label><input name="JobWagesType" type="radio" value="2" />每天</label> 
+			</form>
 		</div>
 		
 		<div class="BusinessTitle">
@@ -70,13 +74,13 @@
 				</div>
 				<div class="modelDetails">
 					<p class="modelTitle">实习日期</p>
-					<input id="departureDay"  class="departure" max="2025-01-01" type="date" /> -
-					<input id="departureDay"  class="departure" max="2025-01-01" type="date" />
+					<input id="departureDayBegin"  class="departure" max="2025-01-01" type="date" /> -
+					<input id="departureDayEnd"  class="departure" max="2025-01-01" type="date" />
 				</div>
 				<div class="modelDetails">
 					<p class="modelTitle">实习时间</p>
-					<input id="departureTime" class="departure" value="09:00" type="Time" /> -
-					<input id="departureTime" class="departure" value="15:00" type="Time" />
+					<input id="departureTimeBegin" class="departure" value="09:00" type="Time" /> -
+					<input id="departureTimeEnd" class="departure" value="15:00" type="Time" />
 				</div>
 				<div class="modelDetails">
 					<p class="modelTitle">招聘人数</p>
@@ -115,11 +119,12 @@
 			<textarea id="CompanyIntroduction"></textarea>
 		</div>
 		<div class="Part-time-Button-container">
-			<button class="Part-timeButton save">保存</button>
-			<button class="Part-timeButton uploadReview">上传审核</button>
+			<button id='save' class="Part-timeButton save">保存</button>
+			<button id='uploadReview' class="Part-timeButton uploadReview">上传审核</button>
 		</div>
 	</div>
 	<script type="text/javascript"  src="js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript"  src="js/EnterpriseRelease.js"></script>
 </body>
 
 </html>

@@ -46,14 +46,15 @@
 
 }
 .model-WorkPlace{
-	width:572px;
+	width:502px;
 	overflow:hidden;
 	word-break:keep-all;
 	white-space:nowrap;
 	text-overflow:ellipsis;			
 }
 .model-Deadline{
-	width:45px;		
+	padding-left:10px;
+	width:105px;		
 }
 .model-Button-container{
 	margin:5px auto 0px;
@@ -61,6 +62,7 @@
 	text-align:center;
 }
 .model-Button{
+	margin-left:8px;
 	position:relative;			
 	width:100px;
 	height:25px;
