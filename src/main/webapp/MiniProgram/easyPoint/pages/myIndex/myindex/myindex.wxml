@@ -1,7 +1,7 @@
 <!--pages/myIndex/myindex/myindex.wxml-->
 <view class="search">
     <view class="search_icon"><image src="/images/icon/search.png"></image></view>
-    <input type="text" placeholder="请输入需要的物品名称" placeholder-class="place" value="{{searchName}}" bindinput="getInput" class="input"></input>
+    <input type="text" placeholder="请输入需要的物品名称" placeholder-class="place" value="{{searchName}}" class="input"  bindinput="takeValue" confirm-type="search" bindconfirm="sendMsgTap"></input>
     <image wx:if="{{hasAnnounce}}" src="/images/icon/announce_yes.png" bindtap="goToAnnounce"></image>
     <image wx:else src="/images/icon/announce_nor.png"></image>
 </view>

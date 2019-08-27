@@ -47,7 +47,15 @@ Page({
             hotImg: "/images/ads/homestay.png",
             hotName: "小镇民宿",
             hotPrice: "198"
-        }]
+          }, {
+            hotImg: "/images/ads/homestay.png",
+            hotName: "小镇民宿",
+            hotPrice: "198"
+          }, {
+            hotImg: "/images/ads/homestay.png",
+            hotName: "小镇民宿",
+            hotPrice: "198"
+          }]
     },
     jumpToDetail:function(e){
         var id=e.currentTarget.dataset.index;
@@ -92,6 +100,35 @@ Page({
                 })
             }
         }
+    },
+  //获取输入框信息
+    takeValue: function (e) {
+      var that = this
+      //console.log(e.detail.value);
+      this.setData({
+        inputText: e.detail.value
+      })
+    },
+    //搜索功能
+    sendMsgTap: function () {
+      console.log(this.data.inputText);
+      var selt = this;
+      wx.setStorageSync("IndexSearch",this.data.inputText)
+      // wx.request({
+      //   url: '接口路径',
+      //   data: {
+      //     inputText: this.data.inputText,   //根据搜索信息请求数据
+      //   },
+      //   method: 'Post',
+      //   header: { 'content-type': 'application/x-www-form-urlencoded' },
+      //   success: function (res) {
+      //     console.log(res.data)
+      //     selt.setData({
+      //       part_time_job_info: res.data,
+      //       noData:true,          //显示没有更多数据了
+      //     })
+      //   }
+      // })
     },
     goToAnnounce:function(){   //有消息时跳转到消息界面
         wx.navigateTo({
