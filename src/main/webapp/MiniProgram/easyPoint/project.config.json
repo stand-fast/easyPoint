@@ -21,7 +21,7 @@
 		"enhance": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.4",
+	"libVersion": "2.8.1",
 	"appid": "wx36b325e62b73a479",
 	"projectname": "easyPoint",
 	"debugOptions": {
@@ -48,19 +48,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
 				{
 					"id": -1,
-					"name": "ldleRenIndex",
-					"pathName": "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "editInformation",
-					"pathName": "pages/myIndex/editInformation/editInformation",
+					"name": "myindex",
+					"pathName": "pages/myIndex/myindex/myindex",
 					"query": "",
 					"scene": null
 				}
