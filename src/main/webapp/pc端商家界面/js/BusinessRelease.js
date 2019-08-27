@@ -1,3 +1,66 @@
+var LocString=String(window.document.location.href);
+function GetQueryString(str){
+var rs=new RegExp("(^|)"+str+"=([^/&]*)(/&|$)","gi").exec(LocString),tmp;
+if(tmp=rs)return tmp[2];
+return "没有这个参数";
+}
+var partTimeJobId=GetQueryString("partTimeJobId");
+console.log("ID："+partTimeJobId);
+if(partTimeJobId=="没有这个参数"){
+}
+else{
+	console.log("根据partTimeJobId请求数据");	
+	/*
+	var json = {"dataContent":[
+	{"username":"肖奈","gender":"男","phone":"13512313212","jobName":":移动公司实习生","jobContent":":负责在上菜区将菜品及时摆出，保证出餐窗口的整洁干净，及时跟进顾客的饮食情况，在结账窗口对顾客的菜品消费进行数目结账","partTimeJobId":"23323674863278","openId":"fhasdass-jakdhjs213124jkfa"},
+	]
+  	};
+	var dataContent=json.dataContent;
+	console.log(dataContent);
+	console.log(dataContent[0].username);
+	$.ajax({
+			type: "get",  //数据提交方式（post/get）
+			url: commentDataUrl,     //这里是请求的后台地址，自己定义
+			data: {
+			"merchantId":merchantId,
+			"partTimeJobId":partTimeJobId,
+			},//提交的数据
+			dataType: "json",//返回的数据类型格式
+			success: function(json){
+				console.log(json.dataContent[0]);
+				var content=json.dataContent[0];
+				$('#JobTitle').val(content.jobName);
+				$('#WorkContent').val(content.jobContent);
+				
+				$('input[name="JobType"]:checked').val(content.jobSettle);
+				
+				$('#Wages').val(content.jobSalary);
+				
+				$('input[name="JobWagesType"]:checked').val(content.)
+				
+				$('#WorkPlace').val(content.jobPlace);
+				
+				$('#departureDayBegin').val(content.);
+				$('#departureDayEnd').val(content.endTime);
+				$('#departureTimeBegin').val(content.);
+				$('#departureTimeEnd').val(content.);
+				
+				$('#Hiring').val(content.recruitNum);
+				$('#WelfareTreatment').val(content.welfare);
+				
+				$('input[name="GenderRequirement"]:checked').val(content.sex); 
+				
+				$('#JobRequirements').val(content.requirement);
+				$('#ContactsPeople').val(content.legalPerson);
+				$('#ContactsPhone').val(content.phone);
+				$('#CompanyIntroduction').val(content.companyIntroduce);
+					"jobDate":jobDate,
+					"jobTime":jobTime,
+					
+			}
+	})
+	*/
+}
 function check(Hiring){
 	function isInteger(obj) {
 		 return obj%1 === 0
