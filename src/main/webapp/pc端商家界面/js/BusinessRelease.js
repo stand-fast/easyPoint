@@ -10,14 +10,61 @@ if(partTimeJobId=="没有这个参数"){
 }
 else{
 	console.log("根据partTimeJobId请求数据");	
-	/*
+	
+	/*测试部分 */
 	var json = {"dataContent":[
-	{"username":"肖奈","gender":"男","phone":"13512313212","jobName":":移动公司实习生","jobContent":":负责在上菜区将菜品及时摆出，保证出餐窗口的整洁干净，及时跟进顾客的饮食情况，在结账窗口对顾客的菜品消费进行数目结账","partTimeJobId":"23323674863278","openId":"fhasdass-jakdhjs213124jkfa"},
-	]
-  	};
-	var dataContent=json.dataContent;
-	console.log(dataContent);
-	console.log(dataContent[0].username);
+	{"jobName":"移动公司实习生","jobContent":"负责在上菜区将菜品及时摆出，保证出餐窗口的整洁干净，及时跟进顾客的饮食情况，在结账窗口对顾客的菜品消费进行数目结账","jobSettle":"日结","jobSalary":"130/天","jobPlace":"广东省广州市天河区龙洞迎福路527号广东金融学院北苑饭堂二楼","jobDate":"2019-07-31到2019-08-07","jobTime":"10:00-15:00","recruitNum":"21","welfare":"爱神的箭卡时间看","sex":"不限","requirement":"asdhasjkhdkasjhd就打算开发和接口","legalPerson":"肖奈","phone":"13501212354","companyIntroduce":"发货就肯定会接口"},
+	],"dataType":"2"           //dataType值为1时候为 我的保存 页面的值,此时界面的值可以更改,dataType值为2时候为 我的发布 页面的值,此时界面的值不可以更改,
+	}
+	var content=json.dataContent[0];
+	var dataType=json.dataType;
+	if(dataType==2){        //dataType值为2时候为 我的发布 页面的值,此时界面的值不可以更改,只有下架功能
+		$("#stateJudgment").empty(); 
+		var data_html = "<button id='Shelves' class='Part-timeButton Shelves'>下架</button>";
+		$("#stateJudgment").append(data_html);
+	}
+	
+	if(content.jobSettle=="日结"){
+		content.jobSettle=1;
+	}
+	else if(content.jobSettle=="月结"){
+		content.jobSettle=2;
+	}
+	if(content.jobSalary.split('/')[1]=="天"){
+		content.JobWagesType="2"
+	}
+	else if(content.jobSalary.split('/')[0]=="小时"){
+		content.JobWagesType="1"
+	}
+	if(content.sex=="男"){
+		content.sex=1;
+	}
+	else if(content.sex=="女"){
+		content.sex=2;
+	}
+	else if(content.sex=="不限"){
+		content.sex=3;
+	}
+	$('#JobTitle').val(content.jobName);
+	$('#WorkContent').val(content.jobContent);
+	$("input[name='JobType'][value="+content.jobSettle+"]").prop("checked",true); 
+	//$('input[name="JobType"]:checked').val();
+	$('#Wages').val(content.jobSalary.split('/')[0]);
+	$("input[name='JobWagesType'][value="+content.JobWagesType+"]").prop("checked",true); 
+	$('#WorkPlace').val(content.jobPlace);
+	$('#departureDayBegin').val(content.jobDate.split("到")[0]);
+	$('#departureDayEnd').val(content.jobDate.split("到")[1]);
+	$('#departureTimeBegin').val(content.jobTime.split("-")[0]);
+	$('#departureTimeEnd').val(content.jobTime.split("-")[1]);
+	$('#Hiring').val(content.recruitNum);
+	$('#WelfareTreatment').val(content.welfare);
+	$("input[name='GenderRequirement'][value="+content.sex+"]").prop("checked",true); 
+	$('#JobRequirements').val(content.requirement);
+	$('#ContactsPeople').val(content.legalPerson);
+	$('#ContactsPhone').val(content.phone);
+	$('#CompanyIntroduction').val(content.companyIntroduce);
+	
+	/*正式部分
 	$.ajax({
 			type: "get",  //数据提交方式（post/get）
 			url: commentDataUrl,     //这里是请求的后台地址，自己定义
@@ -27,40 +74,78 @@ else{
 			},//提交的数据
 			dataType: "json",//返回的数据类型格式
 			success: function(json){
-				console.log(json.dataContent[0]);
 				var content=json.dataContent[0];
+				var dataType=json.dataType;
+				if(dataType==2){        //dataType值为2时候为 我的发布 页面的值,此时界面的值不可以更改,只有下架功能
+					$("#stateJudgment").empty(); 
+					var data_html = "<button id='Shelves' class='Part-timeButton Shelves'>下架</button>";
+					$("#stateJudgment").append(data_html);
+				}
+				if(content.jobSettle=="日结"){
+					content.jobSettle=1;
+				}
+				else if(content.jobSettle=="月结"){
+					content.jobSettle=2;
+				}
+				if(content.jobSalary.split('/')[1]=="天"){
+					content.JobWagesType="2"
+				}
+				else if(content.jobSalary.split('/')[0]=="小时"){
+					content.JobWagesType="1"
+				}
+				if(content.sex=="男"){
+					content.sex=1;
+				}
+				else if(content.sex=="女"){
+					content.sex=2;
+				}
+				else if(content.sex=="不限"){
+					content.sex=3;
+				}
 				$('#JobTitle').val(content.jobName);
 				$('#WorkContent').val(content.jobContent);
-				
-				$('input[name="JobType"]:checked').val(content.jobSettle);
-				
-				$('#Wages').val(content.jobSalary);
-				
-				$('input[name="JobWagesType"]:checked').val(content.)
-				
+				$("input[name='JobType'][value="+content.jobSettle+"]").prop("checked",true); 
+				//$('input[name="JobType"]:checked').val();
+				$('#Wages').val(content.jobSalary.split('/')[0]);
+				$("input[name='JobWagesType'][value="+content.JobWagesType+"]").prop("checked",true); 
 				$('#WorkPlace').val(content.jobPlace);
-				
-				$('#departureDayBegin').val(content.);
-				$('#departureDayEnd').val(content.endTime);
-				$('#departureTimeBegin').val(content.);
-				$('#departureTimeEnd').val(content.);
-				
+				$('#departureDayBegin').val(content.jobDate.split("到")[0]);
+				$('#departureDayEnd').val(content.jobDate.split("到")[1]);
+				$('#departureTimeBegin').val(content.jobTime.split("-")[0]);
+				$('#departureTimeEnd').val(content.jobTime.split("-")[1]);
 				$('#Hiring').val(content.recruitNum);
 				$('#WelfareTreatment').val(content.welfare);
-				
-				$('input[name="GenderRequirement"]:checked').val(content.sex); 
-				
+				$("input[name='GenderRequirement'][value="+content.sex+"]").prop("checked",true); 
 				$('#JobRequirements').val(content.requirement);
 				$('#ContactsPeople').val(content.legalPerson);
 				$('#ContactsPhone').val(content.phone);
 				$('#CompanyIntroduction').val(content.companyIntroduce);
-					"jobDate":jobDate,
-					"jobTime":jobTime,
-					
 			}
 	})
 	*/
 }
+$("#Shelves").click(function(){
+	if(confirm("确定是否下架")){
+	console.log("兼职ID:"+partTimeJobId+"下架（接上数据库后删除）");  
+	$.ajax({
+		type: "post",  //数据提交方式（post/get）
+		url: commentDataUrl,     //这里是请求的后台地址，自己定义
+		data: {
+		"merchantId":merchantId,
+		"partTimeJobId":partTimeJobId},//提交的数据
+		dataType: "json",//返回的数据类型格式
+		success: function(msg){
+			if (msg.success){  //修改成功
+			   alert("下架成功") //修改成功处理代码...
+			}else {  //修改失败
+			   alert("下架失败") //修改失败处理代码...
+			}
+		}
+	});
+	}else{
+		console.log("你取消了下架");
+	}
+})
 function check(Hiring){
 	function isInteger(obj) {
 		 return obj%1 === 0
@@ -198,12 +283,14 @@ function check(Hiring){
 			
 		if(check(Hiring)==true){
 			if(confirm("岗位名称:"+JobTitle+"\r工作内容:"+WorkContent+"\r工作类型:"+JobType+"\r工资:"+Wages+"\r工作地点:"+ WorkPlace+"\r兼职日期:"+departureDayBegin+" 至 "+departureDayEnd+"\r兼职时间:"+departureTimeBegin+" 至 "+departureTimeEnd+"\r招聘人数:"+Hiring+"人\r福利待遇:"+WelfareTreatment+"\r性别要求:"+GenderRequirement+"\r任职要求:"+JobRequirements+"\r联系人:"+ContactsPeople+"\r联系电话:"+ContactsPhone+"\r公司介绍:"+CompanyIntroduction)){
-				var jobDate=departureDayBegin+"-"+departureDayEnd;
+				var jobDate=departureDayBegin+"到"+departureDayEnd;
 				var jobTime=departureTimeBegin+"-"+departureTimeEnd;
 				$.ajax({
 					type: "post",  //数据提交方式（post/get）
 					url: commentDataUrl,     //这里是请求的后台地址，自己定义
 					data: {
+					"partTimeJobId":partTimeJobId,    //如果partTimeJobId的值为undefined时候，创建一个新的partTimeJobId,如果不为为undefined时候往partTimeJobId更新数据
+					"merchantId":merchantId,
 					"jobName":JobTitle,
 					"jobContent":destination,
 					"jobSettle":JobType,
@@ -274,12 +361,14 @@ function check(Hiring){
 			
 		if(check(Hiring)==true){
 			if(confirm("岗位名称:"+JobTitle+"\r工作内容:"+WorkContent+"\r工作类型:"+JobType+"\r工资:"+Wages+"\r工作地点:"+ WorkPlace+"\r兼职日期:"+departureDayBegin+" 至 "+departureDayEnd+"\r兼职时间:"+departureTimeBegin+" 至 "+departureTimeEnd+"\r招聘人数:"+Hiring+"人\r福利待遇:"+WelfareTreatment+"\r性别要求:"+GenderRequirement+"\r任职要求:"+JobRequirements+"\r联系人:"+ContactsPeople+"\r联系电话:"+ContactsPhone+"\r公司介绍:"+CompanyIntroduction)){
-				var jobDate=departureDayBegin+"-"+departureDayEnd;
-				var jobTime=departureTimeBegin+"-"+departureTimeEnd;
+				var jobDate=departureDayBegin+" 到 "+departureDayEnd;
+				var jobTime=departureTimeBegin+" - "+departureTimeEnd;
 				$.ajax({
 					type: "post",  //数据提交方式（post/get）
 					url: commentDataUrl,     //这里是请求的后台地址，自己定义
 					data: {
+					"partTimeJobId":partTimeJobId,      //如果partTimeJobId的值为undefined时候，创建一个新的partTimeJobId,如果不为为undefined时候往partTimeJobId更新数据
+					"merchantId":merchantId,
 					"jobName":JobTitle,
 					"jobContent":destination,
 					"jobSettle":JobType,
