@@ -33,11 +33,11 @@
         <view class="hotTopic_item_lists">
             <block wx:for="{{hot_list}}" wx:key="key">
                 <view class="hotTopic_item_list" bindtap="toHotDetail" data-index="{{index}}">
-                    <image src="{{item.hotImg}}"></image>
+                    <image src="{{item.imgUrl}}"></image>
                     <view class="list_word">
                         <image src="/images/icon/hotTopic.png"></image>
-                        <view class="hotname">{{item.hotName}}</view>
-                        <view class="hotprice">￥{{item.hotPrice}}<text>元起</text></view>
+                        <view class="hotname">{{item.recentHotName}}</view>
+                        <view class="hotprice">￥{{item.price}}<text>元起</text></view>
                     </view>
                 </view>
             </block>

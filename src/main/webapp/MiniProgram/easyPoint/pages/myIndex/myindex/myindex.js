@@ -32,29 +32,29 @@ Page({
             name:"娱乐美食"
         }],
         hot_list:[{
-            hotImg:"/images/ads/rujiahotel.png",
-            hotName:"如家酒店",
-            hotPrice:"398"
-        },{
-            hotImg: "/images/ads/homestay.png",
-            hotName: "小镇民宿",
-            hotPrice: "198"
-            },{
-            hotImg: "/images/ads/homestay.png",
-            hotName: "小镇民宿",
-            hotPrice: "198"
-            }, {
-            hotImg: "/images/ads/homestay.png",
-            hotName: "小镇民宿",
-            hotPrice: "198"
+            imgUrl:"/images/ads/rujiahotel.png",
+            recentHotName:"如家酒店",
+            price:"398"
+        }, {
+            imgUrl: "/images/ads/rujiahotel.png",
+            recentHotName: "如家酒店",
+            price: "398"
           }, {
-            hotImg: "/images/ads/homestay.png",
-            hotName: "小镇民宿",
-            hotPrice: "198"
+            imgUrl: "/images/ads/rujiahotel.png",
+            recentHotName: "如家酒店",
+            price: "398"
           }, {
-            hotImg: "/images/ads/homestay.png",
-            hotName: "小镇民宿",
-            hotPrice: "198"
+            imgUrl: "/images/ads/rujiahotel.png",
+            recentHotName: "如家酒店",
+            price: "398"
+          }, {
+            imgUrl: "/images/ads/rujiahotel.png",
+            recentHotName: "如家酒店",
+            price: "398"
+          }, {
+            imgUrl: "/images/ads/rujiahotel.png",
+            recentHotName: "如家酒店",
+            price: "398"
           }]
     },
     jumpToDetail:function(e){
@@ -138,10 +138,30 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
+  onLoad: function (options) {
+    // this.getMessage();
 
-    },
-
+  },
+  //获得数据
+  getMessage: function () {
+    var selt = this;
+    wx.request({
+      url: '接口路径',
+      method: 'Post',
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      success: function (res) {
+        console.log(res.data)
+        selt.setData({
+          hot_list: res.data,
+        })
+        if (res.data.code == 400) {
+          console.log(res.data.msg)
+          wx.setStorageSync("token", res.data.data),
+            selt.getMessage()
+        }
+      }
+    })
+  },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
