@@ -21,7 +21,7 @@
         <mybatis.version>3.4.6</mybatis.version>
         <slf4j.version>1.7.25</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
-        <mysql.version>8.0.11</mysql.version>
+        <mysql.version>5.1.46</mysql.version>
     </properties>
 
     <dependencies>
@@ -176,7 +176,24 @@
             <artifactId>commons-io</artifactId>
             <version>2.6</version>
         </dependency>
+
+        <!--redis配置-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.8.1.RELEASE</version>
+        </dependency>
+
+
     </dependencies>
+
+
 
     <build>
         <finalName>easyPoint</finalName>
@@ -213,5 +230,19 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
+        <!--由于maven工程在默认情况下src/main/java目录下的mapper文件是不发布到target目录下的。-->
+        <!--在pom文件中添加：-->
+        <!--如果不添加此节点mybatis的mapper.xml文件都会被漏掉-->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
     </build>
 </project>

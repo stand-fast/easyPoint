@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.user.dao.UserAddressDao">
+ <!--  
+ 	//根据用户uid查找所有该用户的收货地址
+	public List<UserAddress> selectAddressByUid(String uid);
+	
+	//根据地址id删除用户收获地址
+	public void deleteAddressById(int addressId);
+	
+	//更新地址
+	public void updateAddress(UserAddress address);
+	
+	//添加地址
+	public void addAddress(UserAddress address);
+ 	<select id=""></select>
+ -->
+ 	<select id="selectAddressByUid" parameterType="String" resultType="UserAddress">
+ 		select * from userAddress where uid = #{uid}
+ 	</select>
+ 	
+ 	<delete id="deleteAddressById" parameterType="Integer">
+ 		delete from userAddress where addressId = #{addressId}
+ 	</delete>
+ 	
+ 	<update id="updateAddress" parameterType="UserAddress">
+ 		update userAddress 
+ 		<set>
+ 			<if test="username!=null and username !=''">
+ 				username = #{username},
+ 			</if>
+ 			<if test="phonenumber != null and phonenumber != ''">
+ 				phonenumber = #{phonenumber},
+ 			</if>
+ 			<if test="address != null and address != ''">
+ 				address = #{address},
+ 			</if>
+ 			<if test="typeAddress !=null and typeAddress !=''">
+ 				typeAddress = #{typeAddress},
+ 			</if>
+ 			<if test="sex !=null and sex !=''">
+ 				sex = #{sex}
+ 			</if>
+ 		</set>
+ 		where addressId = #{addressId}
+ 	</update>
+ 	
+ 	<insert id="addAddress" parameterType="UserAddress">
+ 		insert into userAddress
+ 		 <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                uid,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="phonenumber != null">
+                phonenumber,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="typeAddress != null">
+                typeAddress,
+            </if>   
+            <if test="sex != null">
+                sex
+            </if>                 
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+             <if test="uid != null">
+                #{uid},
+            </if>
+            <if test="username != null">
+                #{username},
+            </if>
+            <if test="phonenumber != null">
+                #{phonenumber},
+            </if>
+            <if test="address != null">
+                #{address},
+            </if>
+            <if test="typeAddress != null">
+                #{typeAddress},
+            </if>
+            <if test="sex != null">
+                #{sex}
+            </if>               
+        </trim>
+ 	</insert>
+ </mapper>

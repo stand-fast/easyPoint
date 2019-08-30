@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.merchant.dao.goodsDao">
+ 	<!--  
+ 	//上架商品
+	public void addGoods(Goods goods);
+	//下架商品
+	public void deleteGoods(String goodId);
+	//更新商品
+	public void updateGoods(Goods goods);
+	//查询商品
+	public void selectGoods(Goods goods);
+	-->
+ 	<insert id="addGoods" parameterType="Goods">
+ 		insert into goodsTable
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="goodId != null">
+                goodId,
+            </if>
+            <if test="goodName != null">
+                goodName,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="freight != null">
+                freight,
+            </if>
+            <if test="inventory != null">
+                inventory,
+            </if>
+            <if test="sales != null">
+                sales,
+            </if>
+            <if test="detailsInfo != null">
+                detailsInfo,
+            </if>
+            <if test="img != null">
+                img,
+            </if> 
+            <if test="type != null">
+                type,
+            </if> 
+            <if test="merchantId != null">
+                merchantId
+            </if>                    
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="goodId != null">
+                goodId,
+            </if>
+            <if test="goodName != null">
+                goodName,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="freight != null">
+                freight,
+            </if>
+            <if test="inventory != null">
+                inventory,
+            </if>
+            <if test="sales != null">
+                sales,
+            </if>
+            <if test="detailsInfo != null">
+                detailsInfo,
+            </if>
+            <if test="img != null">
+                img,
+            </if> 
+            <if test="type != null">
+                type,
+            </if> 
+            <if test="merchantId != null">
+                merchantId
+            </if>               
+        </trim>
+ 	</insert>
+ 	
+ 	<delete id="deleteGoods" parameterType="String">
+ 		delete from goodsTable where goodsId = #{goodsId}
+ 	</delete>
+ 	
+ 	<update id="updateGoods" parameterType="Goods">
+ 		update goodsTable
+ 		<set>
+ 			<if test="goodName != null">
+                goodName = #{goodName},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="freight != null">
+                freight = #{freight},
+            </if>
+            <if test="inventory != null">
+                inventory = #{inventory},
+            </if>
+            <if test="sales != null">
+                sales = #{sales},
+            </if>
+            <if test="detailsInfo != null">
+                detailsInfo = #{detailsInfo},
+            </if>
+            <if test="img != null">
+                img = #{img},
+            </if> 
+            <if test="type != null">
+                type = #{type},
+            </if> 
+            <if test="merchantId != null">
+                merchantId = #{merchantId}
+            </if>
+ 		</set>
+ 		where goodId = #{goodId}
+ 	</update>
+ 	
+ 	<select id="selectGoods" parameterType="Goods" resultType="Goods">
+ 		select * from goodsTable
+ 		<where>
+ 			<if test="goodId != null">
+                goodId,
+            </if>
+            <if test="goodName != null">
+                goodName,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="freight != null">
+                freight,
+            </if>
+            <if test="inventory != null">
+                inventory,
+            </if>
+            <if test="sales != null">
+                sales,
+            </if>
+            <if test="detailsInfo != null">
+                detailsInfo,
+            </if>
+            <if test="img != null">
+                img,
+            </if> 
+            <if test="type != null">
+                type,
+            </if> 
+            <if test="merchantId != null">
+                merchantId
+            </if>
+ 		</where>
+ 	</select>
+ </mapper>
