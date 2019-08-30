@@ -53,10 +53,10 @@ $(function(){
   var data_html = "";
   $.each(dataContent,function(index,array) {     //添加新的分页数据（数据的显示样式根据自己页面来设置，这里只是一个简单的列表）
 	array['openId']='"'+array['openId']+'"';
-	array['partTimeJobId']='"'+array['partTimeJobId']+'"';
-	data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-username'>用户姓名:"+array['username']+"</div><div class='model-usergender'>性别:"+array['gender']+"</div><div class='model-userphone'>联系电话:"+array['phone']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-JobTitle'>岗位名称:"+array['jobName']+"</div><div class='model-JobContent'>工作内容:"+array['jobContent']+"</div></div><div class='model-Button-container'><a href='javaScript:via(" +array['openId']+ ","+array['internshipId']+")'><button class='model-Button'>通过</button></a><a href='javaScript:notvia("+array['openId']+","+array['internshipId']+")'><button class='model-Button'>不通过</button></a></div></div>"
+	array['internshipId']='"'+array['internshipId']+'"';
+	data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-username'>用户姓名:"+array['username']+"</div><div class='model-usergender'>性别:"+array['gender']+"</div><div class='model-userphone'>联系电话:"+array['phone']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-JobTitle'>岗位名称:"+array['jobName']+"</div><div class='model-JobContent'>工作内容:"+array['jobContent']+"</div></div><div class='model-Button-container'><a href=''><button class='model-Button'>查看简历</button></a><a href='javaScript:via(" +array['openId']+ ","+array['internshipId']+")'><button class='model-Button'>通过</button></a><a href='javaScript:notvia("+array['openId']+","+array['internshipId']+")'><button class='model-Button'>不通过</button></a></div></div>"
 	});
-$("#data-area").append(data_html);
+	$("#data-area").append(data_html);
 
 /*正式部分
 $.ajax({

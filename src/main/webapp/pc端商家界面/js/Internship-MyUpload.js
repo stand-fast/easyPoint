@@ -30,7 +30,7 @@ $(function(){
 	  var dataContent=json.dataContent;
 	  var data_html = "";
 	  $.each(dataContent,function(index,array) {     
-		data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-JobTitle'>"+array['jobName']+"</div><div class='model-salary'>￥"+array['jobSalary']+"</div><div class='model-salary'>"+array['jobSettle']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-WorkPlace'>工作地点:"+array['jobPlace']+"</div><div class='model-Deadline'>"+array['endTime']+"</div>截至</div><div class='model-Button-container'><a href='EnterpriseRelease.html?internshipId="+array['internshipId']+"'><button class='model-Button'>查看详情</button></a><a href='javaScript:Shelves("+array['internshipId']+")'><button class='model-Button'>下架</button></div></div>" 
+		data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-JobTitle'>"+array['jobName']+"</div><div class='model-salary'>￥"+array['jobSalary']+"</div><div class='model-salary'>"+array['jobSettle']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-WorkPlace'>工作地点:"+array['jobPlace']+"</div><div class='model-Deadline'>"+array['endTime']+"</div>截至</div><div class='model-Button-container'><a href='Internship-Throughusers.html?internshipId="+array['internshipId']+"'><button class='model-Button'>通过用户</button></a><a href='EnterpriseRelease.html?internshipId="+array['internshipId']+"'><button class='model-Button'>查看详情</button></a><a href='javaScript:Shelves("+array['internshipId']+")'><button class='model-Button'>下架</button></div></div>" 
 		});
 	$("#data-area").append(data_html);
 	/*正式部分
@@ -46,8 +46,8 @@ $(function(){
 		  $("#data-area").empty();       //移除原来的数据
 		  var dataContent=json.dataContent;
 		  var data_html = "";
-		 $.each(dataContent,function(index,array) {     
-			data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-JobTitle'>"+array['jobName']+"</div><div class='model-salary'>￥"+array['jobSalary']+"</div><div class='model-salary'>"+array['jobSettle']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-WorkPlace'>工作地点:"+array['jobPlace']+"</div><div class='model-Deadline'>"+array['endTime']+"</div>截至</div><div class='model-Button-container'><a href='EnterpriseRelease.html?internshipId="+array['internshipId']+"'><button class='model-Button'>查看详情</button></a><a href='javaScript:Shelves("+array['internshipId']+")'><button class='model-Button'>下架</button></div></div>" 
+		$.each(dataContent,function(index,array) {     
+			data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-JobTitle'>"+array['jobName']+"</div><div class='model-salary'>￥"+array['jobSalary']+"</div><div class='model-salary'>"+array['jobSettle']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-WorkPlace'>工作地点:"+array['jobPlace']+"</div><div class='model-Deadline'>"+array['endTime']+"</div>截至</div><div class='model-Button-container'><a href='Internship-Throughusers.html?internshipId="+array['internshipId']+"'><button class='model-Button'>通过用户</button></a><a href='EnterpriseRelease.html?internshipId="+array['internshipId']+"'><button class='model-Button'>查看详情</button></a><a href='javaScript:Shelves("+array['internshipId']+")'><button class='model-Button'>下架</button></div></div>" 
 		});
 		$("#data-area").append(data_html);
 		},
