@@ -180,7 +180,7 @@ Page({
         let dateArr = this.data.dateTimeArray;
         arr[e.detail.column] = e.detail.value;
         this.setData({
-            startTime: dateArr[0][arr[0]] + '-' + dateArr[1][arr[1]] + '-' + dateArr[2][arr[2]] + ' ' + dateArr[3][arr[3]] + ':' + dateArr[4][arr[4]]
+            startTime: dateArr[0][arr[0]]+'-' + dateArr[1][arr[1]] + '-' + dateArr[2][arr[2]] + ' ' + dateArr[3][arr[3]] + ':' + dateArr[4][arr[4]]
         });
     },
     //点击减号
@@ -303,8 +303,32 @@ Page({
         // 精确到分的处理，将数组的秒去掉
         var lastArray = obj.dateTimeArray.pop();
         var lastTime = obj.dateTime.pop();
+        var data = obj.dateTimeArray;
+        var name;
+        for (var i = 0; i < data.length; i++) {
+            switch (i) {
+                case 0:
+                    name = "年";
+                    break;
+                case 1:
+                    name = "月";
+                    break;
+                case 2:
+                    name = "日";
+                    break;
+                case 3:
+                    name = "时";
+                    break;
+                case 4:
+                    name = "分";
+                    break;
+            }
+            for (var j = 0; j < data[i].length; j++) {
+                data[i][j] = data[i][j] + name;
+            }
+        }
         this.setData({
-            dateTimeArray: obj.dateTimeArray,
+            dateTimeArray:data,
             dateTime: obj.dateTime,
         });
 
