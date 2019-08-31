@@ -21,7 +21,7 @@ Page({
         check: false,
         dateTime: null, //开始时间value
         dateTimeArray: null, //开始时间数组
-        showModalStatus: true,
+        showModalStatus: false,
         good_details_info:{
            detailsImg:[
                 "/images/guotai.png",
