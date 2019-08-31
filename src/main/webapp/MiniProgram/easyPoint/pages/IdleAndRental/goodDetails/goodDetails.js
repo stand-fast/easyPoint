@@ -300,8 +300,8 @@ Page({
     onLoad: function (options) {
         // 获取完整的年月日 时分秒，以及默认显示的数组
         var obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
-        var obj1 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
         // 精确到分的处理，将数组的秒去掉
+<<<<<<< HEAD
         var lastArray = obj1.dateTimeArray.pop();
         var lastTime = obj1.dateTime.pop();
         //日期转换
@@ -332,6 +332,13 @@ Page({
         this.setData({
           dateTimeArray: data,
           dateTime: obj1.dateTime,
+=======
+        var lastArray = obj.dateTimeArray.pop();
+        var lastTime = obj.dateTime.pop();
+        this.setData({
+            dateTimeArray: obj.dateTimeArray,
+            dateTime: obj.dateTime,
+>>>>>>> parent of c0b7f29... Revert "Merge branch 'release' of https://github.com/stand-fast/easyPoint into release"
         });
 
        var typenum = this.data.good_details_info.goodVariety.length
