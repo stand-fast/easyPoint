@@ -6,7 +6,10 @@ Page({
      */
     data: {
         hasAnnounce:false,
-        noticeText:"易点高校生活服务平台正式上线！",
+        msgList:[
+            "易点高校生活服务平台正式上线！",
+            "易点在线小助手，解决您的大学日常生活！"
+        ],
         ads:[
             "/images/myindex/adbg1.png",
             "/images/myindex/adbg1.png",
