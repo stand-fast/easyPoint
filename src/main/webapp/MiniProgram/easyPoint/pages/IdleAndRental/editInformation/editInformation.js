@@ -12,12 +12,12 @@ Page({
     },
     clearName:function(e){
         this.setData({
-            'userInformation.username':""
+            name:""
         })
     },
     clearPhone: function (e) {
         this.setData({
-            'userInformation.phone': ""
+            phone: ""
         })
     },
     formSubmit: function (e) {

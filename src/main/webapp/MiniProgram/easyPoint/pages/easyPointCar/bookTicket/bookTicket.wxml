@@ -36,10 +36,11 @@
                 <view class="heng"></view>
                 <view class="formContent">
                     <view class="formTitle">车辆类型</view>
-                    <picker mode="selector" bindchange="changeSeatType" value="{{seatNumber}}" range="{{seatNumber}}">
-                        <input wx:if="{{!successShowmodal}}" placeholder="请选择车辆座数" placeholder-class="placehold" disabled="true" bindtap="bindShowMsg" type="text" name="carType" value="{{carType}}"></input>
-                    </picker>
+                    <input wx:if="{{!successShowmodal}}" placeholder="请选择车辆座数" placeholder-class="placehold" disabled="true" bindtap="bindShowMsg" type="text" name="carType" value="{{carType}}"></input>
                     <view class="downImg" ><image bindtap="bindShowMsg" src="/images/icon/down.png"></image></view>
+                    <cover-view class="select_box" wx:if="{{select}}">
+                        <cover-view wx:for="{{seatNumber}}" wx:key="index" class="select_one" bindtap="mySelect" data-name="{{item}}">{{item}}</cover-view>
+                    </cover-view>
                 </view>
                 <view class="heng"></view>
                 <view class="formContent">
@@ -100,10 +101,11 @@
     <view wx:if="{{currentTab == 1}}" class="leaveTop">
         <view class="association">
             <view class="assoTitle">同乡会名称</view>
-            <picker mode="selector" bindchange="selectAssoName" value="{{associations}}" range="{{associations}}">
-                <input placeholder="请选择你所在的同乡会" disabled="true" type="association" placeholder-class="accoplace" value="{{assoName}}"></input>
-            </picker>
+            <input placeholder="请选择你所在的同乡会" bindtap="showAsso" disabled="true" type="association" placeholder-class="accoplace" value="{{assoName}}"></input>
             <image src="/images/icon/down.png" bindtap="showAsso"></image>
+            <cover-view class="select_box" wx:if="{{atselect}}">
+                <cover-view wx:for="{{associations}}" wx:key="id" class="select_one" bindtap="selectName" data-name="{{item}}">{{item}}</cover-view>
+            </cover-view>
         </view>
         <view class="searchBtn">
             <button bindtap="searchAsso">查询车票</button>
