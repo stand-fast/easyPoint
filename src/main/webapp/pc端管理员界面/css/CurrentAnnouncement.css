@@ -1,7 +1,11 @@
+*{
+	margin:0px;
+	padding:0px;
+}
 h1{
 	font-size:18px;
 	text-align:center;
-	padding-top:5px;
+	padding-top:8px;
 }
 .CurrentAnnouncement{
 	position: absolute;
@@ -21,59 +25,56 @@ h1{
 	width:616px;
 	margin:0 auto;
 }
-.Announce table{
-	margin:0 auto;	
-	width:618px;
-	color:#FFFFFF;
-	cellspacing:0; 
-	cellpadding:0;
+.data-area ul{
+	margin-top:5px;
+	width:616px;
+	display:flex;	
 }
-.Announce table tr td{
-	width:75.2px;
-	background-color:#8fd68b;
-	text-align:center;
+.data-area ul li{
+	margin:0 auto;
+	list-style:none;
+}
+.data-area-Announce input{
+	padding:8px;
+	width:580px;
+	height:24px;
+	color:#8fd68b;
+	background-color:#FFFFFF;
+	border:none;
 	border-radius:5px;
-	padding:5px 0;
+	overflow:hidden;
 }
-.Announce table tr td a{
-	text-decoration:none;
+.data-area-Button{
+	margin-left:15px;
+	width:70px;
+	height:30px;
+	padding:5px;
+	text-align:center;
+	line-height:30px;
+	color:#ffffff;	
+	background-color:#8fd68b;
+	border-radius:4px;
+}
+.data-area-Button a{
+	color:#FFFFFF;
+}
+.data-area-Button a:hover{
+	text-decoration:underline;
+}
+.SubmitAnnouncement{
+	margin-top:30px;
+	width:616px;
+	text-align:center;
+}
+.SubmitAnnouncement a{
+	padding:5px;
+	border-radius:5px;
+	background-color:#8fd68b;
 	color:#ffffff;
 }
-.Announce table tr td a:hover{
+.SubmitAnnouncement a:hover{
 	text-decoration:underline;
 }
-.AnnounceText{
-	width:630px;
-	padding:0px;
-}
-.AnnounceText textarea{
-	width:610px;
-	height:150px;
-	margin:50px 0 0 7px;
-	background:none;
-	border-radius:8px;
-	font-size:16px;
-	border:2px solid #8fd68b;
-}
-.ReleaseAnnounce select{
-	width:100px;
-	height:40px;
-	background:none;
-	color: #00CC66;
-	border-radius:5px;
-	margin-left:400px;
-	border:2px solid #8fd68b;
-}
-.ReleaseAnnounce a{
-	background-color:#8fd68b;
-	color:#FFFFFF;
-	margin-left:15px;
-	padding:4px;
-	border-radius:5px;
-	text-decoration:none;
-	width:60px;
-	border:1px solid #8fd68b;
-}
-.ReleaseAnnounce a:hover{
-	text-decoration:underline;
+a{
+	text-decoration:none;	
 }

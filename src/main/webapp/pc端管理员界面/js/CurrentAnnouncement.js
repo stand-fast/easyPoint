@@ -1,7 +1,9 @@
 $(function(){
 	console.log("加载完成");
 });
-function GetData(){
+//正式部分 请求小程序公告
+/*
+$(function(){
 	$.ajax({
 		type: 'POST',
 		url: commentDataUrl,     //这里是请求的后台地址，自己定义
@@ -12,95 +14,115 @@ function GetData(){
 		},
 		success: function(json) {
 		  $("#data-area").empty();       //移除原来的分页数据
-		  var data_content = json.CurrentAnnouncement;
+		  var data_content = json.dataContent;
 		  var data_html = "";
 		  $.each(data_content,function(index,array) {     //添加新的分页数据（数据的显示样式根据自己页面来设置，这里只是一个简单的列表）
-			data_html += "<table><tr><td  colspan='7'>"+array['SmallProgram']+"</td><td><a href='javaScript:SmallProgram()'>下架</a></td></tr></table><h1>商家公告</h1><table><tr><td colspan='7'>"+array['Merchant']+"</a></td><td><a href='javaScript:Merchant()'>下架</a></td></tr></table>";
+			data_html += "<ul><li class='data-area-Announce'><input value='"+array["SmallProgramFirst"]+"' id='First'></li></ul><ul><li class='data-area-Announce'><input value='"+array["SmallProgramSecond"]+"' id='Second'></li></ul><ul><li class='data-area-Announce'><input value='"+array["SmallProgramThree"]+"' id='Three'></li></ul>";
 		  });
 		  $("#data-area").append(data_html);
 		},
 		error: function() {
-		  alert("数据加载失败");
+		  console.log("小程序公告数据加载失败");
 		}
 	  });
-}
-function SmallProgram(){
-	if(confirm("确定是否下架")){
-		alert("已下架（接上数据库后删除）");  
-		$.ajax({
-				type: "post",  //数据提交方式（post/get）
-				url: commentDataUrl,     //这里是请求的后台地址，自己定义
-				data: {
-				"SmallProgram":1},//提交的数据,自己定义
-				dataType: "json",//返回的数据类型格式
-				success: function(msg){
-					if (msg.success){  //修改成功
-					   alert("下架成功") //修改成功处理代码...
-					}else {  //修改失败
-					   alert("下架失败") //修改失败处理代码...
-					}
-				}
-			});
-	}else{
-		alert("你取消了下架")
-	}
-}
-function Merchant(){
-	if(confirm("确定是否下架")){
-		alert("已下架（接上数据库后删除）");  
-		$.ajax({
-				type: "post",  //数据提交方式（post/get）
-				url: commentDataUrl,     //这里是请求的后台地址，自己定义
-				data: {
-				"Merchant":1},//提交的数据,自己定义
-				dataType: "json",//返回的数据类型格式
-				success: function(msg){
-					if (msg.success){  //修改成功
-					   alert("下架成功") //修改成功处理代码...
-					}else {  //修改失败
-					   alert("下架失败") //修改失败处理代码...
-					}
-				}
-			});
-	}else{
-		alert("你取消了下架")
-	}
-}
-function SubmitAnnouncement(){
-	var selectType=$('selectType').value;
-	var AnnounceText=$('AnnounceText').value;
-	if(confirm("确定是否提交")){
+});
+*/
+
+//正式部分 请求商家公告
+/*
+$(function(){
+	$.ajax({
+		type: 'POST',
+		url: commentDataUrl,     //这里是请求的后台地址，自己定义
+		data: {'CurrentAnnouncement':1}, //这里是请求的后台数据类型，自己定义
+		dataType: 'json',
+		beforeSend: function() {
+		  $("#data-area").append("加载中...");
+		},
+		success: function(json) {
+		  var json = {"dataContent":"广广金的广金的广金的广金的广金的广金的金"};  //测试数据
+		  var data_content = json.dataContent;
+		  var data_html = "";
+		  data_html +="<div class='SubmitAnnouncement'><a href='javaScript:SubmitSmallProgram()'>确认发布</a></div><h1>商家公告</h1><ul><li class='data-area-Announce'><input value='"+data_content+"' id='Merchant'></li></ul><div class='SubmitAnnouncement'><a href='javaScript:SubmitMerchant()'>确认发布</a></div>";
+		  $("#data-area").append(data_html);
+		},
+		error: function() {
+		  console.log("商家公告数据加载失败");
+		}
+	  });
+});
+*/
+function SubmitSmallProgram(){
+	var First=$('#First').val();
+	var Second=$('#Second').val();
+	var Three=$('#Three').val();
+	var SmallProgram=[];
+	SmallProgram.push(First);
+	SmallProgram.push(Second)
+	SmallProgram.push(Three);
+	if(confirm("确定是否提交小程序公告")){
 		alert("已提交（接上数据库后删除）");  
 		$.ajax({
 				type: "post",  //数据提交方式（post/get）
 				url: commentDataUrl,     //这里是请求的后台地址，自己定义
 				data: {
-				"selectType":selectType,
-				"AnnounceText":AnnounceText},//提交的数据,自己定义
+				"SmallProgram":SmallProgram},//提交的数据,自己定义
 				dataType: "json",//返回的数据类型格式
-				success: function(msg){
-					if (msg.success){  //修改成功
-					   alert("下架成功") //修改成功处理代码...
+				success: function(json){
+					if (json.success){  //修改成功
+					   alert("小程序公告发布成功") //修改成功处理代码...
 					}else {  //修改失败
-					   alert("下架失败") //修改失败处理代码...
+					   alert("小程序公告发布失败") //修改失败处理代码...
 					}
 				}
 			});
 	}else{
-		alert("你取消了提交")
+		console.log("你取消了发布")
+	}
+}
+function SubmitMerchant(){
+	var Merchant=$('#Merchant').val();
+	if(confirm("确定是否提交商家公告")){
+		alert("已提交（接上数据库后删除）");  
+		$.ajax({
+				type: "post",  //数据提交方式（post/get）
+				url: commentDataUrl,     //这里是请求的后台地址，自己定义
+				data: {
+				"Merchant":Merchant},//提交的数据,自己定义
+				dataType: "json",//返回的数据类型格式
+				success: function(json){
+					if (json.success){  //修改成功
+					   alert("商家公告发布成功") //修改成功处理代码...
+					}else {  //修改失败
+					   alert("商家公告发布失败") //修改失败处理代码...
+					}
+				}
+			});
+	}else{
+		console.log("你取消了发布")
 	}
 }
 
-GetData();
 
-//接上服务器后删掉
-function GetData(){
+//小程序公告请求测试数据
+$(function(){
 		  $("#data-area").empty();       //移除原来的分页数据
-		  var json = {"CurrentAnnouncement":[{"SmallProgram":"广金的广金的广金的广金的广金的","Merchant":"广广金的广金的广金的广金的广金的广金的金"}] };  //测试数据
-		  var data_content = json.CurrentAnnouncement;
+		  var json = {"dataContent":[{"SmallProgramFirst":"广金的广金的广金的广金的广金的","SmallProgramSecond":"广金的广金的广金的广金的广金的","SmallProgramThree":"广金的广金的广金的广金的广金的"}]};  //测试数据
+		  var data_content = json.dataContent;
 		  var data_html = "";
 		  $.each(data_content,function(index,array) {     //添加新的分页数据（数据的显示样式根据自己页面来设置，这里只是一个简单的列表）
-			data_html += "<table><tr><td  colspan='7'>"+array['SmallProgram']+"</td><td><a href='javaScript:SmallProgram()'>下架</a></td></tr></table><h1>商家公告</h1><table><tr><td colspan='7'>"+array['Merchant']+"</a></td><td><a href='javaScript:Merchant()'>下架</a></td></tr></table>";
+			data_html += "<ul><li class='data-area-Announce'><input value='"+array["SmallProgramFirst"]+"' id='First'></li></ul><ul><li class='data-area-Announce'><input value='"+array["SmallProgramSecond"]+"' id='Second'></li></ul><ul><li class='data-area-Announce'><input value='"+array["SmallProgramThree"]+"' id='Three'></li></ul>";
 		  });
 		  $("#data-area").append(data_html);
-}
+})
+//商家公告请求测试数据
+$(function(){
+		  var json = {"dataContent":"广广金的广金的广金的广金的广金的广金的金"};  //测试数据
+		  var data_content = json.dataContent;
+		  var data_html = "";
+		  data_html +="<div class='SubmitAnnouncement'><a href='javaScript:SubmitSmallProgram()'>确认发布</a></div><h1>商家公告</h1><ul><li class='data-area-Announce'><input value='"+data_content+"' id='Merchant'></li></ul><div class='SubmitAnnouncement'><a href='javaScript:SubmitMerchant()'>确认发布</a></div>";
+		  $("#data-area").append(data_html);
+})
+
+
+

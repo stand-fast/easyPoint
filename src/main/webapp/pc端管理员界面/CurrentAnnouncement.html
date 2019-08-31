@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	
 	<link rel="stylesheet" type="text/css" href="css/CurrentAnnouncement.css">
+	
 </head>
 <body>
 	<!-- 首部 -->
@@ -41,37 +42,29 @@
 			<div class="CurrentAnnouncement_con">
 				<div class="Announce">
 					<h1>小程序公告</h1>
-					
-					<div id="data-area">
+					<div id="data-area" class="data-area">
 					<!--接上数据库后删除部分
-					<table>
-					  <tr>
-						<td  colspan='7'>易点生活服务平台易点生活服务平台易点生活服务平台易点生活服务平台易点生活服务平台易点生活服务平台</td>
-						<td><a href='javaScript:SmallProgram()'>下架</a></td>
-					  </tr>
-					</table>
-					<h1>商家公告</h1>
-					<table>
-					  <tr>
-						<td  colspan='7'>易点生活服务平台易点生活服务平台易点生活服务平台易点生活服务平台易点生活服务平台易点生活服务平台</td>
-						<td><a href='javaScript:Merchant()'>下架</a></td>
-					  </tr>
-					</table>
 					接上数据库后删除部分
+						<ul>
+							<li class="data-area-Announce"><input value="易点生活服务平台易点生活服务平台易点生活服务平台易点生活服务平" id="First"></li>
+						</ul>
+						<ul>
+							<li class="data-area-Announce"><input value="易点生活服务平台易点生活服务平台易点生活服务平台易点生活服务平" id="Second"></li>
+						</ul>
+						
+						<ul>
+							<li class="data-area-Announce"><input value="易点生活服务平台易点生活服务平台易点生活服务平台易点生活服务平" id="Three"></li>
+						</ul>
+						<div class="SubmitAnnouncement"><a href='javaScript:SubmitSmallProgram()'>确认发布</a></div>
+						<h1>商家公告</h1>
+						<ul>
+							<li class="data-area-Announce"><input value="易点生活服务平台易点生活服务平台易点生活服务平台易点生活服务平" id="Merchant"></li>
+						</ul>
+						
+						<div class="SubmitAnnouncement"><a href='javaScript:SubmitMerchant()'>确认发布</a></div>
 					-->
-					</div>
-					
+					<div>
 				</div>
-				
-				<div class="ReleaseAnnounce">
-					<ul class="AnnounceText"><textarea id="AnnounceText"></textarea></ul>
-					<select id="selectType">
-					  <option value ="小程序公告">小程序公告</option>
-					  <option value ="商家公告">商家公告</option>
-					</select>
-					<a href='javaScript:SubmitAnnouncement()'>确认发布</a>
-				</div>
-				
 					
 			</div>
 		</div>
