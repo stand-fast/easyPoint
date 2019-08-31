@@ -48,33 +48,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": -1,
 			"list": [
-				{
-					"id": -1,
-					"name": "goodDetails",
-					"pathName": "pages/IdleAndRental/goodDetails/goodDetails",
-					"query": "",
-					"scene": null
-				},
 				{
 					"id": -1,
 					"name": "myindex",
 					"pathName": "pages/myIndex/myindex/myindex",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 2,
-					"name": "bookTicket",
-					"pathName": "pages/easyPointCar/bookTicket/bookTicket",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "confirmOrder",
-					"pathName": "pages/IdleAndRental/confirmOrder/confirmOrder",
 					"query": "",
 					"scene": null
 				}
