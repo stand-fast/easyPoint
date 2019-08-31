@@ -6,7 +6,7 @@ Page({
      */
     data: {
         hasAnnounce:false,
-        msgList:[
+        announcementMessage:[
             "易点高校生活服务平台正式上线！",
             "易点在线小助手，解决您的大学日常生活！"
         ],
@@ -143,7 +143,7 @@ Page({
      */
   onLoad: function (options) {
     // this.getMessage();
-
+    // this.getAnnouncements();
   },
   //获得数据
   getMessage: function () {
@@ -162,6 +162,20 @@ Page({
           wx.setStorageSync("token", res.data.data),
             selt.getMessage()
         }
+      }
+    })
+  },
+  getAnnouncements:function(){
+    var selt = this;
+    wx.request({
+      url: '接口路径',
+      method: 'Post',
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      success: function (res) {
+        console.log(res.data)
+        selt.setData({
+          announcementMessage: res.data,
+        })
       }
     })
   },
