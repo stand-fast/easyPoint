@@ -62,7 +62,7 @@
                 </view>
                 <view class="set_list"><view class="dot"></view>学车周期：{{item.studyCycle}}</view>
                 <view class="set_list"><view class="dot"></view>课程价格：{{item.price}}</view>
-                <view class="set_list"><view class="dot"></view>备注：{{item.note}}</view>
+                <view class="set_list"><view class="dot1">·</view>备注：{{item.note}}</view>
             </view>
         </view>
     </block>

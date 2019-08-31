@@ -171,7 +171,7 @@ Page({
         let arr = e.detail.value
         let dateArr = this.data.dateTimeArray;
         this.setData({
-            startTime: dateArr[0][arr[0]] + '-' + dateArr[1][arr[1]] + '-' + dateArr[2][arr[2]] + ' ' + dateArr[3][arr[3]] + ':' + dateArr[4][arr[4]]
+          startTime: dateArr[0][arr[0]] + dateArr[1][arr[1]] + dateArr[2][arr[2]] + ' ' + dateArr[3][arr[3]]  + dateArr[4][arr[4]]
         });
     },
     //某一列的值改变时触发
@@ -180,7 +180,7 @@ Page({
         let dateArr = this.data.dateTimeArray;
         arr[e.detail.column] = e.detail.value;
         this.setData({
-            startTime: dateArr[0][arr[0]]+'-' + dateArr[1][arr[1]] + '-' + dateArr[2][arr[2]] + ' ' + dateArr[3][arr[3]] + ':' + dateArr[4][arr[4]]
+            startTime: dateArr[0][arr[0]]  + dateArr[1][arr[1]]  + dateArr[2][arr[2]] + ' ' + dateArr[3][arr[3]]  + dateArr[4][arr[4]]
         });
     },
     //点击减号
@@ -300,36 +300,38 @@ Page({
     onLoad: function (options) {
         // 获取完整的年月日 时分秒，以及默认显示的数组
         var obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
+        var obj1 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
         // 精确到分的处理，将数组的秒去掉
-        var lastArray = obj.dateTimeArray.pop();
-        var lastTime = obj.dateTime.pop();
-        var data = obj.dateTimeArray;
+        var lastArray = obj1.dateTimeArray.pop();
+        var lastTime = obj1.dateTime.pop();
+        //日期转换
+        var data = obj1.dateTimeArray;
         var name;
         for (var i = 0; i < data.length; i++) {
-            switch (i) {
-                case 0:
-                    name = "年";
-                    break;
-                case 1:
-                    name = "月";
-                    break;
-                case 2:
-                    name = "日";
-                    break;
-                case 3:
-                    name = "时";
-                    break;
-                case 4:
-                    name = "分";
-                    break;
-            }
-            for (var j = 0; j < data[i].length; j++) {
-                data[i][j] = data[i][j] + name;
-            }
+          switch (i) {
+            case 0:
+              name = "年";
+              break;
+            case 1:
+              name="月";
+              break;
+            case 2:
+              name = "日";
+              break;
+            case 3:
+              name = "时";
+              break;
+            case 4:
+              name = "分";
+              break;
+          }
+          for (var j = 0; j < data[i].length; j++) {
+            data[i][j] = data[i][j] + name;
+          }
         }
         this.setData({
-            dateTimeArray:data,
-            dateTime: obj.dateTime,
+          dateTimeArray: data,
+          dateTime: obj1.dateTime,
         });
 
        var typenum = this.data.good_details_info.goodVariety.length
