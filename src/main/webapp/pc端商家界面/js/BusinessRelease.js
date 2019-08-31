@@ -13,7 +13,7 @@ else{
 	
 	/*测试部分 */
 	var json = {"dataContent":[
-	{"jobName":"移动公司实习生","jobContent":"负责在上菜区将菜品及时摆出，保证出餐窗口的整洁干净，及时跟进顾客的饮食情况，在结账窗口对顾客的菜品消费进行数目结账","jobSettle":"日结","jobSalary":"130/天","jobPlace":"广东省广州市天河区龙洞迎福路527号广东金融学院北苑饭堂二楼","jobDate":"2019-07-31到2019-08-07","jobTime":"10:00-15:00","recruitNum":"21","welfare":"爱神的箭卡时间看","sex":"不限","requirement":"asdhasjkhdkasjhd就打算开发和接口","legalPerson":"肖奈","phone":"13501212354","companyIntroduce":"发货就肯定会接口"},
+	{"jobName":"移动公司实习生","jobContent":"负责在上菜区将菜品及时摆出，保证出餐窗口的整洁干净，及时跟进顾客的饮食情况，在结账窗口对顾客的菜品消费进行数目结账","jobSettle":"日结","jobSalary":"130/天","jobPlace":"广东省广州市天河区龙洞迎福路527号广东金融学院北苑饭堂二楼","jobDate":"2019-07-31到2019-08-07","jobTime":"10:00-15:00","endTime":"2019-08-06","recruitNum":"21","welfare":"爱神的箭卡时间看","sex":"不限","requirement":"asdhasjkhdkasjhd就打算开发和接口","legalPerson":"肖奈","phone":"13501212354","companyIntroduce":"发货就肯定会接口"},
 	],"dataType":"2"           //dataType值为1时候为 我的保存 页面的值,此时界面的值可以更改,dataType值为2时候为 我的发布 页面的值,此时界面的值不可以更改,
 	}
 	var content=json.dataContent[0];
@@ -56,6 +56,7 @@ else{
 	$('#departureDayEnd').val(content.jobDate.split("到")[1]);
 	$('#departureTimeBegin').val(content.jobTime.split("-")[0]);
 	$('#departureTimeEnd').val(content.jobTime.split("-")[1]);
+	$('#deadline').val(content.endTime);
 	$('#Hiring').val(content.recruitNum);
 	$('#WelfareTreatment').val(content.welfare);
 	$("input[name='GenderRequirement'][value="+content.sex+"]").prop("checked",true); 
@@ -113,6 +114,7 @@ else{
 				$('#departureDayEnd').val(content.jobDate.split("到")[1]);
 				$('#departureTimeBegin').val(content.jobTime.split("-")[0]);
 				$('#departureTimeEnd').val(content.jobTime.split("-")[1]);
+				$('#deadline').val(content.endTime);
 				$('#Hiring').val(content.recruitNum);
 				$('#WelfareTreatment').val(content.welfare);
 				$("input[name='GenderRequirement'][value="+content.sex+"]").prop("checked",true); 
@@ -200,6 +202,12 @@ function check(Hiring){
 		alert('兼职时间有错误');
 		return false
 	}	
+	
+	else if($('#deadline').val()>$('#departureDayEnd').val()){
+		alert('截至时间有错误');
+		return false
+	}
+	
 	else if(isNaN(Number(Hiring,))){  //当输入不是数字的时候，Number后返回的值是NaN;然后用isNaN判断。
 			alert('招聘人数不是数字!');
 			return false
@@ -256,6 +264,7 @@ function check(Hiring){
 		var departureDayEnd=$('#departureDayEnd').val();
 		var departureTimeBegin=$('#departureTimeBegin').val();
 		var departureTimeEnd=$('#departureTimeEnd').val();
+		var deadline=$('#deadline').val();
 		var Hiring=$('#Hiring').val();
 		var WelfareTreatment=$('#WelfareTreatment').val();
 		var GenderRequirement=$('input[name="GenderRequirement"]:checked').val(); 
@@ -282,7 +291,7 @@ function check(Hiring){
 			GenderRequirement="不限";
 			
 		if(check(Hiring)==true){
-			if(confirm("岗位名称:"+JobTitle+"\r工作内容:"+WorkContent+"\r工作类型:"+JobType+"\r工资:"+Wages+"\r工作地点:"+ WorkPlace+"\r兼职日期:"+departureDayBegin+" 至 "+departureDayEnd+"\r兼职时间:"+departureTimeBegin+" 至 "+departureTimeEnd+"\r招聘人数:"+Hiring+"人\r福利待遇:"+WelfareTreatment+"\r性别要求:"+GenderRequirement+"\r任职要求:"+JobRequirements+"\r联系人:"+ContactsPeople+"\r联系电话:"+ContactsPhone+"\r公司介绍:"+CompanyIntroduction)){
+			if(confirm("岗位名称:"+JobTitle+"\r工作内容:"+WorkContent+"\r工作类型:"+JobType+"\r工资:"+Wages+"\r工作地点:"+ WorkPlace+"\r兼职日期:"+departureDayBegin+" 至 "+departureDayEnd+"\r兼职时间:"+departureTimeBegin+" 至 "+departureTimeEnd+"\r截至日期:"+deadline+"\r招聘人数:"+Hiring+"人\r福利待遇:"+WelfareTreatment+"\r性别要求:"+GenderRequirement+"\r任职要求:"+JobRequirements+"\r联系人:"+ContactsPeople+"\r联系电话:"+ContactsPhone+"\r公司介绍:"+CompanyIntroduction)){
 				var jobDate=departureDayBegin+"到"+departureDayEnd;
 				var jobTime=departureTimeBegin+"-"+departureTimeEnd;
 				$.ajax({
@@ -298,7 +307,7 @@ function check(Hiring){
 					"jobPlace":WorkPlace,
 					"jobDate":jobDate,
 					"jobTime":jobTime,
-					"endTime":departureDayEnd,
+					"endTime":deadline,
 					"recruitNum":Hiring,
 					"welfare":WelfareTreatment,				
 					"sex":GenderRequirement,
@@ -334,6 +343,7 @@ function check(Hiring){
 		var departureDayEnd=$('#departureDayEnd').val();
 		var departureTimeBegin=$('#departureTimeBegin').val();
 		var departureTimeEnd=$('#departureTimeEnd').val();
+		var deadline=$('#deadline').val();
 		var Hiring=$('#Hiring').val();
 		var WelfareTreatment=$('#WelfareTreatment').val();
 		var GenderRequirement=$('input[name="GenderRequirement"]:checked').val(); 
@@ -360,14 +370,14 @@ function check(Hiring){
 			GenderRequirement="不限";
 			
 		if(check(Hiring)==true){
-			if(confirm("岗位名称:"+JobTitle+"\r工作内容:"+WorkContent+"\r工作类型:"+JobType+"\r工资:"+Wages+"\r工作地点:"+ WorkPlace+"\r兼职日期:"+departureDayBegin+" 至 "+departureDayEnd+"\r兼职时间:"+departureTimeBegin+" 至 "+departureTimeEnd+"\r招聘人数:"+Hiring+"人\r福利待遇:"+WelfareTreatment+"\r性别要求:"+GenderRequirement+"\r任职要求:"+JobRequirements+"\r联系人:"+ContactsPeople+"\r联系电话:"+ContactsPhone+"\r公司介绍:"+CompanyIntroduction)){
+			if(confirm("岗位名称:"+JobTitle+"\r工作内容:"+WorkContent+"\r工作类型:"+JobType+"\r工资:"+Wages+"\r工作地点:"+ WorkPlace+"\r兼职日期:"+departureDayBegin+" 至 "+departureDayEnd+"\r兼职时间:"+departureTimeBegin+" 至 "+departureTimeEnd+"\r截至日期:"+deadline+"\r招聘人数:"+Hiring+"人\r福利待遇:"+WelfareTreatment+"\r性别要求:"+GenderRequirement+"\r任职要求:"+JobRequirements+"\r联系人:"+ContactsPeople+"\r联系电话:"+ContactsPhone+"\r公司介绍:"+CompanyIntroduction)){
 				var jobDate=departureDayBegin+" 到 "+departureDayEnd;
 				var jobTime=departureTimeBegin+" - "+departureTimeEnd;
 				$.ajax({
 					type: "post",  //数据提交方式（post/get）
 					url: commentDataUrl,     //这里是请求的后台地址，自己定义
 					data: {
-					"partTimeJobId":partTimeJobId,      //如果partTimeJobId的值为undefined时候，创建一个新的partTimeJobId,如果不为为undefined时候往partTimeJobId更新数据
+					"partTimeJobId":partTimeJobId,    //如果partTimeJobId的值为undefined时候，创建一个新的partTimeJobId,如果不为为undefined时候往partTimeJobId更新数据
 					"merchantId":merchantId,
 					"jobName":JobTitle,
 					"jobContent":destination,
@@ -376,6 +386,7 @@ function check(Hiring){
 					"jobPlace":WorkPlace,
 					"jobDate":jobDate,
 					"jobTime":jobTime,
+					"endTime":deadline,
 					"recruitNum":Hiring,
 					"welfare":WelfareTreatment,				
 					"sex":GenderRequirement,
