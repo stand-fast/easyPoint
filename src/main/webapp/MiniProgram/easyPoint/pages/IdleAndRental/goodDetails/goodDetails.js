@@ -300,13 +300,12 @@ Page({
     onLoad: function (options) {
         // 获取完整的年月日 时分秒，以及默认显示的数组
         var obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
-        var obj1 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
         // 精确到分的处理，将数组的秒去掉
-        var lastArray = obj1.dateTimeArray.pop();
-        var lastTime = obj1.dateTime.pop();
+        var lastArray = obj.dateTimeArray.pop();
+        var lastTime = obj.dateTime.pop();
         this.setData({
-            dateTimeArray: obj1.dateTimeArray,
-            dateTime: obj1.dateTime,
+            dateTimeArray: obj.dateTimeArray,
+            dateTime: obj.dateTime,
         });
 
        var typenum = this.data.good_details_info.goodVariety.length

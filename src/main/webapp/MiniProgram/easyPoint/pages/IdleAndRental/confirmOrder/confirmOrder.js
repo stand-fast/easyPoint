@@ -80,6 +80,9 @@ Page({
         this.setData({
             showmodal_success:false,
         })
+        wx.redirectTo({
+            url: '/pages/IdleAndRental/ldleRenIndex/ldleRenIndex',
+        })
     },
     failBtn: function () {
         this.setData({

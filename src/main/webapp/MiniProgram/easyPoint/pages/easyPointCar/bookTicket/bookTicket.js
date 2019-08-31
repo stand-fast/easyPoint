@@ -12,7 +12,6 @@ Page({
         dateTimeArray1: null, //开始时间数组
         select:false,
         check:false,
-        atselect:false,
         insucheck:false,
         radioStatus: false, 
         successShowmodal:false,
@@ -192,6 +191,13 @@ Page({
             insucheck:insucheck,
         })
     },
+    //选择车辆类型
+    changeSeatType:function(e){
+        var index=e.detail.value;
+        this.setData({
+            carType:this.data.seatNumber[index]
+        })
+    },
     //出发时间
     changeStartDateTime:function(e) {
         let arr = e.detail.value
@@ -219,28 +225,9 @@ Page({
         //验证开始时间不能大于结束时间
         this.checkStartAndEndTime();
     },
-
-//下拉框
-  bindShowMsg:function(){
-        this.setData({
-            select: !this.data.select,
-        })
-    },
-    mySelect:function(e) {
-        var name = e.currentTarget.dataset.name
-        this.setData({
-            carType: name,
-            select: false
-        })
-    },
-    showAsso: function () {
-        this.setData({
-            atselect: !this.data.atselect,
-        })
-    },
-    selectName: function (e) {
-      var name = e.currentTarget.dataset.name;
-
+    selectAssoName: function (e) {
+      var index = e.detail.value;
+      var name=this.data.associations[index];
       //判断车票类型
       if (name == '汕头同乡会') {
         this.setData({
@@ -259,8 +246,7 @@ Page({
       }
       //console.log(this.data.townsmen_association);
       this.setData({
-            assoName: name,
-            atselect: false
+            assoName: name
         })
     },
   //转到电子订单详情 
