@@ -1,0 +1,7 @@
+<!--pages/authorization/successPermist/successPermist.wxml-->
+<view class="success">
+    <image src="/images/icon/success_join.png"></image>
+    <view class="success_text">授权成功</view>
+    <view class="text">欢迎加入易点校园,马上进入体验吧</view>
+    <button bindtap="toIndex">进入</button>
+</view>

@@ -322,6 +322,10 @@
       <workItem from="1566998082526" duration="4004000" />
       <workItem from="1567081726244" duration="596000" />
       <workItem from="1567175357169" duration="1743000" />
+      <workItem from="1567244021542" duration="313000" />
+      <workItem from="1567251204438" duration="147000" />
+      <workItem from="1567254449858" duration="163000" />
+      <workItem from="1567324878619" duration="61000" />
     </task>
     <task id="LOCAL-00001" summary="删除了之前测试的Account类；&#10;修改pom文件，引入了相应jar包的坐标。">
       <created>1564982950103</created>
@@ -337,7 +341,21 @@
       <option name="project" value="LOCAL" />
       <updated>1565110613852</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="不知道是哪个了">
+      <created>1567244249730</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1567244249730</updated>
+    </task>
+    <task id="LOCAL-00004" summary="基本修改完设计要求修改的界面逻辑">
+      <created>1567251303234</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1567251303234</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -391,7 +409,9 @@
         </entry>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -401,7 +421,9 @@
     <MESSAGE value="删除了之前测试的Account类；&#10;修改pom文件，引入了相应jar包的坐标。" />
     <MESSAGE value="将c3p0连接池换成druid连接池。搭建并测试好了ssm开发环境。" />
     <MESSAGE value="部分代码。" />
-    <option name="LAST_COMMIT_MESSAGE" value="部分代码。" />
+    <MESSAGE value="不知道是哪个了" />
+    <MESSAGE value="基本修改完设计要求修改的界面逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="基本修改完设计要求修改的界面逻辑" />
   </component>
   <component name="masterDetails">
     <states>
