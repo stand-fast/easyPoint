@@ -30,7 +30,25 @@ function ResumeDownload(openId){
 	});
 	*/	
 }
-
+function deleteUser(openId,internshipId){
+	if(confirm("确定是否删除该通过用户")){
+	console.log("实习id:"+internshipId+"删除通过用户:"+openId)
+	$.ajax({
+		type: "post",  //数据提交方式（post/get）
+		url: commentDataUrl,     //这里是请求的后台地址，自己定义
+		data: {
+		"openId":openId,
+		"openId":openId
+		},//提交的数据
+		dataType: "json",//返回的数据类型格式
+		success: function(json){
+			alert("删除成功")
+		}
+	});
+	}else{
+		console.log("你取消了删除")
+	}
+}
 $(function(){
 	//测试部分
 	  $("#data-area").empty();       //移除原来的数据
@@ -43,7 +61,7 @@ $(function(){
 	  $.each(dataContent,function(index,array) {     //添加新的分页数据（数据的显示样式根据自己页面来设置，这里只是一个简单的列表）
 		array['openId']='"'+array['openId']+'"';
 		array['internshipId']='"'+array['internshipId']+'"';
-		data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-username'>用户姓名:"+array['username']+"</div><div class='model-usergender'>性别:"+array['gender']+"</div><div class='model-userphone'>联系电话:"+array['phone']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-JobTitle'>岗位名称:"+array['jobName']+"</div><div class='model-JobContent'>工作内容:"+array['jobContent']+"</div></div><div class='model-Button-container'><a href='javaScript:ResumeDownload("+array['openId']+")'><button class='model-Button'>查看简历</button></a></div></div>"
+		data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-username'>用户姓名:"+array['username']+"</div><div class='model-usergender'>性别:"+array['gender']+"</div><div class='model-userphone'>联系电话:"+array['phone']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-JobTitle'>岗位名称:"+array['jobName']+"</div><div class='model-JobContent'>工作内容:"+array['jobContent']+"</div></div><div class='model-Button-container'><a href='javaScript:ResumeDownload("+array['openId']+")'><button class='model-Button'>查看简历</button></a><a href='javaScript:deleteUser("+array['openId']+","+array['internshipId']+")'><button class='model-Button'>删除用户</button></a></div></div>"
 		});
 	  $("#data-area").append(data_html);
 	/*正式部分
@@ -62,7 +80,7 @@ $(function(){
 		  $.each(dataContent,function(index,array) {     //添加新的分页数据（数据的显示样式根据自己页面来设置，这里只是一个简单的列表）
 			array['openId']='"'+array['openId']+'"';
 			array['internshipId']='"'+array['internshipId']+'"';
-			data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-username'>用户姓名:"+array['username']+"</div><div class='model-usergender'>性别:"+array['gender']+"</div><div class='model-userphone'>联系电话:"+array['phone']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-JobTitle'>岗位名称:"+array['jobName']+"</div><div class='model-JobContent'>工作内容:"+array['jobContent']+"</div></div><div class='model-Button-container'><a href='javaScript:ResumeDownload("+array['openId']+")'><button class='model-Button'>查看简历</button></a></div></div>"
+			data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-username'>用户姓名:"+array['username']+"</div><div class='model-usergender'>性别:"+array['gender']+"</div><div class='model-userphone'>联系电话:"+array['phone']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-JobTitle'>岗位名称:"+array['jobName']+"</div><div class='model-JobContent'>工作内容:"+array['jobContent']+"</div></div><div class='model-Button-container'><a href='javaScript:ResumeDownload("+array['openId']+")'><button class='model-Button'>查看简历</button></a><a href='javaScript:deleteUser("+array['openId']+","+array['internshipId']+")'><button class='model-Button'>删除用户</button></a></div></div>"
 			});
 		  $("#data-area").append(data_html);
 		},
