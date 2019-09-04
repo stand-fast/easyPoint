@@ -13,9 +13,11 @@ Page({
             "小九正装男女高级全套装", "永安驾校","兼职实习"
         ],
         hasName:[
-            "小镇别墅","超级无敌豪华小镇大别墅",
-            "小镇超级无敌豪华大别墅"
-        ]
+            "小镇别墅",
+            "超级无敌豪华小镇大别墅",
+            "小镇超级无敌豪华大别墅",
+            "小玖正装",
+        ],
     },
     onfocus:function(){     //获取到焦点时隐藏历史搜索
         this.setData({
@@ -32,9 +34,12 @@ Page({
     takeValue:function(e){      //获取input输入值
         var inputValue=e.detail.value
         this.setData({
-            inputValue:inputValue,
+            inputValue:this.trim(inputValue),
             showGoodName:true
         })
+    },
+    trim: function (s) {
+        return s.replace(/(^\s*)|(\s*$)/g, "");
     },
     searchGoods:function(){     //搜索商品
 

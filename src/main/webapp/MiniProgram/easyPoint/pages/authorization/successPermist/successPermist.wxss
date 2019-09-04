@@ -1,4 +1,7 @@
 /* pages/authorization/successPermist/successPermist.wxss */
+Page{
+    font-family: 黑体;
+}
 .success{
     width: 100%;
 }

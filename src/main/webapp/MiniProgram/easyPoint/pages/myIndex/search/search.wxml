@@ -14,7 +14,7 @@
         <image src="/images/icon/delete_after.png" wx:else></image>
     </view>
     <view class="history_lists" wx:if="{{history.length>0}}">
-        <block wx:for="{{history}}" wx:key="key">
+        <block wx:for="{{history}}" wx:key="*this" wx:for-item="key_obj">
             <view class="history_list" bindtap="turnToValue" data-value="{{item}}">{{item}}</view>
         </block>
     </view>

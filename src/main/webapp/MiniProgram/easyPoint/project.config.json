@@ -48,19 +48,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
 					"id": -1,
-					"name": "obtainPermist",
-					"pathName": "pages/authorization/obtainPermist/obtainPermist",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "successPermist",
-					"pathName": "pages/authorization/successPermist/successPermist",
+					"name": "search",
+					"pathName": "pages/myIndex/search/search",
 					"query": "",
 					"scene": null
 				}

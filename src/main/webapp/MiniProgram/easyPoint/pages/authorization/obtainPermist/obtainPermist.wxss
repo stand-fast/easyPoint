@@ -1,6 +1,7 @@
 /* pages/authorization/obtainPermist/obtainPermist.wxss */
 Page{
     font-family:黑体;
+    background-color: #fafafc;
 }
 .getPermission{
     width: 750rpx;
@@ -25,7 +26,7 @@ Page{
 .hr{
     width: 650rpx;
     height: 2rpx;
-    background-color: #f2f2f2;
+    background-color: #e8e8ea;
     margin: 40rpx auto;
 }
 .permission_text{
@@ -33,6 +34,7 @@ Page{
     text-align: center;
     width: 100%;
     height: 44rpx;
+    color: #333;
     line-height: 44rpx;
     margin: 20rpx 0;
 }

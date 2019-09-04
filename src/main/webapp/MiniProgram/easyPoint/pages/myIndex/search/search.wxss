@@ -37,6 +37,9 @@
     text-align: center;
     margin: auto 0;
 }
+.searchHigh{
+    color: #56b4f6;
+}
 .hr{
     width: 750rpx;
     height: 2rpx;
