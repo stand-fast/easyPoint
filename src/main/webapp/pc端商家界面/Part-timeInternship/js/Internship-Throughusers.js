@@ -30,6 +30,7 @@ function ResumeDownload(openId){
 	});
 	*/	
 }
+
 $(function(){
 	//测试部分
 	  $("#data-area").empty();       //移除原来的数据

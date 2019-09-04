@@ -47,7 +47,7 @@
 
 /* CSS 详情部分模板 */
 .modelDetails{
-	width:450px;
+	width:500px;
 	margin:0 auto;	
 	margin-top:10px;
 	color:#6e876c;
@@ -59,7 +59,7 @@
 	padding-left:10px;
 	position:realtive;
 	top:25px;
-	width:465px;
+	width:488px;
 	height:35px;
 	border:none;
 	color:#6e876c;	
@@ -76,7 +76,7 @@
 	padding:5px 10px 5px 10px;
 	position:realtive;
 	top:25px;
-	width:455px;
+	width:478px;
 	height:50px;
 	border:none;
 	color:#6e876c;	
