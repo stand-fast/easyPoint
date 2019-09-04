@@ -6,7 +6,7 @@ $(function(){
 　　},function(){
 　　　　$(this).children('.box').hide()
 　　})
-  $(".enterpriseExamine").hover(function(){
+	$(".enterpriseExamine").hover(function(){
 　　　　$(this).children('.box').show();
 　　},function(){
 　　　　$(this).children('.box').hide()

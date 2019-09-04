@@ -1,5 +1,5 @@
 function Shelves(partTimeJobId){
-	if(confirm("确定是否下架")){
+	if(confirm("下架会清除该兼职所有通过用户的数据,确定是否下架,")){
 	console.log("兼职ID:"+partTimeJobId+"下架（接上数据库后删除）");  
 	$.ajax({
 		type: "post",  //数据提交方式（post/get）
@@ -24,13 +24,13 @@ $(function(){
 	//测试部分
 	 $("#data-area").empty();       //移除原来的数据
 	  var json = {"dataContent":[
-		{"jobName":"移动公司实习生","jobSalary":"80/天","jobSettle":"月结","jobPlace":"广东省广州市天河区龙洞迎福路527号广东金融学院北苑饭堂二楼","endTime":"2019-7-21","partTimeJobId":"23323674863278"},
+		{"jobName":"移动公司实习生","jobSalary":"80/天","jobSettle":"月结","jobPlace":"广东省广州市天河区龙洞迎福路527号广东金融学院北苑饭堂二楼","publishTime":"2019-7-18","endTime":"2019-7-21","partTimeJobId":"23323674863278"},
 		]
 	  }; 
 	  var dataContent=json.dataContent;
 	  var data_html = "";
 	  $.each(dataContent,function(index,array) {     
-		data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-JobTitle'>"+array['jobName']+"</div><div class='model-salary'>￥"+array['jobSalary']+"</div><div class='model-salary'>"+array['jobSettle']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-WorkPlace'>工作地点:"+array['jobPlace']+"</div><div class='model-Deadline'>"+array['endTime']+"</div>截止</div><div class='model-Button-container'><a href='Part-time-Throughusers.html?partTimeJobId="+array['partTimeJobId']+"'><button class='model-Button'>通过用户</button></a><a href='BusinessRelease.html?partTimeJobId="+array['partTimeJobId']+"'><button class='model-Button'>查看详情</button></a><a href='javaScript:Shelves("+array['partTimeJobId']+")'><button class='model-Button'>下架</button></div></div>" 
+		data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-JobTitle'>"+array['jobName']+"</div><div class='model-salary'>￥"+array['jobSalary']+"</div><div class='model-salary'>"+array['jobSettle']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-WorkPlace'>工作地点:"+array['jobPlace']+"</div><div class='model-Deadline'>"+array['publishTime']+"</div>发布</div><div class='model-Button-container'><a href='Part-time-Throughusers.html?partTimeJobId="+array['partTimeJobId']+"'><button class='model-Button'>通过用户</button></a><a href='BusinessRelease.html?partTimeJobId="+array['partTimeJobId']+"'><button class='model-Button'>查看详情</button></a><a href='javaScript:Shelves("+array['partTimeJobId']+")'><button class='model-Button'>下架</button></div></div>" 
 		});
 	$("#data-area").append(data_html);
 	/*正式部分
@@ -47,7 +47,7 @@ $(function(){
 		  var dataContent=json.dataContent;
 		  var data_html = "";
 		  $.each(dataContent,function(index,array) {     
-			data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-JobTitle'>"+array['jobName']+"</div><div class='model-salary'>￥"+array['jobSalary']+"</div><div class='model-salary'>"+array['jobSettle']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-WorkPlace'>工作地点:"+array['jobPlace']+"</div><div class='model-Deadline'>"+array['endTime']+"</div>截止</div><div class='model-Button-container'><a href='BusinessRelease.html?partTimeJobId="+array['partTimeJobId']+"'><button class='model-Button'>查看详情</button></a><a href='javaScript:Shelves("+array['partTimeJobId']+")'><button class='model-Button'>下架</button></div></div>" 
+			data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-JobTitle'>"+array['jobName']+"</div><div class='model-salary'>￥"+array['jobSalary']+"</div><div class='model-salary'>"+array['jobSettle']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-WorkPlace'>工作地点:"+array['jobPlace']+"</div><div class='model-Deadline'>"+array['publishTime']+"</div>发布</div><div class='model-Button-container'><a href='Part-time-Throughusers.html?partTimeJobId="+array['partTimeJobId']+"'><button class='model-Button'>通过用户</button></a><a href='BusinessRelease.html?partTimeJobId="+array['partTimeJobId']+"'><button class='model-Button'>查看详情</button></a><a href='javaScript:Shelves("+array['partTimeJobId']+")'><button class='model-Button'>下架</button></div></div>" 
 		});
 		$("#data-area").append(data_html);
 		},

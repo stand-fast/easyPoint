@@ -69,3 +69,6 @@ body>img {
 	opacity: 0.8;
 	box-shadow: 20px 3px 3px 8px rgba(0, 0, 0, 0.8);
 }
+input:focus{outline:none;}
+textarea:focus{outline:none;}
+button:focus{outline:none;}
