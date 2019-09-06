@@ -2,6 +2,7 @@
 Page{
     background-color: #f2f2f2;
     font-family: 黑体;
+    padding-bottom: 40rpx;
 }
 .swiper_images,.swiper_images image{
     width: 100%;

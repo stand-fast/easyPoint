@@ -97,9 +97,9 @@ Page({
         }
     },
   lookDetail: function (e) {
-      var id = e.currentTarget.dataset.id;
+      var index = e.currentTarget.dataset.index;
       wx.navigateTo({
-          url: '/pages/IdleAndRental/goodDetails/goodDetails?id='+id,
+          url: '/pages/IdleAndRental/goodDetails/goodDetails?id='+index,
       })
     },
     /**
