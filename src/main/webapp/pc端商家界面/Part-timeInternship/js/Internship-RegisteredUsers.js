@@ -1,3 +1,12 @@
+var LocString=String(window.document.location.href);
+function GetQueryString(str){
+var rs=new RegExp("(^|)"+str+"=([^/&]*)(/&|$)","gi").exec(LocString),tmp;
+if(tmp=rs)return tmp[2];
+return "没有这个参数";
+}
+var internshipId=GetQueryString("internshipId");
+console.log("ID："+internshipId);
+
 function ResumeDownload(openId){
 	console.log("下载用户"+openId+"的简历");
 	/*测试数据
@@ -76,14 +85,16 @@ $(function(){
   var data_html = "";
   $.each(dataContent,function(index,array) {     //添加新的分页数据（数据的显示样式根据自己页面来设置，这里只是一个简单的列表）
 	array['openId']='"'+array['openId']+'"';
-	data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-username'>用户姓名:"+array['username']+"</div><div class='model-usergender'>性别:"+array['gender']+"</div><div class='model-userphone'>联系电话:"+array['phone']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-JobTitle'>岗位名称:"+array['jobName']+"</div><div class='model-JobContent'>工作内容:"+array['jobContent']+"</div></div><div class='model-Button-container'><a href='EnterpriseRelease.html?internshipId="+array['internshipId']+"'><button class='model-Button'>查看详情</button></a><a href='javaScript:ResumeDownload("+array['openId']+")'><button class='model-Button'>查看简历</button></a><a href='javaScript:via(" +array['openId']+ ","+array['internshipId']+")'><button class='model-Button'>通过</button></a><a href='javaScript:notvia("+array['openId']+","+array['internshipId']+")'><button class='model-Button'>不通过</button></a></div></div>"
+	data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-username'>用户姓名:"+array['username']+"</div><div class='model-usergender'>性别:"+array['gender']+"</div><div class='model-userphone'>联系电话:"+array['phone']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-JobTitle'>岗位名称:"+array['jobName']+"</div><div class='model-JobContent'>工作内容:"+array['jobContent']+"</div></div><div class='model-Button-container'><a href='javaScript:ResumeDownload("+array['openId']+")'><button class='model-Button'>查看简历</button></a><a href='javaScript:via(" +array['openId']+ ","+array['internshipId']+")'><button class='model-Button'>通过</button></a><a href='javaScript:notvia("+array['openId']+","+array['internshipId']+")'><button class='model-Button'>不通过</button></a></div></div>"
 	});
 	$("#data-area").append(data_html);
 /*正式部分
 $.ajax({
 	type: 'POST',
 	url: commentDataUrl,     //这里是请求的后台地址，自己定义
-	data: {'merchantId':merchantId},
+	data: {'merchantId':merchantId,
+		   'internshipId':internshipId
+	},
 	dataType: 'json',
 	beforeSend: function() {
 	  $("#data-area").append("加载中...");
@@ -94,7 +105,7 @@ $.ajax({
 	  var data_html = "";
 	  $.each(dataContent,function(index,array) {     //添加新的分页数据（数据的显示样式根据自己页面来设置，这里只是一个简单的列表）
 		array['openId']='"'+array['openId']+'"';
-		data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-username'>用户姓名:"+array['username']+"</div><div class='model-usergender'>性别:"+array['gender']+"</div><div class='model-userphone'>联系电话:"+array['phone']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-JobTitle'>岗位名称:"+array['jobName']+"</div><div class='model-JobContent'>工作内容:"+array['jobContent']+"</div></div><div class='model-Button-container'><a href='EnterpriseRelease.html?internshipId="+array['internshipId']+"'><button class='model-Button'>查看详情</button></a><a href='javaScript:ResumeDownload("+array['openId']+")'><button class='model-Button'>查看简历</button></a><a href='javaScript:via(" +array['openId']+ ","+array['internshipId']+")'><button class='model-Button'>通过</button></a><a href='javaScript:notvia("+array['openId']+","+array['internshipId']+")'><button class='model-Button'>不通过</button></a></div></div>"
+		data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-username'>用户姓名:"+array['username']+"</div><div class='model-usergender'>性别:"+array['gender']+"</div><div class='model-userphone'>联系电话:"+array['phone']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-JobTitle'>岗位名称:"+array['jobName']+"</div><div class='model-JobContent'>工作内容:"+array['jobContent']+"</div></div><div class='model-Button-container'><a href='javaScript:ResumeDownload("+array['openId']+")'><button class='model-Button'>查看简历</button></a><a href='javaScript:via(" +array['openId']+ ","+array['internshipId']+")'><button class='model-Button'>通过</button></a><a href='javaScript:notvia("+array['openId']+","+array['internshipId']+")'><button class='model-Button'>不通过</button></a></div></div>"
 		});
 		$("#data-area").append(data_html);
 	},

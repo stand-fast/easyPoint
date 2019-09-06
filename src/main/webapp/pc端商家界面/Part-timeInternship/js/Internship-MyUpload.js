@@ -26,11 +26,11 @@ $(function(){
 	  var json = {"dataContent":[
 		{"jobName":"移动公司实习生","jobSalary":"80/天","jobSettle":"月结","jobPlace":"广东省广州市天河区龙洞迎福路527号广东金融学院北苑饭堂二楼","publishTime":"2019-7-21","internshipId":"23323674863278"},
 		]
-	  }; 
+	  };    
 	  var dataContent=json.dataContent;
 	  var data_html = "";
 	  $.each(dataContent,function(index,array) {     
-		data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-JobTitle'>"+array['jobName']+"</div><div class='model-salary'>￥"+array['jobSalary']+"</div><div class='model-salary'>"+array['jobSettle']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-WorkPlace'>工作地点:"+array['jobPlace']+"</div><div class='model-Deadline'>"+array['publishTime']+"</div>发布</div><div class='model-Button-container'><a href='Internship-Throughusers.html?internshipId="+array['internshipId']+"'><button class='model-Button'>通过用户</button></a><a href='EnterpriseRelease.html?internshipId="+array['internshipId']+"'><button class='model-Button'>查看详情</button></a><a href='javaScript:Shelves("+array['internshipId']+")'><button class='model-Button'>下架</button></div></div>" 
+		data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-JobTitle'>"+array['jobName']+"</div><div class='model-salary'>￥"+array['jobSalary']+"</div><div class='model-salary'>"+array['jobSettle']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-WorkPlace'>工作地点:"+array['jobPlace']+"</div><div class='model-Deadline'>"+array['publishTime']+"</div>发布</div><div class='model-Button-container'><a href='Internship-RegisteredUsers.html?internshipId="+array['internshipId']+"'><button class='model-Button'>报名用户</button></a><a href='Internship-Throughusers.html?internshipId="+array['internshipId']+"'><button class='model-Button'>通过用户</button></a><a href='EnterpriseRelease.html?internshipId="+array['internshipId']+"'><button class='model-Button'>查看详情</button></a><a href='javaScript:Shelves("+array['internshipId']+")'><button class='model-Button'>下架</button></div></div>" 
 		});
 	$("#data-area").append(data_html);
 	/*正式部分
@@ -47,7 +47,7 @@ $(function(){
 		  var dataContent=json.dataContent;
 		  var data_html = "";
 		  $.each(dataContent,function(index,array) {     
-			data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-JobTitle'>"+array['jobName']+"</div><div class='model-salary'>￥"+array['jobSalary']+"</div><div class='model-salary'>"+array['jobSettle']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-WorkPlace'>工作地点:"+array['jobPlace']+"</div><div class='model-Deadline'>"+array['publishTime']+"</div>发布</div><div class='model-Button-container'><a href='Internship-Throughusers.html?internshipId="+array['internshipId']+"'><button class='model-Button'>通过用户</button></a><a href='EnterpriseRelease.html?internshipId="+array['internshipId']+"'><button class='model-Button'>查看详情</button></a><a href='javaScript:Shelves("+array['internshipId']+")'><button class='model-Button'>下架</button></div></div>" 
+			data_html += "<div class='MyPreservation-model'><div class='model-JobTitle-salary'><div class='model-JobTitle'>"+array['jobName']+"</div><div class='model-salary'>￥"+array['jobSalary']+"</div><div class='model-salary'>"+array['jobSettle']+"</div></div><div class='model-WorkPlace-Deadline'><div class='model-WorkPlace'>工作地点:"+array['jobPlace']+"</div><div class='model-Deadline'>"+array['publishTime']+"</div>发布</div><div class='model-Button-container'><a href='Internship-RegisteredUsers.html?internshipId="+array['internshipId']+"'><button class='model-Button'>报名用户</button></a><a href='Internship-Throughusers.html?internshipId="+array['internshipId']+"'><button class='model-Button'>通过用户</button></a><a href='EnterpriseRelease.html?internshipId="+array['internshipId']+"'><button class='model-Button'>查看详情</button></a><a href='javaScript:Shelves("+array['internshipId']+")'><button class='model-Button'>下架</button></div></div>" 
 			});
 		$("#data-area").append(data_html);
 		},
