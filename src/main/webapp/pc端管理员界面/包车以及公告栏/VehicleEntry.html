@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>模板</title>
+	<meta charset="utf-8">
+
+	<!-- 收藏用logo图标 -->
+	<link rel="bookmark" type="image/x-icon" href="images/favicon.ico"/>
+	<!-- 网站显示页logo图标 -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+
+	<!--公用部分css-->
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<!--车辆信息部分css-->
+	<link rel="stylesheet" type="text/css" href="css/PublicTavelBlocks.css">
+	<!--车辆信息部分css-->
+	<link rel="stylesheet" type="text/css" href="css/vehicle-information-entry.css">
+</head>
+<body>
+	<!-- 首部 -->
+	<!--调用共同的首部-->
+	<script type="text/javascript" src="js/index_header.js"></script>
+	<div class="Main">
+		<!-- 
+			表示当前页面的名称 
+			"已加盟企业商家":0
+			"已加盟学生商家":1
+			"企业商家加盟申请":2
+			"学生商家加盟申请":3
+			"账号申请":4
+			"修改密码":5
+			"账号管理":6
+			"我要坐车":7
+			"车票管理":8
+			"租车订单":9
+			"当前公告":10
+			"历史公告":11
+		-->
+		<input type="hidden" name="pageName" value="5">
+		<!--调用共同的二级导航栏-->
+		<script type="text/javascript" src="js/Navigation.js"></script>
+		<div class="vehicle-information-entry">
+			<div class="vehicle-infor-con">
+				<h1>车辆信息</h1>
+				<ul>
+					<li><input type="text" id="license_plate_number" placeholder="车牌号"></li>
+					<li><input type="text" id="vehicle_type" placeholder="车辆类型"></li>
+					<li><input type="text" id="color" placeholder="车身颜色"></li>
+					<li><input type="text" id="driver_name" placeholder="司机姓名"></li>
+					<li><input type="text" id="driver_phone" placeholder="司机联系方式"></li>
+					<input  class="submit" id="submit" onClick="submitInformation()" type="submit" value="提交" />
+					<input  class="finish" id="finish" onClick="CarRentalStatement()" type="submit" value="结单" />
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript"  src="js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript"  src="js/VehicleEntry.js"></script>
+</body>
+</html>

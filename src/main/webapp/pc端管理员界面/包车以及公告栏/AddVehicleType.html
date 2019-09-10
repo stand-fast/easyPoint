@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>模板</title>
+	<meta charset="utf-8">
+
+	<!-- 收藏用logo图标 -->
+	<link rel="bookmark" type="image/x-icon" href="images/favicon.ico"/>
+	<!-- 网站显示页logo图标 -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+
+	<!--车辆信息部分css-->
+	<link rel="stylesheet" type="text/css" href="css/PublicTavelBlocks.css">
+	<!--公用部分css-->
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	
+	<!--添加同乡会和车辆类型css-->
+	<link rel="stylesheet" type="text/css" href="css/AddAssociation.css">
+</head>
+<body>
+	<!-- 首部 -->
+	<!--调用共同的首部-->
+	<script type="text/javascript" src="js/index_header.js"></script>
+	<div class="Main">
+		<!-- 
+			表示当前页面的名称 
+			"已加盟企业商家":0
+			"已加盟学生商家":1
+			"企业商家加盟申请":2
+			"学生商家加盟申请":3
+			"账号申请":4
+			"修改密码":5
+			"账号管理":6
+			"我要坐车":7
+			"车票管理":8
+			"租车订单":9
+			"当前公告":10
+			"历史公告":11
+		-->
+		<input type="hidden" name="pageName" value="5">
+		<!--调用共同的二级导航栏-->
+		<script type="text/javascript" src="js/Navigation.js"></script>
+		<script type="text/javascript"  src="js/jquery-3.4.1.min.js"></script>
+		
+		<div class="publicModelFrame">
+			<div class="publicModelFrame_con">
+					<h1>添加车辆类型</h1>
+					<div class="addCommittee">
+						<ul>
+							<label>车辆类型:</label><input id="location" type="text"/>
+						</ul>
+					</div>
+					<div class="addCommittee">
+						<ul>
+							<label>定金:</label><input id="deposit" type="text"/>
+						</ul>
+					</div>
+					<input  class="modelButton submitVehicleType" id="submitCommittee" type="submit" value="添加" />
+					<h1>已添加车辆类型</h1>
+					<div class="contentVehicle"> 
+						<ul class="VehicleTitle">
+							<li class="VehicleType">车辆类型</li>
+							<li class="deposit">定金</li>
+							<li class="deleteButton">点击删除</li>
+						</ul>
+					</div>
+					<div id="centent" class="contentVehicle"> 
+						<!--
+						<ul class="VehicleContent">
+							<li class="VehicleType">7座商务座</li>
+							<li class="deposit">300</li>
+							<li class="deleteButton"><a href="javaScript:deleteCommittee(123123123)">删除</a></li>
+						</ul>
+						-->
+					</div>
+					<div class="pager pagination" id="pageBar">
+						<!--	
+							<ul class="pages">
+								<li class="page-item">
+									<button class="pagination-btn num-btn">1</button>
+								</li>
+								<li class="page-item">
+									<button class="pagination-btn num-btn">2</button>
+								</li>
+								<li class="page-item">
+									<button class="pagination-btn num-btn">3</button>
+								</li>
+								<li class="page-item">
+									<button class="pagination-btn num-btn">4</button>
+								</li>
+							</ul>
+						-->
+					</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/AddVehicleType.js"></script>
+	</div>
+</body>
+</html>

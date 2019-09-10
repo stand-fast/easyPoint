@@ -90,8 +90,9 @@ function check(smallint,price){
 		}
 	return true
 }
-
-function submit(){
+//提交按钮
+$("#submit").click(function(){
+	var ruralCommittee=$('#ruralCommittee').val();
 	var departurePlace=$('#departurePlace').val();
 	var destination=$('#destination').val();
 	var departureDay=$('#departureDay').val();
@@ -107,11 +108,12 @@ function submit(){
 		middletype="是";
 	}
 	if(check(smallint,price)==true){
-		if(confirm("出发地 : "+departurePlace+"\r"+"目的地 ："+destination+"\r"+"出发日期 : "+departureDay+"\r"+"出发时间 : "+departureTime+"\r"+"座位数 : "+smallint+"\r"+"售价 : "+price+"\r"+"预售 : "+middletype)){
+		if(confirm("同乡会 : "+ruralCommittee+"\r出发地 : "+departurePlace+"\r"+"目的地 ："+destination+"\r"+"出发日期 : "+departureDay+"\r"+"出发时间 : "+departureTime+"\r"+"座位数 : "+smallint+"\r"+"售价 : "+price+"\r"+"预售 : "+middletype)){
 			$.ajax({
 			type: "post",  //数据提交方式（post/get）
 			url: commentDataUrl,     //这里是请求的后台地址，自己定义
 			data: {
+			"ruralCommittee":ruralCommittee,
 			"departurePlace":departurePlace,
 			"destination":destination,
 			"departureDay":departureDay,
@@ -130,15 +132,39 @@ function submit(){
 		});
 		
 		}else{
-			alert("你取消了提交")
+			console.log("你取消了提交");
 		}
 	}
-	
-}
+})
+//清空按钮
+$("#clear").click(function(){
+	if(confirm("确认是否清空页面数据")){	  
+		var ruralCommittee=$('#ruralCommittee').val("");
+		var departurePlace=$('#departurePlace').val("");
+		var destination=$('#destination').val("");
+		var departureDay=$('#departureDay').val("");
+		var departureTime=$('#departureTime').val("09:00");
+		var smallint=$('#smallint').val("");
+		var price=$('#price').val("");
+		var type=$('#type').val("1");
+	}
+	else{
+		console.log("您取消了清空");		
+	}					   
+})
 
-//同乡会二级联动
 $(function(){
-	var ruralCommittee='{"汕头同乡会":["广金广州本部","广金肇庆校区","汕头"],"普宁同乡会":["普宁1","普宁2","普宁3"],"丰顺同乡会":["丰顺1","丰顺2","丰顺3"]}';
+	//测试部分
+	var json={dataContent:[{"committee":"丰顺同乡会","committeeId":"123123123","CommitteePalace":["丰顺1","丰顺2","丰顺3"]},{"committee":"普宁同乡会","committeeId":"123123123","CommitteePalace":["普宁1","普宁2","普宁3","普宁4"]},{"committee":"汕头同乡会","committeeId":"123123123","CommitteePalace":["汕头1","汕头2","汕头3"]}
+	]};
+	var dataContent=json.dataContent;
+	var data={};
+	for(var i=0;i<dataContent.length;i++){
+		var committee=dataContent[i].committee;
+		data[committee]=dataContent[i].CommitteePalace;
+	}
+	//同乡会二级联动
+	var ruralCommittee=JSON.stringify(data)
 	var departureAndDestination=eval('('+ruralCommittee+')');
 	for(var key in departureAndDestination){
 		$("#ruralCommittee").append("<option value ='"+key+"'>"+key+"</option>");
@@ -153,5 +179,43 @@ $(function(){
 			$("#destination").append("<option value ='"+nowAddress+"'>"+nowAddress+"</option>")
 		}
 	})
+	
+	
+	/*正式部分,请求同乡会数据
+	$.ajax({
+	type: 'POST',
+	url: commentDataUrl,     //这里是请求的后台地址，自己定义
+	dataType: 'json',
+	success: function(json) {
+	 	var dataContent=json.dataContent;
+		var data={};
+		for(var i=0;i<dataContent.length;i++){
+		var committee=dataContent[i].committee;
+		data[committee]=dataContent[i].CommitteePalace;
+		}
+		//同乡会二级联动
+		var ruralCommittee=JSON.stringify(data)
+		var departureAndDestination=eval('('+ruralCommittee+')');
+		for(var key in departureAndDestination){
+			$("#ruralCommittee").append("<option value ='"+key+"'>"+key+"</option>");
+		}
+		$("#ruralCommittee").change(function(){
+			var nowRuralCommittee=$(this).val();
+			$("#departurePlace").html('<option value ="">选择出发地</option>');
+			$("#destination").html('<option value ="">选择出发地</option>')
+			for(var i in departureAndDestination[nowRuralCommittee]){
+				var nowAddress=departureAndDestination[nowRuralCommittee][i];
+				$("#departurePlace").append("<option value ='"+nowAddress+"'>"+nowAddress+"</option>")
+				$("#destination").append("<option value ='"+nowAddress+"'>"+nowAddress+"</option>")
+			}
+		 }
+		 
+  	 }	
+   })
+   */
+   
+	
+	
+	
 })
 

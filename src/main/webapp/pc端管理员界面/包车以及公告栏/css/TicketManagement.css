@@ -1,0 +1,46 @@
+.publicModelFrame_con .OnTheShelf{
+	width:616px;
+	margin:0 auto;
+	font-size:12px;
+}
+.publicModelFrame_con .OnTheShelf ul{
+	margin:0px 0 0 -40px;
+	width:615px;
+	color:#FFFFFF;
+	display:flex;
+}
+.OnTheShelf ul li{
+	margin-top:2px;
+	width:61.5px;
+	height:33px;
+	list-style:none;
+	background-color:#ffffff;
+	color:#8fd68b;
+	text-align:center;
+	border-radius:5px;
+	border-bottom:1px solid #8fd68b;
+	
+	word-break: break-all;  
+	word-wrap:break-word;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	white-space: normal;
+}
+.OnTheShelf ul li a{
+	color:#8fd68b;
+	text-decoration:none;
+}
+.OnTheShelf ul li a:hover{
+	text-decoration:underline;
+}
+.OnTheShelfTitle ul li{
+	background-color:#8fd68b;
+	color:#FFFFFF;
+	height:20px;
+	line-height:20px;
+}
+.CenterVertically{
+	line-height:33px;
+}

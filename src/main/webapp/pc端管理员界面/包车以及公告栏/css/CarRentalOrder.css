@@ -34,7 +34,7 @@ h1{
 	margin-left:-30px;
 }
 .CarRentalOrder_con .Order ul li{
-	width:59.5px;
+	width:54.5px;
 	height:20px;
 	line-height:20px;
 	float:left;
@@ -59,7 +59,7 @@ h1{
 	margin-left:-30px;
 }
 .CarRentalOrder_con .containerRentalOrder ul li{
-	width:59.5px;
+	width:54.5px;
 	height:33px;
 	background-color: #FFFFFF;
 	text-align:center;
@@ -85,41 +85,4 @@ h1{
 }
 .CarRentalOrder_con .containerRentalOrder ul li a:hover{
 	text-decoration:underline;	
-}
-.pages{
-	height:0px;
-	position:relative;
-	bottom:-10px;
-	text-align:center;
-}
-.pager .pages .page-item{
-	display: inline-block;
-	font-size: 12px;
-	font-weight: 700;
-	vertical-align: middle;	
-}
-.pager .pages .page-item button{
-	color: #222;
-	cursor: pointer;
-	outline: none;
-	text-align: center;
-	border-radius: 4px;
-	background-color: #fff;
-	border: 1px solid #ddd;
-	background-image: none;
-	transition: all .2s;
-	font-size: 12px;
-	min-width: 15px;
-	margin: 0 auto;
-	padding: 0 10px;
-	float: left;
-	display: block;
-	height: 30px;
-	line-height: 30px;
-}
-.pager .pages .page-item button:hover{
-	background-color:#8fd68b;	
-}
-.pager .pages .page-item .select{
-	background-color:#8fd68b;	
 }

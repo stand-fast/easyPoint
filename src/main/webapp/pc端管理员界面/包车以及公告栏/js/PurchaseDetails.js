@@ -30,7 +30,12 @@ function turnPage(page)
 	  var data_content=json.PurchaseDetails;
 	  totalItem = json.totalItem;
 	  curPage = json.page;
-	  totalPage = parseInt(totalItem/8)+1;
+	  if(totalItem%8==0){			//每页8条数据
+		totalPage = parseInt(totalItem/8);
+		}
+	  else{
+			totalPage = parseInt(totalItem/8)+1;
+		}
 	  var data_html = "";
 	  $.each(data_content,function(index,array) {     //添加新的分页数据（数据的显示样式根据自己页面来设置，这里只是一个简单的列表）
 		data_html += "<div class='containerPurchase'><table><tr><td>"+array['name']+"</td>"+"<td>"+array['phone']+"</td>"+"<td>"+array['price']+"</td>"+"<td>"+array['ticketNum']+"</td>"+"<td>"+array['startTime']+"</td></tr></table></div>";
@@ -91,14 +96,19 @@ getPageBar()
 function turnPage(page){
 	curPage=page;
 	getPageBar();
-	$("#data-area").empty();       //移除原来的分页数据
+	//$("#data-area").empty();       //移除原来的分页数据
 	var json = {"PurchaseDetails":[
 	{"name":"肖奈","phone":"13045612312","price":"120","name":"肖奈","ticketNum":"3","startTime":"2019-08-12"},],"totalItem":"10","page":"1"
 	};  //测试数据
 	var data_content=json.PurchaseDetails;
 	totalItem = json.totalItem;
 	curPage = json.page;
-	totalPage = parseInt(totalItem/8)+1;
+	if(totalItem%8==0){			//每页8条数据
+		totalPage = parseInt(totalItem/8);
+	}
+  	else{
+		totalPage = parseInt(totalItem/8)+1;
+	}
 	var data_html = "";
 	$.each(data_content,function(index,array) {     //添加新的分页数据（数据的显示样式根据自己页面来设置，这里只是一个简单的列表）
 		data_html += "<div class='containerPurchase'><table><tr><td>"+array['name']+"</td>"+"<td>"+array['phone']+"</td>"+"<td>"+array['price']+"</td>"+"<td>"+array['ticketNum']+"</td>"+"<td>"+array['startTime']+"</td></tr></table></div>";

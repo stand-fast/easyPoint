@@ -11,8 +11,14 @@
 
 	<!--公用部分css-->
 	<link rel="stylesheet" type="text/css" href="css/index.css">
-	
+	<!--车辆信息部分css-->
+	<link rel="stylesheet" type="text/css" href="css/PublicTavelBlocks.css">
+	<!--我的发布css-->
 	<link rel="stylesheet" type="text/css" href="css/TicketManagement.css">
+	
+	<style>
+	
+	</style>
 </head>
 <body>
 	<!-- 首部 -->
@@ -37,44 +43,48 @@
 		<input type="hidden" name="pageName" value="5">
 		<!--调用共同的二级导航栏-->
 		<script type="text/javascript" src="js/Navigation.js"></script>
-		<div class="TicketManagement">
-			<div class="TicketManagement_con">
+		<div class="publicModelFrame">
+			<div class="publicModelFrame_con">
 				<h1>正在上架</h1>
-				<div class="OnTheShelf">
-				<table>
-				  <tr>
-					<td>出发地</td>
-					<td>到达地</td>
-					<td>出发时间</td>
-					<td>剩余票数</td>
-					<td>售价</td>
-					<td>是否预售</td>
-					<td>购票详情</td>
-					<td>点击下架</td>
-				  </tr>
-				</table>
+				<div class="OnTheShelf OnTheShelfTitle">
+					<ul>
+						<li>同乡会</li>
+						<li>出发地</li>
+						<li>目的地</li>
+						<li>出发时间</li>
+						<li>发布时间</li>
+						<li>车票类型</li>
+						<li>售价</li>
+						<li>剩余票数</li>
+						<li>购票详情</li>
+						<li>车辆信息</li>
+						<li>点击下架</li>
+					</ul>
 				</div>
 				<div class="containerShelf">
-				<div id="data-area">
-				<!-- 最多4个
-					<div class='Shelf'>
-					<table>
-					  <tr>
-						<td>广金广州本部</td>
-						<td>广金肇庆校区</td>
-						<td>2019/07/11 9:00</td>
-						<td>43</td>
-						<td>¥140</td>
-						<td>正在售卖</td>
-						<td><a href='PurchaseDetails.html?ticketId=1231231231233'>详情</a></td>
-						<td><a href='javaScript:ShelvesSubmit(12312313)'>下架</a></td>
-					  </tr>
-					</table>
+					<div id="data-area">
+					<!-- 最多4个
+					<div class="OnTheShelf">
+						<ul>
+							<li>汕头同乡会</li>
+							<li>广东广东广东广东广东</li>
+							<li>广东广东广东广东广东</li>
+							<li>2019-07-10 14:01</li>
+							<li>2019-05-10 14:01</li>
+							<li class="CenterVertically">正式</li>
+							<li class="CenterVertically">130</li>
+							<li class="CenterVertically">25</li>
+							<li class="CenterVertically"><a href="PurchaseDetails.html?tourismId=2346732467328">购票详情</a></li>
+							<li class="CenterVertically"><a href="VehicleEntry.html?tourismId=2346732467328">车辆信息</a></li>
+							<li class="CenterVertically"><a href="javaScript:ShelvesSubmit(213612783687)">下架</a></li>
+						</ul>
 					</div>
-				-->
-				</div>
+					-->
+					
+					</div>
 					<div class="pager pagination" id="pageBar">
-						<!--	<ul class="pages">
+						<!--	
+							<ul class="pages">
 								<li class="page-item">
 									<button class="pagination-btn num-btn">1</button>
 								</li>
@@ -95,20 +105,6 @@
 				<div  class="offTheShelf">
 					<div id="data-areaSecond">
 					<!-- 最多3个
-						<div class="Shelf">
-						<table>
-						  <tr>
-							<td>广金广州本部</td>
-							<td>广金肇庆校区</td>
-							<td>2019/07/11 9:00</td>
-							<td>43</td>
-							<td>¥140</td>
-							<td>售卖</td>
-							<td><a href='PurchaseDetails.html?ticketId=1231231231233'>详情</a></td>
-							<td>已下架</td>
-						  </tr>
-						</table>
-						</div>
 					-->
 					</div>
 					<div class="pager pagination" id="pageBarSecond">

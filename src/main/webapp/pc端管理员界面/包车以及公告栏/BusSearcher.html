@@ -11,9 +11,11 @@
 
 	<!--公用部分css-->
 	<link rel="stylesheet" type="text/css" href="css/index.css">
-	
+	<!--车辆信息部分css-->
+	<link rel="stylesheet" type="text/css" href="css/PublicTavelBlocks.css">
 	<!--我要坐车部分css-->
 	<link rel="stylesheet" type="text/css" href="css/busSearcher.css">
+	
 </head>
 <body>
 	<!-- 首部 -->
@@ -40,8 +42,8 @@
 		<script type="text/javascript" src="js/Navigation.js"></script>
 		<script type="text/javascript"  src="js/jquery-3.4.1.min.js"></script>
 		
-		<div class="busSearcher">
-			<div class="busSearcher_con">
+		<div class="publicModelFrame">
+			<div class="publicModelFrame_con">
 				<h1>添加车辆</h1>
 				<ul>
 					<label>同乡会：</label>
@@ -108,7 +110,8 @@
 					</select>
 					<span class="hint">请选择是否预售</span>
 				</ul>
-					<input  class="submit" id="submit" onClick="submit()" type="submit" value="提交" />
+					<input  class="clear modelButton" id="clear" type="submit" value="清空" />
+					<input  class="submit modelButton" id="submit" type="submit" value="发布" />
 			</div>
 		</div>
 		<script type="text/javascript" src="js/BusSearcher.js"></script>
