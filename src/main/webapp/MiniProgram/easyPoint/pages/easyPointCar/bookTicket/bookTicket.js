@@ -19,9 +19,8 @@ Page({
         is_insurance:0,   //是否购买保险
         townsmen_association:null,  //乡会种类
         imgUrls: [
-            "/images/ad.png",
-            "/images/circle1.png",
-            "/images/circle2.png"
+            "/images/bg1_car.png",
+            "/images/bg2_car.png"
         ],
         associations:["汕头同乡会","潮州同乡会","普宁同乡会"],
         seatNumber: ["35座大巴", "49座大巴", "53座大巴","57座大巴"]
@@ -304,7 +303,7 @@ Page({
                 data[i][j] = data[i][j] + name;
             }
         }
-        this.setData({
+        this.setData({       
             dateTimeArray1: data,
             dateTime1: obj.dateTime,
         });

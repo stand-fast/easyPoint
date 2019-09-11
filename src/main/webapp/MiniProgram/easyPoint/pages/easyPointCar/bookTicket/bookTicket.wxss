@@ -306,7 +306,7 @@
     height: 400rpx;
     overflow: hidden;
     position: fixed;
-    top: 30%;
+    top: 25%;
     left: 0;
     z-index: 1001;
     background: #fafafa;
@@ -337,6 +337,9 @@
     border-radius: 60rpx;
     height: 70rpx;
     line-height: 70rpx;
+}
+.success_btn::after{
+    border:none;
 }
 .cnimg{
     margin-left: 8rpx;

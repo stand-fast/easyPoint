@@ -46,17 +46,19 @@
                 <view class="shu"></view>
                 <view class="title_text">驾校一览({{number}})</view>
             </view>
-            <block wx:for="{{driveSchool}}" wx:key="key" wx:for-item="item" wx:for-index="key">
-                <view class="list" bindtap="lookDetail" data-drive_id="{{item.drivingSchoolId}}">
-                    <view class="list_img"><image src="{{item.defaultImgUrl}}"></image></view>
-                    <view class="name">{{item.drivingSchoolName}}</view>
-                    <view class="address">{{item.drivingSchoolAddress}}</view>
-                    <view class="price">
-                        <view><text>￥{{item.lowestPrice}}/</text>起</view>
-                        <image src="/images/icon/see.png"></image>
+            <view class="driverschool_list">
+                <block wx:for="{{driveSchool}}" wx:key="key" wx:for-item="item" wx:for-index="key">
+                    <view class="list" bindtap="lookDetail" data-drive_id="{{item.drivingSchoolId}}">
+                        <view class="list_img"><image src="{{item.defaultImgUrl}}"></image></view>
+                        <view class="name">{{item.drivingSchoolName}}</view>
+                        <view class="address">{{item.drivingSchoolAddress}}</view>
+                        <view class="price">
+                            <view><text>￥{{item.lowestPrice}}/</text>起</view>
+                            <image src="/images/icon/see.png"></image>
+                        </view>
                     </view>
-                </view>
-            </block>
+                </block>
+            </view>
         </view>
         <view wx:if="{{noData}}" class="more-noData">-我是有底线的-</view>
         <view wx:else class="more-noData">-下拉查看更多-</view>

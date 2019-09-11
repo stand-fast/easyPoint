@@ -2,8 +2,6 @@
     "pages": [
     "pages/myIndex/myindex/myindex",
     "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
-    "pages/authorization/obtainPermist/obtainPermist",
-    "pages/authorization/successPermist/successPermist",
     "pages/myIndex/search/search",
     "pages/myIndex/editInformation/editInformation",
     "pages/IdleAndRental/confirmOrder/confirmOrder",

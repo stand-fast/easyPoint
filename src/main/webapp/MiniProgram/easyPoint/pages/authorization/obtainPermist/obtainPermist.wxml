@@ -1,9 +1,0 @@
-<!--pages/authorization/obtainPermist/obtainPermist.wxml-->
-<view class="getPermission">
-    <image src="/images/icon/logo.png"></image>
-    <view class="name">易点校园</view>
-    <view class="hr"></view>
-    <view class="permission_text">小程序将获得以下权限信息</view>
-    <view class="word_text">·获取你的公开信息（头像、昵称等）</view>
-    <button bindtap="getPermission">授权</button>
-</view>

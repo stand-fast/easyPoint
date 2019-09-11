@@ -57,7 +57,7 @@
                     <view class="formTitle wang">往返</view>
                     <view wx:if="{{radioStatus}}">
                         <picker mode="multiSelector" value="{{dateTime1}}" bindchange="changereturnDateTime" bindcolumnchange="changeDateTimeColumn2" range="{{dateTimeArray1}}">
-                            <input value="{{returnTime}}" placeholder="请选择返回时间" placeholder-class="placehold" disabled="true" name="returnTime"></input>
+                            <input value="{{returnTime}}" placeholder="请选择返回时间" placeholder-class="placehold" disabled="true" name="returnTime" wx:if="{{!successShowmodal}}"></input>
                         </picker>
                     </view>
                     <image class="cnimg" wx:if="{{radioStatus}}" src="/images/icon/calendar.png"></image>

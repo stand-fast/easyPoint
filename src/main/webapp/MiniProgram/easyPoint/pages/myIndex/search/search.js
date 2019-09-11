@@ -8,6 +8,7 @@ Page({
         inputValue:"",
         showHistory:true,
         showGoodName:false,
+        show_history_page:true,
         history:[
             "小镇别墅", "超级无敌豪华小镇大别墅","城市民宿",
             "小九正装男女高级全套装", "永安驾校","兼职实习"
@@ -18,11 +19,33 @@ Page({
             "小镇超级无敌豪华大别墅",
             "小玖正装",
         ],
+        good_lists:[{
+            imageUrl:"/images/goodImg.png",
+            goodName:"移动公司实习生",
+            type:"实习日薪",
+            price:"80"
+        },{
+            imageUrl: "/images/goodImg.png",
+            goodName: "三百六十度蓝牙移动音响",
+            type: "租赁价格",
+            price: "30"  
+        },{
+            imageUrl: "/images/goodImg.png",
+            goodName: "高速移动驾校",
+            type: "报名价格",
+            price: "4200"  
+            },{
+            imageUrl: "/images/goodImg.png",
+            goodName: "移动公司实习生",
+            type: "实习日薪",
+            price: "80"
+            }]
     },
     onfocus:function(){     //获取到焦点时隐藏历史搜索
         this.setData({
             showHistory:false,
-            showGoodName:true
+            showGoodName:true,
+            show_history_page: true
         })
     },
     lostfocus:function(){      //失去焦点时显示历史搜索
@@ -42,7 +65,9 @@ Page({
         return s.replace(/(^\s*)|(\s*$)/g, "");
     },
     searchGoods:function(){     //搜索商品
-
+        this.setData({
+            show_history_page:false,
+        })
     },
     returnToIndex:function(){
         wx.switchTab({
@@ -68,6 +93,11 @@ Page({
         var value=e.currentTarget.dataset.name;
         this.setData({
             inputValue:value
+        })
+    },
+    jumpDetail:function(){
+        wx.navigateTo({
+            url: '',
         })
     },
     /**
