@@ -83,7 +83,7 @@ function CarRentalStatement(){
 				}
 			});
 	}else{
-		console.log("你取消了结单");
+		console.log("你取消了下架");
 	}
 }
 
