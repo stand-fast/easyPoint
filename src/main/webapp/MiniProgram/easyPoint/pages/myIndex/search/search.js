@@ -20,22 +20,22 @@ Page({
             "小玖正装",
         ],
         good_lists:[{
-            imageUrl:"/images/goodImg.png",
+            imgUrl:"/images/goodImg.png",
             goodName:"移动公司实习生",
             type:"实习日薪",
             price:"80"
         },{
-            imageUrl: "/images/goodImg.png",
+            imgUrl: "/images/goodImg.png",
             goodName: "三百六十度蓝牙移动音响",
             type: "租赁价格",
             price: "30"  
         },{
-            imageUrl: "/images/goodImg.png",
+            imgUrl: "/images/goodImg.png",
             goodName: "高速移动驾校",
             type: "报名价格",
             price: "4200"  
             },{
-            imageUrl: "/images/goodImg.png",
+            imgUrl: "/images/goodImg.png",
             goodName: "移动公司实习生",
             type: "实习日薪",
             price: "80"
@@ -53,6 +53,26 @@ Page({
             showHistory:true,
             showGoodName:false,
         })
+        console.log("搜索");
+        this.getMessage();
+    },
+    getMessage: function () {
+      var selt = this;
+      wx.request({
+        url: '接口路径',
+        data: {
+           openId: app.globalData.openId,
+           inputValue: selt.data.inputValue,
+        },
+        method: 'Post',
+        header: { 'content-type': 'application/x-www-form-urlencoded' },
+        success: function (res) {
+          console.log(res.data)
+          selt.setData({
+            good_lists: res.data,
+          })
+        }
+      })
     },
     takeValue:function(e){      //获取input输入值
         var inputValue=e.detail.value

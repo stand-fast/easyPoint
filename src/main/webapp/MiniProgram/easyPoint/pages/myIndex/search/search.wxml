@@ -32,7 +32,7 @@
     <view class="good_lists">
         <block wx:for="{{good_lists}}" wx:key="{{index}}">
             <view class="good_list">
-                <image src="{{item.imageUrl}}"></image>
+                <image src="{{item.imgUrl}}"></image>
                 <view class="good_list_right">
                     <view class="good_list_name">{{item.goodName}}</view>
                     <view class="good_list_TypeAndPrice">{{item.type}} ￥<text>{{item.price}}</text></view>
