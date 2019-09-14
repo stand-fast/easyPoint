@@ -22,11 +22,6 @@
             <view class="nohistory">目前还没搜索记录哦</view>
         </view>
     </view>
-    <view class="select_box" wx:if="{{inputValue.length>0&&showGoodName}}">
-        <block wx:for="{{hasName}}" wx:key="{{index}}">
-            <view class="select_one" bindtap="mySelect" data-name="{{item}}">{{item}}</view>
-        </block>
-    </view>
 </block>
 <block wx:else>
     <view class="good_lists">
@@ -42,3 +37,8 @@
         </block>
     </view>
 </block>
+<view class="select_box" wx:if="{{inputValue.length>0&&showGoodName}}">
+    <block wx:for="{{good_lists}}" wx:key="{{index}}">
+        <view class="select_one" bindtap="mySelect" data-name="{{item.goodName}}">{{item.goodName}}</view>
+    </block>
+</view>

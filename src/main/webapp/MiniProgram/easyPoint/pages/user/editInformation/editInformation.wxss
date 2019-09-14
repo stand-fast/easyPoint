@@ -1,4 +1,4 @@
-/* pages/myIndex/editInformation/editInformation.wxss */
+/* pages/user/editInformation/editInformation.wxss */
 Page{
     background-color: #f2f2f2;
     font-family: 黑体;

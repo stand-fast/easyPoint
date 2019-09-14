@@ -1,4 +1,5 @@
 // pages/myIndex/search/search.js
+var app=getApp()
 Page({
 
     /**
@@ -12,12 +13,6 @@ Page({
         history:[
             "小镇别墅", "超级无敌豪华小镇大别墅","城市民宿",
             "小九正装男女高级全套装", "永安驾校","兼职实习"
-        ],
-        hasName:[
-            "小镇别墅",
-            "超级无敌豪华小镇大别墅",
-            "小镇超级无敌豪华大别墅",
-            "小玖正装",
         ],
         good_lists:[{
             imgUrl:"/images/goodImg.png",
@@ -49,35 +44,41 @@ Page({
         })
     },
     lostfocus:function(){      //失去焦点时显示历史搜索
-        this.setData({
-            showHistory:true,
-            showGoodName:false,
-        })
-        console.log("搜索");
-        this.getMessage();
+        var input=this.data.inputValue;
+       if(input==""){
+            this.setData({
+                showHistory:true,
+                showGoodName:false,
+            })
+       }else{
+           this.setData({
+               showHistory: false,
+               showGoodName: true,
+           })
+       }
     },
-    getMessage: function () {
-      var selt = this;
-      wx.request({
-        url: '接口路径',
-        data: {
-           openId: app.globalData.openId,
-           inputValue: selt.data.inputValue,
-        },
-        method: 'Post',
-        header: { 'content-type': 'application/x-www-form-urlencoded' },
-        success: function (res) {
-          console.log(res.data)
-          selt.setData({
-            good_lists: res.data,
-          })
-        }
-      })
-    },
+    // getMessage: function () {
+    //   var selt = this;
+    //   wx.request({
+    //     url: '接口路径',
+    //     data: {
+    //        openId: app.globalData.openId,
+    //        inputValue: selt.data.inputValue,
+    //     },
+    //     method: 'Post',
+    //     header: { 'content-type': 'application/x-www-form-urlencoded' },
+    //     success: function (res) {
+    //       console.log(res.data)
+    //       selt.setData({
+    //         good_lists: res.data,
+    //       })
+    //     }
+    //   })
+    // },
     takeValue:function(e){      //获取input输入值
-        var inputValue=e.detail.value
+        var currentInput=e.detail.value
         this.setData({
-            inputValue:this.trim(inputValue),
+            inputValue:this.trim(currentInput),
             showGoodName:true
         })
     },
@@ -87,7 +88,9 @@ Page({
     searchGoods:function(){     //搜索商品
         this.setData({
             show_history_page:false,
+            showGoodName:false
         })
+        this.getMessage();
     },
     returnToIndex:function(){
         wx.switchTab({

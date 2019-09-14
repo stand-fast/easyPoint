@@ -1,21 +1,25 @@
 {
     "pages": [
-      "pages/myIndex/myindex/myindex",
-      "pages/myIndex/search/search",
-    "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
-    "pages/myIndex/editInformation/editInformation",
-    "pages/IdleAndRental/confirmOrder/confirmOrder",
-    "pages/educationTrain/driveSchoolDetail/driveSchoolDetail",
-    "pages/IdleAndRental/editInformation/editInformation",
-    "pages/IdleAndRental/goodDetails/goodDetails",
-    "pages/easyPointCar/bookTicket/bookTicket",
-    "pages/easyPointCar/queryTicket/queryTicket",
-    "pages/easyPointCar/elecTicket/elecTicket",
-    "pages/partInternJob/partimeJob/partimeJob",
-    "pages/partInternJob/JobDetail/JobDetail",
-    "pages/easyPointCar/confirmTicket/confirmTicket",
-    "pages/educationTrain/edTraIndex/edTraIndex",
-    "pages/index/index"
+        "pages/myIndex/myindex/myindex",
+        "pages/myIndex/search/search",
+        "pages/user/user/user",
+        "pages/user/editInformation/editInformation",
+        "pages/user/myOrder/myOrder",
+        "pages/user/myOrderCarDetail/myOrderCarDetail",
+        "pages/user/refund/refund",
+        "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
+        "pages/IdleAndRental/confirmOrder/confirmOrder",
+        "pages/educationTrain/driveSchoolDetail/driveSchoolDetail",
+        "pages/IdleAndRental/editInformation/editInformation",
+        "pages/IdleAndRental/goodDetails/goodDetails",
+        "pages/easyPointCar/bookTicket/bookTicket",
+        "pages/easyPointCar/queryTicket/queryTicket",
+        "pages/easyPointCar/elecTicket/elecTicket",
+        "pages/partInternJob/partimeJob/partimeJob",
+        "pages/partInternJob/JobDetail/JobDetail",
+        "pages/easyPointCar/confirmTicket/confirmTicket",
+        "pages/educationTrain/edTraIndex/edTraIndex",
+        "pages/index/index"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -43,7 +47,7 @@
             "iconPath": "/images/tarbar/enter_before.png",
             "selectedIconPath": "/images/tarbar/enter_after.png"
         },{
-            "pagePath": "pages/myIndex/myindex/myindex",
+            "pagePath": "pages/user/user/user",
             "text": "我的",
             "iconPath": "/images/tarbar/user_before.png",
             "selectedIconPath": "/images/tarbar/user_after.png"

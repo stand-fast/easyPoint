@@ -1,0 +1,24 @@
+<!--pages/user/user/user.wxml-->
+<view class="header">
+    <image src="{{userImg}}"></image>
+    <view wx:if="{{hasPermission}}" class="username">{{userNickName}}</view>
+    <view wx:else class="noname" bindtap="getPermission">授权登录</view>
+</view>
+<view class="editUserInfos" bindtap="toEditUserInfos">
+    <image src="/images/icon/cusEdit.png"></image>
+    <view class="edit_text">编辑个人信息</view>
+</view>
+<view class="kong"></view>
+<view class="order_lists">
+    <view wx:for="{{order_lists}}" wx:key="{{index}}" class="order_list" bindtap="toOrder" data-index="{{index}}">
+        <image src="{{item.url}}"></image>
+        <view class="order_list_text">{{item.text}}</view>
+    </view>
+</view>
+<view class="kong"></view>
+<view class="item_lists">
+    <view class="item_list" wx:for="{{item_lists}}" wx:key="{{index}}" bindtap="toItem" data-index="{{index}}">
+        <image src="{{item.icon}}"></image>
+        <view class="item_list_text">{{item.text}}</view>
+    </view>
+</view>

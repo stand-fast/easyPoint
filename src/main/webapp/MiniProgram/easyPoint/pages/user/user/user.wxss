@@ -1,0 +1,114 @@
+/* pages/user/user/user.wxss */
+Page{
+    background-color: #fff;
+    font-family: 黑体;
+}
+.header{
+    width: 100%;
+    height: 160rpx;
+    background-color: #56b4f6;
+    display: flex;
+    flex-direction: row;
+}
+.username{
+    width: 500rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 32rpx;
+    color: #fff;
+    margin: 90rpx 0rpx 0rpx 30rpx;
+}
+.noname{
+    width: 140rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 28rpx;
+    color: #fff;
+    text-align: center;
+    border: 2rpx solid #fff;
+    border-radius: 25rpx;
+    margin: 84rpx 0rpx 0rpx 30rpx;
+}
+.header image{
+    width: 140rpx;
+    height: 140rpx;
+    background-color: #fff;
+    margin-left: 60rpx;
+}
+.editUserInfos{
+    width: 100%;
+    height: 80rpx;
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+    justify-content: center;
+}
+.editUserInfos image{
+    width: 32rpx;
+    height: 28rpx;
+    margin: auto 10rpx;
+}
+.edit_text{
+    width: 160rpx;
+    height: 34rpx;
+    line-height: 34rpx;
+    font-size: 26rpx;
+    color: #65b8e2;
+    margin: auto 10rpx;
+}
+.kong{
+    width: 100%;
+    height: 40rpx;
+    background-color: #f6fbff;
+}
+.order_lists{
+    width: 100%;
+    height: 200rpx;
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+}
+.order_list{
+    width: 33%;
+    height: 200rpx;
+    text-align: center;
+}
+.order_list image{
+    width: 80rpx;
+    height: 80rpx;
+    margin: 36rpx  0 10rpx 0rpx;
+}
+.order_list_text{
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 28rpx;
+    color: #666;
+}
+.item_lists{
+    width: 100%;
+    height: 500rpx;
+}
+.item_list{
+    width: 100%;
+    height: 100rpx;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    border-bottom:4rpx solid #f6fbff;
+}
+.item_list image{
+    width: 36rpx;
+    height: 40rpx;
+    margin: 30rpx 26rpx 0rpx 50rpx;
+}
+.item_list image:first-child{
+    width: 40rpx!important;
+    height: 40rpx!important;
+}
+.item_list_text{
+    width: 140rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: 30rpx;
+    color: #666;
+}

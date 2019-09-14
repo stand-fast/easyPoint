@@ -1,0 +1,42 @@
+<!--pages/user/myOrder/myOrder.wxml-->
+<view class="header">
+    <view class='nav_switch'>
+        <view class="{{currenTab==0 ? 'on' :''}} nav_text" data-current='0' bindtap="swichNav">出行</view>
+        <view class="{{currenTab==1 ? 'on' :''}} nav_text" data-current='1' bindtap="swichNav">教育</view>
+        <view class="{{currenTab==2 ? 'on' :''}} nav_text" data-current='2' bindtap="swichNav">租借</view>
+    </view>
+</view>
+<block wx:if="{{currenTab==0}}">
+    <view wx:for="{{ticket_lists}}" wx:key="{{index}}" class="ticket_list" bindtap="toDetail" data-index="{{index}}">
+        <view class="ticket_time">
+            <view class="go_time_text">出发时间</view>
+            <view class="go_time">{{item.time}}</view>
+            <view class="ticket_type">{{item.type}}</view>
+        </view>
+        <view class="ticketContent">
+            <view class="content_left">
+                <view class="circle"></view>
+                <view class="heng"></view>
+                <view class="circle"></view>
+            </view>
+            <view class="content_right">
+                <view class="line">
+                    <view class="address_text">出发</view>
+                    <view class="address">{{item.goAddress}}</view>
+                    <view class="status">{{item.payStatus}}</view>
+                </view>
+                <view class="line last">
+                    <view class="address_text">到达</view>
+                    <view class="address">{{item.endAddress}}</view>
+                    <view class="status">{{item.ticketNum}}张</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</block>
+<block wx:if="{{currenTab==1}}">
+    <view>教育</view>
+</block>
+<block wx:if="{{currenTab==2}}">
+    <view>租借</view>
+</block>

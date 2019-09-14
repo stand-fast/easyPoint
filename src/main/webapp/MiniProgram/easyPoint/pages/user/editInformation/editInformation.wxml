@@ -1,4 +1,4 @@
-<!--pages/myIndex/editInformation/editInformation.wxml-->
+<!--pages/user/editInformation/editInformation.wxml-->
 <view class="content">
     <view class="content_title">
         <view class="firstImg"><image src="/images/icon/edit.png"></image></view>

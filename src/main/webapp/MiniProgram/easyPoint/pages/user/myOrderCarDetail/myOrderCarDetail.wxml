@@ -1,0 +1,44 @@
+<!--pages/user/myOrderCarDetail/myOrderCarDetail.wxml-->
+<view class="header">
+    <view class="item first">
+        <view class="item_text">出发时间</view>
+        <view class="time">{{ticketDetail.goTime}}</view>
+    </view>
+    <view class="item">
+        <view class="item_text">出发地</view>
+        <view class="item_address">{{ticketDetail.startAddress}}</view>
+    </view>
+    <view class="item">
+        <view class="item_text">目的地</view>
+        <view class="item_address">{{ticketDetail.endAddress}}</view>
+    </view>
+</view>
+<view class="passengers">
+    <view class="item" wx:if="{{current==0}}">
+        <view class="passen_text">乘客数</view>
+        <view class="passenNum">{{ticketDetail.passengerNum}}位</view>
+    </view>
+    <view class="item" wx:if="{{current==1}}">
+        <view class="passen_text">正式票￥<text>{{ticketDetail.price}}</text></view>
+        <view class="passenNum">{{ticketDetail.passengerNum}}张</view> 
+    </view>
+    <view class="item" wx:if="{{current==0}}">
+        <view class="passen_text">{{ticketDetail.status}}</view>
+        <view class="passen_price">合计 ￥<text>{{ticketDetail.price}}</text></view>
+    </view>
+    <view class="item" wx:if="{{current==1}}">
+        <view class="passen_text">{{ticketDetail.status}}</view>
+        <view class="passen_price">合计 ￥<text>{{ticketDetail.price*ticketDetail.passengerNum}}</text></view>
+    </view>
+</view>
+<view class="responser">
+    <view class="responser_text">乘车负责人</view>
+    <view class="item" wx:for="{{ticketDetail.passengers}}" wx:key="{{index}}">
+        <view class="responser_people">{{item.name}}</view>
+        <view class="responser_phone">{{item.phone}}</view>
+    </view>
+</view>
+<view class="apply_refund" bindtap="applyRefund">申请退款<text>（只能在发车前一天修改）</text></view>
+<view class="hr"></view>
+<view class="changeTicket" bindtap="changeTicket">更换车票<text>（只能在发车前一天修改）</text></view>
+<view class="hr"></view>
