@@ -7,7 +7,7 @@ Page({
      */
     data: {
         currentTab: 0,
-        money:1000,
+        money:0,
         dateTime1: null, //开始时间value
         dateTimeArray1: null, //开始时间数组
         select:false,
@@ -23,7 +23,22 @@ Page({
             "/images/bg2_car.png"
         ],
         associations:["汕头同乡会","潮州同乡会","普宁同乡会"],
-        seatNumber: ["35座大巴", "49座大巴", "53座大巴","57座大巴"]
+        //seatNumber: ["35座大巴", "49座大巴", "53座大巴","57座大巴"],
+        seatvehicle: [
+          {
+            vehicleType: "7座大巴",
+            deposit: "100"
+          },
+          {
+            vehicleType: "35座大巴",
+            deposit: "200"
+          },
+
+          {
+            vehicleType: "53座大巴",
+            deposit: "700"
+          },
+        ]
     },
 
   //提交拉起支付功能
@@ -194,7 +209,8 @@ Page({
     changeSeatType:function(e){
         var index=e.detail.value;
         this.setData({
-            carType:this.data.seatNumber[index]
+            carType:this.data.seatNumber[index],
+            money: this.data.seatDeposit[index]
         })
     },
     //出发时间
@@ -313,7 +329,61 @@ Page({
       // this.setData({
       //   userInformation: userInformation,
       // })
+
+      //车辆类型数据以及对应应付定金处理数据，接上服务器后删除
+      console.log(this.data.seatvehicle);
+      var seatvehicle=this.data.seatvehicle;
+      var seatNumber=[];
+      var seatDeposit=[];
+      for (var i = 0; i < seatvehicle.length;i++){
+        seatNumber.push(seatvehicle[i].vehicleType)
+        seatDeposit.push(seatvehicle[i].deposit);
+      }
+      this.setData({
+        seatNumber: seatNumber,
+        seatDeposit: seatDeposit
+      })
     },
+
+    //请求车辆类型数据以及对应应付定金
+    getMessage: function () {
+      var selt = this;
+      wx.request({
+        url: '接口路径',
+        method: 'Post',
+        header: { 'content-type': 'application/x-www-form-urlencoded' },
+        success: function (res) {
+          console.log(res.data);    //res.data为seatVehicle对应数据
+          var seatvehicle = res.data;
+          var seatNumber = [];
+          var seatDeposit = [];
+          for (var i = 0; i < seatvehicle.length; i++) {
+            seatNumber.push(seatvehicle[i].vehicleType)
+            seatDeposit.push(seatvehicle[i].deposit);
+          }
+          this.setData({
+            seatNumber: seatNumber,
+            seatDeposit: seatDeposit
+          })
+
+        }
+      })
+    },
+
+  //请求同乡会名称数据
+  getCommitteeMessage: function () {
+    var selt = this;
+    wx.request({
+      url: '接口路径',
+      method: 'Post',
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      success: function (res) {
+        this.setData({
+          associations: res.data,
+        })
+      }
+    })
+  },
 
     /**
      * 生命周期函数--监听页面初次渲染完成

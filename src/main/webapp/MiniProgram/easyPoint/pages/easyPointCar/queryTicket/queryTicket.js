@@ -9,34 +9,25 @@ Page({
         bgcolorZh:"#56b4f6",    //正式票颜色
         bgcolorYu:"#5697be",    //预约票颜色
         ticketInfos:[
-        {   
-            ticketId:"32ASD3",
-            departureTime:"07-01 18:00",
-            departurePlace:"汕头",
-            destination:"广金广州本部",
-            price:130,
-            seatSurplus:23,
-            type:1
-        },
-        {
-          ticketId: "32hjfsdfs123",
-          departureTime: "07-01 18:00",
-          departurePlace: "汕头",
-          destination: "广金广州本部",
-          price: 130,
-          seatSurplus: 23,
-          type: 1
-        },
+          {   
+              ticketId:"32ASD3",
+              departureTime:"07-01 18:00",
+              departurePlace:"汕头",
+              destination:"广金广州本部",
+              price:130,
+              seatSurplus:23,
+              type:1
+          },
           {
-            ticketId: "32hjfsdfs123",
-            departureTime: "07-01 18:00",
-            departurePlace: "汕头",
-            destination: "广金广州本部",
-            price: 130,
-            seatSurplus: 23,
-            type: 2
-        },
-      ],
+              ticketId: "32hjfsdfs123",
+              departureTime: "07-01 18:00",
+              departurePlace: "汕头",
+              destination: "广金广州本部",
+              price: 130,
+              seatSurplus: 23,
+              type: 2
+          },
+        ],
     },
   buyTicket: function (res) {
     var type = parseInt(res.currentTarget.dataset.type);
@@ -52,13 +43,13 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
-      console.log(options.townsmen_association);
-      this.setData({
-        townsmen_association: options.townsmen_association,
-      })
-      //this.getMessage();
-    },
+  onLoad: function (options) {
+    console.log(options.townsmen_association);
+    this.setData({
+      townsmen_association: options.townsmen_association,
+    })
+    //this.getMessage();
+  },
   //获得数据
   getMessage: function () {
     var selt = this;
