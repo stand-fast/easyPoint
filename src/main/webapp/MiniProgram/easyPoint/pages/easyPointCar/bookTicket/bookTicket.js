@@ -17,7 +17,7 @@ Page({
         successShowmodal:false,
         is_back:0,      //是否往返
         is_insurance:0,   //是否购买保险
-        townsmen_association:null,  //乡会种类
+        assoName:'',
         imgUrls: [
             "/images/bg1_car.png",
             "/images/bg2_car.png"
@@ -244,25 +244,10 @@ Page({
       var index = e.detail.value;
       var name=this.data.associations[index];
       //判断车票类型
-      if (name == '汕头同乡会') {
-        this.setData({
-          townsmen_association: 0
-        })
-      }
-      else if (name == '潮州同乡会') {
-        this.setData({
-          townsmen_association: 1
-        })
-      }
-      else if (name == '普宁同乡会') {
-        this.setData({
-          townsmen_association: 2
-        })
-      }
-      //console.log(this.data.townsmen_association);
+      wx.setStorageSync('RuralCommitteeName', name);
       this.setData({
             assoName: name
-        })
+      })
     },
   //转到电子订单详情 
   successBtn:function(){
@@ -272,7 +257,7 @@ Page({
     },
     //转到车票查询
     searchAsso:function(){
-      if (this.data.townsmen_association==null){
+      if (this.data.assoName==""){
         wx.showToast({
           title: '请选择同乡会',
           icon: 'none',
@@ -281,7 +266,7 @@ Page({
       }
       else(
         wx.navigateTo({
-          url: '/pages/easyPointCar/queryTicket/queryTicket?townsmen_association=' + this.data.townsmen_association,
+          url: '/pages/easyPointCar/queryTicket/queryTicket'
         })
       )
     },
