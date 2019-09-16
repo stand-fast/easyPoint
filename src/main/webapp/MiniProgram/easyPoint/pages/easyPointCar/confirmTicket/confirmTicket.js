@@ -6,6 +6,7 @@ Page({
      */
     data: {
         currentab:0,
+        number:1,
         check:false,
         radioStatus: false, 
         procheck: false,
@@ -13,7 +14,9 @@ Page({
         successPay:false,
         userInformation:{    //接上服务器后删除
           username:'肖奈',
-          phone:11231231231
+          phone:11231231231,
+          status:"正式",
+          price:"135"
         }
     },
     //是否购买保险
@@ -39,6 +42,28 @@ Page({
           is_insurance: 0,
         })
       }
+    },
+    getMin:function(e){     //  减法
+        var min=this.data.number;
+        var result=min-1;
+        if(result<1){
+            result=1
+        }
+        this.setData({
+            number:result
+        })
+    },
+    getMax: function (e) {     //  加法
+        var max = this.data.number;
+        var result=max+1;
+        this.setData({
+            number: result
+        })
+    },
+    changeContact:function(){
+        wx.navigateTo({
+            url: '/pages/easyPointCar/changeContact/changeContact',
+        })
     },
     proChange: function (e) {
         var procheck = this.data.procheck;
@@ -156,7 +181,7 @@ Page({
       })
     }
     var ticketInfos = wx.getStorageSync('ticketInfos');
-    ticketInfos.sumprice = ticketInfos.price
+    ticketInfos.sumprice = ticketInfos.price*number
     this.setData({
       ticketInfos: ticketInfos,
     })

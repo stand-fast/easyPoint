@@ -1,0 +1,139 @@
+/* pages/easyPointCar/changeContact/changeContact.wxss */
+Page{
+    background-color: #f2f2f2;
+    font-family: 黑体;
+}
+.item_list{
+    width: 100%;
+    height: 140rpx;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    margin-top: 18rpx;
+}
+.item_list_circle{
+    width: 100rpx;
+    height: 140rpx;
+    display: flex;
+    flex-direction: row;
+}
+.circle1,.circle2{
+    width: 40rpx;
+    height: 40rpx;
+    border-radius: 50%;
+    margin:50rpx auto;
+    background-color: #56b4f6;
+}
+.circle2{
+    background-color: #999999!important;
+}
+.item_list_circle image{
+    width: 30rpx;
+    height: 30rpx;
+    position: fixed;
+    margin:56rpx 0rpx 50rpx 36rpx; 
+    color: #fff;
+}
+.item_list_contact{
+    width: 400rpx;
+    height: 140rpx;
+    font-size: 30rpx;
+    color: #333;
+}
+.name,.phone{
+    height: 40rpx;
+    line-height: 40rpx;
+    margin: 18rpx 10rpx 18rpx 10rpx;
+}
+.item_list_button{
+    width: 220rpx;
+    height: 140rpx;
+    text-align: center;
+    font-size: 26rpx;
+    padding-top: 18rpx;
+}
+.button{
+    color: #7ecef4;
+}
+.shu{
+    color: #999;
+}
+.btn{
+    margin: 50rpx;
+}
+.btn button{
+    width: 300rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    color: #fff;
+    font-size: 30rpx;
+    background-color: #56b4f6;
+    border-radius: 8rpx;
+}
+.btn button::after{
+    border: none;
+}
+.mask_layer {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999;
+    left:0;top:0;
+    background: #000;
+    opacity: 0.3;
+    overflow: hidden;
+}
+.modal_box {
+    width: 550rpx;
+    height: 550rpx;
+    overflow: hidden;
+    position: fixed;
+    top: 10%;
+    left: 0;
+    z-index: 1001;
+    background: #fafafa;
+    margin:13%;
+    border-radius: 8rpx;
+}
+.title{
+    width: 550rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #56b4f6;
+    margin: 30rpx 0 20rpx 0;
+}
+.modal_box_text{
+    width: 130rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+    font-size: 30rpx;
+    color: #666;
+    margin: 30rpx 0 20rpx 60rpx;
+}
+.modal_box input{
+    width: 400rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+    color: #666;
+    font-size: 30rpx;
+    margin: 20rpx 0 30rpx 60rpx;
+}
+.place{
+    color: #999;
+    font-size: 30rpx;
+}
+.success_btn{
+    width: 160rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    background-color: #56b4f6;
+    color: #fff;
+    font-size: 30rpx;
+    margin-top: 60rpx;
+    border-radius: 0rpx;
+}
+.success_btn::after{
+    border:none;
+}

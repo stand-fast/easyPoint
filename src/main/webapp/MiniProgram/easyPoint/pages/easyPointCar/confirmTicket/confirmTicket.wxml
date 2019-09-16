@@ -24,24 +24,34 @@
     <view class="flex_right">
         <view class="flex_right_item">
             <view class="dot_gray"></view>
-            <text>乘客姓名：</text>
-            <view class="item_text">{{userInformation.username}}</view>
+            <text>票价</text>
+            <view class="item_text" wx:if="{{currentab==0}}">正式票<text>￥{{userInformation.price}}</text></view>
+            <view class="item_text" wx:if="{{currentab==1}}">预约票<text>￥{{userInformation.price}}</text></view>
         </view>
             <view class="flex_right_item">
             <view class="dot_gray"></view>
-            <text>联系方式：</text>
-            <view class="item_text">{{userInformation.phone}}</view>
+            <text>预定票数</text>
+            <view class="min left" bindtap="getMin">
+                <view class="ticket_circle"></view>
+                <text>-</text>
+            </view>
+            <input disabled="true" class="ticketInput" value="{{number}}"></input>
+            <view class="max" bindtap="getMax">
+                <view class="ticket_circle"></view>
+                <text>+</text>
+            </view>
         </view>
     </view>
 </view>
-<view class="content_price">
+<view class="content_contact">
     <view class="flex_left"></view>
     <view class="flex_right">
-        <view class="price_item">
+        <view class="contact_item">
             <view class="dot_gray"></view>
-            <text>票价</text>
-            <view class="price_item_text">{{tickeType}}<text>￥{{ticketInfos.price}}</text></view>
+            <text>联系人</text>
+            <view class="contact_item_text"><text>{{ userInformation.username}}</text><text>{{ userInformation.phone}}</text></view>
         </view>
+        <view class="changeContact" bindtap="changeContact">更换联系人</view>
     </view>
 </view>
 <view class="content_insurance">

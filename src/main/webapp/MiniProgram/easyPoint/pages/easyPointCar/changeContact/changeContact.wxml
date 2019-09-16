@@ -1,0 +1,30 @@
+<!--pages/easyPointCar/changeContact/changeContact.wxml-->
+<view class="item_list" wx:for="{{item_list}}" wx:key="{{index}}">
+    <view class="item_list_circle" bindtap="radiochange" data-index="{{index}}">
+        <view class='{{index==number?"circle1":"circle2"}}'></view>
+        <image src="/images/icon/right.png"></image>
+    </view>
+    <view class="item_list_contact">
+        <view class="name">{{item.name}}</view>
+        <view class="phone">{{item.phone}}</view>
+    </view>
+    <view class="item_list_button">
+        <text class="button" bindtap="change" data-index="{{index}}">修改</text>
+        <text class="shu"> | </text>
+        <text class="button" bindtap="deleteContact" data-index="{{index}}">删除</text>
+    </view>
+</view>
+<view class="btn"><button bindtap="addContact">添加联系人</button></view>
+<block wx:if="{{showModal}}">
+    <form bindsubmit="trueBtn">
+        <view class='mask_layer' bindtap="hide_modal"/>
+        <view class='modal_box'>
+            <view class="title">添加联系人</view>
+            <view class="modal_box_text">姓名</view>
+            <input type="text" value="{{name}}" placeholder="请输入姓名" bindinput="getName"></input>
+            <view class="modal_box_text">联系电话</view>
+            <input type="number" value="{{phone}}" placeholder="请输入电话" placeholder-class="place" maxlength="11" bindinput="getPhone"></input>
+            <button class="success_btn" form-type="submit">保存</button>
+        </view>
+    </form>
+</block>

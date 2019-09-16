@@ -15,6 +15,7 @@
         "pages/easyPointCar/bookTicket/bookTicket",
         "pages/easyPointCar/queryTicket/queryTicket",
         "pages/easyPointCar/elecTicket/elecTicket",
+        "pages/easyPointCar/changeContact/changeContact",
         "pages/partInternJob/partimeJob/partimeJob",
         "pages/partInternJob/JobDetail/JobDetail",
         "pages/easyPointCar/confirmTicket/confirmTicket",

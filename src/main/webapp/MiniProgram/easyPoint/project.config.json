@@ -48,13 +48,33 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
 					"name": "search",
 					"pathName": "pages/myIndex/search/search",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "user",
+					"pathName": "pages/user/user/user",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "changeContact",
+					"pathName": "pages/easyPointCar/changeContact/changeContact",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "confirmTicket",
+					"pathName": "pages/easyPointCar/confirmTicket/confirmTicket",
 					"scene": null
 				}
 			]

@@ -19,7 +19,7 @@ Page{
 .flex_right{
     width:700rpx;
     height: 100%;
-    padding: 20rpx 10rpx 20rpx 0rpx;
+    padding: 10rpx 10rpx 20rpx 0rpx;
 }
 .flex_right_item{
     width: 100%;
@@ -27,7 +27,7 @@ Page{
     line-height: 60rpx;
     display: flex;
     flex-direction: row;
-    margin-top: 10rpx;
+    margin-top: 18rpx;
 }
 .flex_right_item text{
     width: 160rpx;
@@ -38,11 +38,12 @@ Page{
     margin-left: 20rpx;
 }
 .item_text{
-    width: 460rpx;
-    height: 60rpx;
-    line-height: 60rpx;
-    color: #333;
-    font-size: 35rpx;
+    width: 300rpx;
+    color: #999;
+    font-size: 30rpx;
+    font-family: 微软雅黑;
+    text-align: right;
+    margin-left: 140rpx;
 }
 .dot_blue{
     width: 24rpx;
@@ -50,11 +51,11 @@ Page{
     border-radius: 50%;
     border: 1rpx solid #7ecef4;
     background-color: #7ecef4;
-    margin: 20rpx 8rpx 0rpx -18rpx;
+    margin: 16rpx 8rpx 0rpx -17rpx;
 }
 .content_passby{
     width: 100%;
-    height: 200rpx;
+    height: 180rpx;
     display: flex;
     flex-direction: row;
     margin-top: 16rpx;
@@ -66,40 +67,83 @@ Page{
     border-radius: 50%;
     border: 1rpx solid #eee;
     background-color: #eee;
-    margin: 20rpx 8rpx 0rpx -18rpx;
+    margin: 16rpx 8rpx 0rpx -17rpx;
 }
-.content_price{
+.min,.max{
+    height: 30rpx;
+    margin-top: 14rpx;
+    display: flex;
+    flex-direction: row;
+}
+.left{
+    margin-left: 320rpx;
+}
+.ticket_circle{
+    width: 30rpx;
+    height: 30rpx;
+    border-radius: 50%;
+    background-color: #7ecef4;
+}
+.min text,.max text{
+    width: 0rpx;
+    height: 30rpx;
+    line-height: 30rpx;
+    position: fixed;
+    color: #fff;
+    font-size: 36rpx;
+    font-weight: bold;
+    margin-left: 5rpx;
+}
+.ticketInput{
+    width: 60rpx;
+    height: 30rpx;
+    line-height: 30rpx;
+    color: #333;
+    font-size: 36rpx;
+    text-align: center;
+    margin:4rpx 0 0 0rpx;
+}
+.content_contact{
     width: 100%;
-    height: 100rpx;
+    height: 180rpx;
     display: flex;
     flex-direction: row;
     margin-top: 16rpx;
     background-color: #fff;
 }
-.price_item{
+.contact_item{
     width: 100%;
     display: flex;
     flex-direction: row;
     font-size: 30rpx;
     color: #999;
-}
-.price_item text{
     margin-top: 10rpx;
-    font-family: 微软雅黑;
-    width: 80rpx;
+}
+.contact_item text{
+    margin-top: 10rpx;
+    width: 100rpx;
     height: 44rpx;
     line-height: 44rpx;
     margin-left: 20rpx;
 }
-.price_item_text{
-    width:220rpx;
+.contact_item_text{
+    width:420rpx;
     height: 44rpx;
     line-height: 44rpx;
-    margin: 8rpx 12rpx 0rpx 340rpx;
+    margin: 8rpx 12rpx 0rpx 30rpx;
 }
-.price_item_text text,.on{
+.contact_item_text text{
+    color: #333!important;
+}
+.item_text text,.on{
     font-size: 36rpx!important;
     color: #7ecef4!important;
+}
+.changeContact{
+    font-size: 30rpx;
+    color: #56b4f6;
+    text-align: center;
+    margin-top:30rpx; 
 }
 .content_insurance{
     width: 100%;
@@ -122,6 +166,7 @@ Page{
 .circle2{
     width: 32rpx;
     height: 32rpx;
+    line-height: 32rpx;
     border-radius: 50%;
     border:1rpx solid #7ecef4;
     background-color: #7ecef4;
