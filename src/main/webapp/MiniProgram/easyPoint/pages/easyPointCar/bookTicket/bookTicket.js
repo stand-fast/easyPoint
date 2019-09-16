@@ -7,7 +7,7 @@ Page({
      */
     data: {
         currentTab: 0,
-        money:1000,
+        money:0,
         dateTime1: null, //开始时间value
         dateTimeArray1: null, //开始时间数组
         select:false,
@@ -17,13 +17,28 @@ Page({
         successShowmodal:false,
         is_back:0,      //是否往返
         is_insurance:0,   //是否购买保险
-        townsmen_association:null,  //乡会种类
+        assoName:'',
         imgUrls: [
             "/images/bg1_car.png",
             "/images/bg2_car.png"
         ],
         associations:["汕头同乡会","潮州同乡会","普宁同乡会"],
-        seatNumber: ["35座大巴", "49座大巴", "53座大巴","57座大巴"]
+        //seatNumber: ["35座大巴", "49座大巴", "53座大巴","57座大巴"],
+        seatvehicle: [
+          {
+            vehicleType: "7座大巴",
+            deposit: "100"
+          },
+          {
+            vehicleType: "35座大巴",
+            deposit: "200"
+          },
+
+          {
+            vehicleType: "53座大巴",
+            deposit: "700"
+          },
+        ]
     },
 
   //提交拉起支付功能
@@ -194,7 +209,8 @@ Page({
     changeSeatType:function(e){
         var index=e.detail.value;
         this.setData({
-            carType:this.data.seatNumber[index]
+            carType:this.data.seatNumber[index],
+            money: this.data.seatDeposit[index]
         })
     },
     //出发时间
@@ -228,25 +244,10 @@ Page({
       var index = e.detail.value;
       var name=this.data.associations[index];
       //判断车票类型
-      if (name == '汕头同乡会') {
-        this.setData({
-          townsmen_association: 0
-        })
-      }
-      else if (name == '潮州同乡会') {
-        this.setData({
-          townsmen_association: 1
-        })
-      }
-      else if (name == '普宁同乡会') {
-        this.setData({
-          townsmen_association: 2
-        })
-      }
-      //console.log(this.data.townsmen_association);
+      wx.setStorageSync('RuralCommitteeName', name);
       this.setData({
             assoName: name
-        })
+      })
     },
   //转到电子订单详情 
   successBtn:function(){
@@ -256,7 +257,7 @@ Page({
     },
     //转到车票查询
     searchAsso:function(){
-      if (this.data.townsmen_association==null){
+      if (this.data.assoName==""){
         wx.showToast({
           title: '请选择同乡会',
           icon: 'none',
@@ -265,7 +266,7 @@ Page({
       }
       else(
         wx.navigateTo({
-          url: '/pages/easyPointCar/queryTicket/queryTicket?townsmen_association=' + this.data.townsmen_association,
+          url: '/pages/easyPointCar/queryTicket/queryTicket'
         })
       )
     },
@@ -313,7 +314,61 @@ Page({
       // this.setData({
       //   userInformation: userInformation,
       // })
+
+      //车辆类型数据以及对应应付定金处理数据，接上服务器后删除
+      console.log(this.data.seatvehicle);
+      var seatvehicle=this.data.seatvehicle;
+      var seatNumber=[];
+      var seatDeposit=[];
+      for (var i = 0; i < seatvehicle.length;i++){
+        seatNumber.push(seatvehicle[i].vehicleType)
+        seatDeposit.push(seatvehicle[i].deposit);
+      }
+      this.setData({
+        seatNumber: seatNumber,
+        seatDeposit: seatDeposit
+      })
     },
+
+    //请求车辆类型数据以及对应应付定金
+    getMessage: function () {
+      var selt = this;
+      wx.request({
+        url: '接口路径',
+        method: 'Post',
+        header: { 'content-type': 'application/x-www-form-urlencoded' },
+        success: function (res) {
+          console.log(res.data);    //res.data为seatVehicle对应数据
+          var seatvehicle = res.data;
+          var seatNumber = [];
+          var seatDeposit = [];
+          for (var i = 0; i < seatvehicle.length; i++) {
+            seatNumber.push(seatvehicle[i].vehicleType)
+            seatDeposit.push(seatvehicle[i].deposit);
+          }
+          this.setData({
+            seatNumber: seatNumber,
+            seatDeposit: seatDeposit
+          })
+
+        }
+      })
+    },
+
+  //请求同乡会名称数据
+  getCommitteeMessage: function () {
+    var selt = this;
+    wx.request({
+      url: '接口路径',
+      method: 'Post',
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      success: function (res) {
+        this.setData({
+          associations: res.data,
+        })
+      }
+    })
+  },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
