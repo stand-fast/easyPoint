@@ -75,7 +75,11 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
+    onLoad: function (options) {      //加判断用户是否登录，没登录弹出弹窗
+        wx.showModal({
+            title: '提示',
+            content: '为了更好的服务体验，我们需要获取您的用户信息，请点击授权登录',
+        })
 
     },
 
