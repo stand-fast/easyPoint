@@ -42,15 +42,21 @@ Page({
     },
     toDetail:function(e){
         var index=e.currentTarget.dataset.index;
-        wx.navigateTo({
-            url: '/pages/user/myOrderCarDetail/myOrderCarDetail',
-        })
+        if(this.data.ticket_lists[index].type=="校友会包车"){
+            wx.navigateTo({
+                url: '/pages/user/myOrderCarDetail/myOrderCarDetail?current=0',
+            })
+        }
+        else if(this.data.ticket_lists[index].type=="旅游出行"){
+            wx.navigateTo({
+                url: '/pages/user/myOrderCarDetail/myOrderCarDetail?current=1',
+            })
+        }
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
     },
 
     /**

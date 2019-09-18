@@ -5,7 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        current:0,
+        current:"",
         ticketDetail:{
             startAddress:"汕头",
             endAddress:"广金广州本部",
@@ -27,7 +27,7 @@ Page({
             url: '/pages/user/refund/refund',
         })
     },
-    changeTicket:function(){
+    changeTime:function(){
         wx.navigateTo({
             url: '',
         })
@@ -36,7 +36,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        var current = options.current;
+        this.setData({
+            current: current
+        })
     },
 
     /**
