@@ -42,10 +42,10 @@ function turnPage(page)
 			array['status']="已安排"
 		}
 		if(array['isBack']=="0"){
-			data_html += "<div class='containerRentalOrder'><ul><li title="+array['departurePlace']+">"+array['departurePlace']+"</li><li title="+array['destination']+">"+array['destination']+"</li class='RentalOrderCenter'><li class='RentalOrderCenter'>"+array['travelNum']+"</li><li>"+array['departureTime']+"</li><li class='RentalOrderCenter'>无</li><li>"+array['vehicleType']+"("+array['deposit']+")</li><li class='RentalOrderCenter'>"+array['isInsurance']+"</li><li class='RentalOrderCenter'>"+array['username']+"</li><li>"+array['phone']+"</li><li class='RentalOrderCenter'>"+array['status']+"</li><li class='RentalOrderCenter'><a href='javaScript:refund("+array['tourismId']+")'>进入</a></li></ul></div>"; 
+			data_html += "<div class='containerRentalOrder'><ul><li title="+array['departurePlace']+">"+array['departurePlace']+"</li><li title="+array['destination']+">"+array['destination']+"</li class='RentalOrderCenter'><li>"+array['departureTime']+"</li><li class='RentalOrderCenter'>无</li><li>"+array['vehicleType']+"("+array['deposit']+")</li><li class='RentalOrderCenter'>"+array['isInsurance']+"</li><li class='RentalOrderCenter'>"+array['username']+"</li><li>"+array['phone']+"</li><li class='RentalOrderCenter'>"+array['status']+"</li><li class='RentalOrderCenter'><a href='javaScript:refund("+array['tourismId']+")'>获取</a></li><li class='RentalOrderCenter'><a href='javaScript:deleteTourism("+array['tourismId']+")'>删除</a></li></ul></div>"; 
 		}
 		else{
-			data_html += "<div class='containerRentalOrder'><ul><li title="+array['departurePlace']+">"+array['departurePlace']+"</li><li title="+array['destination']+">"+array['destination']+"</li class='RentalOrderCenter'><li class='RentalOrderCenter'>"+array['travelNum']+"</li><li>"+array['departureTime']+"</li><li>"+array['backTime']+"</li><li>"+array['vehicleType']+"("+array['deposit']+")</li><li class='RentalOrderCenter'>"+array['isInsurance']+"</li><li class='RentalOrderCenter'>"+array['username']+"</li><li>"+array['phone']+"</li><li class='RentalOrderCenter'>"+array['status']+"</li><li class='RentalOrderCenter'><a href='javaScript:refund("+array['tourismId']+")'>进入</a></li></ul></div>"; 
+			data_html += "<div class='containerRentalOrder'><ul><li title="+array['departurePlace']+">"+array['departurePlace']+"</li><li title="+array['destination']+">"+array['destination']+"</li class='RentalOrderCenter'><li>"+array['departureTime']+"</li><li>"+array['backTime']+"</li><li>"+array['vehicleType']+"("+array['deposit']+")</li><li class='RentalOrderCenter'>"+array['isInsurance']+"</li><li class='RentalOrderCenter'>"+array['username']+"</li><li>"+array['phone']+"</li><li class='RentalOrderCenter'>"+array['status']+"</li><li class='RentalOrderCenter'><a href='javaScript:refund("+array['tourismId']+")'>获取</a></li><li class='RentalOrderCenter'><a href='javaScript:deleteTourism("+array['tourismId']+")'>删除</a></li></ul></div>"; 
 		}
   	  });
 	  $("#data-area").append(data_html);
@@ -118,6 +118,28 @@ function refund(tourismId){
 	*/
 			alert("任性");
 }
+function deleteTourism(tourismId){
+	console.log("租车ID:"+tourismId+"退款订单删除(接上数据库后删除)");
+	if(confirm("确认是否删除该退款订单信息")){
+		$.ajax({
+			type: "post",  //数据提交方式（post/get）
+			url: commentDataUrl,     //这里是请求的后台地址，自己定义
+			data: {
+			"tourismId":tourismId},//提交的数据
+			dataType: "json",//返回的数据类型格式
+			success: function(json){
+				alert("删除成功");
+			},
+			fail:function(json){
+				if (json.status==1){  //修改成功
+				   alert("删除失败,请稍后重试") //修改成功处理代码...
+				}
+			}
+		});
+	}else{
+		console.log("你取消了删除")
+	}
+}
 //页面加载时初始化分页
 turnPage(1);
 //接上服务器后删掉
@@ -155,10 +177,10 @@ function turnPage(page){
 			array['status']="已安排"
 		}
 		if(array['isBack']=="0"){
-			data_html += "<div class='containerRentalOrder'><ul><li title="+array['departurePlace']+">"+array['departurePlace']+"</li><li title="+array['destination']+">"+array['destination']+"</li class='RentalOrderCenter'><li class='RentalOrderCenter'>"+array['travelNum']+"</li><li>"+array['departureTime']+"</li><li class='RentalOrderCenter'>无</li><li>"+array['vehicleType']+"("+array['deposit']+")</li><li class='RentalOrderCenter'>"+array['isInsurance']+"</li><li class='RentalOrderCenter'>"+array['username']+"</li><li>"+array['phone']+"</li><li class='RentalOrderCenter'>"+array['status']+"</li><li class='RentalOrderCenter'><a href='javaScript:refund("+array['tourismId']+")'>获取</a></li></ul></div>"; 
+			data_html += "<div class='containerRentalOrder'><ul><li title="+array['departurePlace']+">"+array['departurePlace']+"</li><li title="+array['destination']+">"+array['destination']+"</li class='RentalOrderCenter'><li>"+array['departureTime']+"</li><li class='RentalOrderCenter'>无</li><li>"+array['vehicleType']+"("+array['deposit']+")</li><li class='RentalOrderCenter'>"+array['isInsurance']+"</li><li class='RentalOrderCenter'>"+array['username']+"</li><li>"+array['phone']+"</li><li class='RentalOrderCenter'>"+array['status']+"</li><li class='RentalOrderCenter'><a href='javaScript:refund("+array['tourismId']+")'>获取</a></li><li class='RentalOrderCenter'><a href='javaScript:deleteTourism("+array['tourismId']+")'>删除</a></li></ul></div>"; 
 		}
 		else{
-			data_html += "<div class='containerRentalOrder'><ul><li title="+array['departurePlace']+">"+array['departurePlace']+"</li><li title="+array['destination']+">"+array['destination']+"</li class='RentalOrderCenter'><li class='RentalOrderCenter'>"+array['travelNum']+"</li><li>"+array['departureTime']+"</li><li>"+array['backTime']+"</li><li>"+array['vehicleType']+"("+array['deposit']+")</li><li class='RentalOrderCenter'>"+array['isInsurance']+"</li><li class='RentalOrderCenter'>"+array['username']+"</li><li>"+array['phone']+"</li><li class='RentalOrderCenter'>"+array['status']+"</li><li class='RentalOrderCenter'><a href='javaScript:refund("+array['tourismId']+")'>获取</a></li></ul></div>"; 
+			data_html += "<div class='containerRentalOrder'><ul><li title="+array['departurePlace']+">"+array['departurePlace']+"</li><li title="+array['destination']+">"+array['destination']+"</li class='RentalOrderCenter'><li>"+array['departureTime']+"</li><li>"+array['backTime']+"</li><li>"+array['vehicleType']+"("+array['deposit']+")</li><li class='RentalOrderCenter'>"+array['isInsurance']+"</li><li class='RentalOrderCenter'>"+array['username']+"</li><li>"+array['phone']+"</li><li class='RentalOrderCenter'>"+array['status']+"</li><li class='RentalOrderCenter'><a href='javaScript:refund("+array['tourismId']+")'>获取</a></li><li class='RentalOrderCenter'><a href='javaScript:deleteTourism("+array['tourismId']+")'>删除</a></li></ul></div>"; 
 		}
 	});
 	$("#data-area").append(data_html);
