@@ -134,6 +134,7 @@ Page({
     //        isBack: that.data.is_back,
     //        backTime: that.data.returnTime,
     //        isInsurance: that.data.is_insurance,
+    //        deposit: that.data.money,
     //     },
     //     success: function (res) {
     //       console.log(res.data);

@@ -29,30 +29,47 @@ Page({
           },
         ],
     },
+  requistPersonInformation: function () {
+    var selt = this;
+    var userInformation = wx.getStorageSync('userInformation');
+    console.log(userInformation);
+    if (userInformation==""){
+      wx.navigateTo({
+        url: '/pages/user/editInformation/editInformation?showPrompt=1',
+      })
+    }
+    else{
+      return true
+    }  
+  },
   buyTicket: function (res) {
-    var type = parseInt(res.currentTarget.dataset.type);
-    var index = parseInt(res.currentTarget.dataset.id);
-    var ticketInfos = this.data.ticketInfos[index];
-    //console.log(type);
-    //console.log(ticketInfos);
-    wx.setStorageSync('ticketInfos', ticketInfos);
-    wx.navigateTo({
-      url: '/pages/easyPointCar/confirmTicket/confirmTicket?type=' + type,
-    })
+    if (this.requistPersonInformation()){
+      var type = parseInt(res.currentTarget.dataset.type);
+      var index = parseInt(res.currentTarget.dataset.id);
+      var ticketInfos = this.data.ticketInfos[index];
+      //console.log(type);
+      //console.log(ticketInfos);
+      wx.setStorageSync('ticketInfos', ticketInfos);
+      wx.navigateTo({
+        url: '/pages/easyPointCar/confirmTicket/confirmTicket?type=' + type,
+      })
+    }
   },
     /**
      * 生命周期函数--监听页面加载
      */
   onLoad: function (options) {
-    //this.getMessage();
+    var committeeName =wx.getStorageSync('RuralCommitteeName');
+    console.log(committeeName);
+    //this.getMessage(committeeName);
   },
   //获得数据
-  getMessage: function () {
+  getMessage: function (committeeName) {
     var selt = this;
     wx.request({
       url: '接口路径',
       data: {
-        townsmen_association: selt.data.townsmen_association,   //请求车票数据
+        committeeName: committeeName,   //根据同乡会名称请求车票数据
       },
       method: 'Post',
       header: { 'content-type': 'application/x-www-form-urlencoded' },

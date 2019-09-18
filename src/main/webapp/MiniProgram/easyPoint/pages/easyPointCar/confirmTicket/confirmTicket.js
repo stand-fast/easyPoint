@@ -15,8 +15,6 @@ Page({
         userInformation:{    //接上服务器后删除
           username:'肖奈',
           phone:11231231231,
-          status:"正式",
-          price:"135"
         }
     },
     //是否购买保险
@@ -27,21 +25,30 @@ Page({
             radioStatus: radioStatus
         })
       if (this.data.radioStatus==true){
-        var ticketInfos = wx.getStorageSync('ticketInfos');
-        ticketInfos.sumprice = ticketInfos.price+10 
+        var sum=this.data.sumprice + 10 * this.data.number;
         this.setData({
-          ticketInfos: ticketInfos,
+          sumprice: sum,
           is_insurance:1,
         })
-      }
-      if (this.data.radioStatus == false) {
-        var ticketInfos = wx.getStorageSync('ticketInfos');
-        ticketInfos.sumprice = ticketInfos.price; 
+      } else {
+        var sum = this.data.sumprice - 10 * this.data.number; 
         this.setData({
-          ticketInfos: ticketInfos,
+          sumprice: sum,
           is_insurance: 0,
         })
       }
+    },
+    //计算总价
+    insuranceJudgment:function(){
+      if (this.data.radioStatus == true) {
+        this.setData({
+          sumprice: this.data.number * this.data.price + 10 * this.data.number,
+        })
+      } else {
+        this.setData({
+          sumprice: this.data.number * this.data.price,
+        })
+      }  
     },
     getMin:function(e){     //  减法
         var min=this.data.number;
@@ -50,15 +57,17 @@ Page({
             result=1
         }
         this.setData({
-            number:result
+            number:result,
         })
+        this.insuranceJudgment();
     },
     getMax: function (e) {     //  加法
         var max = this.data.number;
         var result=max+1;
         this.setData({
-            number: result
+          number: result,
         })
+        this.insuranceJudgment();
     },
     changeContact:function(){
         wx.navigateTo({
@@ -94,58 +103,52 @@ Page({
     },
     //发起支付功能
     confirmPay:function(){
-      var selt=this;
-      //   wx.request({
-      //     url: '接口路径',
-      //     data: {
-      //       ticketId: selt.data.ticketInfos.ticket_id,   //请求车票数据
-      //     },
-      //     method: 'Post',
-      //     header: { 'content-type': 'application/x-www-form-urlencoded' },
-      //     success: function (res) {
-      //       console.log('剩余座位数：'+res.data.seat_surplus)
-      //       if(res.data.seatSurplus==0 ){
-      //           //剩余座位为0时候的弹窗
+      // var selt=this;
+      // wx.request({
+      //   url: '接口路径',
+      //   header: {
+      //     "Content-Type": "application/x-www-form-urlencoded"
+      //   },
+      //   method: "POST",
+      //   data: {
+      //     openId: app.globalData.openId,
+      //     ticketId: selt.data.ticketInfos.ticketId,
+      //     price: selt.data.sumprice,
+      //     number:selt.data.number,
+      //     isInsurance: selt.data.is_insurance,
+      //     type: selt.data.ticketInfos.type,
+      //     username: selt.data.username,
+      //     phone: selt.data.phone,
+      //   },
+      //   success: function (res) {
+      //     console.log(res.data);
+      //       //弹出支付成功弹窗
+      //       this.setData({
+      //         showmodal: false,
+      //         successPay: true,
+      //       })
+      //   },
+      //   fail:function(res){
+      //     if (this.data.currentab==1){
+      //       if(res.data.status == 1){
+      //         wx.showToast({
+      //           title: '支付失败,剩余票数不足',
+      //           icon: 'loading',
+      //           duration: 2000
+      //         })
       //       }
-      //       else{
-      //         wx.request({
-      //           url: '接口路径',
-      //           header: {
-      //             "Content-Type": "application/x-www-form-urlencoded"
-      //           },
-      //           method: "POST",
-      //           data: {
-      //             openId: app.globalData.openId,
-      //             ticketId: selt.data.ticketInfos.ticket_id,
-      //             price: selt.data.ticketInfos.sumprice,
-      //             isInsurance: selt.data.is_insurance,
-      //             type: selt.data.ticketInfos.type,
-      //             username: userInformation.username,
-      //             phone:userInformation.phone,
-      //           },
-      //           success: function (res) {
-      //             console.log(res.data);
-      //             if (res.data.is_pay == 0) {
-      //               wx.showToast({
-      //                 title: '支付失败',
-      //                 icon: 'loading',
-      //                 duration: 2000
-      //               })
-      //             } else {
-      //               //弹出支付成功弹窗
-      //               this.setData({
-      //                 showmodal: false,
-      //                 successPay: true,
-      //               })
-                    
-      //             }
-      //           }
+      //     }else{
+      //       if (res.data.status == 1) {
+      //         wx.showToast({
+      //           title: '预约失败,剩余票数不足',
+      //           icon: 'loading',
+      //           duration: 2000
       //         })
       //       }
       //     }
-      //   })
+      //   },
+      // })
       
-
       //接上服务器后删除
       this.setData({
           showmodal:false,
@@ -181,15 +184,19 @@ Page({
       })
     }
     var ticketInfos = wx.getStorageSync('ticketInfos');
-    ticketInfos.sumprice = ticketInfos.price*number
+    console.log(ticketInfos)
+    ticketInfos.sumprice = ticketInfos.price*this.data.number
     this.setData({
+      sumprice: ticketInfos.price,
+      price: ticketInfos.price,
       ticketInfos: ticketInfos,
     })
-    //获取乘客姓名以及联系方式
-    // var userInformation = wx.getStorageSync('userInformation');
-    // this.setData({
-    //   userInformation: userInformation,
-    // })
+    // 获取乘客姓名以及联系方式
+    var userInformation = wx.getStorageSync('userInformation');
+    this.setData({
+      username: userInformation.username,
+      phone: userInformation.phone,
+    })
 
 
   },
@@ -204,9 +211,20 @@ Page({
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function () {
-
-    },
+  onShow: function () {
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1]; //当前页面
+    let json = currPage.data.mydata;
+    if (json == undefined) {
+    }
+    else {
+      console.log(json)//为传过来的值
+      this.setData({
+        username: json.name,
+        phone: json.phone,
+      })
+    }
+  },
 
     /**
      * 生命周期函数--监听页面隐藏
