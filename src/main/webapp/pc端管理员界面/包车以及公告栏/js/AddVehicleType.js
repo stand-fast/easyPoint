@@ -88,7 +88,7 @@ function turnPage(page)
 	  $("#data-area").append("加载中...");
 	},
 	success: function(json) {
-	  console.log("请求第"+page+"页上架数据");
+	  console.log("请求第"+page+"页车辆类型数据");
 	  $("#data-area").empty();       //移除原来的分页数据
 	  var dataContent=json.dataContent;
 	  totalItem = json.totalItem;
@@ -157,7 +157,7 @@ function getPageBar()
 //测试部分
 getPageBar();
 function turnPage(page){ 
-	console.log("请求第"+page+"页上架数据");
+	console.log("请求第"+page+"页车辆类型数据");
 	$("#centent").empty();       //移除原来的分页数据
 	curPage=page;
 	getPageBar();

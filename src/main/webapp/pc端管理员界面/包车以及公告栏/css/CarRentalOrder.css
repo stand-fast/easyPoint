@@ -1,28 +1,13 @@
 h1{
 	font-size:18px;
 	text-align:center;
-	padding-top:5px;
+	padding-top:0px;
 }
-.CarRentalOrder{
-	position: absolute;
-	left: 300px;
-	height: 600px;
-	width: 700px;	
-}
-.CarRentalOrder_con{
-	margin: 0 auto;
-	margin-top: 50px;
-	font-size:12px;
-	width: 630px;
-	height: 500px;
-	background-color: rgba(255,255,255,0.6);
-	border-radius: 10px;	
-}
-.CarRentalOrder_con .Order{
+.publicModelFrame_con .Order{
 	width:616px;
 	margin:0 auto;
 }
-.CarRentalOrder_con .Order{
+.publicModelFrame_con .Order{
 	margin:0 auto;	
 	width:618px;
 	font-size:12px;
@@ -30,11 +15,11 @@ h1{
 	cellspacing:0; 
 	cellpadding:0;
 }
-.CarRentalOrder_con .Order ul{
-	margin-left:-30px;
+.publicModelFrame_con .Order ul{
+	margin-left:-37px;
 }
-.CarRentalOrder_con .Order ul li{
-	width:54.5px;
+.publicModelFrame_con .Order ul li{
+	width:55.5px;
 	height:20px;
 	line-height:20px;
 	float:left;
@@ -43,11 +28,11 @@ h1{
 	text-align:center;
 	border-radius:5px;
 }
-.CarRentalOrder_con .containerRentalOrder{
+.publicModelFrame_con .containerRentalOrder{
 	width:616px;
 	margin:5px auto;
 }
-.CarRentalOrder_con .containerRentalOrder{
+.publicModelFrame_con .containerRentalOrder{
 	margin:0 auto;	
 	width:618px;
 	color:#8fd68b;
@@ -55,11 +40,11 @@ h1{
 	cellspacing:0; 
 	cellpadding:0;
 }
-.CarRentalOrder_con .containerRentalOrder ul{
-	margin-left:-30px;
+.publicModelFrame_con .containerRentalOrder ul{
+	margin-left:-37px;
 }
-.CarRentalOrder_con .containerRentalOrder ul li{
-	width:54.5px;
+.publicModelFrame_con .containerRentalOrder ul li{
+	width:55.5px;
 	height:33px;
 	background-color: #FFFFFF;
 	text-align:center;
@@ -79,10 +64,10 @@ h1{
 .RentalOrderCenter{
 	line-height:33px;
 }
-.CarRentalOrder_con .containerRentalOrder  ul li a{
+.publicModelFrame_con .containerRentalOrder  ul li a{
 	text-decoration:none;
 	color:#8fd68b;	
 }
-.CarRentalOrder_con .containerRentalOrder ul li a:hover{
+.publicModelFrame_con .containerRentalOrder ul li a:hover{
 	text-decoration:underline;	
 }
