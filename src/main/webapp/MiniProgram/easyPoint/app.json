@@ -1,8 +1,10 @@
 {
     "pages": [
-      "pages/easyPointCar/bookTicket/bookTicket",
-      "pages/myIndex/myindex/myindex",
-      "pages/easyPointCar/queryTicket/queryTicket",
+        "pages/myIndex/myindex/myindex",
+        "pages/easyPointCar/bookTicket/bookTicket",
+        "pages/easyPointCar/queryTicket/queryTicket",
+        "pages/easyPointCar/confirmTicket/confirmTicket",
+        "pages/easyPointCar/changeContact/changeContact",
         "pages/myIndex/search/search",
         "pages/user/user/user",
         "pages/user/editInformation/editInformation",
@@ -15,10 +17,8 @@
         "pages/IdleAndRental/editInformation/editInformation",
         "pages/IdleAndRental/goodDetails/goodDetails",
         "pages/easyPointCar/elecTicket/elecTicket",
-        "pages/easyPointCar/changeContact/changeContact",
         "pages/partInternJob/partimeJob/partimeJob",
         "pages/partInternJob/JobDetail/JobDetail",
-        "pages/easyPointCar/confirmTicket/confirmTicket",
         "pages/educationTrain/edTraIndex/edTraIndex",
         "pages/index/index"
     ],

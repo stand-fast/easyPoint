@@ -25,8 +25,8 @@
         <view class="flex_right_item">
             <view class="dot_gray"></view>
             <text>票价</text>
-            <view class="item_text" wx:if="{{currentab==0}}">正式票<text>￥{{userInformation.price}}</text></view>
-            <view class="item_text" wx:if="{{currentab==1}}">预约票<text>￥{{userInformation.price}}</text></view>
+            <view class="item_text" wx:if="{{currentab==0}}">正式票<text>￥{{ticketInfos.price}}</text></view>
+            <view class="item_text" wx:if="{{currentab==1}}">预约票<text>￥{{ticketInfos.price}}</text></view>
         </view>
             <view class="flex_right_item">
             <view class="dot_gray"></view>
@@ -49,7 +49,7 @@
         <view class="contact_item">
             <view class="dot_gray"></view>
             <text>联系人</text>
-            <view class="contact_item_text"><text>{{ userInformation.username}}</text><text>{{ userInformation.phone}}</text></view>
+            <view class="contact_item_text"><text>{{ username}}</text><text>{{ phone}}</text></view>
         </view>
         <view class="changeContact" bindtap="changeContact">更换联系人</view>
     </view>
@@ -66,7 +66,7 @@
         <image src="/images/icon/cservice.png"></image>
     </button></view>
     <view class="payMoney">
-        <view class="money_text">共计<text>￥{{ticketInfos.sumprice}}</text></view>
+        <view class="money_text">共计<text>￥{{sumprice}}</text></view>
         <view class="pro">
             <view class='{{procheck?"baosquare2":"baosquare1"}}' bindtap="proChange">
                 <image src="/images/icon/right.png" wx:if="{{procheck}}"></image>
@@ -80,7 +80,7 @@
         <view class='mask_layer' bindtap="modal_click_Hidden"/>
         <view class='modal_box'>
             <view class="model_success">温馨提示</view>
-            <view wx:if="{{currentab==0}}"><view class="success_text">各位亲爱的同学们，支付后暂不支持退票，若私下换票需要联系平台客服进行信息更改，谢谢您的配合，若确认无误请继续支付。</view>
+            <view wx:if="{{currentab==0}}"><view class="success_text">各位亲爱的同学们，支付后暂不支持退票，若需要换票请到我的车票信息那里更改，谢谢您的配合，若确认无误请确认支付。</view>
             <button wx:if="{{currentab==0}}" class="success_btn" bindtap="confirmPay">确认支付</button></view>
             <view wx:if="{{currentab==1}}"><view class="success_text">各位亲爱的同学们，预约票可预约包车报名，但最终是否能够成功发车将根据最后的报名总人数决定，考虑好请报名预约！</view>
             <button wx:if="{{currentab==1}}" class="success_btn" bindtap="confirmPay">确认预约</button></view>

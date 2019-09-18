@@ -28,10 +28,10 @@ Page{
     background-color: #999999!important;
 }
 .item_list_circle image{
-    width: 30rpx;
-    height: 30rpx;
+    width: 40rpx;
+    height: 40rpx;
     position: fixed;
-    margin:56rpx 0rpx 50rpx 36rpx; 
+    margin:50rpx 0rpx 50rpx 36rpx; 
     color: #fff;
 }
 .item_list_contact{
@@ -47,7 +47,7 @@ Page{
 }
 .item_list_button{
     width: 220rpx;
-    height: 140rpx;
+    height: 50rpx;
     text-align: center;
     font-size: 26rpx;
     padding-top: 18rpx;
