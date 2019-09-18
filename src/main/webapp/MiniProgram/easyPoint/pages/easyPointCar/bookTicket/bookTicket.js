@@ -54,7 +54,18 @@ Page({
         is_insurance: 1,
       })
     }
-    
+    //这里需要判断我的那里个人信息是否填写
+    wx.showModal({
+        title: '您尚未填写个人信息',
+        content: '请点击确定开始填写个人信息',
+        success(res){
+            if(res.confirm){
+                wx.navigateTo({
+                    url: '/pages/user/editInformation/editInformation',
+                })
+            }
+        }
+    })
     // if (e.detail.value.startAddress == "") {
     //   wx.showToast({
     //     title: '请输入出发地点',
@@ -160,9 +171,9 @@ Page({
 
 
     //接上服务器后删除
-    that.setData({
-      successShowmodal: true,
-    })
+    // that.setData({
+    //   successShowmodal: true,
+    // })
   },
 
     modal_click_Hidden: function () {       //隐藏弹框

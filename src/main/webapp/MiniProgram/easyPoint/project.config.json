@@ -48,12 +48,19 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
 					"name": "search",
 					"pathName": "pages/myIndex/search/search",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "bookTicket",
+					"pathName": "pages/easyPointCar/bookTicket/bookTicket",
 					"query": "",
 					"scene": null
 				},
