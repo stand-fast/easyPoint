@@ -29,18 +29,27 @@ Page({
           },
         ],
     },
+  //判断是否填写个人信息
   requistPersonInformation: function () {
     var selt = this;
     var userInformation = wx.getStorageSync('userInformation');
     console.log(userInformation);
-    if (userInformation==""){
-      wx.navigateTo({
-        url: '/pages/user/editInformation/editInformation?showPrompt=1',
+    if (userInformation == "") {
+      wx.showModal({
+        title: '您尚未填写个人信息',
+        content: '请点击确定开始填写个人信息',
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/user/editInformation/editInformation',
+            })
+          }
+        }
       })
     }
-    else{
+    else {
       return true
-    }  
+    }
   },
   buyTicket: function (res) {
     if (this.requistPersonInformation()){

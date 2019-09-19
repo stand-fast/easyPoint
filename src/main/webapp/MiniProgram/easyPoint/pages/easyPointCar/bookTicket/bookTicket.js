@@ -44,136 +44,116 @@ Page({
   //提交拉起支付功能
   formSubmit: function (e) {
     var that=this;
-    if (this.data.radioStatus==true){
-      this.setData({
-        is_back:1,
-      })
-    } 
-    if (this.data.insucheck == true) {
-      this.setData({
-        is_insurance: 1,
-      })
+    if (this.requistPersonInformation()) {
+        // if (e.detail.value.startAddress == "") {
+        //   wx.showToast({
+        //     title: '请输入出发地点',
+        //     icon: 'none',
+        //     duration: 2000
+        //   })
+        // }
+        // else if (e.detail.value.endAddress == "") {
+        //   wx.showToast({
+        //     title: '请输入目的地',
+        //     icon: 'none',
+        //     duration: 2000
+        //   })
+        // }
+        // else if (e.detail.value.startAddress == e.detail.value.endAddress) {
+        //   wx.showToast({
+        //     title: '出发地不能与终点一致',
+        //     icon: 'none',
+        //     duration: 2000
+        //   })
+        // }  
+        // else if(e.detail.value.perNumbers == "") {
+        //   wx.showToast({
+        //     title: '请输入出行人数',
+        //     icon: 'none',
+        //     duration: 2000
+        //   })
+        // }
+        // else if(this.data.carType == undefined) {
+        //   wx.showToast({
+        //     title: '请选择车辆类型',
+        //     icon: 'none',
+        //     duration: 2000
+        //   })
+        // }
+        // else if (this.data.startTime == undefined) {
+        //   wx.showToast({
+        //     title: '请输入出发日期',
+        //     icon: 'none',
+        //     duration: 2000
+        //   })
+        // }
+        // else if(this.data.radioStatus== true){
+        //   if (this.data.returnTime == undefined) {
+        //     wx.showToast({
+        //       title: '请输入返回日期',
+        //       icon: 'none',
+        //       duration: 2000
+        //     })
+        //   }
+        // }
+        // else if(this.data.check== true){
+        //   if (this.data.returnTime == undefined) {
+        //     wx.showToast({
+        //       title: '请浏览并同意易点包车协议',
+        //       icon: 'none',
+        //       duration: 2000
+        //     })
+        //   }
+        // }
+        // else {  
+        //   wx.request({
+        //     url: '接口路径',
+        //     header: {
+        //       "Content-Type": "application/x-www-form-urlencoded"
+        //     },
+        //     method: "POST",
+        //     data: {
+        //        openId: app.globalData.openId,
+        //        username: that.data.userInformation.username,
+        //        phone: that.data.userInformation.phone,
+        //        departurePlace: e.detail.value.startAddress,
+        //        destination: e.detail.value.endAddress,
+        //        travelNum: e.detail.value.perNumbers,
+        //        vehicleType: that.data.carType,
+        //        departureTime: that.data.startTime,
+        //        isBack: that.data.is_back,
+        //        backTime: that.data.returnTime,
+        //        isInsurance: that.data.is_insurance,
+        //        deposit: that.data.money,
+        //     },
+        //     success: function (res) {
+        //       console.log(res.data);
+        //       if (res.data.status == 0) {
+        //         wx.showToast({
+        //           title: '提交失败！！！',
+        //           icon: 'loading',
+        //           duration: 2000
+        //         })
+        //       } else {
+        //         wx.showToast({
+        //           title: '提交成功！！！',//这里打印出登录成功
+        //           icon: 'success',
+        //           duration: 2000
+        //         })
+        //         that.setData({
+        //           successShowmodal: true,
+        //         })
+        //       }
+        //     }
+        //   })
+        // }
     }
-    //这里需要判断我的那里个人信息是否填写
-    wx.showModal({
-        title: '您尚未填写个人信息',
-        content: '请点击确定开始填写个人信息',
-        success(res){
-            if(res.confirm){
-                wx.navigateTo({
-                    url: '/pages/user/editInformation/editInformation',
-                })
-            }
-        }
-    })
-    // if (e.detail.value.startAddress == "") {
-    //   wx.showToast({
-    //     title: '请输入出发地点',
-    //     icon: 'none',
-    //     duration: 2000
-    //   })
-    // }
-    // else if (e.detail.value.endAddress == "") {
-    //   wx.showToast({
-    //     title: '请输入目的地',
-    //     icon: 'none',
-    //     duration: 2000
-    //   })
-    // }
-    // else if (e.detail.value.startAddress == e.detail.value.endAddress) {
-    //   wx.showToast({
-    //     title: '出发地不能与终点一致',
-    //     icon: 'none',
-    //     duration: 2000
-    //   })
-    // }  
-    // else if(e.detail.value.perNumbers == "") {
-    //   wx.showToast({
-    //     title: '请输入出行人数',
-    //     icon: 'none',
-    //     duration: 2000
-    //   })
-    // }
-    // else if(this.data.carType == undefined) {
-    //   wx.showToast({
-    //     title: '请选择车辆类型',
-    //     icon: 'none',
-    //     duration: 2000
-    //   })
-    // }
-    // else if (this.data.startTime == undefined) {
-    //   wx.showToast({
-    //     title: '请输入出发日期',
-    //     icon: 'none',
-    //     duration: 2000
-    //   })
-    // }
-    // else if(this.data.radioStatus== true){
-    //   if (this.data.returnTime == undefined) {
-    //     wx.showToast({
-    //       title: '请输入返回日期',
-    //       icon: 'none',
-    //       duration: 2000
-    //     })
-    //   }
-    // }
-    // else if(this.data.check== true){
-    //   if (this.data.returnTime == undefined) {
-    //     wx.showToast({
-    //       title: '请浏览并同意易点包车协议',
-    //       icon: 'none',
-    //       duration: 2000
-    //     })
-    //   }
-    // }
-    // else {  
-    //   wx.request({
-    //     url: '接口路径',
-    //     header: {
-    //       "Content-Type": "application/x-www-form-urlencoded"
-    //     },
-    //     method: "POST",
-    //     data: {
-    //        openId: app.globalData.openId,
-    //        username: that.data.userInformation.username,
-    //        phone: that.data.userInformation.phone,
-    //        departurePlace: e.detail.value.startAddress,
-    //        destination: e.detail.value.endAddress,
-    //        travelNum: e.detail.value.perNumbers,
-    //        vehicleType: that.data.carType,
-    //        departureTime: that.data.startTime,
-    //        isBack: that.data.is_back,
-    //        backTime: that.data.returnTime,
-    //        isInsurance: that.data.is_insurance,
-    //        deposit: that.data.money,
-    //     },
-    //     success: function (res) {
-    //       console.log(res.data);
-    //       if (res.data.status == 0) {
-    //         wx.showToast({
-    //           title: '提交失败！！！',
-    //           icon: 'loading',
-    //           duration: 2000
-    //         })
-    //       } else {
-    //         wx.showToast({
-    //           title: '提交成功！！！',//这里打印出登录成功
-    //           icon: 'success',
-    //           duration: 2000
-    //         })
-    //         that.setData({
-    //           successShowmodal: true,
-    //         })
-    //       }
-    //     }
-    //   })
-    // }
 
 
     //接上服务器后删除
-    // that.setData({
-    //   successShowmodal: true,
-    // })
+    that.setData({
+      successShowmodal: true,
+    })
   },
 
     modal_click_Hidden: function () {       //隐藏弹框
@@ -200,6 +180,15 @@ Page({
         this.setData({
             radioStatus: radioStatus
         })
+        if (radioStatus == true) {
+          this.setData({
+            is_back: 1,
+          })
+        }else{
+          this.setData({
+            is_back: 0,
+          })
+        }
     },
     //是否同意协议
     checkChange:function(e){
@@ -211,11 +200,20 @@ Page({
     },
     //是否购买保险
     insuChange:function(e){
-        var insucheck=this.data.insucheck;
-        insucheck=!insucheck;
+      var insucheck=this.data.insucheck;
+      insucheck=!insucheck;
+      this.setData({
+          insucheck:insucheck,
+      })
+      if (insucheck == true) {
         this.setData({
-            insucheck:insucheck,
+          is_insurance: 1,
         })
+      }else{
+        this.setData({
+          is_insurance: 0,
+        })
+      }
     },
     //选择车辆类型
     changeSeatType:function(e){
@@ -380,6 +378,28 @@ Page({
         })
       }
     })
+  },
+  //判断是否填写个人信息
+  requistPersonInformation: function () {
+    var selt = this;
+    var userInformation = wx.getStorageSync('userInformation');
+    console.log(userInformation);
+    if (userInformation == "") {
+      wx.showModal({
+        title: '您尚未填写个人信息',
+        content: '请点击确定开始填写个人信息',
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/user/editInformation/editInformation',
+            })
+          }
+        }
+      })
+    }
+    else {
+      return true
+    }
   },
 
     /**
