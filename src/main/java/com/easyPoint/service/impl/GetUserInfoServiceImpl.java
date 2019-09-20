@@ -2,6 +2,7 @@ package com.easyPoint.service.impl;
 
 import com.easyPoint.Util.AesCbcUtil;
 import com.easyPoint.Util.HttpRequestUserInfoUtil;
+import com.easyPoint.Util.JwtUtil;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.GetUserInfoService;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -59,8 +60,10 @@ public class GetUserInfoServiceImpl implements GetUserInfoService {
                         //解析完成后
                         int returnCode = insertUserInfo(userInfo);
                         //根据返回判断用户信息是否正确插入数据库,1为正确
-                        if(returnCode == 1)
+                        if(returnCode == 1){
+                            userInfo = findUserInfoByOpenId(openId);
                             return userInfo;
+                        }
                         else
                             return null;
                     }else {

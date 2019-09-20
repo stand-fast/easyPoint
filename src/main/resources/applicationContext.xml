@@ -115,4 +115,27 @@
         <property name="keySerializer" ref="stringRedisSerializer"/>
         <property name="valueSerializer" ref="jdkSerializationRedisSerializer"/>
     </bean>
+
+    <!--&lt;!&ndash;redis监听器的适配器&ndash;&gt;-->
+    <!--<bean class="org.springframework.data.redis.listener.adapter.MessageListenerAdapter" id="expiredPublishListeners">-->
+        <!--<constructor-arg>-->
+            <!--&lt;!&ndash;自定义监听器&ndash;&gt;-->
+            <!--<bean class="com.easyPoint.listen.ExpiredPublishListen"></bean>-->
+        <!--</constructor-arg>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;配置redis监听容器&ndash;&gt;-->
+    <!--<bean class="org.springframework.data.redis.listener.RedisMessageListenerContainer" id="listenerContainer">-->
+        <!--<property name="connectionFactory" ref="connectionFactory"/>-->
+        <!--<property name="messageListeners">-->
+            <!--<map>-->
+                <!--<entry key-ref="expiredPublishListeners">-->
+                    <!--<list>-->
+                        <!--<bean class="org.springframework.data.redis.listener.ChannelTopic">-->
+                            <!--<constructor-arg value="__keyevent@0__:expired"/>-->
+                        <!--</bean>-->
+                    <!--</list>-->
+                <!--</entry>-->
+            <!--</map>-->
+        <!--</property>-->
+    <!--</bean>-->
 </beans>

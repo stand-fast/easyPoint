@@ -1,5 +1,6 @@
 package com.easyPoint.controller;
 
+import com.easyPoint.Util.JwtUtil;
 import com.easyPoint.pojo.Result;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.GetUserInfoService;
@@ -9,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 public class GetUserInfoController {
 
@@ -16,16 +20,26 @@ public class GetUserInfoController {
     GetUserInfoService getUserInfoService;
 
     @ResponseBody
-        @RequestMapping("/getUserInfo")
-        public Result getUserInfo(@Param("code") String code, @Param("encryptedData") String encryptedData, @Param("iv") String iv){
-            Result<UserInfo> result;
-            UserInfo userInfo = getUserInfoService.getUserInfo(code, encryptedData, iv);
-            if(userInfo != null){
-                return result = new Result<UserInfo>(200,"解析用户信息成功", userInfo);
-            }else {
-                return result = new Result<>(400,"解析用户信息发生错误", null);
-            }
-
-
+    @RequestMapping("/getUserInfoAndToken")
+    public Map getUserInfoAndToken(@Param("code") String code, @Param("encryptedData") String encryptedData, @Param("iv") String iv){
+        Map result = new HashMap();
+        UserInfo userInfo = getUserInfoService.getUserInfo(code, encryptedData, iv);
+        if(userInfo != null){
+            //生成token，并将userInfo一起返回给小程序
+            String token = JwtUtil.sign(userInfo.getUid(),userInfo.getNickName());
+            result.put("code",200);
+            result.put("message","授权成功");
+            result.put("token",token);
+            result.put("userInfo",userInfo);
+            return result;
+        }else {
+            result.put("code",400);
+            result.put("message","授权失败");
+            return result;
+        }
+    }
+    @RequestMapping("/test")
+    public String test(){
+        return "success";
     }
 }

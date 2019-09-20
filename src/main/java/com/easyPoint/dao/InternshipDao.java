@@ -10,6 +10,6 @@ import java.util.List;
 public interface InternshipDao {
 
     //下拉加载更多
-    public List<InternshipInfo> findAddInternshipInfo(int pageNum);
+    List<InternshipInfo> findAddInternshipInfo(int pageNum);
 
 }

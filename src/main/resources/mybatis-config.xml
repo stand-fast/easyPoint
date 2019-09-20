@@ -5,7 +5,9 @@
 
 <configuration>
     <typeAliases>
+        <package name="com.easyPoint.pojo"/>
         <package name="com.easyPoint.pojo.user"/>
+        <package name="com.easyPoint.pojo.drivingschoolpojo"/>
     </typeAliases>
     <mappers>
         <package name="com.easyPoint.dao"/>
