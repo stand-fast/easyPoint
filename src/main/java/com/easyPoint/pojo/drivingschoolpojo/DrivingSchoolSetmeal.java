@@ -13,26 +13,26 @@ public class DrivingSchoolSetmeal {
      * price	decimal	课程价格	不为空
      * note	varchar(100)	备注
      */
-    int setmealId;
-    int drivingSchoolId;
-    String setmealName;
-    String studyCycle;
-    float price;
-    String note;
+    private Integer setmealId;
+    private Integer drivingSchoolId;
+    private String setmealName;
+    private String studyCycle;
+    private Float price;
+    private String note;
 
-    public int getSetmealId() {
+    public Integer getSetmealId() {
         return setmealId;
     }
 
-    public void setSetmealId(int setmealId) {
+    public void setSetmealId(Integer setmealId) {
         this.setmealId = setmealId;
     }
 
-    public int getDrivingSchoolId() {
+    public Integer getDrivingSchoolId() {
         return drivingSchoolId;
     }
 
-    public void setDrivingSchoolId(int drivingSchoolId) {
+    public void setDrivingSchoolId(Integer drivingSchoolId) {
         this.drivingSchoolId = drivingSchoolId;
     }
 
@@ -52,11 +52,11 @@ public class DrivingSchoolSetmeal {
         this.studyCycle = studyCycle;
     }
 
-    public float getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 

@@ -13,25 +13,25 @@ public class DrivingSchoolInfo {
      * driving_school_address	varchar(60)	驾校地址	不为空
      * lowest_price	decimal	最低价格	不为空
      */
-    int drivingSchoolId;
-    int merchantId;
-    String defaultImgUrl;
-    String drivingSchoolName;
-    float lowestPrice;
+    private Integer drivingSchoolId;
+    private Integer merchantId;
+    private String defaultImgUrl;
+    private String drivingSchoolName;
+    private Float lowestPrice;
 
-    public int getDrivingSchoolId() {
+    public Integer getDrivingSchoolId() {
         return drivingSchoolId;
     }
 
-    public void setDrivingSchoolId(int drivingSchoolId) {
+    public void setDrivingSchoolId(Integer drivingSchoolId) {
         this.drivingSchoolId = drivingSchoolId;
     }
 
-    public int getMerchantId() {
+    public Integer getMerchantId() {
         return merchantId;
     }
 
-    public void setMerchantId(int merchantId) {
+    public void setMerchantId(Integer merchantId) {
         this.merchantId = merchantId;
     }
 
@@ -51,11 +51,11 @@ public class DrivingSchoolInfo {
         this.drivingSchoolName = drivingSchoolName;
     }
 
-    public float getLowestPrice() {
+    public Float getLowestPrice() {
         return lowestPrice;
     }
 
-    public void setLowestPrice(float lowestPrice) {
+    public void setLowestPrice(Float lowestPrice) {
         this.lowestPrice = lowestPrice;
     }
 

@@ -18,13 +18,13 @@ public class DrivingSchoolInfoDetail extends DrivingSchoolInfo {
      * driving_school_profile	varchar(2000)	驾校简介	不为空
      * pass_rate	decimal	通过率
      */
-    String detailImgsUrl;
-    String studyTimeMorning;
-    String studyTimeNoon;
-    String studyTimeNight;
-    String conditionsOverleaf;
-    String drivingSchoolProfile;
-    String passRate;
+    private String detailImgsUrl;
+    private String studyTimeMorning;
+    private String studyTimeNoon;
+    private String studyTimeNight;
+    private String conditionsOverleaf;
+    private String drivingSchoolProfile;
+    private String passRate;
 
 
     public String getDetailImgsUrl() {
@@ -85,7 +85,7 @@ public class DrivingSchoolInfoDetail extends DrivingSchoolInfo {
 
     @Override
     public String toString() {
-        return "DrivingSchoolInfoDetail{" +
+        return super.toString()+"DrivingSchoolInfoDetail{" +
                 "detailImgsUrl='" + detailImgsUrl + '\'' +
                 ", studyTimeMorning='" + studyTimeMorning + '\'' +
                 ", studyTimeNoon='" + studyTimeNoon + '\'' +
@@ -93,11 +93,6 @@ public class DrivingSchoolInfoDetail extends DrivingSchoolInfo {
                 ", conditionsOverleaf='" + conditionsOverleaf + '\'' +
                 ", drivingSchoolProfile='" + drivingSchoolProfile + '\'' +
                 ", passRate='" + passRate + '\'' +
-                ", drivingSchoolId=" + drivingSchoolId +
-                ", merchantId=" + merchantId +
-                ", defaultImgUrl='" + defaultImgUrl + '\'' +
-                ", drivingSchoolName='" + drivingSchoolName + '\'' +
-                ", lowestPrice=" + lowestPrice +
                 '}';
     }
 }

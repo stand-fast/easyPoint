@@ -1,7 +1,7 @@
 package com.easyPoint.pojo;
 
 public class Result<T> {
-    private int code;
+    private Integer code;
     private String message;
     private T data;
 
@@ -19,11 +19,11 @@ public class Result<T> {
         this.message = message;
     }
 
-    public int getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 
@@ -35,7 +35,7 @@ public class Result<T> {
         this.message = message;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
