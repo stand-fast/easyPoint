@@ -3,16 +3,17 @@
     <view class="content_title">
         <view class="firstImg"><image src="/images/icon/edit.png"></image></view>
         <view class="title_text">个人信息</view>
-        <button bindtap="toEdit" class="firstbtn" disabled="{{isbutton}}"><image src="/images/icon/cusEdit.png"></image></button>
+        <button bindtap="toEdit" class="firstbtn" ><image src="/images/icon/cusEdit.png"></image></button>
     </view>
     <form class="form_item" bindsubmit="formSubmit">
         <input class="realname" name="username" placeholder-class="placehold" placeholder="请输入您的真实姓名" type="text" value="{{username}}" disabled="{{!isEdit}}"></input>
         <view class="item">
             <text class="item_title">性别：</text>
-            <view wx:if="{{isEdit}}" class="{{check==1 ? 'man_yes':'man_nor'}}" bindtap="changeSex" data-index="1"><text>♂</text>男</view>
-            <view wx:if="{{isEdit}}" class="{{check==2? 'female_yes':'female_nor'}}'" bindtap="changeSex" data-index="2"><text>♀</text>女</view>
-            <view wx:else>
-                <view class="customersex">{{gender}}</view>
+              <view wx:if="{{isEdit}}" class="{{check==1 ? 'man_yes':'man_nor'}}" bindtap="changeSex" data-index="1"><text>♂</text>男</view>
+              <view wx:if="{{isEdit}}" class="{{check==2? 'female_yes':'female_nor'}}'" bindtap="changeSex" data-index="2"><text>♀</text>女</view>
+            <view wx:else class="customersex">
+                <view  wx:if="{{gender==1}}">男</view>
+                <view  wx:elif="{{gender==2}}">女</view>
             </view>
         </view>
         <view class="item">
@@ -22,7 +23,7 @@
         <view class="item">
             <text class="item_title">年级：</text>
             <picker bindchange="changePicker" value="{{index}}" range="{{gradeSeclect}}" disabled="{{!isEdit}}">
-                <input placeholder-class="placehold" placeholder="点击选择" disabled="true" value="{{gradeSeclect[index]}}" disabled="true"></input>
+                <input placeholder-class="placehold" placeholder="点击选择" disabled="true" value="{{grade}}" name="grade" disabled="true"></input>
             </picker>
         </view>
         <view class="item">
