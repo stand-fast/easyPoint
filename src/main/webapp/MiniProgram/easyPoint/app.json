@@ -1,6 +1,7 @@
 {
     "pages": [
       "pages/myIndex/myindex/myindex",
+      "pages/user/editInformation/editInformation",
       "pages/user/myOrder/myOrder",
       "pages/user/user/user",
       "pages/easyPointCar/queryTicket/queryTicket",
@@ -8,7 +9,6 @@
         "pages/easyPointCar/confirmTicket/confirmTicket",
         "pages/easyPointCar/changeContact/changeContact",
         "pages/myIndex/search/search",
-        "pages/user/editInformation/editInformation",
         "pages/user/myOrderCarDetail/myOrderCarDetail",
         "pages/user/refund/refund",
         "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
