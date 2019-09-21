@@ -1,5 +1,7 @@
 package com.easyPoint.pojo.drivingschoolpojo;
 
+import java.math.BigDecimal;
+
 /**
  * FJW
  * 驾校模块封面信息
@@ -17,7 +19,7 @@ public class DrivingSchoolInfo {
     private Integer merchantId;
     private String defaultImgUrl;
     private String drivingSchoolName;
-    private Float lowestPrice;
+    private BigDecimal lowestPrice;
 
     public Integer getDrivingSchoolId() {
         return drivingSchoolId;
@@ -51,11 +53,11 @@ public class DrivingSchoolInfo {
         this.drivingSchoolName = drivingSchoolName;
     }
 
-    public Float getLowestPrice() {
+    public BigDecimal getLowestPrice() {
         return lowestPrice;
     }
 
-    public void setLowestPrice(Float lowestPrice) {
+    public void setLowestPrice(BigDecimal lowestPrice) {
         this.lowestPrice = lowestPrice;
     }
 
