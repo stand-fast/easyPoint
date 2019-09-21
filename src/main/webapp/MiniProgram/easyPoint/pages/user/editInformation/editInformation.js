@@ -263,6 +263,12 @@ Page({
     },
 
   onLoad: function (options) {
+    if(options.judge=="true"){
+      this.setData({
+        isEdit: true,
+        isbutton: true,
+      })
+    }
     var selt = this;
     var userData = wx.getStorageSync('userInformation');
     console.log(userData);

@@ -29,8 +29,7 @@
                       <view class="status" wx:elif="{{item.type==2}}">已预约</view>
                     </block>
                     <block wx:else>
-                      <view class="status" wx:if="{{item.state==1}}">未安排</view>
-                      <view class="status" wx:elif="{{item.state==2}}">已安排</view>
+                      <view class="status">已支付定金</view>
                     </block>
                 </view>
                 <view class="line last">
