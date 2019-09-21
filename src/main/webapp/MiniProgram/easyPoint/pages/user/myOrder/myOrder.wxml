@@ -29,7 +29,7 @@
                       <view class="status" wx:elif="{{item.type==2}}">已预约</view>
                     </block>
                     <block wx:else>
-                      <view class="status">已支付定金</view>
+                      <view class="statusOrder">已支付定金</view>
                     </block>
                 </view>
                 <view class="line last">
