@@ -29,7 +29,6 @@ Page({
           departurePlace: "广州广金本部",
           destination: "白云山",
           travelNum: "22",
-          state: "1"
         },
         {
           tourismId: "123123123123",
@@ -37,7 +36,6 @@ Page({
           departurePlace: "广州广金本部",
           destination: "白云山",
           travelNum: "42",
-          state: "2"
         }
     ]
     },

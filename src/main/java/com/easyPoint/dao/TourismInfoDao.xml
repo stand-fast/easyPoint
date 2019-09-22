@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easyPoint.dao.TourismInfoDao">
+
+    <select id="findListVehicleInfo" parameterType="Integer" resultMap="vehicleInfoResultMap">
+        select vehicle_id, vehicle_type, deposit from vehicle_info order by vehicle_id desc limit #{index}, 4
+    </select>
+
+    <select id="findVehicleInfo" parameterType="String" resultMap="vehicleInfoResultMap">
+        select vehicle_id, vehicle_type, deposit from vehicle_info where vehicle_type = #{vehicleType}
+    </select>
+
+    <resultMap type="VehicleInfo" id="vehicleInfoResultMap" >
+        <id column="vehicle_id" property="vehicleId"/>
+        <result column="vehicle_type" property="vehicleType"/>
+        <result column="deposit" property="deposit"/>
+    </resultMap>
+
+
+
+    <insert id="insertVehicleType">
+        insert into vehicle_info (vehicle_type, deposit) value (#{vehicleType}, #{deposit})
+    </insert>
+
+    <insert id="insertTourismOrderInfo" parameterType="TourismOrderInfo">
+        insert into tourism_order (uid, departure_place, destination, travel_num, vehicle_id,departure_time
+                                    is_back, back_time, is_insurance, pay_money, make_order_time)
+                                    value (#{uid}, #{departurePlace}, #{destination}, #{travelNum}, #{vehicleId}, #{departureTime},
+                                    #{isBack}, #{backTime}, #{isInsurance}, #{payMoney}, #{makeOrderTime})
+    </insert>
+
+    <update id="updateTourismOrderInfoAddDriverInfo">
+        update tourism_order set license_plate_number = #{licensePlateNumber}, color = #{color},
+                                 driver_name = #{driverName}, driver_phone = #{driverPhone}
+                             where tourism_id = #{tourismId}
+    </update>
+
+</mapper>

@@ -22,19 +22,34 @@ Page({
             "/images/bg1_car.png",
             "/images/bg2_car.png"
         ],
-        associations:["汕头同乡会","潮州同乡会","普宁同乡会"],
-        //seatNumber: ["35座大巴", "49座大巴", "53座大巴","57座大巴"],
-        seatvehicle: [
+        associationsList:[
           {
+            associationId: "12312",
+            associationName:"汕头同乡会"
+          },
+          {
+            associationId: "6423123123",
+            associationName: "潮州同乡会"
+          },
+          {
+            associationId: "54386673123123",
+            associationName: "普宁同乡会"
+          },
+        ],
+        //seatNumber: ["35座大巴", "49座大巴", "53座大巴","57座大巴"],
+        seatvehicleList: [
+          {
+            vehicleId: "2412624",
             vehicleType: "7座大巴",
             deposit: "100"
           },
           {
+            vehicleId: "88789624",
             vehicleType: "35座大巴",
             deposit: "200"
           },
-
           {
+            vehicleId: "745624",
             vehicleType: "53座大巴",
             deposit: "700"
           },
@@ -119,7 +134,7 @@ Page({
         //        departurePlace: e.detail.value.startAddress,
         //        destination: e.detail.value.endAddress,
         //        travelNum: e.detail.value.perNumbers,
-        //        vehicleType: that.data.carType,
+        //        vehicleType: that.data.vehicleId,
         //        departureTime: that.data.startTime,
         //        isBack: that.data.is_back,
         //        backTime: that.data.returnTime,
@@ -147,13 +162,16 @@ Page({
         //     }
         //   })
         // }
+
+
+      //接上服务器后删除
+      that.setData({
+        successShowmodal: true,
+      })
     }
 
 
-    //接上服务器后删除
-    that.setData({
-      successShowmodal: true,
-    })
+    
   },
 
     modal_click_Hidden: function () {       //隐藏弹框
@@ -218,9 +236,13 @@ Page({
     //选择车辆类型
     changeSeatType:function(e){
         var index=e.detail.value;
+
+      var vehicleId = this.data.seatvehicleList[index].vehicleId
+      console.log(vehicleId);
         this.setData({
             carType:this.data.seatNumber[index],
-            money: this.data.seatDeposit[index]
+            money: this.data.seatDeposit[index],
+            vehicleId: vehicleId,
         })
     },
     //出发时间
@@ -252,11 +274,12 @@ Page({
     },
     selectAssoName: function (e) {
       var index = e.detail.value;
-      var name=this.data.associations[index];
+      var name=this.data.associationsList[index].associationName;
+      var associationId = this.data.associationsList[index].associationId;
       //判断车票类型
-      wx.setStorageSync('RuralCommitteeName', name);
       this.setData({
-            assoName: name
+            assoName: name,
+            associationId: associationId,
       })
     },
   //转到电子订单详情 
@@ -276,7 +299,7 @@ Page({
       }
       else(
         wx.navigateTo({
-          url: '/pages/easyPointCar/queryTicket/queryTicket'
+          url: '/pages/easyPointCar/queryTicket/queryTicket?associationId=' + this.data.associationId
         })
       )
     },
@@ -319,15 +342,9 @@ Page({
             dateTime1: obj.dateTime,
         });
 
-      //获取乘客姓名以及联系方式
-      // var userInformation = wx.getStorageSync('userInformation');
-      // this.setData({
-      //   userInformation: userInformation,
-      // })
 
       //车辆类型数据以及对应应付定金处理数据，接上服务器后删除
-      console.log(this.data.seatvehicle);
-      var seatvehicle=this.data.seatvehicle;
+      var seatvehicle=this.data.seatvehicleList;
       var seatNumber=[];
       var seatDeposit=[];
       for (var i = 0; i < seatvehicle.length;i++){
@@ -337,6 +354,17 @@ Page({
       this.setData({
         seatNumber: seatNumber,
         seatDeposit: seatDeposit
+      })
+
+
+      //同乡会数据处理，接上服务器后删除
+      var associations = this.data.associationsList;
+      var associationsName=[];
+      for (var i = 0; i < associations.length; i++) {
+        associationsName.push(associations[i].associationName)
+      }
+      this.setData({
+        associations: associationsName,
       })
     },
 
@@ -373,9 +401,17 @@ Page({
       method: 'Post',
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       success: function (res) {
+        //console.log(res.data)
+        var associations = res.data;
+        var associationsName = [];
+        for (var i = 0; i < associations.length; i++) {
+          associationsName.push(associations[i].associationName)
+        }
         this.setData({
-          associations: res.data,
+          associationsList: res.data,
+          associations: associationsName,
         })
+
       }
     })
   },
@@ -383,7 +419,7 @@ Page({
   requistPersonInformation: function () {
     var selt = this;
     var userInformation = wx.getStorageSync('userInformation');
-    console.log(userInformation);
+    //console.log(userInformation);
     if (userInformation == "") {
       wx.showModal({
         title: '您尚未填写个人信息',
@@ -391,7 +427,7 @@ Page({
         success(res) {
           if (res.confirm) {
             wx.navigateTo({
-              url: '/pages/user/editInformation/editInformation',
+              url: '/pages/user/editInformation/editInformation?judge='+"true",
             })
           }
         }
