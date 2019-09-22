@@ -10,7 +10,7 @@ public class TourismOrderInfo {
     private Integer vehicleId;
     private Integer ifBack;
     private Integer ifInsurance;
-    private Integer IfPay;
+    private Integer payMoney;
     private String makeOrderTime;
     private String licensePlateNumber;
     private String color;
@@ -82,12 +82,12 @@ public class TourismOrderInfo {
         this.ifInsurance = ifInsurance;
     }
 
-    public Integer getIfPay() {
-        return IfPay;
+    public Integer getPayMoney() {
+        return payMoney;
     }
 
-    public void setIfPay(Integer ifPay) {
-        IfPay = ifPay;
+    public void setPayMoney(Integer payMoney) {
+        this.payMoney = payMoney;
     }
 
     public String getMakeOrderTime() {
@@ -149,7 +149,7 @@ public class TourismOrderInfo {
                 ", vehicleId=" + vehicleId +
                 ", ifBack=" + ifBack +
                 ", ifInsurance=" + ifInsurance +
-                ", IfPay=" + IfPay +
+                ", payMoney=" + payMoney +
                 ", makeOrderTime='" + makeOrderTime + '\'' +
                 ", licensePlateNumber='" + licensePlateNumber + '\'' +
                 ", color='" + color + '\'' +
