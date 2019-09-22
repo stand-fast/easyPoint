@@ -1,5 +1,6 @@
 package com.easyPoint.controller;
 
+import com.easyPoint.pojo.Result;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.GetUserInfoService;
 import com.easyPoint.util.JwtUtil;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.Map;
-
+@SuppressWarnings("unchecked")
 @Controller
 public class GetUserInfoController {
 
@@ -38,8 +39,8 @@ public class GetUserInfoController {
         }
     }
     @RequestMapping("/test")
-    public String test(){
-        JwtUtil.getUid("tk");
-        return "success";
+    public Result test(){
+
+        return new Result(200,"sfdasf",null);
     }
 }

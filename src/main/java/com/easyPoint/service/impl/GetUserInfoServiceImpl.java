@@ -4,6 +4,7 @@ package com.easyPoint.service.impl;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.GetUserInfoService;
 import com.easyPoint.util.AesCbcUtil;
+import com.easyPoint.util.HttpRequestUserInfoUtil;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -32,7 +33,7 @@ public class GetUserInfoServiceImpl implements GetUserInfoService {
         String param = "appid=" + APPID + "&secret=" + SECRET + "&js_code="+code+"&grant_type=authorization_code";
         String session_key;
         //获取微信授权用户的openid和session_key
-        String data ="";// HttpRequestUserInfoUtil.sendGet(url,param);
+        String data = HttpRequestUserInfoUtil.sendGet(url,param);
         if(data != null && !data.equals("")){
             //解析json数据，获取openid和session_key
             ObjectMapper mapper = new ObjectMapper();
@@ -59,7 +60,7 @@ public class GetUserInfoServiceImpl implements GetUserInfoService {
                         int returnCode = insertUserInfo(userInfo);
                         //根据返回判断用户信息是否正确插入数据库,1为正确
                         if(returnCode == 1){
-                            userInfo = findUserInfoByOpenId(openId);
+                            //userInfo = findUserInfoByOpenId(openId);
                             return userInfo;
                         }
                         else
