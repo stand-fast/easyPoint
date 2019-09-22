@@ -1,8 +1,8 @@
 package com.easyPoint.service.impl;
 
-import com.easyPoint.Util.AesCbcUtil;
-import com.easyPoint.Util.HttpRequestUserInfoUtil;
-import com.easyPoint.Util.JwtUtil;
+import com.easyPoint.util.AesCbcUtil;
+import com.easyPoint.util.HttpRequestUserInfoUtil;
+import com.easyPoint.util.JwtUtil;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.GetUserInfoService;
 import com.fasterxml.jackson.databind.JsonNode;

@@ -1,6 +1,6 @@
 package com.easyPoint.controller;
 
-import com.easyPoint.Util.JwtUtil;
+import com.easyPoint.util.JwtUtil;
 import com.easyPoint.pojo.Result;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.GetUserInfoService;

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easyPoint.dao.HometownAssociationDao">
+    <resultMap id="hometownMap" type="HometownAssociation">
+        <id column="association_id" property="associationId"/>
+        <result column="association_name" property="associationName"/>
+    </resultMap>
+
+    <select id="getAllHometownAssociation" resultMap="hometownMap">
+        SELECT association_id, association_name
+        FROM hometown_association
+    </select>
+</mapper>
