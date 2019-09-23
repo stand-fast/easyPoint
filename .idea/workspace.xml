@@ -61,8 +61,8 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="localRepository" value="D:\maven\maven_repository" />
-        <option name="mavenHome" value="$PROJECT_DIR$/../maven/apache-maven-3.6.1-bin/apache-maven-3.6.1" />
-        <option name="userSettingsFile" value="D:\maven\apache-maven-3.6.1-bin\apache-maven-3.6.1\conf\settings.xml" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../maven/apache-maven-3.6.1" />
+        <option name="userSettingsFile" value="D:\maven\apache-maven-3.6.1\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
     <option name="importingSettings">
@@ -86,7 +86,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
     <property name="settings.editor.splitter.proportion" value="0.17917132" />
   </component>
   <component name="RecentsManager">
@@ -326,6 +326,22 @@
       <workItem from="1567251204438" duration="147000" />
       <workItem from="1567254449858" duration="163000" />
       <workItem from="1567324878619" duration="61000" />
+      <workItem from="1567424163009" duration="393000" />
+      <workItem from="1567496772642" duration="544000" />
+      <workItem from="1567497342670" duration="54000" />
+      <workItem from="1567586221578" duration="724000" />
+      <workItem from="1567599024629" duration="56000" />
+      <workItem from="1568188494437" duration="127000" />
+      <workItem from="1568217493991" duration="292000" />
+      <workItem from="1568354072102" duration="56000" />
+      <workItem from="1568354180012" duration="76000" />
+      <workItem from="1568426839481" duration="43000" />
+      <workItem from="1568479638716" duration="197000" />
+      <workItem from="1568528625176" duration="128000" />
+      <workItem from="1568627590514" duration="206000" />
+      <workItem from="1568636214654" duration="86000" />
+      <workItem from="1568795465694" duration="148000" />
+      <workItem from="1568801438042" duration="390000" />
     </task>
     <task id="LOCAL-00001" summary="删除了之前测试的Account类；&#10;修改pom文件，引入了相应jar包的坐标。">
       <created>1564982950103</created>
@@ -355,7 +371,63 @@
       <option name="project" value="LOCAL" />
       <updated>1567251303234</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="提交授权界面和首页搜索界面">
+      <created>1567424248183</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1567424248183</updated>
+    </task>
+    <task id="LOCAL-00006" summary="提交授权界面和首页搜索界面">
+      <created>1567424309350</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1567424309350</updated>
+    </task>
+    <task id="LOCAL-00007" summary="修改授权和搜索界面代码">
+      <created>1567586580797</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1567586580797</updated>
+    </task>
+    <task id="LOCAL-00008" summary="添加了搜索界面搜索结果以及删除授权界面">
+      <created>1568217648044</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1568217648045</updated>
+    </task>
+    <task id="LOCAL-00009" summary="增加我的界面">
+      <created>1568479706052</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1568479706053</updated>
+    </task>
+    <task id="LOCAL-00010" summary="修改易点出行的确认车票界面，添加更换联系人">
+      <created>1568627693049</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1568627693049</updated>
+    </task>
+    <task id="LOCAL-00011" summary="修改我的订单版块的内容">
+      <created>1568795514046</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1568795514046</updated>
+    </task>
+    <task id="LOCAL-00012" summary="增加部分界面的弹窗">
+      <created>1568801492381</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1568801492381</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -423,7 +495,14 @@
     <MESSAGE value="部分代码。" />
     <MESSAGE value="不知道是哪个了" />
     <MESSAGE value="基本修改完设计要求修改的界面逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="基本修改完设计要求修改的界面逻辑" />
+    <MESSAGE value="提交授权界面和首页搜索界面" />
+    <MESSAGE value="修改授权和搜索界面代码" />
+    <MESSAGE value="添加了搜索界面搜索结果以及删除授权界面" />
+    <MESSAGE value="增加我的界面" />
+    <MESSAGE value="修改易点出行的确认车票界面，添加更换联系人" />
+    <MESSAGE value="修改我的订单版块的内容" />
+    <MESSAGE value="增加部分界面的弹窗" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加部分界面的弹窗" />
   </component>
   <component name="masterDetails">
     <states>
