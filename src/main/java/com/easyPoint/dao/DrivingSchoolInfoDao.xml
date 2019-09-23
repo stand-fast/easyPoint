@@ -11,20 +11,20 @@
     
 
 
-    <select id="findAddDrivingSchoolInfo" parameterType="int" resultMap="drivingSchoolInfo">
+    <select id="findAddDrivingSchoolInfo" parameterType="int" resultMap="drivingSchoolInfoResultMap">
         select driving_school_id,merchant_id,default_img_url,driving_school_name,lowest_price
                 from driving_school_info limit #{pageNum},10
     </select>
 
-    <select id="findDrivingSchoolInfoDetailById" parameterType="int" resultMap="drivingSchoolInfoDetail">
+    <select id="findDrivingSchoolInfoDetailById" parameterType="int" resultMap="drivingSchoolInfoDetailResultMap">
         select * from driving_school_info where drivingSchoolId = #{drivingSchoolId}
     </select>
 
-    <select id="findAllDrivingSchoolSetmealByDrivingSchoolId" parameterType="int" resultMap="drivingSchoolSetmeal">
+    <select id="findAllDrivingSchoolSetmealByDrivingSchoolId" parameterType="int" resultMap="drivingSchoolSetmealResultMap">
         select * from driving_school_setmeal where drivingSchoolId = #{drivingSchoolId}
     </select>
     
-    <resultMap id="drivingSchoolInfo" type="DrivingSchoolInfo">
+    <resultMap type="DrivingSchoolInfo" id="drivingSchoolInfoResultMap">
         <id column="driving_school_id" property="drivingSchoolId"/>
         <result column="merchant_id" property="merchantId"/>
         <result column="default_img_url" property="defaultImgUrl"/>
@@ -32,7 +32,7 @@
         <result column="lowest_price" property="lowestPrice"/>
     </resultMap>
 
-    <resultMap id="drivingSchoolInfoDetail" type="DrivingSchoolInfoDetail">
+    <resultMap id="drivingSchoolInfoDetailResultMap" type="DrivingSchoolInfoDetail">
         <id column="driving_school_id" property="drivingSchoolId"/>
         <result column="merchant_id" property="merchantId"/>
         <result column="default_img_url" property="defaultImgUrl"/>
@@ -47,7 +47,7 @@
         <result column="pass_rate" property="passRate"/>
     </resultMap>
 
-    <resultMap id="drivingSchoolSetmeal" type="DrivingSchoolSetmeal">
+    <resultMap id="drivingSchoolSetmealResultMap" type="DrivingSchoolSetmeal">
         <id column="setmeal_id" property="setmealId"/>
         <result column="driving_school_id" property="drivingSchoolId"/>
         <result column="setmeal_name" property="setmealName"/>

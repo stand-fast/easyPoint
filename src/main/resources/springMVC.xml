@@ -28,13 +28,13 @@
 
     <!-- 开启SpringMVC注解的支持 -->
     <mvc:annotation-driven/>
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <!-- 指定拦截的路径 -->
-            <mvc:mapping path="/**"/>
-            <!-- 指定不拦截的路径 -->
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--&lt;!&ndash; 指定拦截的路径 &ndash;&gt;-->
+            <!--<mvc:mapping path="/**"/>-->
+            <!--&lt;!&ndash; 指定不拦截的路径 &ndash;&gt;-->
             <!--<mvc:exclude-mapping path="/getUserInfo"/>-->
-            <bean class="com.easyPoint.interceptor.TokenIntercptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
+            <!--<bean class="com.easyPoint.interceptor.TokenIntercptor"/>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
 </beans>

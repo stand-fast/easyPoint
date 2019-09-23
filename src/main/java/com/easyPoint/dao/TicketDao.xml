@@ -3,34 +3,24 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.easyPoint.dao.TicketDao">
-    <resultMap id="ticketMap" type="Ticket">
+    <resultMap id="ticketMap" type="PartTicket">
         <id column="ticket_id" property="ticketId"/>
-        <result column="association_id" property="associationId"/>
         <result column="departure_time" property="departureTime"/>
-        <result column="arrival_time" property="arrivalTime"/>
         <result column="departure_place" property="departurePlace"/>
         <result column="destination" property="destination"/>
         <result column="price" property="price"/>
-        <result column="seat_num" property="seatNum"/>
         <result column="seat_surplus" property="seatSurplus"/>
-        <result column="appointment_num" property="appointmentNum"/>
-        <result column="board_location" property="boardLocation"/>
         <result column="type" property="type"/>
     </resultMap>
 
     <!-- 根据同乡会id查询该同乡会的车票 -->
     <select id="findTicketByAssociationId" parameterType="Integer" resultMap="ticketMap">
         SELECT ticket_id,
-               association_id,
                departure_time,
-               arrival_time,
                departure_place,
                destination,
                price,
-               seat_num,
                seat_surplus,
-               appointment_num,
-               board_location,
                type
         FROM ticket
         WHERE association_id = #{associationId}

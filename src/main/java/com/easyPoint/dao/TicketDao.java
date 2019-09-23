@@ -1,6 +1,6 @@
 package com.easyPoint.dao;
 
-import com.easyPoint.pojo.tourism.Ticket;
+import com.easyPoint.pojo.tourism.PartTicket;
 
 import java.util.List;
 
@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface TicketDao {
     // 根据同乡会id查询该乡会的车票
-    List<Ticket> findTicketByAssociationId(Integer associationId);
+    List<PartTicket> findTicketByAssociationId(Integer associationId);
 }

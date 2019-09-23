@@ -1,18 +1,18 @@
 package com.easyPoint.controller;
 
-import com.easyPoint.Util.JwtUtil;
 import com.easyPoint.pojo.Result;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.GetUserInfoService;
-import org.apache.ibatis.annotations.Param;
+import com.easyPoint.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.Map;
-
+@SuppressWarnings("unchecked")
 @Controller
 public class GetUserInfoController {
 
@@ -21,7 +21,7 @@ public class GetUserInfoController {
 
     @ResponseBody
     @RequestMapping("/getUserInfoAndToken")
-    public Map getUserInfoAndToken(@Param("code") String code, @Param("encryptedData") String encryptedData, @Param("iv") String iv){
+    public Map getUserInfoAndToken(@RequestParam("code") String code, @RequestParam("encryptedData") String encryptedData, @RequestParam("iv") String iv){
         Map result = new HashMap();
         UserInfo userInfo = getUserInfoService.getUserInfo(code, encryptedData, iv);
         if(userInfo != null){
@@ -39,7 +39,8 @@ public class GetUserInfoController {
         }
     }
     @RequestMapping("/test")
-    public String test(){
-        return "success";
+    public Result test(){
+
+        return new Result(200,"sfdasf",null);
     }
 }
