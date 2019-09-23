@@ -32,15 +32,21 @@
     </select>
 
     <!--分页查询租车订单信息-->
-    <select id="findListTourismOrderInfo" parameterType="Integer" resultMap="tourismOrderInfoResultMap">
-        select travel_order_id, uid, departure_place, destination, travel_num, departure_time,
-                  state, vehicle_id, pay_money, is_insurance from travel_order tr, tourism_order tou
-                  where tr.travel_order_id = tou.travel_order_id and tr.type = 0
-                  group by tr.state
-                  order by departure_time asc
+    <select id="findListTourismOrderInfo" parameterType="Integer" resultMap="partTourismOrderInfoResultMap">
+        select tr.travel_order_id, tr.uid, departure_place, destination, travel_num, departure_time,
+                  state, tou.vehicle_id, pay_money, is_insurance,
+                  vehicle_type,
+                  username, phone
+                  from travel_order tr, tourism_order tou, vehicle_info v, user_info u
+                  where tr.travel_order_id = tou.travel_order_id
+                        and tou.vehicle_id = v.vehicle_id
+                        and tr.uid = u.uid
+                        and tr.type = 0
+                        group by state asc
+                        order by departure_time asc limit #{index}, 8
     </select>
 
-    <resultMap id="tourismOrderInfoResultMap" type="TourismOrderInfo">
+    <resultMap id="partTourismOrderInfoResultMap" type="PartTourismOrderInfo">
         <id column="travel_order_id" property="travelOrderId"/>
         <result column="uid" property="uid"/>
         <result column="departure_place" property="departurePlace"/>
@@ -48,9 +54,11 @@
         <result column="travel_num" property="travelNum"/>
         <result column="departure_time" property="departureTime"/>
         <result column="state" property="state"/>
-        <result column="vehicle_id" property="vehicleId"/>
         <result column="pay_money" property="payMoney"/>
         <result column="is_insurance" property="ifInsurance"/>
+        <result column="vehicle_type" property="vehicleType"/>
+        <result column="username" property="username"/>
+        <result column="phone" property="phone"/>
     </resultMap>
 
     <insert id="insertTravelOrderInfo" useGeneratedKeys="true" keyProperty="travelOrderId" parameterType="TourismOrderInfo">
@@ -84,5 +92,17 @@
     <update id="updateTravelOrderState">
         update travel_order set state = #{state} where travel_order_id = #{travelOrderId}
     </update>
+    <!--//查询给租车订单安排的车辆信息-->
+    <!--DriverInfo findDriverInfoByTravelOrderId(int travelOrderId);-->
+    <select id="findDriverInfoByTravelOrderId" parameterType="int" resultType="DriverInfo">
+        select travel_order_id as travelOrderId,
+               license_plate_number as licensePlateNumber,
+               color,
+               driver_name as driverName,
+               driver_phone as driverPhone,
+               vehicle_type as vehicleType
+               from tourism_order t, vehicle_info v
+               where t.vehicle_id = v.vehicle_id and travel_order_id = #{travelOrderId}
+    </select>
 
 </mapper>

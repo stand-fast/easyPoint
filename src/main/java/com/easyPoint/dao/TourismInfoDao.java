@@ -3,6 +3,8 @@ package com.easyPoint.dao;
 import com.easyPoint.pojo.tourism.TourismOrderInfo;
 import com.easyPoint.pojo.tourism.TravelOrderInfo;
 import com.easyPoint.pojo.tourism.VehicleInfo;
+import com.easyPoint.pojo.tourism.dto.DriverInfo;
+import com.easyPoint.pojo.tourism.dto.PartTourismOrderInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.math.BigDecimal;
@@ -30,7 +32,7 @@ public interface TourismInfoDao {
     Integer countTourismOrderNum();
 
     //分页查询租车订单信息
-    List<TourismOrderInfo> findListTourismOrderInfo(int pageNum);
+    List<PartTourismOrderInfo> findListTourismOrderInfo(int index);
 
     //用户支付完押金后，提交订单插入数据库,分别插入travel_order、tourism_order表中
     Integer insertTravelOrderInfo(TourismOrderInfo tourismOrderInfo);
@@ -38,5 +40,9 @@ public interface TourismInfoDao {
 
     //安排车辆，填写司机信息，更新订单表，更新travel_order表的订单状态
     Integer updateTourismOrderInfoAddDriverInfo(TourismOrderInfo tourismOrderInfo);
+    //安排车辆,结单修改订单状态
     Integer updateTravelOrderState(@Param("state") int state, @Param("travelOrderId") int travelOrderId);
+
+    //查询给租车订单安排的车辆信息
+    DriverInfo findDriverInfoByTravelOrderId(int travelOrderId);
 }

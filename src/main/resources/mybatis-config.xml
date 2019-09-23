@@ -9,6 +9,7 @@
         <package name="com.easyPoint.pojo.user"/>
         <package name="com.easyPoint.pojo.drivingschoolpojo"/>
         <package name="com.easyPoint.pojo.tourism"/>
+        <package name="com.easyPoint.pojo.tourism.dto"/>
     </typeAliases>
     <mappers>
         <package name="com.easyPoint.dao"/>

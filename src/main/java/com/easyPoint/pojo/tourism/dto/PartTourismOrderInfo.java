@@ -1,34 +1,37 @@
-package com.easyPoint.pojo.tourism;
+package com.easyPoint.pojo.tourism.dto;
 
 /**
  * @author FJW
- * 包车与租车订单共有部分
+ * 返回前端租车订单的信息
  */
-public class TravelOrderInfo {
-    /**
-     * travel_order_id	unsigned int		主键
-     * uid	unsigned int	user表的uid	不为空
-     * departure_place	varchar(100)	出发地点	不为空
-     * destination	varchar(100)	目的地	不为空
-     * travel_num	unsigned int	出行人数/票数	不为空
-     * departure_time	datetime	出发时间	不为空
-     * type	unsigned tinyint	同乡包车/旅游出行	0：旅游出行
-     *                                              1：同乡包车
-     * state	unsigned tinyint	订单状态	0：未安排
-     *                                          1：已安排
-     *                                          2：已完成
-     *                                          3：已付款
-     *                                          4：已预约
-     */
+public class PartTourismOrderInfo {
 
+    //订单id
     private Integer travelOrderId;
+    //用户id
     private Integer uid;
+    //出发地点
     private String departurePlace;
+    //目的地
     private String destination;
+    //出行人数
     private Integer travelNum;
+    //出发时间
     private String departureTime;
-    private Integer type;
+    //订单状态
     private Integer state;
+
+    //是否购买保险
+    private Integer ifInsurance;
+    //付款金额
+    private Integer payMoney;
+    //车辆类型
+    private String vehicleType;
+    //用户名
+    private String username;
+    //联系电话
+    private String phone;
+
 
     public Integer getTravelOrderId() {
         return travelOrderId;
@@ -78,14 +81,6 @@ public class TravelOrderInfo {
         this.departureTime = departureTime;
     }
 
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
     public Integer getState() {
         return state;
     }
@@ -94,17 +89,63 @@ public class TravelOrderInfo {
         this.state = state;
     }
 
+
+
+    public Integer getIfInsurance() {
+        return ifInsurance;
+    }
+
+    public void setIfInsurance(Integer ifInsurance) {
+        this.ifInsurance = ifInsurance;
+    }
+
+    public Integer getPayMoney() {
+        return payMoney;
+    }
+
+    public void setPayMoney(Integer payMoney) {
+        this.payMoney = payMoney;
+    }
+
+    public String getVehicleType() {
+        return vehicleType;
+    }
+
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     @Override
     public String toString() {
-        return "TravelOrderInfo{" +
+        return "PartTourismOrderInfo{" +
                 "travelOrderId=" + travelOrderId +
                 ", uid=" + uid +
                 ", departurePlace='" + departurePlace + '\'' +
                 ", destination='" + destination + '\'' +
                 ", travelNum=" + travelNum +
                 ", departureTime='" + departureTime + '\'' +
-                ", type=" + type +
                 ", state=" + state +
+                ", ifInsurance=" + ifInsurance +
+                ", payMoney=" + payMoney +
+                ", vehicleType='" + vehicleType + '\'' +
+                ", username='" + username + '\'' +
+                ", phone='" + phone + '\'' +
                 '}';
     }
 }

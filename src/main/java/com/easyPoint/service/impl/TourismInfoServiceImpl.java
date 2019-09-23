@@ -3,6 +3,8 @@ package com.easyPoint.service.impl;
 import com.easyPoint.dao.TourismInfoDao;
 import com.easyPoint.pojo.tourism.TourismOrderInfo;
 import com.easyPoint.pojo.tourism.VehicleInfo;
+import com.easyPoint.pojo.tourism.dto.DriverInfo;
+import com.easyPoint.pojo.tourism.dto.PartTourismOrderInfo;
 import com.easyPoint.service.TourismInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,8 +64,7 @@ public class TourismInfoServiceImpl implements TourismInfoService {
         //否则，返回0，代表该类型已经存在
         return 0;
     }
-
-    //查询加载的所有页面数
+    //查询加载的所有页面数并得到首页信息
     @Override
     public Map findTotalPageAndTourismOrderInfoList() {
         Map map = new HashMap();
@@ -71,8 +72,21 @@ public class TourismInfoServiceImpl implements TourismInfoService {
         //一页八条数据，得到租车订单总的页数,并存入map中返回前端
         int totalPage = (total%8 == 0) ? (total/8):(total/8 + 1);
         map.put("totalPage",totalPage);
-        List<TourismOrderInfo> tourismOrderInfoList = tourismInfoDao.findListTourismOrderInfo(1);
+        //查询首页的租车订单信息
+        List<PartTourismOrderInfo> partTourismOrderInfos = findListPageNumTourismOrderInfo(1);
+        for (PartTourismOrderInfo partTourismOrderInfo:partTourismOrderInfos)
+            System.out.println(partTourismOrderInfo);
+        map.put("partTourismOrderInfos", partTourismOrderInfos);
         return map;
+    }
+
+    //分页查询第pageNum页的租车订单信息
+    @Override
+    public List<PartTourismOrderInfo> findListPageNumTourismOrderInfo(int pageNum) {
+        //收到页数从一开始，表索引从0开始，故减去1
+        int index = (pageNum - 1) * 8;
+        List<PartTourismOrderInfo> partTourismOrderInfos = tourismInfoDao.findListTourismOrderInfo(index);
+        return partTourismOrderInfos;
     }
 
     //下单订票
@@ -122,5 +136,18 @@ public class TourismInfoServiceImpl implements TourismInfoService {
         //更新travel_order表中的订单状态
         tourismInfoDao.updateTravelOrderState(1,tourismOrderInfo.getTravelOrderId());
         return 1;
+    }
+
+    //更改租车订单状态，完成结单
+    @Override
+    public int updateTourismOrderState(int travelOrderId) {
+        int resultCode = tourismInfoDao.updateTravelOrderState(2,travelOrderId);
+        return resultCode;
+    }
+
+    //查询已安排订单车辆信息
+    @Override
+    public DriverInfo findDriverInfoByTravelOrderId(int travelOrderId) {
+        return tourismInfoDao.findDriverInfoByTravelOrderId(travelOrderId);
     }
 }
