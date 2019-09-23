@@ -112,6 +112,14 @@ Page{
     margin-left: 20rpx;
     text-align: right;
 }
+.statusOrder{
+    width: 150rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 30rpx;
+    color: #333;
+    text-align: left;
+}
 .heng{
     width: 4rpx;
     height: 58rpx;

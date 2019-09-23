@@ -10,8 +10,9 @@
     <view wx:for="{{ticket_lists}}" wx:key="{{index}}" class="ticket_list" bindtap="toDetail" data-index="{{index}}">
         <view class="ticket_time">
             <view class="go_time_text">出发时间</view>
-            <view class="go_time">{{item.time}}</view>
-            <view class="ticket_type">{{item.type}}</view>
+            <view class="go_time">{{item.departureTime}}</view>
+            <view class="ticket_type" wx:if="{{item.ticketNum}}">校友会包车</view>
+            <view class="ticket_type" wx:else>旅游出行</view>
         </view>
         <view class="ticketContent">
             <view class="content_left">
@@ -22,13 +23,20 @@
             <view class="content_right">
                 <view class="line">
                     <view class="address_text">出发</view>
-                    <view class="address">{{item.goAddress}}</view>
-                    <view class="status">{{item.payStatus}}</view>
+                    <view class="address">{{item.departurePlace}}</view>
+                    <block wx:if="{{item.type}}">
+                      <view class="status" wx:if="{{item.type==1}}">已付款</view>
+                      <view class="status" wx:elif="{{item.type==2}}">已预约</view>
+                    </block>
+                    <block wx:else>
+                      <view class="statusOrder">已支付定金</view>
+                    </block>
                 </view>
                 <view class="line last">
                     <view class="address_text">到达</view>
-                    <view class="address">{{item.endAddress}}</view>
-                    <view class="status">{{item.ticketNum}}张</view>
+                    <view class="address">{{item.destination}}</view>
+                    <view class="status" wx:if="{{item.ticketNum}}">{{item.ticketNum}}张</view>
+                    <view class="status" wx:else>{{item.travelNum}}人</view>
                 </view>
             </view>
         </view>

@@ -3,6 +3,7 @@ package com.easyPoint.pojo.user;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * fjw
@@ -10,38 +11,64 @@ import java.io.Serializable;
 @Component
 public class InternshipInfo implements Serializable {
     private static final long serialVersionUID = 1L;
-    int internshipId;
-    int merchantId;//商家id
-    String jobName;//岗位名称
-    String jobContent;//工作内容
-    float jobSalary;//薪资
-    int jobSettle;//1：日结；2：月结
-    int recruitNum;//招聘人数
-    String jobDate;//兼职日期
-    String jobTime;//兼职时间
-    String jobPlace;//工作地点
-    int sex;//1：男；2：女；
-    String welfare;//福利待遇
-    String requirement;//任职要求
-    String publishTime;//发布日期
-    int applicantNum;//已报名人数
-    int state;//招聘信息状态	1：正在招聘；2：已下架（不为空）
+    private Integer internshipId;
+    private Integer merchantId;//商家id
+    private String jobName;//岗位名称
+    private String jobContent;//工作内容
+    private BigDecimal jobSalary;//薪资
+    private Integer jobSettle;//1：日结；2：月结
+    private Integer recruitNum;//招聘人数
+    private String jobDate;//兼职日期
+    private String jobTime;//兼职时间
+    private String jobPlace;//工作地点
+    private Integer sex;//1：男；2：女；
+    private String welfare;//福利待遇
+    private String requirement;//任职要求
+    private String publishTime;//发布日期
+    private Integer applicantNum;//已报名人数
+    private Integer state;//招聘信息状态	1：正在招聘；2：已下架（不为空）
 
-
-    public int getInternshipId() {
+    public Integer getInternshipId() {
         return internshipId;
     }
 
-    public void setInternshipId(int internshipId) {
+    public void setInternshipId(Integer internshipId) {
         this.internshipId = internshipId;
     }
 
+    public String getJobContent() {
+        return jobContent;
+    }
 
-    public int getMerchantId() {
+    public void setJobContent(String jobContent) {
+        this.jobContent = jobContent;
+    }
+
+    public String getJobDate() {
+        return jobDate;
+    }
+
+    public void setJobDate(String jobDate) {
+        this.jobDate = jobDate;
+    }
+
+    public Integer getApplicantNum() {
+        return applicantNum;
+    }
+
+    public void setApplicantNum(Integer applicantNum) {
+        this.applicantNum = applicantNum;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Integer getMerchantId() {
         return merchantId;
     }
 
-    public void setMerchantId(int merchantId) {
+    public void setMerchantId(Integer merchantId) {
         this.merchantId = merchantId;
     }
 
@@ -53,44 +80,28 @@ public class InternshipInfo implements Serializable {
         this.jobName = jobName;
     }
 
-    public String getJobContent() {
-        return jobContent;
-    }
-
-    public void setJobContent(String jobContent) {
-        this.jobContent = jobContent;
-    }
-
-    public float getJobSalary() {
+    public BigDecimal getJobSalary() {
         return jobSalary;
     }
 
-    public void setJobSalary(float jobSalary) {
+    public void setJobSalary(BigDecimal jobSalary) {
         this.jobSalary = jobSalary;
     }
 
-    public int getJobSettle() {
+    public Integer getJobSettle() {
         return jobSettle;
     }
 
-    public void setJobSettle(int jobSettle) {
+    public void setJobSettle(Integer jobSettle) {
         this.jobSettle = jobSettle;
     }
 
-    public int getRecruitNum() {
+    public Integer getRecruitNum() {
         return recruitNum;
     }
 
-    public void setRecruitNum(int recruitNum) {
+    public void setRecruitNum(Integer recruitNum) {
         this.recruitNum = recruitNum;
-    }
-
-    public String getJobDate() {
-        return jobDate;
-    }
-
-    public void setJobDate(String jobDate) {
-        this.jobDate = jobDate;
     }
 
     public String getJobTime() {
@@ -109,11 +120,11 @@ public class InternshipInfo implements Serializable {
         this.jobPlace = jobPlace;
     }
 
-    public int getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(int sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 
@@ -141,19 +152,11 @@ public class InternshipInfo implements Serializable {
         this.publishTime = publishTime;
     }
 
-    public int getApplicantNum() {
-        return applicantNum;
-    }
-
-    public void setApplicantNum(int applicantNum) {
-        this.applicantNum = applicantNum;
-    }
-
-    public int getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(int state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 

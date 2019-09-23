@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easyPoint.dao.TourismInfoDao">
+
+    <select id="countVehicleTypeNum" resultType="Integer">
+        select count(vehicle_id) from vehicle_info
+    </select>
+
+    <select id="findListVehicleInfo" parameterType="Integer" resultMap="vehicleInfoResultMap">
+        select vehicle_id, vehicle_type, deposit from vehicle_info order by vehicle_id desc limit #{index}, 4
+    </select>
+
+    <select id="findVehicleInfo" parameterType="String" resultMap="vehicleInfoResultMap">
+        select vehicle_id, vehicle_type, deposit from vehicle_info where vehicle_type = #{vehicleType}
+    </select>
+
+    <resultMap type="VehicleInfo" id="vehicleInfoResultMap" >
+        <id column="vehicle_id" property="vehicleId"/>
+        <result column="vehicle_type" property="vehicleType"/>
+        <result column="deposit" property="deposit"/>
+    </resultMap>
+
+    <insert id="insertVehicleType">
+        insert into vehicle_info (vehicle_type, deposit) value (#{vehicleType}, #{deposit})
+    </insert>
+
+    <!--查询订单总数-->
+    <select id="countTourismOrderNum" resultType="Integer">
+        select count(travel_order_id) from tourism_order
+    </select>
+
+    <!--分页查询租车订单信息-->
+    <select id="findListTourismOrderInfo" parameterType="Integer" resultMap="tourismOrderInfoResultMap">
+        select travel_order_id, uid, departure_place, destination, travel_num, departure_time,
+                  state, vehicle_id, pay_money, is_insurance from travel_order tr, tourism_order tou
+                  where tr.travel_order_id = tou.travel_order_id and tr.type = 0
+                  group by tr.state
+                  order by departure_time asc
+    </select>
+
+    <resultMap id="tourismOrderInfoResultMap" type="TourismOrderInfo">
+        <id column="travel_order_id" property="travelOrderId"/>
+        <result column="uid" property="uid"/>
+        <result column="departure_place" property="departurePlace"/>
+        <result column="destination" property="destination"/>
+        <result column="travel_num" property="travelNum"/>
+        <result column="departure_time" property="departureTime"/>
+        <result column="state" property="state"/>
+        <result column="vehicle_id" property="vehicleId"/>
+        <result column="pay_money" property="payMoney"/>
+        <result column="is_insurance" property="ifInsurance"/>
+    </resultMap>
+
+    <insert id="insertTravelOrderInfo" useGeneratedKeys="true" keyProperty="travelOrderId" parameterType="TourismOrderInfo">
+        insert into travel_order (uid,
+                                  departure_place,
+                                  destination,
+                                  travel_num,
+                                  departure_time,
+                                  type,
+                                  state) value (
+                                  #{uid},
+                                  #{departurePlace},
+                                  #{destination},
+                                  #{travelNum},
+                                  #{departureTime},
+                                  #{type},
+                                  #{state}
+                                  )
+    </insert>
+    <insert id="insertTourismOrderInfo" parameterType="TourismOrderInfo">
+        insert into tourism_order (travel_order_id,vehicle_id,is_insurance, pay_money, make_order_time)
+                                    value (#{travelOrderId},#{vehicleId}, #{ifInsurance}, #{payMoney}, #{makeOrderTime})
+    </insert>
+
+    <update id="updateTourismOrderInfoAddDriverInfo" parameterType="TourismOrderInfo">
+        update tourism_order set license_plate_number = #{licensePlateNumber}, color = #{color},
+                                 driver_name = #{driverName}, driver_phone = #{driverPhone},
+                                 arrange_vehicle_time = #{arrangeVehicleTime}
+                             where travel_order_id = #{travelOrderId}
+    </update>
+    <update id="updateTravelOrderState">
+        update travel_order set state = #{state} where travel_order_id = #{travelOrderId}
+    </update>
+
+</mapper>

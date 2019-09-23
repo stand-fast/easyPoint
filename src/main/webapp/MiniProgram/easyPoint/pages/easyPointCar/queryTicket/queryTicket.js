@@ -29,18 +29,27 @@ Page({
           },
         ],
     },
+  //判断是否填写个人信息
   requistPersonInformation: function () {
     var selt = this;
     var userInformation = wx.getStorageSync('userInformation');
     console.log(userInformation);
-    if (userInformation==""){
-      wx.navigateTo({
-        url: '/pages/user/editInformation/editInformation?showPrompt=1',
+    if (userInformation == "") {
+      wx.showModal({
+        title: '您尚未填写个人信息',
+        content: '请点击确定开始填写个人信息',
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/user/editInformation/editInformation',
+            })
+          }
+        }
       })
     }
-    else{
+    else {
       return true
-    }  
+    }
   },
   buyTicket: function (res) {
     if (this.requistPersonInformation()){
@@ -59,27 +68,23 @@ Page({
      * 生命周期函数--监听页面加载
      */
   onLoad: function (options) {
-    var committeeName =wx.getStorageSync('RuralCommitteeName');
-    console.log(committeeName);
-    //this.getMessage(committeeName);
-  },
-  //获得数据
-  getMessage: function (committeeName) {
     var selt = this;
-    wx.request({
-      url: '接口路径',
-      data: {
-        committeeName: committeeName,   //根据同乡会名称请求车票数据
-      },
-      method: 'Post',
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
-      success: function (res) {
-        console.log(res.data)
-        selt.setData({
-          townsmen_association: res.data,
-        })
-      }
-    })
+    console.log(options.associationId);
+    //获得数据
+    // wx.request({
+    //   url: '接口路径',
+    //   data: {
+    //     associationId: options.associationId,   //根据同乡会名称请求车票数据
+    //   },
+    //   method: 'Post',
+    //   header: { 'content-type': 'application/x-www-form-urlencoded' },
+    //   success: function (res) {
+    //     console.log(res.data)
+    //     selt.setData({
+    //       townsmen_association: res.data,
+    //     })
+    //   }
+    // })
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
