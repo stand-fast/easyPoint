@@ -132,35 +132,6 @@
     height: 2rpx;
     background-color: #eee;
 }
-.protocal{
-    display: flex;
-    flex-direction: row;
-    margin-top: 18rpx;
-    color:#56b4f6;
-    font-size: 30rpx!important;
-}
-.square2 image{
-    width: 28rpx;
-    height: 28rpx;
-    position: fixed;
-    margin: -3rpx -2rpx;
-}
-.square1{
-    width: 22rpx;
-    height: 22rpx;
-    border-radius: 50%;
-    border:1rpx solid #bbb;
-    background-color: #fff;
-    margin:7rpx 10rpx 0rpx 30rpx;
-}
-.square2{
-    width: 22rpx;
-    height: 22rpx;
-    border-radius: 50%;
-    border:1rpx solid #56b4f6;
-    background-color: #56b4f6;
-    margin:7rpx 10rpx 0 30rpx;
-}
 .Text{
     color:#56b4f6;
     font-size: 24rpx;

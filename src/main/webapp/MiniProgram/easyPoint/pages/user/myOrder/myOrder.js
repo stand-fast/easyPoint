@@ -53,7 +53,7 @@ Page({
     toDetail:function(e){
         var index=e.currentTarget.dataset.index;
         var data = this.data.ticket_lists[index];
-        if (data.ticketNum==true){
+        if (data.ticketNum){
             wx.navigateTo({
                 url: '/pages/user/myOrderCarDetail/myOrderCarDetail?current=0',
             })

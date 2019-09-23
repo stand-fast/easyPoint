@@ -6,6 +6,7 @@ Page({
      */
     data: {
         userImg:"",
+        lostUserInfos:true,
         hasPermission:false,
         userNickName:"Pluto",
         order_lists:[{
@@ -77,10 +78,11 @@ Page({
      */
     onLoad: function (options) {      //加判断用户是否登录，没登录弹出弹窗
         // wx.showModal({
-        //     title: '提示',
-        //     content: '为了更好的服务体验，我们需要获取您的用户信息，请点击授权登录',
+        //     title: '授权登录',
+        //     content: '为了提供更好的服务，我们需要获取您的信息，请授权登录',
+        //     confirmColor:"#00be30",
+        //     cancelColor:"#666",
         // })
-
     },
 
     /**

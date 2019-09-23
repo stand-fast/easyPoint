@@ -79,9 +79,9 @@ Page{
 }
 .responser{
     width: 100%;
+    height: 180rpx;
     font-size: 30rpx;
     color: #333;
-    border-bottom: 10rpx solid #f2f2f2;
 }
 .responser_text{
     width: 100%;
@@ -104,6 +104,23 @@ Page{
     line-height: 40rpx;
     color: #333;
     margin:0rpx 10rpx 20rpx 0rpx;
+}
+.driver_info{
+    background-color: #fff;
+    width: 100%;
+    height: 180rpx;
+    padding: 10rpx 0rpx;
+}
+.driver_info_item{
+    width: 680rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    color: #333;
+    font-size: 30rpx;
+    margin: 16rpx 10rpx 16rpx 47rpx;
+}
+.driver_info_item text{
+    color: #56b4f6;
 }
 .apply_refund,.changeTicket{
     width: 100%;

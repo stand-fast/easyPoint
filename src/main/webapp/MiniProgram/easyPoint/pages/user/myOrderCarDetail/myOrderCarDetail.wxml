@@ -32,12 +32,19 @@
     </view>
 </view>
 <view class="responser">
-    <view class="responser_text">乘车负责人</view>
+    <view class="responser_text">联系人</view>
     <view class="item" wx:for="{{ticketDetail.passengers}}" wx:key="{{index}}">
         <view class="responser_people">{{item.name}}</view>
         <view class="responser_phone">{{item.phone}}</view>
     </view>
 </view>
+<view class="hr"></view>
+<view class="driver_info">
+    <view class="driver_info_item">司机姓名：   {{driverInfos.driverName}}</view>
+    <view class="driver_info_item">联系方式：   <text>{{driverInfos.driverPhone}}</text></view>
+    <view class="driver_info_item">车牌号码：   {{driverInfos.driverCarNumber}}</view>
+</view>
+<view class="hr" wx:if="{{current==1}}"></view>
 <view class="apply_refund" bindtap="applyRefund" wx:if="{{current==1}}">申请退款<text>（只能在发车前一天修改）</text></view>
 <view class="hr"></view>
 <view class="changeTicket" bindtap="changeTime">更换时间<text>（只能在发车前一天修改）</text></view>

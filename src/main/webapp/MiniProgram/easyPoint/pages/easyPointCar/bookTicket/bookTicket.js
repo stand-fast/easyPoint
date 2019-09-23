@@ -208,14 +208,6 @@ Page({
           })
         }
     },
-    //是否同意协议
-    checkChange:function(e){
-        var check = this.data.check;
-       check = !check;
-        this.setData({
-            check:check
-        })
-    },
     //是否购买保险
     insuChange:function(e){
       var insucheck=this.data.insucheck;

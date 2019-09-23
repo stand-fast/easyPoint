@@ -6,12 +6,17 @@ Page({
      */
     data: {
         current:"",
+        driverInfos:{
+            driverName:"王司机",
+            driverPhone:"12345678910",
+            driverCarNumber:"粤A12345（白色）"
+        },
         ticketDetail:{
             startAddress:"汕头",
             endAddress:"广金广州本部",
             goTime:"2019-08-10 08:00",
             price:130,
-            status:"已付款",
+            status:"已付订金",
             passengers:[{
                 name:"吴彦祖",
                 phone:"12345678910"

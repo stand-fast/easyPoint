@@ -96,7 +96,7 @@ Page{
 .hotTopic_item_notice image{
     width: 82rpx;
     height: 30rpx;
-    margin:8rpx 10rpx 2rpx 30rpx;
+    margin:10rpx 10rpx 2rpx 30rpx;
 }
 .notice_text{
     height: 50rpx;

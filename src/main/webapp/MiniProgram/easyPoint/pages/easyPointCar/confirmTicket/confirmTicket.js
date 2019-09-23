@@ -74,13 +74,6 @@ Page({
             url: '/pages/easyPointCar/changeContact/changeContact',
         })
     },
-    proChange: function (e) {
-        var procheck = this.data.procheck;
-        procheck = !procheck;
-        this.setData({
-            procheck: procheck,
-        })
-    },
     //触发支付弹窗
     toPay:function(e){
       if(this.data.procheck==true){     //判断同意协议
