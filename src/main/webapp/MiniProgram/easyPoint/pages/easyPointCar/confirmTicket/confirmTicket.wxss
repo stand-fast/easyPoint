@@ -239,7 +239,7 @@ Page{
 .money_text{
     height: 120rpx;
     line-height: 120rpx;
-    margin-left: 40rpx;
+    margin-left: 20rpx;
     font-size: 32rpx;
     color: #333;
 }

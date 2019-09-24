@@ -58,7 +58,7 @@ Page({
         }
         else if(index==1){
             wx.navigateTo({
-                url: '/pages/user/myOrder/myOrder',
+                url: '/pages/user/myOrder/myOrder?type='+1,
             })
         }
         else if(index==2){

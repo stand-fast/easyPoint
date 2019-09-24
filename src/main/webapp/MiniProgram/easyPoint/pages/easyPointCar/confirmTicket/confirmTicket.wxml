@@ -55,7 +55,7 @@
             <view class="changeContact" bindtap="changeContact">更换联系人</view>
         </view>
     </view>
-    <view class="content_insurance">
+    <view class="content_insurance"  wx:if="{{currentab==0}}">
         <view class='{{radioStatus?"circle2":"circle1"}}' bindtap="radiochange">
             <image src="/images/icon/right.png" wx:if="{{radioStatus}}"></image>
         </view>
@@ -71,7 +71,7 @@
         <image src="/images/icon/cservice.png"></image>
     </button></view>
     <view class="payMoney">
-        <view class="money_text">共计<text>￥{{sumprice}}</text></view>
+        <view class="money_text">共计<text>￥{{sumprice}}<block wx:if="{{radioStatus}}">(含保险￥{{totalDeposit}})</block></text></view>
     </view>
     <view wx:if="{{currentab==0}}" class="submitBtn" bindtap="toPay"><button form-type="submit">去支付</button></view>
     <view wx:if="{{currentab==1}}" class="submitBtn" bindtap="toPay"><button form-type="submit">去预约</button></view>

@@ -15,7 +15,8 @@
 </view>
 <view class="passengers">
     <view class="item" wx:if="{{current==0}}">
-        <view class="passen_text">正式票￥<text>{{ticketDetail.price}}</text></view>
+        <view class="passen_text" wx:if="{{type==1}}">正式票￥<text>{{ticketDetail.price}}</text></view>
+        <view class="passen_text" wx:if="{{type==2}}">预约票￥<text>{{ticketDetail.price}}</text></view>
         <view class="passenNum">{{ticketDetail.ticketNum}}张</view> 
     </view>
     <view class="item" wx:else>
@@ -24,29 +25,45 @@
     </view>
 
     <view class="item" wx:if="{{current==0}}">
-        <view class="passen_text">已付款</view>
-        <view class="passen_price">合计 ￥<text>{{ticketDetail.price}}</text></view>
+        <view class="passen_text" wx:if="{{type==1}}">已付款 <text wx:if="{{ticketDetail.isInsurance==1}}"> (含保险￥{{sumDeposit}})</text></view>
+        <view class="passen_text" wx:if="{{type==2}}">已预约 <text wx:if="{{ticketDetail.isInsurance==1}}"> (含保险￥{{sumDeposit}})</text></view>
+        <view class="passen_price">合计 ￥<text>{{totalPrice}}</text></view>
     </view>
     <view class="item" wx:else>
         <view class="passen_text">已支付定金</view>
         <view class="passen_price">合计 ￥<text>{{ticketDetail.deposit}}</text></view>
+        
     </view>
 </view>
 <view class="responser">
     <view class="responser_text">联系人</view>
-    <view class="item" wx:for="{{ticketDetail.passengers}}" wx:key="{{index}}">
-        <view class="responser_people">{{item.name}}</view>
-        <view class="responser_phone">{{item.phone}}</view>
+    <view class="item">
+        <view class="responser_people">{{ticketDetail.username}}</view>
+        <view class="responser_phone">{{ticketDetail.phone}}</view>
     </view>
 </view>
 <view class="hr"></view>
-<view class="driver_info">
-    <view class="driver_info_item">司机姓名：   {{driverInfos.driverName}}</view>
-    <view class="driver_info_item">联系方式：   <text>{{driverInfos.driverPhone}}</text></view>
-    <view class="driver_info_item">车牌号码：   {{driverInfos.driverCarNumber}}</view>
+<view class="driver_info" wx:if="{{ticketDetail.driverName}}">
+    <view class="driver_info_item">司机姓名：   {{ticketDetail.driverName}}</view>
+    <view class="driver_info_item">联系方式：   <text>{{ticketDetail.driverPhone}}</text></view>
+    <view class="driver_info_item">车牌号码：   {{ticketDetail.driverCarNumber}}</view>
 </view>
+<view class="hr"></view>
+<view wx:if="{{current == 0&& type==2}}"></view>
+<view class="insurance" wx:else>
+    <view class="insurance-item">
+        <view class="insurance-item_text">购买保险</view>
+        <view class="insurance-item_status" wx:if="{{ticketDetail.isInsurance==1}}">是</view> 
+        <view class="insurance-item_status" wx:else>否</view> 
+    </view>
+</view>
+
 <view class="hr" wx:if="{{current==1}}"></view>
 <view class="apply_refund" bindtap="applyRefund" wx:if="{{current==1}}">申请退款<text>（只能在发车前一天修改）</text></view>
+
+<block wx:if="{{current == 0&& type==2}}"></block>
+<block wx:else>
 <view class="hr"></view>
-<view class="changeTicket" bindtap="changeTime">更换时间<text>（只能在发车前一天修改）</text></view>
+<view class="changeTicket" bindtap="changeTime" >更换时间<text>（只能在发车前一天修改）</text></view>
+</block>
 <view class="hr"></view>

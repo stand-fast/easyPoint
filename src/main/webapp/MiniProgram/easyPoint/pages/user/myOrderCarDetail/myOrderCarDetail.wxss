@@ -49,13 +49,13 @@ Page{
 }
 .passengers{
     width: 100%;
-    height: 160rpx;
+    height: 180rpx;
     font-size: 30rpx;
     color: #333;
     border-bottom: 10rpx solid #f2f2f2;
 }
 .passen_text{
-    width: 240rpx;
+    width: 310rpx;
     height: 60rpx;
     line-height: 60rpx;
     font-family: 微软雅黑;
@@ -68,7 +68,7 @@ Page{
     width: 200rpx;
     height: 60rpx;
     line-height: 60rpx;
-    margin:20rpx 10rpx 0 220rpx;
+    margin:20rpx 10rpx 0 150rpx;
     text-align: right;
 }
 .passen_price{
@@ -79,7 +79,7 @@ Page{
 }
 .responser{
     width: 100%;
-    height: 180rpx;
+    height: 130rpx;
     font-size: 30rpx;
     color: #333;
 }
@@ -132,6 +132,32 @@ Page{
 }
 .changeTicket text,.apply_refund text{
     color: #999!important;
+}
+.insurance{
+    width: 100%;
+    font-size: 30rpx;
+    color: #333;
+    border-bottom: 10rpx solid #f2f2f2;
+}
+.insurance-item{
+    width:100%;
+    height: 80rpx;
+    display: flex;
+    flex-direction: row;
+}
+.insurance-item_text{
+    width: 310rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    font-family: 微软雅黑;
+    margin: 0 0 0 47rpx;
+}
+.insurance-item_status{
+    width: 200rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    margin:0 10rpx 0 150rpx;
+    text-align: right;
 }
 .hr{
     width: 100%;

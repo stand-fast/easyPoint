@@ -19,19 +19,21 @@ Page({
     },
     //是否购买保险
     radiochange: function (e) {
-        var radioStatus = this.data.radioStatus;
-        radioStatus = !radioStatus;
-        this.setData({
-            radioStatus: radioStatus
-        })
+      var radioStatus = this.data.radioStatus;
+      radioStatus = !radioStatus;
+      this.setData({
+          radioStatus: radioStatus
+      })
+      var number = this.data.number;
       if (this.data.radioStatus==true){
-        var sum=this.data.sumprice + 10 * this.data.number;
+        var sum=this.data.sumprice + 10 * number;
         this.setData({
           sumprice: sum,
           is_insurance:1,
+          totalDeposit: number * 10,
         })
       } else {
-        var sum = this.data.sumprice - 10 * this.data.number; 
+        var sum = this.data.sumprice - 10 * number; 
         this.setData({
           sumprice: sum,
           is_insurance: 0,
@@ -43,6 +45,7 @@ Page({
       if (this.data.radioStatus == true) {
         this.setData({
           sumprice: this.data.number * this.data.price + 10 * this.data.number,
+          totalDeposit: 10 * this.data.number,
         })
       } else {
         this.setData({
@@ -108,7 +111,7 @@ Page({
       //     ticketId: selt.data.ticketInfos.ticketId,
       //     price: selt.data.sumprice,
       //     number:selt.data.number,
-      //     isInsurance: selt.data.is_insurance,
+      //     isInsurance: selt.data.radioStatus,
       //     type: selt.data.ticketInfos.type,
       //     username: selt.data.username,
       //     phone: selt.data.phone,
