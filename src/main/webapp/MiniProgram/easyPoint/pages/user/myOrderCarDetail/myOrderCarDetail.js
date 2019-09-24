@@ -5,28 +5,42 @@ Page({
      * 页面的初始数据
      */
     data: {
-        current:"",
+        current:"0",
         driverInfos:{
             driverName:"王司机",
             driverPhone:"12345678910",
             driverCarNumber:"粤A12345（白色）"
         },
-        ticketDetail:{
-            startAddress:"汕头",
-            endAddress:"广金广州本部",
-            goTime:"2019-08-10 08:00",
-            price:130,
-            status:"已付订金",
-            passengers:[{
-                name:"吴彦祖",
-                phone:"12345678910"
-            },{
-                name:"梁朝伟",
-                phone:"12345678910"
-            }],
-            passengerNum:2,
-        }
-    },
+      ticketDetail:{
+          ticket_id:"121312312",
+          departurePlace:"汕头",
+          destination:"广金广州本部",
+          departureTime:"2019-08-10 08:00",
+          price:130,
+          isInsurance:"0",
+          passengers:[{
+              name:"吴彦祖",
+              phone:"12345678910"
+          },{
+              name:"梁朝伟",
+              phone:"12345678910"
+          }],
+        ticketNum: 2,
+
+        //departurePlace: "汕头",
+        //destination: "广金广州本部",
+        //departureTime: "2019-08-10 08:00",
+        deposit: 1000,
+        // passengers: [{
+        //   name: "吴彦祖",
+        //   phone: "12345678910"
+        // }, {
+        //   name: "梁朝伟",
+        //   phone: "12345678910"
+        // }],
+        travelNum: 22,
+      }
+    }, 
     applyRefund:function(){
         wx.navigateTo({
             url: '/pages/user/refund/refund',
@@ -42,9 +56,17 @@ Page({
      */
     onLoad: function (options) {
         var current = options.current;
-        this.setData({
-            current: current
-        })
+        if(current==0){
+          var ticketId = options.ticketId;
+          console.log(ticketId);
+        }
+        else if (current==1){
+          var tourismId=options.tourismId;
+          console.log(tourismId)
+          this.setData({
+            current: 1
+          })
+        }
     },
 
     /**

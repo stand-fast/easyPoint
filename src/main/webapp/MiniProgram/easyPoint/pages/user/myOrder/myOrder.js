@@ -8,11 +8,11 @@ Page({
         currenTab:0,
         ticket_lists:[
         {
-            ticketId: 12357568583,
+            ticketId: 623123513,
             departureTime:"2019-09-10 08:00",
             departurePlace:"汕头",
             destination:"广州广金本部",
-            ticketNum:"12",
+            ticketNum: "10",
             type:"1",
         }, 
         {
@@ -31,7 +31,7 @@ Page({
           travelNum: "22",
         },
         {
-          tourismId: "123123123123",
+          tourismId: "123123123123123112541",
           departureTime: "2019-01-10 09:00",
           departurePlace: "广州广金本部",
           destination: "白云山",
@@ -55,12 +55,12 @@ Page({
         var data = this.data.ticket_lists[index];
         if (data.ticketNum){
             wx.navigateTo({
-                url: '/pages/user/myOrderCarDetail/myOrderCarDetail?current=0',
+              url: '/pages/user/myOrderCarDetail/myOrderCarDetail?current=0&&ticketId='+data.ticketId,
             })
         }
         else{
             wx.navigateTo({
-                url: '/pages/user/myOrderCarDetail/myOrderCarDetail?current=1',
+              url: '/pages/user/myOrderCarDetail/myOrderCarDetail?current=1&&tourismId='+data.tourismId,
             })
         }
     },

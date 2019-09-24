@@ -1,7 +1,8 @@
 {
     "pages": [
-      "pages/myIndex/myindex/myindex",
       "pages/user/myOrder/myOrder",
+      "pages/user/myOrderCarDetail/myOrderCarDetail",
+      "pages/myIndex/myindex/myindex",
       "pages/easyPointCar/bookTicket/bookTicket",
       "pages/user/user/user",
       "pages/user/editInformation/editInformation",
@@ -9,7 +10,6 @@
         "pages/easyPointCar/confirmTicket/confirmTicket",
         "pages/easyPointCar/changeContact/changeContact",
         "pages/myIndex/search/search",
-        "pages/user/myOrderCarDetail/myOrderCarDetail",
         "pages/user/refund/refund",
         "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
         "pages/IdleAndRental/confirmOrder/confirmOrder",
