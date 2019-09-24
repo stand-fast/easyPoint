@@ -4,7 +4,7 @@ package com.easyPoint.pojo.tourism.dto;
  * @author FJW
  * 返回前端租车订单的信息
  */
-public class PartTourismOrderInfo {
+public class PartTourismOrderInfoDto {
 
     //订单id
     private Integer travelOrderId;
@@ -27,8 +27,8 @@ public class PartTourismOrderInfo {
     private Integer payMoney;
     //车辆类型
     private String vehicleType;
-    //用户名
-    private String username;
+    //乘客名
+    private String passenger;
     //联系电话
     private String phone;
 
@@ -115,12 +115,12 @@ public class PartTourismOrderInfo {
         this.vehicleType = vehicleType;
     }
 
-    public String getUsername() {
-        return username;
+    public String getPassenger() {
+        return passenger;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setPassenger(String passenger) {
+        this.passenger = passenger;
     }
 
     public String getPhone() {
@@ -133,7 +133,7 @@ public class PartTourismOrderInfo {
 
     @Override
     public String toString() {
-        return "PartTourismOrderInfo{" +
+        return "PartTourismOrderInfoDto{" +
                 "travelOrderId=" + travelOrderId +
                 ", uid=" + uid +
                 ", departurePlace='" + departurePlace + '\'' +
@@ -144,7 +144,7 @@ public class PartTourismOrderInfo {
                 ", ifInsurance=" + ifInsurance +
                 ", payMoney=" + payMoney +
                 ", vehicleType='" + vehicleType + '\'' +
-                ", username='" + username + '\'' +
+                ", passenger='" + passenger + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';
     }

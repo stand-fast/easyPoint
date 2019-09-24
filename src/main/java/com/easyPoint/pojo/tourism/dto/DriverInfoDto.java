@@ -4,7 +4,7 @@ package com.easyPoint.pojo.tourism.dto;
  * @author FJW
  * 车辆信息，包括司机信息等
  */
-public class DriverInfo {
+public class DriverInfoDto {
     //订单号
     private Integer travelOrderId;
     //车牌号
@@ -68,7 +68,7 @@ public class DriverInfo {
 
     @Override
     public String toString() {
-        return "DriverInfo{" +
+        return "DriverInfoDto{" +
                 "travelOrderId=" + travelOrderId +
                 ", licensePlateNumber='" + licensePlateNumber + '\'' +
                 ", color='" + color + '\'' +
