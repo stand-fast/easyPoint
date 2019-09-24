@@ -42,24 +42,30 @@
         <view class="responser_phone">{{ticketDetail.phone}}</view>
     </view>
 </view>
+<block wx:if="{{ticketDetail.driverName}}">
 <view class="hr"></view>
-<view class="driver_info" wx:if="{{ticketDetail.driverName}}">
+<view class="driver_info">
     <view class="driver_info_item">司机姓名：   {{ticketDetail.driverName}}</view>
     <view class="driver_info_item">联系方式：   <text>{{ticketDetail.driverPhone}}</text></view>
     <view class="driver_info_item">车牌号码：   {{ticketDetail.driverCarNumber}}</view>
 </view>
+</block>
+<block wx:if="{{current == 0&& type==2}}"></block>
+<block wx:else>
 <view class="hr"></view>
-<view wx:if="{{current == 0&& type==2}}"></view>
-<view class="insurance" wx:else>
+<view class="insurance" >
     <view class="insurance-item">
         <view class="insurance-item_text">购买保险</view>
         <view class="insurance-item_status" wx:if="{{ticketDetail.isInsurance==1}}">是</view> 
         <view class="insurance-item_status" wx:else>否</view> 
     </view>
 </view>
+</block>
 
-<view class="hr" wx:if="{{current==1}}"></view>
+<block  wx:if="{{current==1}}">
+<view class="hr" ></view>
 <view class="apply_refund" bindtap="applyRefund" wx:if="{{current==1}}">申请退款<text>（只能在发车前一天修改）</text></view>
+</block>
 
 <block wx:if="{{current == 0&& type==2}}"></block>
 <block wx:else>

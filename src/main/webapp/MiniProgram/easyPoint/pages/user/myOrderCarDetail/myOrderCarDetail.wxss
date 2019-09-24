@@ -137,7 +137,6 @@ Page{
     width: 100%;
     font-size: 30rpx;
     color: #333;
-    border-bottom: 10rpx solid #f2f2f2;
 }
 .insurance-item{
     width:100%;
