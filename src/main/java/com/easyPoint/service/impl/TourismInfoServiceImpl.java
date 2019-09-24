@@ -2,9 +2,10 @@ package com.easyPoint.service.impl;
 
 import com.easyPoint.dao.TourismInfoDao;
 import com.easyPoint.pojo.tourism.TourismOrderInfo;
+import com.easyPoint.pojo.tourism.TravelOrderInfo;
 import com.easyPoint.pojo.tourism.VehicleInfo;
-import com.easyPoint.pojo.tourism.dto.DriverInfo;
-import com.easyPoint.pojo.tourism.dto.PartTourismOrderInfo;
+import com.easyPoint.pojo.tourism.dto.DriverInfoDto;
+import com.easyPoint.pojo.tourism.dto.PartTourismOrderInfoDto;
 import com.easyPoint.service.TourismInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,8 +74,8 @@ public class TourismInfoServiceImpl implements TourismInfoService {
         int totalPage = (total%8 == 0) ? (total/8):(total/8 + 1);
         map.put("totalPage",totalPage);
         //查询首页的租车订单信息
-        List<PartTourismOrderInfo> partTourismOrderInfos = findListPageNumTourismOrderInfo(1);
-        for (PartTourismOrderInfo partTourismOrderInfo:partTourismOrderInfos)
+        List<PartTourismOrderInfoDto> partTourismOrderInfos = findListPageNumTourismOrderInfo(1);
+        for (PartTourismOrderInfoDto partTourismOrderInfo:partTourismOrderInfos)
             System.out.println(partTourismOrderInfo);
         map.put("partTourismOrderInfos", partTourismOrderInfos);
         return map;
@@ -82,10 +83,10 @@ public class TourismInfoServiceImpl implements TourismInfoService {
 
     //分页查询第pageNum页的租车订单信息
     @Override
-    public List<PartTourismOrderInfo> findListPageNumTourismOrderInfo(int pageNum) {
+    public List<PartTourismOrderInfoDto> findListPageNumTourismOrderInfo(int pageNum) {
         //收到页数从一开始，表索引从0开始，故减去1
         int index = (pageNum - 1) * 8;
-        List<PartTourismOrderInfo> partTourismOrderInfos = tourismInfoDao.findListTourismOrderInfo(index);
+        List<PartTourismOrderInfoDto> partTourismOrderInfos = tourismInfoDao.findListTourismOrderInfo(index);
         return partTourismOrderInfos;
     }
 
@@ -94,7 +95,7 @@ public class TourismInfoServiceImpl implements TourismInfoService {
     public int addTourismOrder(TourismOrderInfo tourismOrderInfo) {
         //生成下单时间
         Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String makeOrderTime = simpleDateFormat.format(date);
         //设置订票时间
         tourismOrderInfo.setMakeOrderTime(makeOrderTime);
@@ -144,10 +145,35 @@ public class TourismInfoServiceImpl implements TourismInfoService {
         int resultCode = tourismInfoDao.updateTravelOrderState(2,travelOrderId);
         return resultCode;
     }
+    //用户进入租车页面查询车辆类型
+    @Override
+    public List<VehicleInfo> findAllVehicleInfo() {
+        return tourismInfoDao.findAllVehicleInfo();
+    }
 
     //查询已安排订单车辆信息
     @Override
-    public DriverInfo findDriverInfoByTravelOrderId(int travelOrderId) {
+    public DriverInfoDto findDriverInfoByTravelOrderId(int travelOrderId) {
         return tourismInfoDao.findDriverInfoByTravelOrderId(travelOrderId);
+    }
+
+    //出行模块订单，租车与包车共享
+    @Override
+    public List<TravelOrderInfo> findListTravelOrderByUid(int uid) {
+        return tourismInfoDao.findListTravelOrderByUid(uid);
+    }
+
+    //用户查询出行订单详情信息
+    @Override
+    public Object findTravelOrderDetailInfo(int travelOrderId, int type) {
+        //判断小程序端点击的出行订单是租车还是包车模块;0为租车，1为包车
+        if(type == 0)
+            return tourismInfoDao.findTourismOrderDetailInfo(travelOrderId);
+        return null;
+    }
+    //修改出发日期
+    @Override
+    public int updateTourismOrderDepartureTime(String departureTime, String beModifiedTime, String travelOrderId) {
+        return tourismInfoDao.updateTourismOrderDepartureTime(departureTime,beModifiedTime,travelOrderId);
     }
 }

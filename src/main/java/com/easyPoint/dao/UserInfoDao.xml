@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easyPoint.dao.UserInfoDao">
+
+    <!--//查询用户名，联系电话-->
+    <select id="findUserInfoById" parameterType="int" resultType="UserInfo">
+        select username, phone from user_info where uid = #{uid}
+    </select>
+
+</mapper>

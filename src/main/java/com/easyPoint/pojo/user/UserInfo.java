@@ -6,7 +6,7 @@ public class UserInfo {
     private String studentId; //学号
     private String avatarUrl; //微信头像路径
     private String nickName; //微信用户名
-    private String userName; //姓名
+    private String username; //姓名
     private Integer gender; //性别
     private String phone; //联系电话
     private Integer grage; //年纪
@@ -52,12 +52,12 @@ public class UserInfo {
         this.nickName = nickName;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Integer getGender() {
@@ -100,7 +100,7 @@ public class UserInfo {
                 ", studentId='" + studentId + '\'' +
                 ", avatarUrl='" + avatarUrl + '\'' +
                 ", nickName='" + nickName + '\'' +
-                ", userName='" + userName + '\'' +
+                ", username='" + username + '\'' +
                 ", gender=" + gender +
                 ", phone='" + phone + '\'' +
                 ", grage=" + grage +

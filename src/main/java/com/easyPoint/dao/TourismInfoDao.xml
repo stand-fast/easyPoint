@@ -36,14 +36,12 @@
         select tr.travel_order_id, tr.uid, departure_place, destination, travel_num, departure_time,
                   state, tou.vehicle_id, pay_money, is_insurance,
                   vehicle_type,
-                  username, phone
-                  from travel_order tr, tourism_order tou, vehicle_info v, user_info u
+                  passenger, phone
+                  from travel_order tr, tourism_order tou, vehicle_info v
                   where tr.travel_order_id = tou.travel_order_id
                         and tou.vehicle_id = v.vehicle_id
-                        and tr.uid = u.uid
                         and tr.type = 0
-                        group by state asc
-                        order by departure_time asc limit #{index}, 8
+                        order by  state asc ,departure_time asc limit #{index}, 8
     </select>
 
     <resultMap id="partTourismOrderInfoResultMap" type="PartTourismOrderInfo">
@@ -55,12 +53,18 @@
         <result column="departure_time" property="departureTime"/>
         <result column="state" property="state"/>
         <result column="pay_money" property="payMoney"/>
+        <result column="passenger" property="passenger"/>
         <result column="is_insurance" property="ifInsurance"/>
         <result column="vehicle_type" property="vehicleType"/>
-        <result column="username" property="username"/>
         <result column="phone" property="phone"/>
     </resultMap>
 
+    <!--//查询所有车辆类型的信息-->
+    <select id="findAllVehicleInfo" resultMap="vehicleInfoResultMap">
+          select vehicle_id, vehicle_type, deposit from vehicle_info
+    </select>
+
+    <!--//用户支付完押金后，提交订单插入数据库,分别插入travel_order、tourism_order表中-->
     <insert id="insertTravelOrderInfo" useGeneratedKeys="true" keyProperty="travelOrderId" parameterType="TourismOrderInfo">
         insert into travel_order (uid,
                                   departure_place,
@@ -79,8 +83,8 @@
                                   )
     </insert>
     <insert id="insertTourismOrderInfo" parameterType="TourismOrderInfo">
-        insert into tourism_order (travel_order_id,vehicle_id,is_insurance, pay_money, make_order_time)
-                                    value (#{travelOrderId},#{vehicleId}, #{ifInsurance}, #{payMoney}, #{makeOrderTime})
+        insert into tourism_order (travel_order_id,vehicle_id,passenger,phone,is_insurance, pay_money, make_order_time)
+                                    value (#{travelOrderId},#{vehicleId},#{passenger},#{phone} #{ifInsurance}, #{payMoney}, #{makeOrderTime})
     </insert>
 
     <update id="updateTourismOrderInfoAddDriverInfo" parameterType="TourismOrderInfo">
@@ -93,7 +97,7 @@
         update travel_order set state = #{state} where travel_order_id = #{travelOrderId}
     </update>
     <!--//查询给租车订单安排的车辆信息-->
-    <!--DriverInfo findDriverInfoByTravelOrderId(int travelOrderId);-->
+    <!--DriverInfoDto findDriverInfoByTravelOrderId(int travelOrderId);-->
     <select id="findDriverInfoByTravelOrderId" parameterType="int" resultType="DriverInfo">
         select travel_order_id as travelOrderId,
                license_plate_number as licensePlateNumber,
@@ -104,5 +108,46 @@
                from tourism_order t, vehicle_info v
                where t.vehicle_id = v.vehicle_id and travel_order_id = #{travelOrderId}
     </select>
+
+    <!--//出行订单，租车与包车共享，-->
+    <!--List<TravelOrderInfo> findListTraveOrderByUid(int uid);-->
+    <select id="findListTravelOrderByUid" parameterType="int" resultType="TravelOrderInfo">
+        select travel_order_id as travelOrderId,
+                departure_place as departurePlace,
+                destination,
+                travel_num as travelNum,
+                departure_time as departureTime,
+                type,
+                state from travel_order
+                where uid = #{uid}
+                order by travel_order_id desc
+    </select>
+
+    <!--//用户进入租车订单详情页面-->
+    <select id="findTourismOrderDetailInfo" parameterType="int" resultType="TourismOrderDetailInfo">
+        select travel_order_id as travelOrderId,
+               pay_money as payMoney,
+               passenger,
+               phone,
+               make_order_time as makeOrderTime,
+               is_insurance as ifInsurance,
+               license_plate_number as licensePlateNumber,
+               color,
+               driver_name as driverName,
+               driver_phone as driverPhone,
+               vehicle_type as vehicleType,
+               deposit,
+               is_modified as ifModified
+               from tourism_order tou, vehicle_info v
+                  where tou.vehicle_id = v.vehicle_id and travel_order_id = #{travelOrderId}
+    </select>
+
+    <!--修改出发日期-->
+    <update id="updateTourismOrderDepartureTime" parameterType="String">
+        update tourism_order set be_modified_time = departure_time,
+                                 departure_time = #{departureTime},
+                                 is_modified = 1
+                             where travel_order_id = #{travelOrderId} and is_modified = 0
+    </update>
 
 </mapper>

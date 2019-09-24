@@ -2,7 +2,7 @@ package com.easyPoint.pojo.tourism;
 
 /**
  * @author FJW
- * 包车与租车订单共有部分
+ * 包车与租车订单共有部分,即出行模块订单
  */
 public class TravelOrderInfo {
     /**

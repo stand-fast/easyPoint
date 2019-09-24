@@ -17,6 +17,8 @@ public class TourismOrderInfo extends TravelOrderInfo{
      * be_modified_time	char(20)	被修改时间	可为空
      */
     private Integer vehicleId;
+    private String passenger;//乘客
+    private String phone;//联系电话
     private Integer ifBack;//是否往反
     private String backTime;//返回时间
     private Integer ifInsurance;
@@ -28,6 +30,36 @@ public class TourismOrderInfo extends TravelOrderInfo{
     private String driverName;
     private String driverPhone;
 
+    @Override
+    public String toString() {
+        return "TourismOrderInfo{" +
+                "vehicleId=" + vehicleId +
+                ", passenger='" + passenger + '\'' +
+                ", phone='" + phone + '\'' +
+                ", ifBack=" + ifBack +
+                ", backTime='" + backTime + '\'' +
+                ", ifInsurance=" + ifInsurance +
+                ", payMoney=" + payMoney +
+                ", makeOrderTime='" + makeOrderTime + '\'' +
+                ", arrangeVehicleTime='" + arrangeVehicleTime + '\'' +
+                ", licensePlateNumber='" + licensePlateNumber + '\'' +
+                ", color='" + color + '\'' +
+                ", driverName='" + driverName + '\'' +
+                ", driverPhone='" + driverPhone + '\'' +
+                ", ifModified=" + ifModified +
+                '}';
+    }
+
+    public int getIfModified() {
+        return ifModified;
+    }
+
+    public void setIfModified(int ifModified) {
+        this.ifModified = ifModified;
+    }
+
+    //出发日期是否被修改
+    private int ifModified;
     public String getArrangeVehicleTime() {
         return arrangeVehicleTime;
     }
@@ -46,6 +78,22 @@ public class TourismOrderInfo extends TravelOrderInfo{
 
     public Integer getIfBack() {
         return ifBack;
+    }
+
+    public String getPassenger() {
+        return passenger;
+    }
+
+    public void setPassenger(String passenger) {
+        this.passenger = passenger;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public void setIfBack(Integer ifBack) {
@@ -116,20 +164,4 @@ public class TourismOrderInfo extends TravelOrderInfo{
         this.driverPhone = driverPhone;
     }
 
-    @Override
-    public String toString() {
-        return "TourismOrderInfo{" +
-                super.toString() +
-                "vehicleId=" + vehicleId +
-                ", ifBack=" + ifBack +
-                ", backTime='" + backTime + '\'' +
-                ", ifInsurance=" + ifInsurance +
-                ", payMoney=" + payMoney +
-                ", makeOrderTime='" + makeOrderTime + '\'' +
-                ", licensePlateNumber='" + licensePlateNumber + '\'' +
-                ", color='" + color + '\'' +
-                ", driverName='" + driverName + '\'' +
-                ", driverPhone='" + driverPhone + '\'' +
-                '}';
-    }
 }

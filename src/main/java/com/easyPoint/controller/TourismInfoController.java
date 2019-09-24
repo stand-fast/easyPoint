@@ -2,9 +2,10 @@ package com.easyPoint.controller;
 
 import com.easyPoint.pojo.Result;
 import com.easyPoint.pojo.tourism.TourismOrderInfo;
+import com.easyPoint.pojo.tourism.TravelOrderInfo;
 import com.easyPoint.pojo.tourism.VehicleInfo;
-import com.easyPoint.pojo.tourism.dto.DriverInfo;
-import com.easyPoint.pojo.tourism.dto.PartTourismOrderInfo;
+import com.easyPoint.pojo.tourism.dto.DriverInfoDto;
+import com.easyPoint.pojo.tourism.dto.PartTourismOrderInfoDto;
 import com.easyPoint.service.TourismInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -89,7 +90,7 @@ public class TourismInfoController {
     @RequestMapping("/findListPageNumTourismOrderInfo")
     public Result findListPageNumTourismOrderInfo(int pageNum){
         Result result;
-        List<PartTourismOrderInfo> partTourismOrderInfos = tourismInfoService.findListPageNumTourismOrderInfo(pageNum);
+        List<PartTourismOrderInfoDto> partTourismOrderInfos = tourismInfoService.findListPageNumTourismOrderInfo(pageNum);
         if (!partTourismOrderInfos.isEmpty())
             result = new Result<List>(200,"查询第" + pageNum + "页的租车订单数据成功", partTourismOrderInfos);
         else
@@ -119,14 +120,14 @@ public class TourismInfoController {
     @ResponseBody
     @RequestMapping("/findDriverInfo")
     public Result findDriverInfo(int travelOrderId){
-        DriverInfo driverInfo = tourismInfoService.findDriverInfoByTravelOrderId(travelOrderId);
+        DriverInfoDto driverInfo = tourismInfoService.findDriverInfoByTravelOrderId(travelOrderId);
         if(driverInfo != null)
             return new Result<>(200,"查询车辆信息成功",driverInfo);
         return new Result<>(400,"该订单还未安排车辆",null);
     }
     /**
      * 管理员完成租车结单
-     * @param tourismOrderId 订单编号
+     * @param travelOrderId 订单编号
      * @return 验证码
      */
     @ResponseBody
@@ -137,6 +138,17 @@ public class TourismInfoController {
         if(code == 1)
             return new Result<>(200,"结单成功",null);
         return new Result<>(400,"服务器出现异常",null);
+    }
+
+    /**
+     * 用户进入租车页面查询车辆类型
+     * @return 车辆类型
+     */
+    @ResponseBody
+    @RequestMapping("/findAllVehicleType")
+    public Result findAllVehicleType(){
+        List<VehicleInfo> vehicleInfoList = tourismInfoService.findAllVehicleInfo();
+        return new Result<>(200,"查询所有车辆类型成功", vehicleInfoList);
     }
 
     /**
@@ -154,4 +166,42 @@ public class TourismInfoController {
         return result;
     }
 
+    /**
+     * 用户进入出行订单页面，查询该用户的所有出行模块的订单
+     * @param uid 用户id
+     * @return 用户的所有订单
+     */
+    @ResponseBody
+    @RequestMapping("/findTravelOrder")
+    public Result findTravelOrder(int uid){
+        List<TravelOrderInfo> travelOrderInfos = tourismInfoService.findListTravelOrderByUid(uid);
+        return new Result<>(200,"查询用户的出行订单成功",travelOrderInfos);
+    }
+
+    /**
+     * 小程序用户查询订单详情
+     * @param travelOrderId 出行订单号
+     * @param type 出行订单类型
+     * @return 包车或租车订单详情
+     */
+    @ResponseBody
+    @RequestMapping("/findTravelOrderDetailInfo")
+    public Result findTravelOrderDetailInfo(@RequestParam("travelOrderId")int travelOrderId,
+                                            @RequestParam("type")int type){
+        return new Result<>(200,"查询出行订单详情成功",
+                             tourismInfoService.findTravelOrderDetailInfo(travelOrderId, type));
+    }
+
+    /**
+     * 修改出发日期
+     * @param departureTime 新的出发时间
+     * @param travelOrderId 订单编号
+     * @return 验证码
+     */
+    @ResponseBody
+    @RequestMapping("/updateTourismDepartureTime")
+    public Result updateTourismDepartureTime(@RequestParam("departureTime")String departureTime,
+                                             @RequestParam("travelOrderId")String travelOrderId){
+        return new Result<>(200,"修改出发时间成功",null);
+    }
 }
