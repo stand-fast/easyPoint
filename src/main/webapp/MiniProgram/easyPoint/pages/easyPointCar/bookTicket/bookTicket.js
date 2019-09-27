@@ -60,114 +60,107 @@ Page({
   formSubmit: function (e) {
     var that=this;
     if (this.requistPersonInformation()) {
-        // if (e.detail.value.startAddress == "") {
-        //   wx.showToast({
-        //     title: '请输入出发地点',
-        //     icon: 'none',
-        //     duration: 2000
-        //   })
-        // }
-        // else if (e.detail.value.endAddress == "") {
-        //   wx.showToast({
-        //     title: '请输入目的地',
-        //     icon: 'none',
-        //     duration: 2000
-        //   })
-        // }
-        // else if (e.detail.value.startAddress == e.detail.value.endAddress) {
-        //   wx.showToast({
-        //     title: '出发地不能与终点一致',
-        //     icon: 'none',
-        //     duration: 2000
-        //   })
-        // }  
-        // else if(e.detail.value.perNumbers == "") {
-        //   wx.showToast({
-        //     title: '请输入出行人数',
-        //     icon: 'none',
-        //     duration: 2000
-        //   })
-        // }
-        // else if(this.data.carType == undefined) {
-        //   wx.showToast({
-        //     title: '请选择车辆类型',
-        //     icon: 'none',
-        //     duration: 2000
-        //   })
-        // }
-        // else if (this.data.startTime == undefined) {
-        //   wx.showToast({
-        //     title: '请输入出发日期',
-        //     icon: 'none',
-        //     duration: 2000
-        //   })
-        // }
-        // else if(this.data.radioStatus== true){
-        //   if (this.data.returnTime == undefined) {
-        //     wx.showToast({
-        //       title: '请输入返回日期',
-        //       icon: 'none',
-        //       duration: 2000
-        //     })
-        //   }
-        // }
-        // else if(this.data.check== true){
-        //   if (this.data.returnTime == undefined) {
-        //     wx.showToast({
-        //       title: '请浏览并同意易点包车协议',
-        //       icon: 'none',
-        //       duration: 2000
-        //     })
-        //   }
-        // }
-        // else {  
-        //   wx.request({
-        //     url: '接口路径',
-        //     header: {
-        //       "Content-Type": "application/x-www-form-urlencoded"
-        //     },
-        //     method: "POST",
-        //     data: {
-        //        openId: app.globalData.openId,
-        //        username: that.data.userInformation.username,
-        //        phone: that.data.userInformation.phone,
-        //        departurePlace: e.detail.value.startAddress,
-        //        destination: e.detail.value.endAddress,
-        //        travelNum: e.detail.value.perNumbers,
-        //        vehicleType: that.data.vehicleId,
-        //        departureTime: that.data.startTime,
-        //        isBack: that.data.is_back,
-        //        backTime: that.data.returnTime,
-        //        isInsurance: that.data.is_insurance,
-        //        deposit: that.data.money,
-        //     },
-        //     success: function (res) {
-        //       console.log(res.data);
-        //       if (res.data.status == 0) {
-        //         wx.showToast({
-        //           title: '提交失败！！！',
-        //           icon: 'loading',
-        //           duration: 2000
-        //         })
-        //       } else {
-        //         wx.showToast({
-        //           title: '提交成功！！！',//这里打印出登录成功
-        //           icon: 'success',
-        //           duration: 2000
-        //         })
-        //         that.setData({
-        //           successShowmodal: true,
-        //         })
-        //       }
-        //     }
-        //   })
-        // }
+        if (e.detail.value.startAddress == "") {
+          wx.showToast({
+            title: '请输入出发地点',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+        else if (e.detail.value.endAddress == "") {
+          wx.showToast({
+            title: '请输入目的地',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+        else if (e.detail.value.startAddress == e.detail.value.endAddress) {
+          wx.showToast({
+            title: '出发地不能与终点一致',
+            icon: 'none',
+            duration: 2000
+          })
+        }  
+        else if(e.detail.value.perNumbers == "") {
+          wx.showToast({
+            title: '请输入出行人数',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+        else if(this.data.carType == undefined) {
+          wx.showToast({
+            title: '请选择车辆类型',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+        else if (this.data.startTime == undefined) {
+          wx.showToast({
+            title: '请输入出发日期',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+        else if(this.data.radioStatus== true){
+          if (this.data.returnTime == undefined) {
+            wx.showToast({
+              title: '请输入返回日期',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        }
+        else if(this.data.check== true){
+          if (this.data.returnTime == undefined) {
+            wx.showToast({
+              title: '请浏览并同意易点包车协议',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        }
+        else {  
+          wx.request({
+            url: 'http://easypoint.club/orderTourismOrder',
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            method: "POST",
+            data: {
+               uid:"12431823175891",
+               username: that.data.username,
+               phone: that.data.phone,
+               departurePlace: e.detail.value.startAddress,
+               destination: e.detail.value.endAddress,
+               travelNum: e.detail.value.perNumbers,
+               vehicleType: that.data.vehicleId,
+               departureTime: that.data.startTime,
+               isBack: that.data.is_back,
+               backTime: that.data.returnTime,
+               isInsurance: that.data.is_insurance,
+               deposit: that.data.money,
+            },
+            success: function (res) {
+              // console.log(res.data);
+                wx.showToast({
+                  title: '提交成功！！！',//这里打印出登录成功
+                  icon: 'success',
+                  duration: 2000
+                })
+                that.setData({
+                  successShowmodal: true,
+                })
+            }
+            
+          })
+        }
 
 
       //接上服务器后删除
-      that.setData({
-        successShowmodal: true,
-      })
+      // that.setData({
+      //   successShowmodal: true,
+      // })
     }
 
 
@@ -230,7 +223,7 @@ Page({
         var index=e.detail.value;
 
       var vehicleId = this.data.seatvehicleList[index].vehicleId
-      console.log(vehicleId);
+      // console.log(vehicleId);
         this.setData({
             carType:this.data.seatNumber[index],
             money: this.data.seatDeposit[index],
@@ -334,6 +327,11 @@ Page({
             dateTime1: obj.dateTime,
         });
 
+        var userInformation = wx.getStorageSync('userInformation');
+        this.setData({
+          username: userInformation.username,
+          phone: userInformation.phone,
+        })
 
       //车辆类型数据以及对应应付定金处理数据，接上服务器后删除
       var seatvehicle=this.data.seatvehicleList;

@@ -61,6 +61,7 @@ Page({
             }) 
         }
         else{
+            wx.setStorageSync('myOrderRentalCar', data)
             wx.navigateTo({
               url: '/pages/user/myOrderCarDetail/myOrderCarDetail?current=1&&tourismId='+data.tourismId,
             })

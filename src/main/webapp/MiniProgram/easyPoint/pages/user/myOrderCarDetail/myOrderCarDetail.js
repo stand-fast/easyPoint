@@ -13,18 +13,22 @@ Page({
             ticketNum: 5,
 
           //旅游出行订单信息
-            tourismId:"23123125132",
-            deposit: 1000,
+            travelOrderId:"23123125132",
+            vehicleType: "七座大巴",
+            deposit: 100,
+            payMoney:100,
             travelNum: 22,
-            // driverName: "王司机",
-            // driverPhone: "12345678910",
-            // driverCarNumber: "粤A12345（白色）",
+            color:'红色',
+            driverName: "王司机",
+            driverPhone: "12345678910",
+            licensePlateNumber: "粤A12345",
 
           //共有部分
-            isInsurance: "1",
+            ifInsurance: "1",
+            ifModified:'0',
             departurePlace: "汕头",
             destination: "广金广州本部",
-            departureTime: "2019-08-10 08:00",
+            makeOrderTime: "2019-08-10 08:00",
             username: "吴彦祖",
             phone: "12345678910",
           }
@@ -69,13 +73,19 @@ Page({
             })
           }
         }
-        else if (current==1){
+        else if (current == 1) {
+          var myOrderRentalCar = wx.getStorageSync('myOrderRentalCar');
+          // console.log(myOrderRentalCar);
           var tourismId=options.tourismId;
-          console.log(tourismId)
+          // console.log(tourismId)
           this.setData({
-            current: 1
+            departurePlace: myOrderRentalCar.departurePlace,
+            destination: myOrderRentalCar.destination,
+            departureTime: myOrderRentalCar.departureTime,
+            travelNum: myOrderRentalCar.travelNum,
+            current: 1,
           })
-          //this.getMessageRentalCar(tourismId);
+          this.getMessageRentalCar(tourismId);
         }
     },
   //获得乡会车票订单数据
@@ -114,17 +124,17 @@ Page({
   getMessageRentalCar: function (tourismId) {
     var selt = this;
     wx.request({
-      url: '接口路径',
+      url: 'http://easypoint.club/findTravelOrderDetailInfo',
       method: 'Post',
       data: {
-        uid: this.data.uid,
-        tourismId: tourismId,
+        type: 0,
+        travelOrderId: 10,
       },
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       success: function (res) {
-        console.log(res.data)
+        console.log(res.data.data)
         selt.setData({
-          ticketDetail: res.data,
+          ticketDetail: res.data.data,
         })
         if (res.data.code == 400) {
           console.log(res.data.msg)
