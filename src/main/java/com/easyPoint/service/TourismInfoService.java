@@ -49,5 +49,5 @@ public interface TourismInfoService {
     //修改出发日期
     int updateTourismOrderDepartureTime(String departureTime,
                                         String beModifiedTime,
-                                        String travelOrderId);
+                                        int travelOrderId);
 }
