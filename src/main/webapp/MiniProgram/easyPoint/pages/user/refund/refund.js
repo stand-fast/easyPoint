@@ -7,24 +7,19 @@ Page({
     data: {
         success:false,
     },
-    getInput:function(e){
-        var input=e.detail.value;
-        this.setData({
-            input:input
-        })
-    },
     formSubmit:function(e){     //提交退款申请
-        this.setData({
-            success:true
-        })
+      console.log(e.detail.value.reason);
+        // this.setData({
+        //     success:true
+        // })
     },
     trueBtn:function(){
         this.setData({
             success: false
         })
-        wx.switchTab({
-            url: '/pages/user/user/user',
-        })
+        // wx.switchTab({
+        //     url: '/pages/user/user/user',
+        // })
     },
     /**
      * 生命周期函数--监听页面加载

@@ -27,7 +27,7 @@
                 <view class="dot_gray"></view>
                 <text>票价</text>
                 <view class="item_text" wx:if="{{currentab==0}}">正式票<text>￥{{ticketInfos.price}}</text></view>
-                <view class="item_text" wx:if="{{currentab==1}}">预约票<text>￥{{ticketInfos.price}}</text></view>
+                <view class="item_text" wx:if="{{currentab==1}}">预约票定价<text>￥{{ticketInfos.price}}</text></view>
             </view>
                 <view class="flex_right_item">
                 <view class="dot_gray"></view>
@@ -71,7 +71,8 @@
         <image src="/images/icon/cservice.png"></image>
     </button></view>
     <view class="payMoney">
-        <view class="money_text">共计<text>￥{{sumprice}}<block wx:if="{{radioStatus}}">(含保险￥{{totalDeposit}})</block></text></view>
+        <view class="money_text" wx:if="{{currentab==1}}">共计<text>￥0</text></view>
+        <view class="money_text" wx:else>共计<text>￥{{sumprice}}<block wx:if="{{radioStatus}}">(含保险￥{{totalDeposit}})</block></text></view>
     </view>
     <view wx:if="{{currentab==0}}" class="submitBtn" bindtap="toPay"><button form-type="submit">去支付</button></view>
     <view wx:if="{{currentab==1}}" class="submitBtn" bindtap="toPay"><button form-type="submit">去预约</button></view>

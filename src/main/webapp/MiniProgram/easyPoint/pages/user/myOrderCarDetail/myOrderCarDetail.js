@@ -21,7 +21,7 @@ Page({
             // driverCarNumber: "粤A12345（白色）",
 
           //共有部分
-            isInsurance: "0",
+            isInsurance: "1",
             departurePlace: "汕头",
             destination: "广金广州本部",
             departureTime: "2019-08-10 08:00",
