@@ -56,8 +56,13 @@ public interface TourismInfoDao {
     //用户进入租车订单详情页面
     TourismOrderDetailInfoDto findTourismOrderDetailInfo(int travelOrderId);
 
+
     //修改出发日期
     int updateTourismOrderDepartureTime(@Param("departureTime") String departureTime,
-                                        @Param("beModifiedTime") String beModifiedTime,
-                                        @Param("travelOrderId") String travelOrderId);
+                                        @Param("tomorrowDate") String tomorrowDate,
+                                        @Param("travelOrderId") int travelOrderId);
+
+    //保存被修改的日期
+    int updateTourismModifiedDate(@Param("beModifiedTime") String beModifiedTime,
+                                  @Param("travelOrderId") int travelOrderId);
 }

@@ -171,9 +171,20 @@ public class TourismInfoServiceImpl implements TourismInfoService {
             return tourismInfoDao.findTourismOrderDetailInfo(travelOrderId);
         return null;
     }
-    //修改出发日期
+    //修改出发日期String departureTime, String beModifiedTime, String travelOrderId
     @Override
-    public int updateTourismOrderDepartureTime(String departureTime, String beModifiedTime, String travelOrderId) {
-        return tourismInfoDao.updateTourismOrderDepartureTime(departureTime,beModifiedTime,travelOrderId);
+    public int updateTourismOrderDepartureTime(String departureTime, String beModifiedTime, int travelOrderId) {
+        Long date = System.currentTimeMillis();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        //现在时间的后一天，如果比车辆出行时间早，则可以修改，否则不行
+        String tomorrowDate = sdf.format(date + 24*60*60*1000);
+        System.out.println(tomorrowDate);
+        int resultCode = tourismInfoDao.updateTourismOrderDepartureTime(departureTime,tomorrowDate,travelOrderId);
+        if(resultCode == 1){
+            //出发日期修改成功
+            tourismInfoDao.updateTourismModifiedDate(beModifiedTime,travelOrderId);
+            return 1;
+        }else
+            return 0;
     }
 }

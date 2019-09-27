@@ -2,7 +2,7 @@ package com.easyPoint.pojo.tourism.dto;
 
 /**
  * @author FJW
- * 返回前端租车订单的信息
+ * 返回管理员前端租车订单的信息
  */
 public class PartTourismOrderInfoDto {
 

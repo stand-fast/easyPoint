@@ -44,7 +44,7 @@
                         order by  state asc ,departure_time asc limit #{index}, 8
     </select>
 
-    <resultMap id="partTourismOrderInfoResultMap" type="PartTourismOrderInfo">
+    <resultMap id="partTourismOrderInfoResultMap" type="PartTourismOrderInfoDto">
         <id column="travel_order_id" property="travelOrderId"/>
         <result column="uid" property="uid"/>
         <result column="departure_place" property="departurePlace"/>
@@ -98,7 +98,7 @@
     </update>
     <!--//查询给租车订单安排的车辆信息-->
     <!--DriverInfoDto findDriverInfoByTravelOrderId(int travelOrderId);-->
-    <select id="findDriverInfoByTravelOrderId" parameterType="int" resultType="DriverInfo">
+    <select id="findDriverInfoByTravelOrderId" parameterType="int" resultType="DriverInfoDto">
         select travel_order_id as travelOrderId,
                license_plate_number as licensePlateNumber,
                color,
@@ -124,7 +124,7 @@
     </select>
 
     <!--//用户进入租车订单详情页面-->
-    <select id="findTourismOrderDetailInfo" parameterType="int" resultType="TourismOrderDetailInfo">
+    <select id="findTourismOrderDetailInfo" parameterType="int" resultType="TourismOrderDetailInfoDto">
         select travel_order_id as travelOrderId,
                pay_money as payMoney,
                passenger,
@@ -142,12 +142,19 @@
                   where tou.vehicle_id = v.vehicle_id and travel_order_id = #{travelOrderId}
     </select>
 
+
+
     <!--修改出发日期-->
-    <update id="updateTourismOrderDepartureTime" parameterType="String">
-        update tourism_order set be_modified_time = departure_time,
-                                 departure_time = #{departureTime},
-                                 is_modified = 1
-                             where travel_order_id = #{travelOrderId} and is_modified = 0
+    <update id="updateTourismOrderDepartureTime">
+        update travel_order set departure_time = #{departureTime}
+                             where travel_order_id = #{travelOrderId}
+                             and state != 2
+                             and departure_time >= #{tomorrowDate}
+    </update>
+
+    <!--保存被修改的日期-->
+    <update id="updateTourismModifiedDate">
+        update tourism_order set be_modified_time = #{beModifiedTime}, is_modified = 1 where travel_order_id = #{travelOrderId} and is_modified = 0
     </update>
 
 </mapper>

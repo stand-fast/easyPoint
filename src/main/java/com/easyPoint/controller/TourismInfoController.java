@@ -17,6 +17,9 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author FJW
+ */
 @Controller
 public class TourismInfoController {
 
@@ -193,15 +196,21 @@ public class TourismInfoController {
     }
 
     /**
+     * FJW
      * 修改出发日期
      * @param departureTime 新的出发时间
+     * @param beModifiedTime 原出发日期
      * @param travelOrderId 订单编号
      * @return 验证码
      */
     @ResponseBody
     @RequestMapping("/updateTourismDepartureTime")
     public Result updateTourismDepartureTime(@RequestParam("departureTime")String departureTime,
-                                             @RequestParam("travelOrderId")String travelOrderId){
-        return new Result<>(200,"修改出发时间成功",null);
+                                             @RequestParam("beModifiedTime")String beModifiedTime,
+                                             @RequestParam("travelOrderId")int travelOrderId){
+        int resultCode = tourismInfoService.updateTourismOrderDepartureTime(departureTime, beModifiedTime, travelOrderId);
+        if(resultCode == 1)
+            return new Result<>(200,"修改出发时间成功", null);
+        return new Result<>(201,"修改出发日期必须在出发前一天之前修改，当前已经超过修改日期",null);
     }
 }
