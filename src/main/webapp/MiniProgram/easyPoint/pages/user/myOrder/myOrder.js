@@ -6,23 +6,25 @@ Page({
      */
     data: {
         currenTab:0,
-        ticket_lists:[
-        {
+        ruralCommittee:[
+          {
             ticketId: 623123513,
-            departureTime:"2019-09-10 08:00",
-            departurePlace:"汕头",
-            destination:"广州广金本部",
+            departureTime: "2019-09-10 08:00",
+            departurePlace: "汕头",
+            destination: "广州广金本部",
             ticketNum: "10",
-            type:"1",
-        }, 
-        {
+            type: "1",
+          },
+          {
             ticketId: 12357568583,
             departureTime: "2019-09-10 18:00",
             departurePlace: "汕头",
             destination: "广州广金本部",
             ticketNum: "5",
             type: "2",
-        }, 
+          }, 
+        ],
+        ticket_lists:[   
         {
             tourismId:"123123123123",
             departureTime: "2019-01-10 09:00",
@@ -52,43 +54,43 @@ Page({
             })
         }
     },
+    toCommitteeDetail: function (e) {
+      var index = e.currentTarget.dataset.index;
+      var data = this.data.ruralCommittee[index];
+      wx.setStorageSync('myOrderRentalCar', data)
+      wx.navigateTo({
+        url: '/pages/user/myOrderCarDetail/myOrderCarDetail?current=0&&ticketId=' + data.ticketId + "&&type=" + data.type,
+      }) 
+    },
     toDetail:function(e){
         var index=e.currentTarget.dataset.index;
         var data = this.data.ticket_lists[index];
-        if (data.ticketNum){
-            wx.navigateTo({
-              url: '/pages/user/myOrderCarDetail/myOrderCarDetail?current=0&&ticketId=' + data.ticketId +"&&type=" + data.type,
-            }) 
-        }
-        else{
-            wx.setStorageSync('myOrderRentalCar', data)
-            wx.navigateTo({
-              url: '/pages/user/myOrderCarDetail/myOrderCarDetail?current=1&&tourismId='+data.tourismId,
-            })
-        }
+        wx.setStorageSync('myOrderRentalCar', data)
+        wx.navigateTo({
+          url: '/pages/user/myOrderCarDetail/myOrderCarDetail?current=1&&travelOrderId=' + data.travelOrderId,
+        })
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
       var type=options.type;
-      //this.getMessage(type);
+      this.getMessage(type);
     },
-    //获得我的订单数据
+    //获得我的订单出行数据
     getMessage: function (type) {
       var selt = this;
       wx.request({
-        url: '接口路径',
-        method: 'Post',
+        url: 'http://easypoint.club/findTravelOrder',
+        method: 'get',
         data:{
-          uid:this.data.uid,
-          type:type,
+          uid:'1',
         },
         header: { 'content-type': 'application/x-www-form-urlencoded' },
         success: function (res) {
-          console.log(res.data)
+          console.log(res.data.data)
           selt.setData({
-            ticket_lists: res.data,
+            ticket_lists: res.data.data,
           })
           if (res.data.code == 400) {
             console.log(res.data.msg)

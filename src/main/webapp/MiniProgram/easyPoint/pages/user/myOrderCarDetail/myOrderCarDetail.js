@@ -19,9 +19,6 @@ Page({
             payMoney:100,
             travelNum: 22,
             color:'红色',
-            driverName: "王司机",
-            driverPhone: "12345678910",
-            licensePlateNumber: "粤A12345",
 
           //共有部分
             ifInsurance: "1",
@@ -47,14 +44,20 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        var current = options.current;
-        if(current==0){
+      var current = options.current;
+      if (current == 0) {
+          var myOrderRentalCar = wx.getStorageSync('myOrderRentalCar');
+          console.log(myOrderRentalCar)
           var ticketId = options.ticketId;
 
-          //判断是正式票还是预约票
+          //判断是正式票还是预约票,并获取上个界面的数据
           this.setData({
             current:0,
             type:options.type,
+            departurePlace:myOrderRentalCar.departurePlace,
+            departureTime: myOrderRentalCar.departureTime,
+            destination: myOrderRentalCar.destination,
+            ticketNum: myOrderRentalCar.ticketNum
           })
           console.log(ticketId);
           //this.getMessage(ticketId);
@@ -73,11 +76,11 @@ Page({
             })
           }
         }
-        else if (current == 1) {
+      else if (current == 1) {
           var myOrderRentalCar = wx.getStorageSync('myOrderRentalCar');
           // console.log(myOrderRentalCar);
-          var tourismId=options.tourismId;
-          // console.log(tourismId)
+          var travelOrderId = options.travelOrderId;
+          console.log(travelOrderId)
           this.setData({
             departurePlace: myOrderRentalCar.departurePlace,
             destination: myOrderRentalCar.destination,
@@ -85,8 +88,8 @@ Page({
             travelNum: myOrderRentalCar.travelNum,
             current: 1,
           })
-          this.getMessageRentalCar(tourismId);
-        }
+         this.getMessageRentalCar(travelOrderId);
+      }
     },
   //获得乡会车票订单数据
   getMessage: function (ticketId) {

@@ -17,7 +17,7 @@
     <view class="item" wx:if="{{current==0}}">
         <view class="passen_text" wx:if="{{type==1}}">正式票￥<text>{{ticketDetail.price}}</text></view>
         <view class="passen_text" wx:if="{{type==2}}">预约票￥<text>{{ticketDetail.price}}</text></view>
-        <view class="passenNum">{{ticketDetail.ticketNum}}张</view> 
+        <view class="passenNum">{{ticketNum}}张</view> 
     </view>
     <view class="item" wx:else>
         <view class="passen_text">乘客数</view>
