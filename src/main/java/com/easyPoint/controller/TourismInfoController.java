@@ -1,6 +1,6 @@
 package com.easyPoint.controller;
 
-import com.easyPoint.pojo.Result;
+import com.easyPoint.dto.Result;
 import com.easyPoint.pojo.tourism.TourismOrderInfo;
 import com.easyPoint.pojo.tourism.TravelOrderInfo;
 import com.easyPoint.pojo.tourism.VehicleInfo;
@@ -9,6 +9,7 @@ import com.easyPoint.pojo.tourism.dto.PartTourismOrderInfoDto;
 import com.easyPoint.service.TourismInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +21,7 @@ import java.util.Map;
 /**
  * @author FJW
  */
+@CrossOrigin
 @Controller
 public class TourismInfoController {
 
@@ -30,11 +32,12 @@ public class TourismInfoController {
      * 管理员进入添加车辆类型页面，得到已有车辆类型的总页数，和第一页车辆信息
      * @return 总页数，第一页车辆信息
      */
+
     @ResponseBody
     @RequestMapping("getTotalPageAndFirstVehicleInfoList")
     public Result getTotalPageAndFirstVehicleInfoList(){
-        Map map = tourismInfoService.getTotalPageAndFirstVehicleInfoList();
-        return new Result<>(200,"查询总页数和首页车辆信息成功",map);
+        Result result = tourismInfoService.getTotalPageAndFirstVehicleInfoList();
+        return result;
     }
 
     /**
@@ -50,7 +53,7 @@ public class TourismInfoController {
         if (!vehicleInfoList.isEmpty())
             result = new Result<List>(200,"查询第" + pageNum + "页的车辆类型数据成功", vehicleInfoList);
         else
-            result = new Result<List>(201,"无",null);
+            result = new Result<List>(201,"已经加载完全部数据");
         return result;
     }
 
@@ -66,9 +69,9 @@ public class TourismInfoController {
         Result result;
         int resultCode = tourismInfoService.insertVehicleType(vehicleType, deposit);
         if(resultCode == 1){
-            result = new Result<>(200,"添加类型类型成功",null);
+            result = new Result<>(200,"添加类型类型成功");
         }else {
-            result = new Result<>(400,"该车辆类型已存在",null);
+            result = new Result<>(400,"该车辆类型已存在");
         }
         return result;
     }
@@ -80,8 +83,7 @@ public class TourismInfoController {
     @ResponseBody
     @RequestMapping("/getTotalPageAndFirstTourismOrderInfoList")
     public Result getTotalPageAndFirstTourismOrderInfoList(){
-        Map map = tourismInfoService.findTotalPageAndTourismOrderInfoList();
-        return new Result<>(200,"查询订单页数以及首页订单信息成功", map);
+        return tourismInfoService.findTotalPageAndTourismOrderInfoList();
     }
 
     /**
@@ -110,8 +112,11 @@ public class TourismInfoController {
     public Result addDriverInfoToTourismOrder(TourismOrderInfo tourismOrderInfo){
         Result result;
         //licensePlateNumber,color,driverName,driverPhone,travelOrderId
-        tourismInfoService.addDriverInfoToTourismOrder(tourismOrderInfo);
-        result = new Result<>(200,"为租车订单安排车辆信息成功",tourismOrderInfo);
+        int resultCode = tourismInfoService.addDriverInfoToTourismOrder(tourismOrderInfo);
+        if(resultCode == 1)
+            result = new Result<>(200,"为租车订单安排车辆信息成功");
+        else
+            result = new Result<>(201,"安排车辆信息失败");
         return result;
     }
 
@@ -140,7 +145,7 @@ public class TourismInfoController {
         int code = tourismInfoService.updateTourismOrderState(travelOrderId);
         if(code == 1)
             return new Result<>(200,"结单成功",null);
-        return new Result<>(400,"服务器出现异常",null);
+        return new Result<>(400,"结单失败",null);
     }
 
     /**
@@ -151,6 +156,8 @@ public class TourismInfoController {
     @RequestMapping("/findAllVehicleType")
     public Result findAllVehicleType(){
         List<VehicleInfo> vehicleInfoList = tourismInfoService.findAllVehicleInfo();
+        if(vehicleInfoList.isEmpty())
+            return new Result(201,"暂无车辆类型，请等待管理员添加");
         return new Result<>(200,"查询所有车辆类型成功", vehicleInfoList);
     }
 
@@ -178,6 +185,8 @@ public class TourismInfoController {
     @RequestMapping("/findTravelOrder")
     public Result findTravelOrder(int uid){
         List<TravelOrderInfo> travelOrderInfos = tourismInfoService.findListTravelOrderByUid(uid);
+        if(travelOrderInfos.isEmpty())
+            return new Result<>(201,"暂无订单");
         return new Result<>(200,"查询用户的出行订单成功",travelOrderInfos);
     }
 

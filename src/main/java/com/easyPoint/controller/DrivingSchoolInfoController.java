@@ -2,7 +2,7 @@ package com.easyPoint.controller;
 
 import com.easyPoint.pojo.drivingschoolpojo.DrivingSchoolInfo;
 import com.easyPoint.pojo.drivingschoolpojo.DrivingSchoolInfoDetail;
-import com.easyPoint.pojo.Result;
+import com.easyPoint.dto.Result;
 import com.easyPoint.service.DrivingSchoolInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

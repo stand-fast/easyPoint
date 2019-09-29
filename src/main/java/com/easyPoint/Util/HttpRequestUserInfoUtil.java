@@ -1,4 +1,4 @@
-package com.easyPoint.util;
+package com.easyPoint.Util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +45,7 @@ public class HttpRequestUserInfoUtil {
             // 定义 BufferedReader输入流来读取URL的响应
             in = new BufferedReader(new InputStreamReader(
                     connection.getInputStream()));
-            String line;
+            String line ;
             while ((line = in.readLine()) != null) {
                 result += line;
             }

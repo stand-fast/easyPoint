@@ -1,9 +1,9 @@
 package com.easyPoint.controller;
 
-import com.easyPoint.pojo.Result;
+import com.easyPoint.dto.Result;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.GetUserInfoService;
-import com.easyPoint.util.JwtUtil;
+import com.easyPoint.Util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +21,8 @@ public class GetUserInfoController {
 
     @ResponseBody
     @RequestMapping("/getUserInfoAndToken")
-    public Map getUserInfoAndToken(@RequestParam("code") String code, @RequestParam("encryptedData") String encryptedData, @RequestParam("iv") String iv){
+    public Map getUserInfoAndToken( @RequestParam("code") String code, @RequestParam("encryptedData") String encryptedData, @RequestParam("iv") String iv){
+        //System.out.println("uid == " + uid);
         Map result = new HashMap();
         UserInfo userInfo = getUserInfoService.getUserInfo(code, encryptedData, iv);
         if(userInfo != null){

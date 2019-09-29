@@ -1,14 +1,16 @@
 package com.easyPoint.service.impl;
 
 
+import com.easyPoint.dao.UserInfoDao;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.GetUserInfoService;
-import com.easyPoint.util.AesCbcUtil;
-import com.easyPoint.util.HttpRequestUserInfoUtil;
+import com.easyPoint.Util.AesCbcUtil;
+import com.easyPoint.Util.HttpRequestUserInfoUtil;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -17,6 +19,9 @@ import java.io.IOException;
 public class GetUserInfoServiceImpl implements GetUserInfoService {
 
     public static final Logger log = LoggerFactory.getLogger(GetUserInfoServiceImpl.class);
+
+    @Autowired
+    private UserInfoDao userInfoDao;
     /**
      * APPID是你小程序的appid,
      * SECRET是你小程序的appsercet,
@@ -40,7 +45,8 @@ public class GetUserInfoServiceImpl implements GetUserInfoService {
             try {
                 JsonNode rootNode = mapper.readTree(data);
                 String openId = rootNode.path("openid").asText();
-                UserInfo userInfo = findUserInfoByOpenId(openId);
+                //根据openId从数据库中查找用户信息，有则返回
+                UserInfo userInfo = userInfoDao.findUserInfoByOpenId(openId);
                 //判断数据库中是否有该用户的信息，有则返回，无则解密用户信息，并插入数据库中
                 if(userInfo != null){
                     return userInfo;
@@ -57,17 +63,11 @@ public class GetUserInfoServiceImpl implements GetUserInfoService {
                         userInfo.setGender(rootNode.path("gender").asInt());
                         userInfo.setAvatarUrl(rootNode.path("avatarUrl").asText());
                         //解析完成后
-                        int returnCode = insertUserInfo(userInfo);
+                        int returnCode = userInfoDao.insertUserInfo(userInfo);
                         //根据返回判断用户信息是否正确插入数据库,1为正确
                         if(returnCode == 1){
-                            //userInfo = findUserInfoByOpenId(openId);
                             return userInfo;
                         }
-                        else
-                            return null;
-                    }else {
-                        //发生错误，返回null
-                        return null;
                     }
                 }
             } catch (IOException e) {
@@ -78,15 +78,7 @@ public class GetUserInfoServiceImpl implements GetUserInfoService {
         return null;
     }
 
-    @Override
-    public UserInfo findUserInfoByOpenId(String openId) {
-        return null;
-    }
 
-    @Override
-    public Integer insertUserInfo(UserInfo userInfo) {
-        return 1;
-    }
 
     @Override
     public Integer updateUserInfo(UserInfo userInfo) {

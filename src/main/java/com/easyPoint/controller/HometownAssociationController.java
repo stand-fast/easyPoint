@@ -1,6 +1,6 @@
 package com.easyPoint.controller;
 
-import com.easyPoint.pojo.Result;
+import com.easyPoint.dto.Result;
 import com.easyPoint.pojo.tourism.PartTicket;
 import com.easyPoint.pojo.user.HometownAssociation;
 import com.easyPoint.service.HometownAssociationService;

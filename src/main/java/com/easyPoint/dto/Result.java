@@ -1,4 +1,4 @@
-package com.easyPoint.pojo;
+package com.easyPoint.dto;
 
 public class Result<T> {
     private Integer code;
@@ -17,6 +17,7 @@ public class Result<T> {
     public Result(int code, String message) {
         this.code = code;
         this.message = message;
+        this.data = null;
     }
 
     public Integer getCode() {

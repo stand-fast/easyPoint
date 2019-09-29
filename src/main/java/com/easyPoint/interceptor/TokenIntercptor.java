@@ -1,7 +1,7 @@
 package com.easyPoint.interceptor;
 
-import com.easyPoint.pojo.Result;
-import com.easyPoint.util.JwtUtil;
+import com.easyPoint.dto.Result;
+import com.easyPoint.Util.JwtUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -27,6 +27,8 @@ public class TokenIntercptor implements HandlerInterceptor {
             boolean result = JwtUtil.verify(token);
             if (result) {
                 System.out.println("token认证正确");
+                int uid = JwtUtil.getUid(token);
+                request.setAttribute("uid",uid);
                 return true;
             }
             else { //if( date.getTime() <= JwtUtil.getExpiresAt(token).getTime() + 3*24*60*60*1000)
@@ -45,12 +47,12 @@ public class TokenIntercptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-
+        System.out.println("加载完成");
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-
+        System.out.println("结束");
     }
     /**
      * 返回信息给客户端
@@ -60,7 +62,7 @@ public class TokenIntercptor implements HandlerInterceptor {
         ObjectMapper mapper = new ObjectMapper();
         String loginOverdueResponse = null;
         try {
-            loginOverdueResponse = mapper.writeValueAsString(new Result<>(400,"登录已经过期，重新登录！",null));
+            loginOverdueResponse = mapper.writeValueAsString(new Result<>(400,"登录已经过期，重新登录！"));
         } catch (JsonProcessingException e) {
             log.error("TokenIntercptor转换JSON格式出错");
         }

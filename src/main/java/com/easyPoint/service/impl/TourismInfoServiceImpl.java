@@ -1,6 +1,7 @@
 package com.easyPoint.service.impl;
 
 import com.easyPoint.dao.TourismInfoDao;
+import com.easyPoint.dto.Result;
 import com.easyPoint.pojo.tourism.TourismOrderInfo;
 import com.easyPoint.pojo.tourism.TravelOrderInfo;
 import com.easyPoint.pojo.tourism.VehicleInfo;
@@ -26,7 +27,7 @@ public class TourismInfoServiceImpl implements TourismInfoService {
     TourismInfoDao tourismInfoDao;
 
     @Override
-    public Map getTotalPageAndFirstVehicleInfoList() {
+    public Result getTotalPageAndFirstVehicleInfoList() {
         Map map = new HashMap();
         int total = tourismInfoDao.countVehicleTypeNum();
         //得出车辆类型的总页数
@@ -34,9 +35,11 @@ public class TourismInfoServiceImpl implements TourismInfoService {
         map.put("totalPage", totalPage);
         //查询第一页车辆类型的信息
         List<VehicleInfo> vehicleInfoList = findListPageNumVehicleInfo(1);
+        if(vehicleInfoList.isEmpty())
+            return new Result<>(201,"暂无车辆类型数据，请管理员添加");
         map.put("vehicleInfoList",vehicleInfoList);
         //将总页数和首页车辆信息一起放入map中返回
-        return map;
+        return new Result<>(200,"查询总页数和首页车辆类型信息成功",map);
     }
 
     @Override
@@ -67,7 +70,7 @@ public class TourismInfoServiceImpl implements TourismInfoService {
     }
     //查询加载的所有页面数并得到首页信息
     @Override
-    public Map findTotalPageAndTourismOrderInfoList() {
+    public Result findTotalPageAndTourismOrderInfoList() {
         Map map = new HashMap();
         int total = tourismInfoDao.countTourismOrderNum();
         //一页八条数据，得到租车订单总的页数,并存入map中返回前端
@@ -75,10 +78,12 @@ public class TourismInfoServiceImpl implements TourismInfoService {
         map.put("totalPage",totalPage);
         //查询首页的租车订单信息
         List<PartTourismOrderInfoDto> partTourismOrderInfos = findListPageNumTourismOrderInfo(1);
-        for (PartTourismOrderInfoDto partTourismOrderInfo:partTourismOrderInfos)
-            System.out.println(partTourismOrderInfo);
+        if(partTourismOrderInfos.isEmpty())
+            return new Result<>(201,"暂无订单信息");
+//        for (PartTourismOrderInfoDto partTourismOrderInfo:partTourismOrderInfos)
+//            System.out.println(partTourismOrderInfo);
         map.put("partTourismOrderInfos", partTourismOrderInfos);
-        return map;
+        return new Result<>(200,"查询订单页数以及首页订单信息成功",map);
     }
 
     //分页查询第pageNum页的租车订单信息
@@ -101,7 +106,7 @@ public class TourismInfoServiceImpl implements TourismInfoService {
         tourismOrderInfo.setMakeOrderTime(makeOrderTime);
         //租车订单默认为未安排状态0
         tourismOrderInfo.setState(0);
-        System.out.println(makeOrderTime);
+        //System.out.println(makeOrderTime);
         //出发票存入数据库
         tourismInfoDao.insertTravelOrderInfo(tourismOrderInfo);
         tourismInfoDao.insertTourismOrderInfo(tourismOrderInfo);
@@ -132,11 +137,12 @@ public class TourismInfoServiceImpl implements TourismInfoService {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String arrangeVehicleTime = simpleDateFormat.format(date);
         tourismOrderInfo.setArrangeVehicleTime(arrangeVehicleTime);
+        int resultCode;
         //将车辆信息更新到tourism_order表中
-        tourismInfoDao.updateTourismOrderInfoAddDriverInfo(tourismOrderInfo);
+        resultCode = tourismInfoDao.updateTourismOrderInfoAddDriverInfo(tourismOrderInfo);
         //更新travel_order表中的订单状态
-        tourismInfoDao.updateTravelOrderState(1,tourismOrderInfo.getTravelOrderId());
-        return 1;
+        resultCode = tourismInfoDao.updateTravelOrderState(1,tourismOrderInfo.getTravelOrderId());
+        return resultCode;
     }
 
     //更改租车订单状态，完成结单
@@ -178,12 +184,14 @@ public class TourismInfoServiceImpl implements TourismInfoService {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         //现在时间的后一天，如果比车辆出行时间早，则可以修改，否则不行
         String tomorrowDate = sdf.format(date + 24*60*60*1000);
-        System.out.println(tomorrowDate);
         int resultCode = tourismInfoDao.updateTourismOrderDepartureTime(departureTime,tomorrowDate,travelOrderId);
         if(resultCode == 1){
             //出发日期修改成功
-            tourismInfoDao.updateTourismModifiedDate(beModifiedTime,travelOrderId);
-            return 1;
+            resultCode = tourismInfoDao.updateTourismModifiedDate(beModifiedTime,travelOrderId);
+            if(resultCode ==1)
+                return 1;
+            //修改日期失败
+            return 0;
         }else
             return 0;
     }
