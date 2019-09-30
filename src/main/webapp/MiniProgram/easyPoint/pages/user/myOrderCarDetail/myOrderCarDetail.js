@@ -80,7 +80,7 @@ Page({
           var myOrderRentalCar = wx.getStorageSync('myOrderRentalCar');
           // console.log(myOrderRentalCar);
           var travelOrderId = options.travelOrderId;
-          console.log(travelOrderId)
+          //console.log(travelOrderId)
           this.setData({
             departurePlace: myOrderRentalCar.departurePlace,
             destination: myOrderRentalCar.destination,
@@ -135,12 +135,12 @@ Page({
       },
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       success: function (res) {
-        console.log(res.data.data)
-        selt.setData({
-          ticketDetail: res.data.data,
-        })
-        if (res.data.code == 400) {
-          console.log(res.data.msg)
+        if(res.data.code == 200){
+          console.log("查询出行订单详情成功");
+          console.log(res.data.data)
+          selt.setData({
+            ticketDetail: res.data.data,
+          })
         }
       }
     })

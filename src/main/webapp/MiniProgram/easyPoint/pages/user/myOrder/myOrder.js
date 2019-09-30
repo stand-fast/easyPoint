@@ -88,13 +88,15 @@ Page({
         },
         header: { 'content-type': 'application/x-www-form-urlencoded' },
         success: function (res) {
-          console.log(res.data.data)
-          selt.setData({
-            ticket_lists: res.data.data,
-          })
-          if (res.data.code == 400) {
-            console.log(res.data.msg)
-          }
+          if(res.data.code == 200){
+            console.log("查询用户的出行订单成功");
+            console.log(res.data.data)
+            selt.setData({
+              ticket_lists: res.data.data,
+            })
+          } else if (res.data.code == 201) {
+            console.log("暂无订单");
+          }   
         }
       })
     },

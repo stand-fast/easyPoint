@@ -332,6 +332,7 @@ Page({
           username: userInformation.username,
           phone: userInformation.phone,
         })
+         //this.getMessage();
 
       //车辆类型数据以及对应应付定金处理数据，接上服务器后删除
       var seatvehicle=this.data.seatvehicleList;
@@ -358,26 +359,29 @@ Page({
       })
     },
 
-    //请求车辆类型数据以及对应应付定金
-    getMessage: function () {
+  //请求车辆类型数据以及对应应付定金
+  getMessage: function () {
       var selt = this;
       wx.request({
-        url: '接口路径',
+        url: 'http://easypoint.club/findListPageNumVehicleInfo',
         method: 'Post',
+        data:{
+          pageNum:1,
+        },  
         header: { 'content-type': 'application/x-www-form-urlencoded' },
         success: function (res) {
-          console.log(res.data);    //res.data为seatVehicle对应数据
-          var seatvehicle = res.data;
-          var seatNumber = [];
-          var seatDeposit = [];
-          for (var i = 0; i < seatvehicle.length; i++) {
-            seatNumber.push(seatvehicle[i].vehicleType)
-            seatDeposit.push(seatvehicle[i].deposit);
-          }
-          this.setData({
-            seatNumber: seatNumber,
-            seatDeposit: seatDeposit
-          })
+          console.log(res);    //res.data为seatVehicle对应数据
+          // var seatvehicle = res.data;
+          // var seatNumber = [];
+          // var seatDeposit = [];
+          // for (var i = 0; i < seatvehicle.length; i++) {
+          //   seatNumber.push(seatvehicle[i].vehicleType)
+          //   seatDeposit.push(seatvehicle[i].deposit);
+          // }
+          // this.setData({
+          //   seatNumber: seatNumber,
+          //   seatDeposit: seatDeposit
+          // })
 
         }
       })
