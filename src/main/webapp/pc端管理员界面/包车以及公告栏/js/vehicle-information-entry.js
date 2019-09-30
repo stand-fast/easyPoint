@@ -4,8 +4,8 @@ var rs=new RegExp("(^|)"+str+"=([^/&]*)(/&|$)","gi").exec(LocString),tmp;
 if(tmp=rs)return tmp[2];
 return "没有这个参数";
 }
-var tourismId=GetQueryString("tourismId");
-console.log("车票订单ID："+tourismId);
+var travelOrderId=GetQueryString("travelOrderId");
+console.log("车票订单ID："+travelOrderId);
 
 function submitInformation(){
 	if($('#license_plate_number').val()==""){
@@ -38,31 +38,26 @@ function submitInformation(){
 		var color=$('#color').val();
 		var driverName=$('#driver_name').val();
 		var driverPhone=$('#driver_phone').val();
-		if(confirm("车牌号 : "+license_plate_number+"\r"+"车辆类型 ："+vehicle_type+"\r"+"车身颜色 : "+color+"\r"+"司机姓名 : "+driver_name+"\r"+"司机联系方式 : "+driver_phone)){
+		if(confirm("车牌号 : "+licensePlateNumber+"\r"+"车辆类型 ："+vehicleType+"\r"+"车身颜色 : "+color+"\r"+"司机姓名 : "+driverName+"\r"+"司机联系方式 : "+driverPhone)){
 			$.ajax({
 			type: "post",  //数据提交方式（post/get）
-			url: commentDataUrl,     //这里是请求的后台地址，自己定义
+			url: 'http://easypoint.club/easyPoint/addDriverInfoToTourismOrder',     //这里是请求的后台地址，自己定义
 			data: {
-			"tourismId":tourismId,
+			"travelOrderId":travelOrderId,
 			"licensePlateNumber":licensePlateNumber,
 			"vehicleType":vehicleType,
 			"color":color,
 			"driverName":driverName,
 			"driverPhone":driverPhone,
-			"status":2,
 			},//提交的数据
 			dataType: "json",//返回的数据类型格式
 			success: function(json){
-				if (json.success){  //修改成功
-				   alert("提交车辆信息成功") //修改成功处理代码...
-				}else {  //修改失败
-				   alert("提交车辆信息失败") //修改失败处理代码...
-				}
+				console.log(json);
 			}
 			});
 		
 		}else{
-			alert("你取消了提交")
+			console.log("你取消了提交")
 		}
 	}
 }
