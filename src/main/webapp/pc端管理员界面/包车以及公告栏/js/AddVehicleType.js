@@ -1,8 +1,9 @@
+jQuery.support.cors = true;
 var curPage;        //当前页数
-var totalItem;      //总记录数
 var totalPage;      //总页数
 
 turnPage(1);
+getPageBar();
 function check(deposit){
 	function isInteger(obj) {
 		 return obj%1 === 0
@@ -37,18 +38,22 @@ $("#submitCommittee").click(function(){
 		if(confirm("车辆类型 : "+location+"\r定金 : "+ deposit)){
 			$.ajax({
 			type: "post",  //数据提交方式（post/get）
-			url: commentDataUrl,     //这里是请求的后台地址，自己定义
+			url: "http://easypoint.club/easyPoint/addNewVehicleInfo",     //这里是请求的后台地址，自己定义
 			data: {
 			"vehicleType":location,
 			"deposit":deposit,
 			},//提交的数据
 			dataType: "json",//返回的数据类型格式
 			success: function(json){
+				console.log(json)
 				if (json.success){  //修改成功
-				   alert("添加车辆类型成功") //修改成功处理代码...
+				   alert("添加车辆类型成功"); //修改成功处理代码...
 				}else {  //修改失败
-				   alert("添加车辆类型失败") //修改失败处理代码...
+				   alert("添加车辆类型失败"); //修改失败处理代码...
 				}
+			},
+			fail:function(json){
+				console.log(json);
 			}
 		});
 		
@@ -80,25 +85,20 @@ function deleteCommittee(vehicleTypeId){
 function turnPage(page)
 {
   $.ajax({
-	type: 'POST',
-	url: commentDataUrl,     //这里是请求的后台地址，自己定义
+	type: 'get',
+	url: "http://easypoint.club/getTotalPageAndFirstVehicleInfoList",     
 	data: {'pageNum':page},
 	dataType: 'json',
-	beforeSend: function() {
+	beforeSend:function() {
 	  $("#data-area").append("加载中...");
 	},
 	success: function(json) {
+	  $("#centent").empty();       //移除原来的分页数据
+	  console.log(json.data);
 	  console.log("请求第"+page+"页车辆类型数据");
-	  $("#data-area").empty();       //移除原来的分页数据
-	  var dataContent=json.dataContent;
-	  totalItem = json.totalItem;
-	  curPage = json.page;
-	  if(totalItem%4==0){			//每页4条数据
-	  	  totalPage = parseInt(totalItem/4);
-	  }
-	  else{
-		  totalPage = parseInt(totalItem/4)+1;
-	  }
+	  var dataContent=json.data.vehicleInfoList; 
+	  totalPage = json.data.totalPage;
+	  curPage = page;
 	  var data_html = "";
 	  $.each(dataContent,function(index,array){  
 		data_html+="<ul class='VehicleContent'><li class='VehicleType'>"+array['vehicleType']+"</li><li class='deposit'>"+array['deposit']+"</li><li class='deleteButton'><a href='javaScript:deleteCommittee("+array['vehicleTypeId']+")'>删除</a></li></ul>"
@@ -109,7 +109,7 @@ function turnPage(page)
 	  getPageBar();
 	},
 	error: function() {
-	  alert("数据加载失败");
+	  console.log("数据加载失败");
 	}
   });
 }
@@ -155,6 +155,7 @@ function getPageBar()
 
 
 //测试部分
+/*
 getPageBar();
 function turnPage(page){ 
 	console.log("请求第"+page+"页车辆类型数据");
@@ -163,6 +164,7 @@ function turnPage(page){
 	getPageBar();
 	var json={dataContent:[{"vehicleType":"14座商务座","deposit":"200","vehicleTypeId":"123123132123"},{"vehicleType":"14座商务座","deposit":"200","vehicleTypeId":"123123132123"},{"vehicleType":"14座商务座","deposit":"200","vehicleTypeId":"123123132123"},{"vehicleType":"14座商务座","deposit":"200","vehicleTypeId":"123123132123"}
 	],"totalItem":"10","page":"1"}; //测试数据
+	console.log(json);
 	var dataContent=json.dataContent;
 	totalItem = json.totalItem;
 	curPage = json.page;
@@ -178,5 +180,6 @@ function turnPage(page){
 	});
 	$("#centent").append(data_html);
 };
+*/
 
 

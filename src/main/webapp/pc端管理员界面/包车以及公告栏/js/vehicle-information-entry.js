@@ -66,21 +66,17 @@ function submitInformation(){
 		}
 	}
 }
-function CarRentalStatement(){
+function CarRentalStatement(travelOrderId){
 	if(confirm("确定是否结单")){
-		alert("租车ID:"+tourism_id+"结单（接上数据库后删除）");  
+		alert("租车ID:"+travelOrderId+"结单（接上数据库后删除）");  
 		$.ajax({
 				type: "post",  //数据提交方式（post/get）
-				url: commentDataUrl,     //这里是请求的后台地址，自己定义
+				url: 'http://easypoint.club/finishTourismOrder',     //这里是请求的后台地址，自己定义
 				data: {
-				"tourismId":tourismId},//提交的数据
+				"travelOrderId": '11'},//提交的数据
 				dataType: "json",//返回的数据类型格式
 				success: function(json){
-					if (json.success){  //修改成功
-					   alert("结单成功") //修改成功处理代码...
-					}else {  //修改失败
-					   alert("结单失败") //修改失败处理代码...
-					}
+					console.log(json);
 				}
 			});
 	}else{
@@ -89,19 +85,19 @@ function CarRentalStatement(){
 }
 
 $(function(){
-	/*
 	$.ajax({
 	type: 'POST',
-	url: commentDataUrl,     //这里是请求的后台地址，自己定义
-	data: {'tourism_id':tourism_id},
+	url: 'http://easypoint.club/findDriverInfo',     //这里是请求的后台地址，自己定义
+	data: {'travelOrderId':"10"},
 	dataType: 'json',
 	success: function(json) {
-	 	var dataContent=json.dataContent;
+	 	var dataContent=json.data;
+		console.log(dataContent);
 		$('#license_plate_number').val(dataContent.licensePlateNumber);
 		$('#vehicle_type').val(dataContent.vehicleType);
 		$('#color').val(dataContent.color);
 		$('#driver_name').val(dataContent.driverName);
 		$('#driver_phone').val(dataContent.driverPhone);
-  }	
-  */
+	}	
+  })
 })

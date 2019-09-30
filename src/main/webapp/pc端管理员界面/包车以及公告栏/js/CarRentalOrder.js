@@ -9,17 +9,18 @@ function turnPage(page)
 {
   $.ajax({
 	type: 'get',
-	url: commentDataUrl,     //这里是请求的后台地址，自己定义
+	url: 'http://easypoint.club/getTotalPageAndFirstTourismOrderInfoList',     //这里是请求的后台地址，自己定义
 	data: {'pageNum':page},
 	dataType: 'json',
 	beforeSend: function() {
 	  $("#data-area").append("加载中...");
 	},
 	success: function(json) {
+	  console.log(json.data);
 	  console.log("请求租车订单第"+page+"页数据");
 	  $("#data-area").empty();       //移除原来的分页数据
-	  var data_content=json.CarRentalOrder;
-	  totalItem = json.totalItem;
+	  var data_content=json.data.partTourismOrderInfos;
+	  totalItem = json.data.totalPage;
 	  curPage = json.page;
 	  if(totalItem%11==0){			//每页11条数据
 		totalPage = parseInt(totalItem/11);
@@ -121,6 +122,7 @@ function CarRentalStatement(RentalCarId){
 	}
 }
 //接上服务器后删掉
+/*
 getPageBar()
 function turnPage(page){
 	console.log("请求租车订单第"+page+"页数据");
@@ -163,3 +165,4 @@ function turnPage(page){
 	});
 	$("#data-area").append(data_html);
 };
+*/
