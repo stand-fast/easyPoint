@@ -1,6 +1,6 @@
 package com.easyPoint.controller;
 
-import com.easyPoint.pojo.Result;
+import com.easyPoint.dto.Result;
 import com.easyPoint.pojo.user.InternshipInfo;
 import com.easyPoint.service.InternshipService;
 import org.springframework.beans.factory.annotation.Autowired;
