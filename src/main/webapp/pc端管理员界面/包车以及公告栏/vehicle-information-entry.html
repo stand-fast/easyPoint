@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>模板</title>
 	<meta charset="utf-8">
 
 	<!-- 收藏用logo图标 -->
-	<link rel="bookmark" type="image/x-icon" href="images/favicon.ico"/>
+	<link rel="bookmark" type="image/x-icon" href="images/favicon.ico" />
 	<!-- 网站显示页logo图标 -->
 	<link rel="shortcut icon" href="images/favicon.ico">
 
@@ -16,6 +17,7 @@
 	<!--车辆信息部分css-->
 	<link rel="stylesheet" type="text/css" href="css/vehicle-information-entry.css">
 </head>
+
 <body>
 	<!-- 首部 -->
 	<!--调用共同的首部-->
@@ -47,14 +49,15 @@
 					<li><input type="text" id="vehicle_type" placeholder="车辆类型"></li>
 					<li><input type="text" id="color" placeholder="车身颜色"></li>
 					<li><input type="text" id="driver_name" placeholder="司机姓名"></li>
-					<li><input type="text" id="driver_phone" placeholder="司机联系方式"></li>
-					<input  class="submit" id="submit" onClick="submitInformation()" type="submit" value="提交" />
-					<input  class="finish" id="finish" onClick="CarRentalStatement()" type="submit" value="结单" />
+					<li><input type="text" id="driver_phone" maxlength="11" placeholder="司机联系方式"></li>
+					<input class="submit" id="submit" onClick="submitInformation()" type="submit" value="提交" />
+					<input class="finish" id="finish" onClick="CarRentalStatement()" type="submit" value="结单" />
 				</ul>
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript"  src="js/jquery-3.4.1.min.js"></script>
-	<script type="text/javascript"  src="js/vehicle-information-entry.js"></script>
+	<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="js/vehicle-information-entry.js"></script>
 </body>
+
 </html>
