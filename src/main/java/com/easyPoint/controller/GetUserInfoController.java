@@ -22,7 +22,6 @@ public class GetUserInfoController {
     @ResponseBody
     @RequestMapping("/getUserInfoAndToken")
     public Map getUserInfoAndToken( @RequestParam("code") String code, @RequestParam("encryptedData") String encryptedData, @RequestParam("iv") String iv){
-        //System.out.println("uid == " + uid);
         Map result = new HashMap();
         UserInfo userInfo = getUserInfoService.getUserInfo(code, encryptedData, iv);
         if(userInfo != null){

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author FJW
@@ -74,6 +73,20 @@ public class TourismInfoController {
             result = new Result<>(400,"该车辆类型已存在");
         }
         return result;
+    }
+
+    /**
+     *
+     * @param vehicleId 车辆类型id
+     * @return 验证是否删除成功
+     */
+    @ResponseBody
+    @RequestMapping("/deleteVehicleType")
+    public Result deleteVehicleType(@RequestParam("vehicleId") int vehicleId){
+        int resultCode = tourismInfoService.deleteVehicleType(vehicleId);
+        if(resultCode == 1)
+            return new Result(200,"删除车辆类型成功");
+        return new Result(201,"删除车辆类型失败");
     }
 
     /**

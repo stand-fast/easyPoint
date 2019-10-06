@@ -68,6 +68,13 @@ public class TourismInfoServiceImpl implements TourismInfoService {
         //否则，返回0，代表该类型已经存在
         return 0;
     }
+
+    // 删除车辆类型
+    @Override
+    public int deleteVehicleType(int vehicleId) {
+        return tourismInfoDao.deleteVehicleById(vehicleId);
+    }
+
     //查询加载的所有页面数并得到首页信息
     @Override
     public Result findTotalPageAndTourismOrderInfoList() {

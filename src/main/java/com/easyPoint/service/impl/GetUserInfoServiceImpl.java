@@ -62,7 +62,7 @@ public class GetUserInfoServiceImpl implements GetUserInfoService {
                         userInfo.setNickName(rootNode.path("nickName").asText());
                         userInfo.setGender(rootNode.path("gender").asInt());
                         userInfo.setAvatarUrl(rootNode.path("avatarUrl").asText());
-                        //解析完成后
+                        //解析完成后,将数据插入数据库中
                         int returnCode = userInfoDao.insertUserInfo(userInfo);
                         //根据返回判断用户信息是否正确插入数据库,1为正确
                         if(returnCode == 1){
