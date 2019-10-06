@@ -332,21 +332,7 @@ Page({
           username: userInformation.username,
           phone: userInformation.phone,
         })
-         //this.getMessage();
-
-      //车辆类型数据以及对应应付定金处理数据，接上服务器后删除
-      var seatvehicle=this.data.seatvehicleList;
-      var seatNumber=[];
-      var seatDeposit=[];
-      for (var i = 0; i < seatvehicle.length;i++){
-        seatNumber.push(seatvehicle[i].vehicleType)
-        seatDeposit.push(seatvehicle[i].deposit);
-      }
-      this.setData({
-        seatNumber: seatNumber,
-        seatDeposit: seatDeposit
-      })
-
+         this.getMessage();   //获取车票类型数据
 
       //同乡会数据处理，接上服务器后删除
       var associations = this.data.associationsList;
@@ -363,25 +349,22 @@ Page({
   getMessage: function () {
       var selt = this;
       wx.request({
-        url: 'http://easypoint.club/findListPageNumVehicleInfo',
+        url: 'http://easypoint.club/findAllVehicleType',
         method: 'Post',
-        data:{
-          pageNum:1,
-        },  
         header: { 'content-type': 'application/x-www-form-urlencoded' },
         success: function (res) {
-          console.log(res);    //res.data为seatVehicle对应数据
-          // var seatvehicle = res.data;
-          // var seatNumber = [];
-          // var seatDeposit = [];
-          // for (var i = 0; i < seatvehicle.length; i++) {
-          //   seatNumber.push(seatvehicle[i].vehicleType)
-          //   seatDeposit.push(seatvehicle[i].deposit);
-          // }
-          // this.setData({
-          //   seatNumber: seatNumber,
-          //   seatDeposit: seatDeposit
-          // })
+          //console.log(res.data.data);    //res.data为seatVehicle对应数据
+          var seatvehicle = res.data.data;
+          var seatNumber = [];
+          var seatDeposit = [];
+          for (var i = 0; i < seatvehicle.length; i++) {
+            seatNumber.push(seatvehicle[i].vehicleType)
+            seatDeposit.push(seatvehicle[i].deposit);
+          }
+          selt.setData({
+            seatNumber: seatNumber,
+            seatDeposit: seatDeposit
+          })
 
         }
       })

@@ -2,7 +2,7 @@
 <view class="header">
     <image src="{{userImg}}"></image>
     <view wx:if="{{hasPermission}}" class="username">{{userNickName}}</view>
-    <view wx:else class="noname" bindtap="getPermission">授权登录</view>
+    <view wx:else class="noname"><button open-type="getUserInfo" bindgetuserinfo="getPermission" >授权登录</button></view>
 </view>
 <view class="editUserInfos" bindtap="toEditUserInfos" wx:if="{{lostUserInfos}}">
     <image src="/images/icon/cusEdit.png"></image>

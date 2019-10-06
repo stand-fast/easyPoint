@@ -37,9 +37,9 @@
                 <view class="formContent">
                     <view class="formTitle">车辆类型</view>
                     <picker mode="selector" bindchange="changeSeatType" value="{{seatNumber}}" range="{{seatNumber}}">
-                        <input wx:if="{{!successShowmodal}}" placeholder="请选择车辆座数" placeholder-class="placehold" disabled="true" bindtap="bindShowMsg" type="text" name="carType" value="{{carType}}"></input>
+                        <input wx:if="{{!successShowmodal}}" placeholder="请选择车辆座数" placeholder-class="placehold" disabled="true"  type="text" name="carType" value="{{carType}}"></input>
                     </picker>
-                    <view class="downImg" ><image bindtap="bindShowMsg" src="/images/icon/down.png"></image></view>
+                    <view class="downImg" ><image src="/images/icon/down.png"></image></view>
                 </view>
                 <view class="heng"></view>
                 <view class="formContent">

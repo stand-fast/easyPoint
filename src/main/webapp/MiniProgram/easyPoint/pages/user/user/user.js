@@ -42,7 +42,35 @@ Page({
         }]
     },
     getPermission:function(){       //登录授权
+      wx.login({
+        success: res => {
+          // 发送 res.code 到后台换取 openId, sessionKey, unionId
+          if (res.code) {
+            wx.getUserInfo({
+              success: function (res_user) {
+                wx.request({
+                  url: 'https://easypoint.club/getUserInfoAndToken',
+                  data: {
+                    code: res.code,//获取openid的话 需要向后台传递code,利用code请求api获取openid
+                    encryptedData: res_user.encryptedData,
+                    iv: res_user.iv
+                  },
+                  success: function (res) {
+                    console.log(res)
+                    // wx.setStorageSync("token", res.data.token)
+                    // wx.setStorageSync("userInfo", res.data.userInfo)
+                    //wx.setStorageSync("openid", res.data.LoginResponse.data)//可以把openid保存起来,以便后期需求的使用
+                  },
+                  fail:function(){
+                    console.log(1);
+                  }
+                })
+              }
 
+            })
+          }
+        }
+      })
     },
     toEditUserInfos:function(){     //进入个人信息编辑界面
         wx.navigateTo({

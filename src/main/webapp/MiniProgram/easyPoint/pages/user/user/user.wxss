@@ -22,12 +22,19 @@ Page{
     width: 140rpx;
     height: 50rpx;
     line-height: 50rpx;
-    font-size: 28rpx;
-    color: #fff;
     text-align: center;
     border: 2rpx solid #fff;
     border-radius: 25rpx;
     margin: 84rpx 0rpx 0rpx 30rpx;
+}
+.noname button{
+    padding: 0;
+    line-height: 50rpx;
+    font-size: 28rpx;
+    color: #fff;
+    background: none;
+    width: 140rpx;
+    height: 50rpx;
 }
 .header image{
     width: 140rpx;
