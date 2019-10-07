@@ -1,10 +1,10 @@
-package com.easyPoint.controller;
+package com.easyPoint.controller.miniprogram.mine;
 
 import com.easyPoint.Util.HttpRequestUtil;
+import com.easyPoint.Util.JwtUtil;
 import com.easyPoint.dto.Result;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.GetUserInfoService;
-import com.easyPoint.Util.JwtUtil;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +15,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.Map;
+
+/**
+ * @author FJW
+ * 小程序登录授权，更改用户信息模块
+ */
 @SuppressWarnings("unchecked")
 @Controller
-public class GetUserInfoController {
+@RequestMapping("/miniProgram")
+public class UserInfoController {
 
     @Autowired
     GetUserInfoService getUserInfoService;
