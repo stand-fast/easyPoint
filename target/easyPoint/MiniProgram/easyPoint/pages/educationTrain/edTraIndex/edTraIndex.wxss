@@ -1,0 +1,171 @@
+/* pages/educationTrain/edTraIndex/edTraIndex.wxss */
+Page{
+    font-family: 黑体;
+    background-color: #f2f2f2;
+}
+.edTra_header{
+    background-color: #fff;
+    position: fixed;
+    top: 0rpx;
+    width: 100%;
+    height: 110rpx;
+    overflow: hidden;
+    z-index: 100;
+}
+.nav_switch{
+    width: 70%;
+    height: 120rpx;
+    display: flex;
+    flex-direction: row;
+    margin:0 auto;
+}
+.on{
+    color: #333!important;
+    border-bottom: 8rpx solid #ffdd42;
+}
+.nav_text{
+    display: flex;
+    flex-direction: column;
+    height: 105rpx;
+    margin:0 auto;
+    text-align: center;
+    font-size: 28rpx;
+    color: #666;
+}
+.nav_text image{
+    width: 70rpx;
+    height: 80rpx;
+}
+.nav_text text{
+    margin-top: -10rpx;
+}
+.leavetop{
+    width: 100%;
+    overflow: hidden;
+    margin-top: 120rpx;
+}
+.popular_item{
+    width: 100%;
+    height: 370rpx;
+    background-color: #fff;
+}
+.title{
+    width: 100%;
+    height: 60rpx;
+    line-height: 60rpx;
+    display: flex;
+    flex-direction: row;
+}
+.shu{
+    width: 8rpx;
+    height: 28rpx;
+    background-color: #ffdd42;
+    border-radius: 40rpx;
+    margin:24rpx 10rpx 0 28rpx;
+}
+.title_text{
+    width: 400rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+    color: #666;
+    margin:8rpx 10rpx 0 0rpx;
+}
+.scroll_picture {
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+    margin-top: 30rpx;
+}
+.scroll_picture view{
+    display: inline-block;
+    height: 160rpx;
+    margin-right: 30rpx;
+}
+.scroll_picture view:first-child{
+    margin-left: 50rpx;
+}
+.scroll_picture image{
+    width: 400rpx;
+    height: 250rpx;
+    z-index: 1;
+}
+.question_item{
+    width: 100%;
+    height: 198rpx;
+    background-color: #fff;
+    margin-top: 8rpx;
+}
+.question_image{
+    display: flex;
+    flex-direction: row;
+    width: 92%;
+    margin: 14rpx auto;
+}
+.question_image image{
+    width: 300rpx;
+    height: 100rpx;
+    margin: 0 auto;
+}
+.driveschool_item{
+    margin-top: 8rpx;
+    width: 100%;
+    justify-content:space-between;
+}
+.driverschool_list{
+    display:flex;
+    flex-wrap:wrap;
+    padding:10rpx 21rpx;
+}
+.list{
+    background-color: #fff;
+    width: 330rpx;
+    height: 400rpx;
+    border-radius: 20rpx;
+    margin: 16rpx 13rpx;
+}
+.list_img image{
+    width: 330rpx;
+    height: 200rpx;
+}
+.name{
+    height: 40rpx;
+    line-height: 40rpx;
+    margin:8rpx 0 0 40rpx;
+    font-size: 30rpx;
+    color: #333;
+}
+.address{
+    width: 100%;
+    height: 34rpx;
+    margin:6rpx 0 0 40rpx;
+    line-height: 34rpx;
+    font-size: 26rpx;
+    color: #999;
+}
+.price{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    color: #333;
+    margin:26rpx 0 0 34rpx;
+    font-family: 微软雅黑;
+}
+.price text{
+    font-size: 34rpx;
+}
+.price image{
+    margin:8rpx 0 0 70rpx;
+    width: 40rpx;
+    height: 40rpx;
+}
+.price view{
+    font-size: 26rpx;
+}
+.more-noData{
+  margin: 10px 0;
+  width: 100%;
+  text-align: center;
+  font-size: 26rpx;
+  color: #999;
+}

@@ -1,0 +1,14 @@
+$(function(){
+	console.log("加载完毕");
+	//兼职查看二级导航
+　　$(".businessExamine").hover(function(){
+　　　　$(this).children('.box').show();
+　　},function(){
+　　　　$(this).children('.box').hide()
+　　})
+	$(".enterpriseExamine").hover(function(){
+　　　　$(this).children('.box').show();
+　　},function(){
+　　　　$(this).children('.box').hide()
+　　})
+})

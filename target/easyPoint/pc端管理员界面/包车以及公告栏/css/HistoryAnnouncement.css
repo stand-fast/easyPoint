@@ -1,0 +1,92 @@
+h1{
+	font-size:18px;
+	text-align:center;
+	padding-top:5px;
+}
+.HistoryAnnouncement{
+	position: absolute;
+	left: 300px;
+	height: 600px;
+	width: 700px;	
+}
+.HistoryAnnouncement_con{
+	margin: 0 auto;
+	margin-top: 50px;
+	width: 630px;
+	height: 500px;
+	background-color: rgba(255,255,255,0.6);
+	border-radius: 10px;
+}
+.Announce{
+	width:616px;
+	margin:0 auto;
+}
+.Announce table{
+	margin:0 auto;	
+	width:618px;
+	color:#FFFFFF;
+	cellspacing:0; 
+	cellpadding:0;
+}
+.Announce table tr td{
+	width:75.2px;
+	background-color:#8fd68b;
+	text-align:center;
+	border-radius:5px;
+	padding:5px 0;
+}
+.AnnounceData{
+	width:616px;
+	margin:0 auto;
+}
+.AnnounceData table{
+	margin:0 auto;	
+	width:618px;
+	cellspacing:0; 
+	cellpadding:0;
+}
+.AnnounceData table tr td{
+	width:75.2px;
+	background-color: #ffffff;
+	color:#8fd68b;
+	font-size:14px;
+	text-align:center;
+	border-radius:5px;
+	padding:5px 0;
+}
+.pages{
+	position:relative;
+	bottom:10px;
+	text-align:center;
+}
+.pager .pages .page-item{
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 700;
+	vertical-align: middle;	
+}
+.pager .pages .page-item button{
+	color: #222;
+	cursor: pointer;
+	outline: none;
+	text-align: center;
+	border-radius: 4px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	background-image: none;
+	transition: all .2s;
+	font-size: 14px;
+	min-width: 15px;
+	margin: 0 auto;
+	padding: 0 10px;
+	float: left;
+	display: block;
+	height: 30px;
+	line-height: 30px;
+}
+.pager .pages .page-item button:hover{
+	background-color:#8fd68b;	
+}
+.pager .pages .page-item .select{
+	background-color:#8fd68b;	
+}

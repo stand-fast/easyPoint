@@ -1,0 +1,119 @@
+/* pages/user/user/user.wxss */
+Page{
+    background-color: #fff;
+    font-family: 黑体;
+}
+.header{
+    width: 100%;
+    height: 160rpx;
+    background-color: #56b4f6;
+    display: flex;
+    flex-direction: row;
+}
+.username{
+    width: 500rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 32rpx;
+    color: #fff;
+    margin: 90rpx 0rpx 0rpx 30rpx;
+}
+.noname{
+    width: 140rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    text-align: center;
+    border: 2rpx solid #fff;
+    border-radius: 25rpx;
+    margin: 84rpx 0rpx 0rpx 30rpx;
+}
+.noname button{
+    padding: 0;
+    line-height: 50rpx;
+    font-size: 28rpx;
+    color: #fff;
+    background: none;
+    width: 140rpx;
+    height: 50rpx;
+}
+.header image{
+    width: 140rpx;
+    height: 140rpx;
+    background-color: #fff;
+    margin-left: 60rpx;
+}
+.editUserInfos{
+    width: 100%;
+    height: 80rpx;
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+    justify-content: center;
+}
+.editUserInfos image{
+    width: 32rpx;
+    height: 28rpx;
+    margin: auto 10rpx;
+}
+.edit_text{
+    width: 160rpx;
+    height: 34rpx;
+    line-height: 34rpx;
+    font-size: 26rpx;
+    color: #65b8e2;
+    margin: auto 10rpx;
+}
+.kong{
+    width: 100%;
+    height: 40rpx;
+    background-color: #f2f2f2;
+}
+.order_lists{
+    width: 100%;
+    height: 200rpx;
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+}
+.order_list{
+    width: 33%;
+    height: 200rpx;
+    text-align: center;
+}
+.order_list image{
+    width: 80rpx;
+    height: 80rpx;
+    margin: 36rpx  0 10rpx 0rpx;
+}
+.order_list_text{
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 28rpx;
+    color: #666;
+}
+.item_lists{
+    width: 100%;
+    height: 500rpx;
+}
+.item_list{
+    width: 100%;
+    height: 100rpx;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    border-bottom:4rpx solid #f2f2f2;
+}
+.item_list image{
+    width: 45rpx;
+    height: 45rpx;
+    margin: auto 0rpx;
+    margin-left: 50rpx;
+    margin-right: 20rpx;
+}
+.item_list_text{
+    width: 140rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: 30rpx;
+    color: #666;
+}

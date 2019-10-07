@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>模板</title>
+	<meta charset="utf-8">
+
+	<!-- 收藏用logo图标 -->
+	<link rel="bookmark" type="image/x-icon" href="images/favicon.ico"/>
+	<!-- 网站显示页logo图标 -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+
+	<!--公用部分css-->
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<!--车辆信息部分css-->
+	<link rel="stylesheet" type="text/css" href="css/PublicTavelBlocks.css">
+	<!--我要坐车部分css-->
+	<link rel="stylesheet" type="text/css" href="css/busSearcher.css">
+	
+</head>
+<body>
+	<!-- 首部 -->
+	<!--调用共同的首部-->
+	<script type="text/javascript" src="js/index_header.js"></script>
+	<div class="Main">
+		<!-- 
+			表示当前页面的名称 
+			"已加盟企业商家":0
+			"已加盟学生商家":1
+			"企业商家加盟申请":2
+			"学生商家加盟申请":3
+			"账号申请":4
+			"修改密码":5
+			"账号管理":6
+			"我要坐车":7
+			"车票管理":8
+			"租车订单":9
+			"当前公告":10
+			"历史公告":11
+		-->
+		<input type="hidden" name="pageName" value="5">
+		<!--调用共同的二级导航栏-->
+		<script type="text/javascript" src="js/Navigation.js"></script>
+		<script type="text/javascript"  src="js/jquery-3.4.1.min.js"></script>
+		
+		<div class="publicModelFrame">
+			<div class="publicModelFrame_con">
+				<h1>添加车辆</h1>
+				<ul>
+					<label>同乡会：</label>
+					<select id="ruralCommittee" name="ruralCommittee">
+						<option value ="">选择同乡会</option>
+						<!--
+					  <option value ="广金广州本部">广金广州本部</option>
+					  <option value ="广金肇庆校区">广金肇庆校区</option>
+					  <option value="汕头">汕头</option>
+					  -->
+					</select>
+					<span class="hint">请选择同乡会</span>
+				</ul>
+				<ul>
+					<label>出发地：</label>
+					<select id="departurePlace">
+						<option value ="">选择出发地</option>
+						<!--
+					  <option value ="广金广州本部">广金广州本部</option>
+					  <option value ="广金肇庆校区">广金肇庆校区</option>
+					  <option value="汕头">汕头</option>
+					  -->
+					</select>
+					<span class="hint">请选择出发地</span>
+				</ul>
+				<ul>
+					<label>目的地：</label>
+					<select id="destination">
+						<option value ="">选择目的地</option>
+						<!--
+					  <option value="汕头">汕头</option>
+					  <option value ="广金广州本部">广金广州本部</option>
+					  <option value ="广金肇庆校区">广金肇庆校区</option>
+					  -->
+					</select>
+					<span class="hint">请选择目的地</span>
+				</ul>
+			
+				<ul>
+					<label>出发日期：</label><input id="departureDay"  max="2020-01-01" type="date" />
+					<span class="hint">请选择出发日期</span>
+				</ul>
+			
+				<ul>
+					<label>出发时间：</label><input id="departureTime"  value="09:00" type="Time" />
+					<span class="hint">请选择出发时间</span>
+				</ul>
+			
+				<ul>
+					<label>座位数:</label><input id="smallint" name="smallint" type="text" placeholder="座位数"/>
+					<span class="hint">请输入座位数</span>
+				</ul>
+			
+				<ul>
+					<label>售价:</label><input id="price" type="text" placeholder="售价" />
+					<span class="hint">请输入售价</span>
+				</ul>
+			
+				<ul>
+					<label>预售：</label>
+					<select id="type">
+					  <option value ="1">否</option>
+					  <option value ="2">是</option>
+					</select>
+					<span class="hint">请选择是否预售</span>
+				</ul>
+					<input  class="clear modelButton" id="clear" type="submit" value="清空" />
+					<input  class="submit modelButton" id="submit" type="submit" value="发布" />
+			</div>
+		</div>
+		<script type="text/javascript" src="js/BusSearcher.js"></script>
+	</div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+/* pages/user/refund/refund.wxss */
+Page{
+    background-color: #f2f2f2;
+    font-family: 黑体;
+}
+.apply{
+    width: 100%;
+    height: 400rpx;
+    margin-top: 10rpx;
+    font-size: 30rpx;
+    background-color: #fff;
+}
+.text{
+    width: 100%;
+    height: 40rpx;
+    line-height: 40rpx;
+    color: #333;
+    padding: 30rpx 0 10rpx 30rpx;
+}
+.apply textarea{
+    width: 100%;
+    height: 300rpx;
+    line-height: 40rpx;
+    color: #999;
+    padding-left:30rpx;
+}
+.btn{
+    margin-top: 60rpx;
+}
+.btn button{
+    width: 300rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    font-size: 30rpx;
+    color: #fff;
+    background-color: #56b4f6;
+    border-radius: 8rpx;
+}
+.btn button::after{
+    border:none;
+}
+.mask_layer {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999;
+    left:0;top:0;
+    background: #000;
+    opacity: 0.5;
+    overflow: hidden;
+}
+.modal_box {
+    width: 650rpx;
+    height: 400rpx;
+    overflow: hidden;
+    position: fixed;
+    top: 20%;
+    left: 0;
+    z-index: 1001;
+    background: #fafafa;
+    margin:6%;
+    border-radius: 18rpx;
+}
+.model_success{
+    width: 650rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+    margin:40rpx 0 40rpx 0;
+    text-align: center;
+    font-size: 36rpx;
+    color: #56b4f6;
+}
+.success_text{
+    font-size: 26rpx;
+    color: #999;
+    height: 44rpx;
+    line-height: 44rpx;
+    text-align: center;
+    padding: 0 30rpx 0 30rpx;
+}
+.success_btn{
+    background-color: #56b4f6;
+    color: #fff;
+    margin-top: 60rpx;
+    margin-bottom: 20rpx;
+    width: 200rpx;
+    border-radius: 60rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+}
+.success_btn button::after{
+    border:none;
+}

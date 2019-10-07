@@ -1,0 +1,44 @@
+<!--pages/myIndex/search/search.wxml-->
+<form>
+    <view class="search_item">
+        <image src="/images/icon/search.png"></image>
+        <input type="text" placeholder="请输入需要的物品名称" placeholder-class="place" bindconfirm="searchGoods" confirm-type="search" bindinput="takeValue" value="{{inputValue}}" bindfocus="onfocus" bindblur="lostfocus"></input>
+        <view class="cancel" bindtap="returnToIndex">取消</view>
+    </view>
+</form>
+<block wx:if="{{show_history_page}}">
+    <view class="historySearch" wx:if="{{showHistory}}">
+        <view class="history_title">
+            <view class="title">历史搜索</view>
+            <image bindtap="clearHistory" src="/images/icon/delete_before.png" wx:if="{{history.length>0}}"></image>
+            <image src="/images/icon/delete_after.png" wx:else></image>
+        </view>
+        <view class="history_lists" wx:if="{{history.length>0}}">
+            <block wx:for="{{history}}" wx:key="*this" wx:for-item="key_obj">
+                <view class="history_list" bindtap="turnToValue" data-value="{{item}}">{{item}}</view>
+            </block>
+        </view>
+        <view wx:else>
+            <view class="nohistory">目前还没搜索记录哦</view>
+        </view>
+    </view>
+</block>
+<block wx:else>
+    <view class="good_lists">
+        <block wx:for="{{good_lists}}" wx:key="{{index}}">
+            <view class="good_list">
+                <image src="{{item.imgUrl}}"></image>
+                <view class="good_list_right">
+                    <view class="good_list_name">{{item.goodName}}</view>
+                    <view class="good_list_TypeAndPrice">{{item.type}} ￥<text>{{item.price}}</text></view>
+                    <view class="good_list_detailbtn" bindtap="jumpDetail">查看详情></view>
+                </view>
+            </view>
+        </block>
+    </view>
+</block>
+<view class="select_box" wx:if="{{inputValue.length>0&&showGoodName}}">
+    <block wx:for="{{good_lists}}" wx:key="{{index}}">
+        <view class="select_one" bindtap="mySelect" data-name="{{item.goodName}}">{{item.goodName}}</view>
+    </block>
+</view>

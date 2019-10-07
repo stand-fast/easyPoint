@@ -1,0 +1,360 @@
+/* pages/easyPointCar/confirmTicket/confirmTicket.wxss */
+Page{
+    background-color: #f2f2f2;
+    font-family: 黑体;
+}
+.confirm_body{
+    width: 100%;
+    height: 900rpx;
+}
+.confirm_header{
+    width: 100%;
+    height: 260rpx;
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+}
+.flex_left{
+    width: 7rpx;
+    height: 100%;
+    margin-left: 40rpx;
+    background-color: #eee;
+}
+.flex_right{
+    width:700rpx;
+    height: 100%;
+    padding: 10rpx 10rpx 20rpx 0rpx;
+}
+.flex_right_item{
+    width: 100%;
+    height: 60rpx;
+    line-height: 60rpx;
+    display: flex;
+    flex-direction: row;
+    margin-top: 18rpx;
+}
+.flex_right_item text{
+    width: 160rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    color: #999;
+    font-size: 30rpx;
+    margin-left: 20rpx;
+}
+.item_text{
+    width: 300rpx;
+    color: #999;
+    font-size: 30rpx;
+    font-family: 微软雅黑;
+    text-align: right;
+    margin-left: 140rpx;
+}
+.dot_blue{
+    width: 24rpx;
+    height: 24rpx;
+    border-radius: 50%;
+    border: 1rpx solid #7ecef4;
+    background-color: #7ecef4;
+    margin: 16rpx 8rpx 0rpx -17rpx;
+}
+.content_passby{
+    width: 100%;
+    height: 180rpx;
+    display: flex;
+    flex-direction: row;
+    margin-top: 16rpx;
+    background-color: #fff;
+}
+.dot_gray{
+    width: 24rpx;
+    height: 24rpx;
+    border-radius: 50%;
+    border: 1rpx solid #eee;
+    background-color: #eee;
+    margin: 16rpx 8rpx 0rpx -17rpx;
+}
+.min,.max{
+    height: 30rpx;
+    margin-top: 14rpx;
+    display: flex;
+    flex-direction: row;
+}
+.left{
+    margin-left: 320rpx;
+}
+.ticket_circle{
+    width: 30rpx;
+    height: 30rpx;
+    border-radius: 50%;
+    background-color: #7ecef4;
+}
+.min text,.max text{
+    width: 0rpx;
+    height: 30rpx;
+    line-height: 30rpx;
+    position: fixed;
+    color: #fff;
+    font-size: 36rpx;
+    font-weight: bold;
+    margin-left: 5rpx;
+}
+.ticketInput{
+    width: 60rpx;
+    height: 30rpx;
+    line-height: 30rpx;
+    color: #333;
+    font-size: 36rpx;
+    text-align: center;
+    margin:6rpx 0 0 0rpx;
+}
+.content_contact{
+    width: 100%;
+    height: 180rpx;
+    display: flex;
+    flex-direction: row;
+    margin-top: 16rpx;
+    background-color: #fff;
+}
+.contact_item{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    font-size: 30rpx;
+    color: #999;
+    margin-top: 10rpx;
+}
+.contact_item text{
+    margin-top: 10rpx;
+    width: 100rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+    margin-left: 20rpx;
+}
+.contact_item_text{
+    width:420rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+    margin: 8rpx 12rpx 0rpx 30rpx;
+}
+.contact_item_text text{
+    color: #333!important;
+}
+.item_text text,.on{
+    font-size: 36rpx!important;
+    color: #7ecef4!important;
+}
+.changeContact{
+    font-size: 30rpx;
+    color: #56b4f6;
+    text-align: center;
+    margin-top:30rpx; 
+}
+.content_insurance{
+    width: 100%;
+    height: 100rpx;
+    font-size: 30rpx;
+    margin-top: 16rpx;
+    color: #999;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+}
+.circle1{
+    width: 32rpx;
+    height: 32rpx;
+    border-radius: 50%;
+    border:1rpx solid #ccc;
+    background-color: #fff;
+    margin: 34rpx 18rpx 20rpx 28rpx;
+}
+.circle2{
+    width: 32rpx;
+    height: 32rpx;
+    line-height: 32rpx;
+    border-radius: 50%;
+    border:1rpx solid #7ecef4;
+    background-color: #7ecef4;
+    margin: 34rpx 18rpx 20rpx 28rpx;
+}
+.circle2 image{
+    width: 30rpx;
+    height: 30rpx;
+    margin: 4rpx 0;
+}
+.buytext{
+    height: 100rpx;
+    line-height:100rpx;
+}
+.detail{
+    width: 130rpx;
+    height: 100rpx;
+    line-height:100rpx;
+    margin-left:400rpx;
+}
+.returnState{
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: 30rpx;
+    margin-top: 16rpx;
+    color: #56b4f6;
+    background-color: #fff;
+    text-align: center;
+    overflow: hidden;
+}
+.traBottom{
+    width: 100%;
+    height: 120rpx;
+    position: fixed;
+    bottom: 0rpx;
+    display: flex;
+    flex-direction: row;
+}
+.contactBtn{
+    width: 160rpx;
+    height: 120rpx;
+    background-color: #7ecef4;
+    box-sizing: border-box;
+}
+.contactBtn button{
+    width: 100%;
+    height: 100%;
+    background-color: #7ecef4;
+}
+.contactBtn button::after{
+    border: none;
+}
+.contactBtn image{
+    width: 70rpx;
+    height: 70rpx;
+    margin-top: 20rpx;
+}
+.payMoney{
+    width: 400rpx;
+    height: 120rpx;
+    text-align: left;
+    border-top: 1rpx solid #fff;
+    background-color: #fff;
+}
+.money_text{
+    height: 120rpx;
+    line-height: 120rpx;
+    margin-left: 20rpx;
+    font-size: 32rpx;
+    color: #333;
+}
+.money_text text{
+    height: 46rpx;
+    font-family: 微软雅黑;
+    line-height: 46rpx;
+    font-size: 33rpx;
+}
+.submitBtn{
+    width: 190rpx;
+    height: 120rpx;
+}
+.submitBtn button{
+    width: 100%;
+    height: 120rpx;
+    line-height: 100rpx;
+    padding-top:10rpx; 
+    color: #fff;
+    font-size: 36rpx;
+    background-color: #7ecef4;
+    border-radius: 0rpx;
+    border: none;
+}
+.submitBtn button::after{
+    border: none;
+}
+.mask_layer {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999;
+    left:0;top:0;
+    background: #000;
+    opacity: 0.5;
+    overflow: hidden;
+}
+.modal_box {
+    width: 90%;
+    height: 400rpx;
+    overflow: hidden;
+    position: fixed;
+    top: 25%;
+    left: 0;
+    z-index: 1001;
+    background: #fafafa;
+    margin: 5%;
+    border-radius: 20rpx;
+}
+.model_success{
+    margin:30rpx 0 30rpx 0;
+    text-align: center;
+    font-size: 38rpx;
+    color: #7ecef4;
+}
+.success_text{
+    text-align: left;
+    font-size: 26rpx;
+    color: #999;
+    height: 44rpx;
+    line-height: 44rpx;
+    padding: 0rpx 10%;
+}
+.success_btn{
+    background-color: #56b4f6;
+    color: #fff;
+    margin-top: 120rpx;
+    margin-bottom: 20rpx;
+    width: 240rpx;
+    font-size: 30rpx;
+    border-radius: 60rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+}
+.searchBtn{
+    width: 84%;
+    height: 80rpx;
+    margin: 160rpx auto;
+}
+.searchBtn button{
+    border-radius: 0rpx;
+    background-color: #7ecef4;
+    color: #fff;
+    font-size: 30rpx;
+}
+.modal_box icon{
+    margin-top: 30rpx;
+    width: 100%;
+    text-align: center
+}
+.modal_box_title{
+    width: 100%;
+    font-size: 36rpx;
+    color: #56b4f6;
+    text-align: center;
+    height: 46rpx;
+    line-height: 46rpx;
+}
+.modal_box_content{
+    text-align: center;
+    width: 100%;
+    height: 40rpx;
+    font-size: 26rpx;
+    color: #999;
+    line-height: 40rpx;
+    margin: 20rpx 10rpx 40rpx 10rpx;
+}
+.modal_box_btn{
+    width: 230rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    padding: 0 30rpx;
+    color: #fff;
+    font-size: 30rpx;
+    background-color: #56b4f6;
+    text-align: center;
+    border-radius: 60rpx;
+}

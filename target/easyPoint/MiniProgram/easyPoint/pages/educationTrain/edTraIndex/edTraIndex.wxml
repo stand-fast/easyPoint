@@ -1,0 +1,72 @@
+<!--pages/educationTrain/edTraIndex/edTraIndex.wxml-->
+<view class="edTra_header">
+    <view class='nav_switch'>
+        <view class="{{currenTab==0 ? 'on' :''}} nav_text"  data-current='0' bindtap="swichNav">
+            <image wx:if="{{currenTab==0}}" src="/images/icon/car1.png"></image>
+            <image wx:else src="/images/icon/car2.png"></image>
+            <text>学车</text>
+        </view>
+        <view class="{{currenTab==1 ? 'on' :''}} nav_text" data-current='1' bindtap="swichNav">
+            <image wx:if="{{currenTab==1}}" src="/images/icon/hat1.png"></image>
+            <image wx:else src="/images/icon/hat2.png"></image>
+            <text>考研</text>
+        </view>
+        <view class="{{currenTab==2 ? 'on' :''}} nav_text" data-current='2' bindtap="swichNav">
+            <image wx:if="{{currenTab==2}}" src="/images/icon/card1.png"></image>
+            <image wx:else src="/images/icon/card2.png"></image>
+            <text>考证</text>
+        </view>
+    </view>
+</view>
+<view class="leavetop">
+    <block wx:if="{{currenTab==0}}">
+        <view class="popular_item">
+            <view class="title">
+                <view class="shu"></view>
+                <view class="title_text">热门专栏</view>
+            </view>
+            <scroll-view class="scroll_picture" scroll-x="true">
+                <view wx:for="{{advertisementUrl}}" wx:key="{{index}}">
+                    <image src="{{item}}"></image>
+                </view>
+            </scroll-view>
+        </view>
+        <view class="question_item">
+            <view class="title">
+                <view class="shu"></view>
+                <view class="title_text">题库训练</view>
+            </view>
+            <view class="question_image">
+                <image bindtap="tosubject1" src="/images/ads/subject1.png"></image>
+                <image bindtap="tosubject4" src="/images/ads/subject4.png"></image>
+            </view>
+        </view>
+        <view class="driveschool_item">
+            <view class="title">
+                <view class="shu"></view>
+                <view class="title_text">驾校一览({{number}})</view>
+            </view>
+            <view class="driverschool_list">
+                <block wx:for="{{driveSchool}}" wx:key="key" wx:for-item="item" wx:for-index="key">
+                    <view class="list" bindtap="lookDetail" data-drive_id="{{item.drivingSchoolId}}">
+                        <view class="list_img"><image src="{{item.defaultImgUrl}}"></image></view>
+                        <view class="name">{{item.drivingSchoolName}}</view>
+                        <view class="address">{{item.drivingSchoolAddress}}</view>
+                        <view class="price">
+                            <view><text>￥{{item.lowestPrice}}/</text>起</view>
+                            <image src="/images/icon/see.png"></image>
+                        </view>
+                    </view>
+                </block>
+            </view>
+        </view>
+        <view wx:if="{{noData}}" class="more-noData">-我是有底线的-</view>
+        <view wx:else class="more-noData">-下拉查看更多-</view>
+    </block>
+    <block wx:elif="{{currenTab==1}}">
+        <view>我是考研</view>
+    </block>
+    <block wx:elif="{{currenTab==2}}">
+        <view>我是考证</view>
+    </block>
+</view>

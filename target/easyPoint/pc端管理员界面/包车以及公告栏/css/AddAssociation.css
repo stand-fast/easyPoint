@@ -1,0 +1,138 @@
+/* CSS Document */
+.publicModelFrame ul{
+	margin:20px auto;
+	line-height:30px;
+	width:400px;
+	height:30px;	
+}
+.publicModelFrame_con ul input{
+	position: absolute;
+	left: 320px;
+	width: 140px;
+	height:22px;
+	padding:3px 20px 3px 20px;
+	border:none;
+	-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.content ul{
+	margin:10px auto 0;
+	width:580px;	
+	display:flex;
+}
+.content ul li{
+	width:370px;	
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	border-radius:4px;
+	background-color:#ffffff;	
+}
+.content ul a{
+	margin-top:-2px;
+	margin-left:20px;
+	padding: 3px 5px;
+	height:20px;
+	line-height:20px;
+	background:#8fd68b;
+	color: #fff;
+	font-size:14px;
+	border: 2px solid rgba(255,255,255,0.8);
+	border-radius:5px;
+	font-weight: bold;
+	font-family: "微软雅黑", "Microsoft Yahei", "黑体", sans-serif;
+	text-decoration:none;
+	text-align:center;
+}
+.addCommittee{
+	display:flex;
+}
+.submitCommittee{
+	position:relative;
+	top:18px;
+	left:-10px;
+	width:74px;
+	height:30px;	
+}
+
+.contents ul{
+	margin:10px auto 0;
+	width:580px;	
+	display:flex;
+}
+.contents ul li{
+	width:450px;	
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	border-radius:4px;
+	background-color:#ffffff;	
+}
+.contents ul a{
+	margin-top:-2px;
+	margin-left:50px;
+	padding: 3px 5px;
+	width:60px;
+	height:20px;
+	line-height:20px;
+	background:#8fd68b;
+	color: #fff;
+	font-size:14px;
+	border: 2px solid rgba(255,255,255,0.8);
+	border-radius:5px;
+	font-weight: bold;
+	font-family: "微软雅黑", "Microsoft Yahei", "黑体", sans-serif;
+	text-decoration:none;
+	text-align:center;
+}
+
+
+
+/* 添加车辆类型部分*/
+.submitVehicleType{
+	width:120px;
+	margin:10px 0 10px 285px;	
+}
+.contentVehicle{
+	margin:0 auto;
+	width:616px;	
+	font-size:14px;
+}
+.contentVehicle ul{
+	margin-left:-40px;
+	width:616px;	
+	height:15px;
+}
+.contentVehicle ul li{
+	float:left;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	border-radius:4px;
+}
+.VehicleTitle li{
+	color:#ffffff;
+	background-color:#8fd68b;
+}
+.VehicleContent li{
+	color:#8fd68b;
+	background-color:#ffffff;
+	border-bottom:1px solid #8fd68b;
+}
+.VehicleType{
+	width:434px;	
+}
+.deposit{
+	width:100px;	
+}
+.deleteButton{
+	width:80px;	
+}	
+.VehicleContent li a{
+	color:#8fd68b;
+	text-decoration:none;
+}
+.VehicleContent li a:hover{
+	text-decoration:underline;
+}

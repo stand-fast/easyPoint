@@ -1,0 +1,405 @@
+/* pages/educationTrain/driveSchoolDetail/driveSchoolDetail.wxss */
+Page{
+    background-color: #f2f2f2;
+    font-family: 黑体;
+    padding-bottom: 40rpx;
+}
+.swiper_images,.swiper_images image{
+    width: 100%;
+    height: 400rpx;
+}
+.head_title{
+    width: 100%;
+    height: 136rpx;
+    background-color: #fff;
+}
+.namePrice{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 60rpx;
+    font-size: 32rpx;
+    color: #666;
+    padding-top: 10rpx;
+}
+.schoolName{
+    width: 72%;
+    height: 70rpx;
+    line-height: 70rpx;
+    margin-left: 30rpx;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: normal !important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.schoolPrice text{
+    margin-right: 4rpx;
+    color: #ffdd42;
+}
+.schoolPrice{
+    width: 28%;
+    height: 70rpx;
+    line-height: 70rpx;
+    font-family: 微软雅黑;
+}
+.schoolAddress{
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 28rpx;
+    color: #999;
+    margin-left: 30rpx;
+}
+.infomations{
+    width: 100%;
+    background-color: #fff;
+    margin-top: 8rpx;
+    overflow: hidden;
+    margin-bottom: 140rpx;
+}
+.nav_switch{
+    width: 60%;
+    height: 60rpx;
+    line-height: 60rpx;
+    display: flex;
+    margin:0 auto;
+    flex-direction: row;
+}
+.on{
+    color: #333!important;
+    border-bottom: 4rpx solid #ffdd42;
+}
+.nav_text{
+    height: 57rpx;
+    margin:0 auto;
+    text-align: center;
+    font-size: 28rpx;
+    color: #666;
+}
+.hr{
+    width: 100%;
+    height: 4rpx;
+    background-color: #f2f2f2;
+}
+.detail_item{
+    padding: 20rpx 24rpx;
+}
+.item_kong{
+    margin-bottom: 16rpx;
+}
+.item_title{
+    width: 100%;
+    height: 60rpx;
+    display: flex;
+    flex-direction: row;
+}
+.shu{
+    width: 6rpx;
+    height: 30rpx;
+    background-color: #ffdd42;
+    border-radius: 40rpx;
+    margin:17rpx 10rpx 0 0;
+}
+.title{
+    width: 680rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 32rpx;
+    color: #666;
+}
+.learntime_list{
+    width: 100%;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 28rpx;
+    color: #999; 
+    display: flex;
+    flex-direction: row;
+}
+.next{
+    margin-top: 16rpx;
+}
+.dot{
+    width: 8rpx;
+    height: 8rpx;
+    border-radius: 50%;
+    background-color: #ffdd42;
+    margin: auto 10rpx;
+}
+.dot1{
+    width: 26rpx;
+    font-weight: bold;
+    font-size: 38rpx;
+    color: #ffdd42;
+}
+.material{
+    display: flex;
+    flex-direction: row;
+    font-size: 28rpx;
+    color: #999;
+    margin-bottom: 20rpx;
+    margin-left: 16rpx;
+}
+.material text{
+    line-height: 40rpx;
+}
+.introduce{
+    width: 100%;
+    line-height: 40rpx;
+    font-size: 28rpx;
+    color: #999; 
+    display: flex;
+    flex-direction: row;
+}
+.introduce text{
+    text-indent: 56rpx;
+    text-align: left;
+    padding: 0 10rpx;
+}
+.pass{
+    margin-top: 14rpx;
+}
+.pass_text{
+    display: flex;
+    flex-direction: row;
+}
+.pass text{
+    color: #999;
+}
+.set_list{
+    width: 100%;
+    line-height: 40rpx;
+    font-size: 28rpx;
+    color: #999; 
+    display: flex;
+    flex-direction: row;
+}
+.footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 120rpx;
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+}
+.contactBtn{
+    width: 130rpx;
+    height: 120rpx;
+    background-color: #ffdd42;
+    box-sizing: border-box;
+}
+.contactBtn button{
+    width: 100%;
+    height: 100%;
+    background-color: #ffdd42;
+}
+.contactBtn image{
+    width: 70rpx;
+    height: 70rpx;
+    margin-top: 20rpx;
+}
+.protocal_text{
+    text-align: center;
+    width: 420rpx;
+    height: 120rpx;
+    display: flex;
+    flex-direction: row;
+    border-top: 2rpx solid #f2f2f2;
+}
+.submitBtn{
+    width: 200rpx;
+    height: 120rpx;
+}
+.submitBtn button{
+    width: 100%;
+    height: 100%;
+    padding-top:10rpx; 
+    color: #fff;
+    font-size: 36rpx;
+    background-color: #ffdd42;
+    border-radius: 0rpx;
+    border: none;
+}
+.submitBtn button::after,.contactBtn button::after{
+    border: none;
+}
+.Text{
+    margin-top: 35rpx;
+    color:#999;
+    font-size: 28rpx;
+    text-decoration: underline;
+}
+.circle1{
+    width: 28rpx;
+    height: 28rpx;
+    border-radius: 50%;
+    border:1rpx solid #ffdd42;
+    background-color: #ffdd42;
+    margin: 41rpx 12rpx 16rpx 30rpx;
+}
+.circle2{
+    width: 28rpx;
+    height: 28rpx;
+    border-radius: 50%;
+    border:1rpx solid #adadad;
+    background-color: #adadad;
+    margin: 41rpx 12rpx 16rpx 30rpx;
+}
+.protocal_text image{
+    width: 28rpx;
+    height: 28rpx;
+    position: fixed;
+    margin: 1rpx 0 1rpx -16rpx;
+}
+.mask_layer {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999;
+    left:0;top:0;
+    background: #000;
+    opacity: 0.5;
+    overflow: hidden;
+}
+.modal_box {
+    width: 90%;
+    height: 400rpx;
+    overflow: hidden;
+    position: fixed;
+    top: 25%;
+    left: 0;
+    z-index: 1001;
+    background: #fafafa;
+    margin: 5%;
+    border-radius: 20rpx;
+}
+.model_success{
+    margin:60rpx 0 30rpx 0;
+    text-align: center;
+    font-size: 36rpx;
+    color: #ffdd42;
+}
+.success_text{
+    text-align: center;
+    font-size: 26rpx;
+    color: #999;
+    height: 100rpx;
+    line-height: 44rpx;
+    padding: 0rpx 10%;
+}
+.success_btn{
+    background-color: #ffdd42;
+    color: #fff;
+    font-size: 30rpx;
+    margin-top: 60rpx;
+    margin-bottom: 20rpx;
+    width: 240rpx;
+    border-radius: 60rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+}
+/* 底部套餐选择 */
+.dialog_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.4;
+  overflow: hidden;
+  z-index: 1000;
+  color: #fff;
+}
+.dialog_attr_box {
+    width: 100%;
+    height: 500rpx;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 2000;
+    background: #fff;
+    padding-top: 2rpx;
+}
+.dislog_item{
+    width: 100%;
+    height: 100rpx;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    overflow: hidden
+}
+.dialog_title {
+    width: 200rpx;
+    font-size: 30rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    align-items: center;
+    padding-left:40rpx; 
+    color:#666;
+}
+.setprice{
+    width: 200rpx;
+    margin-left: 300rpx;
+    font-size: 30rpx;
+    font-family: 微软雅黑;
+    height: 100rpx;
+    line-height: 100rpx;
+    align-items: center;
+    color:#666;
+}
+.setprice text{
+    font-size: 36rpx;
+    color: #ffdd42;
+}
+.dialog_item_list{
+    height: 220rpx;
+    padding: 20rpx 10rpx;
+}
+.dialog_content {
+  position: relative;
+  float: left;
+  font-size: 28rpx;
+  color: #999;
+  background-color: #f2f2f2;
+  width: 200rpx;
+  height: 60rpx;
+  box-sizing: border-box;
+  margin: 20rpx;
+  border-radius: 14rpx;
+}
+.type_nor{
+    height: 60rpx;
+    line-height: 60rpx;
+    text-align: center;
+    border-radius: 14rpx;
+}
+.type_pre{
+    height: 60rpx;
+    line-height: 60rpx;
+    text-align: center;
+    border: 2rpx solid #ffdd42;
+    border-radius: 14rpx;
+}
+.confirmBtn{
+    position: fixed;
+    bottom: 30rpx;
+    width: 100%;
+    height: 80rpx;
+}
+.confirmBtn button{
+    width: 700rpx;
+    height: 80rpx;
+    margin: 0 auto;
+    line-height: 80rpx;
+    background-color: #ffdd42;
+    color: #fff;
+    font-size: 30rpx;
+}
+.confirmBtn button::after{
+    border: none;
+}
