@@ -2,6 +2,8 @@ package com.easyPoint.Util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,9 +12,9 @@ import java.net.URLConnection;
 import java.util.List;
 import java.util.Map;
 
-public class HttpRequestUserInfoUtil {
+public class HttpRequestUtil {
 
-    public static final Logger log = LoggerFactory.getLogger(HttpRequestUserInfoUtil.class);
+    public static final Logger log = LoggerFactory.getLogger(HttpRequestUtil.class);
 
     /**
      * 向指定URL发送GET方法的请求
