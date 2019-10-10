@@ -1,0 +1,76 @@
+.addCommittee {
+    height: 50px;
+    line-height: 50px;
+    color: #8fd68b;
+    text-align: center;
+    overflow: hidden;
+}
+
+.addCommittee input {
+    margin-left: 20px;
+    margin-right: 10px;
+    border-radius: 2px;
+    border: 1px solid #8fd68b;
+    width: 200px;
+    height: 20px;
+    outline: none;
+    padding: 5px;
+}
+
+.addCommittee button {
+    background-color: #8fd68b;
+    border: none;
+    border-radius: 4px;
+    color: #f3f2f2;
+    width: 80px;
+    height: 30px;
+}
+
+.VehicleTitle,
+.VehicleContent {
+    overflow: hidden;
+    display: flex;
+}
+
+.VehicleTitle li {
+    background-color: #8fd68b;
+    color: #ffffff;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.VehicleContent:nth-child(2n+1) {
+    background-color: #e9f7e8;
+    color: #96d892;
+}
+
+.VehicleContent:nth-child(2n) {
+    background-color: #ddf3dc;
+    color: #acb2ab;
+}
+
+.VehicleContent li {
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.VehicleType {
+    width: 650px;
+}
+
+.deposit {
+    width: 400px;
+}
+
+.deleteButton {
+    width: 125px;
+}
+
+.deleteButtons {
+    width: 125px;
+    cursor: pointer;
+}
