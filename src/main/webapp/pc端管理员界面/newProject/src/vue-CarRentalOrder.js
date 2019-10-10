@@ -34,7 +34,20 @@ const template = `
                 <li class="navmiddle">卢本伟</li>
                 <li class="navmiddle">13060870154</li>
                 <li class="navmiddle">未安排</li>
-                <li class="navSmall enter">进入</li>
+                <li class="navSmall enter"><span @click="handleVihicleInformation">进入</span></li>
+            </div>
+            <div class="renderOrderNav type">
+                <li class="navBigger">广东金融学院广东金融学院广东金融学院广东金融学院</li>
+                <li class="navBigger">广金肇庆校区广东金融学院</li>
+                <li class="navSmall">50</li>
+                <li class="navTime">2019-10-01 08:30:00.0</li>
+                <li class="navmiddle">53座大巴</li>
+                <li class="navSmall">1000</li>
+                <li class="navSmall">否</li>
+                <li class="navmiddle">卢本伟</li>
+                <li class="navmiddle">13060870154</li>
+                <li class="navmiddle">未安排</li>
+                <li class="navSmall enter"><span @click="handleVihicleInformation(123)">进入</span></li>
             </div>
             <paging :value="current" :pageSize="pageSize" :pageNumber="pageNumber" :panelNumber="panelNumber"
             @input="handlePageChange"></paging>
@@ -95,11 +108,14 @@ const config = {
                     }
                 })
             })
+        },
+        handleVihicleInformation(id) {
+            this.$router.push("/vehicle-information-entry/" + id);
         }
     },
     components: {
         model,
-        paging
+        paging,
     },
     template,
 }
