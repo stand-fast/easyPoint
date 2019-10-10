@@ -44,8 +44,8 @@ const config = {
         return {
             navName: "旅游出行",
             navPlateName: "添加发布车辆类型",
-            location: "",
-            deposit: "",
+            location: '',
+            deposit: '',
             datas: [],
             pageSize: 10, //每页最大条数
             panelNumber: 5, //最多显示多少个分页按钮

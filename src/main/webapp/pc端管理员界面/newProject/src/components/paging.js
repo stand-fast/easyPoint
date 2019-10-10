@@ -28,7 +28,7 @@ export default {
         },
         pageNumber: {
             type: Number,
-            required: true
+            default: 5
         },
     },
     computed: {
@@ -53,7 +53,7 @@ export default {
             if (newPage < 1) {
                 newPage = 1;
             } else if (newPage > this.pageNumber) {
-                newPage = pageNumber;
+                newPage = this.pageNumber;
             }
             this.$emit("input", newPage);
         },

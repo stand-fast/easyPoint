@@ -9,7 +9,35 @@ const template = `
             <div class="TitleText">{{navName}} > {{navPlateName}}</div>
         </div>
         <div class="PageContent">
-            
+            <h1>租车订单</h1>
+            <div class="renderOrderNav title">
+                <li class="navBigger">出发地</li>
+                <li class="navBigger">目的地</li>
+                <li class="navSmall">出行人数</li>
+                <li class="navTime">出发时间</li>
+                <li class="navmiddle">类型</li>
+                <li class="navSmall">定金</li>
+                <li class="navSmall">购买保险</li>
+                <li class="navmiddle">姓名</li>
+                <li class="navmiddle">手机号码</li>
+                <li class="navmiddle">订单状态</li>
+                <li class="navSmall">车辆信息</li>
+            </div>
+            <div class="renderOrderNav type">
+                <li class="navBigger">广东金融学院广东金融学院广东金融学院广东金融学院</li>
+                <li class="navBigger">广金肇庆校区广东金融学院</li>
+                <li class="navSmall">50</li>
+                <li class="navTime">2019-10-01 08:30:00.0</li>
+                <li class="navmiddle">53座大巴</li>
+                <li class="navSmall">1000</li>
+                <li class="navSmall">否</li>
+                <li class="navmiddle">卢本伟</li>
+                <li class="navmiddle">13060870154</li>
+                <li class="navmiddle">未安排</li>
+                <li class="navSmall enter">进入</li>
+            </div>
+            <paging :value="current" :pageSize="pageSize" :pageNumber="pageNumber" :panelNumber="panelNumber"
+            @input="handlePageChange"></paging>
         </div>
         </ul>
     </div>
@@ -20,8 +48,6 @@ const config = {
         return {
             navName: "旅游出行",
             navPlateName: "租车订单",
-            location: "",
-            deposit: "",
             datas: [],
             pageSize: 10, //每页最大条数
             panelNumber: 5, //最多显示多少个分页按钮
@@ -30,20 +56,19 @@ const config = {
         }
     },
     mounted() {
-        //this.setData();
+        this.setData();
     },
     methods: {
         async setData() {
             window.onscroll = (e) => e.preventDefault(); //兼容浏览器
-            let data = await fetch("http://easypoint.club/getTotalPageAndFirstVehicleInfoList").then(resp => resp.json())
+            let data = await fetch("http://easypoint.club/getTotalPageAndFirstTourismOrderInfoList").then(resp => resp.json())
             console.log(data.data);
             if (data.code == 200) {
-                console.log("查询总页数和车辆类型成功");
-                this.current = 1;
                 this.pageNumber = data.data.totalPage;
-                this.datas = data.data.vehicleInfoList;
+                this.datas = data.data.partTourismOrderInfos;
+                console.log("查询订单页数以及首页订单信息成功");
             } else if (data.code == 201) {
-                alert("暂无车辆类型数据，请管理员添加");
+                alert("暂无订单信息");
             }
 
         },
@@ -58,9 +83,10 @@ const config = {
                     ["pageNum", pageNum]
                 ]).toString()
             }
-            fetch("http://easypoint.club/findListPageNumVehicleInfo", requestConfig).then(function (response) {
+            fetch("http://easypoint.club/findListPageNumTourismOrderInfo", requestConfig).then(function (response) {
                 response.json().then(function (data) {
                     if (data.code == 200) {
+                        console.log(data);
                         console.log(data.message);
                         that.current = pageNum;
                         that.datas = data.data;

@@ -91,7 +91,7 @@ export default {
                     secondName: [{
                             id: '1',
                             childrenName: "添加发布车辆类型",
-                            url: 'vue-AddVehicleType.html'
+                            url: 'AddVehicleType.html'
                         },
                         {
                             id: '2',
