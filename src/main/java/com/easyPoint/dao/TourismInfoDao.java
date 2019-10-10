@@ -25,8 +25,11 @@ public interface TourismInfoDao {
     //管理员添加车辆类型
     Integer insertVehicleType(@Param("vehicleType")String vehicleType, @Param("deposit")BigDecimal deposit);
 
-    //根据车辆类型名称，查询要添加的车辆类型是否已经存在
+    //根据车辆类型名称已经删除状态，查询要添加的车辆类型是否已经存在
     VehicleInfo findVehicleInfo(String vehicleType);
+
+    //删除车辆类型
+    int deleteVehicleById(int vehicleId);
 
     //查询订单总数
     Integer countTourismOrderNum();

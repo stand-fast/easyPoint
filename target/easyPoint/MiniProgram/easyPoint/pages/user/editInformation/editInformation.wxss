@@ -1,0 +1,166 @@
+/* pages/user/editInformation/editInformation.wxss */
+Page{
+    background-color: #f2f2f2;
+    font-family: 黑体;
+}
+.content{
+    width: 700rpx;
+    height: 1100rpx;
+    margin: 30rpx auto;
+    background-color: #fff;
+    border-radius: 10rpx;
+}
+.content_title{
+    width: 700rpx;
+    height: 180rpx;
+    display: flex;
+    flex-direction: row;
+}
+.firstImg image{
+    width: 50rpx;
+    height: 50rpx;
+    margin-right: 20rpx;
+    margin-top: 60rpx;
+    margin-left: 220rpx;
+}
+.content_title button{
+    width: 60rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    border-radius: 0rpx;
+    background-color: #fff;
+    margin-left: 140rpx;
+    margin-top: 60rpx;
+}
+.content_title button::after{
+    border: none;
+}
+.content_title button[disabled]{
+    background-color: #fff;
+}
+.firstbtn image{
+    width: 36rpx;
+    height: 36rpx;
+    margin: -12rpx;
+}
+.title_text{
+    font-size: 36rpx;
+    color: #65b8e2;
+    height: 60rpx;
+    line-height: 60rpx;
+    margin-top: 60rpx;
+    margin-left: 10rpx;
+}
+.form_item{
+    width: 700rpx;
+    height: 850rpx;
+    font-size: 32rpx;
+}
+.realname{
+    height: 60rpx;
+    line-height: 60rpx;
+    color: #666;
+    margin-left: 60rpx;
+}
+.placehold{
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 32rpx;
+    color: #999;
+}
+.item,.item_last{
+    display: flex;
+    flex-direction: row;
+    height: 60rpx;
+    line-height: 60rpx;
+    margin: 40rpx 20rpx 0rpx 60rpx;
+}
+.item_title{
+    width: 100rpx;
+    color: #666;
+}
+.item input{
+    width: 300rpx;
+    margin-top: 8rpx;
+    color: #666;
+}
+.customersex{
+    width: 100rpx;
+    color: #666;
+}
+.item_title_last{
+    width: 140rpx;
+    color: #666;
+}
+.item_last input{
+    width: 220rpx;
+    margin-top: 8rpx;
+    color: #666;
+}
+.item_last button{
+    width: 190rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 26rpx;
+    color: #fff;
+    background-color: #65b8e2;
+    margin-top: 4rpx;
+    margin-left: 20rpx;
+}
+.item_last button::after{
+    border: none;
+}
+.man_nor,.female_nor{
+    width: 80rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 26rpx;
+    color: #999;
+    border: 2rpx solid #d2d2d2;
+    border-radius:10rpx; 
+    margin-top: 8rpx;
+    text-align: center;
+}
+.man_nor text,.man_yes text{
+    color: #65b8e2;
+}
+.female_nor,.female_yes{
+    margin-left: 40rpx;
+}
+.female_nor text,.female_yes text{
+    color: #fba6c0;
+}
+.man_yes{
+    width: 80rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 26rpx;
+    color: #65b8e2;
+    border-radius:10rpx; 
+    margin-top: 8rpx;
+    text-align: center;
+    border: 2rpx solid #65b8e2;
+}
+.female_yes{
+    width: 80rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 26rpx;
+    color: #fba6c0;
+    border-radius:10rpx; 
+    margin-top: 8rpx;
+    text-align: center;
+    border: 2rpx solid #fba6c0;
+}
+.submitBtn button{
+    width: 400rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    margin-top: 120rpx;
+    background-color: #65b8e2;
+    color: #fff;
+    font-size: 30rpx;
+}
+.submitBtn button::after{
+    border: none;
+}

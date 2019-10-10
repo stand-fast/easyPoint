@@ -1,11 +1,12 @@
 package com.easyPoint.service.impl;
 
 
+import com.easyPoint.Util.MiniProConstants;
 import com.easyPoint.dao.UserInfoDao;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.GetUserInfoService;
 import com.easyPoint.Util.AesCbcUtil;
-import com.easyPoint.Util.HttpRequestUserInfoUtil;
+import com.easyPoint.Util.HttpRequestUtil;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -22,23 +23,24 @@ public class GetUserInfoServiceImpl implements GetUserInfoService {
 
     @Autowired
     private UserInfoDao userInfoDao;
-    /**
-     * APPID是你小程序的appid,
-     * SECRET是你小程序的appsercet,
-     * js_code是前台登陆成功后返回给你的code,
-     * grant_type为固定值authorization_code.
-     * url为请求路径
-     */
-    private static final String APPID = "wxe01ead21cec586c4";
-    private static final String SECRET = "679aa6c79c85459b23f9a87bdd173759";
-    private static final String url = "https://api.weixin.qq.com/sns/jscode2session";
+
 
     @Override
     public UserInfo getUserInfo(String code, String encryptedData, String iv) {
-        String param = "appid=" + APPID + "&secret=" + SECRET + "&js_code="+code+"&grant_type=authorization_code";
+        //获取微信授权用户的openid和session_key所需要的参数
+        /**
+         * APPID是你小程序的appid,
+         * SECRET是你小程序的appsercet,
+         * js_code是前台登陆成功后返回给你的code,
+         * grant_type为固定值authorization_code.
+         */
+        String param = "appid=" + MiniProConstants.APPID +
+                       "&secret=" + MiniProConstants.SECRET +
+                       "&js_code="+ code +
+                       "&grant_type=" + MiniProConstants.USERINFO_GRANT_TYPE;
         String session_key;
         //获取微信授权用户的openid和session_key
-        String data = HttpRequestUserInfoUtil.sendGet(url,param);
+        String data = HttpRequestUtil.sendGet(MiniProConstants.GET_USERINFO_URL,param);
         if(data != null && !data.equals("")){
             //解析json数据，获取openid和session_key
             ObjectMapper mapper = new ObjectMapper();
@@ -62,7 +64,7 @@ public class GetUserInfoServiceImpl implements GetUserInfoService {
                         userInfo.setNickName(rootNode.path("nickName").asText());
                         userInfo.setGender(rootNode.path("gender").asInt());
                         userInfo.setAvatarUrl(rootNode.path("avatarUrl").asText());
-                        //解析完成后
+                        //解析完成后,将数据插入数据库中
                         int returnCode = userInfoDao.insertUserInfo(userInfo);
                         //根据返回判断用户信息是否正确插入数据库,1为正确
                         if(returnCode == 1){

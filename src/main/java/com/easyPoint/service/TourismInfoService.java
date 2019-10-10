@@ -9,7 +9,6 @@ import com.easyPoint.pojo.tourism.dto.PartTourismOrderInfoDto;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 
 public interface TourismInfoService {
 
@@ -21,6 +20,9 @@ public interface TourismInfoService {
 
     //添加车辆类型
     int insertVehicleType(String vehicleType, BigDecimal deposit);
+
+    //删除车辆类型
+    int deleteVehicleType(int vehicleId);
 
     //查询加载的所有页面数并返回首页的租车订单信息
     Result findTotalPageAndTourismOrderInfoList();

@@ -1,0 +1,80 @@
+*{
+	margin:0px;
+	padding:0px;
+}
+h1{
+	font-size:18px;
+	text-align:center;
+	padding-top:8px;
+}
+.CurrentAnnouncement{
+	position: absolute;
+	left: 300px;
+	height: 600px;
+	width: 700px;	
+}
+.CurrentAnnouncement_con{
+	margin: 0 auto;
+	margin-top: 50px;
+	width: 630px;
+	height: 500px;
+	background-color: rgba(255,255,255,0.6);
+	border-radius: 10px;
+}
+.Announce{
+	width:616px;
+	margin:0 auto;
+}
+.data-area ul{
+	margin-top:5px;
+	width:616px;
+	display:flex;	
+}
+.data-area ul li{
+	margin:0 auto;
+	list-style:none;
+}
+.data-area-Announce input{
+	padding:8px;
+	width:580px;
+	height:24px;
+	color:#8fd68b;
+	background-color:#FFFFFF;
+	border:none;
+	border-radius:5px;
+	overflow:hidden;
+}
+.data-area-Button{
+	margin-left:15px;
+	width:70px;
+	height:30px;
+	padding:5px;
+	text-align:center;
+	line-height:30px;
+	color:#ffffff;	
+	background-color:#8fd68b;
+	border-radius:4px;
+}
+.data-area-Button a{
+	color:#FFFFFF;
+}
+.data-area-Button a:hover{
+	text-decoration:underline;
+}
+.SubmitAnnouncement{
+	margin-top:30px;
+	width:616px;
+	text-align:center;
+}
+.SubmitAnnouncement a{
+	padding:5px;
+	border-radius:5px;
+	background-color:#8fd68b;
+	color:#ffffff;
+}
+.SubmitAnnouncement a:hover{
+	text-decoration:underline;
+}
+a{
+	text-decoration:none;	
+}

@@ -1,5 +1,6 @@
 package com.easyPoint.dao;
 
+import com.easyPoint.pojo.tourism.AssociationTicket;
 import com.easyPoint.pojo.user.HometownAssociation;
 
 import java.util.List;
@@ -11,4 +12,13 @@ import java.util.List;
 public interface HometownAssociationDao {
     // 获取所有同乡会
     List<HometownAssociation> getAllHometownAssociation();
+
+    // 根据同乡会名称获取同乡会
+    HometownAssociation getHometownAssociationByName(String associationName);
+
+    // 添加同乡会
+    void addHometownAssociation(String associationName);
+
+    // 添加车票
+    void  addTicket(AssociationTicket associationTicket);
 }

@@ -1,0 +1,106 @@
+<!--pages/easyPointCar/bookTicket/bookTicket.wxml-->
+<view class="header">
+    <view class="kong"></view>
+    <swiper autoplay="true" interval="5000" duration="2000" circular="true" class="swiper_images">
+        <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+            <swiper-item>
+                <image src="{{item}}" class="slide-image"/>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>
+<view class="contain">
+    <view class='nav_switch'>
+        <view class="{{currentTab==0 ? 'on' :''}} nav_text" data-current='0' bindtap="swichNav">旅游出行</view>
+        <view class="{{currentTab==1 ? 'on' :''}} nav_text" data-current='1' bindtap="swichNav">校友会包车</view>
+    </view>
+    <view class="hr"></view>
+    <!-- 旅游出行板块 -->
+    <view wx:if="{{currentTab == 0}}" >
+        <form bindsubmit="formSubmit">
+            <view class="fullcontainer">
+                <view class="formContent first">
+                    <view class="formTitle">出发地点</view>
+                    <input wx:if="{{!successShowmodal}}" placeholder="请输入出发地点" placeholder-class="placehold" type="text" name="startAddress"></input>
+                </view>
+                <view class="heng"></view>
+                <view class="formContent">
+                    <view class="formTitle">到达地点</view>
+                    <input wx:if="{{!successShowmodal}}" placeholder="请输入目的地" placeholder-class="placehold" type="text" name="endAddress"></input>
+                </view>
+                <view class="heng"></view>
+                <view class="formContent">
+                    <view class="formTitle">出行人数</view>
+                    <input wx:if="{{!successShowmodal}}" placeholder="请输入具体人数" placeholder-class="placehold" type="number" name="perNumbers"></input>
+                </view>
+                <view class="heng"></view>
+                <view class="formContent">
+                    <view class="formTitle">车辆类型</view>
+                    <picker mode="selector" bindchange="changeSeatType" value="{{seatNumber}}" range="{{seatNumber}}">
+                        <input wx:if="{{!successShowmodal}}" placeholder="请选择车辆座数" placeholder-class="placehold" disabled="true"  type="text" name="carType" value="{{carType}}"></input>
+                    </picker>
+                    <view class="downImg" ><image src="/images/icon/down.png"></image></view>
+                </view>
+                <view class="heng"></view>
+                <view class="formContent">
+                    <view class="formTitle">出发时间</view>
+                    <picker mode="multiSelector" value="{{dateTime1}}" bindchange="changeStartDateTime" bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}">
+                        <input wx:if="{{!successShowmodal}}" value="{{startTime}}" placeholder="请选择出发时间" placeholder-class="placehold" disabled="true"  name="goTime"></input>
+                    </picker>
+                    <image class="cnimg" src="/images/icon/calendar.png"></image>
+                </view>
+                <view class="heng"></view>
+                <view class="formContent">
+                    <view class='{{radioStatus?"circle2":"circle1"}}' bindtap="radiochange">
+                         <image src="/images/icon/right.png" wx:if="{{radioStatus}}"></image>
+                    </view>
+                    <view class="formTitle wang">往返</view>
+                    <view wx:if="{{radioStatus}}">
+                        <picker mode="multiSelector" value="{{dateTime1}}" bindchange="changereturnDateTime" bindcolumnchange="changeDateTimeColumn2" range="{{dateTimeArray1}}">
+                            <input value="{{returnTime}}" placeholder="请选择返回时间" placeholder-class="placehold" disabled="true" name="returnTime" wx:if="{{!successShowmodal}}"></input>
+                        </picker>
+                    </view>
+                    <image class="cnimg" wx:if="{{radioStatus}}" src="/images/icon/calendar.png"></image>
+                </view>
+                <view class="heng"></view>
+            </view>
+            <view class="traBottom">
+                <view class="contactBtn"><button open-type="contact" session-from="weapp">
+                    <image src="/images/icon/cservice.png"></image>
+                </button></view>
+                <view class="payMoney">
+                    <view class="money_text">应付定金<text>￥{{money}}</text></view>
+                    <view class="insurance_text">
+                        <view class='{{insucheck?"baosquare2":"baosquare1"}}' bindtap="insuChange">
+                            <image src="/images/icon/right.png" wx:if="{{insucheck}}"></image>
+                        </view>
+                        <text class="Text">购买出行人身保险</text>
+                    </view>
+                </view>
+                <view class="submitBtn"><button form-type="submit">提交</button></view>
+                <block wx:if='{{successShowmodal}}'>
+                    <view class='mask_layer' bindtap="modal_click_Hidden"/>
+                    <view class='modal_box'>
+                        <view class="model_success">支付成功</view>
+                        <view class="success_text">支付成功，请保持手机畅通，我们会在24小时内联系您</view>
+                        <button class="success_btn" bindtap="successBtn">我知道了</button>
+                    </view>
+            </block>
+            </view>
+        </form>
+    </view>
+
+    <!-- 校友会包车板块 -->
+    <view wx:if="{{currentTab == 1}}" class="leaveTop">
+        <view class="association">
+            <view class="assoTitle">同乡会名称</view>
+            <picker mode="selector" bindchange="selectAssoName" value="{{associations}}" range="{{associations}}">
+                <input placeholder="请选择你所在的同乡会" disabled="true" type="association" placeholder-class="accoplace" value="{{assoName}}"></input>
+            </picker>
+            <image src="/images/icon/down.png" bindtap="showAsso"></image>
+        </view>
+        <view class="searchBtn">
+            <button bindtap="searchAsso">查询车票</button>
+        </view>
+    </view>
+</view>

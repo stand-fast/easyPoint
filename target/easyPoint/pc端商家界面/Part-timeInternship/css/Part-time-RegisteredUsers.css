@@ -1,0 +1,31 @@
+/* CSS Document */
+.model-username{	
+	width:150px;
+	overflow:hidden;
+	word-break:keep-all;
+	white-space:nowrap;
+	text-overflow:ellipsis;		
+}
+.model-usergender{
+	width:100px;
+}
+.model-userphone{
+	width:200px;
+}
+.model-JobTitle{
+	width:250px;	
+	overflow:hidden;
+	word-break:keep-all;
+	white-space:nowrap;
+	text-overflow:ellipsis;	
+}
+.model-JobContent{
+	width:400px;	
+	overflow:hidden;
+	word-break:keep-all;
+	white-space:nowrap;
+	text-overflow:ellipsis;	 		
+}
+.Throughusers{
+	height:70px;
+}

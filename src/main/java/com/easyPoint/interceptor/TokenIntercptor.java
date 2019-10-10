@@ -19,30 +19,31 @@ public class TokenIntercptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         response.setCharacterEncoding("utf-8");
-        String token = request.getHeader("access_token");
-        Date date = new Date(System.currentTimeMillis());
-        //token不存在
-        if (null != token) {
-            //验证token是否正确
-            boolean result = JwtUtil.verify(token);
-            if (result) {
-                System.out.println("token认证正确");
-                int uid = JwtUtil.getUid(token);
-                request.setAttribute("uid",uid);
-                return true;
-            }
-            else { //if( date.getTime() <= JwtUtil.getExpiresAt(token).getTime() + 3*24*60*60*1000)
-                System.out.println("token认证错误");
-                int uid = JwtUtil.getUid(token);
-                String nickName = JwtUtil.getNickNames(token);
-                token = JwtUtil.sign(uid, nickName);
-                response.addHeader("access_token",token);
-                return true;
-            }
-        }
-        //登录已经过期
-        responseMessage(response,response.getWriter());
-        return false;
+        response.addHeader("token","token");
+//        String token = request.getHeader("access_token");
+//        Date date = new Date(System.currentTimeMillis());
+//        //token不存在
+//        if (null != token) {
+//            //验证token是否正确
+//            boolean result = JwtUtil.verify(token);
+//            if (result) {
+//                System.out.println("token认证正确");
+//                int uid = JwtUtil.getUid(token);
+//                request.setAttribute("uid",uid);
+//                return true;
+//            }
+//            else { //if( date.getTime() <= JwtUtil.getExpiresAt(token).getTime() + 3*24*60*60*1000)
+//                System.out.println("token认证错误");
+//                int uid = JwtUtil.getUid(token);
+//                String nickName = JwtUtil.getNickNames(token);
+//                token = JwtUtil.sign(uid, nickName);
+//                response.addHeader("access_token",token);
+//                return true;
+//            }
+//        }
+//        //登录已经过期
+//        responseMessage(response,response.getWriter());
+        return true;
     }
 
     @Override

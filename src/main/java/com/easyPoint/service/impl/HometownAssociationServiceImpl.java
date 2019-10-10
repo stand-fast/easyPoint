@@ -1,7 +1,9 @@
 package com.easyPoint.service.impl;
 
+import com.alibaba.druid.sql.ast.statement.SQLIfStatement;
 import com.easyPoint.dao.HometownAssociationDao;
 import com.easyPoint.dao.TicketDao;
+import com.easyPoint.pojo.tourism.AssociationTicket;
 import com.easyPoint.pojo.tourism.PartTicket;
 import com.easyPoint.pojo.tourism.Ticket;
 import com.easyPoint.pojo.user.HometownAssociation;
@@ -45,6 +47,40 @@ public class HometownAssociationServiceImpl implements HometownAssociationServic
             return null;
         } else {
             return list;
+        }
+    }
+
+    @Override
+    public HometownAssociation getHometownAssociationByName(String associationName) {
+        if (associationName == null || associationName.equals("")) {
+            return null;
+        }
+        HometownAssociation hometownAssociation = hometownAssociationDao.getHometownAssociationByName(associationName);
+        System.out.println("hometownAssociation：" + hometownAssociation);
+        if (hometownAssociation != null) {
+            System.out.println(hometownAssociation.getAssociationName());
+        }
+        return hometownAssociation;
+    }
+
+    @Override
+    public Integer addHometownAssociation(String associationName) {
+        try {
+            hometownAssociationDao.addHometownAssociation(associationName);
+            return 1;
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    @Override
+    public Integer addTicket(AssociationTicket associationTicket) {
+        try {
+            hometownAssociationDao.addTicket(associationTicket);
+            return 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
         }
     }
 }

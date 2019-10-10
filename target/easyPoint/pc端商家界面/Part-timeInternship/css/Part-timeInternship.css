@@ -1,0 +1,57 @@
+.Part-timeIntership{
+	position:absolute;
+	width:1000px;
+	height:800px;
+}
+.positioning{
+	position:absolute;
+}
+.Part-time{
+	top: 62px;
+	left:310px;	
+}
+.businessRelease{
+	top:100px;
+	left:200px;	
+}
+.businessExamine{
+	top:158px;
+	left:300px;	
+}
+
+.Intership{
+	top: 62px;
+	left:660px;
+
+}
+.enterpriseRelease{
+	top:102px;
+	left:750px;
+}
+.enterpriseExamine{
+	top:158px;
+	left:650px;
+}
+.positioning a span:hover{
+	opacity: 0.8;
+}
+.box{
+	display:none;
+}
+.MyPreservation{
+	top:115px;
+	left:0px;	
+}
+.MyUpload{
+	top:230px;
+	left:0px;		
+}
+.RegisteredUsers{
+	top:345px;
+	left:0px;		
+}
+.MyReview{
+	top:172px;
+	left:-100px;		
+}
+
