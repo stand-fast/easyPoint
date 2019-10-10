@@ -332,17 +332,18 @@ Page({
           username: userInformation.username,
           phone: userInformation.phone,
         })
-         this.getMessage();   //获取车票类型数据
+        this.getMessage();   //获取车票类型数据
+        //this.getCommitteeMessage()  //获取同乡会名称数据
 
-      //同乡会数据处理，接上服务器后删除
-      var associations = this.data.associationsList;
-      var associationsName=[];
-      for (var i = 0; i < associations.length; i++) {
-        associationsName.push(associations[i].associationName)
-      }
-      this.setData({
-        associations: associationsName,
-      })
+        //同乡会数据处理，接上服务器后删除
+        var associations = this.data.associationsList;
+        var associationsName=[];
+        for (var i = 0; i < associations.length; i++) {
+          associationsName.push(associations[i].associationName)
+        }
+        this.setData({
+          associations: associationsName,
+        })
     },
 
   //请求车辆类型数据以及对应应付定金
@@ -375,10 +376,10 @@ Page({
     var selt = this;
     wx.request({
       url: '接口路径',
-      method: 'Post',
+      method: 'get',
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       success: function (res) {
-        //console.log(res.data)
+        console.log(res.data)
         var associations = res.data;
         var associationsName = [];
         for (var i = 0; i < associations.length; i++) {
