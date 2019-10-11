@@ -2,11 +2,11 @@ package com.easyPoint.controller.administrator.travel;
 
 import com.easyPoint.dto.Result;
 import com.easyPoint.pojo.tourism.TourismOrderInfo;
-import com.easyPoint.pojo.tourism.TravelOrderInfo;
 import com.easyPoint.pojo.tourism.VehicleInfo;
 import com.easyPoint.pojo.tourism.dto.DriverInfoDto;
 import com.easyPoint.pojo.tourism.dto.PartTourismOrderInfoDto;
-import com.easyPoint.service.TourismInfoService;
+import com.easyPoint.service.administrator.travel.AdmiTourismInfoService;
+import com.easyPoint.service.miniprogram.travel.TourismInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +27,7 @@ import java.util.List;
 public class AdmiTourismController {
 
     @Autowired
-    TourismInfoService tourismInfoService;
+    AdmiTourismInfoService admiTourismInfoService;
 
     /**
      * 管理员进入添加车辆类型页面，得到已有车辆类型的总页数，和第一页车辆信息
@@ -37,7 +37,7 @@ public class AdmiTourismController {
     @ResponseBody
     @RequestMapping("getTotalPageAndFirstVehicleInfoList")
     public Result getTotalPageAndFirstVehicleInfoList(){
-        Result result = tourismInfoService.getTotalPageAndFirstVehicleInfoList();
+        Result result = admiTourismInfoService.getTotalPageAndFirstVehicleInfoList();
         return result;
     }
 
@@ -50,7 +50,7 @@ public class AdmiTourismController {
     @RequestMapping("/findListPageNumVehicleInfo")
     public Result findListPageNumVehicleInfo(int pageNum){
         Result result;
-        List<VehicleInfo> vehicleInfoList = tourismInfoService.findListPageNumVehicleInfo(pageNum);
+        List<VehicleInfo> vehicleInfoList = admiTourismInfoService.findListPageNumVehicleInfo(pageNum);
         if (!vehicleInfoList.isEmpty())
             result = new Result<List>(200,"查询第" + pageNum + "页的车辆类型数据成功", vehicleInfoList);
         else
@@ -68,7 +68,7 @@ public class AdmiTourismController {
     @RequestMapping("/addNewVehicleInfo")
     public Result addNewVehicleInfo(@RequestParam("vehicleType") String vehicleType, @RequestParam("deposit") BigDecimal deposit){
         Result result;
-        int resultCode = tourismInfoService.insertVehicleType(vehicleType, deposit);
+        int resultCode = admiTourismInfoService.insertVehicleType(vehicleType, deposit);
         if(resultCode == 1){
             result = new Result<>(200,"添加类型类型成功");
         }else {
@@ -84,7 +84,7 @@ public class AdmiTourismController {
     @ResponseBody
     @RequestMapping("/deleteVehicleType")
     public Result deleteVehicleType(@RequestParam("vehicleId") int vehicleId){
-        int resultCode = tourismInfoService.deleteVehicleType(vehicleId);
+        int resultCode = admiTourismInfoService.deleteVehicleType(vehicleId);
         if(resultCode == 1)
             return new Result(200,"删除车辆类型成功");
         return new Result(201,"删除车辆类型失败");
@@ -97,7 +97,7 @@ public class AdmiTourismController {
     @ResponseBody
     @RequestMapping("/getTotalPageAndFirstTourismOrderInfoList")
     public Result getTotalPageAndFirstTourismOrderInfoList(){
-        return tourismInfoService.findTotalPageAndTourismOrderInfoList();
+        return admiTourismInfoService.findTotalPageAndTourismOrderInfoList();
     }
 
     /**
@@ -109,7 +109,7 @@ public class AdmiTourismController {
     @RequestMapping("/findListPageNumTourismOrderInfo")
     public Result findListPageNumTourismOrderInfo(int pageNum){
         Result result;
-        List<PartTourismOrderInfoDto> partTourismOrderInfos = tourismInfoService.findListPageNumTourismOrderInfo(pageNum);
+        List<PartTourismOrderInfoDto> partTourismOrderInfos = admiTourismInfoService.findListPageNumTourismOrderInfo(pageNum);
         if (!partTourismOrderInfos.isEmpty())
             result = new Result<List>(200,"查询第" + pageNum + "页的租车订单数据成功", partTourismOrderInfos);
         else
@@ -126,7 +126,7 @@ public class AdmiTourismController {
     public Result addDriverInfoToTourismOrder(TourismOrderInfo tourismOrderInfo){
         Result result;
         //licensePlateNumber,color,driverName,driverPhone,travelOrderId
-        int resultCode = tourismInfoService.addDriverInfoToTourismOrder(tourismOrderInfo);
+        int resultCode = admiTourismInfoService.addDriverInfoToTourismOrder(tourismOrderInfo);
         if(resultCode == 1)
             result = new Result<>(200,"为租车订单安排车辆信息成功");
         else
@@ -142,7 +142,7 @@ public class AdmiTourismController {
     @ResponseBody
     @RequestMapping("/findDriverInfo")
     public Result findDriverInfo(int travelOrderId){
-        DriverInfoDto driverInfo = tourismInfoService.findDriverInfoByTravelOrderId(travelOrderId);
+        DriverInfoDto driverInfo = admiTourismInfoService.findDriverInfoByTravelOrderId(travelOrderId);
         if(driverInfo != null)
             return new Result<>(200,"查询车辆信息成功",driverInfo);
         return new Result<>(400,"该订单还未安排车辆",null);
@@ -156,7 +156,7 @@ public class AdmiTourismController {
     @RequestMapping("/finishTourismOrder")
     public Result finishTourismOrder(int travelOrderId){
         //修改订单状态
-        int code = tourismInfoService.updateTourismOrderState(travelOrderId);
+        int code = admiTourismInfoService.updateTourismOrderState(travelOrderId);
         if(code == 1)
             return new Result<>(200,"结单成功",null);
         return new Result<>(400,"结单失败",null);

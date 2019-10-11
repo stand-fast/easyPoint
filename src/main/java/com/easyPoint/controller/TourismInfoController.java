@@ -1,21 +1,7 @@
 package com.easyPoint.controller;
 
-import com.easyPoint.dto.Result;
-import com.easyPoint.pojo.tourism.TourismOrderInfo;
-import com.easyPoint.pojo.tourism.TravelOrderInfo;
-import com.easyPoint.pojo.tourism.VehicleInfo;
-import com.easyPoint.pojo.tourism.dto.DriverInfoDto;
-import com.easyPoint.pojo.tourism.dto.PartTourismOrderInfoDto;
-import com.easyPoint.service.TourismInfoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.math.BigDecimal;
-import java.util.List;
 
 /**
  * @author FJW
@@ -25,7 +11,7 @@ import java.util.List;
 public class TourismInfoController {
 
 //    @Autowired
-//    TourismInfoService tourismInfoService;
+//    ATourismInfoService tourismInfoService;
 //
 //    /**
 //     * 管理员进入添加车辆类型页面，得到已有车辆类型的总页数，和第一页车辆信息
