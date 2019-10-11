@@ -102,25 +102,16 @@ Page({
             duration: 2000
           })
         }
-        else if(this.data.radioStatus== true){
-          if (this.data.returnTime == undefined) {
-            wx.showToast({
-              title: '请输入返回日期',
-              icon: 'none',
-              duration: 2000
-            })
+        else {
+          if (this.data.radioStatus == true) {
+            if (this.data.returnTime == undefined) {
+              wx.showToast({
+                title: '请输入返回日期',
+                icon: 'none',
+                duration: 2000
+              })
+            }
           }
-        }
-        else if(this.data.check== true){
-          if (this.data.returnTime == undefined) {
-            wx.showToast({
-              title: '请浏览并同意易点包车协议',
-              icon: 'none',
-              duration: 2000
-            })
-          }
-        }
-        else {  
           wx.request({
             url: 'http://easypoint.club/orderTourismOrder',
             header: {
@@ -142,7 +133,7 @@ Page({
                deposit: that.data.money,
             },
             success: function (res) {
-              // console.log(res.data);
+               console.log(res);
                 wx.showToast({
                   title: '提交成功！！！',//这里打印出登录成功
                   icon: 'success',
@@ -186,18 +177,16 @@ Page({
     },
     //是否往返选择
     radiochange: function (e) {
-        var radioStatus = this.data.radioStatus;
-        radioStatus = !radioStatus;
-        this.setData({
-            radioStatus: radioStatus
-        })
+        var radioStatus = !this.data.radioStatus;
         if (radioStatus == true) {
           this.setData({
             is_back: 1,
+            radioStatus: radioStatus
           })
         }else{
           this.setData({
             is_back: 0,
+            radioStatus: radioStatus
           })
         }
     },
@@ -254,8 +243,6 @@ Page({
         this.setData({
             returnTime: dateArr[0][arr[0]].replace('年', '-') + dateArr[1][arr[1]].replace('月', '-') + dateArr[2][arr[2]].replace('日', ' ') + dateArr[3][arr[3]].replace("时", ":") + dateArr[4][arr[4]].replace('分', '')
         });
-        //验证开始时间不能大于结束时间
-        this.checkStartAndEndTime();
     },
     selectAssoName: function (e) {
       var index = e.detail.value;

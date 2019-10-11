@@ -76,7 +76,13 @@ export default {
             fetch("http://easypoint.club/findDriverInfo", requestConfig).then(function (response) {
                 response.json().then(function (data) {
                     if (data.code == 200) {
+                        var data = data.data;
                         console.log(data);
+                        that.licensePlateNumber = data.licensePlateNumber
+                        that.vehicleType = data.vehicleType
+                        that.color = data.color
+                        that.driverName = data.driverName
+                        that.driverPhone = data.driverPhone
                         console.log("查询数据成功");
                     } else if (data.code == 201) {
                         console.log("已经加载完全部数据");
