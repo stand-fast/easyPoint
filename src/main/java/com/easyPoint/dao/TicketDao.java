@@ -1,6 +1,6 @@
 package com.easyPoint.dao;
 
-import com.easyPoint.pojo.tourism.PartTicket;
+import com.easyPoint.pojo.travel.PartTicket;
 
 import java.util.List;
 

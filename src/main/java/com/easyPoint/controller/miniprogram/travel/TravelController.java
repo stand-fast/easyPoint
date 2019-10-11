@@ -1,7 +1,7 @@
 package com.easyPoint.controller.miniprogram.travel;
 
 import com.easyPoint.dto.Result;
-import com.easyPoint.pojo.tourism.TravelOrderInfo;
+import com.easyPoint.pojo.travel.TravelOrderInfo;
 import com.easyPoint.service.miniprogram.travel.TravelInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

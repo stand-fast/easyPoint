@@ -1,17 +1,14 @@
 package com.easyPoint.service.impl;
 
-import com.alibaba.druid.sql.ast.statement.SQLIfStatement;
 import com.easyPoint.dao.HometownAssociationDao;
 import com.easyPoint.dao.TicketDao;
-import com.easyPoint.pojo.tourism.AssociationTicket;
-import com.easyPoint.pojo.tourism.PartTicket;
-import com.easyPoint.pojo.tourism.Ticket;
+import com.easyPoint.pojo.travel.AssociationTicket;
+import com.easyPoint.pojo.travel.PartTicket;
 import com.easyPoint.pojo.user.HometownAssociation;
 import com.easyPoint.service.HometownAssociationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

@@ -1,11 +1,11 @@
 package com.easyPoint.service.administrator.travel;
 
 import com.easyPoint.dto.Result;
-import com.easyPoint.pojo.tourism.TourismOrderInfo;
-import com.easyPoint.pojo.tourism.TravelOrderInfo;
-import com.easyPoint.pojo.tourism.VehicleInfo;
-import com.easyPoint.pojo.tourism.dto.DriverInfoDto;
-import com.easyPoint.pojo.tourism.dto.PartTourismOrderInfoDto;
+import com.easyPoint.dto.travel.DriverInfoDto;
+import com.easyPoint.dto.travel.PartTourismOrderInfoDto;
+import com.easyPoint.pojo.travel.TourismOrderInfo;
+import com.easyPoint.pojo.travel.VehicleInfo;
+
 
 import java.math.BigDecimal;
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.easyPoint.service;
 
-import com.easyPoint.pojo.tourism.AssociationTicket;
-import com.easyPoint.pojo.tourism.PartTicket;
+import com.easyPoint.pojo.travel.AssociationTicket;
+import com.easyPoint.pojo.travel.PartTicket;
 import com.easyPoint.pojo.user.HometownAssociation;
 
 import java.util.List;
