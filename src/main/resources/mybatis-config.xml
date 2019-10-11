@@ -13,5 +13,6 @@
     </typeAliases>
     <mappers>
         <package name="com.easyPoint.dao"/>
+        <!--<package name="com.easyPoint.dao.travel"/>-->
     </mappers>
 </configuration>

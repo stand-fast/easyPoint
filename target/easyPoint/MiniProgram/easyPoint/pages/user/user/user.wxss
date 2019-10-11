@@ -10,13 +10,24 @@ Page{
     display: flex;
     flex-direction: row;
 }
+.header image{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 120rpx;
+}
 .username{
-    width: 500rpx;
-    height: 40rpx;
-    line-height: 40rpx;
-    font-size: 32rpx;
-    color: #fff;
-    margin: 90rpx 0rpx 0rpx 30rpx;
+  width: 500rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 32rpx;
+  color: #fff;
+  margin: 50rpx 0rpx 0rpx 30rpx;
+}
+.userImg{
+  overflow:hidden; 
+  width: 120rpx;
+  height: 120rpx;
+  border-radius:120rpx;
 }
 .noname{
     width: 140rpx;
@@ -25,7 +36,7 @@ Page{
     text-align: center;
     border: 2rpx solid #fff;
     border-radius: 25rpx;
-    margin: 84rpx 0rpx 0rpx 30rpx;
+    margin: 44rpx 0rpx 0rpx 30rpx;
 }
 .noname button{
     padding: 0;

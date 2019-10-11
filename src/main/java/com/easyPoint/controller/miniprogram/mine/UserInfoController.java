@@ -4,7 +4,7 @@ import com.easyPoint.Util.HttpRequestUtil;
 import com.easyPoint.Util.JwtUtil;
 import com.easyPoint.dto.Result;
 import com.easyPoint.pojo.user.UserInfo;
-import com.easyPoint.service.GetUserInfoService;
+import com.easyPoint.service.miniprogram.mine.UserInfoService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +26,13 @@ import java.util.Map;
 public class UserInfoController {
 
     @Autowired
-    GetUserInfoService getUserInfoService;
+    UserInfoService userInfoService;
 
     @ResponseBody
     @RequestMapping("/getUserInfoAndToken")
     public Map getUserInfoAndToken( @RequestParam("code") String code, @RequestParam("encryptedData") String encryptedData, @RequestParam("iv") String iv){
         Map result = new HashMap();
-        UserInfo userInfo = getUserInfoService.getUserInfo(code, encryptedData, iv);
+        UserInfo userInfo = userInfoService.getUserInfo(code, encryptedData, iv);
         if(userInfo != null){
             //生成token，并将userInfo一起返回给小程序
             String token = JwtUtil.sign(userInfo.getUid(),userInfo.getNickName());

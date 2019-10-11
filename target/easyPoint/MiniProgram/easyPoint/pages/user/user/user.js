@@ -5,10 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        userImg:"",
-        lostUserInfos:true,
         hasPermission:false,
-        userNickName:"Pluto",
         order_lists:[{
             url:"/images/icon/user_signup.png",
             text:"我的报名"
@@ -39,13 +36,18 @@ Page({
             icon: "/images/icon/user_exit.png",
             text: "退出账号",
             url:""
-        }]
+        }],
+        isLogin:false,
     },
     getPermission:function(){       //登录授权
+      var that = this;
       wx.login({
         success: res => {
           // 发送 res.code 到后台换取 openId, sessionKey, unionId
           if (res.code) {
+            that.setData({
+              isLogin:true,
+            })
             wx.getUserInfo({
               success: function (res_user) {
                 wx.request({
@@ -56,10 +58,14 @@ Page({
                     iv: res_user.iv
                   },
                   success: function (res) {
-                    console.log(res)
-                    // wx.setStorageSync("token", res.data.token)
-                    // wx.setStorageSync("userInfo", res.data.userInfo)
-                    //wx.setStorageSync("openid", res.data.LoginResponse.data)//可以把openid保存起来,以便后期需求的使用
+                    var userdata = res.data.userInfo
+                    that.setData({
+                      nickName: userdata.nickName,
+                      avatarUrl: userdata.avatarUrl
+                    })
+                    console.log(userdata);
+                    wx.setStorageSync("token", res.data.token)
+                    wx.setStorageSync("userInfo", res.data.userInfo)
                   },
                   fail:function(){
                     console.log(1);
@@ -105,6 +111,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {      //加判断用户是否登录，没登录弹出弹窗
+        this.getPermission();
         // wx.showModal({
         //     title: '授权登录',
         //     content: '为了提供更好的服务，我们需要获取您的信息，请授权登录',

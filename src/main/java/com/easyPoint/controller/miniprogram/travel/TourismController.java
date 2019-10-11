@@ -3,7 +3,7 @@ package com.easyPoint.controller.miniprogram.travel;
 import com.easyPoint.dto.Result;
 import com.easyPoint.pojo.tourism.TourismOrderInfo;
 import com.easyPoint.pojo.tourism.VehicleInfo;
-import com.easyPoint.service.TourismInfoService;
+import com.easyPoint.service.miniprogram.travel.TourismInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 /**
+ * 小程序租车模块
  * @author FJW
  */
 
@@ -55,19 +56,7 @@ public class TourismController {
 
 
 
-    /**
-     * 小程序用户查询订单详情
-     * @param travelOrderId 出行订单号
-     * @param type 出行订单类型
-     * @return 包车或租车订单详情
-     */
-    @ResponseBody
-    @RequestMapping("/findTravelOrderDetailInfo")
-    public Result findTravelOrderDetailInfo(@RequestParam("travelOrderId")int travelOrderId,
-                                            @RequestParam("type")int type){
-        return new Result<>(200,"查询出行订单详情成功",
-                             tourismInfoService.findTravelOrderDetailInfo(travelOrderId, type));
-    }
+
 
     /**
      * FJW
