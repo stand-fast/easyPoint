@@ -1,7 +1,7 @@
 import App from "./app.js"
-import Home from "./pages/index.js"
 import CarRentalOrder from "./pages/CarRentalOrder.js"
 import AddVehicleType from "./pages/AddVehicleType.js"
+import vehicleEntry from "./pages/vehicle-information-entry.js"
 
 const router = new VueRouter({
     routes: [{
@@ -13,10 +13,12 @@ const router = new VueRouter({
             component: CarRentalOrder
         },
         {
-            path: "/CarRentalRefund",
-            component: Home
+            path: "/vehicleEntry/:id",
+            component: vehicleEntry,
+            meta: {
+                needLogin: true
+            }
         },
-
     ],
 })
 const template = `<App/>`

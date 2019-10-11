@@ -32,7 +32,7 @@ const template = `
                 <li class="navmiddle">卢本伟</li>
                 <li class="navmiddle">13060870154</li>
                 <li class="navmiddle">未安排</li>
-                <li class="navSmall enter"><span @click="handleVihicleInformation">进入</span></li>
+                <li class="navSmall enter"><span @click="handleVihicleInformation(123123123)">进入</span></li>
             </div>
             <div class="renderOrderNav type">
                 <li class="navBigger">广东金融学院广东金融学院广东金融学院广东金融学院</li>
@@ -108,7 +108,7 @@ export default {
             })
         },
         handleVihicleInformation(id) {
-            this.$router.push("/vehicle-information-entry/" + id);
+            this.$router.push("/vehicleEntry/" + id);
         }
     },
     components: {
