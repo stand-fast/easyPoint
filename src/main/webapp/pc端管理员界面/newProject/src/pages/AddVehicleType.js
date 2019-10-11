@@ -1,8 +1,6 @@
-import model from "./components/pagemodel.js"
-import paging from "./components/paging.js"
+import paging from "../components/paging.js"
 const template = `
     <div>
-        <model></model>
         <ul class="PageContentRight">
         <div class="PageContentRightTitle">
             <div class="IconTitle"></div>
@@ -38,8 +36,8 @@ const template = `
         </ul>
     </div>
 `;
-const config = {
-    el: "#modelPage",
+
+export default {
     data() {
         return {
             navName: "旅游出行",
@@ -173,10 +171,7 @@ const config = {
         }
     },
     components: {
-        model,
         paging
     },
     template,
 }
-
-new Vue(config)

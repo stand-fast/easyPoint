@@ -91,17 +91,17 @@ export default {
                     secondName: [{
                             id: '1',
                             childrenName: "添加发布车辆类型",
-                            url: 'AddVehicleType.html'
+                            url: '#/AddVehicleType'
                         },
                         {
                             id: '2',
                             childrenName: "租车订单",
-                            url: 'CarRentalOrder.html',
+                            url: '#/CarRentalOrder',
                         },
                         {
                             id: '3',
                             childrenName: "租车退款订单",
-                            url: 'CarRentalRefund.html',
+                            url: '#/CarRentalRefund',
                         },
                     ]
                 },
