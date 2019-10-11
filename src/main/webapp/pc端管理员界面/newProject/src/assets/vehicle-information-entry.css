@@ -1,0 +1,38 @@
+.vehicleInfor {
+    height: 500px;
+    text-align: center;
+}
+
+.vehicleInfor li {
+    margin-top: 10px;
+    height: 50px;
+    line-height: 40px;
+
+}
+
+.vehicleInfor li input {
+    outline: none;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 200px;
+    height: 50px;
+    border: 1px solid #8fd68b;
+}
+
+.submitVihicle {
+    text-align: center;
+    box-sizing: border-box;
+    height: 40px;
+    line-height: 30px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.submitVihicle span {
+    display: inline-block;
+    width: 80px;
+    padding: 5px;
+    cursor: pointer;
+    background-color: #8fd68b;
+    color: #ffffff;
+}
