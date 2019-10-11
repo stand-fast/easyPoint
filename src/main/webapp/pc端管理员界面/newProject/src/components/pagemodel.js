@@ -73,7 +73,8 @@ export default {
                     name: '校友会包车',
                     secondName: [{
                             id: '1',
-                            childrenName: "添加同乡会"
+                            childrenName: "添加同乡会",
+                            url: '#/AddAssociation'
                         },
                         {
                             id: '2',
@@ -110,7 +111,8 @@ export default {
                     name: '公告栏',
                     secondName: [{
                         id: '1',
-                        childrenName: "当前公告"
+                        childrenName: "当前公告",
+                        url: '#/CurrentAnnouncement',
                     }, ]
                 },
                 {

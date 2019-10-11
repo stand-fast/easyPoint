@@ -1,26 +1,7 @@
 import App from "./app.js"
-import CarRentalOrder from "./pages/CarRentalOrder.js"
-import AddVehicleType from "./pages/AddVehicleType.js"
-import vehicleEntry from "./pages/vehicle-information-entry.js"
+import router from "./router.js"
+//仅负责启动vue和启动时的配置，所有界面交给组件app来渲染
 
-const router = new VueRouter({
-    routes: [{
-            path: "/AddVehicleType",
-            component: AddVehicleType
-        },
-        {
-            path: "/CarRentalOrder",
-            component: CarRentalOrder
-        },
-        {
-            path: "/vehicleEntry/:id",
-            component: vehicleEntry,
-            meta: {
-                needLogin: true
-            }
-        },
-    ],
-})
 const template = `<App/>`
 new Vue({
     template,

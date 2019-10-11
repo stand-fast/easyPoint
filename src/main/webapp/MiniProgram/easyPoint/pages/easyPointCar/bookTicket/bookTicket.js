@@ -119,7 +119,7 @@ Page({
             },
             method: "POST",
             data: {
-               uid:"12431823175891",
+               uid:"1",
                username: that.data.username,
                phone: that.data.phone,
                departurePlace: e.detail.value.startAddress,

@@ -34,6 +34,8 @@
 
 .VehicleTitle li {
     background-color: #8fd68b;
+    border: 1px solid #ffffff;
+    box-sizing: border-box;
     color: #ffffff;
     height: 30px;
     line-height: 30px;
@@ -53,6 +55,8 @@
 .VehicleContent li {
     text-align: center;
     height: 30px;
+    border: 1px solid #ffffff;
+    box-sizing: border-box;
     line-height: 30px;
     overflow: hidden;
     border-radius: 4px;
