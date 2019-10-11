@@ -1,4 +1,5 @@
 import AddAssociation from "./pages/AddAssociation.js" //校友会包车-添加同乡会
+import AddLocation from "./pages/AddLocation.js" //校友会包车-添加上写车地点
 import AddVehicleType from "./pages/AddVehicleType.js" //旅游出行-添加发布车辆类型
 import CarRentalOrder from "./pages/CarRentalOrder.js" //旅游出行-租车订单
 import CarRentalRefund from "./pages/CarRentalRefund.js" //旅游出行-租车退款订单
@@ -9,6 +10,13 @@ const router = new VueRouter({
     routes: [{
             path: "/AddAssociation",
             component: AddAssociation
+        },
+        {
+            path: "/AddLocation/:id",
+            component: AddLocation,
+            meta: {
+                needLogin: true
+            }
         },
         {
             path: "/AddVehicleType",
