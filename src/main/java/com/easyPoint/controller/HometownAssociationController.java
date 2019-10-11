@@ -1,14 +1,12 @@
 package com.easyPoint.controller;
 
 import com.easyPoint.dto.Result;
-import com.easyPoint.pojo.tourism.AssociationTicket;
-import com.easyPoint.pojo.tourism.PartTicket;
+import com.easyPoint.pojo.travel.AssociationTicket;
+import com.easyPoint.pojo.travel.PartTicket;
 import com.easyPoint.pojo.user.HometownAssociation;
 import com.easyPoint.service.HometownAssociationService;
-import org.omg.PortableInterceptor.HOLDING;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;

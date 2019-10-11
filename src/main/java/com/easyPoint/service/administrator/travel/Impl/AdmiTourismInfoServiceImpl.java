@@ -3,10 +3,11 @@ package com.easyPoint.service.administrator.travel.Impl;
 import com.easyPoint.dao.travel.TourismInfoDao;
 import com.easyPoint.dto.Result;
 import com.easyPoint.dto.template.DriverMessageDto;
-import com.easyPoint.pojo.tourism.TourismOrderInfo;
-import com.easyPoint.pojo.tourism.VehicleInfo;
-import com.easyPoint.pojo.tourism.dto.DriverInfoDto;
-import com.easyPoint.pojo.tourism.dto.PartTourismOrderInfoDto;
+import com.easyPoint.dto.travel.DriverInfoDto;
+import com.easyPoint.dto.travel.PartTourismOrderInfoDto;
+import com.easyPoint.pojo.travel.TourismOrderInfo;
+import com.easyPoint.pojo.travel.VehicleInfo;
+
 import com.easyPoint.service.administrator.travel.AdmiTourismInfoService;
 import com.easyPoint.service.template.TemplateMessageService;
 import com.fasterxml.jackson.databind.ObjectMapper;

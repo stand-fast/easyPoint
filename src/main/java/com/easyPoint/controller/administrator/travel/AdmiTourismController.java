@@ -1,12 +1,12 @@
 package com.easyPoint.controller.administrator.travel;
 
 import com.easyPoint.dto.Result;
-import com.easyPoint.pojo.tourism.TourismOrderInfo;
-import com.easyPoint.pojo.tourism.VehicleInfo;
-import com.easyPoint.pojo.tourism.dto.DriverInfoDto;
-import com.easyPoint.pojo.tourism.dto.PartTourismOrderInfoDto;
+import com.easyPoint.dto.travel.DriverInfoDto;
+import com.easyPoint.dto.travel.PartTourismOrderInfoDto;
+import com.easyPoint.pojo.travel.TourismOrderInfo;
+import com.easyPoint.pojo.travel.VehicleInfo;
+
 import com.easyPoint.service.administrator.travel.AdmiTourismInfoService;
-import com.easyPoint.service.miniprogram.travel.TourismInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;

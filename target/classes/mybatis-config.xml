@@ -8,8 +8,8 @@
         <package name="com.easyPoint.pojo"/>
         <package name="com.easyPoint.pojo.user"/>
         <package name="com.easyPoint.pojo.drivingschoolpojo"/>
-        <package name="com.easyPoint.pojo.tourism"/>
-        <package name="com.easyPoint.pojo.tourism.dto"/>
+        <package name="com.easyPoint.pojo.travel"/>
+        <package name="com.easyPoint.dto.travel"/>
     </typeAliases>
     <mappers>
         <package name="com.easyPoint.dao"/>

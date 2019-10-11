@@ -1,9 +1,10 @@
 package com.easyPoint.controller.miniprogram.travel;
 
 import com.easyPoint.dto.Result;
-import com.easyPoint.pojo.tourism.TourismOrderInfo;
-import com.easyPoint.pojo.tourism.VehicleInfo;
+import com.easyPoint.pojo.travel.TourismOrderInfo;
+import com.easyPoint.pojo.travel.VehicleInfo;
 import com.easyPoint.service.miniprogram.travel.TourismInfoService;
+import com.easyPoint.service.pay.WxPayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,6 +25,9 @@ public class TourismController {
 
     @Autowired
     TourismInfoService tourismInfoService;
+
+    @Autowired
+    WxPayService wxPayService;
 
 
 
@@ -75,5 +79,12 @@ public class TourismController {
         if(resultCode == 1)
             return new Result<>(200,"修改出发时间成功");
         return new Result<>(201,"修改出发日期必须在出发前一天之前修改，当前已经超过修改日期");
+    }
+
+    @ResponseBody
+    @RequestMapping("/wxpayTest")
+    public Result wxpayTest(@RequestParam("uid") int uid, @RequestParam("total_fee")String total_fee, @RequestParam("body") String body, @RequestParam("attach") String attach){
+        wxPayService.requestWxPay(uid,total_fee,body,attach);
+        return new Result(200,"支付");
     }
 }

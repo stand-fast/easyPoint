@@ -1,8 +1,8 @@
 package com.easyPoint.service.miniprogram.travel.Impl;
 
 import com.easyPoint.dao.travel.TourismInfoDao;
-import com.easyPoint.pojo.tourism.TourismOrderInfo;
-import com.easyPoint.pojo.tourism.VehicleInfo;
+import com.easyPoint.pojo.travel.TourismOrderInfo;
+import com.easyPoint.pojo.travel.VehicleInfo;
 import com.easyPoint.service.miniprogram.travel.TourismInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,6 +1,6 @@
 package com.easyPoint.service.miniprogram.travel;
 
-import com.easyPoint.pojo.tourism.TravelOrderInfo;
+import com.easyPoint.pojo.travel.TravelOrderInfo;
 
 import java.util.List;
 
