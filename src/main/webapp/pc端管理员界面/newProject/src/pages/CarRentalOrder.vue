@@ -80,43 +80,43 @@ export default {
   },
   methods: {
     async setData() {
-      window.onscroll = e => e.preventDefault(); //兼容浏览器
-      let data = await fetch(
-        "http://easypoint.club/getTotalPageAndFirstTourismOrderInfoList"
-      ).then(resp => resp.json());
-      console.log(data.data);
-      if (data.code == 200) {
-        this.pageNumber = data.data.totalPage;
-        this.datas = data.data.partTourismOrderInfos;
-        console.log("查询订单页数以及首页订单信息成功");
-      } else if (data.code == 201) {
-        alert("暂无订单信息");
-      }
-    },
-    handlePageChange(pageNum) {
       var that = this;
-      let requestConfig = {
-        method: "POST",
-        headers: new Headers({
-          "Content-Type": "application/x-www-form-urlencoded" // 指定提交方式为表单提交
-        }),
-        body: new URLSearchParams([["pageNum", pageNum]]).toString()
-      };
-      fetch(
-        "http://easypoint.club/findListPageNumTourismOrderInfo",
-        requestConfig
-      ).then(function(response) {
-        response.json().then(function(data) {
+      window.onscroll = e => e.preventDefault(); //兼容浏览器
+      this.$http
+        .get("getTotalPageAndFirstTourismOrderInfoList")
+        .then(function(res) {
+          console.log(res.data);
+          var data = res.data;
           if (data.code == 200) {
-            console.log(data);
-            console.log(data.message);
-            that.current = pageNum;
+            that.pageNumber = data.data.totalPage;
+            that.datas = data.data.partTourismOrderInfos;
+            console.log("查询订单页数以及首页订单信息成功");
+          } else if (data.code == 201) {
+            alert("暂无订单信息");
+          }
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
+    },
+    handlePageChange(page) {
+      var that = this;
+      this.$http
+        .get("findListPageNumTourismOrderInfo", { params: { pageNum: page } })
+        .then(function(res) {
+          console.log(res.data);
+          var data = res.data;
+          if (data.code == 200) {
+            that.current = page;
             that.datas = data.data;
+            console.log(data.message);
           } else if (data.code == 201) {
             console.log("已经加载完全部数据");
           }
+        })
+        .catch(function(e) {
+          console.log(e);
         });
-      });
     },
     handleVihicleInformation(id) {
       this.$router.push("/vehicleEntry/" + id);

@@ -90,19 +90,24 @@ export default {
   },
   methods: {
     async setData() {
+      var that = this;
       window.onscroll = e => e.preventDefault(); //兼容浏览器
-      let data = await fetch(
-        "http://easypoint.club/getTotalPageAndFirstVehicleInfoList"
-      ).then(resp => resp.json());
-      console.log(data.data);
-      if (data.code == 200) {
-        console.log("查询总页数和车辆类型成功");
-        this.current = 1;
-        this.pageNumber = data.data.totalPage;
-        this.datas = data.data.vehicleInfoList;
-      } else if (data.code == 201) {
-        alert("暂无车辆类型数据，请管理员添加");
-      }
+      this.$http
+        .get("getTotalPageAndFirstVehicleInfoList")
+        .then(function(res) {
+          console.log(res.data);
+          var data = res.data;
+          if (data.code == 200) {
+            that.pageNumber = data.data.totalPage;
+            that.datas = data.data.vehicleInfoList;
+            console.log("查询订单页数以及首页订单信息成功");
+          } else if (data.code == 201) {
+            alert("暂无车辆类型数据，请管理员添加");
+          }
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
     },
     handleAdd() {
       var that = this;
@@ -110,29 +115,23 @@ export default {
         if (
           confirm("车辆类型 : " + this.location + "\r定金 : " + this.deposit)
         ) {
-          let requestConfig = {
-            method: "POST",
-            headers: new Headers({
-              "Content-Type": "application/x-www-form-urlencoded" // 指定提交方式为表单提交
-            }),
-            body: new URLSearchParams([
-              ["vehicleType", this.location],
-              ["deposit", this.deposit]
-            ]).toString()
-          };
-          fetch(
-            "http://easypoint.club/easyPoint/addNewVehicleInfo",
-            requestConfig
-          ).then(function(response) {
-            response.json().then(function(data) {
+          this.$http
+            .get("easyPoint/addNewVehicleInfo", {
+              params: { vehicleType: that.location, deposit: that.deposit }
+            })
+            .then(function(res) {
+              console.log(res.data);
+              var data = res.data;
               if (data.code == 200) {
                 alert("添加车辆类型成功");
                 that.setData();
               } else if (data.code == 400) {
                 alert("该车辆类型已存在,请重新输入");
               }
+            })
+            .catch(function(e) {
+              console.log(e);
             });
-          });
         } else {
           console.log("你取消了添加");
         }
@@ -141,50 +140,43 @@ export default {
     handledelete(vehicleId) {
       var that = this;
       if (confirm("确定删除该车辆类型?")) {
-        let requestConfig = {
-          method: "POST",
-          headers: new Headers({
-            "Content-Type": "application/x-www-form-urlencoded" // 指定提交方式为表单提交
-          }),
-          body: new URLSearchParams([["vehicleId", vehicleId]]).toString()
-        };
-        fetch("http://easypoint.club/deleteVehicleType", requestConfig).then(
-          function(response) {
-            response.json().then(function(data) {
-              if (data.code == 200) {
-                that.setData();
-                alert("删除车辆类型成功");
-              }
-            });
-          }
-        );
+        this.$http
+          .get("deleteVehicleType", {
+            params: { vehicleId: vehicleId }
+          })
+          .then(function(res) {
+            console.log(res.data);
+            var data = res.data;
+            if (data.code == 200) {
+              that.setData();
+              alert("删除车辆类型成功");
+            }
+          })
+          .catch(function(e) {
+            console.log(e);
+          });
       } else {
         console.log("您取消了删除！");
       }
     },
-    handlePageChange(pageNum) {
+    handlePageChange(page) {
       var that = this;
-      let requestConfig = {
-        method: "POST",
-        headers: new Headers({
-          "Content-Type": "application/x-www-form-urlencoded" // 指定提交方式为表单提交
-        }),
-        body: new URLSearchParams([["pageNum", pageNum]]).toString()
-      };
-      fetch(
-        "http://easypoint.club/findListPageNumVehicleInfo",
-        requestConfig
-      ).then(function(response) {
-        response.json().then(function(data) {
+      this.$http
+        .get("findListPageNumVehicleInfo", { params: { pageNum: page } })
+        .then(function(res) {
+          console.log(res.data);
+          var data = res.data;
           if (data.code == 200) {
-            console.log(data.message);
-            that.current = pageNum;
+            that.current = page;
             that.datas = data.data;
+            console.log(data.message);
           } else if (data.code == 201) {
             console.log("已经加载完全部数据");
           }
+        })
+        .catch(function(e) {
+          console.log(e);
         });
-      });
     }
   }
 };

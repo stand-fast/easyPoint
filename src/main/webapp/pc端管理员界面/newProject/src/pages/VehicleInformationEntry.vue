@@ -25,7 +25,7 @@
           </li>
           <div class="submitVihicle">
             <span @click="submitVehicle">提交</span>
-            <span @click="submitFinish" style="margin-left:5px">结单</span>
+            <span @click="submitFinish(id)" style="margin-left:5px">结单</span>
           </div>
         </ul>
       </div>
@@ -43,11 +43,13 @@ export default {
       vehicleType: "",
       color: "",
       driverName: "",
-      driverPhone: ""
+      driverPhone: "",
+      id: "" //订单id
     };
   },
   mounted() {
     const id = this.$route.params.id;
+    this.id = id;
     console.log("根据" + id + "请求数据");
     this.setData(id);
   },
@@ -78,31 +80,25 @@ export default {
     async setData(id) {
       var that = this;
       window.onscroll = e => e.preventDefault(); //兼容浏览器
-      let requestConfig = {
-        method: "POST",
-        headers: new Headers({
-          "Content-Type": "application/x-www-form-urlencoded" // 指定提交方式为表单提交
-        }),
-        body: new URLSearchParams([["travelOrderId", 10]]).toString()
-      };
-      fetch("http://easypoint.club/findDriverInfo", requestConfig).then(
-        function(response) {
-          response.json().then(function(data) {
-            if (data.code == 200) {
-              var data = data.data;
-              console.log(data);
-              that.licensePlateNumber = data.licensePlateNumber;
-              that.vehicleType = data.vehicleType;
-              that.color = data.color;
-              that.driverName = data.driverName;
-              that.driverPhone = data.driverPhone;
-              console.log("查询数据成功");
-            } else if (data.code == 201) {
-              console.log("已经加载完全部数据");
-            }
-          });
-        }
-      );
+      this.$http
+        .get("findDriverInfo", { params: { travelOrderId: 10 } })
+        .then(function(res) {
+          var data = res.data;
+          console.log(data);
+          if (data.code == 200) {
+            that.licensePlateNumber = data.data.licensePlateNumber;
+            that.vehicleType = data.data.vehicleType;
+            that.color = data.data.color;
+            that.driverName = data.data.driverName;
+            that.driverPhone = data.data.driverPhone;
+            console.log("查询数据成功");
+          } else if (data.code == 201) {
+            console.log("已经加载完全部数据");
+          }
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
     },
     submitVehicle() {
       var that = this;
@@ -121,25 +117,19 @@ export default {
               this.driverPhone
           )
         ) {
-          let requestConfig = {
-            method: "POST",
-            headers: new Headers({
-              "Content-Type": "application/x-www-form-urlencoded" // 指定提交方式为表单提交
-            }),
-            body: new URLSearchParams([
-              ["travelOrderId", 10],
-              ["licensePlateNumber", this.licensePlateNumber],
-              ["vehicleType", this.vehicleType],
-              ["color", this.color],
-              ["driverName", this.driverName],
-              ["driverPhone", this.driverPhone]
-            ]).toString()
-          };
-          fetch(
-            "http://easypoint.club/easyPoint/addDriverInfoToTourismOrder",
-            requestConfig
-          ).then(function(response) {
-            response.json().then(function(data) {
+          this.$http
+            .get("easyPoint/addDriverInfoToTourismOrder", {
+              params: {
+                travelOrderId: 10,
+                licensePlateNumber: that.licensePlateNumber,
+                vehicleType: that.vehicleType,
+                color: that.color,
+                driverName: that.driverName,
+                driverPhone: that.driverPhone
+              }
+            })
+            .then(function(res) {
+              var data = res.data;
               if (data.code == 200) {
                 console.log(data);
                 alert("租车订单安排车辆信息成功");
@@ -148,36 +138,37 @@ export default {
                 console.log(data);
                 alert("安排车辆信息失败,请稍后提交");
               }
+            })
+            .catch(function(e) {
+              console.log(e);
             });
-          });
         } else {
           console.log("你取消了添加");
         }
       }
     },
-    submitFinish() {
+    submitFinish(id) {
       var that = this;
       if (confirm("确定是否结单")) {
-        let requestConfig = {
-          method: "POST",
-          headers: new Headers({
-            "Content-Type": "application/x-www-form-urlencoded" // 指定提交方式为表单提交
-          }),
-          body: new URLSearchParams([["travelOrderId", 11]]).toString()
-        };
-        fetch("http://easypoint.club/finishTourismOrder", requestConfig).then(
-          function(response) {
-            response.json().then(function(data) {
-              if (data.code == 200) {
-                console.log(data);
-                alert("结单成功");
-              } else if (data.code == 400) {
-                console.log(data);
-                alert("结单失败,请稍后重试");
-              }
-            });
-          }
-        );
+        this.$http
+          .get("finishTourismOrder", {
+            params: {
+              travelOrderId: 11
+            }
+          })
+          .then(function(res) {
+            var data = res.data;
+            if (data.code == 200) {
+              console.log(data);
+              alert("结单成功");
+            } else if (data.code == 400) {
+              console.log(data);
+              alert("结单失败,请稍后重试");
+            }
+          })
+          .catch(function(e) {
+            console.log(e);
+          });
       } else {
         console.log("你取消了结单");
       }
