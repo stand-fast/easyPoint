@@ -39,7 +39,7 @@
   </div>
 </template>
 <script>
-import paging from "../components/paging.vue";
+import paging from "../../components/paging.vue";
 export default {
   data() {
     return {
@@ -100,5 +100,5 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 </style>

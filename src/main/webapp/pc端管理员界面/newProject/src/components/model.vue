@@ -91,11 +91,18 @@ export default {
             },
             {
               id: "2",
-              childrenName: "添加车辆"
+              childrenName: "添加车辆",
+              url: "#/BusSearcher"
             },
             {
               id: "3",
-              childrenName: "我的发布"
+              childrenName: "我的发布",
+              url: "#/TicketManagement"
+            },
+            {
+              id: "4",
+              childrenName: "历史发布",
+              url: "#/HistoryTicket"
             }
           ]
         },

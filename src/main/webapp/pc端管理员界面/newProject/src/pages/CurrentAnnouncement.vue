@@ -81,5 +81,5 @@ export default {
   components: {}
 };
 </script>
-<style>
+<style scoped>
 </style>

@@ -1,7 +1,7 @@
 {
     "pages": [
-      "pages/easyPointCar/bookTicket/bookTicket",
       "pages/myIndex/myindex/myindex",
+      "pages/easyPointCar/bookTicket/bookTicket",
       "pages/user/user/user",
       "pages/user/myOrder/myOrder",
       "pages/user/refund/refund",

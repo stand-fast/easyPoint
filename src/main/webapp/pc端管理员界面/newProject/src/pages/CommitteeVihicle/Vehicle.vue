@@ -51,7 +51,7 @@ export default {
     const id = this.$route.params.id;
     this.id = id;
     console.log("根据" + id + "请求数据");
-    this.setData(id);
+    //this.setData(id);
   },
   computed: {
     check() {
@@ -81,7 +81,7 @@ export default {
       var that = this;
       window.onscroll = e => e.preventDefault(); //兼容浏览器
       this.$http
-        .get("findDriverInfo", { params: { travelOrderId: 10 } })
+        .get("接口路径", { params: { travelOrderId: 10 } })
         .then(function(res) {
           var data = res.data;
           console.log(data);
@@ -118,7 +118,7 @@ export default {
           )
         ) {
           this.$http
-            .get("easyPoint/addDriverInfoToTourismOrder", {
+            .get("接口路径", {
               params: {
                 travelOrderId: 10,
                 licensePlateNumber: that.licensePlateNumber,
@@ -151,7 +151,7 @@ export default {
       var that = this;
       if (confirm("确定是否结单")) {
         this.$http
-          .get("finishTourismOrder", {
+          .get("接口路径", {
             params: {
               travelOrderId: 11
             }
@@ -176,7 +176,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .vehicleInfor {
   height: 500px;
   text-align: center;

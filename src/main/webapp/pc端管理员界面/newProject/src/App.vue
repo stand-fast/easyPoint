@@ -1,17 +1,20 @@
 <template>
   <div id="app">
-    <model />
-    <router-view />
+    <model/>
+     <router-view />
   </div>
 </template>
+
 <script>
-import model from "./components/model.vue";
+import model from "./components/model.vue"
 export default {
+  name: 'app',
   components: {
     model
   }
-};
+}
 </script>
+
 <style>
 h1 {
   font-size: 20px;
