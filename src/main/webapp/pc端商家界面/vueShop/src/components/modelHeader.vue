@@ -75,7 +75,7 @@ li {
   color: #b0b0b0;
 }
 .modelTopLogin {
-  width: calc(100% - 200px);
+  width: calc(100% - 220px);
   font-size: 14px;
   overflow: hidden;
 }
@@ -151,6 +151,7 @@ li {
   width: calc(100% - 170px);
   background-color: #f2f2f2;
   overflow: hidden;
+  margin-bottom: 40px;
 }
 .contentTitle {
   width: calc(100% - 16px);

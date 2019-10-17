@@ -25,7 +25,7 @@
       </a>
       <a href="#/MyOrder">
         <div class="contentLeftNav">
-          我的订单
+          用户订单
           <i class="icon nav"></i>
         </div>
       </a>
@@ -151,7 +151,32 @@
         <div class="contentBlockPart">
           <li class="publishPartImg">
             <div class="partTitle">商品1:</div>
-            <div class="CommodityCategory"></div>
+            <div class="CommodityCategory">
+              <el-upload action="接口路径" list-type="picture-card" ref="upload" :auto-upload="false">
+                <i slot="default" class="el-icon-plus"></i>
+                <div slot="file" slot-scope="{file}">
+                  <img class="el-upload-list__item-thumbnail" :src="file.url" alt />
+                  <span class="el-upload-list__item-actions">
+                    <span
+                      class="el-upload-list__item-preview"
+                      @click="handlePictureCardPreview(file)"
+                    >
+                      <i class="el-icon-zoom-in"></i>
+                    </span>
+                    <span
+                      v-if="!disabled"
+                      class="el-upload-list__item-delete"
+                      @click="handleRemoveSpecifications(file)"
+                    >
+                      <i class="el-icon-delete"></i>
+                    </span>
+                  </span>
+                </div>
+              </el-upload>
+              <el-dialog :visible.sync="dialogVisible">
+                <img width="100%" :src="dialogImageUrl" alt />
+              </el-dialog>
+            </div>
           </li>
         </div>
       </div>
@@ -162,6 +187,7 @@
 export default {
   data() {
     return {
+      imagelist: [],
       theme: "", //主题
       shopName: "", //商品名称
       depositDescription: "", //押金说明
@@ -177,6 +203,9 @@ export default {
         //     "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100"
         // },
       ],
+      dialogImageUrl: "",
+      dialogVisible: false,
+      disabled: false,
       themeOptions: [
         {
           value: "1",
@@ -197,7 +226,23 @@ export default {
       ]
     };
   },
+  computed: {
+    displaySpecifications(file) {
+      if (this.file) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
   methods: {
+    handleRemoveSpecifications(file) {
+      console.log(file.uid);
+    },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
+    },
     handleRemove(file, fileList) {
       console.log(file, fileList);
     },
@@ -234,7 +279,6 @@ export default {
 }
 .CommodityCategory {
   width: 500px;
-  height: 100px;
   background-color: #f2f2f2;
 }
 </style>

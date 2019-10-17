@@ -18,13 +18,13 @@
         </div>
       </a>
       <a href="#/MyUpload">
-        <div class="contentLeftNav selectNav">
+        <div class="contentLeftNav">
           我的上传
           <i class="icon nav"></i>
         </div>
       </a>
       <a href="#/MyOrder">
-        <div class="contentLeftNav">
+        <div class="contentLeftNav selectNav">
           用户订单
           <i class="icon nav"></i>
         </div>
@@ -33,49 +33,51 @@
     <div class="content">
       <div class="contentTitle">
         <div class="plateTitle">
-          <span>查看管理 > 我的上传</span>
+          <span>查看管理 > 用户订单</span>
         </div>
       </div>
       <div class="contentBlock managering">
         <div class="contentBlockPart managering">
           <div class="dataContentNavs ContentTitle">
-            <li>商品名称</li>
-            <li>租借价格</li>
-            <li>押金</li>
-            <li>主题</li>
-            <li>状态</li>
-            <li>操作</li>
+            <li class="biggerPart">商品名称</li>
+            <li class="smallPart">数量</li>
+            <li class="middlePart">租借价格</li>
+            <li class="smallPart">押金</li>
+            <li class="middlePart">取货时间</li>
+            <li class="smallPart">租借天数</li>
+            <li class="middlePart">联系人姓名</li>
+            <li class="biggerPart">联系人电话</li>
+            <li class="smallPart">状态</li>
+            <li class="biggerPart">备注</li>
+            <li class="middlePart">返回押金</li>
           </div>
           <div class="dataContentNavs dataContentItem">
-            <li>可移动蓝牙音响</li>
-            <li>￥40</li>
-            <li>￥120</li>
-            <li>音响设备</li>
-            <li>正在审核</li>
-            <li>
-              <span class="itemButton" @click="toDetails(123)">查看详情</span>
-              <span class="itemDelete" @click="toDelate(1231)">下架</span>
+            <li class="biggerPart">男性正装套装M码</li>
+            <li class="smallPart">1</li>
+            <li class="middlePart">￥50</li>
+            <li class="smallPart">￥120</li>
+            <li class="middlePart">7-12 13:00</li>
+            <li class="smallPart">2天</li>
+            <li class="middlePart">吴彦祖</li>
+            <li class="biggerPart">13000000000</li>
+            <li class="smallPart">未完成</li>
+            <li class="biggerPart" title="我想要这样的这样的我想要这样的这样的">我想要这样的这样的我想要这样的这样的</li>
+            <li class="middlePart">
+              <span class="itemButton" @click="returnDeposit(123)">返回押金</span>
             </li>
           </div>
           <div class="dataContentNavs dataContentItem">
-            <li>可移动蓝牙音响</li>
-            <li>￥40</li>
-            <li>￥120</li>
-            <li>音响设备</li>
-            <li>正在上架</li>
-            <li>
-              <span class="itemButton" @click="toDetails(123)">查看详情</span>
-              <span class="itemDelete" @click="toDelate(1231)">下架</span>
-            </li>
-          </div>
-          <div class="dataContentNavs dataContentItem">
-            <li>可移动蓝牙音响</li>
-            <li>￥40</li>
-            <li>￥120</li>
-            <li>音响设备</li>
-            <li>已下架</li>
-            <li>
-              <span class="itemButton" @click="toDetails(123)">查看详情</span>
+            <li class="biggerPart">男性正装套装M码</li>
+            <li class="smallPart">1</li>
+            <li class="middlePart">￥50</li>
+            <li class="smallPart">￥120</li>
+            <li class="middlePart">7-12 13:00</li>
+            <li class="smallPart">2天</li>
+            <li class="middlePart">吴彦祖</li>
+            <li class="biggerPart">13000000000</li>
+            <li class="smallPart">已完成</li>
+            <li class="biggerPart" title="我想要这样的这样的我想要这样的这样的">我想要这样的这样的我想要这样的这样的</li>
+            <li class="middlePart">
               <span class="itemDelete" @click="toDelate(1231)">删除</span>
             </li>
           </div>
@@ -104,10 +106,7 @@ export default {
     };
   },
   methods: {
-    toDetails(id) {
-      console.log(id);
-    },
-    toUpload(id) {
+    returnDeposit(id) {
       console.log(id);
     },
     toDelate(id) {
@@ -134,10 +133,22 @@ export default {
   overflow: hidden;
 }
 .dataContentNavs li {
-  width: 170px;
   float: left;
   text-align: center;
   color: #333333;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.biggerPart {
+  width: 150px;
+}
+.middlePart {
+  width: 90px;
+}
+.smallPart {
+  width: 60px;
 }
 .ContentTitle {
   height: 60px;

@@ -25,7 +25,7 @@
       </a>
       <a href="#/MyOrder">
         <div class="contentLeftNav">
-          我的订单
+          用户订单
           <i class="icon nav"></i>
         </div>
       </a>
@@ -40,7 +40,7 @@
         <div class="contentBlockPart managering">
           <div class="dataContentNavs ContentTitle">
             <li>商品名称</li>
-            <li>租赁价格</li>
+            <li>租借价格</li>
             <li>押金</li>
             <li>主题</li>
             <li>状态</li>
@@ -94,6 +94,7 @@ export default {
     },
     handlePageChange(page) {
       console.log(page);
+      this.current = page;
     }
   },
   components: {
@@ -104,7 +105,7 @@ export default {
 <style scoped>
 .managering {
   margin: 0px;
-  padding: 10px 0 10px 8px;
+  padding: 10px 0 0px 8px;
 }
 .dataContentNavs {
   width: calc(100% - 60px);
