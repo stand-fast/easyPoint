@@ -6,6 +6,10 @@
         <p>易点</p>
         <p>让你的大学生活简单一点</p>
       </div>
+      <div class="modelPageTopLogin" v-if="loginUser">
+        <span>{{loginUser.name}}</span>
+        <span class="TopLoginOut" @click="loginOut">退出登录</span>
+      </div>
     </div>
     <div class="modelPageContent">
       <ul class="PageContentLeft">
@@ -160,12 +164,21 @@ export default {
   mounted: function() {
     this.isShow = -1;
   },
+  computed: {
+    loginUser() {
+      return this.$store.state.data;
+    }
+  },
   methods: {
     showSecondName(index) {
       this.isShow = index;
     },
     hideSecondName() {
       this.isShow = !this.isShow;
+    },
+    loginOut() {
+      this.$store.dispatch("loginOut");
+      this.$router.push("/login");
     }
   }
 };
@@ -198,7 +211,21 @@ li {
   width: 250px;
   height: 82px;
 }
-
+.modelPageTopLogin {
+  width: calc(100% - 500px);
+  text-align: right;
+  color: #ffffff;
+  overflow: hidden;
+  margin-top: 30px;
+  height: 20px;
+}
+.TopLoginOut {
+  display: inline-block;
+  cursor: pointer;
+  border-left: 1px solid #ffffff;
+  padding-left: 20px;
+  margin-left: 20px;
+}
 .modelPageTopDetails {
   height: 80px;
   color: #ffffff;

@@ -99,6 +99,7 @@ export default {
           var data = res.data;
           if (data.code == 200) {
             that.pageNumber = data.data.totalPage;
+            that.current = 1;
             that.datas = data.data.vehicleInfoList;
             console.log("查询订单页数以及首页订单信息成功");
           } else if (data.code == 201) {
@@ -109,7 +110,7 @@ export default {
           console.log(e);
         });
     },
-    handleAdd() {
+    async handleAdd() {
       var that = this;
       if (this.check == true) {
         if (
@@ -137,7 +138,7 @@ export default {
         }
       }
     },
-    handledelete(vehicleId) {
+    async handledelete(vehicleId) {
       var that = this;
       if (confirm("确定删除该车辆类型?")) {
         this.$http
@@ -159,7 +160,7 @@ export default {
         console.log("您取消了删除！");
       }
     },
-    handlePageChange(page) {
+    async handlePageChange(page) {
       var that = this;
       this.$http
         .get("findListPageNumVehicleInfo", { params: { pageNum: page } })

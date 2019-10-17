@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from "./store.js"
+import login from "./pages/login.vue"
 import AddAssociation from "./pages/CommitteeVihicle/AddAssociation.vue" //校友会包车-添加同乡会
 import AddLocation from "./pages/CommitteeVihicle/AddLocation.vue" //校友会包车-添加上写车地点
 import BusSearcher from "./pages/CommitteeVihicle/BusSearcher.vue" //校友会包车-添加车辆
@@ -14,11 +16,18 @@ import vehicleEntry from "./pages/Travel/VehicleInformationEntry.vue" //旅游�
 import CurrentAnnouncement from "./pages/CurrentAnnouncement.vue" //公告栏-当前公告
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [{
+      path: "/login",
+      name: 'login',
+      component: login,
+    }, {
       path: "/AddAssociation",
       name: 'AddAssociation',
-      component: AddAssociation
+      component: AddAssociation,
+      meta: {
+        needLogin: true
+      }
     },
     {
       path: "/AddLocation/:id",
@@ -31,12 +40,18 @@ export default new Router({
     {
       path: "/BusSearcher",
       name: 'BusSearcher',
-      component: BusSearcher
+      component: BusSearcher,
+      meta: {
+        needLogin: true
+      }
     },
     {
       path: "/TicketManagement",
       name: 'TicketManagement',
-      component: TicketManagement
+      component: TicketManagement,
+      meta: {
+        needLogin: true
+      }
     },
     {
       path: "/PurchaseDetails/:id",
@@ -57,22 +72,34 @@ export default new Router({
     {
       path: "/HistoryTicket",
       name: 'HistoryTicket',
-      component: HistoryTicket
+      component: HistoryTicket,
+      meta: {
+        needLogin: true
+      }
     },
     {
       path: "/AddVehicleType",
       name: 'AddVehicleType',
-      component: AddVehicleType
+      component: AddVehicleType,
+      meta: {
+        needLogin: true
+      }
     },
     {
       path: "/CarRentalOrder",
       name: 'CarRentalOrder',
-      component: CarRentalOrder
+      component: CarRentalOrder,
+      meta: {
+        needLogin: true
+      }
     },
     {
       path: "/CarRentalRefund",
       name: 'CarRentalRefund',
-      component: CarRentalRefund
+      component: CarRentalRefund,
+      meta: {
+        needLogin: true
+      }
     },
     {
       path: "/vehicleEntry/:id",
@@ -85,7 +112,24 @@ export default new Router({
     {
       path: "/CurrentAnnouncement",
       name: 'CurrentAnnouncement',
-      component: CurrentAnnouncement
+      component: CurrentAnnouncement,
+      meta: {
+        needLogin: true
+      }
     },
   ],
 })
+router.beforeEach(function (to, from, next) {
+  if (to.meta && to.meta.needLogin) {
+    //需要登录的页面
+    if (store.state.data) {
+      //已登录
+      next();
+    } else {
+      next("/login"); //跳转到登录页面
+    }
+  } else {
+    next();
+  }
+})
+export default router;
