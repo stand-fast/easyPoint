@@ -51,7 +51,7 @@ Page{
 }
 .content {
     width: 100%;
-    height: 866rpx;
+    /* height: 866rpx; */
     display: flex;
     flex-direction: row;
     margin-top: 6rpx;
@@ -59,7 +59,7 @@ Page{
 .left {
     width: 200rpx;
     font-size: 28rpx;
-    height: 866rpx;
+    /* height: 866rpx; */
     background-color: #fff;
 }
 .left view {
@@ -82,12 +82,12 @@ Page{
     height: 866rpx;
     overflow-y: scroll;
 }
-scroll-view:last-child{
+/* scroll-view:last-child{
     height: 866rpx;
-}
+} */
 swiper{
     width: 550rpx;
-    height: 866rpx;
+    /* height: 866rpx; */
 }
 .item_list{
     width:500rpx;
@@ -152,6 +152,10 @@ swiper{
     height: 40rpx;
     margin: 34rpx 10rpx 10rpx 130rpx;
 }
-.nogood{
-    margin: auto;
+.idleItem{
+    width: 100%;
+    font-size: 30rpx;
+    color: #999;
+    text-align: center;
+    margin-top: 400rpx;
 }

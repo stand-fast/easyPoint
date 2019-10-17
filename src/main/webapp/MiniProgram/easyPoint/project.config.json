@@ -48,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -76,6 +76,12 @@
 					"name": "confirmTicket",
 					"pathName": "pages/easyPointCar/confirmTicket/confirmTicket",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "ldleRenIndex",
+					"pathName": "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
 					"scene": null
 				}
 			]

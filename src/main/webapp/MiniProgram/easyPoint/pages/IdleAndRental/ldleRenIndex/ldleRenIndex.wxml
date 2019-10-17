@@ -31,9 +31,8 @@
                 </block>
             </block>
         </view>
-
     </view>
 </block>
 <block wx:if="{{currentTab==1}}">
-    <view>这里是闲置</view>
+    <view class="idleItem">闲置版块暂未开放，敬请期待！</view>
 </block>

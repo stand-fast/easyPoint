@@ -14,15 +14,14 @@ Page{
     box-sizing: border-box;
     z-index: 100;
 }
-.search_icon{
+.search_icon image{
     position: fixed;
     top: 34rpx;
-    left: 44rpx;
+    left: 48rpx;
     z-index: 101;
-}
-.search_icon image{
     width: 28rpx!important;
     height: 35rpx!important;
+    margin: 0!important;
 }
 .input{
     width: 550rpx;
