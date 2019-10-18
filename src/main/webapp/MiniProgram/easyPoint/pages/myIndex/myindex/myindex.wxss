@@ -13,6 +13,7 @@ Page{
     top: 0rpx;
     box-sizing: border-box;
     z-index: 100;
+    padding-bottom: constant(safe-area-inset-bottom);
 }
 .search_icon image{
     position: fixed;
@@ -22,6 +23,7 @@ Page{
     width: 28rpx!important;
     height: 35rpx!important;
     margin: 0!important;
+    padding-bottom: constant(safe-area-inset-bottom);
 }
 .input{
     width: 550rpx;

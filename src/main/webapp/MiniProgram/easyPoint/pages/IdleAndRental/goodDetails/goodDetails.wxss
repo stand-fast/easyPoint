@@ -233,7 +233,8 @@ Page{
     width: 28rpx;
     height: 28rpx;
     position: fixed;
-    margin: 1rpx 0 1rpx -16rpx;
+    bottom: 48rpx;
+    left: 161rpx;
 }
 .dialog_screen {
   width: 100%;

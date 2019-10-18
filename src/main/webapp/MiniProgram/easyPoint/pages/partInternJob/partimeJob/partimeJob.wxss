@@ -57,10 +57,12 @@ Page{
     font-size: 32rpx;
     color: #bbb;
 }
-.nav_search icon{
-    position: absolute;
-    right: 30rpx;
-    top:38rpx;
+.nav_search image{
+    width: 28rpx;
+    height: 34rpx;
+    position: fixed;
+    right: 32rpx;
+    top:40rpx;
     margin-right: 20rpx;
     z-index: 100;
 }
@@ -103,6 +105,7 @@ Page{
 .jobSalary{
     width: 140rpx;
     font-size: 30rpx;
+    font-family: 微软雅黑;
     height: 44rpx;
     line-height: 44rpx;
     color: #56b4f6;
@@ -150,14 +153,16 @@ Page{
     width: 200rpx;
 }
 .lookDt{
+    height: 50rpx;
     font-size: 34rpx;
     color: #56b4f6;
     justify-content: center;
 }
 .look_text{
+    height: 50rpx;
+    line-height: 50rpx;
     font-size: 26rpx;
     margin-left: 24rpx;
-    margin-top: 10rpx;
 }
 .hr{
     width: 100%;
@@ -179,7 +184,7 @@ Page{
 .lookDt image{
     width: 30rpx;
     height: 30rpx;
-    margin-top: 15rpx;
+    margin: auto 0;
 }
 .more-noData{
   margin: 10px 0;
