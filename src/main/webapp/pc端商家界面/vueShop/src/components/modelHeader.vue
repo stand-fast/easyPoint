@@ -29,13 +29,13 @@ li {
 }
 @font-face {
   font-family: "iconfont"; /* project id 1288209 */
-  src: url("//at.alicdn.com/t/font_1288209_6viy3pgtda.eot");
-  src: url("//at.alicdn.com/t/font_1288209_6viy3pgtda.eot?#iefix")
+  src: url("//at.alicdn.com/t/font_1288209_8bmpnlgl1s.eot");
+  src: url("//at.alicdn.com/t/font_1288209_8bmpnlgl1s.eot?#iefix")
       format("embedded-opentype"),
-    url("//at.alicdn.com/t/font_1288209_6viy3pgtda.woff2") format("woff2"),
-    url("//at.alicdn.com/t/font_1288209_6viy3pgtda.woff") format("woff"),
-    url("//at.alicdn.com/t/font_1288209_6viy3pgtda.ttf") format("truetype"),
-    url("//at.alicdn.com/t/font_1288209_6viy3pgtda.svg#iconfont") format("svg");
+    url("//at.alicdn.com/t/font_1288209_8bmpnlgl1s.woff2") format("woff2"),
+    url("//at.alicdn.com/t/font_1288209_8bmpnlgl1s.woff") format("woff"),
+    url("//at.alicdn.com/t/font_1288209_8bmpnlgl1s.ttf") format("truetype"),
+    url("//at.alicdn.com/t/font_1288209_8bmpnlgl1s.svg#iconfont") format("svg");
 }
 .icon {
   font-family: "iconfont" !important;

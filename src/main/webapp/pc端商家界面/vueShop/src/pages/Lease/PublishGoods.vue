@@ -152,30 +152,7 @@
           <li class="publishPartImg">
             <div class="partTitle">商品1:</div>
             <div class="CommodityCategory">
-              <el-upload action="接口路径" list-type="picture-card" ref="upload" :auto-upload="false">
-                <i slot="default" class="el-icon-plus"></i>
-                <div slot="file" slot-scope="{file}">
-                  <img class="el-upload-list__item-thumbnail" :src="file.url" alt />
-                  <span class="el-upload-list__item-actions">
-                    <span
-                      class="el-upload-list__item-preview"
-                      @click="handlePictureCardPreview(file)"
-                    >
-                      <i class="el-icon-zoom-in"></i>
-                    </span>
-                    <span
-                      v-if="!disabled"
-                      class="el-upload-list__item-delete"
-                      @click="handleRemoveSpecifications(file)"
-                    >
-                      <i class="el-icon-delete"></i>
-                    </span>
-                  </span>
-                </div>
-              </el-upload>
-              <el-dialog :visible.sync="dialogVisible">
-                <img width="100%" :src="dialogImageUrl" alt />
-              </el-dialog>
+              <specifications />
             </div>
           </li>
         </div>
@@ -184,6 +161,7 @@
   </div>
 </template>
 <script>
+import specifications from "../../components/specifications.vue";
 export default {
   data() {
     return {
@@ -235,14 +213,10 @@ export default {
       }
     }
   },
+  components: {
+    specifications
+  },
   methods: {
-    handleRemoveSpecifications(file) {
-      console.log(file.uid);
-    },
-    handlePictureCardPreview(file) {
-      this.dialogImageUrl = file.url;
-      this.dialogVisible = true;
-    },
     handleRemove(file, fileList) {
       console.log(file, fileList);
     },
@@ -268,7 +242,6 @@ export default {
   overflow: hidden;
 }
 .publishPartImg .partTitle {
-  overflow: hidden;
   margin-right: 20px;
   width: 100px;
   height: 40px;
@@ -278,7 +251,10 @@ export default {
   width: 265px !important;
 }
 .CommodityCategory {
-  width: 500px;
+  width: 630px;
+  padding: 5px 10px;
   background-color: #f2f2f2;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
 }
 </style>
