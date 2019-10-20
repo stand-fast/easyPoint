@@ -31,3 +31,9 @@
     margin: 5%;
     border-radius: 18rpx;
 }
+::-webkit-scrollbar{
+    width: 0rpx;
+    height: 0rpx;
+    color: transparent;
+    display: none;
+}
