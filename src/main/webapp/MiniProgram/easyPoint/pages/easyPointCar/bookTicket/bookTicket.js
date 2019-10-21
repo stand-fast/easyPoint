@@ -1,6 +1,5 @@
 // pages/easyPointCar/bookTicket/bookTicket.js
 var dateTimePicker = require('../../../utils/dateTimePicker.js');
-
 Page({
 
     /**

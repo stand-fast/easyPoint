@@ -129,3 +129,9 @@ Page{
 .last{
     margin-top: 32rpx;
 }
+.noOrder{
+    font-size: 30rpx;
+    color: #999;
+    margin-top:230rpx;
+    text-align: center;
+}

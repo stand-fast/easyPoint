@@ -1,4 +1,7 @@
 /* pages/easyPointCar/bookTicket/bookTicket.wxss */
+Page{
+    font-family: 黑体;
+}
 .header{
     width: 100%;
     height: 270rpx;
@@ -76,6 +79,9 @@
     padding-left:50rpx; 
     color: #999;
 }
+picker{
+    z-index: 1;
+}
 .formContent input{
     width: 356rpx;
     font-size: 30rpx;
@@ -106,7 +112,7 @@
 }
 .wang{
     width: 88rpx!important;
-    padding-left:0rpx!important; 
+    padding-left:8rpx!important; 
 }
 .square1,.baosquare1{
     width: 22rpx;
@@ -127,8 +133,8 @@
 .square2 image{
     width: 28rpx;
     height: 28rpx;
-    position: fixed;
-    margin: -1rpx 0 1rpx -3rpx;
+    position: absolute;
+    margin: -2rpx -1rpx!important;
 }
 .heng{
     height: 2rpx;
@@ -137,10 +143,13 @@
 .Text{
     color:#56b4f6;
     font-size: 24rpx;
+    width: 210rpx;
+    height: 34rpx;
+    line-height: 34rpx;
     text-decoration: underline;
 }
- .baosquare1{
-    margin: 8rpx 10rpx 0rpx 60rpx!important;
+ .baosquare1,.baosquare2{
+    margin: 6rpx 10rpx 0rpx 56rpx!important;
 }
 .insurance_text{
     display: flex;
@@ -150,11 +159,8 @@
     width: 28rpx;
     height: 28rpx;
     position: fixed;
-    bottom: 17rpx;
-    left: 219rpx;
-}
-.baosquare2{
-    margin: 8rpx 10rpx 0rpx 60rpx!important;
+    bottom: 20rpx;
+    left: 214rpx;
 }
 .traBottom{
     width: 100%;
@@ -163,6 +169,7 @@
     bottom: 0rpx;
     display: flex;
     flex-direction: row;
+    z-index: 1000;
 }
 .contactBtn{
     width: 160rpx;
@@ -185,6 +192,7 @@
     width: 400rpx;
     height: 110rpx;
     text-align: center;
+    background-color: #fff;
     border-top: 1rpx solid #eee;
 }
 .money_text{
@@ -201,6 +209,7 @@
     line-height: 40rpx;
     color: #333;
     font-size: 30rpx;
+    font-family: 微软雅黑;
 }
 .submitBtn{
     width: 190rpx;
