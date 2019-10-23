@@ -149,13 +149,25 @@
           <span>商品类别填写</span>
         </div>
         <div class="contentBlockPart">
-          <li class="publishPartImg">
-            <div class="partTitle">商品1:</div>
+          <li class="publishPartImg" v-for="(item,index) in itemsData" :key="index">
+            <div class="partTitle">
+              <input v-model="item.itemsName" />
+            </div>
             <div class="CommodityCategory">
-              <specifications />
+              <specifications
+                :index="index"
+                :filesName="item.filesName"
+                :filesUrl="item.filesUrl"
+                :items="item.items"
+                @items="handleItemsChange"
+              />
             </div>
           </li>
+          <div class="elButton">
+            <el-button @click="add" class="addButton" type="primary" icon="el-icon-edit">添加商品</el-button>
+          </div>
         </div>
+        <button @click="submit()">提交</button>
       </div>
     </div>
   </div>
@@ -181,9 +193,13 @@ export default {
         //     "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100"
         // },
       ],
-      dialogImageUrl: "",
-      dialogVisible: false,
-      disabled: false,
+      itemsData: [
+        {
+          filesName: "",
+          filesUrl: "",
+          items: [{ specifc: "", price: "", save: "" }]
+        }
+      ],
       themeOptions: [
         {
           value: "1",
@@ -217,6 +233,24 @@ export default {
     specifications
   },
   methods: {
+    add() {
+      this.itemsData.push({
+        filesName: "",
+        filesUrl: "",
+        items: [{ specifc: "", price: "", save: "" }]
+      });
+    },
+    handleItemsChange(index, items, filesName, filesUrl) {
+      //console.log(index, items, filesName, filesUrl);
+      this.itemsData[index].filesName = filesName;
+      this.itemsData[index].filesUrl = filesUrl;
+      this.itemsData[index].items = JSON.parse(JSON.stringify(items));
+      this.itemsData = JSON.parse(JSON.stringify(this.itemsData));
+      console.log(this.itemsData);
+    },
+    submit() {
+      console.log(JSON.parse(JSON.stringify(this.itemsData)));
+    },
     handleRemove(file, fileList) {
       console.log(file, fileList);
     },
@@ -243,7 +277,7 @@ export default {
 }
 .publishPartImg .partTitle {
   margin-right: 20px;
-  width: 100px;
+  min-width: 100px;
   height: 40px;
   line-height: 40px;
 }
@@ -256,5 +290,18 @@ export default {
   background-color: #f2f2f2;
   border: 1px solid #dcdfe6;
   border-radius: 4px;
+}
+.elButton {
+  margin-top: 20px;
+  text-align: center;
+}
+.partTitle input {
+  border: 1px solid #dcdfe6;
+  width: 100px;
+  height: 40px;
+  padding: 0 10px;
+  outline: none;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 </style>
