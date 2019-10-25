@@ -29,13 +29,13 @@ li {
 }
 @font-face {
   font-family: "iconfont"; /* project id 1288209 */
-  src: url("//at.alicdn.com/t/font_1288209_oat1z6hwe39.eot");
-  src: url("//at.alicdn.com/t/font_1288209_oat1z6hwe39.eot?#iefix")
+  src: url("../assets/icon/iconfont.eot");
+  src: url("../assets/icon/iconfont.eot?#iefix")
       format("embedded-opentype"),
-    url("//at.alicdn.com/t/font_1288209_oat1z6hwe39.woff2") format("woff2"),
-    url("//at.alicdn.com/t/font_1288209_oat1z6hwe39.woff") format("woff"),
-    url("//at.alicdn.com/t/font_1288209_oat1z6hwe39.ttf") format("truetype"),
-    url("//at.alicdn.com/t/font_1288209_oat1z6hwe39.svg#iconfont") format("svg");
+    url("../assets/icon/iconfont.woff2") format("woff2"),
+    url("../assets/icon/iconfont.woff") format("woff"),
+    url("../assets/icon/iconfont.ttf") format("truetype"),
+    url("../assets/icon/iconfont.svg#iconfont") format("svg");
 }
 .icon {
   font-family: "iconfont" !important;
