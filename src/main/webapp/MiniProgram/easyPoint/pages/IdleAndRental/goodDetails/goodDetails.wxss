@@ -289,7 +289,7 @@ Page{
     font-size: 40rpx;
 }
 #dislog_item_goods_chooseType{
-    width: 500rpx;
+    width: 560rpx;
     font-size: 26rpx;
     color: #999;
     margin-top: 20rpx;

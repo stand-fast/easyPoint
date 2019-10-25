@@ -7,6 +7,7 @@
         "pages/user/refund/refund",
         "pages/easyPointCar/queryTicket/queryTicket",
         "pages/user/myOrderCarDetail/myOrderCarDetail",
+        "pages/user/myOrderRentDetail/myOrderRentDetail",
         "pages/user/editInformation/editInformation",
         "pages/easyPointCar/confirmTicket/confirmTicket",
         "pages/easyPointCar/changeContact/changeContact",

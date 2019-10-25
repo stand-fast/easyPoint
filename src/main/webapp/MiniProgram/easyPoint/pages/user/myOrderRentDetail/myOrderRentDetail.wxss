@@ -1,0 +1,160 @@
+/* pages/user/myOrderRentDetail/myOrderRentDetail.wxss */
+Page{
+    background-color: #f2f2f2;
+    font-family: 黑体;
+}
+.order_status,.order_rent_host_item,.order_rent_detail_item,.order_rent_order_numtime,.order_applyRefund{
+    margin-top: 8rpx;
+    background-color: #fff;
+}
+.order_status,.order_applyRefund{
+    width: 100%;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #56b4f6;
+}
+.order_rent_host_item{
+    height: 80rpx;
+    line-height: 80rpx;
+    padding: 0 40rpx;
+    font-size: 30rpx;
+    display: flex;
+    flex-direction: row;
+}
+.item_list_text{
+    width: 150rpx;
+    color: #333;
+}
+.item_list_orderHostname{
+    width: 240rpx;
+    color: #666;
+    margin-left: 170rpx;
+    text-align: right;
+}
+.item_list_orderHostPhone{
+    width: 210rpx;
+    color: #666;
+    margin-left: 20rpx;
+    text-align: right;
+}
+.order_rent_detail_item{
+    padding: 0 40rpx;
+}
+.shopname{
+    width: 400rpx;
+    height: 46rpx;
+    line-height: 46rpx;
+    font-size: 30rpx;
+    color: #333;
+    padding:32rpx 0 20rpx 0;
+}
+.detail_item_list_pic_name,.list_detail_line,.detail_item_lists{
+    display: flex;
+    flex-direction: row;
+}
+.detail_item_list_pic_name image{
+    width: 120rpx;
+    height: 120rpx;
+    margin-right: 20rpx;
+}
+.detail_item_list_goodname{
+    font-size: 30rpx;
+    width: 390rpx;
+    height: 46rpx;
+    line-height: 46rpx;
+    color: #56b4f6;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: normal !important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.detail_litem_list_goodPrice{
+    font-size: 30rpx;
+    width: 120rpx;
+    height: 46rpx;
+    color: #333;
+    line-height: 46rpx;
+    font-family: 微软雅黑;
+    text-align: right;
+    margin-left:10rpx; 
+}
+.kong{
+    margin-top: 24rpx;
+}
+.line{
+    height: 2rpx;
+    color: #f2f2f2;
+    background-color: #f2f2f2;
+    margin:24rpx 0;
+}
+.detail_item_list_goodDecription{
+    width: 450rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 26rpx;
+    color: #666;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: normal !important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.detail_item_list_goodNumber{
+    width: 60rpx;
+    font-size: 26rpx;
+    color: #666;
+    height: 40rpx;
+    line-height: 40rpx;
+    text-align: right;
+}
+.order_rent_item_text{
+    width: 120rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 26rpx;
+    color: #333;
+}
+.order_rent_item_content{
+    font-size: 26rpx;
+    width: 480rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    text-align: right;
+    color: #666;
+    font-family: 微软雅黑;
+    margin-left: 50rpx;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: normal !important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.order_rent_order_numtime{
+    padding: 32rpx 40rpx;
+}
+.goodSum{
+    font-size: 30rpx;
+    color: #333;
+    height: 46rpx;
+    line-height: 46rpx;
+    padding-bottom: 24rpx;
+    text-align: right;
+}
+.order_numtime_text{
+    height: 46rpx;
+    line-height: 46rpx;
+    font-size: 26rpx;
+    color: #333;
+}
+.orderId_color{
+    color: #56b4f6;
+}

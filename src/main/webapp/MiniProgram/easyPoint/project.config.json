@@ -48,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -66,8 +66,22 @@
 				},
 				{
 					"id": -1,
-					"name": "bookTicket",
-					"pathName": "pages/easyPointCar/bookTicket/bookTicket",
+					"name": "myOrder",
+					"pathName": "pages/user/myOrder/myOrder",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "myOrderRentDetail",
+					"pathName": "pages/user/myOrderRentDetail/myOrderRentDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "goodDetails",
+					"pathName": "pages/IdleAndRental/goodDetails/goodDetails",
 					"query": "",
 					"scene": null
 				}

@@ -12,6 +12,7 @@ Page({
         chooseType:'',
         chooseSize:'',
         number:0,
+        save:'',
         leaseDate:0,
         typeclick: null,
         sizeclick:null,
@@ -45,23 +46,43 @@ Page({
             returnGood: "用户使用完毕后请确定清洗物品干净，即可送至指定地点归还，一般租借期限为3天",
             businessHours:"早上10：30至晚上21：00",
             goodVariety:[{
-                good_id:"sdhfjh21234",
-                img:"/images/goodImg.png",
-                variety:"男士正装全套",
-                price:"30",
+                filesname:"",
+                filesUrl:"/images/goodImg.png",
+                itemName: "男士正装全套",
+                items:[{
+                    specifc:"S",price:"15",save:"5"
+                },{
+                    specifc: "M", price: "15", save: "3"
+                },{
+                    specifc: "L", price: "15", save: "3"
+                }]
+            },{
+                filesname: "",
+                filesUrl: "/images/goodImg.png",
+                itemName: "男士正装全套",
+                items: [{
+                    specifc: "S", price: "15", save: "5"
+                }, {
+                    specifc: "M", price: "15", save: "3"
+                }, {
+                    specifc: "L", price: "15", save: "3"
+                },{
+                    specifc: "XL", price: "30", save: "2"
+                }]
             }, {
-                good_id: "sdhfjh21234",
-                img: "/images/goodImg.png",
-                variety: "男士正装全套",
-                price: "20",
-              }, {
-                good_id: "sdhfjh21234",
-                img: "/images/goodImg.png",
-                variety: "男士正装全套",
-                price: "15",
-                }, 
-              ],
-            size: ["S", "M", "L", "XL", "XXL"],
+                filesname: "",
+                filesUrl: "/images/goodImg.png",
+                itemName: "男士正装全套",
+                items: [{
+                    specifc: "S", price: "15", save: "5"
+                }, {
+                    specifc: "M", price: "15", save: "3"
+                }, {
+                    specifc: "L", price: "15", save: "3"
+                }, {
+                    specifc: "XL", price: "30", save: "2"
+                }]
+            }],
         }
     },
     swichNav: function (e) {
@@ -143,23 +164,36 @@ Page({
             if (i == index) {
                 this.setData({
                     typeclick: i,
-                    variety: goodVariety[i].variety,
-                    price: goodVariety[i].price, 
-                    img: goodVariety[i].img
+                    chooseType: goodVariety[i].itemName,
+                    chooseImg: goodVariety[i].filesUrl
                 })
                 break;
             }
+        }
+        var typeclick = this.data.typeclick
+        var sizenum = this.data.good_details_info.goodVariety[typeclick].items.length
+        if (sizenum > 6) {
+            var time = sizenum / 6
+            if (sizenum % 6 != 0) {
+                time = time + 1
+            }
+            this.setData({
+                sizeHeight: 80 * time
+            })
         }
     },
     //点击选择码数
     sizeClick: function (e) {
         var index = e.currentTarget.dataset.index;
-        var size = this.data.good_details_info.size;
+        var typeclick=this.data.typeclick
+        var size = this.data.good_details_info.goodVariety[typeclick].items;
         for (var i = 0; i < size.length; i++) {
               if (i == index) {
                   this.setData({
                       sizeclick: i,
-                      size: size[i],
+                      setPrice:size[i].price,
+                      chooseSize: size[i].specifc,
+                      save:size[i].save
                   })
                   break;
               }
@@ -298,13 +332,12 @@ Page({
      */
     onLoad: function (options) {
         // 获取完整的年月日 时分秒，以及默认显示的数组
-        var obj1 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
+        var obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
         // 精确到分的处理，将数组的秒去掉
-        var obj1 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
-        var lastArray = obj1.dateTimeArray.pop();
-        var lastTime = obj1.dateTime.pop();
+        var lastArray = obj.dateTimeArray.pop();
+        var lastTime = obj.dateTime.pop();
         //日期转换
-        var data = obj1.dateTimeArray;
+        var data = obj.dateTimeArray;
         var name;
         for (var i = 0; i < data.length; i++) {
             switch (i) {
@@ -330,7 +363,7 @@ Page({
         }
         this.setData({
             dateTimeArray: data,
-            dateTime: obj1.dateTime,
+            dateTime: obj.dateTime,
         });
 
         var typenum = this.data.good_details_info.goodVariety.length
@@ -341,16 +374,6 @@ Page({
             }
             this.setData({
                 typeHeight: 80 * time
-            })
-        }
-        var sizenum = this.data.good_details_info.size.length
-        if (sizenum > 6) {
-            var time = sizenum / 6
-            if (sizenum % 6 != 0) {
-                time = time + 1
-            }
-            this.setData({
-                sizeHeight: 80 * time
             })
         }
         //console.log(options.id)
