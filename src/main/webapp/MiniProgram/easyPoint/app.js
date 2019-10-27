@@ -35,9 +35,10 @@ App({
   },
   globalData: {
     userInfo: null,
-    isIphoneX:false
+    isIphoneX:false,
+    requestUrl:'http://easypoint.club/miniProgram/'
   },
-    onShow: function () {
+  onShow: function () {
         let that = this;
         wx.getSystemInfo({
             success: res => {

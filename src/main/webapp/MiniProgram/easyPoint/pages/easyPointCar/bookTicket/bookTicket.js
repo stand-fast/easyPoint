@@ -1,5 +1,6 @@
 // pages/easyPointCar/bookTicket/bookTicket.js
 var dateTimePicker = require('../../../utils/dateTimePicker.js');
+const app = getApp()
 Page({
 
     /**
@@ -112,59 +113,77 @@ Page({
               })
             }
           }
-          wx.request({
-            url: 'http://easypoint.club/orderTourismOrder',
-            header: {
-              "Content-Type": "application/x-www-form-urlencoded"
-            },
-            method: "POST",
-            data: {
-               uid:"1",
-               username: that.data.username,
-               phone: that.data.phone,
-               departurePlace: e.detail.value.startAddress,
-               destination: e.detail.value.endAddress,
-               travelNum: e.detail.value.perNumbers,
-               vehicleType: that.data.vehicleId,
-               departureTime: that.data.startTime,
-               isBack: that.data.is_back,
-               backTime: that.data.returnTime,
-               isInsurance: that.data.is_insurance,
-               deposit: that.data.money,
-            },
-            success: function (res) {
-               console.log(res);
-                wx.showToast({
-                  title: '提交成功！！！',//这里打印出登录成功
-                  icon: 'success',
-                  duration: 2000
-                })
-                that.setData({
-                  successShowmodal: true,
-                })
-            }
-            
-          })
+        wx.request({
+          url: 'https://easypoint.club/miniProgram/orderTourismOrder',
+          data: {
+            passenger: that.data.username,
+            phone: that.data.phone,
+            departurePlace: e.detail.value.startAddress,
+            destination: e.detail.value.endAddress,
+            travelNum: e.detail.value.perNumbers,
+            vehicleId: that.data.vehicleId,
+            departureTime: that.data.startTime,
+            type:0,
+            ifBack: that.data.is_back,
+            backTime: that.data.returnTime,
+            ifInsurance: that.data.is_insurance,
+            payMoney: 0.01,//已付款金额，等于定金+（如有购买保险，加上）
+            body: '出行租车', //产品简单描述
+            // deposit: that.data.money,
+          },
+          method: 'Post',
+          header: { 'content-type': 'application/x-www-form-urlencoded' },
+          success: function (res) {
+            var pay = res.data
+            console.log(pay)
+            //发起支付 
+            var timeStamp = pay.data.timeStamp + "";
+            console.log(timeStamp)
+            var packages = pay.data.packages;//统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=***
+            var paySign = pay.data.paySign;//paySign = MD5(appId=wxd678efh567hg6787&nonceStr=5K8264ILTKCH16CQ2502SI8ZNMTM67VS&package=prepay_id=wx2017033010242291fcfe0db70013231072&signType=MD5&timeStamp=1490840662&key=qazwsxedcrfvtgbyhnujmikolp111111) = 22D9B4E54AB1950F51E0649E8810ACD6
+            var nonceStr = pay.data.nonceStr;//随机字符串，长度为32个字符以下
+            var param = { "timeStamp": timeStamp, "package": packages, "paySign": paySign, "signType": "MD5", "nonceStr": nonceStr };
+            that.pay(param);
+          },
+          fail: function () {
+            console.log("失败")
+          }
+        })
+      }
+          
         }
 
-
-      //接上服务器后删除
-      // that.setData({
-      //   successShowmodal: true,
-      // })
-    }
-
-
-    
   },
-
-    modal_click_Hidden: function () {       //隐藏弹框
+  /* 支付   */
+  pay: function (param) {
+    wx.requestPayment({
+      timeStamp: param.timeStamp,
+      nonceStr: param.nonceStr,
+      package: param.package,
+      signType: param.signType,
+      paySign: param.paySign,
+      success: function (res) {
+        wx.showToast({
+          title: '支付成功',
+          icon: 'success',
+          duration: 2000
+        })
+      },
+      fail: function (res) {
+        console.log(res)
+        console.log("支付失败");
+      },
+      complete: function (res) {
+        console.log("pay complete");
+      }
+    })
+  },
+  modal_click_Hidden: function () {       //隐藏弹框
         this.setData({
             successShowmodal: false,
         })
-    },
-
-    swichNav: function (e) {
+  },
+   swichNav: function (e) {
         var that = this;
         if (this.data.currentTab === e.target.dataset.current){
             return false;
@@ -209,10 +228,8 @@ Page({
     },
     //选择车辆类型
     changeSeatType:function(e){
-        var index=e.detail.value;
-
+      var index = e.detail.value;
       var vehicleId = this.data.seatvehicleList[index].vehicleId
-      // console.log(vehicleId);
         this.setData({
             carType:this.data.seatNumber[index],
             money: this.data.seatDeposit[index],
@@ -331,13 +348,12 @@ Page({
         this.setData({
           associations: associationsName,
         })
-    },
-
+  },
   //请求车辆类型数据以及对应应付定金
   getMessage: function () {
       var selt = this;
       wx.request({
-        url: 'http://easypoint.club/findAllVehicleType',
+        url: app.globalData.requestUrl+'findAllVehicleType',
         method: 'Post',
         header: { 'content-type': 'application/x-www-form-urlencoded' },
         success: function (res) {
@@ -350,10 +366,12 @@ Page({
             seatDeposit.push(seatvehicle[i].deposit);
           }
           selt.setData({
+            seatvehicleList: seatvehicle,
             seatNumber: seatNumber,
             seatDeposit: seatDeposit
           })
-
+          // console.log(selt.data.seatNumber);
+          // console.log(selt.data.seatDeposit)
         }
       })
     },

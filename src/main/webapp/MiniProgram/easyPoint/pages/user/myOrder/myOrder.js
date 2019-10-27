@@ -1,11 +1,12 @@
 // pages/user/myOrder/myOrder.js
+const app = getApp()
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        currenTab:2,
+        currenTab:0,
         ruralCommittee:[
           {
             ticketId: 623123513,
@@ -103,13 +104,14 @@ Page({
     getMessage: function (type) {
       var selt = this;
       wx.request({
-        url: 'http://easypoint.club/findTravelOrder',
+        url: app.globalData.requestUrl+'findTravelOrder',
         method: 'get',
         data:{
           uid:'1',
         },
         header: { 'content-type': 'application/x-www-form-urlencoded' },
         success: function (res) {
+          console.log(res);
           if(res.data.code == 200){
             console.log("查询用户的出行订单成功");
             console.log(res.data.data)
