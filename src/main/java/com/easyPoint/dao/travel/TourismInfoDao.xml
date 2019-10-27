@@ -35,7 +35,7 @@
 
     <!--查询订单总数-->
     <select id="countTourismOrderNum" resultType="Integer">
-        select count(travel_order_id) from tourism_order
+        select count(*) from tourism_order
     </select>
 
     <!--分页查询租车订单信息-->
@@ -90,8 +90,8 @@
                                   )
     </insert>
     <insert id="insertTourismOrderInfo" parameterType="TourismOrderInfo">
-        insert into tourism_order (travel_order_id,vehicle_id,passenger,phone,is_insurance, pay_money, make_order_time)
-                                    value (#{travelOrderId},#{vehicleId},#{passenger},#{phone} #{ifInsurance}, #{payMoney}, #{makeOrderTime})
+        insert into tourism_order (travel_order_id,vehicle_id,passenger,phone,is_insurance, pay_money, make_order_time, out_trade_no,transaction_id)
+                                    value (#{travelOrderId},#{vehicleId},#{passenger},#{phone}, #{ifInsurance}, #{payMoney}, #{makeOrderTime},#{outTradeNo},#{transactionId})
     </insert>
 
     <update id="updateTourismOrderInfoAddDriverInfo" parameterType="TourismOrderInfo">

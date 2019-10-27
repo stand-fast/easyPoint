@@ -22,10 +22,17 @@ public class TemplateMessageServiceImpl implements TemplateMessageService {
     private RedisTemplate<String,String> redisTemplate;
 
     @Override
-    public String sendTemplateMessage(String param) {
+    public void sendTemplateMessage(String param) {
+        //从redis中获取accessToken
         String accessToken = redisTemplate.opsForValue().get("access_token");
+        //如果accessToke不为空，则发送模板消息
         if(accessToken != null && accessToken != ""){
-            return accessToken;
+            String url = MiniProConstants.TEMPLATE_SEND_URL + "?access_token=" + accessToken;
+            System.out.println("发送模板消息");
+            //发送模板消息请求
+            String re = HttpRequestUtil.sendPost(url,param);
+            System.out.println("放回结果："+re);
+            return;
         }
         //请求获取小程序的access_token的请求参数
         String getAccessTokenParam = "grant_type=" + MiniProConstants.MESSAGE_GRANT_TYPE +
@@ -37,10 +44,11 @@ public class TemplateMessageServiceImpl implements TemplateMessageService {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             JsonNode jsonNode = objectMapper.readTree(accessTokenJson);
+            System.out.println("jsonNode:--------"+jsonNode);
             accessToken = jsonNode.path("access_token").asText();
             //将access_token存入redis中，并设置缓存时间为7天减去一个小时
             redisTemplate.opsForValue().set("access_token",accessToken,167, TimeUnit.HOURS);
-            System.out.println(accessToken);
+            System.out.println("redis缓存accessToken："+accessToken);
             //发送模板消息的请求路径
             String url = MiniProConstants.TEMPLATE_SEND_URL + "?access_token=" + accessToken;
             System.out.println("发送模板消息");
@@ -49,8 +57,6 @@ public class TemplateMessageServiceImpl implements TemplateMessageService {
             System.out.println("放回结果："+re);
         }catch (Exception e){
             log.error("解析accessToken出现异常");
-            return null;
         }
-        return accessToken;
     }
 }
