@@ -128,12 +128,6 @@ Page{
     background-color: #ffdd42;
     margin: auto 10rpx;
 }
-.dot1{
-    width: 26rpx;
-    font-weight: bold;
-    font-size: 38rpx;
-    color: #ffdd42;
-}
 .material{
     display: flex;
     flex-direction: row;
@@ -146,17 +140,12 @@ Page{
     line-height: 40rpx;
 }
 .introduce{
-    width: 100%;
     line-height: 40rpx;
     font-size: 28rpx;
     color: #999; 
-    display: flex;
-    flex-direction: row;
-}
-.introduce text{
     text-indent: 56rpx;
     text-align: left;
-    padding: 0 10rpx;
+    padding: 0 10rpx 0 20rpx;
 }
 .pass{
     margin-top: 14rpx;
@@ -227,7 +216,7 @@ Page{
     border: none;
 }
 .Text{
-    margin-top: 35rpx;
+    margin-top: 37rpx;
     color:#999;
     font-size: 28rpx;
     text-decoration: underline;
@@ -252,29 +241,8 @@ Page{
     width: 28rpx;
     height: 28rpx;
     position: fixed;
-    margin: 1rpx 0 1rpx -16rpx;
-}
-.mask_layer {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: 999;
-    left:0;top:0;
-    background: #000;
-    opacity: 0.5;
-    overflow: hidden;
-}
-.modal_box {
-    width: 90%;
-    height: 400rpx;
-    overflow: hidden;
-    position: fixed;
-    top: 25%;
-    left: 0;
-    z-index: 1001;
-    background: #fafafa;
-    margin: 5%;
-    border-radius: 20rpx;
+    bottom: 48rpx;
+    left: 160rpx;
 }
 .model_success{
     margin:60rpx 0 30rpx 0;
@@ -400,6 +368,6 @@ Page{
     color: #fff;
     font-size: 30rpx;
 }
-.confirmBtn button::after{
+.confirmBtn button::after,.success_btn::after{
     border: none;
 }

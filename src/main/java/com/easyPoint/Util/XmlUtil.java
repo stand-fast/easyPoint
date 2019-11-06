@@ -1,6 +1,7 @@
 package com.easyPoint.Util;
 
 import com.easyPoint.dto.pay.PaymentDto;
+import com.easyPoint.dto.pay.RefundParamDto;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.core.util.QuickWriter;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
@@ -66,5 +67,10 @@ public class XmlUtil {
     public static String messageToXML(PaymentDto paymentPo){
         xstream.alias("xml",PaymentDto.class);
         return xstream.toXML(paymentPo);
+    }
+
+    public static String messageToXML(RefundParamDto refundParamDto){
+        xstream.alias("xml",RefundParamDto.class);
+        return xstream.toXML(refundParamDto);
     }
 }

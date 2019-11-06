@@ -44,10 +44,10 @@ public class TemplateMessageServiceImpl implements TemplateMessageService {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             JsonNode jsonNode = objectMapper.readTree(accessTokenJson);
-            System.out.println("jsonNode:--------"+jsonNode);
+            //System.out.println("jsonNode:--------"+jsonNode);
             accessToken = jsonNode.path("access_token").asText();
-            //将access_token存入redis中，并设置缓存时间为7天减去一个小时
-            redisTemplate.opsForValue().set("access_token",accessToken,167, TimeUnit.HOURS);
+            //将access_token存入redis中，并设置缓存时间为7200秒
+            redisTemplate.opsForValue().set("access_token",accessToken,7200, TimeUnit.SECONDS);
             System.out.println("redis缓存accessToken："+accessToken);
             //发送模板消息的请求路径
             String url = MiniProConstants.TEMPLATE_SEND_URL + "?access_token=" + accessToken;

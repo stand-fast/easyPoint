@@ -9,7 +9,6 @@ Page({
         number:1,
         check:false,
         radioStatus: false, 
-        procheck: false,
         showmodal:false,
         successPay:false,
         userInformation:{    //接上服务器后删除
@@ -79,18 +78,9 @@ Page({
     },
     //触发支付弹窗
     toPay:function(e){
-      if(this.data.procheck==true){     //判断同意协议
         this.setData({
             showmodal:true,
         })
-      }
-      else{
-        wx.showToast({
-          title: '请浏览并同意易点协议',
-          icon: 'none',
-          duration: 2000
-        })
-      }
     },
     modal_click_Hidden: function () {       //隐藏弹框
         this.setData({

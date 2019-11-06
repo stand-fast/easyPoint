@@ -1,10 +1,13 @@
 package com.easyPoint.controller.miniprogram.mine;
 
+
 import com.easyPoint.Util.HttpRequestUtil;
 import com.easyPoint.Util.JwtUtil;
+import com.easyPoint.Util.NotifyUrlConstants;
 import com.easyPoint.dto.Result;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.miniprogram.mine.UserInfoService;
+import com.easyPoint.service.pay.WxPayService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +52,11 @@ public class UserInfoController {
         }
     }
 
+
+    /**
+     * 一下为测试接口，可删除
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/test")
     public Result test(){
@@ -62,5 +70,15 @@ public class UserInfoController {
 
 
         return new Result(200,"sfdasf",result);
+    }
+    @Autowired
+    WxPayService wxPayService;
+
+    @ResponseBody
+    @RequestMapping("testRefund")
+    public Result testRefund() throws Exception{
+        System.out.println("发起退款");
+        wxPayService.requestRefund(1,1, NotifyUrlConstants.TOURISM_NOTIFY_URL);
+        return new Result(200,"退款成功");
     }
 }

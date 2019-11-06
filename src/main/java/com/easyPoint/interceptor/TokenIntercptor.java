@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
-import java.util.Date;
 
 public class TokenIntercptor implements HandlerInterceptor {
     public static final Logger log = LoggerFactory.getLogger(TokenIntercptor.class);
@@ -20,27 +19,27 @@ public class TokenIntercptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         response.setCharacterEncoding("utf-8");
         response.addHeader("token","token");
-//        String token = request.getHeader("access_token");
+        String token = request.getHeader("token");
 //        Date date = new Date(System.currentTimeMillis());
 //        //token不存在
-//        if (null != token) {
-//            //验证token是否正确
-//            boolean result = JwtUtil.verify(token);
-//            if (result) {
-//                System.out.println("token认证正确");
-//                int uid = JwtUtil.getUid(token);
-//                request.setAttribute("uid",uid);
-//                return true;
-//            }
-//            else { //if( date.getTime() <= JwtUtil.getExpiresAt(token).getTime() + 3*24*60*60*1000)
-//                System.out.println("token认证错误");
-//                int uid = JwtUtil.getUid(token);
-//                String nickName = JwtUtil.getNickNames(token);
-//                token = JwtUtil.sign(uid, nickName);
-//                response.addHeader("access_token",token);
-//                return true;
-//            }
-//        }
+        if (null != token) {
+            //验证token是否正确
+            boolean result = JwtUtil.verify(token);
+            if (result) {
+                System.out.println("token认证正确");
+                int uid = JwtUtil.getUid(token);
+                request.setAttribute("uid",uid);
+                return true;
+            }
+            else { //if( date.getTime() <= JwtUtil.getExpiresAt(token).getTime() + 3*24*60*60*1000)
+                System.out.println("token认证错误");
+                int uid = JwtUtil.getUid(token);
+                String nickName = JwtUtil.getNickNames(token);
+                token = JwtUtil.sign(uid, nickName);
+                response.addHeader("token",token);
+                return true;
+            }
+        }
 //        //登录已经过期
 //        responseMessage(response,response.getWriter());
         return true;

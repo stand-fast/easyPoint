@@ -8,8 +8,8 @@ Page({
     data: {
         currentTab: 0,
         money:0,
-        dateTime1: null, //开始时间value
-        dateTimeArray1: null, //开始时间数组
+        dateTime: null, //开始时间value
+        dateTimeArray: null, //开始时间数组
         select:false,
         check:false,
         insucheck:false,
@@ -222,15 +222,15 @@ Page({
     //出发时间
     changeStartDateTime:function(e) {
         let arr = e.detail.value
-        let dateArr = this.data.dateTimeArray1;
+        let dateArr = this.data.dateTimeArray;
         this.setData({
             startTime: dateArr[0][arr[0]].replace('年','-')+ dateArr[1][arr[1]].replace('月','-') + dateArr[2][arr[2]].replace('日',' ')+ dateArr[3][arr[3]].replace("时",":") + dateArr[4][arr[4]].replace('分','')
         });
     },
     //某一列的值改变时触发
-    changeDateTimeColumn1:function(e) {
-        let arr = this.data.dateTime1
-        let dateArr = this.data.dateTimeArray1;
+    changeDateTimeColumn:function(e) {
+        let arr = this.data.dateTime
+        let dateArr = this.data.dateTimeArray;
         arr[e.detail.column] = e.detail.value;
         this.setData({
             startTime: dateArr[0][arr[0]].replace('年', '-') + dateArr[1][arr[1]].replace('月', '-') + dateArr[2][arr[2]].replace('日', ' ') + dateArr[3][arr[3]].replace("时", ":") + dateArr[4][arr[4]].replace('分', '')
@@ -239,7 +239,7 @@ Page({
     //返回时间
     changereturnDateTime:function(e) {
         let arr = e.detail.value
-        let dateArr = this.data.dateTimeArray1;
+        let dateArr = this.data.dateTimeArray;
         this.setData({
             returnTime: dateArr[0][arr[0]].replace('年', '-') + dateArr[1][arr[1]].replace('月', '-') + dateArr[2][arr[2]].replace('日', ' ') + dateArr[3][arr[3]].replace("时", ":") + dateArr[4][arr[4]].replace('分', '')
         });
@@ -310,8 +310,8 @@ Page({
             }
         }
         this.setData({       
-            dateTimeArray1: data,
-            dateTime1: obj.dateTime,
+            dateTimeArray: data,
+            dateTime: obj.dateTime,
         });
 
         var userInformation = wx.getStorageSync('userInformation');

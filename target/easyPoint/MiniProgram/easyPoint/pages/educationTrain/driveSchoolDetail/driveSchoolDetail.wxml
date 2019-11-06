@@ -46,7 +46,7 @@
                 <view class="shu"></view>
                 <view class="title">驾校简介：</view>
             </view>
-            <view class="introduce"><view class="dot1">·</view><text>{{driving_school_info.drivingSchoolProfile}}</text></view>
+            <view class="introduce">{{driving_school_info.drivingSchoolProfile}}</view>
             <view class="item_title pass">
                 <view class="shu"></view>
                 <view class="title pass_text">学员通过率：<text>{{driving_school_info.passRate}}</text></view>

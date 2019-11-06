@@ -1,16 +1,21 @@
 package com.easyPoint.Util;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContexts;
+import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 
+import javax.net.ssl.SSLContext;
 import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.List;
-import java.util.Map;
+import java.security.KeyStore;
 
 
 public class HttpRequestUtil {
@@ -125,6 +130,33 @@ public class HttpRequestUtil {
             }
         }
         return result;
+    }
+
+    public static String sendHttpsPost(String param) throws Exception{
+        System.out.println("退款！");
+        //1.指定读取证书格式为PKCS12
+        KeyStore keyStore  = KeyStore.getInstance("PKCS12");
+        //2.读取本机存放的PKCS12证书文件
+        FileInputStream instream = new FileInputStream(new File(WxPayConstants.CERTIFICATE_PATH));//读取证书的安装路径
+        try {
+            //指定PKCS12的密码(商户ID)
+            keyStore.load(instream, WxPayConstants.MCH_ID.toCharArray());
+        } finally {
+            instream.close();
+        }
+        //3.ssl双向验证发送http请求报文
+        SSLContext sslcontext = SSLContexts.custom().loadKeyMaterial(keyStore, WxPayConstants.MCH_ID.toCharArray()).build();
+        SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslcontext,new String[] { "TLSv1" },null,
+                SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
+        CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(sslsf).build();
+        //4.发送数据到微信的退款接口
+        HttpPost httpost= new HttpPost(WxPayConstants.REFUND_URL);
+        httpost.setEntity(new StringEntity(param, "UTF-8"));
+        HttpResponse weixinResponse = httpClient.execute(httpost);
+        System.out.println(weixinResponse+"======================");
+        String resposeXmL = EntityUtils.toString(weixinResponse.getEntity(), "UTF-8");
+        System.out.println(resposeXmL);
+        return resposeXmL;
     }
 
 }

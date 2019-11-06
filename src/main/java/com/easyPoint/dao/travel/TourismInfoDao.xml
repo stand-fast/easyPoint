@@ -166,4 +166,10 @@
                                  where travel_order_id = #{travelOrderId} and is_modified = 0
     </update>
 
+    <!--//查询微信订单号和支付总金额-->
+    <!--TourismOrderInfo findTransactionId(int travelOrderId);-->
+    <select id="findTransactionId" parameterType="int" resultType="TourismOrderInfo">
+        SELECT pay_money, transaction_id FROM tourism_order WHERE travel_order_id = #{travelOrderId}
+    </select>
+
 </mapper>

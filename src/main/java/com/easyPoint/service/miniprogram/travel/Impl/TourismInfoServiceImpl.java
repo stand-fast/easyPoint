@@ -40,10 +40,12 @@ public class TourismInfoServiceImpl implements TourismInfoService {
     //生成预订单并发起支付，用于支付完成后保存订单到数据库
     @Override
     public MiniPaymentDto addAdvanceOrder(int uid, TourismOrderInfo tourismOrderInfo, PaymentDto paymentDto) throws Exception {
+        //数据库保存以元为单位，微信支付以分为单位
         paymentDto.setTotal_fee((int)(tourismOrderInfo.getPayMoney()*100));
         System.out.println("----金额："+ paymentDto.getTotal_fee());
         //掉用统一支付订单
         Map map = wxPayService.requestWxPay(paymentDto, uid, NotifyUrlConstants.TOURISM_NOTIFY_URL);
+        //返回商户订单号
         String outTradeNo = map.get("out_trade_no").toString();
         tourismOrderInfo.setUid(uid);
         //将预支付订单放入redis中，待支付完成后将数据放入数据库中

@@ -10,10 +10,7 @@ import com.easyPoint.service.miniprogram.travel.TourismInfoService;
 import com.easyPoint.service.pay.WxPayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -59,9 +56,7 @@ public class TourismController {
      */
     @ResponseBody
     @RequestMapping("/orderTourismOrder")
-    public Result orderTourismOrder(TourismOrderInfo tourismOrderInfo, PaymentDto paymentDto) throws Exception {
-
-        int uid = 1;
+    public Result orderTourismOrder(@RequestAttribute("uid")int uid, TourismOrderInfo tourismOrderInfo, PaymentDto paymentDto) throws Exception {
         MiniPaymentDto miniPaymentDto = tourismInfoService.addAdvanceOrder(uid, tourismOrderInfo, paymentDto);
         return new Result<>(200,"提交租车订单成功",miniPaymentDto);
     }
@@ -97,7 +92,7 @@ public class TourismController {
     public void paycallback(HttpServletRequest request, HttpServletResponse response) {
         try {
             Map<String, Object> dataMap = XmlUtil.parseXML(request);
-            System.out.println("支付成功。。。" + dataMap.get("cash_fee"));
+            //System.out.println("支付成功。。。" + dataMap.get("cash_fee"));
             if("SUCCESS".equals(dataMap.get("return_code"))){
 
                 //将订单保存到数据库
