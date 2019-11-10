@@ -2,7 +2,7 @@ package com.easyPoint.service.administrator.travel.Impl;
 
 import com.easyPoint.dao.travel.TourismInfoDao;
 import com.easyPoint.dto.Result;
-import com.easyPoint.dto.template.DriverMessageDto;
+import com.easyPoint.dto.template.MessageTemplateDto;
 import com.easyPoint.dto.travel.DriverInfoDto;
 import com.easyPoint.dto.travel.PartTourismOrderInfoDto;
 import com.easyPoint.pojo.travel.TourismOrderInfo;
@@ -173,23 +173,23 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
         data.put("keyword4",map4);
 
 
-        DriverMessageDto driverMessageDto = new DriverMessageDto();
-        driverMessageDto.setTouser("o9fyZ5U5RyDL6mdpbxPGPWjHQsrQ");
-        driverMessageDto.setTemplate_id("T2Q_F8pFHwFB3fbUttlXNFdRzkf8JFBbahcI29EJWC0");
-        driverMessageDto.setForm_id("1ef0a1dac67447a192ee84ad73a4640b");
-        driverMessageDto.setData(data);
-        driverMessageDto.setColor("#ccc");
-        driverMessageDto.setEmphasis_keyword("keyword4.DATA");
+        MessageTemplateDto messageTemplateDto = new MessageTemplateDto();
+        messageTemplateDto.setTouser("o9fyZ5U5RyDL6mdpbxPGPWjHQsrQ");
+        messageTemplateDto.setTemplate_id("T2Q_F8pFHwFB3fbUttlXNFdRzkf8JFBbahcI29EJWC0");
+        messageTemplateDto.setForm_id("1ef0a1dac67447a192ee84ad73a4640b");
+        messageTemplateDto.setData(data);
+        messageTemplateDto.setColor("#ccc");
+        messageTemplateDto.setEmphasis_keyword("keyword4.DATA");
 
 
         ObjectMapper objectMapper = new ObjectMapper();
         //将driverMessageDto转换为Json数据
         try{
-            String param = objectMapper.writeValueAsString(driverMessageDto);
+            String param = objectMapper.writeValueAsString(messageTemplateDto);
             //发送模板消息，通知用户管理员已经为其租车订单安排车辆信息
             templateMessageService.sendTemplateMessage(param);
         }catch (Exception e){
-            log.error("driverMessageDto类转换为Json数据出现异常" + e);
+            log.error("messageTemplateDto类转换为Json数据出现异常" + e);
             return 0;
         }
 

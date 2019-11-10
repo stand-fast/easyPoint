@@ -21,8 +21,8 @@
         <mybatis.version>3.4.6</mybatis.version>
         <slf4j.version>1.7.25</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
-        <!--<mysql.version>8.0.11</mysql.version>-->
-        <mysql.version>5.1.46</mysql.version>
+        <mysql.version>8.0.11</mysql.version>
+        <!--<mysql.version>5.1.46</mysql.version>-->
     </properties>
 
     <dependencies>
@@ -194,7 +194,7 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.2.5</version>
+            <version>4.5.4</version>
         </dependency>
 
         <!--64编码-->
@@ -245,6 +245,13 @@
             <!--<artifactId>wxpay-sdk</artifactId>-->
             <!--<version>0.0.3</version>-->
         <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.apache.solr</groupId>
+            <artifactId>solr-solrj</artifactId>
+            <version>4.10.2</version>
+        </dependency>
+
 
 
     </dependencies>

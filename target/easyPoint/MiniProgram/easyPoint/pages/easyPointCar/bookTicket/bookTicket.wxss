@@ -1,4 +1,7 @@
 /* pages/easyPointCar/bookTicket/bookTicket.wxss */
+Page{
+    font-family: 黑体;
+}
 .header{
     width: 100%;
     height: 270rpx;
@@ -54,6 +57,7 @@
 }
 .fullcontainer{
     width: 84%;
+    height: 696rpx;
     margin: 0 auto;
 }
 .first{
@@ -66,18 +70,30 @@
     display: flex;
     flex-direction: row;
 }
+.formTitle{
+    width: 130rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 27rpx;
+    padding-top: 16rpx;
+    padding-left:50rpx; 
+    color: #999;
+}
+picker{
+    z-index: 1;
+}
 .formContent input{
     width: 356rpx;
     font-size: 30rpx;
-    height: 30rpx;
+    height: 60rpx;
     color: #333;
-    line-height: 30rpx;
-    margin: 16rpx 0rpx 8rpx 22rpx;
+    line-height: 60rpx;
+    padding-top:10rpx;
+    padding-left:26rpx;
 }
 .placehold,.accoplace{
     font-size: 28rpx;
     color: #999;
-    margin-top: 4rpx;
 }
 .formContent image{
     margin-top: 28rpx;
@@ -94,39 +110,31 @@
     width: 50rpx;
     height: 22rpx;
 }
-.formTitle{
-    width: 130rpx;
-    height: 30rpx;
-    line-height: 30rpx;
-    margin: 30rpx 18rpx 10rpx 30rpx;
-    font-size: 27rpx;
-    color: #999;
-}
 .wang{
     width: 88rpx!important;
-    margin: 30rpx 20rpx 20rpx 1rpx!important;
+    padding-left:8rpx!important; 
 }
-.circle1{
+.square1,.baosquare1{
     width: 22rpx;
     height: 22rpx;
     border-radius: 0;
     border:1rpx solid #bbb;
     background-color: #fff;
-    margin: 35rpx 12rpx 16rpx 30rpx;
+    margin: 31rpx 12rpx 16rpx 50rpx;
 }
-.circle2{
+.square2,.baosquare2{
     width: 22rpx;
     height: 22rpx;
     border-radius: 0;
     border:1rpx solid #56b4f6;
     background-color: #56b4f6;
-    margin: 35rpx 12rpx 16rpx 30rpx;
+    margin: 31rpx 12rpx 16rpx 50rpx;
 }
-.circle2 image{
+.square2 image{
     width: 28rpx;
     height: 28rpx;
-    position: fixed;
-    margin: -1rpx 0 1rpx -3rpx;
+    position: absolute;
+    margin: -2rpx -1rpx!important;
 }
 .heng{
     height: 2rpx;
@@ -135,15 +143,13 @@
 .Text{
     color:#56b4f6;
     font-size: 24rpx;
+    width: 210rpx;
+    height: 34rpx;
+    line-height: 34rpx;
     text-decoration: underline;
 }
- .baosquare1{
-    width: 22rpx;
-    height: 22rpx;
-    border-radius: 0;
-    border:1rpx solid #bbb;
-    background-color: #fff;
-    margin: 8rpx 10rpx 0rpx 60rpx;
+ .baosquare1,.baosquare2{
+    margin: 6rpx 10rpx 0rpx 56rpx!important;
 }
 .insurance_text{
     display: flex;
@@ -152,16 +158,9 @@
 .baosquare2 image{
     width: 28rpx;
     height: 28rpx;
-    margin: 0rpx -14rpx;
-    position: fixed; 
-}
-.baosquare2{
-    width: 22rpx;
-    height: 22rpx;
-    border-radius: 0;
-    border:1rpx solid #56b4f6;
-    background-color: #56b4f6;
-    margin: 8rpx 10rpx 0rpx 60rpx;
+    position: fixed;
+    bottom: 20rpx;
+    left: 214rpx;
 }
 .traBottom{
     width: 100%;
@@ -170,6 +169,7 @@
     bottom: 0rpx;
     display: flex;
     flex-direction: row;
+    z-index: 1000;
 }
 .contactBtn{
     width: 160rpx;
@@ -180,6 +180,7 @@
 .contactBtn button{
     width: 100%;
     height: 100%;
+    border-radius: 0rpx;
     background-color: #7ecef4;
 }
 .contactBtn image{
@@ -191,9 +192,11 @@
     width: 400rpx;
     height: 110rpx;
     text-align: center;
+    background-color: #fff;
     border-top: 1rpx solid #eee;
 }
 .money_text{
+    width: 100%;
     height: 50rpx;
     line-height: 50rpx;
     margin-top: 6rpx;
@@ -206,6 +209,7 @@
     line-height: 40rpx;
     color: #333;
     font-size: 30rpx;
+    font-family: 微软雅黑;
 }
 .submitBtn{
     width: 190rpx;
@@ -221,7 +225,7 @@
     border-radius: 0rpx;
     border: none;
 }
-.submitBtn button::after{
+.submitBtn button::after,.contactBtn button::after,.searchBtn button::after,.success_btn::after{
     border: none;
 }
 .association{
@@ -234,19 +238,19 @@
 }
 .assoTitle{
     width: 160rpx;
-    height: 40rpx;
-    line-height: 40rpx;
+    height: 60rpx;
+    line-height: 60rpx;
     font-size: 26rpx;
     color: #999;
-    margin: 10rpx 20rpx 0 20rpx;
+    padding: 10rpx 10rpx 0rpx 50rpx;
 }
 .association input{
     width: 350rpx;
-    height: 50rpx;
-    line-height: 50rpx;
+    height: 60rpx;
+    line-height: 60rpx;
     font-size: 30rpx;
     color: #333;
-    margin-top: 5rpx;
+    padding-top: 8rpx;
 }
 .searchBtn{
     width: 84%;
@@ -258,31 +262,6 @@
     background-color: #7ecef4;
     color: #fff;
     font-size: 30rpx;
-}
-.searchBtn button::after{
-    border: none;
-}
-.mask_layer {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: 999;
-    left:0;top:0;
-    background: #000;
-    opacity: 0.5;
-    overflow: hidden;
-}
-.modal_box {
-    width: 90%;
-    height: 400rpx;
-    overflow: hidden;
-    position: fixed;
-    top: 25%;
-    left: 0;
-    z-index: 1001;
-    background: #fafafa;
-    margin: 5%;
-    border-radius: 20rpx;
 }
 .model_success{
     margin:60rpx 0 30rpx 0;
@@ -308,9 +287,6 @@
     border-radius: 60rpx;
     height: 70rpx;
     line-height: 70rpx;
-}
-.success_btn::after{
-    border:none;
 }
 .cnimg{
     margin-left: 8rpx;

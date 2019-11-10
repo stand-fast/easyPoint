@@ -8,8 +8,8 @@ Page({
     data: {
         currentTab: 0,
         money:0,
-        dateTime1: null, //开始时间value
-        dateTimeArray1: null, //开始时间数组
+        dateTime: null, //开始时间value
+        dateTimeArray: null, //开始时间数组
         select:false,
         check:false,
         insucheck:false,
@@ -102,25 +102,16 @@ Page({
             duration: 2000
           })
         }
-        else if(this.data.radioStatus== true){
-          if (this.data.returnTime == undefined) {
-            wx.showToast({
-              title: '请输入返回日期',
-              icon: 'none',
-              duration: 2000
-            })
+        else {
+          if (this.data.radioStatus == true) {
+            if (this.data.returnTime == undefined) {
+              wx.showToast({
+                title: '请输入返回日期',
+                icon: 'none',
+                duration: 2000
+              })
+            }
           }
-        }
-        else if(this.data.check== true){
-          if (this.data.returnTime == undefined) {
-            wx.showToast({
-              title: '请浏览并同意易点包车协议',
-              icon: 'none',
-              duration: 2000
-            })
-          }
-        }
-        else {  
           wx.request({
             url: 'http://easypoint.club/orderTourismOrder',
             header: {
@@ -128,7 +119,7 @@ Page({
             },
             method: "POST",
             data: {
-               uid:"12431823175891",
+               uid:"1",
                username: that.data.username,
                phone: that.data.phone,
                departurePlace: e.detail.value.startAddress,
@@ -142,7 +133,7 @@ Page({
                deposit: that.data.money,
             },
             success: function (res) {
-              // console.log(res.data);
+               console.log(res);
                 wx.showToast({
                   title: '提交成功！！！',//这里打印出登录成功
                   icon: 'success',
@@ -186,18 +177,16 @@ Page({
     },
     //是否往返选择
     radiochange: function (e) {
-        var radioStatus = this.data.radioStatus;
-        radioStatus = !radioStatus;
-        this.setData({
-            radioStatus: radioStatus
-        })
+        var radioStatus = !this.data.radioStatus;
         if (radioStatus == true) {
           this.setData({
             is_back: 1,
+            radioStatus: radioStatus
           })
         }else{
           this.setData({
             is_back: 0,
+            radioStatus: radioStatus
           })
         }
     },
@@ -233,15 +222,15 @@ Page({
     //出发时间
     changeStartDateTime:function(e) {
         let arr = e.detail.value
-        let dateArr = this.data.dateTimeArray1;
+        let dateArr = this.data.dateTimeArray;
         this.setData({
             startTime: dateArr[0][arr[0]].replace('年','-')+ dateArr[1][arr[1]].replace('月','-') + dateArr[2][arr[2]].replace('日',' ')+ dateArr[3][arr[3]].replace("时",":") + dateArr[4][arr[4]].replace('分','')
         });
     },
     //某一列的值改变时触发
-    changeDateTimeColumn1:function(e) {
-        let arr = this.data.dateTime1
-        let dateArr = this.data.dateTimeArray1;
+    changeDateTimeColumn:function(e) {
+        let arr = this.data.dateTime
+        let dateArr = this.data.dateTimeArray;
         arr[e.detail.column] = e.detail.value;
         this.setData({
             startTime: dateArr[0][arr[0]].replace('年', '-') + dateArr[1][arr[1]].replace('月', '-') + dateArr[2][arr[2]].replace('日', ' ') + dateArr[3][arr[3]].replace("时", ":") + dateArr[4][arr[4]].replace('分', '')
@@ -250,12 +239,10 @@ Page({
     //返回时间
     changereturnDateTime:function(e) {
         let arr = e.detail.value
-        let dateArr = this.data.dateTimeArray1;
+        let dateArr = this.data.dateTimeArray;
         this.setData({
             returnTime: dateArr[0][arr[0]].replace('年', '-') + dateArr[1][arr[1]].replace('月', '-') + dateArr[2][arr[2]].replace('日', ' ') + dateArr[3][arr[3]].replace("时", ":") + dateArr[4][arr[4]].replace('分', '')
         });
-        //验证开始时间不能大于结束时间
-        this.checkStartAndEndTime();
     },
     selectAssoName: function (e) {
       var index = e.detail.value;
@@ -323,8 +310,8 @@ Page({
             }
         }
         this.setData({       
-            dateTimeArray1: data,
-            dateTime1: obj.dateTime,
+            dateTimeArray: data,
+            dateTime: obj.dateTime,
         });
 
         var userInformation = wx.getStorageSync('userInformation');

@@ -233,7 +233,8 @@ Page{
     width: 28rpx;
     height: 28rpx;
     position: fixed;
-    margin: 1rpx 0 1rpx -16rpx;
+    bottom: 48rpx;
+    left: 161rpx;
 }
 .dialog_screen {
   width: 100%;
@@ -288,7 +289,7 @@ Page{
     font-size: 40rpx;
 }
 #dislog_item_goods_chooseType{
-    width: 500rpx;
+    width: 560rpx;
     font-size: 26rpx;
     color: #999;
     margin-top: 20rpx;

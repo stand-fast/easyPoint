@@ -81,7 +81,9 @@ Page{
 }
 .item input{
     width: 300rpx;
-    margin-top: 8rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    padding-top: 9rpx;
     color: #666;
 }
 .customersex{

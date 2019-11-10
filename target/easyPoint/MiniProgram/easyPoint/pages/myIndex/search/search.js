@@ -48,12 +48,10 @@ Page({
        if(input==""){
             this.setData({
                 showHistory:true,
-                showGoodName:false,
             })
        }else{
            this.setData({
                showHistory: false,
-               showGoodName: true,
            })
        }
     },
@@ -76,9 +74,8 @@ Page({
     //   })
     // },
     takeValue:function(e){      //获取input输入值
-        var currentInput=e.detail.value
         this.setData({
-            inputValue:this.trim(currentInput),
+            inputValue: this.trim(e.detail.value),
             showGoodName:true
         })
     },
@@ -107,15 +104,13 @@ Page({
         })
     },
     turnToValue:function(e){
-        var value=e.currentTarget.dataset.value
         this.setData({
-            inputValue:value
+            inputValue: e.currentTarget.dataset.value
         })
     },
     mySelect:function(e){
-        var value=e.currentTarget.dataset.name;
         this.setData({
-            inputValue:value
+            inputValue: e.currentTarget.dataset.name
         })
     },
     jumpDetail:function(){

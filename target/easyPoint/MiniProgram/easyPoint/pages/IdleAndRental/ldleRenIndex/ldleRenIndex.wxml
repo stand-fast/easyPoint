@@ -14,13 +14,13 @@
     </scroll-view>
     
       <view class="content">
-        <view class='left'>
+        <view id='left' class="{{isIphoneX?'fix_iphonex':'fix_normal'}}">
             <view wx:for="{{goodsTypeInterface}}" wx:key="index">
                 <view class="{{flag==index?'select':'normal'}}" data-index='{{index}}' bindtap='changeList'>{{item}}</view>
             </view>
         </view>
 
-        <view class='right'>
+        <view  id='right' class="{{isIphoneX?'fix_iphonex':'fix_normal'}}">
             <block wx:for="{{goodsTypeInterface}}" wx:key="key" data-index="{{index}}">
                 <block wx:if="{{flag==index}}">
                     <scroll-view scroll-y="true"  class="last_scroll_view">
@@ -31,9 +31,8 @@
                 </block>
             </block>
         </view>
-
     </view>
 </block>
 <block wx:if="{{currentTab==1}}">
-    <view>这里是闲置</view>
+    <view class="idleItem">闲置版块暂未开放，敬请期待！</view>
 </block>

@@ -69,4 +69,7 @@ public interface TourismInfoDao {
     //保存被修改的日期
     int updateTourismModifiedDate(@Param("beModifiedTime") String beModifiedTime,
                                   @Param("travelOrderId") int travelOrderId);
+
+    //查询微信订单号和支付总金额
+    TourismOrderInfo findTransactionId(int travelOrderId);
 }

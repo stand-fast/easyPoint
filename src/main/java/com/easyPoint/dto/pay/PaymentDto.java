@@ -2,7 +2,7 @@ package com.easyPoint.dto.pay;
 
 /**
  * @author FJW
- * 发起微信支付回调前的请求参数
+ * 后端发起微信支付回调前的请求参数
  */
 public class PaymentDto {
 
@@ -20,7 +20,7 @@ public class PaymentDto {
     private String time_start;//交易起始时间
     private String time_expire;//交易结束时间
     private String goods_tag;//商品标记
-    private String total_fee;//总金额
+    private Integer total_fee;//总金额
     private String notify_url;//通知地址
     private String trade_type;//交易类型
     private String limit_pay;//指定支付方式
@@ -138,11 +138,11 @@ public class PaymentDto {
         this.goods_tag = goods_tag;
     }
 
-    public String getTotal_fee() {
+    public Integer getTotal_fee() {
         return total_fee;
     }
 
-    public void setTotal_fee(String total_fee) {
+    public void setTotal_fee(int total_fee) {
         this.total_fee = total_fee;
     }
 
@@ -210,11 +210,11 @@ public class PaymentDto {
                 "mch_id=" + mch_id + '&' +
                 "nonce_str=" + nonce_str + '&' +
                 "body=" + body + '&' +
-                "attach=" + attach + '&' +
                 "out_trade_no=" + out_trade_no + '&' +
                 "spbill_create_ip=" + spbill_create_ip + '&' +
                 "total_fee=" + total_fee + '&' +
                 "notify_url=" + notify_url + '&' +
-                "openid=" + openid ;
+                 "trade_type=" + trade_type + '&' +
+                 "openid=" + openid ;
     }
 }
