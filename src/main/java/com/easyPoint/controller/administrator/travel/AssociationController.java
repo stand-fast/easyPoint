@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
+ * 同乡会控制器
  * @author FHJ
  * @date 2019/11/10 18:46
  */
@@ -19,7 +21,13 @@ public class AssociationController {
     @Autowired
     AssociationService associationService;
 
+    /**
+     * 添加同乡会
+     * @param associationName
+     * @return
+     */
     @RequestMapping("/addAssociation")
+    @ResponseBody
     public Result addAssociation(String associationName) {
         Result result = new Result();
 
@@ -32,7 +40,7 @@ public class AssociationController {
         // 查询是否已添加该同乡会
         Integer num = associationService.findAssociationByName(associationName);
 
-        if (num != null) {
+        if (num != 0) {
             result.setCode(2);
             result.setMessage("同乡会名已添加过！");
             return result;
@@ -50,6 +58,5 @@ public class AssociationController {
             result.setMessage("同乡会添加失败！");
             return result;
         }
-
     }
 }

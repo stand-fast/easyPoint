@@ -13,7 +13,8 @@
     <!-- 根据同乡会名称查询同乡会是否存在 -->
     <select id="findAssociationByName" parameterType="string" resultType="Integer">
         SELECT COUNT(*)
-        FROM hometown_association;
+        FROM hometown_association
+        WHERE association_name = #{associationName}
     </select>
 
 </mapper>

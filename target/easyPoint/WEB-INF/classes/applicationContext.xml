@@ -14,25 +14,25 @@
        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!-- 开启注解扫描，希望处理service和dao，controller包不需要spring框架去处理 -->
-    <context:component-scan base-package="com.easyPoint.*">
+    <context:component-scan base-package="com.easyPoint.service">
         <!-- 配置哪些注解不扫描 -->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <!--<context:component-scan base-package="com.easyPoint.service.administrator.travel">
-        &lt;!&ndash; 配置哪些注解不扫描 &ndash;&gt;
+    <context:component-scan base-package="com.easyPoint.service.administrator.travel">
+        <!-- 配置哪些注解不扫描 -->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
     <context:component-scan base-package="com.easyPoint.service.miniprogram.travel">
-        &lt;!&ndash; 配置哪些注解不扫描 &ndash;&gt;
+        <!-- 配置哪些注解不扫描 -->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
     <context:component-scan base-package="com.easyPoint.service.template">
-        &lt;!&ndash; 配置哪些注解不扫描 &ndash;&gt;
+        <!-- 配置哪些注解不扫描 -->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-    </context:component-scan>-->
+    </context:component-scan>
 
     <!-- 引入配置文件jdbc.properties -->
     <context:property-placeholder location="classpath:jdbc.properties"/>
@@ -79,7 +79,7 @@
     <!--  配置SqlSessionFactory工厂 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
     </bean>
 
     <!--  配置dao接口所在的包 -->
@@ -89,6 +89,7 @@
     <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.easyPoint.dao.travel"/>
     </bean>-->
+
 
     <!--  配置Spring声明式事务管理 -->
     <!-- 配置事务管理器 -->
@@ -116,7 +117,7 @@
         <!-- 最大连接数 -->
         <property name="maxTotal" value="100"/>
         <!-- 最大等待时间 -->
-        <property name="maxWaitMillis" value="20000"/>
+        <property name="maxWaitMillis" value="20000"></property>
     </bean>
 
     <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
@@ -126,8 +127,7 @@
         <property name="poolConfig" ref="poolConfig"/>
     </bean>
     <bean id="stringRedisSerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
-    <bean id="jdkSerializationRedisSerializer"
-          class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+    <bean id="jdkSerializationRedisSerializer" class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
     <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
         <property name="connectionFactory" ref="connectionFactory"/>
         <property name="keySerializer" ref="stringRedisSerializer"/>
@@ -137,24 +137,24 @@
 
     <!--&lt;!&ndash;redis监听器的适配器&ndash;&gt;-->
     <!--<bean class="org.springframework.data.redis.listener.adapter.MessageListenerAdapter" id="expiredPublishListeners">-->
-    <!--<constructor-arg>-->
-    <!--&lt;!&ndash;自定义监听器&ndash;&gt;-->
-    <!--<bean class="com.easyPoint.listen.ExpiredPublishListen"></bean>-->
-    <!--</constructor-arg>-->
+        <!--<constructor-arg>-->
+            <!--&lt;!&ndash;自定义监听器&ndash;&gt;-->
+            <!--<bean class="com.easyPoint.listen.ExpiredPublishListen"></bean>-->
+        <!--</constructor-arg>-->
     <!--</bean>-->
     <!--&lt;!&ndash;配置redis监听容器&ndash;&gt;-->
     <!--<bean class="org.springframework.data.redis.listener.RedisMessageListenerContainer" id="listenerContainer">-->
-    <!--<property name="connectionFactory" ref="connectionFactory"/>-->
-    <!--<property name="messageListeners">-->
-    <!--<map>-->
-    <!--<entry key-ref="expiredPublishListeners">-->
-    <!--<list>-->
-    <!--<bean class="org.springframework.data.redis.listener.ChannelTopic">-->
-    <!--<constructor-arg value="__keyevent@0__:expired"/>-->
-    <!--</bean>-->
-    <!--</list>-->
-    <!--</entry>-->
-    <!--</map>-->
-    <!--</property>-->
+        <!--<property name="connectionFactory" ref="connectionFactory"/>-->
+        <!--<property name="messageListeners">-->
+            <!--<map>-->
+                <!--<entry key-ref="expiredPublishListeners">-->
+                    <!--<list>-->
+                        <!--<bean class="org.springframework.data.redis.listener.ChannelTopic">-->
+                            <!--<constructor-arg value="__keyevent@0__:expired"/>-->
+                        <!--</bean>-->
+                    <!--</list>-->
+                <!--</entry>-->
+            <!--</map>-->
+        <!--</property>-->
     <!--</bean>-->
 </beans>
