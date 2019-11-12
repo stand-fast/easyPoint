@@ -52,33 +52,4 @@ public class UserInfoController {
         }
     }
 
-
-    /**
-     * 一下为测试接口，可删除
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping("/test")
-    public Result test(){
-        String result = HttpRequestUtil.sendGet("https://api.weixin.qq.com/cgi-bin/token","grant_type=client_credential&appid=wxe01ead21cec586c4&secret=679aa6c79c85459b23f9a87bdd173759");
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            JsonNode rootNode = objectMapper.readTree(result);
-            String accessToken = rootNode.path("access_token").asText();
-            System.out.println(accessToken);
-        }catch (Exception e){}
-
-
-        return new Result(200,"sfdasf",result);
-    }
-    @Autowired
-    WxPayService wxPayService;
-
-    @ResponseBody
-    @RequestMapping("testRefund")
-    public Result testRefund() throws Exception{
-        System.out.println("发起退款");
-        wxPayService.requestRefund(1,1, NotifyUrlConstants.TOURISM_NOTIFY_URL);
-        return new Result(200,"退款成功");
-    }
 }

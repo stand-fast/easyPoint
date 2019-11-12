@@ -1,0 +1,47 @@
+<!--pages/user/myOrderRentDetail/myOrderRentDetail.wxml-->
+<view class="order_status">{{rentDetail.orderStatus}}</view>
+<view class="order_rent_host_item">
+        <view class="item_list_text">订单用户</view>
+        <view class="item_list_orderHostname">{{ hostItem.orderHostName}}</view>
+        <view class="item_list_orderHostPhone">{{ hostItem.orderHostPhone}}</view>
+</view>
+<view class="order_rent_detail_item">
+    <view class="shopname">{{rentDetail.shopName}} ></view>
+    <view class="detail_item_list_pic_name">
+        <image src="/images/user_order_rent.png"></image>
+        <view class="detail_item_list_detail">
+            <view class="list_detail_line">
+                <view class="detail_item_list_goodname">{{rentDetail.goodName}}</view>
+                <view class="detail_litem_list_goodPrice">￥{{rentDetail.goodPrice}}元</view>
+            </view>
+            <view class="list_detail_line kong">
+                <view class="detail_item_list_goodDecription">{{rentDetail.goodDecription}}</view>
+                <view class="detail_item_list_goodNumber">×{{rentDetail.goodNumber}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="line"></view>
+    <view class="detail_item_lists">
+        <view class="order_rent_item_text">支付押金</view>
+        <view class="order_rent_item_content">￥{{rentDetail.goodDeposit}}</view>
+    </view>
+    <view class="detail_item_lists kong">
+        <view class="order_rent_item_text">租借天数</view>
+        <view class="order_rent_item_content">{{rentDetail.goodRentTime}}天</view>
+    </view>
+    <view class="detail_item_lists kong">
+        <view class="order_rent_item_text">取货天数</view>
+        <view class="order_rent_item_content">{{rentDetail.takeGoodTime}}</view>
+    </view>
+    <view class="detail_item_lists kong">
+        <view class="order_rent_item_text">我的备注</view>
+        <view class="order_rent_item_content">{{rentDetail.hostNote}}</view>
+    </view>
+    <view class="line"></view>
+    <view class="goodSum">共{{rentDetail.goodNumber}}件商品，合计{{rentDetail.goodPrice*rentDetail.goodNumber+rentDetail.goodDeposit}}元</view>
+</view>
+<view class="order_rent_order_numtime">
+    <view class="order_numtime_text">订单编号：<text class="orderId_color">{{rentDetail.orderId}}</text></view>
+    <view class="order_numtime_text kong">订单时间：<text>{{rentDetail.orderTime}}</text></view>
+</view>
+<view class="order_applyRefund" bindtap="jumpToRefund">申请退款</view>

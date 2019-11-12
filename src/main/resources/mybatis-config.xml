@@ -11,8 +11,8 @@
         <package name="com.easyPoint.pojo.travel"/>
         <package name="com.easyPoint.dto.travel"/>
     </typeAliases>
-    <mappers>
+    <!--<mappers>
         <package name="com.easyPoint.dao"/>
-        <!--<package name="com.easyPoint.dao.travel"/>-->
-    </mappers>
+        &lt;!&ndash;<package name="com.easyPoint.dao.travel"/>&ndash;&gt;
+    </mappers>-->
 </configuration>

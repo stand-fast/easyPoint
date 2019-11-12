@@ -79,17 +79,16 @@
     <!--  配置SqlSessionFactory工厂 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
     </bean>
 
     <!--  配置dao接口所在的包 -->
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.easyPoint.dao"/>
     </bean>
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.easyPoint.dao.travel"/>
-    </bean>
-
+    </bean>-->
 
     <!--  配置Spring声明式事务管理 -->
     <!-- 配置事务管理器 -->
@@ -117,7 +116,7 @@
         <!-- 最大连接数 -->
         <property name="maxTotal" value="100"/>
         <!-- 最大等待时间 -->
-        <property name="maxWaitMillis" value="20000"></property>
+        <property name="maxWaitMillis" value="20000"/>
     </bean>
 
     <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
@@ -127,7 +126,8 @@
         <property name="poolConfig" ref="poolConfig"/>
     </bean>
     <bean id="stringRedisSerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
-    <bean id="jdkSerializationRedisSerializer" class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+    <bean id="jdkSerializationRedisSerializer"
+          class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
     <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
         <property name="connectionFactory" ref="connectionFactory"/>
         <property name="keySerializer" ref="stringRedisSerializer"/>
@@ -137,24 +137,24 @@
 
     <!--&lt;!&ndash;redis监听器的适配器&ndash;&gt;-->
     <!--<bean class="org.springframework.data.redis.listener.adapter.MessageListenerAdapter" id="expiredPublishListeners">-->
-        <!--<constructor-arg>-->
-            <!--&lt;!&ndash;自定义监听器&ndash;&gt;-->
-            <!--<bean class="com.easyPoint.listen.ExpiredPublishListen"></bean>-->
-        <!--</constructor-arg>-->
+    <!--<constructor-arg>-->
+    <!--&lt;!&ndash;自定义监听器&ndash;&gt;-->
+    <!--<bean class="com.easyPoint.listen.ExpiredPublishListen"></bean>-->
+    <!--</constructor-arg>-->
     <!--</bean>-->
     <!--&lt;!&ndash;配置redis监听容器&ndash;&gt;-->
     <!--<bean class="org.springframework.data.redis.listener.RedisMessageListenerContainer" id="listenerContainer">-->
-        <!--<property name="connectionFactory" ref="connectionFactory"/>-->
-        <!--<property name="messageListeners">-->
-            <!--<map>-->
-                <!--<entry key-ref="expiredPublishListeners">-->
-                    <!--<list>-->
-                        <!--<bean class="org.springframework.data.redis.listener.ChannelTopic">-->
-                            <!--<constructor-arg value="__keyevent@0__:expired"/>-->
-                        <!--</bean>-->
-                    <!--</list>-->
-                <!--</entry>-->
-            <!--</map>-->
-        <!--</property>-->
+    <!--<property name="connectionFactory" ref="connectionFactory"/>-->
+    <!--<property name="messageListeners">-->
+    <!--<map>-->
+    <!--<entry key-ref="expiredPublishListeners">-->
+    <!--<list>-->
+    <!--<bean class="org.springframework.data.redis.listener.ChannelTopic">-->
+    <!--<constructor-arg value="__keyevent@0__:expired"/>-->
+    <!--</bean>-->
+    <!--</list>-->
+    <!--</entry>-->
+    <!--</map>-->
+    <!--</property>-->
     <!--</bean>-->
 </beans>

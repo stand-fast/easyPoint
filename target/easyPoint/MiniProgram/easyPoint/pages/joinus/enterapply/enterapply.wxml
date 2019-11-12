@@ -1,0 +1,4 @@
+<!--pages/joinus/enterapply/enterapply.wxml-->
+<view class="notice">
+    <view>商家入驻模块暂未开放</view>
+</view>

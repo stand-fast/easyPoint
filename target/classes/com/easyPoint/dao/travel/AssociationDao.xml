@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easyPoint.dao.travel.AssociationDao">
+
+    <!-- 添加同乡会 -->
+    <insert id="addAssociation" parameterType="String">
+        INSERT INTO hometown_association (association_name)
+        VALUES (#{associationName})
+    </insert>
+
+    <!-- 根据同乡会名称查询同乡会是否存在 -->
+    <select id="findAssociationByName" parameterType="string" resultType="Integer">
+        SELECT COUNT(*)
+        FROM hometown_association;
+    </select>
+
+</mapper>
