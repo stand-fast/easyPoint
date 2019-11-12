@@ -14,25 +14,25 @@
        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!-- 开启注解扫描，希望处理service和dao，controller包不需要spring框架去处理 -->
-    <context:component-scan base-package="com.easyPoint.service">
+    <context:component-scan base-package="com.easyPoint.*">
         <!-- 配置哪些注解不扫描 -->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <context:component-scan base-package="com.easyPoint.service.administrator.travel">
-        <!-- 配置哪些注解不扫描 -->
+    <!--<context:component-scan base-package="com.easyPoint.service.administrator.travel">
+        &lt;!&ndash; 配置哪些注解不扫描 &ndash;&gt;
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
     <context:component-scan base-package="com.easyPoint.service.miniprogram.travel">
-        <!-- 配置哪些注解不扫描 -->
+        &lt;!&ndash; 配置哪些注解不扫描 &ndash;&gt;
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
     <context:component-scan base-package="com.easyPoint.service.template">
-        <!-- 配置哪些注解不扫描 -->
+        &lt;!&ndash; 配置哪些注解不扫描 &ndash;&gt;
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-    </context:component-scan>
+    </context:component-scan>-->
 
     <!-- 引入配置文件jdbc.properties -->
     <context:property-placeholder location="classpath:jdbc.properties"/>

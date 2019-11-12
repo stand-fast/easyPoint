@@ -1,4 +1,5 @@
 // pages/user/user/user.js
+var app = getApp();
 Page({
 
     /**
@@ -38,6 +39,7 @@ Page({
             url:""
         }],
         isLogin:false,
+        islanding:"",
     },
     getPermission:function(){       //登录授权
       var that = this;
@@ -63,9 +65,15 @@ Page({
                       nickName: userdata.nickName,
                       avatarUrl: userdata.avatarUrl
                     })
-                    console.log(userdata);
-                    wx.setStorageSync("token", res.data.token)
-                    wx.setStorageSync("userInfo", res.data.userInfo)
+                    app.globalData.uid = userdata.uid;
+                    let obj = {
+                      getTime: Date.parse(new Date()),
+                      token: res.data.token
+                    }
+                  that.judgeLanding();
+                    //console.log(userdata)
+                    wx.setStorageSync("token", obj);
+                    wx.setStorageSync("userInfo", res.data.userInfo);
                   },
                   fail:function(){
                     console.log(1);
@@ -84,22 +92,32 @@ Page({
         })
     },
     toOrder:function(e){        //进入订单界面
-        var index = e.currentTarget.dataset.index;
-        if(index==0){
-            wx.navigateTo({
-                url: '',
-            })
+      var index = e.currentTarget.dataset.index;
+      if (this.data.islanding) {
+        if (index == 0) {
+          wx.navigateTo({
+            url: '',
+          })
         }
-        else if(index==1){
-            wx.navigateTo({
-                url: '/pages/user/myOrder/myOrder?type='+0,
-            })
+        else if (index == 1) {
+          // if (app.judgeLanding()) {
+          wx.navigateTo({
+            url: '/pages/user/myOrder/myOrder?type=' + 0,
+          })
+
         }
-        else if(index==2){
-            wx.navigateTo({
-                url: '',
-            })
+        else if (index == 2) {
+          wx.navigateTo({
+            url: '',
+          })
         }
+      }else{
+            wx.showToast({
+              title: '请先授权登陆',
+              icon:"none"
+            })
+      }
+
     },
     toItem:function(e){         //进入各选项界面
         var index=e.currentTarget.dataset.index;
@@ -119,7 +137,24 @@ Page({
         //     cancelColor:"#666",
         // })
     },
-
+  judgeLanding: function () {
+    var that = this;
+    wx.getSetting({
+      success: (res) => {
+        if (res.authSetting['scope.userInfo']) {//授权了，可以获取用户信息了
+          console.log("已授权");
+          that.setData({
+            islanding: true,
+          })
+        } else {//未授权，跳到授权页面
+          console.log("未授权");
+          that.setData({
+            islanding: false,
+          })
+        }
+      }
+    })
+  },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
