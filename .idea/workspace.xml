@@ -7,38 +7,96 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="31276641-29ab-4222-90f8-2dc6ae9a4553" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/AesCbcUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/DateUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/HttpRequestUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/JwtUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/MiniProConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/NotifyUrlConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/WxPayConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/dto/travel/TourismRefundPageDetailDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/dto/travel/TourismRefundPageDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/pojo/travel/TourismRefundInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/springMVC.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/pc端管理员界面/Administrator/src/pages/BusinessesJoined/JoinList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/DrivingSchoolInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/DrivingSchoolInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/util/IdCardVerification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/util/IdCardVerification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/springMVC.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/easyPoint/Util/IdCardVerification.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/easyPoint/Util/IdCardVerification.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/easyPoint/controller/DrivingSchoolInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/easyPoint/controller/DrivingSchoolInfoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/TourismInfoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/administrator/travel/AdmiTourismController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/administrator/travel/AdmiTourismController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/miniprogram/mine/UserInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/miniprogram/mine/UserInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/miniprogram/travel/TourismController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/miniprogram/travel/TourismController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/miniprogram/travel/TravelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/miniprogram/travel/TravelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/dao/travel/TourismInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/dao/travel/TourismInfoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/dao/travel/TourismInfoDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/dao/travel/TourismInfoDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/interceptor/TokenIntercptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/interceptor/TokenIntercptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/service/administrator/travel/AdmiTourismInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/service/administrator/travel/AdmiTourismInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/service/administrator/travel/Impl/AdmiTourismInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/service/administrator/travel/Impl/AdmiTourismInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/mine/Impl/UserInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/mine/Impl/UserInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/travel/Impl/TourismInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/travel/Impl/TourismInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/travel/Impl/TravelInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/travel/Impl/TravelInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/travel/TourismInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/travel/TourismInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/travel/TravelInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/travel/TravelInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/service/pay/Impl/WxPayServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/service/pay/Impl/WxPayServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/service/pay/WxPayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/service/pay/WxPayService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/service/template/Impl/TemplateMessageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/service/template/Impl/TemplateMessageServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/util/AesCbcUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/util/AesCbcUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/util/HttpRequestUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/util/HttpRequestUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/util/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/util/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/util/MiniProConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/util/MiniProConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/util/NotifyUrlConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/util/NotifyUrlConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/util/RandomStrUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/RandomStrUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/util/WxPayConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/util/WxPayConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easyPoint/util/XmlUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/XmlUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pc端管理员界面/Administrator/src/components/model.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pc端管理员界面/Administrator/src/components/model.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pc端管理员界面/Administrator/src/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pc端管理员界面/Administrator/src/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/easyPoint/controller/TourismInfoController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/easyPoint/interceptor/TokenIntercptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/easyPoint/interceptor/TokenIntercptor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/springMVC.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/springMVC.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/easyPoint.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/easyPoint/MiniProgram/easyPoint/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/MiniProgram/easyPoint/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/easyPoint/MiniProgram/easyPoint/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/MiniProgram/easyPoint/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/easyPoint/MiniProgram/easyPoint/pages/easyPointCar/bookTicket/bookTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/MiniProgram/easyPoint/pages/easyPointCar/bookTicket/bookTicket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/easyPoint/MiniProgram/easyPoint/pages/myIndex/myindex/myindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/MiniProgram/easyPoint/pages/myIndex/myindex/myindex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/easyPoint/MiniProgram/easyPoint/pages/user/myOrder/myOrder.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/MiniProgram/easyPoint/pages/user/myOrder/myOrder.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/easyPoint/MiniProgram/easyPoint/pages/user/user/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/MiniProgram/easyPoint/pages/user/user/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/easyPoint/WEB-INF/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/WEB-INF/classes/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/easyPoint/WEB-INF/classes/com/easyPoint/Util/IdCardVerification.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/WEB-INF/classes/com/easyPoint/Util/IdCardVerification.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/easyPoint/WEB-INF/classes/com/easyPoint/controller/DrivingSchoolInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/WEB-INF/classes/com/easyPoint/controller/DrivingSchoolInfoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/WEB-INF/classes/com/easyPoint/controller/TourismInfoController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/WEB-INF/classes/com/easyPoint/interceptor/TokenIntercptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/WEB-INF/classes/com/easyPoint/interceptor/TokenIntercptor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/easyPoint/WEB-INF/classes/springMVC.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/WEB-INF/classes/springMVC.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/easyPoint/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端管理员界面/Administrator/src/assets/public.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/pc端管理员界面/Administrator/src/assets/public.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端管理员界面/Administrator/src/assets/travelOrder.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/pc端管理员界面/Administrator/src/assets/travelOrder.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端管理员界面/Administrator/src/components/model.vue" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/pc端管理员界面/Administrator/src/components/model.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端管理员界面/Administrator/src/pages/CommitteeVihicle/AddLocation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/pc端管理员界面/Administrator/src/pages/CommitteeVihicle/AddLocation.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端管理员界面/Administrator/src/pages/Travel/CarRentalOrder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/pc端管理员界面/Administrator/src/pages/Travel/CarRentalOrder.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端管理员界面/Administrator/src/pages/Travel/CarRentalRefund.vue" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/pc端管理员界面/Administrator/src/pages/Travel/CarRentalRefund.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端管理员界面/Administrator/src/pages/Travel/VehicleInformationEntry.vue" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/pc端管理员界面/Administrator/src/pages/Travel/VehicleInformationEntry.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端管理员界面/Administrator/src/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/pc端管理员界面/Administrator/src/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端管理员界面/Administrator/src/services/loginService.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/easyPoint/pc端管理员界面/Administrator/src/services/loginService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/BusinessRelease.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/EnterpriseRelease.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/Internship-MyPreservation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/Internship-MyReview.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/Internship-MyUpload.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/Internship-RegisteredUsers.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/Internship-Throughusers.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/Part-time-MyPreservation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/Part-time-MyReview.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/Part-time-MyUpload.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/Part-time-Throughusers.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/Part-timeInternship.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/css/BusinessRelease.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/css/NavigationAccessories.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/css/Part-time-MyPreservation.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/css/Part-time-RegisteredUsers.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/css/Part-timeInternship.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/css/example.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/css/model.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/images/Login/loginBackground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/images/Logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/images/NabigationModel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/images/NabigationSecond.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/images/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/images/innerBackground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/images/title-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/images/title-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/js/BusinessRelease.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/js/EnterpriseRelease.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/js/Internship-MyPreservation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/js/Internship-MyReview.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/js/Internship-MyUpload.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/js/Internship-RegisteredUsers.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/js/Internship-Throughusers.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/js/Part-time-MyPreservation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/js/Part-time-MyReview.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/js/Part-time-MyUpload.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/js/Part-time-Throughusers.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/js/Part-timeInternship.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/js/jquery-3.4.1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easyPoint/pc端商家界面/Part-timeInternship/js/jquery-3.4.1.min.js" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -67,28 +125,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/service/DrivingSchoolInfoService.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/util/DateUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/service/impl/DrivingSchoolInfoServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/DrivingSchoolInfoController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+            <state>
+              <caret column="27" selection-start-column="27" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -96,38 +136,89 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/service/pay/Impl/WxPayServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3850">
+              <caret line="196" column="43" selection-start-line="196" selection-start-column="43" selection-end-line="196" selection-end-column="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/administrator/travel/AdmiTourismController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/util/HttpRequestUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3036">
+              <caret line="153" column="60" selection-start-line="153" selection-start-column="60" selection-end-line="153" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/util/MiniProConstants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="15" column="71" selection-start-line="15" selection-start-column="71" selection-end-line="15" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/util/NotifyUrlConstants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/miniprogram/mine/UserInfoController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/util/AesCbcUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-88">
+              <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.1.4.RELEASE/spring-beans-5.1.4.RELEASE.jar!/org/springframework/beans/factory/support/AbstractBeanFactory.class">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="199" column="62" lean-forward="true" selection-start-line="199" selection-start-column="62" selection-end-line="199" selection-end-column="62" />
+            <state relative-caret-position="328">
+              <caret line="185" column="21" lean-forward="true" selection-start-line="185" selection-start-column="21" selection-end-line="185" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/InternshipController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/util/WxPayConstants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="13" selection-start-line="13" selection-end-line="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/TourismInfoController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.1.4.RELEASE/spring-beans-5.1.4.RELEASE.jar!/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2234">
-              <caret line="308" selection-start-line="308" selection-end-line="308" />
+            <state relative-caret-position="506">
+              <caret line="23" column="112" selection-start-line="23" selection-start-column="112" selection-end-line="23" selection-end-column="112" />
             </state>
           </provider>
         </entry>
@@ -142,7 +233,6 @@
         <option value="Jsp File" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -150,6 +240,7 @@
     <findStrings>
       <find>commons</find>
       <find>addTourismOrder</find>
+      <find>insertTourismOrderInfo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -176,57 +267,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dto/travel/DriverInfoDto.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dao/UserInfoDao.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/wxPayConstants.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dao/mine/UserInfoDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dao/mine/UserInfoDao.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dto/pay/RequestPaymentParam.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/service/pay/wxPayService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/service/pay/Impl/wxPayServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dto/pay/PaymentDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dto/template/MessageTemplateDto.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/service/administrator/travel/Impl/AdmiTourismInfoServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dto/pay/MiniPaymentDto.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/pojo/travel/TravelOrderInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/service/template/TemplateMessageService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/MiniProConstants.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/NotifyUrlConstants.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/RandomStrUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/travel/TourismInfoService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/pojo/travel/TourismOrderInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/service/template/Impl/TemplateMessageServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/interceptor/TokenIntercptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/XmlUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dto/pay/RefundParamDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/HttpRequestUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/WxPayConstants.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/miniprogram/travel/TourismController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/service/pay/WxPayService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/travel/Impl/TourismInfoServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dao/travel/TourismInfoDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dao/travel/TourismInfoDao.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/jdbc.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/service/pay/Impl/WxPayServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/util/HttpUtils.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/XmlUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/interceptor/TokenIntercptor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/DataUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/DateUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/miniprogram/travel/TravelController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/travel/Impl/TravelInfoServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/travel/TravelInfoService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/pojo/travel/TravelOrderInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/travel/TourismInfoService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/miniprogram/mine/UserInfoController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/administrator/travel/administrator/travel/userOperation/IdCardVerificationController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/administrator/useroperation/IdCardVerificationController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/administrator/accountoperation/IdCardVerificationController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/administrator/travel/AdmiTourismController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/administrator/accountoperation/AccountOperation.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/pojo/travel/Association.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dao/travel/HometownAssociationDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dao/travel/AssociationDao.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/service/administrator/travel/AssociationService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/service/administrator/travel/Impl/AssociationServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dao/travel/AssociationDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/administrator/travel/AssociationController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/index.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/service/impl/DrivingSchoolInfoServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dto/travel/TourismRefundPageDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dto/travel/TourismRefundPageDetialDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dto/travel/TourismRefundPageDetailDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/travel/Impl/TourismInfoServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dto/travel/TourismOrderDetailInfoDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/service/administrator/travel/AdmiTourismInfoService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dto/pay/RefundParamDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/miniprogram/travel/TourismController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/springMVC.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/DrivingSchoolInfoController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/util/IdCardVerification.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/service/pay/Impl/WxPayServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/service/pay/WxPayService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/pojo/travel/TourismRefundInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dao/travel/TourismInfoDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/service/administrator/travel/Impl/AdmiTourismInfoServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/jdbc.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/dao/travel/TourismInfoDao.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/WxPayConstants.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/controller/administrator/travel/AdmiTourismController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/NotifyUrlConstants.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/util/DateUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/easyPoint/Util/AesCbcUtil.java" />
       </list>
     </option>
   </component>
@@ -263,6 +354,16 @@
           <item name="easyPoint Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
           <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
         </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="easyPoint Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="easyPoint Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+        </path>
       </expand>
       <select />
     </treeState>
@@ -272,10 +373,10 @@
     <option name="vmOptions" value="-DarchetypeCatalog=internal" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="402" />
-    <option name="y" value="46" />
-    <option name="width" value="1480" />
-    <option name="height" value="1045" />
+    <option name="x" value="305" />
+    <option name="y" value="70" />
+    <option name="width" value="1030" />
+    <option name="height" value="689" />
   </component>
   <component name="ProjectId" id="1QBVXTnoasT34mjkYfMVfkx28ON" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -333,7 +434,8 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="easyPoint" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="miniprogram" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="easyPoint" type="b2602c69:ProjectViewProjectNode" />
@@ -342,25 +444,9 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="easyPoint" type="462c0819:PsiDirectoryNode" />
-              <item name="dto" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="easyPoint" type="b2602c69:ProjectViewProjectNode" />
-              <item name="easyPoint" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="easyPoint" type="462c0819:PsiDirectoryNode" />
-              <item name="interceptor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="easyPoint" type="b2602c69:ProjectViewProjectNode" />
-              <item name="easyPoint" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="easyPoint" type="462c0819:PsiDirectoryNode" />
-              <item name="pojo" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="miniprogram" type="462c0819:PsiDirectoryNode" />
+              <item name="mine" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="easyPoint" type="b2602c69:ProjectViewProjectNode" />
@@ -370,25 +456,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="easyPoint" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="easyPoint" type="b2602c69:ProjectViewProjectNode" />
-              <item name="easyPoint" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="easyPoint" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="easyPoint" type="b2602c69:ProjectViewProjectNode" />
-              <item name="easyPoint" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="easyPoint" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="easyPoint" type="b2602c69:ProjectViewProjectNode" />
@@ -400,17 +467,7 @@
             <path>
               <item name="easyPoint" type="b2602c69:ProjectViewProjectNode" />
               <item name="easyPoint" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="easyPoint" type="b2602c69:ProjectViewProjectNode" />
-              <item name="easyPoint" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -421,29 +478,28 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="MANAGE_IGNORE_FILES_PROPERTY" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1573046058243" />
-    <property name="last_opened_file_path" value="$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.1.4.RELEASE/spring-beans-5.1.4.RELEASE.jar!/" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1573559551601" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.applicationServers" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
     <property name="settings.editor.splitter.proportion" value="0.17917132" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\ideaProject\easyPoint\src\main\java\com\easyPoint\util" />
       <recent name="F:\idea\easyPoint\src\main\java\com\easyPoint\dto\travel" />
       <recent name="F:\idea\easyPoint\src\main\java\com\easyPoint\dto" />
       <recent name="F:\idea\easyPoint\src\main\java\com\easyPoint\dao" />
       <recent name="F:\idea\easyPoint\src\main\java\com\easyPoint\controller" />
+      <recent name="F:\idea\easyPoint\src\main\java\com\easyPoint\service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.easyPoint.controller.administrator.travel" />
@@ -451,7 +507,6 @@
       <recent name="com.easyPoint.controller.miniprogram.travel" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\ideaProject\easyPoint\src\main\java\com\easyPoint\dao\travel" />
       <recent name="F:\idea\easyPoint\src\main\java\com\easyPoint\dao\mine" />
       <recent name="F:\idea\ideaProject\easyPoint\src\main\webapp" />
       <recent name="E:\ideaProject\easyPoint\src" />
@@ -470,22 +525,25 @@
     </option>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 7.0.91">
-    <configuration name="IdCardVerification" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.easyPoint.util.IdCardVerification" />
-      <module name="easyPoint" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.easyPoint.util.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="easyPoint [package]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
       <MavenSettings>
-        <option name="myGeneralSettings" />
+        <option name="myGeneralSettings">
+          <MavenGeneralSettings>
+            <option name="alwaysUpdateSnapshots" value="false" />
+            <option name="checksumPolicy" value="NOT_SET" />
+            <option name="failureBehavior" value="NOT_SET" />
+            <option name="localRepository" value="D:\maven\maven_repository" />
+            <option name="mavenHome" value="D:/maven/apache-maven-3.6.1-bin/apache-maven-3.6.1" />
+            <option name="nonRecursive" value="false" />
+            <option name="outputLevel" value="INFO" />
+            <option name="pluginUpdatePolicy" value="DEFAULT" />
+            <option name="printErrorStackTraces" value="false" />
+            <option name="threads" />
+            <option name="usePluginRegistry" value="false" />
+            <option name="userSettingsFile" value="D:\maven\apache-maven-3.6.1-bin\apache-maven-3.6.1\conf\settings.xml" />
+            <option name="workOffline" value="false" />
+          </MavenGeneralSettings>
+        </option>
         <option name="myRunnerSettings" />
         <option name="myRunnerParameters">
           <MavenRunnerParameters>
@@ -582,13 +640,11 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.IdCardVerification" />
       <item itemvalue="Maven.easyPoint [package]" />
       <item itemvalue="Tomcat Server.Tomcat 7.0.91" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.IdCardVerification" />
         <item itemvalue="Maven.easyPoint [package]" />
       </list>
     </recent_temporary>
@@ -677,19 +733,12 @@
       <workItem from="1572748450377" duration="9780000" />
       <workItem from="1572772546784" duration="1144000" />
       <workItem from="1572776907295" duration="7032000" />
-      <workItem from="1573302494962" duration="6361000" />
-      <workItem from="1573375075058" duration="2002000" />
-      <workItem from="1573381654618" duration="4025000" />
-      <workItem from="1573390294241" duration="2626000" />
-      <workItem from="1573395991082" duration="96000" />
-      <workItem from="1573396159715" duration="404000" />
-      <workItem from="1573396877839" duration="329000" />
-      <workItem from="1573397341175" duration="28000" />
-      <workItem from="1573397408958" duration="895000" />
-      <workItem from="1573398351561" duration="2607000" />
-      <workItem from="1573447223298" duration="89000" />
-      <workItem from="1573547356277" duration="435000" />
-      <workItem from="1573547882160" duration="5237000" />
+      <workItem from="1573045912881" duration="418000" />
+      <workItem from="1573112334804" duration="9103000" />
+      <workItem from="1573145895294" duration="19424000" />
+      <workItem from="1573357781846" duration="34836000" />
+      <workItem from="1573525365297" duration="4295000" />
+      <workItem from="1573560190426" duration="466000" />
     </task>
     <task id="LOCAL-00001" summary="删除了之前测试的Account类；&#10;修改pom文件，引入了相应jar包的坐标。">
       <created>1564982950103</created>
@@ -824,21 +873,28 @@
       <option name="project" value="LOCAL" />
       <updated>1572163111513</updated>
     </task>
-    <task id="LOCAL-00020" summary="消息模板与支付合拼">
-      <created>1573303830679</created>
+    <task id="LOCAL-00020" summary="消息模板与支付合拼开启拦截器">
+      <created>1573046205929</created>
       <option name="number" value="00020" />
       <option name="presentableId" value="LOCAL-00020" />
       <option name="project" value="LOCAL" />
-      <updated>1573303830679</updated>
+      <updated>1573046205929</updated>
     </task>
-    <task id="LOCAL-00021" summary="消息模板与支付合拼">
-      <created>1573547437283</created>
+    <task id="LOCAL-00021" summary="退款模块">
+      <created>1573558880792</created>
       <option name="number" value="00021" />
       <option name="presentableId" value="LOCAL-00021" />
       <option name="project" value="LOCAL" />
-      <updated>1573547437283</updated>
+      <updated>1573558880793</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="111">
+      <created>1573559477779</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1573559477779</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -871,7 +927,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="352402000" />
+    <option name="totallyTimeSpent" value="395615000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -884,8 +940,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49702382" visible="true" weight="0.25201073" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49702382" visible="true" weight="0.2707775" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -895,20 +952,20 @@
       <window_info id="Web" order="7" sideWeight="0.5029762" side_tool="true" weight="0.29727685" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49924356" weight="0.4249147" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4964476" visible="true" weight="0.26345608" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49546143" visible="true" weight="0.30375427" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39886847" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32935154" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49546143" weight="0.065155804" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49546143" weight="0.4317406" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32935154" />
-      <window_info anchor="bottom" id="Spring" order="11" sideWeight="0.5035524" side_tool="true" weight="0.6818182" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5045386" side_tool="true" weight="0.4778157" />
-      <window_info anchor="bottom" id="Java Enterprise" order="13" weight="0.32935154" />
-      <window_info anchor="bottom" id="Application Servers" order="14" weight="0.32935154" />
-      <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.4977307" weight="0.3286119" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5045386" side_tool="true" weight="0.4778157" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.32935154" />
+      <window_info anchor="bottom" id="Application Servers" order="13" weight="0.32935154" />
+      <window_info anchor="bottom" id="Messages" order="14" sideWeight="0.4977307" weight="0.32935154" />
+      <window_info anchor="bottom" id="Spring" order="15" weight="0.32935154" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -919,6 +976,41 @@
       <window_info anchor="right" id="Capture Analysis" order="7" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49702382" visible="true" weight="0.2632375" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" sideWeight="0.5029762" side_tool="true" weight="0.29727685" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49924356" weight="0.4249147" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49546143" visible="true" weight="0.41808873" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39886847" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32935154" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49546143" weight="0.15358362" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32935154" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5045386" side_tool="true" weight="0.4778157" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.32935154" />
+      <window_info anchor="bottom" id="Application Servers" order="13" weight="0.32935154" />
+      <window_info anchor="bottom" id="Messages" order="14" sideWeight="0.4977307" weight="0.32935154" />
+      <window_info anchor="bottom" id="Spring" order="15" weight="0.32935154" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Database" order="4" weight="0.32980332" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Maven" order="6" weight="0.32980332" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -995,56 +1087,298 @@
     <MESSAGE value="分包分类2.0" />
     <MESSAGE value="支付待续" />
     <MESSAGE value="消息模板与支付合拼" />
-    <option name="LAST_COMMIT_MESSAGE" value="消息模板与支付合拼" />
+    <MESSAGE value="消息模板与支付合拼开启拦截器" />
+    <MESSAGE value="退款模块" />
+    <MESSAGE value="111" />
+    <option name="LAST_COMMIT_MESSAGE" value="111" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/mine/Impl/UserInfoServiceImpl.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/jre/lib/ext/sunpkcs11.jar!/sun/security/pkcs11/wrapper/Constants.class" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/service/template/Impl/TemplateMessageServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/util/AesCbcUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6446">
-          <caret line="293" column="8" selection-start-line="293" selection-start-column="8" selection-end-line="293" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/util/JwtUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        <state relative-caret-position="-202">
+          <caret line="47" column="65" selection-start-line="47" selection-start-column="65" selection-end-line="47" selection-end-column="65" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/util/XmlUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1518">
-          <caret line="73" column="45" selection-start-line="73" selection-start-column="45" selection-end-line="73" selection-end-column="45" />
+        <state relative-caret-position="111">
+          <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/administrator/travel/administrator/travel/userOperation/IdCardVerificationController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/administrator/accountoperation/IdCardVerificationController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/miniprogram/mine/UserInfoController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/util/JwtUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1100">
-          <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+        <state relative-caret-position="266">
+          <caret line="86" column="57" lean-forward="true" selection-start-line="86" selection-start-column="57" selection-end-line="86" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/interceptor/TokenIntercptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-621">
+          <caret line="21" column="46" lean-forward="true" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpclient/4.5.4/httpclient-4.5.4.jar!/org/apache/http/conn/ssl/SSLConnectionSocketFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="986">
+          <caret line="52" column="37" selection-start-line="52" selection-start-column="11" selection-end-line="52" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/dao/InternshipDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/dao/InternshipDao.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/dao/DrivingSchoolInfoDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/dao/DrivingSchoolInfoDao.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-162" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/travel/TravelInfoService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/miniprogram/travel/TravelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="35" column="46" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/travel/Impl/TravelInfoServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/pojo/travel/TravelOrderInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="30" column="26" lean-forward="true" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
+          <folding>
+            <element signature="e#1094#1095#0" expanded="true" />
+            <element signature="e#1130#1131#0" expanded="true" />
+            <element signature="e#1189#1190#0" expanded="true" />
+            <element signature="e#1239#1240#0" expanded="true" />
+            <element signature="e#1270#1271#0" expanded="true" />
+            <element signature="e#1296#1297#0" expanded="true" />
+            <element signature="e#1335#1336#0" expanded="true" />
+            <element signature="e#1365#1366#0" expanded="true" />
+            <element signature="e#1406#1407#0" expanded="true" />
+            <element signature="e#1443#1444#0" expanded="true" />
+            <element signature="e#1503#1504#0" expanded="true" />
+            <element signature="e#1555#1556#0" expanded="true" />
+            <element signature="e#1593#1594#0" expanded="true" />
+            <element signature="e#1627#1628#0" expanded="true" />
+            <element signature="e#1681#1682#0" expanded="true" />
+            <element signature="e#1727#1728#0" expanded="true" />
+            <element signature="e#1764#1765#0" expanded="true" />
+            <element signature="e#1796#1797#0" expanded="true" />
+            <element signature="e#1847#1848#0" expanded="true" />
+            <element signature="e#1889#1890#0" expanded="true" />
+            <element signature="e#1929#1930#0" expanded="true" />
+            <element signature="e#1965#1966#0" expanded="true" />
+            <element signature="e#2023#2024#0" expanded="true" />
+            <element signature="e#2073#2074#0" expanded="true" />
+            <element signature="e#2105#2106#0" expanded="true" />
+            <element signature="e#2132#2133#0" expanded="true" />
+            <element signature="e#2173#2174#0" expanded="true" />
+            <element signature="e#2205#2206#0" expanded="true" />
+            <element signature="e#2238#2239#0" expanded="true" />
+            <element signature="e#2266#2267#0" expanded="true" />
+            <element signature="e#2309#2310#0" expanded="true" />
+            <element signature="e#2343#2344#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
+    <entry file="file://$USER_HOME$/Desktop/t.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/HometownAssociationController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/DrivingSchoolInfoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/TourismInfoController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/InternshipController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-521">
+          <caret line="15" column="35" lean-forward="true" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/dto/travel/DriverInfoDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/dto/travel/PartTourismOrderInfoDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="32" column="25" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="32" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/dto/travel/TourismRefundPageDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/travel/TourismInfoService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/dto/travel/TourismRefundPageDetailDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="5" column="33" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="33" />
+          <folding>
+            <element signature="e#502#503#0" expanded="true" />
+            <element signature="e#539#540#0" expanded="true" />
+            <element signature="e#599#600#0" expanded="true" />
+            <element signature="e#651#652#0" expanded="true" />
+            <element signature="e#691#692#0" expanded="true" />
+            <element signature="e#727#728#0" expanded="true" />
+            <element signature="e#785#786#0" expanded="true" />
+            <element signature="e#835#836#0" expanded="true" />
+            <element signature="e#873#874#0" expanded="true" />
+            <element signature="e#907#908#0" expanded="true" />
+            <element signature="e#961#962#0" expanded="true" />
+            <element signature="e#1007#1008#0" expanded="true" />
+            <element signature="e#1044#1045#0" expanded="true" />
+            <element signature="e#1076#1077#0" expanded="true" />
+            <element signature="e#1127#1128#0" expanded="true" />
+            <element signature="e#1169#1170#0" expanded="true" />
+            <element signature="e#1208#1209#0" expanded="true" />
+            <element signature="e#1242#1243#0" expanded="true" />
+            <element signature="e#1297#1298#0" expanded="true" />
+            <element signature="e#1343#1344#0" expanded="true" />
+            <element signature="e#1381#1382#0" expanded="true" />
+            <element signature="e#1415#1416#0" expanded="true" />
+            <element signature="e#1469#1470#0" expanded="true" />
+            <element signature="e#1515#1516#0" expanded="true" />
+            <element signature="e#1554#1555#0" expanded="true" />
+            <element signature="e#1589#1590#0" expanded="true" />
+            <element signature="e#1645#1646#0" expanded="true" />
+            <element signature="e#1693#1694#0" expanded="true" />
+            <element signature="e#1732#1733#0" expanded="true" />
+            <element signature="e#1767#1768#0" expanded="true" />
+            <element signature="e#1823#1824#0" expanded="true" />
+            <element signature="e#1871#1872#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/dto/travel/TourismOrderDetailInfoDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="58" column="5" lean-forward="true" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/dto/pay/RefundParamDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="6" column="27" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="27" />
+          <folding>
+            <element signature="e#508#509#0" expanded="true" />
+            <element signature="e#536#537#0" expanded="true" />
+            <element signature="e#872#873#0" expanded="true" />
+            <element signature="e#914#915#0" expanded="true" />
+            <element signature="e#1228#1229#0" expanded="true" />
+            <element signature="e#1264#1265#0" expanded="true" />
+            <element signature="e#1347#1348#0" expanded="true" />
+            <element signature="e#1379#1380#0" expanded="true" />
+            <element signature="e#1430#1431#0" expanded="true" />
+            <element signature="e#1472#1473#0" expanded="true" />
+            <element signature="e#1410#1411#0" expanded="true" />
+            <element signature="e#1460#1461#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/pojo/travel/TourismRefundInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="100" column="5" lean-forward="true" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
+          <folding>
+            <element signature="e#684#685#0" expanded="true" />
+            <element signature="e#714#715#0" expanded="true" />
+            <element signature="e#761#762#0" expanded="true" />
+            <element signature="e#799#800#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/springMVC.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="43" column="59" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/service/administrator/travel/AdmiTourismInfoService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="50" column="19" selection-start-line="50" selection-start-column="19" selection-end-line="50" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/dao/travel/TourismInfoDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="93" column="25" selection-start-line="93" selection-start-column="8" selection-end-line="93" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1053,73 +1387,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/service/pay/WxPayService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="27" column="74" selection-start-line="27" selection-start-column="65" selection-end-line="27" selection-end-column="74" />
+        <state relative-caret-position="166">
+          <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/util/HttpUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2398">
-          <caret line="138" column="14" selection-start-line="138" selection-start-column="14" selection-end-line="138" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/util/RandomStrUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="924">
-          <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/util/NotifyUrlConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/pojo/user/HometownAssociation.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/service/impl/HometownAssociationServiceImpl.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/dao/travel/TourismInfoDao.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1656">
-          <caret line="171" column="26" selection-start-line="171" selection-start-column="26" selection-end-line="171" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/HometownAssociationController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/pojo/user/InternshipInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/pojo/travel/VehicleInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/pojo/travel/TravelOrderInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/pojo/travel/TourismOrderInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="61" column="33" lean-forward="true" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
+        <state relative-caret-position="-440">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#6077#6078#0" expanded="true" />
@@ -1130,279 +1409,129 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/pojo/travel/Ticket.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/dao/travel/TourismInfoDao.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        <state relative-caret-position="190">
+          <caret line="94" column="13" lean-forward="true" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/pojo/travel/PartTicket.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/miniprogram/travel/TourismController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/pojo/travel/Association.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
+        <state relative-caret-position="425">
+          <caret line="91" column="35" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="35" />
           <folding>
-            <element signature="e#318#319#0" expanded="true" />
-            <element signature="e#354#355#0" expanded="true" />
-            <element signature="e#412#413#0" expanded="true" />
-            <element signature="e#462#463#0" expanded="true" />
-            <element signature="e#542#543#0" expanded="true" />
-            <element signature="e#604#605#0" expanded="true" />
-            <element signature="e#658#659#0" expanded="true" />
-            <element signature="e#696#697#0" expanded="true" />
-            <element signature="e#724#725#0" expanded="true" />
-            <element signature="e#772#773#0" expanded="true" />
-            <element signature="e#806#807#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/service/miniprogram/travel/Impl/TourismInfoServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="46" column="54" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/dto/pay/PaymentDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1007">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/service/administrator/travel/Impl/AdmiTourismInfoServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="44" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/util/DateUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="27" selection-start-column="27" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/service/pay/Impl/WxPayServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3850">
+          <caret line="196" column="43" selection-start-line="196" selection-start-column="43" selection-end-line="196" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/administrator/travel/AdmiTourismController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="242">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/dto/Result.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/util/HttpRequestUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="3036">
+          <caret line="153" column="60" selection-start-line="153" selection-start-column="60" selection-end-line="153" selection-end-column="60" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/pojo/TestPojo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/service/administrator/travel/AssociationService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/util/MiniProConstants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <caret line="15" column="71" selection-start-line="15" selection-start-column="71" selection-end-line="15" selection-end-column="71" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/interceptor/TokenIntercptor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/util/NotifyUrlConstants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+        <state relative-caret-position="176">
+          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/miniprogram/mine/UserInfoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/util/WxPayConstants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+        <state relative-caret-position="506">
+          <caret line="23" column="112" selection-start-line="23" selection-start-column="112" selection-end-line="23" selection-end-column="112" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/dao/travel/TourismInfoDao.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/util/AesCbcUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1386">
-          <caret line="73" column="20" selection-start-line="73" selection-start-column="4" selection-end-line="73" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="-88">
+          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/dao/travel/AssociationDao.xml">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/dao/travel/AssociationDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="56" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/administrator/accountoperation/AccountOperation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/service/impl/InternshipServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/service/administrator/travel/Impl/AdmiTourismInfoServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3366">
-          <caret line="176" column="69" selection-start-line="176" selection-start-column="69" selection-end-line="176" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/service/administrator/travel/Impl/AssociationServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="32" column="6" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#658#659#0" expanded="true" />
-            <element signature="e#727#728#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/administrator/travel/AssociationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/util/IdCardVerification.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="26" column="50" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/TourismInfoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/InternshipController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.1.4.RELEASE/spring-beans-5.1.4.RELEASE.jar!/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2234">
-          <caret line="308" selection-start-line="308" selection-end-line="308" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/service/DrivingSchoolInfoService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/service/impl/DrivingSchoolInfoServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/springMVC.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="786">
-          <caret line="39" column="20" lean-forward="true" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="26" lean-forward="true" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/easyPoint/controller/DrivingSchoolInfoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.1.4.RELEASE/spring-beans-5.1.4.RELEASE.jar!/org/springframework/beans/factory/support/AbstractBeanFactory.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="199" column="62" lean-forward="true" selection-start-line="199" selection-start-column="62" selection-end-line="199" selection-end-column="62" />
+        <state relative-caret-position="328">
+          <caret line="185" column="21" lean-forward="true" selection-start-line="185" selection-start-column="21" selection-end-line="185" selection-end-column="21" />
         </state>
       </provider>
     </entry>
   </component>
   <component name="masterDetails">
     <states>
-      <state key="ArquillianSettingsConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
@@ -1411,6 +1540,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -1418,7 +1548,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>Spring (easyPoint)|Spring</last-edited>
+          <last-edited>Spring</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1453,11 +1583,12 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Spring|easyPoint</last-edited>
+          <last-edited>easyPoint</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

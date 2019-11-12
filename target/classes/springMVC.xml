@@ -39,7 +39,9 @@
             <!--&lt;!&ndash; 指定拦截的路径 &ndash;&gt;-->
             <!--<mvc:mapping path="/**"/>-->
             <!--&lt;!&ndash; 指定不拦截的路径 &ndash;&gt;-->
-            <!--<mvc:exclude-mapping path="/getUserInfoAndToken"/>-->
+            <!--<mvc:exclude-mapping path="/**/getUserInfoAndToken"/>-->
+            <!--<mvc:exclude-mapping path="/administrator/**"/>-->
+            <!--<mvc:exclude-mapping path="/**/pay.do"/>-->
             <!--<bean class="com.easyPoint.interceptor.TokenIntercptor"/>-->
         <!--</mvc:interceptor>-->
     <!--</mvc:interceptors>-->

@@ -10,4 +10,6 @@ public interface TravelInfoService {
 
     //用户查询租车订单详情信息
     Object findTravelOrderDetailInfo(int travelOrderId, int type);
+
+
 }

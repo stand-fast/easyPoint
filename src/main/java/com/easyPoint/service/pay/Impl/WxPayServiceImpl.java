@@ -1,12 +1,11 @@
 package com.easyPoint.service.pay.Impl;
 
-import com.easyPoint.util.*;
+import com.easyPoint.Util.*;
 import com.easyPoint.dao.mine.UserInfoDao;
 import com.easyPoint.dao.travel.TourismInfoDao;
 import com.easyPoint.dto.pay.PaymentDto;
 import com.easyPoint.dto.pay.MiniPaymentDto;
 import com.easyPoint.dto.pay.RefundParamDto;
-import com.easyPoint.pojo.travel.TourismOrderInfo;
 import com.easyPoint.service.pay.WxPayService;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -75,21 +74,20 @@ public class WxPayServiceImpl implements WxPayService {
         List keys = new ArrayList<>(sParaTemp.keySet());
         //参数名ASCII码从小到大排序（字典序）；
         Collections.sort(keys);
-        String prestr = "";
+        //拼接字符串
+        StringBuffer stringBuffer = new StringBuffer();
         for (int i = 0; i < keys.size(); i++) {
             String key = (String) keys.get(i);
             String value =  sParaTemp.get(key) + "";
-            if (i == keys.size() - 1) {// 拼接时，不包括最后一个&字符
-                prestr = prestr + key + "=" + value;
+            // 拼接时，不包括最后一个&字符
+            if (i == keys.size() - 1) {
+                stringBuffer.append(key).append("=").append(value);
             } else {
-                prestr = prestr + key + "=" + value + "&";
+                stringBuffer.append(key).append("=").append(value).append("&");
             }
         }
-
-
-        String sign = "";
-        System.out.println("sign = " + prestr + WxPayConstants.KEY);
-        byte[] mysignByte = (prestr + WxPayConstants.KEY).getBytes("utf-8");
+        String sign = stringBuffer.append(WxPayConstants.KEY).toString();
+        byte[] mysignByte = (sign).getBytes("utf-8");
         sign = DigestUtils.md5Hex(mysignByte).toUpperCase();
         paymentDto.setSign(sign);
         String result = "";
@@ -107,7 +105,6 @@ public class WxPayServiceImpl implements WxPayService {
             InputStream in=new ByteArrayInputStream(result.getBytes());
             // 读取输入流
             SAXReader reader = new SAXReader();
-
             Document document = reader.read(in);
             // 得到xml根元素
             Element root = document.getRootElement();
@@ -144,31 +141,20 @@ public class WxPayServiceImpl implements WxPayService {
 
     /**
      * 退款申请
-     * @param uid 用户id
-     * @param orderId 订单id，数据库自动生成id
-     * @param notifyUrl 退款成功回调地址
      * @return
      * @throws Exception
      */
     @Override
-    public Map requestRefund(int uid, int orderId,int refundFee, String notifyUrl) throws Exception {
-        RefundParamDto refundParamDto = new RefundParamDto();
-        //根据订单编号查找微信订单号
-        TourismOrderInfo tourismOrderInfo = tourismInfoDao.findTransactionId(orderId);
-        //单位转换
-        int totalFee = (int)(tourismOrderInfo.getPayMoney()*100);
+    public Map requestRefund(int uid, RefundParamDto refundParamDto) throws Exception {
+
         //随机字符串，长度要求在32位以内
         String nonceStr = RandomStrUtil.createNonceStr();
         //商品退单号
         String out_refund_no= RandomStrUtil.createOutTradeNo(uid);
         refundParamDto.setAppid(MiniProConstants.APPID);
         refundParamDto.setMch_id(WxPayConstants.MCH_ID);
-        refundParamDto.setTransaction_id(tourismOrderInfo.getTransactionId());
         refundParamDto.setNonce_str(nonceStr);
         refundParamDto.setOut_refund_no(out_refund_no);
-        refundParamDto.setTotal_fee(totalFee);
-        refundParamDto.setRefund_fee(refundFee);
-        refundParamDto.setNotify_url(notifyUrl);//通知地址(需要是外网可以访问的)
 
         Map<String, Object> sParaTemp = new HashMap<>();
         sParaTemp.put("appid", refundParamDto.getAppid());
@@ -226,10 +212,10 @@ public class WxPayServiceImpl implements WxPayService {
             }
             System.out.println("return_code" + "=============" + map.get("return_code"));
             System.out.println("transaction_id" +"============"+ map.get("transaction_id"));
-
+            return map;
         }catch (Exception e){
             throw new Exception();
         }
-        return null;
+        //return null;
     }
 }

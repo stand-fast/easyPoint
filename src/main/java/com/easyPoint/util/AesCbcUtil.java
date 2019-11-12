@@ -1,4 +1,4 @@
-package com.easyPoint.util;
+package com.easyPoint.Util;
 
 
 import org.apache.commons.codec.binary.Base64;

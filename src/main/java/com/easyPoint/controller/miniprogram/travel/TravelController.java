@@ -5,10 +5,8 @@ import com.easyPoint.pojo.travel.TravelOrderInfo;
 import com.easyPoint.service.miniprogram.travel.TravelInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 /**
@@ -32,7 +30,8 @@ public class TravelController {
      */
     @ResponseBody
     @RequestMapping("/findTravelOrder")
-    public Result findTravelOrder(int uid){
+    public Result findTravelOrder(@RequestAttribute("uid")int uid){
+        System.out.println(uid);
         List<TravelOrderInfo> travelOrderInfos = travelInfoService.findListTravelOrderByUid(uid);
         if(travelOrderInfos.isEmpty())
             return new Result<>(201,"暂无订单");
@@ -52,4 +51,5 @@ public class TravelController {
         return new Result<>(200,"查询出行订单详情成功",
                 travelInfoService.findTravelOrderDetailInfo(travelOrderId, type));
     }
+
 }

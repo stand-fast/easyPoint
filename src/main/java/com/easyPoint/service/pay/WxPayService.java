@@ -18,12 +18,6 @@ public interface WxPayService {
 
     /**
      * 退款接口
-     * @param uid
-     * @param orderId
-     * @param refundFee
-     * @param notifyUrl
-     * @return
-     * @throws Exception
      */
-    Map requestRefund(int uid, int orderId,int refundFee, String notifyUrl) throws Exception;
+    Map requestRefund(int uid, RefundParamDto refundParamDto) throws Exception;
 }

@@ -1,4 +1,4 @@
-package com.easyPoint.util;
+package com.easyPoint.Util;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;

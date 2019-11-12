@@ -1,15 +1,9 @@
 package com.easyPoint.controller.miniprogram.mine;
 
 
-import com.easyPoint.util.HttpRequestUtil;
-import com.easyPoint.util.JwtUtil;
-import com.easyPoint.util.NotifyUrlConstants;
-import com.easyPoint.dto.Result;
+import com.easyPoint.Util.JwtUtil;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.miniprogram.mine.UserInfoService;
-import com.easyPoint.service.pay.WxPayService;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
