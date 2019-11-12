@@ -1,4 +1,4 @@
-package com.easyPoint.Util;
+package com.easyPoint.util;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

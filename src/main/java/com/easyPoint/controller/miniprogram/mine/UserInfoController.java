@@ -1,9 +1,9 @@
 package com.easyPoint.controller.miniprogram.mine;
 
 
-import com.easyPoint.Util.HttpRequestUtil;
-import com.easyPoint.Util.JwtUtil;
-import com.easyPoint.Util.NotifyUrlConstants;
+import com.easyPoint.util.HttpRequestUtil;
+import com.easyPoint.util.JwtUtil;
+import com.easyPoint.util.NotifyUrlConstants;
 import com.easyPoint.dto.Result;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.miniprogram.mine.UserInfoService;
