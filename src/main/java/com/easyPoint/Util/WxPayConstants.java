@@ -21,6 +21,6 @@ public class WxPayConstants {
     // 商户支付密钥
     public static final String KEY = "&key=z55nb16gn1h89sa5x1dsfe6r4ty6e5qq";
 
-    //读取证书的安装路径
+    //读取证书的安装路径C:\Users\Administrator\AppData\Local\Temp\2\Temp1_1559868741_20191022_cert.zip\apiclient_cert.p12
     public static final String CERTIFICATE_PATH="C:\\Users\\Administrator\\AppData\\Local\\Temp\\2\\Temp1_1559868741_20191022_cert.zip\\apiclient_cert.p12";
 }

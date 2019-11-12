@@ -3,6 +3,7 @@ package com.easyPoint.service.miniprogram.travel;
 import com.easyPoint.dto.pay.MiniPaymentDto;
 import com.easyPoint.dto.pay.PaymentDto;
 import com.easyPoint.pojo.travel.TourismOrderInfo;
+import com.easyPoint.pojo.travel.TourismRefundInfo;
 import com.easyPoint.pojo.travel.VehicleInfo;
 
 import java.util.List;
@@ -27,4 +28,7 @@ public interface TourismInfoService {
     int updateTourismOrderDepartureTime(String departureTime,
                                         String beModifiedTime,
                                         int travelOrderId);
+
+    //用户申请租车退款
+    int requestTourismOrderRefund(int uid, TourismRefundInfo tourismRefundInfo);
 }

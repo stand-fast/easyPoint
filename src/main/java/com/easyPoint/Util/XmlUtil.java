@@ -25,6 +25,7 @@ public class XmlUtil {
         Map<String,Object> map=new HashMap<String,Object>();
         /* 通过IO获得Document */
         SAXReader reader = new SAXReader();
+        System.out.println(request.getInputStream());
         Document doc = reader.read(request.getInputStream());
         //得到xml的根节点
         Element root=doc.getRootElement();

@@ -3,6 +3,8 @@ package com.easyPoint.service.administrator.travel;
 import com.easyPoint.dto.Result;
 import com.easyPoint.dto.travel.DriverInfoDto;
 import com.easyPoint.dto.travel.PartTourismOrderInfoDto;
+import com.easyPoint.dto.travel.TourismRefundPageDetailDto;
+import com.easyPoint.dto.travel.TourismRefundPageDto;
 import com.easyPoint.pojo.travel.TourismOrderInfo;
 import com.easyPoint.pojo.travel.VehicleInfo;
 
@@ -39,5 +41,13 @@ public interface AdmiTourismInfoService {
     //查询已安排订单车辆信息
     DriverInfoDto findDriverInfoByTravelOrderId(int travelOrderId);
 
+    //分页查询退款订单
+    List<TourismRefundPageDto> findListTourismRefundByPageNum(int pageNum);
+
+    //退款订单详情页
+    TourismRefundPageDetailDto findTourismRefundDetail(int tourismRefundId);
+
+    //管理员是否同意退款
+    int ifAgreeTourismRefund(int uid, int tourismRefundId, String rejectReason, int ifAgree);
 
 }

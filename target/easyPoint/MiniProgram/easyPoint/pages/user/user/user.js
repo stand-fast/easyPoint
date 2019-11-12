@@ -51,7 +51,7 @@ Page({
             wx.getUserInfo({
               success: function (res_user) {
                 wx.request({
-                  url: 'https://easypoint.club/getUserInfoAndToken',
+                  url: 'https://easypoint.club/miniProgram/getUserInfoAndToken',
                   data: {
                     code: res.code,//获取openid的话 需要向后台传递code,利用code请求api获取openid
                     encryptedData: res_user.encryptedData,
@@ -92,7 +92,7 @@ Page({
         }
         else if(index==1){
             wx.navigateTo({
-                url: '/pages/user/myOrder/myOrder?type='+1,
+                url: '/pages/user/myOrder/myOrder?type='+0,
             })
         }
         else if(index==2){

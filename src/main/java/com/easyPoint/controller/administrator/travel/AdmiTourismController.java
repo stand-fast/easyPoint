@@ -3,6 +3,8 @@ package com.easyPoint.controller.administrator.travel;
 import com.easyPoint.dto.Result;
 import com.easyPoint.dto.travel.DriverInfoDto;
 import com.easyPoint.dto.travel.PartTourismOrderInfoDto;
+import com.easyPoint.dto.travel.TourismRefundPageDetailDto;
+import com.easyPoint.dto.travel.TourismRefundPageDto;
 import com.easyPoint.pojo.travel.TourismOrderInfo;
 import com.easyPoint.pojo.travel.VehicleInfo;
 
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedOutputStream;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -162,4 +166,66 @@ public class AdmiTourismController {
         return new Result<>(400,"结单失败",null);
     }
 
+    /**
+     * 分页查询第几页退款订单
+     * @param pageNum
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/findTourismRefunds")
+    public Result findTourismRefunds(int pageNum){
+        if(pageNum < 0)
+            return new Result(401,"页码出错");
+        List<TourismRefundPageDto> tourismRefundPageDtoList = admiTourismInfoService.findListTourismRefundByPageNum(pageNum);
+        if(tourismRefundPageDtoList.size() != 0)
+            return new Result<>(200,"查询退款订单成功", tourismRefundPageDtoList);
+        return new Result<>(201,"数据已经全部加载完毕");
+    }
+
+    /**
+     * 退款订单详情页
+     * @param tourismRefundId 退款订单号
+     * @return 详情信息
+     */
+    @ResponseBody
+    @RequestMapping("/findTourismRefundDetailPage")
+    public Result findTourismRefundDetailPage(int tourismRefundId){
+        if(tourismRefundId < 0)
+            return new Result(401,"退款表id参数错误");
+        TourismRefundPageDetailDto tourismRefundPageDetailDto = admiTourismInfoService.findTourismRefundDetail(tourismRefundId);
+        if(tourismRefundPageDetailDto != null)
+            return new Result<>(200,"查询退款订单详情信息成功",tourismRefundPageDetailDto);
+        return new Result(400,"数据库查询异常");
+    }
+
+    /**
+     * 管理员确认是否通过退款
+     * @param uid 管理员id
+     * @param tourismRefundId 退款表id
+     * @param rejectReason 驳回理由
+     * @param ifAgree 是否通过
+     * @return 退款是否成功
+     */
+    @ResponseBody
+    @RequestMapping("/ifA")
+    public Result ifAgreeTourismRefunds(@RequestParam("uid")int uid,
+                                        @RequestParam("num")int tourismRefundId,
+                                        @RequestParam("rea")String rejectReason,
+                                        @RequestParam("code")int ifAgree){
+        admiTourismInfoService.ifAgreeTourismRefund(uid, tourismRefundId, rejectReason,ifAgree);
+
+        return new Result(200,"退款成功");
+    }
+
+    @ResponseBody
+    @RequestMapping("/tourism/refund.do")
+    public void t(HttpServletResponse response) throws Exception{
+        System.out.println("-----------------------退款成功");
+
+        BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
+        String msg = "<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>";
+        out.write(msg.getBytes());
+        out.flush();
+        out.close();
+    }
 }

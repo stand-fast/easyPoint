@@ -1,12 +1,15 @@
 package com.easyPoint.service.miniprogram.travel.Impl;
 
+import com.easyPoint.Util.DateUtil;
 import com.easyPoint.Util.MiniProConstants;
 import com.easyPoint.Util.NotifyUrlConstants;
 import com.easyPoint.dao.travel.TourismInfoDao;
 import com.easyPoint.dto.pay.MiniPaymentDto;
 import com.easyPoint.dto.pay.PaymentDto;
+import com.easyPoint.dto.pay.RefundParamDto;
 import com.easyPoint.dto.template.MessageTemplateDto;
 import com.easyPoint.pojo.travel.TourismOrderInfo;
+import com.easyPoint.pojo.travel.TourismRefundInfo;
 import com.easyPoint.pojo.travel.VehicleInfo;
 import com.easyPoint.service.miniprogram.travel.TourismInfoService;
 import com.easyPoint.service.pay.WxPayService;
@@ -180,5 +183,44 @@ public class TourismInfoServiceImpl implements TourismInfoService {
             return 0;
         }else
             return 0;
+    }
+
+    /**
+     * 用户申请租车退款
+     * @param uid 用户id
+     * @param tourismRefundInfo:
+     *                              travelOrderId 订单id
+     *                              refund_reason 退款理由
+     */
+    @Override
+    public int requestTourismOrderRefund(int uid, TourismRefundInfo tourismRefundInfo) {
+
+        //查询退款订单的信息
+        Map uidAndState = tourismInfoDao.findUidAndStateByTravelOrderId(tourismRefundInfo.getTravelOrderId());
+        //判断申请用户是否为该订单的下单用户
+        if(uid != Integer.parseInt(uidAndState.get("uid").toString()))
+            return -1;
+        //判断订单状态，处理中和退款成功的状态不能在次申请退款
+        int state = Integer.parseInt(uidAndState.get("state").toString());
+        if(5 == state)
+            return -2;
+        else if(6 == state)
+            return -3;
+        //生成申请退款时间
+        String requestRefundTime = DateUtil.getDateTime();
+        //设置申请退款时间
+        tourismRefundInfo.setRequestRefundTime(requestRefundTime);
+        //设置退款状为待处理
+        tourismRefundInfo.setRefundState(1);
+        //将申请退款信息保存到数据库
+        int resultCode = tourismInfoDao.insertTourismRefund(tourismRefundInfo);
+        if(resultCode != 0){
+            //修改travel_order表的订单状态
+            tourismInfoDao.updateTravelOrderState(5,tourismRefundInfo.getTravelOrderId());
+            //保存新的tourismRefundId到tourism_order表中
+            tourismInfoDao.updateTourismRefundId(tourismRefundInfo.getTravelOrderId(),tourismRefundInfo.getTourismRefundId());
+        }
+        //返回保存是否成功
+        return resultCode;
     }
 }
