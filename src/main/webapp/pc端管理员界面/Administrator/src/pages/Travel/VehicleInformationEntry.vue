@@ -191,6 +191,7 @@ export default {
 .vehicleInfor li input {
   outline: none;
   padding: 10px;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   width: 200px;
   height: 50px;
@@ -199,6 +200,7 @@ export default {
 
 .submitVihicle {
   text-align: center;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   height: 40px;
   line-height: 30px;

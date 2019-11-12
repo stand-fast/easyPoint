@@ -7,47 +7,24 @@
       </div>
       <div class="PageContent">
         <h1>租车退款订单</h1>
-        <div class="renderOrderNav title">
-          <li class="navBigger">出发地</li>
-          <li class="navBigger">目的地</li>
-          <li class="navTime">出发时间</li>
-          <li class="navmiddle">类型</li>
-          <li class="navmiddle">定金</li>
-          <li class="navmiddle">购买保险</li>
-          <li class="navmiddle">姓名</li>
-          <li class="navmiddle navphone">手机号码</li>
-          <li class="navmiddle">订单状态</li>
-          <li class="navmiddle">退款原因</li>
-          <li class="navSmall">删除</li>
-          <li class="navSmall">退款</li>
+        <div class="wrapperOrder">
+          <li class="bigger">订单编号</li>
+          <li>联系人</li>
+          <li class="bigger">联系方式</li>
+          <li>退款金额</li>
+          <li class="time">退款时间</li>
+          <li>退款状态</li>
+          <li>操作</li>
         </div>
-        <div class="renderOrderNav type">
-          <li class="navBigger">广州市区广州市区广州市区广州市区广州市区广州市区广州市区广州市区广州市区</li>
-          <li class="navBigger">广州市区广州市区广州市区广州市区广州市区广州市区广州市区广州市区广州市区</li>
-          <li class="navTime">2019-10-01 08:30:00.0</li>
-          <li class="navmiddle">53座大巴</li>
-          <li class="navmiddle">￥1000</li>
-          <li class="navmiddle">是</li>
-          <li class="navmiddle">卢本伟</li>
-          <li class="navmiddle navphone">13012313211</li>
-          <li class="navmiddle">未安排</li>
-          <li class="navmiddle enter" @click="refundReason(123123)">退款原因</li>
-          <li class="navSmall enter" @click="deleteOrder(123)">删除</li>
-          <li class="navSmall enter" @click="refundOrder(123123)">退款</li>
-        </div>
-        <div class="renderOrderNav type">
-          <li class="navBigger">广州市区广州市区广州市区广州市区广州市区广州市区广州市区广州市区广州市区</li>
-          <li class="navBigger">广州市区广州市区广州市区广州市区广州市区广州市区广州市区广州市区广州市区</li>
-          <li class="navTime">2019-10-01 08:30:00.0</li>
-          <li class="navmiddle">53座大巴</li>
-          <li class="navmiddle">￥1000</li>
-          <li class="navmiddle">是</li>
-          <li class="navmiddle">卢本伟</li>
-          <li class="navmiddle navphone">13012313211</li>
-          <li class="navmiddle">未安排</li>
-          <li class="navmiddle enter" @click="refundReason(123123)">退款原因</li>
-          <li class="navSmall enter" @click="deleteOrder(123)">删除</li>
-          <li class="navSmall enter" @click="refundOrder(123123)">退款</li>
+        <!-- 每页9条 -->
+        <div class="wrapperOrder">
+          <li class="bigger" title="3123123123123123"></li>
+          <li>卢本伟</li>
+          <li class="bigger" title="13012321245"></li>
+          <li>￥200</li>
+          <li class="time place"><span>2019-10-01 08:30:00.0</span></li>
+          <li>未处理</li>
+          <li class="enter" @click="dealOrder(23123123123123123)">处理</li>
         </div>
         <paging
           :value="current"
@@ -85,14 +62,8 @@ export default {
     handlePageChange(pageNum) {
       var that = this;
     },
-    refundReason(id) {
-      console.log(id);
-    },
-    deleteOrder(id) {
-      console.log(id);
-    },
-    refundOrder(id) {
-      console.log(id);
+    dealOrder(id) {
+      this.$router.push("/DealOrder/" + id);
     }
   },
   components: {

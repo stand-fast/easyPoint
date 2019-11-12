@@ -7,34 +7,36 @@
       </div>
       <div class="PageContent">
         <h1>租车订单</h1>
-        <div class="renderOrderNav title">
-          <li class="navBigger">出发地</li>
-          <li class="navBigger">目的地</li>
-          <li class="navmiddle">出行人数</li>
-          <li class="navTime">出发时间</li>
-          <li class="navmiddle">类型</li>
-          <li class="navmiddle">定金</li>
-          <li class="navmiddle">购买保险</li>
-          <li class="navmiddle">姓名</li>
-          <li class="navmiddle navphone">手机号码</li>
-          <li class="navmiddle">订单状态</li>
-          <li class="navmiddle">车辆信息</li>
+        <div class="wrapperOrder">
+          <li class="bigger">出发地</li>
+          <li class="bigger">目的地</li>
+          <li>出行人数</li>
+          <li class="time">出发时间</li>
+          <li>类型</li>
+          <li>定金</li>
+          <li>购买保险</li>
+          <li>姓名</li>
+          <li class="bigger">手机号码</li>
+          <li>订单状态</li>
+          <li>车辆信息</li>
         </div>
-        <div class="renderOrderNav type" v-for="item in datas" :key="item.travelOrderId">
-          <li class="navBigger">{{item.departurePlace}}</li>
-          <li class="navBigger">{{item.destination}}</li>
-          <li class="navmiddle">{{item.travelNum}}</li>
-          <li class="navTime">{{item.departureTime}}</li>
-          <li class="navmiddle">{{item.vehicleType}}</li>
-          <li class="navmiddle">￥{{item.payMoney}}</li>
-          <li class="navmiddle" v-if="item.ifInsurance == 0">否</li>
-          <li class="navmiddle" v-if="item.ifInsurance == 1">是</li>
-          <li class="navmiddle">{{item.passenger}}</li>
-          <li class="navmiddle navphone">{{item.phone}}</li>
-          <li class="navmiddle" v-if="item.state == 0">未安排</li>
-          <li class="navmiddle" v-if="item.state == 1">已安排</li>
-          <li class="navmiddle" v-if="item.state == 2">已完成</li>
-          <li class="navmiddle enter">
+        <div class="wrapperOrder" v-for="item in datas" :key="item.travelOrderId">
+          <li class="bigger">{{item.departurePlace}}</li>
+          <li class="bigger">{{item.destination}}</li>
+          <li>{{item.travelNum}}</li>
+          <li class="time place">
+            <span>{{item.departureTime}}</span>
+          </li>
+          <li>{{item.vehicleType}}</li>
+          <li>￥{{item.payMoney}}</li>
+          <li v-if="item.ifInsurance == 0">否</li>
+          <li v-if="item.ifInsurance == 1">是</li>
+          <li>{{item.passenger}}</li>
+          <li class="bigger">{{item.phone}}</li>
+          <li v-if="item.state == 0">未安排</li>
+          <li v-if="item.state == 1">已安排</li>
+          <li v-if="item.state == 2">已完成</li>
+          <li class="enter">
             <span @click="handleVihicleInformation(item.travelOrderId)">进入</span>
           </li>
         </div>

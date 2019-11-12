@@ -8,7 +8,14 @@ export default {
                         name: "超级管理员"
                     })
                 } else {
-                    resolve(null)
+                    if (loginId === "admin1" && loginPwd === "123123") {
+                        resolve({
+                            loginId,
+                            name: "管理员"
+                        })
+                    } else {
+                        resolve(null)
+                    }
                 }
             }, 1000);
         })

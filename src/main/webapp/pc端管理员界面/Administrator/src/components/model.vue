@@ -129,7 +129,7 @@ export default {
             },
             {
               id: "3",
-              childrenName: "租车退款订单",
+              childrenName: "退款订单",
               url: "#/CarRentalRefund"
             }
           ]
@@ -204,6 +204,8 @@ li {
 .modelPageTop {
   width: 100%;
   height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
@@ -214,6 +216,7 @@ li {
   width: 250px;
   height: 82px;
 }
+
 .modelPageTopLogin {
   width: calc(100% - 500px);
   text-align: right;
@@ -222,6 +225,7 @@ li {
   margin-top: 30px;
   height: 20px;
 }
+
 .TopLoginOut {
   display: inline-block;
   cursor: pointer;
@@ -229,6 +233,7 @@ li {
   padding-left: 20px;
   margin-left: 20px;
 }
+
 .modelPageTopDetails {
   height: 80px;
   color: #ffffff;
@@ -245,6 +250,8 @@ li {
 .modelPageContent {
   width: 250px;
   height: 620px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -253,6 +260,7 @@ li {
   height: 620px;
   background-color: #72ab6f;
   border-bottom-left-radius: 4px;
+  -webkit-padding-start: 0px;
   padding-inline-start: 0px;
 }
 
@@ -272,6 +280,7 @@ li {
   line-height: 45px;
   border-radius: 4px;
   border-bottom: 1px solid #ffffff;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   color: #ffffff;
   background-color: #8ebc8c;
@@ -289,6 +298,7 @@ li {
   top: -3px;
   left: 230px;
   width: 200px;
+  -webkit-padding-start: 0px;
   padding-inline-start: 0px;
   z-index: 100;
 }
@@ -335,7 +345,10 @@ li {
   margin-left: 5px;
   width: calc(100% - 10px);
   height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 5px;
   background-color: #ffffff;
