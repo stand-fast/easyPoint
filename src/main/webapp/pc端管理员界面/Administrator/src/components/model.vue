@@ -58,11 +58,13 @@ export default {
           secondName: [
             {
               id: "1",
-              childrenName: "企业商家加盟申请"
+              childrenName: "企业商家加盟申请",
+              url:"#/JoinList"
             },
             {
               id: "2",
-              childrenName: "学生商家加盟申请"
+              childrenName: "学生商家加盟申请",
+              url:"#/JoinList"
             }
           ]
         },
@@ -190,6 +192,7 @@ export default {
 * {
   margin: 0px;
   padding: 0px;
+  font-family: 'Open Sans','Microsoft YaHei',"Heiti SC",'STHeiti Light','PMingLiU', sans-serif;
 }
 
 li {
@@ -328,6 +331,7 @@ li {
   height: 620px;
   border-bottom-right-radius: 4px;
   background-color: #f2f2f2;
+  overflow: auto;
 }
 
 .PageContentRightTitle {

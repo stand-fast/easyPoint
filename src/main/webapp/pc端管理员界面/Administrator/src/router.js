@@ -17,6 +17,8 @@ import CarRentalOrder from "./pages/Travel/CarRentalOrder.vue" //旅游出行-�
 import CarRentalRefund from "./pages/Travel/CarRentalRefund.vue" //旅游出行-租车退款订单
 import vehicleEntry from "./pages/Travel/VehicleInformationEntry.vue" //旅游出行-租车订单车辆信息
 import CurrentAnnouncement from "./pages/CurrentAnnouncement.vue" //公告栏-当前公告
+import JoinList from "./pages/BusinessesJoined/JoinList.vue" //已加盟商家-学生商家
+
 Vue.use(Router)
 
 const router = new Router({
@@ -142,6 +144,14 @@ const router = new Router({
         needLogin: true
       }
     },
+    {
+      path: "/JoinList",
+      name: '商家加盟列表',
+      component: JoinList,
+      meta: {
+        needLogin: true
+      }
+    }
   ],
 })
 router.beforeEach(function (to, from, next) {
