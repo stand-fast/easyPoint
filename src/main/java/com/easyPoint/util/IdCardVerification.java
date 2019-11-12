@@ -15,9 +15,6 @@ import java.util.Map;
  */
 
 public class IdCardVerification {
-    public static void main(String[] args) {
-        verification("445224199801022433", "方汉杰");
-    }
 
     public static void verification(String idCard, String name) {
         String host = "https://idcert.market.alicloudapi.com";
