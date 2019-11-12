@@ -231,7 +231,7 @@
 
     <!--//退款通过：保存退款操作管理员uid，确认时间，修改状态，保存驳回理由（同意时，驳回理由为无）-->
     <!--int updateTourismRefund(TourismRefundInfo tourismRefundInfo);-->
-    <update id="updateTourismRefund" parameterType="TourismRefundInfo">
+    <update id="updateTourismRefundToSuccess" parameterType="TourismRefundInfo">
         UPDATE tourism_refund SET admi_uid = #{admiUid}, refund_state = #{refundState},
                                   confirm_refund_time = #{confirmRefundTime}, refund_id = #{refundId},
                                   refund_fee = #{refundFee},

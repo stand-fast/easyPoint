@@ -302,7 +302,7 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
                 tourismInfoDao.updateTravelOrderState(6, travelOrderId);
             }
         }catch (Exception e){
-            log.error("退款请求失败");
+            log.error("退款请求失败" + e);
         }
         return 1;
     }
