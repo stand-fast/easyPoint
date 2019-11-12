@@ -1,7 +1,7 @@
 package com.easyPoint.service.administrator.travel.Impl;
 
-import com.easyPoint.Util.DateUtil;
-import com.easyPoint.Util.NotifyUrlConstants;
+import com.easyPoint.util.DateUtil;
+import com.easyPoint.util.NotifyUrlConstants;
 import com.easyPoint.dao.travel.TourismInfoDao;
 import com.easyPoint.dto.Result;
 import com.easyPoint.dto.pay.RefundParamDto;

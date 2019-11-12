@@ -1,6 +1,5 @@
 package com.easyPoint.service.miniprogram.travel.Impl;
 
-import com.easyPoint.Util.DateUtil;
 import com.easyPoint.dao.travel.TourismInfoDao;
 import com.easyPoint.pojo.travel.TravelOrderInfo;
 import com.easyPoint.service.miniprogram.travel.TravelInfoService;

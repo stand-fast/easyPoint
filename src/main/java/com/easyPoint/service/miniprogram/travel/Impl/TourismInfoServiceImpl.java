@@ -1,12 +1,11 @@
 package com.easyPoint.service.miniprogram.travel.Impl;
 
-import com.easyPoint.Util.DateUtil;
-import com.easyPoint.Util.MiniProConstants;
-import com.easyPoint.Util.NotifyUrlConstants;
+import com.easyPoint.util.DateUtil;
+import com.easyPoint.util.MiniProConstants;
+import com.easyPoint.util.NotifyUrlConstants;
 import com.easyPoint.dao.travel.TourismInfoDao;
 import com.easyPoint.dto.pay.MiniPaymentDto;
 import com.easyPoint.dto.pay.PaymentDto;
-import com.easyPoint.dto.pay.RefundParamDto;
 import com.easyPoint.dto.template.MessageTemplateDto;
 import com.easyPoint.pojo.travel.TourismOrderInfo;
 import com.easyPoint.pojo.travel.TourismRefundInfo;

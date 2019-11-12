@@ -54,13 +54,15 @@ Page({
             vehicleType: "53座大巴",
             deposit: "700"
           },
-        ]
+        ],
+        islanding:null,
     },
 
   //提交拉起支付功能
   formSubmit: function (e) {
     var that=this;
-    if (this.requistPersonInformation()) {
+    if (this.data.islanding){
+      if (this.requistPersonInformation()) {
         if (e.detail.value.startAddress == "") {
           wx.showToast({
             title: '请输入出发地点',
@@ -81,15 +83,15 @@ Page({
             icon: 'none',
             duration: 2000
           })
-        }  
-        else if(e.detail.value.perNumbers == "") {
+        }
+        else if (e.detail.value.perNumbers == "") {
           wx.showToast({
             title: '请输入出行人数',
             icon: 'none',
             duration: 2000
           })
         }
-        else if(this.data.carType == undefined) {
+        else if (this.data.carType == undefined) {
           wx.showToast({
             title: '请选择车辆类型',
             icon: 'none',
@@ -113,46 +115,52 @@ Page({
               })
             }
           }
-        wx.request({
-          url: 'https://easypoint.club/miniProgram/orderTourismOrder',
-          data: {
-            passenger: that.data.username,
-            phone: that.data.phone,
-            departurePlace: e.detail.value.startAddress,
-            destination: e.detail.value.endAddress,
-            travelNum: e.detail.value.perNumbers,
-            vehicleId: that.data.vehicleId,
-            departureTime: that.data.startTime,
-            type:0,
-            ifBack: that.data.is_back,
-            backTime: that.data.returnTime,
-            ifInsurance: that.data.is_insurance,
-            payMoney: 0.01,//已付款金额，等于定金+（如有购买保险，加上）
-            body: '出行租车', //产品简单描述
-            // deposit: that.data.money,
-          },
-          method: 'Post',
-          header: { 'content-type': 'application/x-www-form-urlencoded' },
-          success: function (res) {
-            var pay = res.data
-            console.log(pay)
-            //发起支付 
-            var timeStamp = pay.data.timeStamp + "";
-            console.log(timeStamp)
-            var packages = pay.data.packages;//统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=***
-            var paySign = pay.data.paySign;//paySign = MD5(appId=wxd678efh567hg6787&nonceStr=5K8264ILTKCH16CQ2502SI8ZNMTM67VS&package=prepay_id=wx2017033010242291fcfe0db70013231072&signType=MD5&timeStamp=1490840662&key=qazwsxedcrfvtgbyhnujmikolp111111) = 22D9B4E54AB1950F51E0649E8810ACD6
-            var nonceStr = pay.data.nonceStr;//随机字符串，长度为32个字符以下
-            var param = { "timeStamp": timeStamp, "package": packages, "paySign": paySign, "signType": "MD5", "nonceStr": nonceStr };
-            that.pay(param);
-          },
-          fail: function () {
-            console.log("失败")
-          }
-        })
-      }
-          
+          var token = this.data.token;
+          wx.request({
+            url: 'https://easypoint.club/miniProgram/orderTourismOrder',
+            data: {
+              passenger: that.data.username,
+              phone: that.data.phone,
+              departurePlace: e.detail.value.startAddress,
+              destination: e.detail.value.endAddress,
+              travelNum: e.detail.value.perNumbers,
+              vehicleId: that.data.vehicleId,
+              departureTime: that.data.startTime,
+              type: 0,
+              ifBack: that.data.is_back,
+              backTime: that.data.returnTime,
+              ifInsurance: that.data.is_insurance,
+              payMoney: 0.01,//已付款金额，等于定金+（如有购买保险，加上）
+              body: '出行租车', //产品简单描述
+              // deposit: that.data.money,
+            },
+            method: 'Post',
+            header: { 'content-type': 'application/x-www-form-urlencoded', token },
+            success: function (res) {
+              var pay = res.data
+              console.log(pay)
+              //发起支付 
+              var timeStamp = pay.data.timeStamp + "";
+              console.log(timeStamp)
+              var packages = pay.data.packages;//统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=***
+              var paySign = pay.data.paySign;//paySign = MD5(appId=wxd678efh567hg6787&nonceStr=5K8264ILTKCH16CQ2502SI8ZNMTM67VS&package=prepay_id=wx2017033010242291fcfe0db70013231072&signType=MD5&timeStamp=1490840662&key=qazwsxedcrfvtgbyhnujmikolp111111) = 22D9B4E54AB1950F51E0649E8810ACD6
+              var nonceStr = pay.data.nonceStr;//随机字符串，长度为32个字符以下
+              var param = { "timeStamp": timeStamp, "package": packages, "paySign": paySign, "signType": "MD5", "nonceStr": nonceStr };
+              that.pay(param);
+            },
+            fail: function () {
+              console.log("失败")
+            }
+          })
         }
 
+      }
+    }else{
+      wx.showToast({
+        title: '授权登陆并填写个人信息后才能提交订单',
+        icon:"none"
+      })
+    } 
   },
   /* 支付   */
   pay: function (param) {
@@ -175,6 +183,24 @@ Page({
       },
       complete: function (res) {
         console.log("pay complete");
+      }
+    })
+  },
+  judgeLanding: function () {
+    var that = this;
+    wx.getSetting({
+      success: (res) => {
+        if (res.authSetting['scope.userInfo']) {//授权了，可以获取用户信息了
+          console.log("已授权");
+          that.setData({
+            islanding: true,
+          })
+        } else {//未授权，跳到授权页面
+          console.log("未授权");
+          that.setData({
+            islanding: false,
+          })
+        }
       }
     })
   },
@@ -295,7 +321,8 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
+  onLoad: function (options) {
+        this.judgeLanding();
         // 获取完整的年月日 时分秒，以及默认显示的数组
         var obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
         // 精确到分的处理，将数组的秒去掉
@@ -332,7 +359,9 @@ Page({
         });
 
         var userInformation = wx.getStorageSync('userInformation');
+        var obj = wx.getStorageSync("token");
         this.setData({
+          token: obj.token,
           username: userInformation.username,
           phone: userInformation.phone,
         })
@@ -352,26 +381,40 @@ Page({
   //请求车辆类型数据以及对应应付定金
   getMessage: function () {
       var selt = this;
+      var token = this.data.token;
       wx.request({
         url: app.globalData.requestUrl+'findAllVehicleType',
         method: 'Post',
-        header: { 'content-type': 'application/x-www-form-urlencoded' },
+        header: { 'content-type': 'application/x-www-form-urlencoded',token},
         success: function (res) {
-          //console.log(res.data.data);    //res.data为seatVehicle对应数据
-          var seatvehicle = res.data.data;
-          var seatNumber = [];
-          var seatDeposit = [];
-          for (var i = 0; i < seatvehicle.length; i++) {
-            seatNumber.push(seatvehicle[i].vehicleType)
-            seatDeposit.push(seatvehicle[i].deposit);
+          //console.log(res);
+          if (res.header.token != undefined) {
+            let obj = wx.getStorageSync("token");
+            obj.token = res.header.token;
+            wx.setStorageSync("token", obj)
           }
-          selt.setData({
-            seatvehicleList: seatvehicle,
-            seatNumber: seatNumber,
-            seatDeposit: seatDeposit
-          })
+          if(res.data.code == 200){
+            console.log("查询所有车辆类型成功");
+            var seatvehicle = res.data.data;
+            var seatNumber = [];
+            var seatDeposit = [];
+            for (var i = 0; i < seatvehicle.length; i++) {
+              seatNumber.push(seatvehicle[i].vehicleType)
+              seatDeposit.push(seatvehicle[i].deposit);
+            }
+            selt.setData({
+              seatvehicleList: seatvehicle,
+              seatNumber: seatNumber,
+              seatDeposit: seatDeposit
+            })
           // console.log(selt.data.seatNumber);
           // console.log(selt.data.seatDeposit)
+          } else if (res.data.code == 501) {
+            wx.showToast({
+              title: '登录已经过期，请重新授权登录',
+              icon: "none"
+            })
+          }
         }
       })
     },
@@ -379,10 +422,11 @@ Page({
   //请求同乡会名称数据
   getCommitteeMessage: function () {
     var selt = this;
+    var token = this.data.token;
     wx.request({
       url: '接口路径',
       method: 'get',
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      header: { 'content-type': 'application/x-www-form-urlencoded',token },
       success: function (res) {
         console.log(res.data)
         var associations = res.data;

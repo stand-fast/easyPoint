@@ -1,6 +1,5 @@
 package com.easyPoint.controller.miniprogram.travel;
 
-import com.easyPoint.Util.NotifyUrlConstants;
 import com.easyPoint.dto.Result;
 import com.easyPoint.pojo.travel.TravelOrderInfo;
 import com.easyPoint.service.miniprogram.travel.TravelInfoService;
