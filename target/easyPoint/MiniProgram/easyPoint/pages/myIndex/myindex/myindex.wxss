@@ -13,16 +13,17 @@ Page{
     top: 0rpx;
     box-sizing: border-box;
     z-index: 100;
-}
-.search_icon{
-    position: fixed;
-    top: 34rpx;
-    left: 44rpx;
-    z-index: 101;
+    padding-bottom: constant(safe-area-inset-bottom);
 }
 .search_icon image{
+    position: fixed;
+    top: 34rpx;
+    left: 48rpx;
+    z-index: 101;
     width: 28rpx!important;
     height: 35rpx!important;
+    margin: 0!important;
+    padding-bottom: constant(safe-area-inset-bottom);
 }
 .input{
     width: 550rpx;

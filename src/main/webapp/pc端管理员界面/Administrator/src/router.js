@@ -15,6 +15,7 @@ import HistoryTicket from "./pages/CommitteeVihicle/HistoryTicket.vue" //校友�
 import AddVehicleType from "./pages/Travel/AddVehicleType.vue" //旅游出行-添加发布车辆类型
 import CarRentalOrder from "./pages/Travel/CarRentalOrder.vue" //旅游出行-租车订单
 import CarRentalRefund from "./pages/Travel/CarRentalRefund.vue" //旅游出行-租车退款订单
+import DealOrder from "./pages/Travel/DealOrder.vue" //旅游出行-租车退款订单详情
 import vehicleEntry from "./pages/Travel/VehicleInformationEntry.vue" //旅游出行-租车订单车辆信息
 import CurrentAnnouncement from "./pages/CurrentAnnouncement.vue" //公告栏-当前公告
 import JoinList from "./pages/BusinessesJoined/JoinList.vue" //已加盟商家-学生商家
@@ -124,6 +125,14 @@ const router = new Router({
       path: "/CarRentalRefund",
       name: '旅游出行-租车退款订单',
       component: CarRentalRefund,
+      meta: {
+        needLogin: true
+      }
+    },
+    {
+      path: "/DealOrder/:id",
+      name: '旅游出行-租车退款订单详情',
+      component: DealOrder,
       meta: {
         needLogin: true
       }

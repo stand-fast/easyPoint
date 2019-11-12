@@ -169,3 +169,15 @@ Page{
   font-size: 26rpx;
   color: #999;
 }
+.fatherStudy_item,.getCard_item{
+    font-size: 30rpx;
+    color: #999;
+    text-align: center;
+    margin-top: 300rpx;
+}
+::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+    color: transparent;
+    display: none;
+}

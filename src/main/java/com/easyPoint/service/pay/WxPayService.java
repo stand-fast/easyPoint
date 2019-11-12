@@ -1,16 +1,23 @@
 package com.easyPoint.service.pay;
 
-import com.easyPoint.dto.pay.RequestPaymentParamDto;
+import com.easyPoint.dto.pay.MiniPaymentDto;
+import com.easyPoint.dto.pay.PaymentDto;
+import com.easyPoint.dto.pay.RefundParamDto;
+
+import java.util.Map;
+
 
 public interface WxPayService {
 
-    //发起微信支付
     /**
-     *
-     * @param uid
-     * @param totalFee 订单总金额，单位为分。
-     * @param body  商品简单描述，该字段请按照规范传递。
-     * @param attachData    附加数据，在查询API和支付通知中原样返回，可作为自定义参数使用。
+     * 发起微信支付
+     * @param paymentDto
+     * @return 小程序发起支付请求参数
      */
-    RequestPaymentParamDto requestWxPay(int uid, String totalFee, String body, String attachData);
+    Map requestWxPay(PaymentDto paymentDto, int uid, String notifyUrl) throws Exception;
+
+    /**
+     * 退款接口
+     */
+    Map requestRefund(int uid, RefundParamDto refundParamDto) throws Exception;
 }

@@ -1,4 +1,5 @@
 // pages/myIndex/myindex/myindex.js
+var app = getApp()
 Page({
 
     /**

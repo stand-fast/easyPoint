@@ -6,41 +6,41 @@ Page({
      * 页面的初始数据
      */
     data: {
-        currenTab:0,
-        ruralCommittee:[
-          {
-            ticketId: 623123513,
-            departureTime: "2019-09-10 08:00",
-            departurePlace: "汕头",
-            destination: "广州广金本部",
-            ticketNum: "10",
-            type: "1",
-          },
-          {
-            ticketId: 12357568583,
-            departureTime: "2019-09-10 18:00",
-            departurePlace: "汕头",
-            destination: "广州广金本部",
-            ticketNum: "5",
-            type: "2",
-          }, 
-        ],
-        ticket_lists:[   
+      currenTab:0,
+      ruralCommittee:[
         {
-            tourismId:"123123123123",
-            departureTime: "2019-01-10 09:00",
-            departurePlace: "广州广金本部",
-            destination: "白云山",
-            travelNum: "22",
+          ticketId: 623123513,
+          departureTime: "2019-09-10 08:00",
+          departurePlace: "汕头",
+          destination: "广州广金本部",
+          ticketNum: "10",
+          type: "1",
         },
         {
-            tourismId: "123123123123123112541",
-            departureTime: "2019-01-10 09:00",
-            departurePlace: "广州广金本部",
-            destination: "白云山",
-            travelNum: "42",
-        }
-    ],
+          ticketId: 12357568583,
+          departureTime: "2019-09-10 18:00",
+          departurePlace: "汕头",
+          destination: "广州广金本部",
+          ticketNum: "5",
+          type: "2",
+        }, 
+      ],
+    // ticket_lists:[   
+    //   {
+    //       tourismId:"123123123123",
+    //       departureTime: "2019-01-10 09:00",
+    //       departurePlace: "广州广金本部",
+    //       destination: "白云山",
+    //       travelNum: "22",
+    //   },
+    //   {
+    //       tourismId: "123123123123123112541",
+    //       departureTime: "2019-01-10 09:00",
+    //       departurePlace: "广州广金本部",
+    //       destination: "白云山",
+    //       travelNum: "42",
+    //   }
+    // ],
     rentItems:[{
             goodName:"随身携带可充电荧光灯带哈哈哈",
             goodPrice:30,
@@ -96,22 +96,32 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
+  onLoad: function (options) {
+    var obj = wx.getStorageSync("token");
+    this.setData({
+      token: obj.token,
+    })
       var type=options.type;
       this.getMessage(type);
     },
     //获得我的订单出行数据
     getMessage: function (type) {
       var selt = this;
+      var token = this.data.token;
       wx.request({
         url: app.globalData.requestUrl+'findTravelOrder',
         method: 'get',
         data:{
-          uid:'1',
+          uid: app.globalData.uid,
         },
-        header: { 'content-type': 'application/x-www-form-urlencoded' },
+        header: { 'content-type': 'application/x-www-form-urlencoded',token},
         success: function (res) {
-          console.log(res);
+          //console.log(res);
+          if (res.header.token != undefined){
+           let obj = wx.getStorageSync("token");
+            obj.token = res.header.token;
+            wx.setStorageSync("token", obj)
+          }
           if(res.data.code == 200){
             console.log("查询用户的出行订单成功");
             console.log(res.data.data)
@@ -120,7 +130,12 @@ Page({
             })
           } else if (res.data.code == 201) {
             console.log("暂无订单");
-          }   
+          } else if (res.data.code == 501){
+            wx.showToast({
+              title: '登录已经过期，请重新授权登录',
+              icon:"none"
+            })
+          } 
         }
       })
     },

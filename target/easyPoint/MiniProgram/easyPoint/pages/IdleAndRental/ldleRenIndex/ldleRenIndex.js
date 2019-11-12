@@ -1,4 +1,5 @@
 // pages/IdleAndRental/ldleRenIndex/ldleRenIndex.js
+const app=getApp()
 Page({
 
     /**
@@ -7,6 +8,7 @@ Page({
     data: {
         currentTab:0,
         flag:0,
+        isIphoneX:false,
         advertisementUrl:[
             "/images/zulin.png",
             "/images/zulin.png",
@@ -114,9 +116,13 @@ Page({
     for (var i=0; i < goodsType.length;++i){
       goodsTypeInterface.push(goodsType[i].goodsTypeName)
       //console.log(goodsType[i].goodsTypeName)
+    //获取机型适配iPhoneX系列
+        var isiphoneX = app.globalData.isIphoneX
+        console.log(isiphoneX)
     }
     this.setData({
       goodsTypeInterface: goodsTypeInterface,
+      isIphoneX:isiphoneX
     })
   },
   //获得数据

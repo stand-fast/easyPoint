@@ -1,14 +1,21 @@
 package com.easyPoint.service.administrator.travel.Impl;
 
+import com.easyPoint.Util.DateUtil;
+import com.easyPoint.Util.NotifyUrlConstants;
 import com.easyPoint.dao.travel.TourismInfoDao;
 import com.easyPoint.dto.Result;
-import com.easyPoint.dto.template.DriverMessageDto;
+import com.easyPoint.dto.pay.RefundParamDto;
+import com.easyPoint.dto.template.MessageTemplateDto;
 import com.easyPoint.dto.travel.DriverInfoDto;
 import com.easyPoint.dto.travel.PartTourismOrderInfoDto;
+import com.easyPoint.dto.travel.TourismRefundPageDetailDto;
+import com.easyPoint.dto.travel.TourismRefundPageDto;
 import com.easyPoint.pojo.travel.TourismOrderInfo;
+import com.easyPoint.pojo.travel.TourismRefundInfo;
 import com.easyPoint.pojo.travel.VehicleInfo;
 
 import com.easyPoint.service.administrator.travel.AdmiTourismInfoService;
+import com.easyPoint.service.pay.WxPayService;
 import com.easyPoint.service.template.TemplateMessageService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -30,6 +37,9 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
     @Autowired
     TourismInfoDao tourismInfoDao;
 
+    @Autowired
+    WxPayService wxPayService;
+
 
     @Autowired
     TemplateMessageService templateMessageService;
@@ -42,7 +52,7 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
         Map map = new HashMap();
         int total = tourismInfoDao.countVehicleTypeNum();
         //得出车辆类型的总页数
-        int totalPage = (total%4 == 0) ? (total/4):(total/4 + 1);
+        int totalPage = (total%4 == 0) ? (total/8):(total/8 + 1);
         map.put("totalPage", totalPage);
         //查询第一页车辆类型的信息
         List<VehicleInfo> vehicleInfoList = findListPageNumVehicleInfo(1);
@@ -61,7 +71,7 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
     @Override
     public List<VehicleInfo> findListPageNumVehicleInfo(int pageNum) {
         //收到页数从一开始，表索引从0开始，故减去1
-        int index = (pageNum - 1) * 4;
+        int index = (pageNum - 1) * 8;
         List<VehicleInfo> vehicleInfoList = tourismInfoDao.findListVehicleInfo(index);
         return vehicleInfoList;
     }
@@ -146,19 +156,19 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
         tourismOrderInfo.setArrangeVehicleTime(arrangeVehicleTime);
         int resultCode = 0;
         //将车辆信息更新到tourism_order表中
-//        resultCode = tourismInfoDa.updateTourismOrderInfoAddDriverInfo(tourismOrderInfo);
-//        //更新travel_order表中的订单状态
-//        resultCode = tourismInfoDa.updateTravelOrderState(1,tourismOrderInfo.getTravelOrderId());
+        resultCode = tourismInfoDao.updateTourismOrderInfoAddDriverInfo(tourismOrderInfo);
+        //更新travel_order表中的订单状态
+        resultCode = tourismInfoDao.updateTravelOrderState(1,tourismOrderInfo.getTravelOrderId());
 
 
         Map map1 = new LinkedHashMap();
         Map data = new LinkedHashMap();
-        map1.put("value","20190927155802");
+        map1.put("value",arrangeVehicleTime);
         map1.put("color","#4a4a4a");
         data.put("keyword1",map1);
         Map map2 = new LinkedHashMap();
 
-        map2.put("value","100元");
+        map2.put("value","0元");
         map2.put("color","#4a4a4a");
         data.put("keyword2",map2);
         Map map3 = new LinkedHashMap();
@@ -168,28 +178,29 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
         data.put("keyword3",map3);
         Map map4 = new LinkedHashMap();
 
-        map4.put("value","铁头丸");
+        map4.put("value","安排车辆");
         map4.put("color","#4a4a4a");
         data.put("keyword4",map4);
 
 
-        DriverMessageDto driverMessageDto = new DriverMessageDto();
-        driverMessageDto.setTouser("o9fyZ5U5RyDL6mdpbxPGPWjHQsrQ");
-        driverMessageDto.setTemplate_id("T2Q_F8pFHwFB3fbUttlXNFdRzkf8JFBbahcI29EJWC0");
-        driverMessageDto.setForm_id("1ef0a1dac67447a192ee84ad73a4640b");
-        driverMessageDto.setData(data);
-        driverMessageDto.setColor("#ccc");
-        driverMessageDto.setEmphasis_keyword("keyword4.DATA");
+        MessageTemplateDto messageTemplateDto = new MessageTemplateDto();
+        //查询用户的openId
+        messageTemplateDto.setTouser("o9fyZ5U5RyDL6mdpbxPGPWjHQsrQ");
+        messageTemplateDto.setTemplate_id("T2Q_F8pFHwFB3fbUttlXNFdRzkf8JFBbahcI29EJWC0");
+        messageTemplateDto.setForm_id("1ef0a1dac67447a192ee84ad73a4640b");
+        messageTemplateDto.setData(data);
+        messageTemplateDto.setColor("#ccc");
+        messageTemplateDto.setEmphasis_keyword("keyword4.DATA");
 
 
         ObjectMapper objectMapper = new ObjectMapper();
         //将driverMessageDto转换为Json数据
         try{
-            String param = objectMapper.writeValueAsString(driverMessageDto);
+            String param = objectMapper.writeValueAsString(messageTemplateDto);
             //发送模板消息，通知用户管理员已经为其租车订单安排车辆信息
             templateMessageService.sendTemplateMessage(param);
         }catch (Exception e){
-            log.error("driverMessageDto类转换为Json数据出现异常" + e);
+            log.error("messageTemplateDto类转换为Json数据出现异常" + e);
             return 0;
         }
 
@@ -210,5 +221,89 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
         return tourismInfoDao.findDriverInfoByTravelOrderId(travelOrderId);
     }
 
+    /**
+     * 分页查询退款订单
+     * @param pageNum 页数
+     * @return 该页退款信息
+     */
+    @Override
+    public List<TourismRefundPageDto> findListTourismRefundByPageNum(int pageNum) {
+        //数据库第pageNum页开始下标
+        int index = (pageNum - 1) * 8;
+        List<TourismRefundPageDto> tourismRefundPageDtoList = tourismInfoDao.findListTourismRefund(index);
+        return tourismRefundPageDtoList;
+    }
 
+    /**
+     * 退款订单详情页
+     * @param tourismRefundId 退款表id
+     * @return 退款订单详情
+     */
+    @Override
+    public TourismRefundPageDetailDto findTourismRefundDetail(int tourismRefundId) {
+        return tourismInfoDao.findTourismRefundDetail(tourismRefundId);
+    }
+
+    /**
+     * 管理员是否同意退款
+     * @param uid 管理员id
+     * @param tourismRefundId 退款订单表id
+     * @param rejectReason 驳回理由
+     * @param ifAgree 是否同意 0否，1同意
+     * @return
+     */
+    @Override
+    public int ifAgreeTourismRefund(int uid, int tourismRefundId, String rejectReason, int ifAgree) {
+        //管理员确认退款时间
+        String confirmRefundTime = DateUtil.getDateTime();
+        //查询travelOrderId
+        int travelOrderId = tourismInfoDao.findTravelOrderId(tourismRefundId);
+        //管理员不同意退款
+        if(ifAgree == 0){
+            //将不同意理由保存到tourismRefund表中，并修改其状态为不通过
+            tourismInfoDao.updateTourismRefundToFail(uid, tourismRefundId, 2, confirmRefundTime, rejectReason);
+            //修改travel_order表中的订单状态为不通过
+            tourismInfoDao.updateTravelOrderState(7, travelOrderId);
+            //
+            return 0;
+        }
+        //管理员同意退款
+        //发起退款
+        //根据订单编号查找微信订单号，订单付款金额，
+        TourismOrderInfo tourismOrderInfo = tourismInfoDao.findTourismRefundInfo(travelOrderId);
+        //构造退款参数对象
+        RefundParamDto refundParamDto = new RefundParamDto();
+        //设置微信订单号
+        refundParamDto.setTransaction_id(tourismOrderInfo.getTransactionId());
+        //设置订单支付总金额,并转换单位，由元转为分后取整
+        refundParamDto.setTotal_fee((int)(tourismOrderInfo.getPayMoney()*100));
+        //全额退款
+        refundParamDto.setRefund_fee((int)(tourismOrderInfo.getPayMoney()*100));
+        //设置退款回调函数
+        refundParamDto.setNotify_url(NotifyUrlConstants.TOURISM_REFUND_NOTIFY_URL);
+        //请求微信退款
+        //返回数据
+        Map resultMap;
+        try {
+            resultMap = wxPayService.requestRefund(uid, refundParamDto);
+            //申请退款成功
+            if("SUCCESS".equals(resultMap.get("return_code"))&&"SUCCESS".equals(resultMap.get("result_code"))){
+                //将操作信息保存到tourismRefund表中，并修改其状态为通过，插入微信退款单号，退款金额
+                TourismRefundInfo tourismRefundInfo = new TourismRefundInfo();
+                tourismRefundInfo.setAdmiUid(uid);
+                tourismRefundInfo.setTourismRefundId(tourismRefundId);
+                tourismRefundInfo.setRefundState(3);
+                tourismRefundInfo.setConfirmRefundTime(confirmRefundTime);
+                tourismRefundInfo.setRejectReason(rejectReason);
+                tourismRefundInfo.setRefundId(resultMap.get("refund_id").toString());
+                tourismRefundInfo.setRefundFee(Integer.parseInt(resultMap.get("refund_fee").toString()));
+                tourismInfoDao.updateTourismRefundToSuccess(tourismRefundInfo);
+                //修改travel_order表中的订单状态为通过
+                tourismInfoDao.updateTravelOrderState(6, travelOrderId);
+            }
+        }catch (Exception e){
+            log.error("退款请求失败");
+        }
+        return 1;
+    }
 }

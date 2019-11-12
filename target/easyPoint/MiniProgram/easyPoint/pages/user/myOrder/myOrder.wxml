@@ -63,9 +63,27 @@
         </view>
     </view>
 </block>
+<!-- 教育板块 -->
 <block wx:if="{{currenTab==1}}">
-    <view>教育</view>
+    <view class="noOrder">因教育版块暂未开放\n还未产生订单哦^_^</view>
 </block>
+
+<!-- 租借版块 -->
 <block wx:if="{{currenTab==2}}">
-    <view>租借</view>
+    <view class="rent_item" wx:for="{{rentItems}}" wx:key="{{index}}" data-index="{{index}}" bindtap="jumpToRentDetail">
+        <view class="rent_item_list_pic_detail">
+            <image src="/images/user_order_rent.png"></image>
+            <view class="rent_item_list_detail">
+                <view class="list_detail_line">
+                    <view class="rent_item_list_goodname">{{item.goodName}}</view>
+                    <view class="rent_litem_list_goodPrice">￥{{item.goodPrice}}元</view>
+                </view>
+                <view class="list_detail_line">
+                    <view class="rent_item_list_goodDecription">{{item.goodDecription}}</view>
+                    <view class="rent_item_list_goodNumber">×{{item.goodNumber}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="rent_item_list_footer">共{{item.goodNumber}}件商品，合计{{item.goodPrice*item.goodNumber}}元 <text>{{item.orderStatus}}</text></view>
+    </view>
 </block>

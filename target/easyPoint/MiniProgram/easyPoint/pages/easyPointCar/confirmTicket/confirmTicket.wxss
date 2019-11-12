@@ -6,6 +6,7 @@ Page{
 .confirm_body{
     width: 100%;
     height: 900rpx;
+    padding-bottom:120rpx; 
 }
 .confirm_header{
     width: 100%;
@@ -75,7 +76,7 @@ Page{
 }
 .min,.max{
     height: 30rpx;
-    margin-top: 14rpx;
+    margin-top: 12rpx;
     display: flex;
     flex-direction: row;
 }
@@ -83,25 +84,25 @@ Page{
     margin-left: 320rpx;
 }
 .ticket_circle{
-    width: 30rpx;
-    height: 30rpx;
+    width: 34rpx;
+    height: 34rpx;
     border-radius: 50%;
     background-color: #7ecef4;
 }
 .min text,.max text{
     width: 0rpx;
-    height: 30rpx;
-    line-height: 30rpx;
-    position: fixed;
+    height: 34rpx;
+    line-height: 34rpx;
+    position: absolute;
     color: #fff;
     font-size: 36rpx;
     font-weight: bold;
-    margin-left: 5rpx;
+    margin:2rpx 8rpx;
 }
 .ticketInput{
     width: 60rpx;
-    height: 30rpx;
-    line-height: 30rpx;
+    height: 40rpx;
+    line-height: 40rpx;
     color: #333;
     font-size: 36rpx;
     text-align: center;

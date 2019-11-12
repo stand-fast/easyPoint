@@ -132,6 +132,7 @@
         <property name="connectionFactory" ref="connectionFactory"/>
         <property name="keySerializer" ref="stringRedisSerializer"/>
         <property name="valueSerializer" ref="jdkSerializationRedisSerializer"/>
+        <property name="hashValueSerializer" ref="jdkSerializationRedisSerializer"/>
     </bean>
 
     <!--&lt;!&ndash;redis监听器的适配器&ndash;&gt;-->

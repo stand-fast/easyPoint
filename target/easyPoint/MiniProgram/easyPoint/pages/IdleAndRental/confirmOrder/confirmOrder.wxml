@@ -18,11 +18,11 @@
 <view class="order_items_list">
     <view class="order_item">
         <view class="order_item_title first">租借天数</view>
-        <view class="order_item_text first">{{good_details_info.leaseDate}}天</view>
+        <view class="order_item_text first">{{good_details_info.leaseDate}} 天</view>
     </view>
     <view class="order_item">
         <view class="order_item_title">租借押金</view>
-        <view class="order_item_text money">￥{{good_details_info.deposit*good_details_info.number}}</view>
+        <view class="order_item_text money">￥ {{good_details_info.deposit*good_details_info.number}}</view>
     </view>
     <view class="order_item">
         <view class="order_item_title">取货时间</view>

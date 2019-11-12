@@ -1,10 +1,13 @@
 package com.easyPoint.controller.miniprogram.mine;
 
-import com.easyPoint.Util.HttpRequestUtil;
-import com.easyPoint.Util.JwtUtil;
+
+import com.easyPoint.util.HttpRequestUtil;
+import com.easyPoint.util.JwtUtil;
+import com.easyPoint.util.NotifyUrlConstants;
 import com.easyPoint.dto.Result;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.miniprogram.mine.UserInfoService;
+import com.easyPoint.service.pay.WxPayService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,18 +52,4 @@ public class UserInfoController {
         }
     }
 
-    @ResponseBody
-    @RequestMapping("/test")
-    public Result test(){
-        String result = HttpRequestUtil.sendGet("https://api.weixin.qq.com/cgi-bin/token","grant_type=client_credential&appid=wxe01ead21cec586c4&secret=679aa6c79c85459b23f9a87bdd173759");
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            JsonNode rootNode = objectMapper.readTree(result);
-            String accessToken = rootNode.path("access_token").asText();
-            System.out.println(accessToken);
-        }catch (Exception e){}
-
-
-        return new Result(200,"sfdasf",result);
-    }
 }

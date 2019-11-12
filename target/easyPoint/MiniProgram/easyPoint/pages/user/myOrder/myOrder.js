@@ -1,4 +1,5 @@
 // pages/user/myOrder/myOrder.js
+const app = getApp()
 Page({
 
     /**
@@ -39,6 +40,20 @@ Page({
             destination: "白云山",
             travelNum: "42",
         }
+    ],
+    rentItems:[{
+            goodName:"随身携带可充电荧光灯带哈哈哈",
+            goodPrice:30,
+            goodDecription:"五十米长我算到这里就应该是二十了吧哈哈哈到可以",
+            goodNumber:2,
+            orderStatus:"未完成"
+        },{
+            goodName: "超级好用的音响",
+            goodPrice: 150,
+            goodDecription: "蓝牙无线连接",
+            goodNumber: 1,
+            orderStatus: "押金已退还"
+        }
     ]
     },
     swichNav:function(e){
@@ -70,6 +85,14 @@ Page({
           url: '/pages/user/myOrderCarDetail/myOrderCarDetail?current=1&&travelOrderId=' + data.travelOrderId,
         })
     },
+    jumpToRentDetail:function(e){
+        var index = e.currentTarget.dataset.index;
+        var data = this.data.rentItems[index];
+        wx.setStorageSync('myOrderRental', data)
+        wx.navigateTo({
+            url: '/pages/user/myOrderRentDetail/myOrderRentDetail?current=2&&rentOrderId=' + data.rentOrderId,
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -81,13 +104,14 @@ Page({
     getMessage: function (type) {
       var selt = this;
       wx.request({
-        url: 'http://easypoint.club/findTravelOrder',
+        url: app.globalData.requestUrl+'findTravelOrder',
         method: 'get',
         data:{
           uid:'1',
         },
         header: { 'content-type': 'application/x-www-form-urlencoded' },
         success: function (res) {
+          console.log(res);
           if(res.data.code == 200){
             console.log("查询用户的出行订单成功");
             console.log(res.data.data)

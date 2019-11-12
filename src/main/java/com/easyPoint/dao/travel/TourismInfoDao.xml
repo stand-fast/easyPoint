@@ -35,7 +35,7 @@
 
     <!--查询订单总数-->
     <select id="countTourismOrderNum" resultType="Integer">
-        select count(travel_order_id) from tourism_order
+        select count(*) from tourism_order
     </select>
 
     <!--分页查询租车订单信息-->
@@ -90,8 +90,8 @@
                                   )
     </insert>
     <insert id="insertTourismOrderInfo" parameterType="TourismOrderInfo">
-        insert into tourism_order (travel_order_id,vehicle_id,passenger,phone,is_insurance, pay_money, make_order_time)
-                                    value (#{travelOrderId},#{vehicleId},#{passenger},#{phone} #{ifInsurance}, #{payMoney}, #{makeOrderTime})
+        insert into tourism_order (travel_order_id,vehicle_id,passenger,phone,is_insurance, pay_money, make_order_time, out_trade_no,transaction_id)
+                                    value (#{travelOrderId},#{vehicleId},#{passenger},#{phone}, #{ifInsurance}, #{payMoney}, #{makeOrderTime},#{outTradeNo},#{transactionId})
     </insert>
 
     <update id="updateTourismOrderInfoAddDriverInfo" parameterType="TourismOrderInfo">
@@ -166,4 +166,82 @@
                                  where travel_order_id = #{travelOrderId} and is_modified = 0
     </update>
 
+    <!--//根据订单号查询下单用户-->
+    <!--int findUidAndStateByTravelOrderId(int travelOrderId);-->
+    <select id="findUidAndStateByTravelOrderId" parameterType="int" resultType="Map">
+        SELECT uid, state FROM travel_order WHERE travel_order_id = #{travelOrderId}
+    </select>
+
+    <!--//查询退款需要的订单信息：微信订单号和支付总金额-->
+    <!--TourismOrderInfo findTourismRefundInfo(int travelOrderId);-->
+    <select id="findTourismRefundInfo" parameterType="int" resultType="TourismOrderInfo">
+        SELECT  pay_money AS payMoney, transaction_id AS transactionId FROM tourism_order WHERE travel_order_id = #{travelOrderId}
+    </select>
+
+    <!--//用户申请退款-->
+    <!--int insertTourismRefund(TourismRefundInfo tourismRefundInfo);-->
+    <insert id="insertTourismRefund" useGeneratedKeys="true" keyProperty="tourismRefundId" parameterType="TourismRefundInfo">
+        INSERT INTO tourism_refund (travel_order_id, refund_state, request_refund_time, refund_reason)
+                                    VALUE (#{travelOrderId}, #{refundState}, #{requestRefundTime}, #{refundReason})
+    </insert>
+
+    <!--//修改订单状态并保存新的退款表id-->
+    <!--int updateTourismRefundId(@Param("travelOrderId")int travelOrderId,-->
+    <!--@Param("tourismRefundId")int tourismRefundId);-->
+    <update id="updateTourismRefundId">
+        UPDATE tourism_order SET tourism_refund_id = #{tourismRefundId} WHERE travel_order_id = #{travelOrderId}
+    </update>
+
+    <!--//管理员查询申请退款的租车订单-->
+    <!--List<TourismRefundPageDto> findListTourismRefund(int index);-->
+    <select id="findListTourismRefund" parameterType="int" resultType="TourismRefundPageDto">
+        SELECT transaction_id AS transactionId, passenger, phone, pay_Money AS refundMoney,
+              tourism_refund_id AS tourismRefundId, request_refund_time AS requestRefundTime, refund_state AS refundState
+              FROM tourism_order tod, tourism_refund tr
+              WHERE tod.travel_order_id = tr.travel_order_id
+              ORDER BY  refundState ASC ,requestRefundTime DESC limit #{index}, 8
+    </select>
+
+    <!--//申请退款详情页信息-->
+    <!--TourismRefundPageDetailDto findTourismRefundDetail(int tourismRefundId);-->
+    <select id="findTourismRefundDetail" parameterType="int" resultType="TourismRefundPageDetailDto">
+        SELECT transaction_id AS transactionId, passenger, phone, departure_place AS departurePlace, destination, departure_time AS departureTime,
+               travel_num AS travelNum, vi.vehicle_type AS vehicleType, pay_money AS refundMoney,
+               is_insurance AS ifInsurance, refund_reason AS refundReason, request_refund_time AS  requestRefundTime,
+               refund_state AS refundState, reject_reason AS rejectReason
+               FROM travel_order tra, tourism_order tou, tourism_refund tr, vehicle_info vi
+               WHERE tr.tourism_refund_id = #{tourismRefundId}
+               AND tr.tourism_refund_id = tou.tourism_refund_id
+               AND tou.vehicle_id = vi.vehicle_id
+               AND tou.travel_order_id = tra.travel_order_id
+    </select>
+
+    <!--//退款不通过：保存退款操作管理员uid，确认时间，修改状态，保存驳回理由-->
+    <!--int updateTourismRefundToFail(@Param("uid") int uid,-->
+    <!--@Param("tourismRefundId") int tourismRefundId,-->
+    <!--@Param("refundState")int refundState,-->
+    <!--@Param("confirmRefundTime")String confirmRefundTime,-->
+    <!--@Param("rejectReason")String rejectReason);-->
+    <update id="updateTourismRefundToFail">
+        UPDATE tourism_refund SET admi_uid = #{admiUid}, refund_state = #{refundState},
+                                  confirm_refund_time = #{confirmRefundTime},
+                                  reject_reason = #{rejectReason}
+                              WHERE tourism_refund_id = #{tourismRefundId}
+    </update>
+
+    <!--//退款通过：保存退款操作管理员uid，确认时间，修改状态，保存驳回理由（同意时，驳回理由为无）-->
+    <!--int updateTourismRefund(TourismRefundInfo tourismRefundInfo);-->
+    <update id="updateTourismRefund" parameterType="TourismRefundInfo">
+        UPDATE tourism_refund SET admi_uid = #{admiUid}, refund_state = #{refundState},
+                                  confirm_refund_time = #{confirmRefundTime}, refund_id = #{refundId},
+                                  refund_fee = #{refundFee},
+                                  reject_reason = #{rejectReason}
+                              WHERE tourism_refund_id = #{tourismRefundId}
+    </update>
+
+    <!--//根据tourismRefundId查询travelOrderId-->
+    <!--int findTravelOrderId(int tourismRefundId);-->
+    <select id="findTravelOrderId" parameterType="int" resultType="int">
+        SELECT travel_order_id FROM tourism_refund WHERE tourism_refund_id = #{tourismRefundId}
+    </select>
 </mapper>
