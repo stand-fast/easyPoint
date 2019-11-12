@@ -1,0 +1,4 @@
+<!--pages/socialcircle/mycircle/mycircle.wxml-->
+<view class="notice">
+    <view>社区模块暂未开放</view>
+</view>

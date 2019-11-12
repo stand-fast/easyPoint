@@ -1,0 +1,11 @@
+/* pages/socialcircle/mycircle/mycircle.wxss */
+image{
+    width: 200rpx;
+    height: 160rpx;
+}
+.notice{
+    font-size: 30rpx;
+    color: #999;
+    text-align: center;
+    margin-top: 350rpx;
+}

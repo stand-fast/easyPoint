@@ -86,9 +86,9 @@
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.easyPoint.dao"/>
     </bean>
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.easyPoint.dao.travel"/>
-    </bean>
+    </bean>-->
 
 
     <!--  配置Spring声明式事务管理 -->

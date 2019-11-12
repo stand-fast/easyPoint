@@ -1,0 +1,173 @@
+.renderOrderNav {
+    margin-top: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    text-align: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.title {
+    color: #ffffff;
+    margin-top: 10px;
+    background-color: #8fd68b;
+}
+
+.title li {
+    font-size: 14px;
+}
+
+.renderOrderNav li {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.type {
+    font-size: 12px;
+    border: 1px solid #b4e3b1;
+}
+
+.type:nth-child(2n) {
+    color: #999999;
+    background-color: #b4e3b1;
+}
+
+.type:nth-child(2n + 1) {
+    color: #8fd68b;
+    background-color: #e9f7e8;
+}
+
+.navBigger {
+    padding: 0 5px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 13px;
+    width: 160px;
+    font-size: 11px;
+}
+
+.navSmall {
+    font-size: 14px;
+    width: 70px;
+}
+
+.navmiddle {
+    font-size: 13px;
+    width: 110px;
+}
+
+.navTime {
+    font-size: 14px;
+    width: 140px;
+    min-width: 85px;
+}
+
+.navphone {
+    min-width: 95px;
+}
+
+.enter {
+    cursor: pointer;
+}
+
+.committeePlace {
+    width: 900px;
+}
+
+.deleteCommitteePlace {
+    width: 300px;
+}
+
+
+
+/* 租车以及退款订单界面 */
+.wrapperOrder {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-top: 2px;
+}
+
+.wrapperOrder li {
+    padding: 5px;
+    min-width: 75px;
+    height: 40px;
+    min-height: 40px;
+    line-height: 30px;
+    border-right: 1px solid #ffffff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 14px;
+    width: 160px;
+}
+
+.wrapperOrder .bigger {
+    min-width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wrapperOrder .bigger::before {
+    content: attr(title);
+}
+
+.wrapperOrder .time {
+    min-width: 100px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 30px;
+    padding-left: 0px;
+    padding-right: 0px;
+    box-sizing: border-box;
+}
+
+.wrapperOrder .place {
+    line-height: 15px;
+}
+
+.wrapperOrder .time span {
+    margin: 0 auto;
+    width: 100px;
+    display: block;
+}
+
+
+.wrapperOrder li:last-of-type {
+    border-right: none;
+}
+
+.wrapperOrder:nth-of-type(odd) {
+    color: #8fd68b;
+    background-color: #e9f7e8;
+}
+
+.wrapperOrder:nth-of-type(even) {
+    color: #999999;
+    background-color: #b4e3b1;
+}
+
+.wrapperOrder:first-of-type {
+    margin-top: 10px;
+    background-color: #8fd68b;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.wrapperOrder .enter {
+    cursor: pointer;
+}
