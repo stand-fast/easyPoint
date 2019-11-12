@@ -1,6 +1,6 @@
 package com.easyPoint.controller.miniprogram.travel;
 
-import com.easyPoint.util.XmlUtil;
+import com.easyPoint.Util.XmlUtil;
 import com.easyPoint.dto.Result;
 import com.easyPoint.dto.pay.MiniPaymentDto;
 import com.easyPoint.dto.pay.PaymentDto;
@@ -8,7 +8,6 @@ import com.easyPoint.pojo.travel.TourismOrderInfo;
 import com.easyPoint.pojo.travel.TourismRefundInfo;
 import com.easyPoint.pojo.travel.VehicleInfo;
 import com.easyPoint.service.miniprogram.travel.TourismInfoService;
-import com.easyPoint.service.pay.WxPayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

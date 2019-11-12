@@ -1,4 +1,4 @@
-package com.easyPoint.Util;
+package com.easyPoint.util;
 
 public class NotifyUrlConstants {
 
