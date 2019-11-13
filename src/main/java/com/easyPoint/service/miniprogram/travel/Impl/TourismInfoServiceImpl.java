@@ -76,6 +76,9 @@ public class TourismInfoServiceImpl implements TourismInfoService {
         //为商品添加支付后的商户订单号和微信支付订单号
         tourismOrderInfo.setOutTradeNo(outTradeNo);
         tourismOrderInfo.setTransactionId(transactionId);
+        //有往返，每张票的价格的一半
+        if(tourismOrderInfo.getIfBack() == 1)
+            tourismOrderInfo.setPayMoney(tourismOrderInfo.getPayMoney()/2);
         //生成下单时间
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");

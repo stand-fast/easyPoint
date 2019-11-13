@@ -61,6 +61,9 @@ public interface TourismInfoDao {
     //用户进入租车订单详情页面
     TourismOrderDetailInfoDto findTourismOrderDetailInfo(int travelOrderId);
 
+    //查询退款原因和驳回原因
+    Map<String, String> findMapRefundAndRejectReason(int tourismRefundId);
+
 
     //修改出发日期
     int updateTourismOrderDepartureTime(@Param("departureTime") String departureTime,
@@ -71,7 +74,7 @@ public interface TourismInfoDao {
     int updateTourismModifiedDate(@Param("beModifiedTime") String beModifiedTime,
                                   @Param("travelOrderId") int travelOrderId);
 
-    //根据订单号查询下单用户
+    //根据订单号查询下单用户和订单状态
     Map findUidAndStateByTravelOrderId(int travelOrderId);
 
     //查询退款需要的订单信息：微信订单号和支付总金额
@@ -83,6 +86,9 @@ public interface TourismInfoDao {
     //保存新的退款表id
     int updateTourismRefundId(@Param("travelOrderId")int travelOrderId,
                                 @Param("tourismRefundId")int tourismRefundId);
+
+    //查询退款订单总数
+    int countTourismRefundNum();
 
     //管理员分页查询申请退款的租车订单
     List<TourismRefundPageDto> findListTourismRefund(int index);
