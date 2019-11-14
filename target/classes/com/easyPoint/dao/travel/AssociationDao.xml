@@ -17,4 +17,47 @@
         WHERE association_name = #{associationName}
     </select>
 
+    <!-- 根据同乡会id查询同乡会是否存在 -->
+    <select id="findAssociationById" parameterType="string" resultType="Integer">
+        SELECT COUNT(*)
+        FROM hometown_association
+        WHERE association_id = #{associationId}
+    </select>
+
+    <!-- 查询某同乡会是否添加过某个上下车地点 -->
+    <select id="findPlaceByIdAndPlace" resultType="Integer">
+        SELECT COUNT(*)
+        FROM association_place
+        WHERE association_id = #{associationId}
+          AND place = #{place}
+    </select>
+
+    <!-- 添加某同乡会的上下车地点 -->
+    <insert id="addPlace">
+        INSERT INTO association_place (association_id, place)
+        VALUES (#{associationId}, #{place})
+    </insert>
+
+    <!-- 删除某同乡会某个上下车地点 -->
+    <delete id="deletePlaceByIdAndPlace">
+        DELETE
+        FROM association_place
+        WHERE association_id = #{associationId}
+          AND place = #{place}
+    </delete>
+
+    <!-- 获取某同乡会的上下车地点 -->
+    <select id="findAllPlaces" resultType="string">
+        SELECT place
+        FROM association_place
+        WHERE association_id = #{associationId}
+        LIMIT #{startIndex}, #{pageSize}
+    </select>
+
+    <!-- 获取某同乡会的上下车地点总数量 -->
+    <select id="findPlacesNum" resultType="Integer" parameterType="string">
+        SELECT COUNT(*)
+        FROM association_place
+        WHERE association_id = #{associationId}
+    </select>
 </mapper>
