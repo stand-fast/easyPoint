@@ -121,9 +121,6 @@
     text-overflow: ellipsis;
 }
 
-.wrapperOrder .bigger::before {
-    content: attr(title);
-}
 
 .wrapperOrder .time {
     min-width: 100px;

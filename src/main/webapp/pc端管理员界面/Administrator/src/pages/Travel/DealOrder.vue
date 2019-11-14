@@ -77,19 +77,38 @@ export default {
   data() {
     return {
       navName: "旅游出行",
-      navPlateName: "退款订单详情"
+      navPlateName: "退款订单详情",
+      datas: ""
     };
   },
   mounted() {
     const id = this.$route.params.id;
     this.id = id;
-    console.log("根据" + id + "请求数据");
+    //console.log("根据" + id + "请求数据");
     this.setData(id);
   },
   methods: {
     async setData(id) {
       var that = this;
       window.onscroll = e => e.preventDefault(); //兼容浏览器
+      this.$http
+        .get("tourismRefund/detail", { params: { tourismRefundId: id } })
+        .then(function(res) {
+          // var data = res.data;
+          var data = res.data;
+          console.log(data);
+          if (data.code == 200) {
+            that.datas = data.data;
+            console.log(data.message);
+          } else if (data.code == 400) {
+            console.log(data.message);
+          } else if (data.code == 401) {
+            console.log(data.message);
+          }
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
     },
     viaOrder(id) {
       console.log(id);
