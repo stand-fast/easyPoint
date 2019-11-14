@@ -23,6 +23,9 @@ public class TourismRefundPageDetailDto extends TourismRefundPageDto {
     //驳回原因
     private String rejectReason;
 
+    //tourism_refund_id的加密数据
+    private String code;
+
     public String getDeparturePlace() {
         return departurePlace;
     }
@@ -87,6 +90,14 @@ public class TourismRefundPageDetailDto extends TourismRefundPageDto {
         this.rejectReason = rejectReason;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     @Override
     public String toString() {
         return "TourismRefundPageDetailDto{" +
@@ -98,6 +109,7 @@ public class TourismRefundPageDetailDto extends TourismRefundPageDto {
                 ", vehicleType='" + vehicleType + '\'' +
                 ", refundReason='" + refundReason + '\'' +
                 ", rejectReason='" + rejectReason + '\'' +
+                ", code='" + code + '\'' +
                 '}';
     }
 }

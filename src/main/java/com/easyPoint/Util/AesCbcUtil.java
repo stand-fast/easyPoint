@@ -1,4 +1,4 @@
-package com.easyPoint.util;
+package com.easyPoint.Util;
 
 
 import org.apache.commons.codec.binary.Base64;
@@ -14,12 +14,35 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
 import java.security.*;
-import java.security.spec.InvalidParameterSpecException;
 
 public class AesCbcUtil {
     public static final Logger log = LoggerFactory.getLogger(AesCbcUtil.class);
     static {
         Security.addProvider(new BouncyCastleProvider());
+    }
+
+
+
+    public static String encrypt(String data, String key, String iv, String encodingFormat) throws UnsupportedEncodingException {
+        byte[] dataByte = data.getBytes(encodingFormat);
+        byte[] keyByte = Base64.decodeBase64(key);
+        byte[] ivByte = Base64.decodeBase64(iv);
+        try {
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
+            SecretKeySpec spec = new SecretKeySpec(keyByte, "AES");
+            AlgorithmParameters parameters = AlgorithmParameters.getInstance("AES");
+            parameters.init(new IvParameterSpec(ivByte));
+            cipher.init(Cipher.ENCRYPT_MODE, spec, parameters);// 初始化
+            byte[] resultByte = cipher.doFinal(dataByte);
+            if (null != resultByte && resultByte.length > 0) {
+                String result = Base64.encodeBase64String(resultByte);
+                return result;
+            }
+        }catch (Exception e) {
+            log.error("加密发生错误");
+            return null;
+        }
+        return null;
     }
     /**
      * AES解密
@@ -46,28 +69,8 @@ public class AesCbcUtil {
                 String result = new String(resultByte, encodingFormat);
                 return result;
             }
-        }catch (NoSuchAlgorithmException e) {
-            log.error("用户信息解密发生错误");
-            return null;
-        } catch (NoSuchPaddingException e) {
-            log.error("用户信息解密发生错误");
-            return null;
-        } catch (InvalidParameterSpecException e) {
-            log.error("用户信息解密发生错误");
-            return null;
-        }catch (InvalidAlgorithmParameterException e) {
-            log.error("用户信息解密发生错误");
-        } catch (IllegalBlockSizeException e) {
-            log.error("用户信息解密发生错误");
-            return null;
-        } catch (BadPaddingException e) {
-            log.error("用户信息解密发生错误");
-            return null;
-        } catch (UnsupportedEncodingException e) {
-            log.error("用户信息解密发生错误");
-            return null;
-        } catch (InvalidKeyException e) {
-            log.error("用户信息解密发生错误");
+        }catch (Exception e) {
+            log.error("解密发生错误");
             return null;
         }
         return null;

@@ -1,9 +1,12 @@
 package com.easyPoint.controller.miniprogram.mine;
 
 
+import com.easyPoint.Util.AesCbcUtil;
 import com.easyPoint.Util.JwtUtil;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.miniprogram.mine.UserInfoService;
+import org.apache.commons.codec.binary.Base64;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +47,24 @@ public class UserInfoController {
             result.put("message","授权失败");
             return result;
         }
+    }
+
+    @Test
+    public void test() throws Exception{
+        // 密钥32位，实际开发中不足应该补足
+        String key = "Is0RmkK56t8Mn7jTtJbRhPVnp6uihzz7";
+        key = Base64.encodeBase64String(key.getBytes("UTF-8"));
+        System.out.println("AES密钥：" + key);
+        // 偏移向量16位
+        String iv = "L5RuPKJPzwUYQiHB";
+        iv = Base64.encodeBase64String(iv.getBytes("UTF-8"));
+        System.out.println("iv：" + iv);
+        String data = "1";
+        System.out.println("被加密数据原文：" + data);
+        String a = AesCbcUtil.encrypt(data,key,iv,"UTF-8");
+        System.out.println(a);
+        a = AesCbcUtil.decrypt(a,key,iv,"UTF-8");
+        System.out.println("----" + a);
     }
 
 }

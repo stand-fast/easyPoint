@@ -21,8 +21,7 @@ public class RefundParamDto {
     private Integer total_fee;
    //退款金额
     private Integer refund_fee;
-    //退款结果通知url
-    private String notify_url;
+
 
     public String getAppid() {
         return appid;
@@ -88,13 +87,7 @@ public class RefundParamDto {
         this.refund_fee = refund_fee;
     }
 
-    public String getNotify_url() {
-        return notify_url;
-    }
 
-    public void setNotify_url(String notify_url) {
-        this.notify_url = notify_url;
-    }
 
     @Override
     public String toString() {
@@ -107,7 +100,6 @@ public class RefundParamDto {
                 ", out_refund_no='" + out_refund_no + '\'' +
                 ", total_fee=" + total_fee +
                 ", refund_fee=" + refund_fee +
-                ", notify_url='" + notify_url + '\'' +
                 '}';
     }
 }

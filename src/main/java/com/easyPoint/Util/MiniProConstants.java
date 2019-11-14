@@ -1,4 +1,6 @@
-package com.easyPoint.util;
+package com.easyPoint.Util;
+
+import jdk.internal.dynalink.beans.StaticClass;
 
 public class MiniProConstants {
 
@@ -19,5 +21,11 @@ public class MiniProConstants {
 
     //租车消息模板id
     public static final String TOURISM_TEMPLATE_ID = "MXx5oV9hCr8BsckFe56ro3x9fsgzJU9fW1sdIP3wvx0";
+
+    //退款数据密钥Is0RmkK56t8Mn7jTtJbRhPVnp6uihzz7
+    public static final String REFUND_DATA_KEY = "SXMwUm1rSzU2dDhNbjdqVHRKYlJoUFZucDZ1aWh6ejc=";
+
+    //退款数据偏移量L5RuPKJPzwUYQiHB
+    public static final String REFUND_DATA_VI = "TDVSdVBLSlB6d1VZUWlIQg==";
 
 }

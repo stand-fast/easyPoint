@@ -1,6 +1,8 @@
 package com.easyPoint.service.administrator.travel.Impl;
 
+import com.easyPoint.Util.AesCbcUtil;
 import com.easyPoint.Util.DateUtil;
+import com.easyPoint.Util.MiniProConstants;
 import com.easyPoint.Util.NotifyUrlConstants;
 import com.easyPoint.dao.travel.TourismInfoDao;
 import com.easyPoint.dto.Result;
@@ -23,6 +25,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -221,6 +224,29 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
         return tourismInfoDao.findDriverInfoByTravelOrderId(travelOrderId);
     }
 
+
+    /**
+     * 退款订单首页信息数据
+     * @return 首页退款订单以及总页数
+     */
+    @Override
+    public Map findTourismRefundFirstPage() {
+        Map resultMap = new HashMap<>();
+        //查询首页的退款订单信息
+        List<TourismRefundPageDto> tourismRefundPageDtoList = tourismInfoDao.findListTourismRefund(0);
+        resultMap.put("tourismRefundInfoList",tourismRefundPageDtoList);
+        //统计申请退款订单总数
+        int totalNum = tourismInfoDao.countTourismRefundNum();
+        //计算总页数
+        int totalPage;
+        if(totalNum % 8 != 0)
+            totalPage = totalNum / 8 + 1;
+        else
+            totalPage = totalNum / 8;
+        resultMap.put("totalPage", totalPage);
+        return resultMap;
+    }
+
     /**
      * 分页查询退款订单
      * @param pageNum 页数
@@ -241,21 +267,37 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
      */
     @Override
     public TourismRefundPageDetailDto findTourismRefundDetail(int tourismRefundId) {
-        return tourismInfoDao.findTourismRefundDetail(tourismRefundId);
+        TourismRefundPageDetailDto tourismRefundDetail = tourismInfoDao.findTourismRefundDetail(tourismRefundId);
+        //加密tourismRefundId
+        try {
+            String code = AesCbcUtil.encrypt(tourismRefundId+"",MiniProConstants.REFUND_DATA_KEY, MiniProConstants.REFUND_DATA_VI, "UTF-8");
+            tourismRefundDetail.setCode(code);
+        } catch (Exception e) {
+            log.error("加密失败");
+            return null;
+        }
+        return tourismRefundDetail;
     }
 
     /**
      * 管理员是否同意退款
      * @param uid 管理员id
-     * @param tourismRefundId 退款订单表id
+     * @param tourismRefundIdCode 退款订单表id加密数据
      * @param rejectReason 驳回理由
      * @param ifAgree 是否同意 0否，1同意
      * @return
      */
     @Override
-    public int ifAgreeTourismRefund(int uid, int tourismRefundId, String rejectReason, int ifAgree) {
+    public int ifAgreeTourismRefund(int uid, String tourismRefundIdCode, String rejectReason, int ifAgree) {
         //管理员确认退款时间
         String confirmRefundTime = DateUtil.getDateTime();
+        //解密tourismRefundIdCode得到tourismRefundId
+        String decryptRefundId = AesCbcUtil.decrypt(tourismRefundIdCode, MiniProConstants.REFUND_DATA_KEY, MiniProConstants.REFUND_DATA_VI,"UTF-8");
+        if(null == decryptRefundId){
+            log.error("解密tourismRefundId异常");
+            return -2;
+        }
+        int tourismRefundId = Integer.parseInt(decryptRefundId);
         //查询travelOrderId
         int travelOrderId = tourismInfoDao.findTravelOrderId(tourismRefundId);
         //管理员不同意退款
@@ -279,8 +321,7 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
         refundParamDto.setTotal_fee((int)(tourismOrderInfo.getPayMoney()*100));
         //全额退款
         refundParamDto.setRefund_fee((int)(tourismOrderInfo.getPayMoney()*100));
-        //设置退款回调函数
-        refundParamDto.setNotify_url(NotifyUrlConstants.TOURISM_REFUND_NOTIFY_URL);
+
         //请求微信退款
         //返回数据
         Map resultMap;
@@ -302,7 +343,8 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
                 tourismInfoDao.updateTravelOrderState(6, travelOrderId);
             }
         }catch (Exception e){
-            log.error("退款请求失败");
+            log.error("退款请求失败" + e);
+            return -2;
         }
         return 1;
     }

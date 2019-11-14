@@ -11,6 +11,7 @@ import com.easyPoint.pojo.travel.VehicleInfo;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 public interface AdmiTourismInfoService {
 
@@ -41,6 +42,9 @@ public interface AdmiTourismInfoService {
     //查询已安排订单车辆信息
     DriverInfoDto findDriverInfoByTravelOrderId(int travelOrderId);
 
+    //退款订单首页信息数据
+    Map findTourismRefundFirstPage();
+
     //分页查询退款订单
     List<TourismRefundPageDto> findListTourismRefundByPageNum(int pageNum);
 
@@ -48,6 +52,6 @@ public interface AdmiTourismInfoService {
     TourismRefundPageDetailDto findTourismRefundDetail(int tourismRefundId);
 
     //管理员是否同意退款
-    int ifAgreeTourismRefund(int uid, int tourismRefundId, String rejectReason, int ifAgree);
+    int ifAgreeTourismRefund(int uid, String tourismRefundIdCode, String rejectReason, int ifAgree);
 
 }

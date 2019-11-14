@@ -1,8 +1,0 @@
-{
-  "usingComponents": {},
-  "navigationBarTitleText": "教育培训",
-  "navigationBarBackgroundColor": "#ffdd42",
-  "navigationBarTextStyle": "black",
-  "onReachBottomDistance": 50,
-  "enablePullDownRefresh": true
-}
