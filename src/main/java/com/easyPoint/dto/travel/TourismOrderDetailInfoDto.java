@@ -18,6 +18,14 @@ public class TourismOrderDetailInfoDto extends DriverInfoDto {
     //是否被修改日期
     private Integer IfModified;
 
+    //退款订单表id
+    private Integer tourismRefundId;
+
+    //退款原因
+    private String refundReason;
+    //驳回原因
+    private String rejectReason;
+
     public String getPassenger() {
         return passenger;
     }
@@ -58,6 +66,30 @@ public class TourismOrderDetailInfoDto extends DriverInfoDto {
         this.makeOrderTime = makeOrderTime;
     }
 
+    public Integer getTourismRefundId() {
+        return tourismRefundId;
+    }
+
+    public void setTourismRefundId(Integer tourismRefundId) {
+        this.tourismRefundId = tourismRefundId;
+    }
+
+    public String getRefundReason() {
+        return refundReason;
+    }
+
+    public void setRefundReason(String refundReason) {
+        this.refundReason = refundReason;
+    }
+
+    public String getRejectReason() {
+        return rejectReason;
+    }
+
+    public void setRejectReason(String rejectReason) {
+        this.rejectReason = rejectReason;
+    }
+
     public String getDeposit() {
         return deposit;
     }
@@ -76,6 +108,9 @@ public class TourismOrderDetailInfoDto extends DriverInfoDto {
                 ", makeOrderTime='" + makeOrderTime + '\'' +
                 ", deposit='" + deposit + '\'' +
                 ", IfModified=" + IfModified +
+                ", tourismRefundId=" + tourismRefundId +
+                ", refundReason='" + refundReason + '\'' +
+                ", rejectReason='" + rejectReason + '\'' +
                 '}';
     }
 

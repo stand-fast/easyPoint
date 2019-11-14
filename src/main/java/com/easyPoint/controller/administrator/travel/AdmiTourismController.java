@@ -1,5 +1,6 @@
 package com.easyPoint.controller.administrator.travel;
 
+import com.easyPoint.dao.travel.TourismInfoDao;
 import com.easyPoint.dto.Result;
 import com.easyPoint.dto.travel.DriverInfoDto;
 import com.easyPoint.dto.travel.PartTourismOrderInfoDto;
@@ -11,15 +12,13 @@ import com.easyPoint.pojo.travel.VehicleInfo;
 import com.easyPoint.service.administrator.travel.AdmiTourismInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author FJW
@@ -167,12 +166,23 @@ public class AdmiTourismController {
     }
 
     /**
+     * 管理员进入退款申请首页
+     * @return 首页信息以及总页数
+     */
+    @ResponseBody
+    @GetMapping("/tourismRefund/FirstPage")
+    public Result tourismRefundFirstPage(){
+        Map dataMap = admiTourismInfoService.findTourismRefundFirstPage();
+        return new Result(200,"请求退款订单首页数据和总页数成功",dataMap);
+    }
+
+    /**
      * 分页查询第几页退款订单
      * @param pageNum
      * @return
      */
     @ResponseBody
-    @RequestMapping("/findTourismRefunds")
+    @GetMapping("/tourismRefunds/page")
     public Result findTourismRefunds(int pageNum){
         if(pageNum < 0)
             return new Result(401,"页码出错");
@@ -188,7 +198,7 @@ public class AdmiTourismController {
      * @return 详情信息
      */
     @ResponseBody
-    @RequestMapping("/findTourismRefundDetailPage")
+    @GetMapping("/tourismRefund/detail")
     public Result findTourismRefundDetailPage(int tourismRefundId){
         if(tourismRefundId < 0)
             return new Result(401,"退款表id参数错误");
@@ -200,20 +210,24 @@ public class AdmiTourismController {
 
     /**
      * 管理员确认是否通过退款
-     * @param uid 管理员id
-     * @param tourismRefundId 退款表id
+     * uid 管理员id@RequestParam("uid")int uid,
+     * @param tourismRefundIdCode 退款表id
      * @param rejectReason 驳回理由
      * @param ifAgree 是否通过
      * @return 退款是否成功
      */
     @ResponseBody
-    @RequestMapping("/ifA")
-    public Result ifAgreeTourismRefunds(@RequestParam("uid")int uid,
-                                        @RequestParam("num")int tourismRefundId,
-                                        @RequestParam("rea")String rejectReason,
-                                        @RequestParam("code")int ifAgree){
-        admiTourismInfoService.ifAgreeTourismRefund(uid, tourismRefundId, rejectReason,ifAgree);
-
+    @RequestMapping("tourism/ifAgree")
+    public Result ifAgreeTourismRefunds(
+                                        @RequestParam("code")String tourismRefundIdCode,
+                                        @RequestParam("reason")String rejectReason,
+                                        @RequestParam("ifAgree")int ifAgree){
+        int uid = 5;
+        int resultCode = admiTourismInfoService.ifAgreeTourismRefund(uid, tourismRefundIdCode, rejectReason,ifAgree);
+        if(resultCode == -2)
+            return new Result(401,"退款异常");
+        else if(resultCode == 0)
+            return new Result(201,"不通过成功");
         return new Result(200,"退款成功");
     }
 

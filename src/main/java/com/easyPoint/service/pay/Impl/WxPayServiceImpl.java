@@ -161,7 +161,6 @@ public class WxPayServiceImpl implements WxPayService {
         sParaTemp.put("mch_id", refundParamDto.getMch_id());
         sParaTemp.put("nonce_str", refundParamDto.getNonce_str());
         sParaTemp.put("total_fee",refundParamDto.getTotal_fee());
-        sParaTemp.put("notify_url",refundParamDto.getNotify_url());
         sParaTemp.put("refund_fee",refundParamDto.getRefund_fee());
         sParaTemp.put("out_refund_no",refundParamDto.getOut_refund_no());
         sParaTemp.put("transaction_id",refundParamDto.getTransaction_id());

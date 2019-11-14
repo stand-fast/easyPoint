@@ -1,5 +1,9 @@
 package com.easyPoint.dao.travel;
 
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
 /**
  * 乡会模块dao层
  *
@@ -17,6 +21,17 @@ public interface AssociationDao {
     Integer findAssociationById(String associationId);
 
     // 查询某同乡会是否添加过某个上下车地点
+    Integer findPlaceByIdAndPlace(@Param("associationId") String associationId, @Param("place") String place);
 
     // 添加某同乡会的上下车地点
+    Integer addPlace(@Param("associationId") String associationId, @Param("place") String place);
+
+    // 删除某同乡会某个上下车地点
+    Integer deletePlaceByIdAndPlace(@Param("associationId") String associationId, @Param("place") String place);
+
+    // 获取某同乡会的上下车地点
+    List<String> findAllPlaces(@Param("associationId") String associationId, @Param("startIndex") Integer startIndex, @Param("pageSize") Integer pageSize);
+
+    // 获取某同乡会的上下车地点总数量
+    Integer findPlacesNum(String associationId);
 }

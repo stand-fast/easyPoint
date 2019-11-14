@@ -5,6 +5,8 @@ import com.easyPoint.service.administrator.travel.AssociationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 乡会模块服务层具体实现
  *
@@ -39,4 +41,60 @@ public class AssociationServiceImpl implements AssociationService {
         return associationDao.findAssociationByName(associationName);
     }
 
+    /**
+     * 根据同乡会id查询同乡会是否存在
+     *
+     * @param associationId
+     * @return
+     */
+    @Override
+    public Integer findAssociationById(String associationId) {
+        return associationDao.findAssociationById(associationId);
+    }
+
+    /**
+     * 查询某同乡会是否添加过某个上下车地点
+     *
+     * @param associationId
+     * @param place
+     * @return
+     */
+    @Override
+    public Integer findPlaceByIdAndPlace(String associationId, String place) {
+        return associationDao.findPlaceByIdAndPlace(associationId, place);
+    }
+
+    /**
+     * 添加某同乡会的上下车地点
+     *
+     * @param associationId
+     * @param place
+     * @return
+     */
+    @Override
+    public Integer addPlace(String associationId, String place) {
+        return associationDao.addPlace(associationId, place);
+    }
+
+    /**
+     * 删除某同乡会某个上下车地点
+     *
+     * @param associationId
+     * @param place
+     * @return
+     */
+    @Override
+    public Integer deletePlaceByIdAndPlace(String associationId, String place) {
+        return associationDao.deletePlaceByIdAndPlace(associationId, place);
+    }
+
+    @Override
+    public List<String> findAllPlaces(String associationId, Integer startIndex, Integer pageSize) {
+        return associationDao.findAllPlaces(associationId, startIndex, pageSize);
+    }
+
+    @Override
+    public Integer findPlacesNum(String associationId) {
+        return associationDao.findPlacesNum(associationId);
+    }
 }
