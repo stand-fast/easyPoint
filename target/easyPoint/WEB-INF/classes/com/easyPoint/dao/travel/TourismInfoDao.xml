@@ -90,8 +90,8 @@
                                   )
     </insert>
     <insert id="insertTourismOrderInfo" parameterType="TourismOrderInfo">
-        insert into tourism_order (travel_order_id,vehicle_id,passenger,phone,is_insurance, pay_money, make_order_time, out_trade_no,transaction_id)
-                                    value (#{travelOrderId},#{vehicleId},#{passenger},#{phone}, #{ifInsurance}, #{payMoney}, #{makeOrderTime},#{outTradeNo},#{transactionId})
+        insert into tourism_order (travel_order_id,vehicle_id,passenger,phone,is_insurance, pay_money, make_order_time, out_trade_no,transaction_id,is_back)
+                                    value (#{travelOrderId},#{vehicleId},#{passenger},#{phone}, #{ifInsurance}, #{payMoney}, #{makeOrderTime},#{outTradeNo},#{transactionId},#{ifBack})
     </insert>
 
     <update id="updateTourismOrderInfoAddDriverInfo" parameterType="TourismOrderInfo">
@@ -183,9 +183,9 @@
     </select>
 
     <!--//查询退款需要的订单信息：微信订单号和支付总金额-->
-    <!--TourismOrderInfo findTourismRefundInfo(int travelOrderId);-->
-    <select id="findTourismRefundInfo" parameterType="int" resultType="TourismOrderInfo">
-        SELECT  pay_money AS payMoney, transaction_id AS transactionId FROM tourism_order WHERE travel_order_id = #{travelOrderId}
+    <!--TourismOrderInfo findRefundNeceInfo(int travelOrderId);-->
+    <select id="findRefundNeceInfo" parameterType="int" resultType="TourismOrderInfo">
+        SELECT  pay_money AS payMoney, transaction_id AS transactionId, is_back AS ifBack FROM tourism_order WHERE travel_order_id = #{travelOrderId}
     </select>
 
     <!--//用户申请退款-->
