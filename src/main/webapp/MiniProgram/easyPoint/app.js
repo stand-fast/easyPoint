@@ -37,7 +37,7 @@ App({
     userInfo: null, 
     uid:null,
     isIphoneX:false,
-    requestUrl:'http://easypoint.club/miniProgram/'
+    requestUrl:'https://easypoint.club/miniProgram/'
   },
   onShow: function () {
         let that = this;

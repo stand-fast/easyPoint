@@ -1,4 +1,5 @@
 // pages/user/myOrderCarDetail/myOrderCarDetail.js
+const app = getApp()
 Page({
 
     /**
@@ -32,7 +33,7 @@ Page({
     }, 
     applyRefund:function(){
         wx.navigateTo({
-            url: '/pages/user/refund/refund',
+          url: '/pages/user/refund/refund?travelOrderId=' + this.data.travelOrderId,
         })
     },
     changeTime:function(){
@@ -44,6 +45,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+      var obj = wx.getStorageSync("token");
+      this.setData({
+        token: obj.token,
+      })
       var current = options.current;
       if (current == 0) {
           var myOrderRentalCar = wx.getStorageSync('myOrderRentalCar');
@@ -82,13 +87,14 @@ Page({
           var travelOrderId = options.travelOrderId;
           //console.log(travelOrderId)
           this.setData({
+            travelOrderId :travelOrderId,
             departurePlace: myOrderRentalCar.departurePlace,
             destination: myOrderRentalCar.destination,
             departureTime: myOrderRentalCar.departureTime,
             travelNum: myOrderRentalCar.travelNum,
             current: 1,
           })
-         this.getMessageRentalCar(travelOrderId);
+        this.getMessageRentalCar(travelOrderId);
       }
     },
   //获得乡会车票订单数据
@@ -124,17 +130,19 @@ Page({
     })
   },
   //获得租车车票订单数据
-  getMessageRentalCar: function (tourismId) {
+  getMessageRentalCar: function (travelOrderId) {
+    var token = this.data.token;
     var selt = this;
     wx.request({
-      url: 'http://easypoint.club/findTravelOrderDetailInfo',
+      url: app.globalData.requestUrl +'findTravelOrderDetailInfo',
       method: 'Post',
       data: {
         type: 0,
-        travelOrderId: 10,
+        travelOrderId: travelOrderId,
       },
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      header: { 'content-type': 'application/x-www-form-urlencoded' ,token},
       success: function (res) {
+        //console.log(res)
         if(res.data.code == 200){
           console.log("查询出行订单详情成功");
           console.log(res.data.data)
