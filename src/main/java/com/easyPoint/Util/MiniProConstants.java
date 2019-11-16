@@ -1,7 +1,5 @@
 package com.easyPoint.Util;
 
-import jdk.internal.dynalink.beans.StaticClass;
-
 public class MiniProConstants {
 
     //APPID是你小程序的appid,

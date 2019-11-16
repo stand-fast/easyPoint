@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.easyPoint.dao.travel.AssociationDao">
 
-    <!-- 添加同乡会 -->
-    <insert id="addAssociation" parameterType="String">
+    <insert id="addAssociation" useGeneratedKeys="true" keyProperty="associationId" keyColumn="association_id"
+            parameterType="association">
         INSERT INTO hometown_association (association_name)
         VALUES (#{associationName})
     </insert>
@@ -17,4 +17,88 @@
         WHERE association_name = #{associationName}
     </select>
 
+    <!-- 根据同乡会id查询同乡会是否存在 -->
+    <select id="findAssociationById" parameterType="string" resultType="Integer">
+        SELECT COUNT(*)
+        FROM hometown_association
+        WHERE association_id = #{associationId}
+    </select>
+
+    <!-- 查询某同乡会是否添加过某个上下车地点 -->
+    <select id="findPlaceByIdAndPlace" resultType="Integer">
+        SELECT COUNT(*)
+        FROM association_place
+        WHERE association_id = #{associationId}
+          AND place = #{place}
+    </select>
+
+    <!-- 添加某同乡会的上下车地点 -->
+    <insert id="addPlace">
+        INSERT INTO association_place (association_id, place)
+        VALUES (#{associationId}, #{place})
+    </insert>
+
+
+    <!-- 删除某同乡会某个上下车地点 -->
+    <delete id="deletePlaceByIdAndPlace">
+        DELETE
+        FROM association_place
+        WHERE association_id = #{associationId}
+          AND place = #{place}
+    </delete>
+
+    <!-- 获取某同乡会的上下车地点 -->
+    <select id="findAllPlaces" resultType="string">
+        SELECT place
+        FROM association_place
+        WHERE association_id = #{associationId}
+        LIMIT #{startIndex}, #{pageSize}
+    </select>
+
+    <!-- 获取某同乡会的上下车地点总数量 -->
+    <select id="findPlacesNum" resultType="Integer" parameterType="string">
+        SELECT COUNT(*)
+        FROM association_place
+        WHERE association_id = #{associationId}
+    </select>
+
+    <!--获取所有同乡会（分页）-->
+    <select id="findAllAssociation" resultType="association">
+        SELECT *
+        FROM hometown_association
+        LIMIT #{startIndex}, #{pageSize}
+    </select>
+
+    <!-- 获取所有同乡会 -->
+    <select id="getAllAssociation" resultType="association">
+        SELECT *
+        FROM hometown_association
+    </select>
+
+    <!--查询同乡会数量-->
+    <select id="findAssociationNum" resultType="integer">
+        SELECT COUNT(*)
+        FROM hometown_association
+    </select>
+
+    <!-- 添加车票 -->
+    <insert id="addTicket" parameterType="ticket">
+        INSERT INTO ticket (association_id, departure_day, departure_time, departure_place, destination, price,
+                            seat_num,
+                            seat_surplus, type, issue_time, state)
+        VALUES (#{associationId}, #{departureDay}, #{departureTime}, #{departurePlace}, #{destination}, #{price},
+                #{seatNum}, #{seatSurplus}, #{type}, #{issueTime}, #{state})
+    </insert>
+
+    <!-- 获取车票 -->
+    <select id="getTicket" resultType="ticket">
+
+    </select>
+
+    <!-- 获取正在售卖（已下架）车票数量 -->
+    <select id="getTicketNum" parameterType="integer" resultType="integer">
+        SELECT COUNT(*)
+        FROM ticket
+        WHERE state = #{state}
+    </select>
 </mapper>

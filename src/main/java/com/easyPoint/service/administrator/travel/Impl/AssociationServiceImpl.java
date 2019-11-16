@@ -1,9 +1,13 @@
 package com.easyPoint.service.administrator.travel.Impl;
 
 import com.easyPoint.dao.travel.AssociationDao;
+import com.easyPoint.pojo.travel.Association;
+import com.easyPoint.pojo.travel.Ticket;
 import com.easyPoint.service.administrator.travel.AssociationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 乡会模块服务层具体实现
@@ -20,12 +24,12 @@ public class AssociationServiceImpl implements AssociationService {
     /**
      * 添加同乡会
      *
-     * @param associationName
+     * @param association
      * @return
      */
     @Override
-    public Integer addAssociation(String associationName) {
-        return associationDao.addAssociation(associationName);
+    public Integer addAssociation(Association association) {
+        return associationDao.addAssociation(association);
     }
 
     /**
@@ -39,4 +43,90 @@ public class AssociationServiceImpl implements AssociationService {
         return associationDao.findAssociationByName(associationName);
     }
 
+    /**
+     * 根据同乡会id查询同乡会是否存在
+     *
+     * @param associationId
+     * @return
+     */
+    @Override
+    public Integer findAssociationById(String associationId) {
+        return associationDao.findAssociationById(associationId);
+    }
+
+    /**
+     * 查询某同乡会是否添加过某个上下车地点
+     *
+     * @param associationId
+     * @param place
+     * @return
+     */
+    @Override
+    public Integer findPlaceByIdAndPlace(String associationId, String place) {
+        return associationDao.findPlaceByIdAndPlace(associationId, place);
+    }
+
+    /**
+     * 添加某同乡会的上下车地点
+     *
+     * @param associationId
+     * @param place
+     * @return
+     */
+    @Override
+    public Integer addPlace(String associationId, String place) {
+        return associationDao.addPlace(associationId, place);
+    }
+
+    /**
+     * 删除某同乡会某个上下车地点
+     *
+     * @param associationId
+     * @param place
+     * @return
+     */
+    @Override
+    public Integer deletePlaceByIdAndPlace(String associationId, String place) {
+        return associationDao.deletePlaceByIdAndPlace(associationId, place);
+    }
+
+    @Override
+    public List<String> findAllPlaces(String associationId, Integer startIndex, Integer pageSize) {
+        return associationDao.findAllPlaces(associationId, startIndex, pageSize);
+    }
+
+    @Override
+    public Integer findPlacesNum(String associationId) {
+        return associationDao.findPlacesNum(associationId);
+    }
+
+    @Override
+    public List<Association> findAllAssociation(Integer startIndex, Integer pageSize) {
+        return associationDao.findAllAssociation(startIndex, pageSize);
+    }
+
+    @Override
+    public List<Association> getAllAssociation() {
+        return associationDao.getAllAssociation();
+    }
+
+    @Override
+    public Integer findAssociationNum() {
+        return associationDao.findAssociationNum();
+    }
+
+    @Override
+    public Integer addTicket(Ticket ticket) {
+        return associationDao.addTicket(ticket);
+    }
+
+    @Override
+    public List<Ticket> getTicket(Integer state, Integer startIndex, Integer pageSize) {
+        return associationDao.getTicket(state, startIndex, pageSize);
+    }
+
+    @Override
+    public Integer getTicketNum(Integer state) {
+        return associationDao.getTicketNum(state);
+    }
 }
