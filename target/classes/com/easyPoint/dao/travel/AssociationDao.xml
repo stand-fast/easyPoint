@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.easyPoint.dao.travel.AssociationDao">
 
-    <!-- 添加同乡会 -->
-    <insert id="addAssociation" parameterType="String">
+    <insert id="addAssociation" useGeneratedKeys="true" keyProperty="associationId" keyColumn="association_id"
+            parameterType="association">
         INSERT INTO hometown_association (association_name)
         VALUES (#{associationName})
     </insert>
@@ -38,6 +38,7 @@
         VALUES (#{associationId}, #{place})
     </insert>
 
+
     <!-- 删除某同乡会某个上下车地点 -->
     <delete id="deletePlaceByIdAndPlace">
         DELETE
@@ -59,5 +60,45 @@
         SELECT COUNT(*)
         FROM association_place
         WHERE association_id = #{associationId}
+    </select>
+
+    <!--获取所有同乡会（分页）-->
+    <select id="findAllAssociation" resultType="association">
+        SELECT *
+        FROM hometown_association
+        LIMIT #{startIndex}, #{pageSize}
+    </select>
+
+    <!-- 获取所有同乡会 -->
+    <select id="getAllAssociation" resultType="association">
+        SELECT *
+        FROM hometown_association
+    </select>
+
+    <!--查询同乡会数量-->
+    <select id="findAssociationNum" resultType="integer">
+        SELECT COUNT(*)
+        FROM hometown_association
+    </select>
+
+    <!-- 添加车票 -->
+    <insert id="addTicket" parameterType="ticket">
+        INSERT INTO ticket (association_id, departure_day, departure_time, departure_place, destination, price,
+                            seat_num,
+                            seat_surplus, type, issue_time, state)
+        VALUES (#{associationId}, #{departureDay}, #{departureTime}, #{departurePlace}, #{destination}, #{price},
+                #{seatNum}, #{seatSurplus}, #{type}, #{issueTime}, #{state})
+    </insert>
+
+    <!-- 获取车票 -->
+    <select id="getTicket" resultType="ticket">
+
+    </select>
+
+    <!-- 获取正在售卖（已下架）车票数量 -->
+    <select id="getTicketNum" parameterType="integer" resultType="integer">
+        SELECT COUNT(*)
+        FROM ticket
+        WHERE state = #{state}
     </select>
 </mapper>

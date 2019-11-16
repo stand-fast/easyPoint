@@ -311,14 +311,18 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
         }
         //管理员同意退款
         //发起退款
-        //根据订单编号查找微信订单号，订单付款金额，
-        TourismOrderInfo tourismOrderInfo = tourismInfoDao.findTourismRefundInfo(travelOrderId);
+        //根据订单编号查找微信订单号，订单付款金额，是否为往返票
+        TourismOrderInfo tourismOrderInfo = tourismInfoDao.findRefundNeceInfo(travelOrderId);
         //构造退款参数对象
         RefundParamDto refundParamDto = new RefundParamDto();
         //设置微信订单号
         refundParamDto.setTransaction_id(tourismOrderInfo.getTransactionId());
         //设置订单支付总金额,并转换单位，由元转为分后取整
-        refundParamDto.setTotal_fee((int)(tourismOrderInfo.getPayMoney()*100));
+        //判断该票是否为往返票，若是，则支付总金额为订单票价的双倍,1代表为往返票，0为否
+        if(tourismOrderInfo.getIfBack() == 1)
+            refundParamDto.setTotal_fee((int)(tourismOrderInfo.getPayMoney()*100)*2);
+        else
+            refundParamDto.setTotal_fee((int)(tourismOrderInfo.getPayMoney()*100));
         //全额退款
         refundParamDto.setRefund_fee((int)(tourismOrderInfo.getPayMoney()*100));
 

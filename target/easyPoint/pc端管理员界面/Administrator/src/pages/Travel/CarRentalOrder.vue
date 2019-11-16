@@ -34,8 +34,14 @@
           <li>{{item.passenger}}</li>
           <li class="bigger">{{item.phone}}</li>
           <li v-if="item.state == 0">未安排</li>
-          <li v-if="item.state == 1">已安排</li>
-          <li v-if="item.state == 2">已完成</li>
+          <li v-else-if="item.state == 1">已安排</li>
+          <li v-else-if="item.state == 2">已完成</li>
+          <li v-else-if="item.state == 3">已付款</li>
+          <li v-else-if="item.state == 4">已预约</li>
+          <li v-else-if="item.state == 5">退款中</li>
+          <li v-else-if="item.state == 6">已退款</li>
+          <li v-else-if="item.state == 7">退款失败</li>
+          <li v-else-if="item.state == 8">已取消</li>
           <li class="enter">
             <span @click="handleVihicleInformation(item.travelOrderId)">进入</span>
           </li>
