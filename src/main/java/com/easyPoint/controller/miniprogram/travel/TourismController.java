@@ -89,7 +89,7 @@ public class TourismController {
      */
     @ResponseBody
     @RequestMapping("/tourismRefund")
-    public Result requestTourismRefund(@RequestParam("uid")int uid,
+    public Result requestTourismRefund(@RequestAttribute("uid")int uid,
                                        TourismRefundInfo tourismRefundInfo){
         System.out.println("发起退款");
         //验证退款原因长度是否超过最大限长

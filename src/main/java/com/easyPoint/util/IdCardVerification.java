@@ -1,4 +1,4 @@
-package com.easyPoint.util;
+package com.easyPoint.Util;
 
 
 import org.apache.http.HttpResponse;
@@ -29,7 +29,7 @@ public class IdCardVerification {
         query.put("name", name);
 
         try {
-            HttpResponse response = HttpUtils.doGet(host, path, method, headers, query);
+            HttpResponse response = com.easyPoint.util.HttpUtils.doGet(host, path, method, headers, query);
             //System.out.println(response.toString());如不输出json, 请打开这行代码，打印调试头部状态码。
             //状态码: 200 正常；400 URL无效；401 appCode错误； 403 次数用完； 500 API网管错误
             System.out.println(EntityUtils.toString(response.getEntity()));
