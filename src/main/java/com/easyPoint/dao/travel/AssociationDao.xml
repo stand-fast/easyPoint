@@ -82,7 +82,7 @@
     </select>
 
     <!-- 添加车票 -->
-    <insert id="addTicket" parameterType="ticket">
+    <insert id="addTicket" parameterType="ticketDto">
         INSERT INTO ticket (association_id, departure_day, departure_time, departure_place, destination, price,
                             seat_num,
                             seat_surplus, type, issue_time, state)
@@ -91,8 +91,24 @@
     </insert>
 
     <!-- 获取车票 -->
-    <select id="getTicket" resultType="ticket">
-
+    <select id="getTicket" resultType="ticketDto">
+        SELECT t.ticket_id         AS ticketId,
+               t.association_id    AS associationId,
+               ha.association_name AS associationName,
+               t.departure_day     AS departureDay,
+               t.departure_time    AS departuretime,
+               t.departure_place   AS departurePlace,
+               t.destination,
+               t.price,
+               t.seat_num          AS seatNum,
+               t.seat_surplus      AS seatSurplus,
+               t.type,
+               t.issue_time        AS issueTime
+        FROM ticket t,
+             hometown_association ha
+        WHERE t.state = #{state}
+          AND t.association_id = ha.association_id
+        LIMIT #{startIndex}, #{pageSize}
     </select>
 
     <!-- 获取正在售卖（已下架）车票数量 -->
@@ -101,4 +117,40 @@
         FROM ticket
         WHERE state = #{state}
     </select>
+
+    <!--修改（添加）车辆信息-->
+    <update id="updateTicketInfo" parameterType="ticketInfoDto">
+        UPDATE ticket
+        SET license_plate_number = #{licensePlateNumber},
+            vehicle_type         = #{vehicleType},
+            color                = #{color},
+            driver_name          = #{driverName},
+            driver_phone         = #{driverPhone}
+        WHERE ticket_id = #{ticketId}
+    </update>
+
+    <!--查询某车票的车辆信息-->
+    <select id="findTicketInfo" resultType="ticketInfoDto" parameterType="integer">
+        SELECT license_plate_number AS licensePlateNumber,
+               vehicle_type         AS vehicleType,
+               color,
+               driver_name          AS driverName,
+               driver_phone         AS driverPhone
+        FROM ticket
+        WHERE ticket_id = #{ticketId}
+    </select>
+
+    <!--将某车票下架-->
+    <update id="endTicket" parameterType="Integer">
+        UPDATE ticket
+        SET state = 2
+        WHERE ticket_id = #{ticketId}
+    </update>
+
+    <!--删除历史发布的车票-->
+    <delete id="deleteTicket" parameterType="Integer">
+        DELETE
+        FROM ticket
+        WHERE ticket_id = #{ticketId}
+    </delete>
 </mapper>

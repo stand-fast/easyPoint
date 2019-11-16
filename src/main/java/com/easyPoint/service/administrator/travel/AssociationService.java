@@ -1,7 +1,8 @@
 package com.easyPoint.service.administrator.travel;
 
+import com.easyPoint.dto.travel.TicketDto;
+import com.easyPoint.dto.travel.TicketInfoDto;
 import com.easyPoint.pojo.travel.Association;
-import com.easyPoint.pojo.travel.Ticket;
 
 import java.util.List;
 
@@ -46,11 +47,23 @@ public interface AssociationService {
     Integer findAssociationNum();
 
     // 添加车票
-    Integer addTicket(Ticket ticket);
+    Integer addTicket(TicketDto ticketDto);
 
     // 获取车票
-    List<Ticket> getTicket(Integer state, Integer startIndex, Integer pageSize);
+    List<TicketDto> getTicket(Integer state, Integer startIndex, Integer pageSize);
 
     // 获取正在售卖（已下架）车票数量
     Integer getTicketNum(Integer state);
+
+    // 修改（添加）车辆信息
+    Integer updateTicketInfo(TicketInfoDto ticketInfoDto);
+
+    // 查询某车票的车辆信息
+    TicketInfoDto findTicketInfo(Integer ticketId);
+
+    // 将某车票下架
+    Integer endTicket(Integer ticketId);
+
+    // 删除历史发布的车票
+    Integer deleteTicket(Integer ticketId);
 }

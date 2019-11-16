@@ -1,8 +1,9 @@
 package com.easyPoint.controller.administrator.travel;
 
 import com.easyPoint.dto.Result;
+import com.easyPoint.dto.travel.TicketDto;
+import com.easyPoint.dto.travel.TicketInfoDto;
 import com.easyPoint.pojo.travel.Association;
-import com.easyPoint.pojo.travel.Ticket;
 import com.easyPoint.service.administrator.travel.AssociationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -287,27 +288,27 @@ public class AssociationController {
     /**
      * 添加车票
      *
-     * @param ticket
+     * @param ticketDto
      * @return
      */
     @RequestMapping(value = "/addTicket", method = RequestMethod.POST)
     @ResponseBody
-    public Result addTicket(Ticket ticket) {
+    public Result addTicket(TicketDto ticketDto) {
         Result result = new Result();
 
-        if (ticket == null) {
+        if (ticketDto == null) {
             result.setCode(2);
             result.setMessage("参数为空(欠缺)！");
             return result;
         }
 
-        Integer associationId = ticket.getAssociationId();
-        String departurePlace = ticket.getDeparturePlace();
-        String destination = ticket.getDestination();
-        String departureDay = ticket.getDepartureDay();
-        String departureTime = ticket.getDepartureTime();
-        Integer seatNum = ticket.getSeatNum();
-        Integer type = ticket.getType();
+        Integer associationId = ticketDto.getAssociationId();
+        String departurePlace = ticketDto.getDeparturePlace();
+        String destination = ticketDto.getDestination();
+        String departureDay = ticketDto.getDepartureDay();
+        String departureTime = ticketDto.getDepartureTime();
+        Integer seatNum = ticketDto.getSeatNum();
+        Integer type = ticketDto.getType();
 
         if (associationId == null || departurePlace == null || departurePlace.equals("") || destination == null || destination.equals("") || departureDay == null || departureDay.equals("") || departureTime == null || departureTime.equals("") || seatNum == null || type == null) {
             result.setCode(2);
@@ -315,15 +316,15 @@ public class AssociationController {
             return result;
         }
 
-        ticket.setSeatSurplus(seatNum);
-        ticket.setState(1);
+        ticketDto.setSeatSurplus(seatNum);
+        ticketDto.setState(1);
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
 
-        ticket.setIssueTime(simpleDateFormat.format(date));
+        ticketDto.setIssueTime(simpleDateFormat.format(date));
 
-        Integer flag = associationService.addTicket(ticket);
+        Integer flag = associationService.addTicket(ticketDto);
 
         if (flag == 1) {
             result.setCode(1);
@@ -357,7 +358,7 @@ public class AssociationController {
 
         Integer ticketNum = associationService.getTicketNum(state);
 
-        if (ticketNum == 0){
+        if (ticketNum == 0) {
             result.setCode(0);
             result.setMessage("查询到0条数据！");
             return result;
@@ -369,13 +370,152 @@ public class AssociationController {
             return result;
         }
 
-        List<Ticket> ticketList = associationService.getTicket(state, (startIndex - 1) * pageSize, pageSize);
+        List<TicketDto> ticketList = associationService.getTicket(state, (startIndex - 1) * pageSize, pageSize);
 
         result.setCode(1);
         result.setMessage("查询成功！");
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(2);
+        map.put("ticketNum", ticketNum);
         map.put("ticketList", ticketList);
         result.setData(map);
         return result;
     }
+
+
+    /**
+     * 修改（添加）车辆信息
+     *
+     * @param ticketInfoDto
+     * @return
+     */
+    @RequestMapping(value = "/updateTicketInfo", method = RequestMethod.POST)
+    @ResponseBody
+    public Result updateTicketInfo(TicketInfoDto ticketInfoDto) {
+        Result result = new Result();
+
+        if (ticketInfoDto == null) {
+            result.setCode(2);
+            result.setMessage("参数为空！");
+            return result;
+        }
+
+        Integer ticketId = ticketInfoDto.getTicketId();
+        String licensePlateNumber = ticketInfoDto.getLicensePlateNumber();
+        String vehicleType = ticketInfoDto.getVehicleType();
+        String color = ticketInfoDto.getColor();
+        String driverName = ticketInfoDto.getDriverName();
+        String driverPhone = ticketInfoDto.getDriverPhone();
+
+        if (ticketId == null || licensePlateNumber == null || licensePlateNumber.equals("") || vehicleType == null || vehicleType.equals("") || color == null || color.equals("") || driverName == null || driverName.equals("") || driverPhone == null || driverPhone.equals("")) {
+            result.setCode(2);
+            result.setMessage("参数为空！");
+            return result;
+        }
+
+        Integer flag = associationService.updateTicketInfo(ticketInfoDto);
+
+        if (flag == 1) {
+            result.setCode(1);
+            result.setMessage("修改成功！");
+            return result;
+        } else {
+            result.setCode(-1);
+            result.setMessage("修改失败！");
+            return result;
+        }
+    }
+
+    /**
+     * 查询某车票的车辆信息
+     *
+     * @param ticketId
+     * @return
+     */
+    @RequestMapping(value = "/findTicketInfo", method = RequestMethod.GET)
+    @ResponseBody
+    public Result findTicketInfo(Integer ticketId) {
+        Result result = new Result();
+
+        if (ticketId == null) {
+            result.setCode(2);
+            result.setMessage("参数为空！");
+            return result;
+        }
+
+        TicketInfoDto ticketInfoDto = associationService.findTicketInfo(ticketId);
+
+        if (ticketInfoDto == null) {
+            result.setCode(-1);
+            result.setMessage("查询失败！");
+            return result;
+        } else {
+            result.setCode(1);
+            result.setMessage("查询成功！");
+            Map<String, TicketInfoDto> map = new HashMap<>(1);
+            map.put("ticketInfo", ticketInfoDto);
+            result.setData(map);
+            return result;
+        }
+    }
+
+    /**
+     * 将车票下架
+     *
+     * @param ticketId
+     * @return
+     */
+    @RequestMapping(value = "/endTicket", method = RequestMethod.POST)
+    @ResponseBody
+    public Result endTicket(Integer ticketId) {
+        Result result = new Result();
+
+        if (ticketId == null) {
+            result.setCode(2);
+            result.setMessage("参数为空！");
+            return result;
+        }
+
+        Integer flag = associationService.endTicket(ticketId);
+
+        if (flag == 1) {
+            result.setCode(1);
+            result.setMessage("下架成功！");
+            return result;
+        } else {
+            result.setCode(-1);
+            result.setMessage("下架失败！");
+            return result;
+        }
+    }
+
+    /**
+     * 删除车票
+     *
+     * @param ticketId
+     * @return
+     */
+    @RequestMapping(value = "/deleteTicket", method = RequestMethod.POST)
+    @ResponseBody
+    public Result deleteTicket(Integer ticketId) {
+        Result result = new Result();
+
+        if (ticketId == null) {
+            result.setCode(2);
+            result.setMessage("参数为空！");
+            return result;
+        }
+
+        Integer flag = associationService.deleteTicket(ticketId);
+
+        if (flag == 1) {
+            result.setCode(1);
+            result.setMessage("删除成功！");
+            return result;
+        } else {
+            result.setCode(-1);
+            result.setMessage("删除失败！");
+            return result;
+        }
+    }
 }
+
