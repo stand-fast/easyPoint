@@ -58,9 +58,9 @@
           <li>
             <span>退款状态</span>
             <div v-if="datas.refundState==1">待处理</div>
-            <div v-else-if="datas.ifInsurance==2">审核不通过</div>
-            <div v-else-if="datas.ifInsurance==3">审核通过</div>
-            <div v-else-if="datas.ifInsurance==4">已取消</div>
+            <div v-else-if="datas.refundState==2">审核不通过</div>
+            <div v-else-if="datas.refundState==3">审核通过</div>
+            <div v-else-if="datas.refundState==4">已取消</div>
           </li>
           <li>
             <span>驳回原因</span>
