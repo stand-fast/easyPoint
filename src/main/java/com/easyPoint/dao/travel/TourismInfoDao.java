@@ -77,8 +77,8 @@ public interface TourismInfoDao {
     //根据订单号查询下单用户和订单状态
     Map findUidAndStateByTravelOrderId(int travelOrderId);
 
-    //查询退款需要的订单信息：微信订单号和支付总金额
-    TourismOrderInfo findTourismRefundInfo(int travelOrderId);
+    //查询退款需要的订单信息：微信订单号和订单金额，是否为往返票
+    TourismOrderInfo findRefundNeceInfo(int travelOrderId);
 
     //用户申请退款
     int insertTourismRefund(TourismRefundInfo tourismRefundInfo);
@@ -100,7 +100,7 @@ public interface TourismInfoDao {
     int findTravelOrderId(int tourismRefundId);
 
     //退款不通过：保存退款操作管理员uid，确认时间，修改状态，保存驳回理由
-    int updateTourismRefundToFail(@Param("uid") int uid,
+    int updateTourismRefundToFail(@Param("admiUid") int admiUid,
                                   @Param("tourismRefundId") int tourismRefundId,
                                   @Param("refundState")int refundState,
                                   @Param("confirmRefundTime")String confirmRefundTime,

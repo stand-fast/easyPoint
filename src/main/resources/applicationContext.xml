@@ -102,7 +102,11 @@
             <!-- 查询方法 -->
             <tx:method name="find*" read-only="true"/>
             <!-- 其他方法 -->
-            <tx:method name="*"/>
+            <tx:method name="*" read-only="true"/>
+
+            <tx:method name="delete*" rollback-for="Exception"/>
+            <tx:method name="add*" rollback-for="Exception"/>
+            <tx:method name="update*" rollback-for="Exception"/>
         </tx:attributes>
     </tx:advice>
     <!-- 配置AOP增强 -->

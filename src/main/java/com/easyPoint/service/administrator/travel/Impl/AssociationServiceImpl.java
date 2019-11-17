@@ -1,6 +1,9 @@
 package com.easyPoint.service.administrator.travel.Impl;
 
 import com.easyPoint.dao.travel.AssociationDao;
+import com.easyPoint.dto.travel.TicketDto;
+import com.easyPoint.dto.travel.TicketInfoDto;
+import com.easyPoint.pojo.travel.Association;
 import com.easyPoint.service.administrator.travel.AssociationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,12 +25,12 @@ public class AssociationServiceImpl implements AssociationService {
     /**
      * 添加同乡会
      *
-     * @param associationName
+     * @param association
      * @return
      */
     @Override
-    public Integer addAssociation(String associationName) {
-        return associationDao.addAssociation(associationName);
+    public Integer addAssociation(Association association) {
+        return associationDao.addAssociation(association);
     }
 
     /**
@@ -96,5 +99,55 @@ public class AssociationServiceImpl implements AssociationService {
     @Override
     public Integer findPlacesNum(String associationId) {
         return associationDao.findPlacesNum(associationId);
+    }
+
+    @Override
+    public List<Association> findAllAssociation(Integer startIndex, Integer pageSize) {
+        return associationDao.findAllAssociation(startIndex, pageSize);
+    }
+
+    @Override
+    public List<Association> getAllAssociation() {
+        return associationDao.getAllAssociation();
+    }
+
+    @Override
+    public Integer findAssociationNum() {
+        return associationDao.findAssociationNum();
+    }
+
+    @Override
+    public Integer addTicket(TicketDto ticketDto) {
+        return associationDao.addTicket(ticketDto);
+    }
+
+    @Override
+    public List<TicketDto> getTicket(Integer state, Integer startIndex, Integer pageSize) {
+        return associationDao.getTicket(state, startIndex, pageSize);
+    }
+
+    @Override
+    public Integer getTicketNum(Integer state) {
+        return associationDao.getTicketNum(state);
+    }
+
+    @Override
+    public Integer updateTicketInfo(TicketInfoDto ticketInfoDto) {
+        return associationDao.updateTicketInfo(ticketInfoDto);
+    }
+
+    @Override
+    public TicketInfoDto findTicketInfo(Integer ticketId) {
+        return associationDao.findTicketInfo(ticketId);
+    }
+
+    @Override
+    public Integer endTicket(Integer ticketId) {
+        return associationDao.endTicket(ticketId);
+    }
+
+    @Override
+    public Integer deleteTicket(Integer ticketId) {
+        return associationDao.deleteTicket(ticketId);
     }
 }

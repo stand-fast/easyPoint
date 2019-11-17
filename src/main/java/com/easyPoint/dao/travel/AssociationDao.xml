@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.easyPoint.dao.travel.AssociationDao">
 
-    <!-- 添加同乡会 -->
-    <insert id="addAssociation" parameterType="String">
+    <insert id="addAssociation" useGeneratedKeys="true" keyProperty="associationId" keyColumn="association_id"
+            parameterType="association">
         INSERT INTO hometown_association (association_name)
         VALUES (#{associationName})
     </insert>
@@ -38,6 +38,7 @@
         VALUES (#{associationId}, #{place})
     </insert>
 
+
     <!-- 删除某同乡会某个上下车地点 -->
     <delete id="deletePlaceByIdAndPlace">
         DELETE
@@ -60,4 +61,96 @@
         FROM association_place
         WHERE association_id = #{associationId}
     </select>
+
+    <!--获取所有同乡会（分页）-->
+    <select id="findAllAssociation" resultType="association">
+        SELECT *
+        FROM hometown_association
+        LIMIT #{startIndex}, #{pageSize}
+    </select>
+
+    <!-- 获取所有同乡会 -->
+    <select id="getAllAssociation" resultType="association">
+        SELECT *
+        FROM hometown_association
+    </select>
+
+    <!--查询同乡会数量-->
+    <select id="findAssociationNum" resultType="integer">
+        SELECT COUNT(*)
+        FROM hometown_association
+    </select>
+
+    <!-- 添加车票 -->
+    <insert id="addTicket" parameterType="ticketDto">
+        INSERT INTO ticket (association_id, departure_day, departure_time, departure_place, destination, price,
+                            seat_num,
+                            seat_surplus, type, issue_time, state)
+        VALUES (#{associationId}, #{departureDay}, #{departureTime}, #{departurePlace}, #{destination}, #{price},
+                #{seatNum}, #{seatSurplus}, #{type}, #{issueTime}, #{state})
+    </insert>
+
+    <!-- 获取车票 -->
+    <select id="getTicket" resultType="ticketDto">
+        SELECT t.ticket_id         AS ticketId,
+               t.association_id    AS associationId,
+               ha.association_name AS associationName,
+               t.departure_day     AS departureDay,
+               t.departure_time    AS departuretime,
+               t.departure_place   AS departurePlace,
+               t.destination,
+               t.price,
+               t.seat_num          AS seatNum,
+               t.seat_surplus      AS seatSurplus,
+               t.type,
+               t.issue_time        AS issueTime
+        FROM ticket t,
+             hometown_association ha
+        WHERE t.state = #{state}
+          AND t.association_id = ha.association_id
+        LIMIT #{startIndex}, #{pageSize}
+    </select>
+
+    <!-- 获取正在售卖（已下架）车票数量 -->
+    <select id="getTicketNum" parameterType="integer" resultType="integer">
+        SELECT COUNT(*)
+        FROM ticket
+        WHERE state = #{state}
+    </select>
+
+    <!--修改（添加）车辆信息-->
+    <update id="updateTicketInfo" parameterType="ticketInfoDto">
+        UPDATE ticket
+        SET license_plate_number = #{licensePlateNumber},
+            vehicle_type         = #{vehicleType},
+            color                = #{color},
+            driver_name          = #{driverName},
+            driver_phone         = #{driverPhone}
+        WHERE ticket_id = #{ticketId}
+    </update>
+
+    <!--查询某车票的车辆信息-->
+    <select id="findTicketInfo" resultType="ticketInfoDto" parameterType="integer">
+        SELECT license_plate_number AS licensePlateNumber,
+               vehicle_type         AS vehicleType,
+               color,
+               driver_name          AS driverName,
+               driver_phone         AS driverPhone
+        FROM ticket
+        WHERE ticket_id = #{ticketId}
+    </select>
+
+    <!--将某车票下架-->
+    <update id="endTicket" parameterType="Integer">
+        UPDATE ticket
+        SET state = 2
+        WHERE ticket_id = #{ticketId}
+    </update>
+
+    <!--删除历史发布的车票-->
+    <delete id="deleteTicket" parameterType="Integer">
+        DELETE
+        FROM ticket
+        WHERE ticket_id = #{ticketId}
+    </delete>
 </mapper>
