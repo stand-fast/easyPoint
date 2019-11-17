@@ -18,11 +18,11 @@
         </div>
         <!-- 每页9条 状态:1：待处理，2：审核不通过；3：审核通过；4：已取消-->
         <div class="wrapperOrder" v-for="item in datas" :key="item.transactionId">
-          <li class="bigger" title="item.transactionId">{{item.transactionId}}</li>
-          <li>{{item.passenger}}</li>
-          <li class="bigger" title="item.phone">{{item.phone}}</li>
-          <li>￥{{item.refundMoney}}</li>
-          <li class="time place">
+          <li class="bigger" :title="item.transactionId">{{item.transactionId}}</li>
+          <li :title="item.passenger">{{item.passenger}}</li>
+          <li class="bigger" :title="item.phone">{{item.phone}}</li>
+          <li :title="item.refundMoney">￥{{item.refundMoney}}</li>
+          <li class="time place" :title="item.requestRefundTime">
             <span>{{item.requestRefundTime}}</span>
           </li>
           <li v-if="item.refundState==1">待处理</li>

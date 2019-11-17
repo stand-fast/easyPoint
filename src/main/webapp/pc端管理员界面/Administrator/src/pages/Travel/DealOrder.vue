@@ -64,16 +64,16 @@
           </li>
           <li>
             <span>驳回原因</span>
-            <div v-if="datas.ifInsurance==1">
+            <div v-if="datas.refundState==1">
               <input type="text" v-model="rejectReason" />
             </div>
-            <div v-else-if="datas.ifInsurance==2">{{datas.rejectReason}}</div>
+            <div v-else-if="datas.refundState==2">{{datas.rejectReason}}</div>
             <div v-else>无</div>
           </li>
         </div>
         <div class="dealOrderButton">
-          <span @click="viaOrder(datas.code)">通过</span>
-          <span @click="notViaOrder(datas.code)">不通过</span>
+          <span v-if="datas.refundState==1" @click="viaOrder(datas.code)">通过</span>
+          <span v-if="datas.refundState==1" @click="notViaOrder(datas.code)">不通过</span>
         </div>
       </div>
     </ul>
