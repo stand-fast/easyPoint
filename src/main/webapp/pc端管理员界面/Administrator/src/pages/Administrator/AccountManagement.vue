@@ -6,25 +6,19 @@
         <div class="TitleText">{{navName}} > {{navPlateName}}</div>
       </div>
       <div class="PageContent">
-        <h1>租车退款订单</h1>
+        <h1>账号管理</h1>
         <div class="wrapperOrder">
           <li>ID</li>
-          <li>用户名</li>
           <li class="bigger">账号</li>
           <li class="bigger">角色</li>
-          <li class="time">创建时间</li>
           <li>账号状态</li>
           <li class="bigger button">操作</li>
         </div>
         <!-- <div class="wrapperOrder" v-for="item in datas" :key="item.transactionId"> -->
         <div class="wrapperOrder">
           <li title="item.transactionId">01</li>
-          <li>派大星</li>
           <li class="bigger" title="item.phone">13013013013</li>
           <li class="bigger">超级管理员</li>
-          <li class="time place">
-            <span>2019-11-17 13:13:00.0</span>
-          </li>
           <li>可用</li>
           <li class="bigger button">
             <span class="enter" @click="disableAccount(123)">禁用</span>|
@@ -33,12 +27,8 @@
         </div>
         <div class="wrapperOrder">
           <li title="item.transactionId">02</li>
-          <li>海绵宝宝</li>
           <li class="bigger" title="item.phone">13013013013</li>
           <li class="bigger">普通管理员</li>
-          <li class="time place">
-            <span>2019-11-17 13:13:00.0</span>
-          </li>
           <li>可用</li>
           <li class="bigger button">
             <span class="enter" @click="disableAccount(123)">禁用</span>|

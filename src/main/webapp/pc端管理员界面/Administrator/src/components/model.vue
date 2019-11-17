@@ -11,7 +11,7 @@
         <span @click="loginOut">退出登录</span>
       </div>
 
-      <div class="userInformation" v-show="showUserInfor">
+      <div class="userInformation" v-if="loginUser" v-show="showUserInfor">
         <div class="inforTitle">管理员个人信息</div>
         <p>
           <span>账户：13013013011</span>
@@ -200,7 +200,7 @@ export default {
       childrenName: [],
       isShow: 0,
       showUserInfor: false,
-      showModefyAccount: true
+      showModefyAccount: false
     };
   },
   mounted: function() {

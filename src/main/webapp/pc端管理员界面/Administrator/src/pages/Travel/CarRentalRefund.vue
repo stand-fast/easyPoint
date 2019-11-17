@@ -13,7 +13,7 @@
           <li class="bigger">联系方式</li>
           <li>退款金额</li>
           <li class="time">退款时间</li>
-          <li>退款状态</li>
+          <li class="bigger">退款状态</li>
           <li>操作</li>
         </div>
         <!-- 每页9条 状态:1：待处理，2：审核不通过；3：审核通过；4：已取消-->
@@ -25,10 +25,10 @@
           <li class="time place" :title="item.requestRefundTime">
             <span>{{item.requestRefundTime}}</span>
           </li>
-          <li v-if="item.refundState==1">待处理</li>
-          <li v-if="item.refundState==2">审核不通过</li>
-          <li v-if="item.refundState==3">审核通过</li>
-          <li v-if="item.refundState==4">已取消</li>
+          <li class="bigger" v-if="item.refundState==1">待处理</li>
+          <li class="bigger" v-if="item.refundState==2">审核不通过</li>
+          <li class="bigger" v-if="item.refundState==3">审核通过</li>
+          <li class="bigger" v-if="item.refundState==4">已取消</li>
           <li class="enter" @click="dealOrder(item.tourismRefundId)">处理</li>
         </div>
         <paging

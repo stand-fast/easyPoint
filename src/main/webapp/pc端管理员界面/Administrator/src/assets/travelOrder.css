@@ -23,7 +23,7 @@
     box-sizing: border-box;
     text-align: center;
     font-size: 14px;
-    width: 160px;
+    flex: 1;
 }
 
 .wrapperOrder .bigger {
