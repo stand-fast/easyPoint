@@ -1,8 +1,9 @@
 package com.easyPoint.service.administrator.travel.Impl;
 
 import com.easyPoint.dao.travel.AssociationDao;
+import com.easyPoint.dto.travel.TicketDto;
+import com.easyPoint.dto.travel.TicketInfoDto;
 import com.easyPoint.pojo.travel.Association;
-import com.easyPoint.pojo.travel.Ticket;
 import com.easyPoint.service.administrator.travel.AssociationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -116,17 +117,37 @@ public class AssociationServiceImpl implements AssociationService {
     }
 
     @Override
-    public Integer addTicket(Ticket ticket) {
-        return associationDao.addTicket(ticket);
+    public Integer addTicket(TicketDto ticketDto) {
+        return associationDao.addTicket(ticketDto);
     }
 
     @Override
-    public List<Ticket> getTicket(Integer state, Integer startIndex, Integer pageSize) {
+    public List<TicketDto> getTicket(Integer state, Integer startIndex, Integer pageSize) {
         return associationDao.getTicket(state, startIndex, pageSize);
     }
 
     @Override
     public Integer getTicketNum(Integer state) {
         return associationDao.getTicketNum(state);
+    }
+
+    @Override
+    public Integer updateTicketInfo(TicketInfoDto ticketInfoDto) {
+        return associationDao.updateTicketInfo(ticketInfoDto);
+    }
+
+    @Override
+    public TicketInfoDto findTicketInfo(Integer ticketId) {
+        return associationDao.findTicketInfo(ticketId);
+    }
+
+    @Override
+    public Integer endTicket(Integer ticketId) {
+        return associationDao.endTicket(ticketId);
+    }
+
+    @Override
+    public Integer deleteTicket(Integer ticketId) {
+        return associationDao.deleteTicket(ticketId);
     }
 }

@@ -7,9 +7,54 @@
         <p>让你的大学生活简单一点</p>
       </div>
       <div class="modelPageTopLogin" v-if="loginUser">
-        <span>{{loginUser.name}}</span>
-        <span class="TopLoginOut" @click="loginOut">退出登录</span>
+        <span @click="showUserInformation">{{loginUser.name}}</span>|
+        <span @click="loginOut">退出登录</span>
       </div>
+
+      <div class="userInformation" v-if="loginUser" v-show="showUserInfor">
+        <div class="inforTitle">管理员个人信息</div>
+        <p>
+          <span>账户：13013013011</span>
+          <label>更换绑定</label>
+        </p>
+        <p>
+          <span>密码：*******</span>
+          <label>修改</label>
+        </p>
+        <p>
+          <span>角色：{{loginUser.name}}</span>
+        </p>
+
+        <div @click="showUserInformation" class="InforButton">关闭</div>
+      </div>
+
+      <!-- <div class="userInformation" v-show="showModefyAccount">
+        <div class="inforTitle">管理员个人信息</div>
+        <p>
+          <span>账户：</span>
+          <input placeholder="请填写手机号码" />
+          <label>获取验证码</label>
+        </p>
+        <p>
+          <span>
+            验证码：
+            <input placeholder="请填写验证码" />
+          </span>
+        </p>
+        <p>
+          <span>密码：</span>
+          <input placeholder="请填写密码" />
+        </p>
+        <p>
+          <span>再次输入：</span>
+          <input placeholder="请再次填写密码" />
+        </p>
+        <p>
+          <span>角色：{{loginUser.name}}</span>
+        </p>
+
+        <div @click="showUserInformation" class="InforButton">提交</div>
+      </div>-->
     </div>
     <div class="modelPageContent">
       <ul class="PageContentLeft">
@@ -59,12 +104,12 @@ export default {
             {
               id: "1",
               childrenName: "企业商家加盟申请",
-              url:"#/JoinList"
+              url: "#/JoinList"
             },
             {
               id: "2",
               childrenName: "学生商家加盟申请",
-              url:"#/JoinList"
+              url: "#/JoinList"
             }
           ]
         },
@@ -74,16 +119,6 @@ export default {
           secondName: [
             {
               id: "1",
-              childrenName: "账号申请",
-              url: "#/AccountApplication"
-            },
-            {
-              id: "2",
-              childrenName: "修改密码",
-              url: "#/ModifyPassword"
-            },
-            {
-              id: "3",
               childrenName: "账号管理",
               url: "#/AccountManagement"
             }
@@ -163,7 +198,9 @@ export default {
         }
       ],
       childrenName: [],
-      isShow: 0
+      isShow: 0,
+      showUserInfor: false,
+      showModefyAccount: false
     };
   },
   mounted: function() {
@@ -175,6 +212,9 @@ export default {
     }
   },
   methods: {
+    showUserInformation() {
+      this.showUserInfor = !this.showUserInfor;
+    },
     showSecondName(index) {
       this.isShow = index;
     },
@@ -189,10 +229,69 @@ export default {
 };
 </script>
 <style>
+.userInformation {
+  z-index: 100;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  padding: 20px;
+  background: #ffffff;
+  min-width: 340px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #8ebc8c;
+}
+.userInformation .inforTitle {
+  padding: 5px;
+  border-radius: 4px;
+  background: #8ebc8c;
+  color: #ffffff;
+}
+.userInformation p {
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 3px;
+  padding: 5px 0;
+  color: #333;
+  background: #ffffff;
+  border: 1px solid #8fd68b;
+  box-shadow: 0 0 2px 0 #8ebc8c;
+}
+/* .userInformation p input {
+  outline: none;
+  width: 100px;
+} */
+.userInformation p label {
+  padding: 3px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.userInformation p label:hover {
+  box-shadow: 0 0 3px 0 #8ebc8c;
+}
+.userInformation p span {
+  display: inline-block;
+  padding: 5px;
+  width: 170px;
+  box-sizing: border-box;
+}
+.InforButton {
+  cursor: pointer;
+  width: 60px;
+  padding: 3px;
+  text-align: center;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 10px auto 0;
+  background: #8ebc8c;
+  color: #ffffff;
+}
+
 * {
   margin: 0px;
   padding: 0px;
-  font-family: 'Open Sans','Microsoft YaHei',"Heiti SC",'STHeiti Light','PMingLiU', sans-serif;
+  font-family: "Open Sans", "Microsoft YaHei", "Heiti SC", "STHeiti Light",
+    "PMingLiU", sans-serif;
 }
 
 li {
@@ -226,17 +325,15 @@ li {
   color: #ffffff;
   overflow: hidden;
   margin-top: 30px;
-  height: 20px;
+  height: 26px;
 }
-
-.TopLoginOut {
-  display: inline-block;
+.modelPageTopLogin span {
+  padding: 3px 5px;
   cursor: pointer;
-  border-left: 1px solid #ffffff;
-  padding-left: 20px;
-  margin-left: 20px;
 }
-
+.modelPageTopLogin span:hover {
+  border-bottom: 1px solid #ffffff;
+}
 .modelPageTopDetails {
   height: 80px;
   color: #ffffff;

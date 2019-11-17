@@ -2,8 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from "./store.js"
 import login from "./pages/login.vue" //登陆界面
-import AccountApplication from "./pages/Administrator/AccountApplication.vue" //管理员板块-账号申请
-import ModifyPassword from "./pages/Administrator/ModifyPassword.vue" //管理员板块-修改密码
 import AccountManagement from "./pages/Administrator/AccountManagement.vue" //管理员板块-账号管理
 import AddAssociation from "./pages/CommitteeVihicle/AddAssociation.vue" //校友会包车-添加同乡会
 import AddLocation from "./pages/CommitteeVihicle/AddLocation.vue" //校友会包车-添加上写车地点
@@ -27,20 +25,6 @@ const router = new Router({
       path: "/login",
       name: '登陆',
       component: login,
-    }, {
-      path: "/AccountApplication",
-      name: '管理员板块-账号申请',
-      component: AccountApplication,
-      meta: {
-        needLogin: true
-      }
-    }, {
-      path: "/ModifyPassword",
-      name: '管理员板块-修改密码',
-      component: ModifyPassword,
-      meta: {
-        needLogin: true
-      }
     }, {
       path: "/AccountManagement",
       name: '管理员板块-账号管理',
@@ -138,7 +122,7 @@ const router = new Router({
       }
     },
     {
-      path: "/vehicleEntry/:id",
+      path: "/vehicleEntry/:id/:state",
       name: '旅游出行-租车订单车辆信息',
       component: vehicleEntry,
       meta: {
@@ -169,7 +153,7 @@ router.beforeEach(function (to, from, next) {
     //console.log(store.state);
     if (store.state.data) {
       //已登录
-      if (to.path == '/AccountApplication') {
+      if (to.path == '/AccountManagement') {
         if (store.state.data.name == "超级管理员") {
           next();
         } else {

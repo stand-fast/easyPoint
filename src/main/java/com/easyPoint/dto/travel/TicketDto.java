@@ -1,10 +1,10 @@
-package com.easyPoint.pojo.travel;
+package com.easyPoint.dto.travel;
 
 /**
  * @author FHJ
- * @date 2019/9/21 17:11
+ * @date 2019/11/16 14:27
  */
-public class Ticket {
+public class TicketDto {
     // 车票id
     private Integer ticketId;
     // 同乡会id
@@ -31,16 +31,6 @@ public class Ticket {
     private String issueTime;
     // 车票状态
     private Integer state;
-    // 车牌号码
-    private String licensePlateNumber;
-    // 车辆信息
-    private String vehicleType;
-    // 车身颜色
-    private String color;
-    // 司机姓名
-    private String driverName;
-    // 司机手机号码
-    private String driverPhone;
 
     public Integer getTicketId() {
         return ticketId;
@@ -144,37 +134,5 @@ public class Ticket {
 
     public void setState(Integer state) {
         this.state = state;
-    }
-
-    public String getLicensePlateNumber() {
-        return licensePlateNumber;
-    }
-
-    public void setLicensePlateNumber(String licensePlateNumber) {
-        this.licensePlateNumber = licensePlateNumber;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getDriverName() {
-        return driverName;
-    }
-
-    public void setDriverName(String driverName) {
-        this.driverName = driverName;
-    }
-
-    public String getDriverPhone() {
-        return driverPhone;
-    }
-
-    public void setDriverPhone(String driverPhone) {
-        this.driverPhone = driverPhone;
     }
 }
