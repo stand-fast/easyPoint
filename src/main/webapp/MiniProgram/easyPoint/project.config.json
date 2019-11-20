@@ -21,7 +21,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.8.1",
+	"libVersion": "2.9.3",
 	"appid": "wx1c379b39de912818",
 	"projectname": "easyPoint",
 	"debugOptions": {
