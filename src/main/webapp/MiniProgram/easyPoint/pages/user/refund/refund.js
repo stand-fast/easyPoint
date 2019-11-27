@@ -17,6 +17,18 @@ Page({
         icon: 'none',
         duration: 2000
       })
+    }else if(e.detail.value.reason.length<5){
+        wx.showToast({
+            title: '退款理由少于5个字',
+            icon: 'none',
+            duration: 2000
+        })
+    } else if (e.detail.value.reason.length>100) {
+        wx.showToast({
+            title: '退款理由超过100个字',
+            icon: 'none',
+            duration: 2000
+        })
     }else{
       console.log(app.globalData.uid);
       wx.request({

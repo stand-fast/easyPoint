@@ -2,7 +2,7 @@
 <form bindsubmit="formSubmit">
     <view class="apply">
         <view class="text">退款理由</view>
-        <textarea placeholder="请输入退款的理由" name="reason" value="{{reason}}"></textarea>
+        <textarea placeholder="请输入退款的理由，字数不低于10字，不超出100字" name="reason" value="{{reason}}" placeholder-class="place_class" class="refund_reason_text"></textarea>
     </view>
     <view class="btn"><button form-type="submit">提交</button></view>
 </form>

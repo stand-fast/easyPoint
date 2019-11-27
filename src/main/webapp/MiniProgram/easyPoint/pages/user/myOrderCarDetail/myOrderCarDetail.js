@@ -7,6 +7,9 @@ Page({
      */
     data: {
         current:"0",
+        refund_border_color:"#56b4f6",
+        time_border_color:"#56b4f6",
+        applyRefundWord:"申请退款",
         ticketDetail:{
           //乡会车票订单信息
             ticketId:"121312312",
@@ -29,12 +32,24 @@ Page({
             makeOrderTime: "2019-08-10 08:00",
             username: "吴彦祖",
             phone: "12345678910",
-          }
+            carOrderStatus: "订单已退款",//新增订单状态
+            
+            //司机信息
+            driverName:"",
+            driverPhone:"12345678910",
+            licensePlateNumber:"粤A5910"
+        }
     }, 
     applyRefund:function(){
-        wx.navigateTo({
-          url: '/pages/user/refund/refund?travelOrderId=' + this.data.travelOrderId,
-        })
+        if(this.data.applyRefundWord=="申请退款"){
+            wx.navigateTo({
+                url: '/pages/user/refund/refund?travelOrderId=' + this.data.travelOrderId,
+            })
+        }else{
+            wx.navigateTo({
+                url: '/pages/user/refundDetail/refundDetail?travelOrderId=' + this.data.travelOrderId,
+            })
+        }
     },
     changeTime:function(){
         wx.navigateTo({
