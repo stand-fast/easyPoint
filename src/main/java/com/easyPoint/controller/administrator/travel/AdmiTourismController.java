@@ -10,6 +10,8 @@ import com.easyPoint.pojo.travel.TourismOrderInfo;
 import com.easyPoint.pojo.travel.VehicleInfo;
 
 import com.easyPoint.service.administrator.travel.AdmiTourismInfoService;
+import org.apache.taglibs.standard.lang.jstl.test.beans.PublicInterface2;
+import org.bouncycastle.jcajce.provider.digest.MD2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -132,6 +135,8 @@ public class AdmiTourismController {
         int resultCode = admiTourismInfoService.addDriverInfoToTourismOrder(tourismOrderInfo);
         if(resultCode == 1)
             result = new Result<>(200,"为租车订单安排车辆信息成功");
+        else if (resultCode == -1)
+            result = new Result(401,"订单已经完成，不能再修改车辆信息");
         else
             result = new Result<>(201,"安排车辆信息失败");
         return result;
@@ -224,7 +229,9 @@ public class AdmiTourismController {
                                         @RequestParam("ifAgree")int ifAgree){
         int uid = 5;
         int resultCode = admiTourismInfoService.ifAgreeTourismRefund(uid, tourismRefundIdCode, rejectReason,ifAgree);
-        if(resultCode == -2)
+        if(resultCode == -3)
+            return new Result(402,"退款订单不是处理状态，退款失败");
+        else if(resultCode == -2)
             return new Result(401,"退款异常");
         else if(resultCode == 0)
             return new Result(201,"不通过成功");
@@ -242,4 +249,5 @@ public class AdmiTourismController {
         out.flush();
         out.close();
     }
+
 }

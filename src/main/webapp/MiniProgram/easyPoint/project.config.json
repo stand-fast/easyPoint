@@ -59,13 +59,6 @@
 				},
 				{
 					"id": -1,
-					"name": "user",
-					"pathName": "pages/user/user/user",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "myOrder",
 					"pathName": "pages/user/myOrder/myOrder",
 					"query": "",
@@ -80,8 +73,15 @@
 				},
 				{
 					"id": -1,
-					"name": "goodDetails",
-					"pathName": "pages/IdleAndRental/goodDetails/goodDetails",
+					"name": "myOrderCarDetail",
+					"pathName": "pages/user/myOrderCarDetail/myOrderCarDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "refundDetail",
+					"pathName": "pages/user/refundDetail/refundDetail",
 					"query": "",
 					"scene": null
 				}

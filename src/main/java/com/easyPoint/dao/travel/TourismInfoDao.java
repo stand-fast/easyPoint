@@ -8,8 +8,10 @@ import com.easyPoint.pojo.travel.VehicleInfo;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Property;
+import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +40,9 @@ public interface TourismInfoDao {
 
     //管理员分页查询租车订单信息
     List<PartTourismOrderInfoDto> findListTourismOrderInfo(int index);
+
+    //查询租车订单状态
+    Integer findStateById(int travelOrderId);
 
     //安排车辆，填写司机信息，更新订单表
     Integer updateTourismOrderInfoAddDriverInfo(TourismOrderInfo tourismOrderInfo);
@@ -96,8 +101,8 @@ public interface TourismInfoDao {
     //申请退款详情页信息
     TourismRefundPageDetailDto findTourismRefundDetail(int tourismRefundId);
 
-    //根据tourismRefundId查询travelOrderId
-    int findTravelOrderId(int tourismRefundId);
+    //根据tourismRefundId查询travelOrderId和退款状态
+    HashMap<String,Integer> findOrderIdAndStateById(int tourismRefundId);
 
     //退款不通过：保存退款操作管理员uid，确认时间，修改状态，保存驳回理由
     int updateTourismRefundToFail(@Param("admiUid") int admiUid,

@@ -144,13 +144,16 @@ public class HttpRequestUtil {
         } finally {
             instream.close();
         }
+        System.out.println("------------发送请求");
         //3.ssl双向验证发送http请求报文
         SSLContext sslcontext = SSLContexts.custom().loadKeyMaterial(keyStore, com.easyPoint.Util.WxPayConstants.MCH_ID.toCharArray()).build();
         SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslcontext,new String[] { "TLSv1" },null,
                 SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
         CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(sslsf).build();
+        System.out.println("--------------4");
         //4.发送数据到微信的退款接口
         HttpPost httpost= new HttpPost(com.easyPoint.Util.WxPayConstants.REFUND_URL);
+        System.out.println("-------------5");
         httpost.setEntity(new StringEntity(param, "UTF-8"));
         HttpResponse weixinResponse = httpClient.execute(httpost);
         System.out.println(weixinResponse+"======================");

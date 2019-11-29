@@ -17,12 +17,12 @@ Page{
     color: #333;
     padding: 30rpx 0 10rpx 30rpx;
 }
-.apply textarea{
-    width: 100%;
+.refund_reason_text,.place_class{
+    width: 92%;
     height: 300rpx;
     line-height: 40rpx;
     color: #999;
-    padding-left:30rpx;
+    margin: 0rpx auto;
 }
 .btn{
     margin-top: 60rpx;
@@ -39,7 +39,7 @@ Page{
 .btn button::after{
     border:none;
 }
-.mask_layer {
+/* .mask_layer {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -60,7 +60,7 @@ Page{
     background: #fafafa;
     margin:6%;
     border-radius: 18rpx;
-}
+} */
 .model_success{
     width: 650rpx;
     height: 44rpx;
