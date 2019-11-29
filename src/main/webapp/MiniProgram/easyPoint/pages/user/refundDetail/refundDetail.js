@@ -43,6 +43,8 @@ Page({
     onLoad: function (options) {
         var id = options.travelOrderId;
         console.log(id)
+
+        // 退款按钮文字和状态
         var btnWord="";
         if (this.data.refundDetail.refundStatusWord !="审核不通过"){
             btnWord="取消退款"
@@ -53,6 +55,20 @@ Page({
         if(this.data.refundDetail.refund_status==2){
             btnColor="#999"
         }
+
+        // 后台获取数据
+        wx.request({
+            url: '',//接口路径
+            method:"POST",
+            data:{
+                "":id,
+            },
+            header: { 'content-type':'application/x-www-form-urlencoded' },
+            success:function(res){
+
+            }
+        })
+
         this.setData({
             travelOrderId:id,
             btnWord:btnWord,
