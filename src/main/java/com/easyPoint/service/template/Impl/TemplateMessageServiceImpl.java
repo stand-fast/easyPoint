@@ -1,7 +1,7 @@
 package com.easyPoint.service.template.Impl;
 
-import com.easyPoint.Util.HttpRequestUtil;
-import com.easyPoint.Util.MiniProConstants;
+import com.easyPoint.util.HttpRequestUtil;
+import com.easyPoint.util.MiniProConstants;
 import com.easyPoint.service.template.TemplateMessageService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

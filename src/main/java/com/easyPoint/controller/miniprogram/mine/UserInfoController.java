@@ -1,8 +1,8 @@
 package com.easyPoint.controller.miniprogram.mine;
 
 
-import com.easyPoint.Util.AesCbcUtil;
-import com.easyPoint.Util.JwtUtil;
+import com.easyPoint.util.AesCbcUtil;
+import com.easyPoint.util.JwtUtil;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.miniprogram.mine.UserInfoService;
 import org.apache.commons.codec.binary.Base64;

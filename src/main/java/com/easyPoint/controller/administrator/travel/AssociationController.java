@@ -1,6 +1,7 @@
 package com.easyPoint.controller.administrator.travel;
 
 import com.easyPoint.dto.Result;
+import com.easyPoint.dto.travel.BuyDetail;
 import com.easyPoint.dto.travel.TicketDto;
 import com.easyPoint.dto.travel.TicketInfoDto;
 import com.easyPoint.pojo.travel.Association;
@@ -197,7 +198,7 @@ public class AssociationController {
             return result;
         }
 
-        if ((startIndex - 1) * pageSize > placeNum) {
+        if ((startIndex - 1) * pageSize >= placeNum) {
             result.setCode(3);
             result.setMessage("页码超出最大范围！");
             return result;
@@ -207,7 +208,7 @@ public class AssociationController {
 
         result.setCode(1);
         result.setMessage("查询成功！");
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(2);
         map.put("totalNum", placeNum);
         map.put("placeList", places);
         result.setData(map);
@@ -241,7 +242,7 @@ public class AssociationController {
             return result;
         }
 
-        if ((startIndex - 1) * pageSize > associationNum) {
+        if ((startIndex - 1) * pageSize >= associationNum) {
             result.setCode(3);
             result.setMessage("页码超出最大范围！");
             return result;
@@ -251,7 +252,7 @@ public class AssociationController {
 
         result.setCode(1);
         result.setMessage("查询成功！");
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(2);
         map.put("totalNum", associationNum);
         map.put("associationList", associationList);
         result.setData(map);
@@ -364,7 +365,7 @@ public class AssociationController {
             return result;
         }
 
-        if ((startIndex - 1) * pageSize > ticketNum) {
+        if ((startIndex - 1) * pageSize >= ticketNum) {
             result.setCode(3);
             result.setMessage("页码超出最大范围！");
             return result;
@@ -516,6 +517,47 @@ public class AssociationController {
             result.setMessage("删除失败！");
             return result;
         }
+    }
+
+    /**
+     * 查询某车票的购票详情
+     *
+     * @param ticketId
+     * @return
+     */
+    @RequestMapping(value = "/findBuyDetail", method = RequestMethod.GET)
+    @ResponseBody
+    public Result findBuyDetail(String ticketId, Integer startIndex, Integer pageSize) {
+        Result result = new Result();
+        if (ticketId == null || ticketId.equals("") || startIndex == null || startIndex <= 0 || pageSize == null || pageSize <= 0) {
+            result.setCode(2);
+            result.setMessage("参数为空！");
+            return result;
+        }
+
+        Integer buyNum = associationService.findBuyDetailNum(ticketId);
+
+        if (buyNum == 0) {
+            result.setCode(0);
+            result.setMessage("暂无购票信息！");
+            return result;
+        }
+
+        if ((startIndex - 1) * pageSize >= buyNum) {
+            result.setCode(3);
+            result.setMessage("页码超出最大范围！");
+            return result;
+        }
+
+        List<BuyDetail> buyDetail = associationService.findBuyDetail(ticketId, (startIndex - 1) * pageSize, pageSize);
+
+        result.setCode(1);
+        result.setMessage("查询成功！");
+        Map<String, Object> map = new HashMap<>(2);
+        map.put("total", buyNum);
+        map.put("detail", buyDetail);
+        result.setData(map);
+        return result;
     }
 }
 

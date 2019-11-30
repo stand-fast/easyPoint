@@ -153,4 +153,27 @@
         FROM ticket
         WHERE ticket_id = #{ticketId}
     </delete>
+
+    <!-- 查询车票的购票详情 -->
+    <select id="findBuyDetail" resultType="buyDetail">
+        SELECT ui.username AS name, ui.phone, ao.price, tor.travel_num AS buyNum, ao.make_order_time AS buyTime
+        FROM user_info ui,
+             association_order ao,
+             travel_order tor
+        WHERE ao.ticket_id = #{ticketId}
+          AND tor.travel_order_id = ao.travel_order_id
+          AND ui.uid = tor.uid
+        LIMIT #{startIndex}, #{pageSize}
+    </select>
+
+    <!-- 查询车票的购票数量 -->
+    <select id="findBuyDetailNum" resultType="int">
+        SELECT COUNT(*)
+        FROM user_info ui,
+             association_order ao,
+             travel_order tor
+        WHERE ao.ticket_id = #{ticketId}
+          AND tor.travel_order_id = ao.travel_order_id
+          AND ui.uid = tor.uid
+    </select>
 </mapper>

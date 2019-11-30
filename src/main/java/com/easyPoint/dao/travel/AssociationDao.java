@@ -1,5 +1,6 @@
 package com.easyPoint.dao.travel;
 
+import com.easyPoint.dto.travel.BuyDetail;
 import com.easyPoint.dto.travel.TicketDto;
 import com.easyPoint.dto.travel.TicketInfoDto;
 import com.easyPoint.pojo.travel.Association;
@@ -67,4 +68,10 @@ public interface AssociationDao {
 
     // 删除历史发布的车票
     Integer deleteTicket(Integer ticketId);
+
+    // 查询车票的购票详情
+    List<BuyDetail> findBuyDetail(@Param("ticketId") String ticketId, @Param("startIndex") Integer startIndex, @Param("pageSize") Integer pageSize);
+
+    // 查询车票的购票数量
+    Integer findBuyDetailNum(String ticketId);
 }

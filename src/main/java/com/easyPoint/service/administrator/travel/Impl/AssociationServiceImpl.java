@@ -1,6 +1,7 @@
 package com.easyPoint.service.administrator.travel.Impl;
 
 import com.easyPoint.dao.travel.AssociationDao;
+import com.easyPoint.dto.travel.BuyDetail;
 import com.easyPoint.dto.travel.TicketDto;
 import com.easyPoint.dto.travel.TicketInfoDto;
 import com.easyPoint.pojo.travel.Association;
@@ -149,5 +150,15 @@ public class AssociationServiceImpl implements AssociationService {
     @Override
     public Integer deleteTicket(Integer ticketId) {
         return associationDao.deleteTicket(ticketId);
+    }
+
+    @Override
+    public List<BuyDetail> findBuyDetail(String ticketId, Integer startIndex, Integer pageSize) {
+        return associationDao.findBuyDetail(ticketId, startIndex, pageSize);
+    }
+
+    @Override
+    public Integer findBuyDetailNum(String ticketId) {
+        return associationDao.findBuyDetailNum(ticketId);
     }
 }

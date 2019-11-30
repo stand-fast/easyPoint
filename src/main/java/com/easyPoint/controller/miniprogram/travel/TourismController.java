@@ -1,6 +1,6 @@
 package com.easyPoint.controller.miniprogram.travel;
 
-import com.easyPoint.Util.XmlUtil;
+import com.easyPoint.util.XmlUtil;
 import com.easyPoint.dto.Result;
 import com.easyPoint.dto.pay.MiniPaymentDto;
 import com.easyPoint.dto.pay.PaymentDto;
