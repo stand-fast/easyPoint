@@ -6,56 +6,92 @@
         <p>易点</p>
         <p>让你的大学生活简单一点</p>
       </div>
-      <div class="modelPageTopLogin" v-if="loginUser">
+      <div class="modelPageTopLogin" v-if="loginUser!='未登录'">
         <span @click="showUserInformation">{{loginUser.name}}</span>|
         <span @click="loginOut">退出登录</span>
       </div>
 
+      <!-- 个人信息 -->
       <div class="userInformation" v-if="loginUser" v-show="showUserInfor">
         <div class="inforTitle">管理员个人信息</div>
         <p>
           <span>账户：13013013011</span>
-          <label>更换绑定</label>
+          <label @click="showModifyAccount">更换绑定</label>
         </p>
         <p>
           <span>密码：*******</span>
-          <label>修改</label>
+          <label @click="showModifyPassword">修改</label>
         </p>
         <p>
           <span>角色：{{loginUser.name}}</span>
         </p>
 
-        <div @click="showUserInformation" class="InforButton">关闭</div>
+        <div class="InforButton">
+          <span @click="showUserInformation">关闭</span>
+        </div>
       </div>
 
-      <!-- <div class="userInformation" v-show="showModefyAccount">
-        <div class="inforTitle">管理员个人信息</div>
-        <p>
+      <!-- 个人信息-更换绑定部分 -->
+      <div class="userInformation" v-show="showModifyAccounts">
+        <div class="inforTitle">管理员个人信息-更换绑定</div>
+        <div class="change-account">
           <span>账户：</span>
-          <input placeholder="请填写手机号码" />
-          <label>获取验证码</label>
-        </p>
-        <p>
-          <span>
-            验证码：
-            <input placeholder="请填写验证码" />
-          </span>
-        </p>
-        <p>
+          <input placeholder="请输入手机号码" v-model="changeId" />
+          <label @click="getCode(changeId)">{{code}}</label>
+        </div>
+        <div class="change-account">
+          <span>验证码：</span>
+          <input placeholder="请输入验证码" />
+        </div>
+        <div class="change-account">
           <span>密码：</span>
-          <input placeholder="请填写密码" />
-        </p>
-        <p>
+          <input placeholder="请输入密码" />
+        </div>
+        <div class="change-account">
           <span>再次输入：</span>
-          <input placeholder="请再次填写密码" />
-        </p>
-        <p>
-          <span>角色：{{loginUser.name}}</span>
-        </p>
+          <input placeholder="请再次输入密码" />
+        </div>
+        <div class="change-account">
+          <span>角色：</span>
+          {{loginUser.name}}
+        </div>
 
-        <div @click="showUserInformation" class="InforButton">提交</div>
-      </div>-->
+        <div class="InforButton">
+          <span @click="submitChangeAccount">提交</span>
+          <span @click="showUserInformation">返回</span>
+        </div>
+      </div>
+
+      <!-- 个人信息-修改密码部分 -->
+      <div class="userInformation" v-show="showModifyPasswords">
+        <div class="inforTitle">管理员个人信息-修改密码</div>
+        <div class="change-account">
+          <span>账户：</span>13060060021
+        </div>
+        <div class="change-account">
+          <span>旧密码：</span>
+          <input placeholder="请输入旧密码" />
+        </div>
+        <div class="change-account">
+          <span>新密码：</span>
+          <input placeholder="请输入密码" />
+        </div>
+        <div class="change-account">
+          <span>再次输入：</span>
+          <input placeholder="请再次输入密码" />
+        </div>
+        <div class="change-account">
+          <span>角色：</span>
+          {{loginUser.name}}
+        </div>
+
+        <div class="InforButton">
+          <span @click="submitModifyPassword">提交</span>
+          <span @click="showUserInformation">返回</span>
+        </div>
+      </div>
     </div>
+
     <div class="modelPageContent">
       <ul class="PageContentLeft">
         <li class="ContentCard"></li>
@@ -199,8 +235,12 @@ export default {
       ],
       childrenName: [],
       isShow: 0,
+      code: "获取验证码",
+      codeStatus: 0, //验证码加锁
       showUserInfor: false,
-      showModefyAccount: false
+      showModifyAccounts: false,
+      showModifyPasswords: false,
+      changeId: ""
     };
   },
   mounted: function() {
@@ -208,12 +248,37 @@ export default {
   },
   computed: {
     loginUser() {
-      return this.$store.state.data;
+      if (this.$store.state.data) {
+        return this.$store.state.data;
+      } else {
+        return "未登录";
+      }
     }
   },
   methods: {
     showUserInformation() {
-      this.showUserInfor = !this.showUserInfor;
+      //显示管理员个人信息
+      if (this.showModifyAccounts == true) {
+        this.showModifyAccounts = false;
+      } else if (this.showModifyPasswords == true) {
+        this.showModifyPasswords = false;
+      } else {
+        this.showUserInfor = !this.showUserInfor;
+      }
+    },
+    showModifyAccount() {
+      //显示管理员个人信息-更换绑定
+      this.showModifyAccounts = !this.showModifyAccounts;
+    },
+    showModifyPassword() {
+      //显示管理员个人信息-修改密码
+      this.showModifyPasswords = !this.showModifyPasswords;
+    },
+    submitChangeAccount() {
+      //提交更换绑定信息
+    },
+    submitModifyPassword() {
+      //提交修改密码
     },
     showSecondName(index) {
       this.isShow = index;
@@ -224,6 +289,28 @@ export default {
     loginOut() {
       this.$store.dispatch("loginOut");
       this.$router.push("/login");
+    },
+    getCode(phone) {
+      //获取验证码按钮
+      let reg = /^[1][3458]\d{9}$/; //验证手机号码
+      let num = 60;
+      let that = this;
+      if (!reg.test(phone)) {
+        alert("手机号码有误!");
+      } else {
+        if (this.codeStatus == 0) {
+          this.codeStatus = 1;
+          let timer = setInterval(function() {
+            if (num == 0) {
+              that.code = "获取验证码";
+              clearInterval(timer);
+              that.codeStatus = 0;
+            } else {
+              that.code = num--;
+            }
+          }, 1000);
+        }
+      }
     }
   }
 };
@@ -236,10 +323,11 @@ export default {
   left: 50%;
   padding: 20px;
   background: #ffffff;
-  min-width: 340px;
+  width: 350px;
   box-sizing: border-box;
   border-radius: 4px;
   border: 1px solid #8ebc8c;
+  margin-left: -170px;
 }
 .userInformation .inforTitle {
   padding: 5px;
@@ -247,7 +335,7 @@ export default {
   background: #8ebc8c;
   color: #ffffff;
 }
-.userInformation p {
+.userInformation > p {
   border-radius: 4px;
   box-sizing: border-box;
   margin-top: 3px;
@@ -257,36 +345,66 @@ export default {
   border: 1px solid #8fd68b;
   box-shadow: 0 0 2px 0 #8ebc8c;
 }
-/* .userInformation p input {
-  outline: none;
-  width: 100px;
-} */
-.userInformation p label {
+.userInformation > p label {
   padding: 3px;
   border-radius: 2px;
   cursor: pointer;
 }
-.userInformation p label:hover {
+.userInformation > p label:hover {
   box-shadow: 0 0 3px 0 #8ebc8c;
 }
-.userInformation p span {
+.userInformation > p span {
   display: inline-block;
   padding: 5px;
   width: 170px;
   box-sizing: border-box;
 }
 .InforButton {
+  margin-top: 15px;
+  text-align: center;
+}
+.InforButton span {
   cursor: pointer;
   width: 60px;
-  padding: 3px;
+  padding: 6px 13px;
   text-align: center;
   border-radius: 4px;
   box-sizing: border-box;
-  margin: 10px auto 0;
   background: #8ebc8c;
   color: #ffffff;
+  margin: 3px;
 }
-
+.change-account {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+.change-account > span {
+  display: inline-block;
+  width: 80px;
+}
+.change-account > input {
+  width: 140px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 5px;
+  outline: none;
+  border: 1px solid #8ebc8c;
+}
+.change-account > label {
+  font-size: 13px;
+  cursor: pointer;
+  margin-left: 5px;
+  padding: 3px;
+  border-radius: 3px;
+  width: 72px;
+  text-align: center;
+  box-sizing: border-box;
+}
+.change-account > label:hover {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
 * {
   margin: 0px;
   padding: 0px;
