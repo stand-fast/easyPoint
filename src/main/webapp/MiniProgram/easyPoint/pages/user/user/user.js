@@ -53,7 +53,7 @@ Page({
             wx.getUserInfo({
               success: function (res_user) {
                 wx.request({
-                  url: 'https://easypoint.club/miniProgram/getUserInfoAndToken',
+                  url: 'https://www.easypoint.club/miniProgram/getUserInfoAndToken',
                   data: {
                     code: res.code,//获取openid的话 需要向后台传递code,利用code请求api获取openid
                     encryptedData: res_user.encryptedData,
@@ -74,8 +74,15 @@ Page({
                     //console.log(userdata)
                     wx.setStorageSync("token", obj);
                     wx.setStorageSync("userInfo", res.data.userInfo);
+                    wx.showToast({
+                      title: '成功了',
+                    })
                   },
                   fail:function(){
+
+                    wx.showToast({
+                      title: '失败了',
+                    })
                     console.log(1);
                   }
                 })

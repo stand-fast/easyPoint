@@ -1,12 +1,12 @@
-package com.easyPoint.utils;
+package com.easyPoint.Util;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.conn.ssl.SSLContexts;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContexts;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,8 +16,6 @@ import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.security.KeyStore;
-import java.util.List;
-import java.util.Map;
 
 
 public class HttpRequestUtil {
@@ -27,12 +25,14 @@ public class HttpRequestUtil {
     /**
      * 向指定URL发送GET方法的请求
      *
-     * @param url   发送请求的URL
-     * @param param 请求参数，请求参数应该是 name1=value1&name2=value2 的形式。
+     * @param url
+     *            发送请求的URL
+     * @param param
+     *            请求参数，请求参数应该是 name1=value1&name2=value2 的形式。
      * @return URL 所代表远程资源的响应结果
      */
 
-    public static String sendGet(String url, String param) {
+    public static String sendGet(String url, String param){
 
         String result = "";
         BufferedReader in = null;
@@ -44,12 +44,12 @@ public class HttpRequestUtil {
 
             // 建立实际的连接
             connection.connect();
-            // 获取所有响应头字段
-            Map<String, List<String>> map = connection.getHeaderFields();
-            // 遍历所有的响应头字段
-            for (String key : map.keySet()) {
-                System.out.println(key + "--->" + map.get(key));
-            }
+//            // 获取所有响应头字段
+//            Map<String, List<String>> map = connection.getHeaderFields();
+//            // 遍历所有的响应头字段
+//            for (String key : map.keySet()) {
+//                System.out.println(key + "--->" + map.get(key));
+//            }
             // 定义 BufferedReader输入流来读取URL的响应
             in = new BufferedReader(new InputStreamReader(
                     connection.getInputStream()));
@@ -76,8 +76,7 @@ public class HttpRequestUtil {
 
     /**
      * 向指定 URL 发送POST方法的请求
-     *
-     * @param url   发送请求的 URL
+     * @param url 发送请求的 URL
      * @param param 请求参数，请求参数应该是 Json的形式。
      * @return 所代表远程资源的响应结果
      */
@@ -133,25 +132,28 @@ public class HttpRequestUtil {
         return result;
     }
 
-    public static String sendHttpsPost(String param) throws Exception {
+    public static String sendHttpsPost(String param) throws Exception{
         System.out.println("退款！");
         //1.指定读取证书格式为PKCS12
         KeyStore keyStore  = KeyStore.getInstance("PKCS12");
         //2.读取本机存放的PKCS12证书文件
-        FileInputStream instream = new FileInputStream(new File(WxPayConstants.CERTIFICATE_PATH));//读取证书的安装路径
+        FileInputStream instream = new FileInputStream(new File(com.easyPoint.Util.WxPayConstants.CERTIFICATE_PATH));//读取证书的安装路径
         try {
             //指定PKCS12的密码(商户ID)
-            keyStore.load(instream, WxPayConstants.MCH_ID.toCharArray());
+            keyStore.load(instream, com.easyPoint.Util.WxPayConstants.MCH_ID.toCharArray());
         } finally {
             instream.close();
         }
+        System.out.println("------------发送请求");
         //3.ssl双向验证发送http请求报文
-        SSLContext sslcontext = SSLContexts.custom().loadKeyMaterial(keyStore, WxPayConstants.MCH_ID.toCharArray()).build();
+        SSLContext sslcontext = SSLContexts.custom().loadKeyMaterial(keyStore, com.easyPoint.Util.WxPayConstants.MCH_ID.toCharArray()).build();
         SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslcontext,new String[] { "TLSv1" },null,
                 SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
         CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(sslsf).build();
+        System.out.println("--------------4");
         //4.发送数据到微信的退款接口
-        HttpPost httpost= new HttpPost(WxPayConstants.REFUND_URL);
+        HttpPost httpost= new HttpPost(com.easyPoint.Util.WxPayConstants.REFUND_URL);
+        System.out.println("-------------5");
         httpost.setEntity(new StringEntity(param, "UTF-8"));
         HttpResponse weixinResponse = httpClient.execute(httpost);
         System.out.println(weixinResponse+"======================");

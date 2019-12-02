@@ -1,10 +1,13 @@
 package com.easyPoint.controller.miniprogram.mine;
 
 
-import com.easyPoint.utils.AesCbcUtil;
-import com.easyPoint.utils.JwtUtil;
+import com.easyPoint.Util.AesCbcUtil;
+import com.easyPoint.Util.JwtUtil;
+import com.easyPoint.dto.Result;
+import com.easyPoint.dto.pay.RefundParamDto;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.miniprogram.mine.UserInfoService;
+import com.easyPoint.service.pay.WxPayService;
 import org.apache.commons.codec.binary.Base64;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,12 +62,31 @@ public class UserInfoController {
         String iv = "L5RuPKJPzwUYQiHB";
         iv = Base64.encodeBase64String(iv.getBytes("UTF-8"));
         System.out.println("iv：" + iv);
-        String data = "1";
+        String data = "13";
         System.out.println("被加密数据原文：" + data);
         String a = AesCbcUtil.encrypt(data,key,iv,"UTF-8");
         System.out.println(a);
         a = AesCbcUtil.decrypt(a,key,iv,"UTF-8");
         System.out.println("----" + a);
+    }
+
+    @Autowired
+    WxPayService wxPayService;
+
+    @ResponseBody
+    @RequestMapping("/testR")
+    public Result testR() throws Exception{
+        //构造退款参数对象
+        RefundParamDto refundParamDto = new RefundParamDto();
+        //设置微信订单号
+        refundParamDto.setTransaction_id("4200000464201911169863654351");
+        //设置订单支付总金额,并转换单位，由元转为分后取整
+        //判断该票是否为往返票，若是，则支付总金额为订单票价的双倍,1代表为往返票，0为否
+        refundParamDto.setTotal_fee(2);
+        //全额退款
+        refundParamDto.setRefund_fee(1);
+        wxPayService.requestRefund(5, refundParamDto);
+        return new Result(200,"成功");
     }
 
 }

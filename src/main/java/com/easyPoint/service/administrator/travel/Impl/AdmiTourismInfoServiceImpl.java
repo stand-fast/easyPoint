@@ -53,7 +53,7 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
         Map map = new HashMap();
         int total = tourismInfoDao.countVehicleTypeNum();
         //得出车辆类型的总页数
-        int totalPage = (total%4 == 0) ? (total/8):(total/8 + 1);
+        int totalPage = (total%8 == 0) ? (total/8):(total/8 + 1);
         map.put("totalPage", totalPage);
         //查询第一页车辆类型的信息
         List<VehicleInfo> vehicleInfoList = findListPageNumVehicleInfo(1);
@@ -124,7 +124,7 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
         Map map = new HashMap();
         int total = tourismInfoDao.countTourismOrderNum();
         //一页八条数据，得到租车订单总的页数,并存入map中返回前端
-        int totalPage = (total%8 == 0) ? (total/8):(total/8 + 1);
+        int totalPage = (total%11 == 0) ? (total/11):(total/11 + 1);
         map.put("totalPage",totalPage);
         //查询首页的租车订单信息
         List<PartTourismOrderInfoDto> partTourismOrderInfos = findListPageNumTourismOrderInfo(1);
@@ -140,7 +140,7 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
     @Override
     public List<PartTourismOrderInfoDto> findListPageNumTourismOrderInfo(int pageNum) {
         //收到页数从一开始，表索引从0开始，故减去1
-        int index = (pageNum - 1) * 8;
+        int index = (pageNum - 1) * 11;
         List<PartTourismOrderInfoDto> partTourismOrderInfos = tourismInfoDao.findListTourismOrderInfo(index);
         return partTourismOrderInfos;
     }
@@ -150,6 +150,11 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
     //管理员为租车订单安排车辆后，更新数据库
     @Override
     public int addDriverInfoToTourismOrder(TourismOrderInfo tourismOrderInfo){
+        //查询订单状态
+        int state = tourismInfoDao.findStateById(tourismOrderInfo.getTravelOrderId());
+        //订单状态不为未安排和已安排，不允许修改安排车辆的信息
+        if(state != 0 || state != 1)
+            return -1;
         //生成安排时间
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -296,21 +301,24 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
             return -2;
         }
         int tourismRefundId = Integer.parseInt(decryptRefundId);
-        //查询travelOrderId
-        int travelOrderId = tourismInfoDao.findTravelOrderId(tourismRefundId);
+        //查询travelOrderId和退款状态
+        HashMap<String, Integer> idAndState = tourismInfoDao.findOrderIdAndStateById(tourismRefundId);
+        //判断此时的退款状态是否支持退款
+        if(idAndState.get("refundState") != 1)
+            return -3;
         //管理员不同意退款
         if(ifAgree == 0){
             //将不同意理由保存到tourismRefund表中，并修改其状态为不通过
             tourismInfoDao.updateTourismRefundToFail(uid, tourismRefundId, 2, confirmRefundTime, rejectReason);
             //修改travel_order表中的订单状态为不通过
-            tourismInfoDao.updateTravelOrderState(7, travelOrderId);
+            tourismInfoDao.updateTravelOrderState(7, idAndState.get("travelOrderId"));
             //
             return 0;
         }
         //管理员同意退款
         //发起退款
         //根据订单编号查找微信订单号，订单付款金额，是否为往返票
-        TourismOrderInfo tourismOrderInfo = tourismInfoDao.findRefundNeceInfo(travelOrderId);
+        TourismOrderInfo tourismOrderInfo = tourismInfoDao.findRefundNeceInfo(idAndState.get("travelOrderId"));
         //构造退款参数对象
         RefundParamDto refundParamDto = new RefundParamDto();
         //设置微信订单号
@@ -342,7 +350,7 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
                 tourismRefundInfo.setRefundFee(Integer.parseInt(resultMap.get("refund_fee").toString()));
                 tourismInfoDao.updateTourismRefundToSuccess(tourismRefundInfo);
                 //修改travel_order表中的订单状态为通过
-                tourismInfoDao.updateTravelOrderState(6, travelOrderId);
+                tourismInfoDao.updateTravelOrderState(6, idAndState.get("travelOrderId"));
             }
         }catch (Exception e){
             log.error("退款请求失败" + e);

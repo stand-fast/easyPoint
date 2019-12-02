@@ -143,6 +143,7 @@ public class TourismInfoServiceImpl implements TourismInfoService {
         messageTemplateDto.setData(data);
         messageTemplateDto.setColor("#ccc");
         messageTemplateDto.setEmphasis_keyword("keyword4.DATA");
+        messageTemplateDto.setPage("pages/myindex/myindex");
 
 
         ObjectMapper objectMapper = new ObjectMapper();

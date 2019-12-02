@@ -25,22 +25,22 @@ Page({
           type: "2",
         }, 
       ],
-    // ticket_lists:[   
-    //   {
-    //       tourismId:"123123123123",
-    //       departureTime: "2019-01-10 09:00",
-    //       departurePlace: "广州广金本部",
-    //       destination: "白云山",
-    //       travelNum: "22",
-    //   },
-    //   {
-    //       tourismId: "123123123123123112541",
-    //       departureTime: "2019-01-10 09:00",
-    //       departurePlace: "广州广金本部",
-    //       destination: "白云山",
-    //       travelNum: "42",
-    //   }
-    // ],
+    ticket_lists:[   
+      {
+          tourismId:"123123123123",
+          departureTime: "2019-01-10 09:00",
+          departurePlace: "广州广金本部",
+          destination: "白云山",
+          travelNum: "22",
+      },
+      {
+          tourismId: "123123123123123112541",
+          departureTime: "2019-01-10 09:00",
+          departurePlace: "广州广金本部",
+          destination: "白云山",
+          travelNum: "42",
+      }
+    ],
     rentItems:[{
             goodName:"随身携带可充电荧光灯带哈哈哈",
             goodPrice:30,
