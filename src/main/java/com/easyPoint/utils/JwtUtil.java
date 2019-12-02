@@ -1,4 +1,4 @@
-package com.easyPoint.util;
+package com.easyPoint.utils;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -11,8 +11,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author FHJ
+ * @date 2019/12/1 19:16
+ */
 public class JwtUtil {
-    public static final Logger log = LoggerFactory.getLogger(JwtUtil.class);
+    public static final Logger log = LoggerFactory.getLogger(com.easyPoint.utils.JwtUtil.class);
 
     /**
      * 过期时间为30分钟

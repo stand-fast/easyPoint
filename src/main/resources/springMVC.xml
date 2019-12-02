@@ -43,7 +43,19 @@
             <mvc:exclude-mapping path="/**/pay.do"/>
             <!--//不拦截管理员端-->
             <mvc:exclude-mapping path="/administrator/**"/>
-            <bean class="com.easyPoint.interceptor.TokenIntercptor"/>
+            <bean class="com.easyPoint.interceptor.TokenInterceptor"/>
         </mvc:interceptor>
+
+        <mvc:interceptor>
+            <!-- 指定拦截的路径 -->
+            <mvc:mapping path="/administrator/**"/>
+            <!-- 指定不拦截的路径 -->
+            <!-- 登录 -->
+            <mvc:exclude-mapping path="/administrator/adminLogin/**"/>
+            <!-- 忘记密码 -->
+            <mvc:exclude-mapping path="/administrator/forgetPassword/**"/>
+            <bean class="com.easyPoint.interceptor.PcTokenInterceptor"/>
+        </mvc:interceptor>
+
     </mvc:interceptors>
 </beans>

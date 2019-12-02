@@ -2,7 +2,7 @@ package com.easyPoint.interceptor;
 
 import com.alibaba.fastjson.JSONObject;
 import com.easyPoint.dto.Result;
-import com.easyPoint.util.JwtUtil;
+import com.easyPoint.utils.JwtUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;

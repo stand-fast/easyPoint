@@ -3,7 +3,8 @@ package com.easyPoint.controller.administrator.accountoperation;
 import com.easyPoint.dto.Result;
 import com.easyPoint.pojo.adminstrator.AdminAccount;
 import com.easyPoint.service.administrator.account.AdminAccountService;
-import com.easyPoint.util.JwtUtil;
+
+import com.easyPoint.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;

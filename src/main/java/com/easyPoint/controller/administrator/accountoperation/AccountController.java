@@ -7,6 +7,7 @@ import com.easyPoint.pojo.adminstrator.AdminAccount;
 import com.easyPoint.service.administrator.account.AdminAccountService;
 import com.easyPoint.service.administrator.account.IdNumVerifyService;
 import com.easyPoint.service.administrator.account.SendMessageService;
+import com.easyPoint.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -77,15 +78,14 @@ public class AccountController {
     @ResponseBody
     public Result addAdmin(AdminAccount adminAccount, HttpServletRequest request) {
         Result result = new Result();
-        // System.out.println(JwtUtil.sign("aa",1));
 
-        /*String token = request.getHeader("token");
+        String token = request.getHeader("token");
         Integer check = JwtUtil.getIdentity(token);
         if (check != 0) {
-            result.setCode(-1);
-            result.setMessage("非超级管理员，添加失败！");
+            result.setCode(110);
+            result.setMessage("非超级管理员，出现非法操作！");
             return result;
-        }*/
+        }
 
         if (adminAccount == null) {
             result.setCode(2);
@@ -136,8 +136,16 @@ public class AccountController {
      */
     @RequestMapping(value = "/findAllCommonAdmin", method = RequestMethod.GET)
     @ResponseBody
-    public Result findAllCommonAdmin(Integer startIndex, Integer pageSize) {
+    public Result findAllCommonAdmin(Integer startIndex, Integer pageSize, HttpServletRequest request) {
         Result result = new Result();
+
+        String token = request.getHeader("token");
+        Integer check = JwtUtil.getIdentity(token);
+        if (check != 0) {
+            result.setCode(110);
+            result.setMessage("非超级管理员，出现非法操作！");
+            return result;
+        }
 
         Integer commonAdminNum = adminAccountService.findAllCommonAdminNum();
 
@@ -173,8 +181,16 @@ public class AccountController {
      */
     @RequestMapping(value = "/stopOrStartAccount", method = RequestMethod.POST)
     @ResponseBody
-    public Result stopOrStartAccount(String phone, Integer state) {
+    public Result stopOrStartAccount(String phone, Integer state, HttpServletRequest request) {
         Result result = new Result();
+
+        String token = request.getHeader("token");
+        Integer check = JwtUtil.getIdentity(token);
+        if (check != 0) {
+            result.setCode(110);
+            result.setMessage("非超级管理员，出现非法操作！");
+            return result;
+        }
 
         if (phone == null || phone.equals("") || state == null || !(state == 0 || state == 1)) {
             result.setCode(2);
@@ -211,8 +227,16 @@ public class AccountController {
      */
     @RequestMapping(value = "/deleteCommonAdmin", method = RequestMethod.POST)
     @ResponseBody
-    public Result deleteCommonAdmin(String phone) {
+    public Result deleteCommonAdmin(String phone, HttpServletRequest request) {
         Result result = new Result();
+
+        String token = request.getHeader("token");
+        Integer check = JwtUtil.getIdentity(token);
+        if (check != 0) {
+            result.setCode(110);
+            result.setMessage("非超级管理员，出现非法操作！");
+            return result;
+        }
 
         if (phone == null || phone.equals("")) {
             result.setCode(2);

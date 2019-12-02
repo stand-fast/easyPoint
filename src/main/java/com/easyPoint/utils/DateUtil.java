@@ -1,4 +1,4 @@
-package com.easyPoint.util;
+package com.easyPoint.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

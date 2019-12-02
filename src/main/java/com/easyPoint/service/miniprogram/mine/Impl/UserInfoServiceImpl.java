@@ -1,9 +1,9 @@
 package com.easyPoint.service.miniprogram.mine.Impl;
 
 
-import com.easyPoint.util.AesCbcUtil;
-import com.easyPoint.util.HttpRequestUtil;
-import com.easyPoint.util.MiniProConstants;
+import com.easyPoint.utils.AesCbcUtil;
+import com.easyPoint.utils.HttpRequestUtil;
+import com.easyPoint.utils.MiniProConstants;
 import com.easyPoint.dao.mine.UserInfoDao;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.miniprogram.mine.UserInfoService;

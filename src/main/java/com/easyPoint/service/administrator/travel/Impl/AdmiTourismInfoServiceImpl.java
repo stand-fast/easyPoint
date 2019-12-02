@@ -1,8 +1,8 @@
 package com.easyPoint.service.administrator.travel.Impl;
 
-import com.easyPoint.util.AesCbcUtil;
-import com.easyPoint.util.DateUtil;
-import com.easyPoint.util.MiniProConstants;
+import com.easyPoint.utils.AesCbcUtil;
+import com.easyPoint.utils.DateUtil;
+import com.easyPoint.utils.MiniProConstants;
 import com.easyPoint.dao.travel.TourismInfoDao;
 import com.easyPoint.dto.Result;
 import com.easyPoint.dto.pay.RefundParamDto;

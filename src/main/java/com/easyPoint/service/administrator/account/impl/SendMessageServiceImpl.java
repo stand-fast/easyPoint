@@ -1,7 +1,7 @@
 package com.easyPoint.service.administrator.account.impl;
 
 import com.easyPoint.service.administrator.account.SendMessageService;
-import com.easyPoint.util.GetMessageUtil;
+import com.easyPoint.utils.GetMessageUtil;
 import com.wxapi.WxApiCall.WxApiCall;
 import com.wxapi.model.RequestModel;
 import org.springframework.stereotype.Service;
