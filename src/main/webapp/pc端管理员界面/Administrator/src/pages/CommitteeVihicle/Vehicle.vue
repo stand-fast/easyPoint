@@ -6,25 +6,31 @@
         <div class="TitleText">{{navName}} > {{navPlateName}}</div>
       </div>
       <div class="PageContent">
+        <button class="back" @click="$router.back(-1)">返回上一页</button> 
         <h1>车辆信息</h1>
         <ul class="vehicleInfor">
           <li>
-            <input v-model="licensePlateNumber" placeholder="车牌号" />
+            <span>车牌号</span>
+            <input v-model="licensePlateNumberChange" :placeholder="licensePlateNumber" />
           </li>
           <li>
-            <input v-model="vehicleType" placeholder="车辆类型" />
+            <span>车辆类型</span>
+            <input v-model="vehicleTypeChange" :placeholder="vehicleType" />
           </li>
           <li>
-            <input v-model="color" placeholder="车身颜色" />
+            <span>车身颜色</span>
+            <input v-model="colorChange" :placeholder="color" />
           </li>
           <li>
-            <input v-model="driverName" placeholder="司机姓名" />
+            <span>司机姓名</span>
+            <input v-model="driverNameChange" :placeholder="driverName" />
           </li>
           <li>
-            <input v-model="driverPhone" maxlength="11" placeholder="司机联系方式" />
+            <span>司机联系方式</span>
+            <input  v-model="driverPhoneChange" maxlength="11" :placeholder="driverPhone" />
           </li>
           <div class="submitVihicle">
-            <span @click="submitVehicle">提交</span>
+            <span @click="updateTicketInfo()">提交</span>
             <span @click="submitFinish(id)" style="margin-left:5px">结单</span>
           </div>
         </ul>
@@ -40,18 +46,25 @@ export default {
       navPlateName: "车辆信息",
       datas: [],
       licensePlateNumber: "",
+      licensePlateNumberChange:"",
       vehicleType: "",
+      vehicleTypeChange: "",
       color: "",
+      colorChange: "",
       driverName: "",
+      driverNameChange: "",
       driverPhone: "",
-      id: "" //订单id
+      driverPhoneChange: "",
+      id: "", //订单id,
+      
+
     };
   },
   mounted() {
     const id = this.$route.params.id;
     this.id = id;
     console.log("根据" + id + "请求数据");
-    //this.setData(id);
+    this.findTicketInfo(id)
   },
   computed: {
     check() {
@@ -77,23 +90,74 @@ export default {
     }
   },
   methods: {
-    async setData(id) {
-      var that = this;
+    async updateTicketInfo() {
+      var qs = require('qs')
+      var postData=qs.stringify( {
+        ticketId:this.id,
+        licensePlateNumber:this.licensePlateNumberChange||this.licensePlateNumber,
+        vehicleType:this.vehicleTypeChange||this.vehicleType,
+        color:this.colorChange||this.color,
+        driverName:this.driverNameChange||this.driverName,
+        driverPhone:this.driverPhoneChange||this.driverPhone
+      })
+      var url="https://easypoint.club/administrator/updateTicketInfo"
       window.onscroll = e => e.preventDefault(); //兼容浏览器
       this.$http
-        .get("接口路径", { params: { travelOrderId: 10 } })
-        .then(function(res) {
+        .post(url,postData)
+        .then((res) => {
+          console.log(res.data);
           var data = res.data;
-          console.log(data);
-          if (data.code == 200) {
-            that.licensePlateNumber = data.data.licensePlateNumber;
-            that.vehicleType = data.data.vehicleType;
-            that.color = data.data.color;
-            that.driverName = data.data.driverName;
-            that.driverPhone = data.data.driverPhone;
-            console.log("查询数据成功");
-          } else if (data.code == 201) {
-            console.log("已经加载完全部数据");
+          switch(data.code){
+          case -1:
+              alert("修改失败")
+              break;     
+            case 1:
+              alert("修改成功")
+              this.findTicketInfo(this.id)
+              this.licensePlateNumberChange=""
+              this.vehicleTypeChange=""
+              this.colorChange=""
+              this.driverNameChange=""
+              this.driverPhoneChange=""
+              break;
+            case 2:
+              alert("参数为空")
+             break;    
+          }
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
+    },   
+    async findTicketInfo(id){
+      var qs = require('qs')
+      var postData={params:{
+        ticketId:id
+        }
+      };
+      var url="https://easypoint.club/administrator/findTicketInfo"
+      window.onscroll = e => e.preventDefault(); //兼容浏览器
+      this.$http
+        .get(url,postData)
+        .then((res) => {
+          console.log(res.data);
+          var data = res.data;
+          switch(data.code){
+            case -1:
+              alert("查询失败")
+              break;
+            case 1:
+              console.log("查询成功")
+              let info=data.data.ticketInfo
+              this.licensePlateNumber=info.licensePlateNumber
+              this.vehicleType=info.vehicleType
+              this.color=info.color
+              this.driverName=info.driverName
+              this.driverPhone=info.driverPhone
+              break;
+            case 2:
+              alert("参数为空")
+              break;                
           }
         })
         .catch(function(e) {
@@ -106,26 +170,26 @@ export default {
         if (
           confirm(
             " 车牌号 : " +
-              this.licensePlateNumber +
+              this.licensePlateNumberChange||this.licensePlateNumber +
               "\r 车辆类型 : " +
-              this.vehicleType +
+              this.vehicleTypeChange||this.vehicleType +
               "\r 车身颜色 : " +
-              this.color +
+              this.colorChange||this.color +
               "\r 司机姓名 :" +
-              this.driverName +
+              this.driverNameChange||this.driverName +
               "\r 司机联系方式 : " +
-              this.driverPhone
+              this.driverPhoneChange||this.driverPhone
           )
         ) {
           this.$http
             .get("接口路径", {
               params: {
                 travelOrderId: 10,
-                licensePlateNumber: that.licensePlateNumber,
-                vehicleType: that.vehicleType,
-                color: that.color,
-                driverName: that.driverName,
-                driverPhone: that.driverPhone
+                licensePlateNumber: that.licensePlateNumberChange||that.licensePlateNumber,
+                vehicleType: that.vehicleTypeChange||that.vehicleType,
+                color: that.colorChange||that.color,
+                driverName: that.driverNameChange||that.driverName,
+                driverPhone: that.driverPhoneChange||that.driverPhone
               }
             })
             .then(function(res) {
@@ -177,18 +241,39 @@ export default {
 };
 </script>
 <style scoped>
+.back{
+    background: none;
+    border: 0;
+    color: #8fd68b;
+    position: absolute;
+    left: 33px;
+    top: 86px;
+    font-size: 18px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    border-bottom: 2px solid;
+}
+
+h1{
+  cursor: default;
+  margin-top:20px;
+}
+
 .vehicleInfor {
   height: 500px;
   text-align: center;
 }
 
 .vehicleInfor li {
-  margin-top: 10px;
+  margin-top: 16px;
   height: 50px;
   line-height: 40px;
+  position: relative;
 }
 
 .vehicleInfor li input {
+  cursor: pointer;
   outline: none;
   padding: 10px;
   box-sizing: border-box;
@@ -196,6 +281,17 @@ export default {
   height: 50px;
   border: 1px solid #8fd68b;
 }
+.vehicleInfor li span{
+  display: inline-block;
+  font-size: 13px;
+  color: #6b6b6b;
+  text-align: left;
+  background-color: white;
+  position: absolute;
+  top: -3px;
+  padding: 0 8px;
+  line-height: 14px;
+} 
 
 .submitVihicle {
   text-align: center;

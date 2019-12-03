@@ -9,32 +9,32 @@
         <h1>添加车辆</h1>
         <ul class="BusSearcherInput">
           <li>
-            <el-select v-model="committee" placeholder="请选择同乡会" class="selectIng">
+            <el-select v-model="committee" placeholder="请选择同乡会" class="selectIng" @change="getOptionLocation()">
               <el-option
                 v-for="item in CommitteeOptions"
-                :key="item.committeeId"
-                :label="item.committee"
-                :value="item.committee"
+                :key="item.associationId"
+                :label="item.associationName"
+                :value="item.associationName"
               ></el-option>
             </el-select>
           </li>
           <li>
             <el-select v-model="departure" placeholder="请选择出发地" class="selectIng">
               <el-option
-                v-for="item in departureOptions"
-                :key="item.placeId"
-                :label="item.placeName"
-                :value="item.placeName"
+                v-for="(item,index) in departureOptions"
+                :key="index"
+                :label="item"
+                :value="item"
               ></el-option>
             </el-select>
           </li>
           <li>
             <el-select v-model="destination" placeholder="请选择目的地" class="selectIng">
               <el-option
-                v-for="item in departureOptions"
-                :key="item.placeId"
-                :label="item.placeName"
-                :value="item.placeName"
+                v-for="(item,index) in departureOptions"
+                :key="index"
+                :label="item"
+                :value="item"
               ></el-option>
             </el-select>
           </li>
@@ -82,7 +82,7 @@
             <el-row>
               <el-button
                 class="releaseButton"
-                @click="releaseVehicleBus"
+                @click="addTicket()"
                 :loading="isRelease"
                 type="success"
               >发布</el-button>
@@ -176,7 +176,9 @@ export default {
       smallint: "",
       price: "",
       type: "",
-      isRelease: false //是否发布
+      associationId:-1,
+      isRelease: false, //是否发布
+      departureOptions:[]
     };
   },
   computed: {
@@ -215,95 +217,121 @@ export default {
         return true;
       }
     },
-    departureOptions() {
-      var CommitteeOptions = this.CommitteeOptions;
-      this.departure = "";
-      this.destination = "";
-      for (var i = 0; i < CommitteeOptions.length; i++) {
-        if (CommitteeOptions[i].committee == this.committee) {
-          return CommitteeOptions[i].CommitteePalace;
-        }
-      }
-    }
+
   },
   mounted() {
-    //this.setData();  //获取乡会以及乡会上下车信息
+    this.getAssociation();  //获取乡会以及乡会上下车信息
   },
   methods: {
-    async setData() {
+    async getAssociation() {
+      var url="https://easypoint.club/administrator/getAllAssociation"
       window.onscroll = e => e.preventDefault(); //兼容浏览器
       this.$http
-        .get("接口路径")
+        .get(url)
+        .then((res) => {
+          console.log(res.data);
+          var data = res.data;
+          switch(data.code){
+            case 0:
+              alert("没有查询到数据")
+              break;
+            case 1:
+              console.log("查询同乡会成功")
+              this.CommitteeOptions=data.data.associationList
+              break;          
+          }
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
+    },    
+    async getLocation(id) {
+      var postData= {params:{
+          associationId:id,
+          startIndex:1,
+          pageSize:10        
+        }
+      };
+      var url="https://easypoint.club/administrator/findAllPlaces"
+      window.onscroll = e => e.preventDefault(); //兼容浏览器
+      this.$http
+        .get(url,postData)
+        .then((res) => {
+          console.log(res.data);
+          var data = res.data;
+          switch(data.code){
+            case 0:
+              alert("没有查询到数据")
+              break;
+            case 1:
+              console.log("查询上车地点成功")
+              this.departureOptions=data.data.placeList
+              break;
+            case 2:
+              alert("参数为空")
+              break;   
+            case 3:
+              alert("页码超出最大范围")
+              break;          
+          }
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
+    },    
+    async addTicket() {
+      var typeNum;
+      if(this.type=="否"){
+        typeNum=1
+      }else{
+        typeNum=2
+      }
+      window.onscroll = e => e.preventDefault(); //兼容浏览器
+      var qs = require('qs')
+      var url="https://easypoint.club/administrator/addTicket"
+      var postData=qs.stringify({
+        associationId:this.associationId,
+        departurePlace:this.departure,
+        destination:this.destination,
+        departureDay:this.departureDay,
+        departureTime:this.epartureTime,
+        seatNum:this.smallint,
+        price:this.price,
+        type: typeNum
+      })
+      this.$http
+        .post(url,postData)
         .then(function(res) {
           console.log(res.data);
           var data = res.data;
-          if (data.code == 200) {
-            that.pageNumber = data.data.totalPage;
-            that.datas = data.data.partTourismOrderInfos;
-            console.log("查询订单页数以及首页订单信息成功");
-          } else if (data.code == 201) {
-            alert("暂无订单信息");
+          switch(data.code){
+            case -1:
+              alert("添加车票失败！")
+              break;
+            case 1:
+              alert("添加车票成功！")
+              this.departureOptions=data.data.placeList
+              break;
+            case 2:
+              alert("参数为空(欠缺)！	")
+              break;         
           }
         })
         .catch(function(e) {
           console.log(e);
         });
     },
-    releaseVehicleBus() {
-      var that = this;
-      if (this.check == true) {
-        if (
-          confirm(
-            "同乡会名称 : " +
-              this.committee +
-              "\r出发地 : " +
-              this.departure +
-              "\r目的地 : " +
-              this.destination +
-              "\r出发日期 : " +
-              this.departureDay +
-              "\r出发时间 : " +
-              this.epartureTime +
-              "\r座位数 : " +
-              this.smallint +
-              "\r售价 : " +
-              this.price +
-              "\r是否预售 : " +
-              this.type
-          )
-        ) {
-          this.isRelease = true;
-          this.$http
-            .get("easyPoint/addNewVehicleInfo", {
-              params: {
-                committee: that.committee,
-                departure: that.departure,
-                destination: that.destination,
-                departureDay: that.departureDay,
-                epartureTime: that.epartureTime,
-                smallint: that.smallint,
-                price: that.price,
-                type: that.type
-              }
-            })
-            .then(function(res) {
-              console.log(res.data);
-              var data = res.data;
-              if (data.code == 200) {
-                this.isRelease = false;
-                alert("添加车辆成功");
-              } else if (data.code == 400) {
-                alert("该车辆已存在,请重新发布");
-              }
-            })
-            .catch(function(e) {
-              console.log(e);
-            });
-        } else {
-          console.log("你取消了添加");
+    getOptionLocation() {
+      var CommitteeOptions = this.CommitteeOptions;
+      this.departure = "";
+      this.destination = "";
+      for (var i = 0; i < CommitteeOptions.length; i++) {
+        if (CommitteeOptions[i].associationName == this.committee) {
+          this.associationId=CommitteeOptions[i].associationId
+          this.getLocation(this.associationId)
         }
       }
-    }
+    },    
   },
   components: {}
 };
