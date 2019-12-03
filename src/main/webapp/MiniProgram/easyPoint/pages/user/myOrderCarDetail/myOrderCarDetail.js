@@ -1,4 +1,5 @@
 // pages/user/myOrderCarDetail/myOrderCarDetail.js
+const app = getApp()
 Page({
 
     /**
@@ -6,6 +7,14 @@ Page({
      */
     data: {
         current:"0",
+        //底部状态栏变化
+        refund_border_color:"#56b4f6",
+        time_border_color:"#56b4f6",
+        time_disabled:false,
+        refund_disabled:false,
+
+        applyRefundWord:"申请退款",
+
         ticketDetail:{
           //乡会车票订单信息
             ticketId:"121312312",
@@ -28,12 +37,30 @@ Page({
             makeOrderTime: "2019-08-10 08:00",
             username: "吴彦祖",
             phone: "12345678910",
-          }
+            carOrderStatus: "订单未安排",//新增订单状态
+            
+            //司机信息
+            driverName:"",
+            driverPhone:"12345678910",
+            licensePlateNumber:"粤A5910"
+        },
+        carOrderStatusList:[
+            "订单未安排",
+            "订单已安排",
+            "订单已退款",
+            "订单已完成",
+        ]
     }, 
     applyRefund:function(){
-        wx.navigateTo({
-            url: '/pages/user/refund/refund',
-        })
+        if(this.data.applyRefundWord=="申请退款"){
+            wx.navigateTo({
+                url: '/pages/user/refund/refund?travelOrderId=' + this.data.travelOrderId,
+            })
+        }else{
+            wx.navigateTo({
+                url: '/pages/user/refundDetail/refundDetail?travelOrderId=' + this.data.travelOrderId,
+            })
+        }
     },
     changeTime:function(){
         wx.navigateTo({
@@ -44,6 +71,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+      var obj = wx.getStorageSync("token");
+      this.setData({
+        token: obj.token,
+      })
       var current = options.current;
       if (current == 0) {
           var myOrderRentalCar = wx.getStorageSync('myOrderRentalCar');
@@ -82,14 +113,40 @@ Page({
           var travelOrderId = options.travelOrderId;
           //console.log(travelOrderId)
           this.setData({
+            travelOrderId :travelOrderId,
             departurePlace: myOrderRentalCar.departurePlace,
             destination: myOrderRentalCar.destination,
             departureTime: myOrderRentalCar.departureTime,
             travelNum: myOrderRentalCar.travelNum,
             current: 1,
           })
-         this.getMessageRentalCar(travelOrderId);
+        this.getMessageRentalCar(travelOrderId);
       }
+
+    //   底部栏状态变化
+        var refund_border_color=this.data.refund_border_color;
+        var time_border_color=this.data.time_border_color;
+        var refund_disabled=this.data.refund_disabled;
+        var time_disabled=this.data.time_disabled;
+        var carOrderStatus=this.data.ticketDetail.carOrderStatus;
+        if (carOrderStatus=="订单已安排"){
+            refund_border_color="#999",
+            refund_disabled=true
+        }else if(carOrderStatus=="订单未安排"){
+            refund_border_color="#56b4f6",
+            time_border_color= "#56b4f6"
+        }else{
+            refund_border_color = "#999",
+            time_border_color = "#999",
+            time_disabled=true,
+            refund_disabled=true
+        }
+        this.setData({
+            refund_border_color:refund_border_color,
+            time_border_color:time_border_color,
+            refund_disabled:refund_disabled,
+            time_disabled:time_disabled
+        })
     },
   //获得乡会车票订单数据
   getMessage: function (ticketId) {
@@ -124,17 +181,19 @@ Page({
     })
   },
   //获得租车车票订单数据
-  getMessageRentalCar: function (tourismId) {
+  getMessageRentalCar: function (travelOrderId) {
+    var token = this.data.token;
     var selt = this;
     wx.request({
-      url: 'http://easypoint.club/findTravelOrderDetailInfo',
+      url: app.globalData.requestUrl +'findTravelOrderDetailInfo',
       method: 'Post',
       data: {
         type: 0,
-        travelOrderId: 10,
+        travelOrderId: travelOrderId,
       },
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      header: { 'content-type': 'application/x-www-form-urlencoded' ,token},
       success: function (res) {
+        //console.log(res)
         if(res.data.code == 200){
           console.log("查询出行订单详情成功");
           console.log(res.data.data)

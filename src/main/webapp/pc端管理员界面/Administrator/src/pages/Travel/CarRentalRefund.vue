@@ -13,18 +13,23 @@
           <li class="bigger">联系方式</li>
           <li>退款金额</li>
           <li class="time">退款时间</li>
-          <li>退款状态</li>
+          <li class="bigger">退款状态</li>
           <li>操作</li>
         </div>
-        <!-- 每页9条 -->
-        <div class="wrapperOrder">
-          <li class="bigger" title="3123123123123123"></li>
-          <li>卢本伟</li>
-          <li class="bigger" title="13012321245"></li>
-          <li>￥200</li>
-          <li class="time place"><span>2019-10-01 08:30:00.0</span></li>
-          <li>未处理</li>
-          <li class="enter" @click="dealOrder(23123123123123123)">处理</li>
+        <!-- 每页9条 状态:1：待处理，2：审核不通过；3：审核通过；4：已取消-->
+        <div class="wrapperOrder" v-for="item in datas" :key="item.transactionId">
+          <li class="bigger" :title="item.transactionId">{{item.transactionId}}</li>
+          <li :title="item.passenger">{{item.passenger}}</li>
+          <li class="bigger" :title="item.phone">{{item.phone}}</li>
+          <li :title="item.refundMoney">￥{{item.refundMoney}}</li>
+          <li class="time place" :title="item.requestRefundTime">
+            <span>{{item.requestRefundTime}}</span>
+          </li>
+          <li class="bigger" v-if="item.refundState==1">待处理</li>
+          <li class="bigger" v-if="item.refundState==2">审核不通过</li>
+          <li class="bigger" v-if="item.refundState==3">审核通过</li>
+          <li class="bigger" v-if="item.refundState==4">已取消</li>
+          <li class="enter" @click="dealOrder(item.tourismRefundId)">处理</li>
         </div>
         <paging
           :value="current"
@@ -58,9 +63,43 @@ export default {
     async setData() {
       var that = this;
       window.onscroll = e => e.preventDefault(); //兼容浏览器
+      this.$http
+        .get("tourismRefund/FirstPage")
+        .then(function(res) {
+          console.log(res.data);
+          var data = res.data;
+          if (data.code == 200) {
+            that.pageNumber = data.data.totalPage;
+            that.datas = data.data.tourismRefundInfoList;
+            console.log("请求退款订单首页数据和总页数成功");
+          } else if (data.code == 201) {
+            alert("暂无订单信息");
+          }
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
     },
     handlePageChange(pageNum) {
       var that = this;
+      this.$http
+        .get("tourismRefunds/page", { params: { pageNum: pageNum } })
+        .then(function(res) {
+          console.log(res.data);
+          var data = res.data;
+          if (data.code == 200) {
+            that.current = pageNum;
+            that.datas = data.data;
+            console.log(data.message);
+          } else if (data.code == 201) {
+            console.log(data.message);
+          } else if (data.code == 401) {
+            console.log(data.message);
+          }
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
     },
     dealOrder(id) {
       this.$router.push("/DealOrder/" + id);

@@ -1,4 +1,4 @@
-package com.easyPoint.Util;
+package com.easyPoint.utils;
 
 import org.apache.commons.codec.digest.DigestUtils;
 

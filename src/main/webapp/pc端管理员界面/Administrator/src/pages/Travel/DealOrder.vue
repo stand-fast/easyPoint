@@ -10,63 +10,70 @@
         <div class="dealOrderWrapper">
           <li>
             <span>联系人</span>
-            <div>光头强</div>
+            <div>{{datas.passenger}}</div>
           </li>
           <li>
             <span>联系方式</span>
-            <div>13030303532</div>
+            <div>{{datas.phone}}</div>
           </li>
           <li>
             <span>出发地</span>
-            <div>广东省广东省广东省广东省广东省广东省广东省省广东省</div>
+            <div>{{datas.departurePlace}}</div>
           </li>
           <li>
             <span>目的地</span>
-            <div>省广东省广东省广东省省广东省</div>
+            <div>{{datas.destination}}</div>
           </li>
           <li>
             <span>出发时间</span>
-            <div>2019-10-01 08:30</div>
+            <div>{{datas.departureTime}}</div>
           </li>
           <li></li>
           <li>
             <span>出行人数</span>
-            <div>20人</div>
+            <div>{{datas.travelNum}}</div>
           </li>
           <li>
             <span>车辆类型</span>
-            <div>24座大巴</div>
+            <div>{{datas.vehicleType}}</div>
           </li>
           <li>
             <span>已付定金</span>
-            <div>￥1000</div>
+            <div>￥{{datas.refundMoney}}</div>
           </li>
           <li>
             <span>是否购买保险</span>
-            <div>是</div>
+            <div v-if="datas.ifInsurance==0">否</div>
+            <div v-else-if="datas.ifInsurance==1">是</div>
           </li>
           <li>
             <span>退款原因</span>
-            <div>广东省广东省广东省广广东省广东省广东省广广东省广东省广东省广广东省广东省广东省广广东省广东省广东省广广东省广东省广东省广广东省广东省广东省广广东省广东省广东省广广东省广东省广东省广广东省广东省广东省广</div>
+            <div>{{datas.refundReason}}</div>
           </li>
+          <!-- 1：待处理，2：审核不通过；3：审核通过；4：已取消 -->
           <li>
             <span>申请退款时间</span>
-            <div>2019-10-01 08:30</div>
+            <div>{{datas.requestRefundTime}}</div>
           </li>
           <li>
             <span>退款状态</span>
-            <div>审核不通过</div>
+            <div v-if="datas.refundState==1">待处理</div>
+            <div v-else-if="datas.refundState==2">审核不通过</div>
+            <div v-else-if="datas.refundState==3">审核通过</div>
+            <div v-else-if="datas.refundState==4">已取消</div>
           </li>
           <li>
             <span>驳回原因</span>
-            <div>
-              <input type="text" value="广东省广东省广东省广" />
+            <div v-if="datas.refundState==1">
+              <input type="text" v-model="rejectReason" />
             </div>
+            <div v-else-if="datas.refundState==2">{{datas.rejectReason}}</div>
+            <div v-else>无</div>
           </li>
         </div>
         <div class="dealOrderButton">
-          <span @click="viaOrder(123)">通过</span>
-          <span @click="notViaOrder(132)">不通过</span>
+          <span v-if="datas.refundState==1" @click="viaOrder(datas.code)">通过</span>
+          <span v-if="datas.refundState==1" @click="notViaOrder(datas.code)">不通过</span>
         </div>
       </div>
     </ul>
@@ -77,25 +84,84 @@ export default {
   data() {
     return {
       navName: "旅游出行",
-      navPlateName: "退款订单详情"
+      navPlateName: "退款订单详情",
+      datas: "",
+      rejectReason: ""
     };
   },
   mounted() {
     const id = this.$route.params.id;
     this.id = id;
-    console.log("根据" + id + "请求数据");
+    //console.log("根据" + id + "请求数据");
     this.setData(id);
   },
   methods: {
     async setData(id) {
       var that = this;
       window.onscroll = e => e.preventDefault(); //兼容浏览器
+      this.$http
+        .get("tourismRefund/detail", { params: { tourismRefundId: id } })
+        .then(function(res) {
+          // var data = res.data;
+          var data = res.data;
+          console.log(data);
+          if (data.code == 200) {
+            that.datas = data.data;
+            console.log(data.message);
+          } else if (data.code == 400) {
+            console.log(data.message);
+          } else if (data.code == 401) {
+            console.log(data.message);
+          }
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
     },
-    viaOrder(id) {
-      console.log(id);
+    viaOrder(code) {
+      var that = this;
+      this.$http
+        .get("tourism/ifAgree", {
+          params: { code: code, reason: that.rejectReason, ifAgree: 1 }
+        })
+        .then(function(res) {
+          // var data = res.data;
+          var data = res.data;
+          console.log(data);
+          if (data.code == 201) {
+            alert(data.message);
+          } else if (data.code == 401) {
+            alert(data.message);
+          }
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
     },
-    notViaOrder(id) {
-      console.log(id);
+    notViaOrder(code) {
+      var that = this;
+      if (this.rejectReason == "") {
+        alert("驳回原因不能为空");
+      } else {
+        console.log(that.rejectReason);
+        this.$http
+          .get("tourism/ifAgree", {
+            params: { code: code, reason: that.rejectReason, ifAgree: 0 }
+          })
+          .then(function(res) {
+            // var data = res.data;
+            var data = res.data;
+            console.log(data);
+            if (data.code == 201) {
+              alert(data.message);
+            } else if (data.code == 401) {
+              alert(data.message);
+            }
+          })
+          .catch(function(e) {
+            console.log(e);
+          });
+      }
     }
   }
 };

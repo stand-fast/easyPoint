@@ -4,6 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+
+    <!--在控制台输出sql语句-->
+    <settings>
+        <setting name= "mapUnderscoreToCamelCase" value = "true"/>
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings>
+
     <typeAliases>
         <package name="com.easyPoint.pojo"/>
         <package name="com.easyPoint.pojo.user"/>

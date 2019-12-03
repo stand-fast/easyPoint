@@ -1,6 +1,4 @@
-package com.easyPoint.Util;
-
-import jdk.internal.dynalink.beans.StaticClass;
+package com.easyPoint.utils;
 
 public class MiniProConstants {
 

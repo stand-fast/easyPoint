@@ -1,4 +1,4 @@
-package com.easyPoint.Util;
+package com.easyPoint.utils;
 
 import com.easyPoint.dto.pay.PaymentDto;
 import com.easyPoint.dto.pay.RefundParamDto;

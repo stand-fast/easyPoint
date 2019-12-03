@@ -21,23 +21,29 @@
           <li>车辆信息</li>
         </div>
         <div class="wrapperOrder" v-for="item in datas" :key="item.travelOrderId">
-          <li class="bigger">{{item.departurePlace}}</li>
-          <li class="bigger">{{item.destination}}</li>
-          <li>{{item.travelNum}}</li>
-          <li class="time place">
+          <li class="bigger" :title="item.departurePlace">{{item.departurePlace}}</li>
+          <li class="bigger" :title="item.destination">{{item.destination}}</li>
+          <li :title="item.travelNum">{{item.travelNum}}</li>
+          <li class="time place" :title="item.departureTime">
             <span>{{item.departureTime}}</span>
           </li>
-          <li>{{item.vehicleType}}</li>
-          <li>￥{{item.payMoney}}</li>
+          <li :title="item.vehicleType">{{item.vehicleType}}</li>
+          <li :title="item.payMoney">￥{{item.payMoney}}</li>
           <li v-if="item.ifInsurance == 0">否</li>
           <li v-if="item.ifInsurance == 1">是</li>
-          <li>{{item.passenger}}</li>
-          <li class="bigger">{{item.phone}}</li>
+          <li :title="item.passenger">{{item.passenger}}</li>
+          <li :title="item.phone" class="bigger">{{item.phone}}</li>
           <li v-if="item.state == 0">未安排</li>
-          <li v-if="item.state == 1">已安排</li>
-          <li v-if="item.state == 2">已完成</li>
+          <li v-else-if="item.state == 1">已安排</li>
+          <li v-else-if="item.state == 2">已完成</li>
+          <li v-else-if="item.state == 3">已付款</li>
+          <li v-else-if="item.state == 4">已预约</li>
+          <li v-else-if="item.state == 5">退款中</li>
+          <li v-else-if="item.state == 6">已退款</li>
+          <li v-else-if="item.state == 7">退款失败</li>
+          <li v-else-if="item.state == 8">已取消</li>
           <li class="enter">
-            <span @click="handleVihicleInformation(item.travelOrderId)">进入</span>
+            <span @click="handleVihicleInformation(item.travelOrderId,item.state)">进入</span>
           </li>
         </div>
         <paging
@@ -108,8 +114,8 @@ export default {
           console.log(e);
         });
     },
-    handleVihicleInformation(id) {
-      this.$router.push("/vehicleEntry/" + id);
+    handleVihicleInformation(id, state) {
+      this.$router.push("/vehicleEntry/" + id + "/" + state);
     }
   },
   components: {

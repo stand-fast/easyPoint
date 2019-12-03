@@ -9,7 +9,7 @@
     </select>
 
     <select id="findListVehicleInfo" parameterType="Integer" resultMap="vehicleInfoResultMap">
-        select vehicle_id, vehicle_type, deposit from vehicle_info where is_delete = 0 order by vehicle_id desc limit #{index}, 4
+        select vehicle_id, vehicle_type, deposit from vehicle_info where is_delete = 0 order by vehicle_id desc limit #{index}, 8
     </select>
 
     <!--根据车辆类型名称已经删除状态，查询要添加的车辆类型是否已经存在-->
@@ -48,7 +48,7 @@
                   where tr.travel_order_id = tou.travel_order_id
                         and tou.vehicle_id = v.vehicle_id
                         and tr.type = 0
-                        order by  state asc ,departure_time asc limit #{index}, 8
+                        order by  state asc ,departure_time asc limit #{index}, 11
     </select>
 
     <resultMap id="partTourismOrderInfoResultMap" type="PartTourismOrderInfoDto">
@@ -90,8 +90,8 @@
                                   )
     </insert>
     <insert id="insertTourismOrderInfo" parameterType="TourismOrderInfo">
-        insert into tourism_order (travel_order_id,vehicle_id,passenger,phone,is_insurance, pay_money, make_order_time, out_trade_no,transaction_id)
-                                    value (#{travelOrderId},#{vehicleId},#{passenger},#{phone}, #{ifInsurance}, #{payMoney}, #{makeOrderTime},#{outTradeNo},#{transactionId})
+        insert into tourism_order (travel_order_id,vehicle_id,passenger,phone,is_insurance, pay_money, make_order_time, out_trade_no,transaction_id,is_back)
+                                    value (#{travelOrderId},#{vehicleId},#{passenger},#{phone}, #{ifInsurance}, #{payMoney}, #{makeOrderTime},#{outTradeNo},#{transactionId},#{ifBack})
     </insert>
 
     <update id="updateTourismOrderInfoAddDriverInfo" parameterType="TourismOrderInfo">
@@ -183,9 +183,9 @@
     </select>
 
     <!--//查询退款需要的订单信息：微信订单号和支付总金额-->
-    <!--TourismOrderInfo findTourismRefundInfo(int travelOrderId);-->
-    <select id="findTourismRefundInfo" parameterType="int" resultType="TourismOrderInfo">
-        SELECT  pay_money AS payMoney, transaction_id AS transactionId FROM tourism_order WHERE travel_order_id = #{travelOrderId}
+    <!--TourismOrderInfo findRefundNeceInfo(int travelOrderId);-->
+    <select id="findRefundNeceInfo" parameterType="int" resultType="TourismOrderInfo">
+        SELECT  pay_money AS payMoney, transaction_id AS transactionId, is_back AS ifBack FROM tourism_order WHERE travel_order_id = #{travelOrderId}
     </select>
 
     <!--//用户申请退款-->
@@ -259,5 +259,11 @@
     <!--int findTravelOrderId(int tourismRefundId);-->
     <select id="findTravelOrderId" parameterType="int" resultType="int">
         SELECT travel_order_id FROM tourism_refund WHERE tourism_refund_id = #{tourismRefundId}
+    </select>
+
+    <!--//根据tourismRefundId查询travelOrderId-->
+    <!--int findTravelOrderId(int tourismRefundId);-->
+    <select id="findOrderIdAndStateById" parameterType="int" resultType="HashMap">
+        SELECT travel_order_id AS travelOrderId, refund_state AS refund_state FROM tourism_refund WHERE tourism_refund_id = #{tourismRefundId}
     </select>
 </mapper>

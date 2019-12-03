@@ -24,8 +24,8 @@
             <input v-model="driverPhone" maxlength="11" placeholder="司机联系方式" />
           </li>
           <div class="submitVihicle">
-            <span @click="submitVehicle">提交</span>
-            <span @click="submitFinish(id)" style="margin-left:5px">结单</span>
+            <span v-if="state ==1 || state ==0" @click="submitVehicle">提交</span>
+            <span v-if="state != 2" @click="submitFinish(id)" style="margin-left:5px">结单</span>
           </div>
         </ul>
       </div>
@@ -44,11 +44,14 @@ export default {
       color: "",
       driverName: "",
       driverPhone: "",
-      id: "" //订单id
+      id: "", //订单id
+      state: "" //订单状态
     };
   },
   mounted() {
     const id = this.$route.params.id;
+    const state = this.$route.params.state;
+    this.state = state;
     this.id = id;
     console.log("根据" + id + "请求数据");
     this.setData(id);
@@ -118,7 +121,7 @@ export default {
           )
         ) {
           this.$http
-            .get("easyPoint/addDriverInfoToTourismOrder", {
+            .get("addDriverInfoToTourismOrder", {
               params: {
                 travelOrderId: this.id,
                 licensePlateNumber: that.licensePlateNumber,

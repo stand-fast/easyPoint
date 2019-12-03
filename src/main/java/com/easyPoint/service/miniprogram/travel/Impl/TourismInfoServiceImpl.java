@@ -1,8 +1,8 @@
 package com.easyPoint.service.miniprogram.travel.Impl;
 
-import com.easyPoint.Util.DateUtil;
-import com.easyPoint.Util.MiniProConstants;
-import com.easyPoint.Util.NotifyUrlConstants;
+import com.easyPoint.utils.DateUtil;
+import com.easyPoint.utils.MiniProConstants;
+import com.easyPoint.utils.NotifyUrlConstants;
 import com.easyPoint.dao.travel.TourismInfoDao;
 import com.easyPoint.dto.pay.MiniPaymentDto;
 import com.easyPoint.dto.pay.PaymentDto;
@@ -143,6 +143,7 @@ public class TourismInfoServiceImpl implements TourismInfoService {
         messageTemplateDto.setData(data);
         messageTemplateDto.setColor("#ccc");
         messageTemplateDto.setEmphasis_keyword("keyword4.DATA");
+        messageTemplateDto.setPage("pages/myindex/myindex");
 
 
         ObjectMapper objectMapper = new ObjectMapper();

@@ -16,6 +16,16 @@ public class MessageTemplateDto {
     //通知内容中的重点对象
     private String emphasis_keyword;
 
+    private String page;
+
+    public String getPage() {
+        return page;
+    }
+
+    public void setPage(String page) {
+        this.page = page;
+    }
+
     public String getTouser() {
         return touser;
     }
@@ -73,6 +83,7 @@ public class MessageTemplateDto {
                 ", data=" + data +
                 ", color='" + color + '\'' +
                 ", emphasis_keyword='" + emphasis_keyword + '\'' +
+                ", page='" + page + '\'' +
                 '}';
     }
 }
