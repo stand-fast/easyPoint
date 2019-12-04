@@ -74,20 +74,25 @@
         </div>
         <div class="change-account">
           <span>账户：</span>
-          <input placeholder="请输入手机号码" v-model="changeId" />
+          <input placeholder="请输入手机号码" autocomplete="off" v-model="changeId" />
           <label @click="getCode(changeId)">{{code}}</label>
         </div>
         <div class="change-account">
           <span>验证码：</span>
-          <input placeholder="请输入验证码" />
+          <input placeholder="请输入验证码" autocomplete="off" v-model="changeCode" />
         </div>
         <div class="change-account">
           <span>密码：</span>
-          <input placeholder="请输入密码" />
+          <input placeholder="请输入密码" autocomplete="off" v-model="changePassword" type="password" />
         </div>
         <div class="change-account">
           <span>再次输入：</span>
-          <input placeholder="请再次输入密码" />
+          <input
+            placeholder="请再次输入密码"
+            autocomplete="off"
+            type="password"
+            v-model="changeComfirmPassword"
+          />
         </div>
         <div class="change-account">
           <span>角色：</span>
@@ -287,6 +292,9 @@ export default {
       showModifyPasswords: false, //是否显示修改密码部分
       newusername: "", //修改用户名部分-新用户名
       changeId: "", //更换绑定部分-手机号码
+      changeCode: "123456",
+      changePassword: "", //更换绑定部分-密码
+      changeComfirmPassword: "", //更换绑定部分-确认密码
       oldPassword: "", //修改密码部分-旧密码
       newPassword: "", //修改密码部分-新密码
       ensurePassword: "" //修改密码部分-确认新密码
@@ -331,7 +339,65 @@ export default {
     //提交修改用户名
     submitModifyUsername() {},
     //提交更换绑定信息
-    submitChangeAccount() {},
+    submitChangeAccount() {
+      let that = this;
+      if (this.changePassword != this.changeComfirmPassword) {
+        alert("两次密码输入不一致");
+      } else {
+        let params = new URLSearchParams();
+        params.append("phone", this.loginUser.loginId);
+        params.append("newPhone", this.changeId);
+        params.append("verifyCode", this.changeCode);
+        params.append("newPassword", this.changePassword);
+        params.append("ensurePassword", this.changeComfirmPassword);
+        this.$http
+          .post("changePhone", params)
+          .then(function(res) {
+            console.log(res.data);
+            let code = res.data.code;
+            switch (code) {
+              case -1:
+                alert("修改失败");
+                break;
+              case 0:
+                alert("账户不存在");
+                break;
+              case 1:
+                that.changeId = "";
+                that.changeCode = "";
+                that.changePassword = "";
+                that.changeComfirmPassword = "",
+                that.showUserInfor = false;
+                that.showModifyAccounts = false;
+                alert("更换绑定成功,请重新登陆");
+                that.$store.dispatch("loginOut");
+                that.$router.push("/login");
+                break;
+              case 2:
+                alert("参数为空");
+                break;
+              case 3:
+                alert("验证码错误");
+                break;
+              case 4:
+                alert("两次密码输入不一致");
+                break;
+              case 5:
+                alert("新旧手机号码一致");
+                break;
+              case 5:
+                alert("新手机号码已被注册");
+                break;
+              default:
+                that.$judgeToken(code);
+                break;
+            }
+          })
+          .catch(function(e) {
+            console.log(e);
+          });
+      }
+    },
     //提交修改密码
     submitModifyPassword() {
       let that = this;
@@ -380,7 +446,6 @@ export default {
             }
           })
           .catch(function(e) {
-            alert("服务器繁忙，请稍后重试，请检查网络环境");
             console.log(e);
           });
       }

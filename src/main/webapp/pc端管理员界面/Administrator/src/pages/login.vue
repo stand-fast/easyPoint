@@ -36,15 +36,15 @@
         </div>
         <div class="change-account">
           <span>验证码：</span>
-          <input placeholder="请输入验证码" />
+          <input placeholder="请输入验证码" v-model="forgetCode" />
         </div>
         <div class="change-account">
           <span>新密码：</span>
-          <input placeholder="请输入密码" />
+          <input placeholder="请输入密码" type="password" v-model="forgetPassword" />
         </div>
         <div class="change-account">
           <span>再次输入：</span>
-          <input placeholder="请再次输入密码" />
+          <input placeholder="请再次输入密码" type="password" v-model="forgetComfirm" />
         </div>
         <div class="InforButton">
           <span @click="submitForgetPassword()">提交</span>
@@ -63,7 +63,10 @@ export default {
       code: "获取验证码",
       codeStatus: 0, //验证码加锁
       showForgetPasswords: false, //是否显示忘记密码栏目
-      forgetId: "" //忘记密码-账户
+      forgetId: "", //忘记密码-账户
+      forgetCode: "123456", //忘记密码-验证码
+      forgetPassword: "", //忘记密码-密码
+      forgetComfirm: "" //忘记密码-确认密码
     };
   },
   computed: {},
@@ -87,7 +90,52 @@ export default {
       this.showForgetPasswords = !this.showForgetPasswords;
     },
     //提交忘记密码
-    submitForgetPassword() {},
+    submitForgetPassword() {
+      let that = this;
+      if (this.forgetPassword != this.forgetComfirm) {
+        alert("两次密码输入不一致");
+      } else {
+        let params = new URLSearchParams();
+        params.append("phone", this.forgetId);
+        params.append("verifyCode", this.forgetCode);
+        params.append("newPassword", this.forgetPassword);
+        params.append("ensurePassword", this.forgetComfirm);
+        this.$http
+          .post("forgetPassword", params)
+          .then(function(res) {
+            console.log(res.data);
+            let code = res.data.code;
+            switch (code) {
+              case -1:
+                alert("修改失败");
+                break;
+              case 0:
+                alert("账户不存在");
+                break;
+              case 1:
+                that.forgetId = "";
+                that.forgetCode = "";
+                that.forgetPassword = "";
+                that.forgetComfirm = "";
+                that.showForgetPasswords = false;
+                alert("修改成功");
+                break;
+              case 2:
+                alert("参数为空");
+                break;
+              case 3:
+                alert("验证码错误");
+                break;
+              case 4:
+                alert("两次密码输入不一致");
+                break;
+            }
+          })
+          .catch(function(e) {
+            console.log(e);
+          });
+      }
+    },
     //获取验证码按钮
     getCode(phone) {
       let reg = /^[1][3458]\d{9}$/; //验证手机号码

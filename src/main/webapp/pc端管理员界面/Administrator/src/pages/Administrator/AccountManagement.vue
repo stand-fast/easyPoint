@@ -145,7 +145,6 @@ export default {
           }
         })
         .catch(function(e) {
-          alert("服务器繁忙，请稍后重试，请检查网络环境");
           console.log(e);
         });
     },
@@ -185,7 +184,6 @@ export default {
             }
           })
           .catch(function(e) {
-            alert("服务器繁忙，请稍后重试，请检查网络环境");
             console.log(e);
           });
       } else {
@@ -227,7 +225,6 @@ export default {
             }
           })
           .catch(function(e) {
-            alert("服务器繁忙，请稍后重试，请检查网络环境");
             console.log(e);
           });
       } else {
@@ -279,7 +276,6 @@ export default {
             }
           })
           .catch(function(e) {
-            alert("服务器繁忙，请稍后重试，请检查网络环境");
             console.log(e);
           });
       }
