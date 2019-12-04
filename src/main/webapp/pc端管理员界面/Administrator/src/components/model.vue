@@ -66,19 +66,20 @@
       <div class="userInformation" v-show="showModifyPasswords">
         <div class="inforTitle">管理员个人信息-修改密码</div>
         <div class="change-account">
-          <span>账户：</span>13060060021
+          <span>账户：</span>
+          {{loginUser.loginId}}
         </div>
         <div class="change-account">
           <span>旧密码：</span>
-          <input placeholder="请输入旧密码" />
+          <input placeholder="请输入旧密码" autocomplete="off" type="password" v-model="oldPassword" />
         </div>
         <div class="change-account">
           <span>新密码：</span>
-          <input placeholder="请输入密码" />
+          <input placeholder="请输入密码" type="password" v-model="newPassword" />
         </div>
         <div class="change-account">
           <span>再次输入：</span>
-          <input placeholder="请再次输入密码" />
+          <input placeholder="请再次输入密码" type="password" v-model="ensurePassword" />
         </div>
         <div class="change-account">
           <span>角色：</span>
@@ -118,7 +119,7 @@
 export default {
   data() {
     return {
-      navigationName: [
+      navigationName: [ //二级导航数据
         {
           id: "1",
           name: "已加盟商家",
@@ -233,20 +234,24 @@ export default {
           ]
         }
       ],
-      childrenName: [],
-      isShow: 0,
-      code: "获取验证码",
+      childrenName: [],//二级导航数据
+      isShow: 0,//二级菜单
+      code: "获取验证码",//验证码倒计时
       codeStatus: 0, //验证码加锁
-      showUserInfor: false,
-      showModifyAccounts: false,
-      showModifyPasswords: false,
-      changeId: ""
+      showUserInfor: false, //是否显示个人信息部分
+      showModifyAccounts: false, //是否显示更换绑定部分
+      showModifyPasswords: false, //是否显示修改密码部分
+      changeId: "", //更换绑定部分-手机号码
+      oldPassword: "", //修改密码部分-旧密码
+      newPassword: "", //修改密码部分-新密码
+      ensurePassword: "" //修改密码部分-确认新密码
     };
   },
   mounted: function() {
     this.isShow = -1;
   },
   computed: {
+    //判断是否登陆是否显示信息
     loginUser() {
       if (this.$store.state.data) {
         return this.$store.state.data;
@@ -256,8 +261,8 @@ export default {
     }
   },
   methods: {
+    //是否显示管理员个人信息
     showUserInformation() {
-      //显示管理员个人信息
       if (this.showModifyAccounts == true) {
         this.showModifyAccounts = false;
       } else if (this.showModifyPasswords == true) {
@@ -266,32 +271,84 @@ export default {
         this.showUserInfor = !this.showUserInfor;
       }
     },
+    //显示管理员个人信息-更换绑定
     showModifyAccount() {
-      //显示管理员个人信息-更换绑定
       this.showModifyAccounts = !this.showModifyAccounts;
     },
+    //显示管理员个人信息-修改密码
     showModifyPassword() {
-      //显示管理员个人信息-修改密码
       this.showModifyPasswords = !this.showModifyPasswords;
     },
-    submitChangeAccount() {
-      //提交更换绑定信息
-    },
+    //提交更换绑定信息
+    submitChangeAccount() {},
+    //提交修改密码
     submitModifyPassword() {
-      //提交修改密码
+      let that = this;
+      if (this.newPassword != this.ensurePassword) {
+        alert("两次密码输入不一致");
+      } else {
+        let params = new URLSearchParams();
+        params.append("phone", this.loginUser.loginId);
+        params.append("oldPassword", this.oldPassword);
+        params.append("newPassword", this.newPassword);
+        params.append("ensurePassword", this.ensurePassword);
+        this.$http
+          .post("changePassword", params)
+          .then(function(res) {
+            console.log(res.data);
+            let code = res.data.code;
+            switch (code) {
+              case -1:
+                alert("修改失败");
+                break;
+              case 0:
+                alert("账户不存在");
+                break;
+              case 1:
+                that.oldPassword = "";
+                that.newPassword = "";
+                that.ensurePassword = "";
+                that.showUserInfor = false;
+                that.showModifyPasswords = false;
+                alert("修改成功,请重新登陆");
+                that.$store.dispatch("loginOut");
+                that.$router.push("/login");
+                break;
+              case 2:
+                alert("参数为空");
+                break;
+              case 3:
+                alert("旧密码错误");
+                break;
+              case 4:
+                alert("两次密码输入不一致");
+                break;
+              default:
+                that.$judgeToken(code);
+                break;
+            }
+          })
+          .catch(function(e) {
+            alert("服务器繁忙，请稍后重试，请检查网络环境");
+            console.log(e);
+          });
+      }
     },
+    //显示二级导航
     showSecondName(index) {
       this.isShow = index;
     },
+    //隐藏二级导航
     hideSecondName() {
       this.isShow = !this.isShow;
     },
+    //退出登陆
     loginOut() {
       this.$store.dispatch("loginOut");
       this.$router.push("/login");
     },
+    //获取验证码按钮
     getCode(phone) {
-      //获取验证码按钮
       let reg = /^[1][3458]\d{9}$/; //验证手机号码
       let num = 60;
       let that = this;

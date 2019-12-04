@@ -58,16 +58,17 @@
 export default {
   data() {
     return {
-      loginId: "",
-      loginPwd: "",
+      loginId: "", //登陆账户
+      loginPwd: "", //登陆密码
       code: "获取验证码",
       codeStatus: 0, //验证码加锁
       showForgetPasswords: false, //是否显示忘记密码栏目
-      forgetId: ""
+      forgetId: "" //忘记密码-账户
     };
   },
   computed: {},
   methods: {
+    //登陆
     async handleLogin() {
       const result = await this.$store.dispatch("login", {
         loginId: this.loginId,
@@ -81,15 +82,14 @@ export default {
         this.loginPwd = "";
       }
     },
+    //显示忘记密码
     showForgetPassword() {
-      //显示忘记密码
       this.showForgetPasswords = !this.showForgetPasswords;
     },
-    submitForgetPassword() {
-      //提交忘记密码
-    },
+    //提交忘记密码
+    submitForgetPassword() {},
+    //获取验证码按钮
     getCode(phone) {
-      //获取验证码按钮
       let reg = /^[1][3458]\d{9}$/; //验证手机号码
       let num = 60;
       let that = this;

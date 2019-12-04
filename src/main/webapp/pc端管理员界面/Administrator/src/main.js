@@ -1,22 +1,19 @@
 import Vue from 'vue';
-import App from './App.vue';
 import router from './router.js';
-import axios from 'axios';
+import {
+  judgeToken
+} from "../src/assets/judge/judgeToken.js";
+import axios from '../src/assets/util/http';
 import store from './store';
-
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import './plugins/element.js';
 
+import App from './App.vue';
 Vue.use(ElementUI);
-
-//Vue.prototype.$http = axios
-//Vue.prototype.$http.defaults.baseURL = 'http://easypoint.club/administrator/'
-Vue.prototype.$http = axios.create({
-  baseURL: "http://easypoint.club/administrator/",
-  timeout: 5000,
-  withCredentials: false, // 允许携带cookie
-})
+Vue.prototype.$judgeToken = judgeToken; //处理token异常函数
+Vue.prototype.$token = ''; //存储token
+Vue.prototype.$http = axios;
 
 Vue.config.productionTip = false
 
