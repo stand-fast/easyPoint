@@ -64,7 +64,7 @@ Page({
     },
     changeTime:function(){
         wx.navigateTo({
-            url: '',
+            url: '/pages/user/changeTime/changeTime?current=' + this.data.current,
         })
     },
     /**
