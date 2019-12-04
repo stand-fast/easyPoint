@@ -11,15 +11,15 @@
           <span @click="showAddAccount">添加管理员</span>
         </h1>
         <div class="wrapperOrder">
-          <li>ID</li>
+          <li>用户名</li>
           <li class="bigger">账号</li>
           <li class="bigger">角色</li>
           <li>账号状态</li>
           <li class="bigger button">操作</li>
         </div>
         <!-- 遍历账户数据 -->
-        <div class="wrapperOrder" v-for="(item,index) in datas" :key="item.phone">
-          <li title="item.transactionId">{{index+1}}</li>
+        <div class="wrapperOrder" v-for="item in datas" :key="item.phone">
+          <li title="item.transactionId">{{item.username}}</li>
           <li class="bigger" title="item.phone">{{item.phone}}</li>
           <li class="bigger" v-if="item.identity == 1">管理员</li>
           <li class="bigger" v-if="item.identity == 0">超级管理员</li>

@@ -13,6 +13,7 @@ import App from './App.vue';
 Vue.use(ElementUI);
 Vue.prototype.$judgeToken = judgeToken; //处理token异常函数
 Vue.prototype.$token = ''; //存储token
+Vue.prototype.$username = ''; //存储用户名
 Vue.prototype.$http = axios;
 
 Vue.config.productionTip = false

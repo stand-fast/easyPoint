@@ -15,15 +15,31 @@
       <div class="userInformation" v-if="loginUser" v-show="showUserInfor">
         <div class="inforTitle">管理员个人信息</div>
         <p>
-          <span>账户：13013013011</span>
+          <span>
+            用户名：
+            {{$username}}
+          </span>
+          <label @click="showModifyUsername">修改</label>
+        </p>
+        <p>
+          <span>
+            账户：
+            {{loginUser.loginId}}
+          </span>
           <label @click="showModifyAccount">更换绑定</label>
         </p>
         <p>
-          <span>密码：*******</span>
-          <label @click="showModifyPassword">修改</label>
+          <span>
+            密码：
+            *******
+          </span>
+          <label @click="showModifyPassword">修改密码</label>
         </p>
         <p>
-          <span>角色：{{loginUser.name}}</span>
+          <span>
+            角色：
+            {{loginUser.name}}
+          </span>
         </p>
 
         <div class="InforButton">
@@ -31,9 +47,31 @@
         </div>
       </div>
 
+      <!-- 个人信息-修改用户名部分 -->
+      <div class="userInformation" v-show="showModifyUsernames">
+        <div class="inforTitle">管理员个人信息-修改用户名</div>
+        <div class="change-account">
+          <span>用户名：</span>
+          {{$username}}
+        </div>
+        <div class="change-account">
+          <span>新用户名：</span>
+          <input placeholder="请输入新用户名" v-model="newusername" />
+        </div>
+
+        <div class="InforButton">
+          <span @click="submitModifyPassword">提交</span>
+          <span @click="showModifyUsername">返回</span>
+        </div>
+      </div>
+
       <!-- 个人信息-更换绑定部分 -->
       <div class="userInformation" v-show="showModifyAccounts">
         <div class="inforTitle">管理员个人信息-更换绑定</div>
+        <div class="change-account">
+          <span>用户名：</span>
+          {{$username}}
+        </div>
         <div class="change-account">
           <span>账户：</span>
           <input placeholder="请输入手机号码" v-model="changeId" />
@@ -65,6 +103,10 @@
       <!-- 个人信息-修改密码部分 -->
       <div class="userInformation" v-show="showModifyPasswords">
         <div class="inforTitle">管理员个人信息-修改密码</div>
+        <div class="change-account">
+          <span>用户名：</span>
+          {{$username}}
+        </div>
         <div class="change-account">
           <span>账户：</span>
           {{loginUser.loginId}}
@@ -119,7 +161,8 @@
 export default {
   data() {
     return {
-      navigationName: [ //二级导航数据
+      navigationName: [
+        //二级导航数据
         {
           id: "1",
           name: "已加盟商家",
@@ -234,13 +277,15 @@ export default {
           ]
         }
       ],
-      childrenName: [],//二级导航数据
-      isShow: 0,//二级菜单
-      code: "获取验证码",//验证码倒计时
+      childrenName: [], //二级导航数据
+      isShow: 0, //二级菜单
+      code: "获取验证码", //验证码倒计时
       codeStatus: 0, //验证码加锁
       showUserInfor: false, //是否显示个人信息部分
+      showModifyUsernames: false, //是否显示修改用户名部分
       showModifyAccounts: false, //是否显示更换绑定部分
       showModifyPasswords: false, //是否显示修改密码部分
+      newusername: "", //修改用户名部分-新用户名
       changeId: "", //更换绑定部分-手机号码
       oldPassword: "", //修改密码部分-旧密码
       newPassword: "", //修改密码部分-新密码
@@ -271,6 +316,10 @@ export default {
         this.showUserInfor = !this.showUserInfor;
       }
     },
+    //显示管理员个人信息-修改用户名
+    showModifyUsername() {
+      this.showModifyUsernames = !this.showModifyUsernames;
+    },
     //显示管理员个人信息-更换绑定
     showModifyAccount() {
       this.showModifyAccounts = !this.showModifyAccounts;
@@ -279,6 +328,8 @@ export default {
     showModifyPassword() {
       this.showModifyPasswords = !this.showModifyPasswords;
     },
+    //提交修改用户名
+    submitModifyUsername() {},
     //提交更换绑定信息
     submitChangeAccount() {},
     //提交修改密码
@@ -401,6 +452,8 @@ export default {
   background: #ffffff;
   border: 1px solid #8fd68b;
   box-shadow: 0 0 2px 0 #8ebc8c;
+  display: flex;
+  align-items: center;
 }
 .userInformation > p label {
   padding: 3px;
@@ -410,11 +463,12 @@ export default {
 .userInformation > p label:hover {
   box-shadow: 0 0 3px 0 #8ebc8c;
 }
-.userInformation > p span {
+.userInformation > p > span {
   display: inline-block;
   padding: 5px;
   width: 170px;
   box-sizing: border-box;
+  overflow: hidden;
 }
 .InforButton {
   margin-top: 15px;

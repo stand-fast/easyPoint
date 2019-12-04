@@ -11,6 +11,7 @@ export default {
                 if (res.data.code == 1) {
                     let admin = res.data.data.admin;
                     Vue.prototype.$token = res.data.data.token;
+                    Vue.prototype.$username = res.data.data.admin.username;
                     return new Promise(resolve => {
                         if (admin.identity == 1) {
                             resolve({
