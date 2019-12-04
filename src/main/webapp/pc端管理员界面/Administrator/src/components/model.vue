@@ -60,7 +60,7 @@
         </div>
 
         <div class="InforButton">
-          <span @click="submitModifyPassword">提交</span>
+          <span @click="submitModifyUsername">提交</span>
           <span @click="showModifyUsername">返回</span>
         </div>
       </div>
@@ -337,7 +337,42 @@ export default {
       this.showModifyPasswords = !this.showModifyPasswords;
     },
     //提交修改用户名
-    submitModifyUsername() {},
+    submitModifyUsername() {
+        let that = this;
+        let params = new URLSearchParams();
+        params.append("phone", this.loginUser.loginId);
+        params.append("newName", this.newusername);
+        this.$http
+          .post("updateAdminName", params)
+          .then(function(res) {
+            console.log(res.data);
+            let code = res.data.code;
+            switch (code) {
+              case -1:
+                alert("修改失败");
+                break;
+              case 0:
+                alert("账户不存在");
+                break;
+              case 1:
+                that.$username = that.newusername;
+                that.newusername = "";
+                that.showUserInfor = false;
+                that.showModifyUsernames = false;
+                alert("修改成功");
+                break;
+              case 2:
+                alert("参数为空");
+                break;
+              default:
+                that.$judgeToken(code);
+                break;
+            }
+          })
+          .catch(function(e) {
+            console.log(e);
+          });
+    },
     //提交更换绑定信息
     submitChangeAccount() {
       let that = this;
