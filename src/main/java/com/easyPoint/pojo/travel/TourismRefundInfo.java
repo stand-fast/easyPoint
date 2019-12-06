@@ -9,7 +9,7 @@ public class TourismRefundInfo {
     private Integer tourismRefundId;
     //travel_order表id
     private Integer travelOrderId;
-    //退款状态1：待处理，2：审核不通过；3：审核通过；4：已取消
+    //退款状态1：待处理，2：审核不通过；3：正在退款；4：已退款；5：已取消
     private Integer refundState;
     //用户申请退款时间
     private String requestRefundTime;

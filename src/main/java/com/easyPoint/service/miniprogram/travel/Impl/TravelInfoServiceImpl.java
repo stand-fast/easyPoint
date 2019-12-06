@@ -1,6 +1,7 @@
 package com.easyPoint.service.miniprogram.travel.Impl;
 
 import com.easyPoint.dao.travel.TourismInfoDao;
+import com.easyPoint.dto.travel.MiniTourismRefundPageDto;
 import com.easyPoint.dto.travel.TourismOrderDetailInfoDto;
 import com.easyPoint.pojo.travel.TravelOrderInfo;
 import com.easyPoint.service.miniprogram.travel.TravelInfoService;
@@ -32,16 +33,26 @@ public class TravelInfoServiceImpl implements TravelInfoService {
         //判断小程序端点击的出行订单是租车还是包车模块;0为租车，1为包车
         if(type == 0) {
             TourismOrderDetailInfoDto tourismOrderDetailInfo = tourismInfoDao.findTourismOrderDetailInfo(travelOrderId);
-            //如果退款订单表id不为null,则该订单为退单状态，需返回退款原因
-            if(tourismOrderDetailInfo.getTourismRefundId() !=null){
-                Map<String, String> mapRefundAndRejectReason = tourismInfoDao.findMapRefundAndRejectReason(tourismOrderDetailInfo.getTourismRefundId());
-                tourismOrderDetailInfo.setRefundReason(mapRefundAndRejectReason.get("refundReason"));
-                tourismOrderDetailInfo.setRejectReason(mapRefundAndRejectReason.get("rejectReason"));
-            }
-            //为空时，则没有退款申请理由和驳回理由
+//            //如果退款订单表id不为null,则该订单为退单状态，需返回退款原因
+//            if(tourismOrderDetailInfo.getTourismRefundId() !=null){
+//                Map<String, String> mapRefundAndRejectReason = tourismInfoDao.findMapRefundAndRejectReason(tourismOrderDetailInfo.getTourismRefundId());
+//                tourismOrderDetailInfo.setRefundReason(mapRefundAndRejectReason.get("refundReason"));
+//                tourismOrderDetailInfo.setRejectReason(mapRefundAndRejectReason.get("rejectReason"));
+//            }
+//            //为空时，则没有退款申请理由和驳回理由
             return tourismOrderDetailInfo;
         }
         return null;
     }
 
+    /**
+     * 根据tourismRefundId查找退款页面信息
+     * @param tourismRefundId
+     * @return
+     */
+    @Override
+    public MiniTourismRefundPageDto findRefundPageInfoById(int tourismRefundId) {
+        MiniTourismRefundPageDto miniTourismRefundPageDto = tourismInfoDao.findRefundPageInfoById(tourismRefundId);
+        return miniTourismRefundPageDto;
+    }
 }

@@ -21,10 +21,33 @@ public class TourismOrderDetailInfoDto extends DriverInfoDto {
     //退款订单表id
     private Integer tourismRefundId;
 
-    //退款原因
-    private String refundReason;
-    //驳回原因
-    private String rejectReason;
+    //退款次数
+    private Integer refundNumber;
+
+
+    @Override
+    public String toString() {
+        return "TourismOrderDetailInfoDto{" +
+                "passenger='" + passenger + '\'' +
+                ", phone='" + phone + '\'' +
+                ", ifInsurance=" + ifInsurance +
+                ", payMoney=" + payMoney +
+                ", makeOrderTime='" + makeOrderTime + '\'' +
+                ", deposit='" + deposit + '\'' +
+                ", IfModified=" + IfModified +
+                ", tourismRefundId=" + tourismRefundId +
+                ", refundNumber=" + refundNumber +
+
+                '}';
+    }
+
+    public Integer getRefundNumber() {
+        return refundNumber;
+    }
+
+    public void setRefundNumber(Integer refundNumber) {
+        this.refundNumber = refundNumber;
+    }
 
     public String getPassenger() {
         return passenger;
@@ -74,21 +97,6 @@ public class TourismOrderDetailInfoDto extends DriverInfoDto {
         this.tourismRefundId = tourismRefundId;
     }
 
-    public String getRefundReason() {
-        return refundReason;
-    }
-
-    public void setRefundReason(String refundReason) {
-        this.refundReason = refundReason;
-    }
-
-    public String getRejectReason() {
-        return rejectReason;
-    }
-
-    public void setRejectReason(String rejectReason) {
-        this.rejectReason = rejectReason;
-    }
 
     public String getDeposit() {
         return deposit;
@@ -96,22 +104,6 @@ public class TourismOrderDetailInfoDto extends DriverInfoDto {
 
     public void setDeposit(String deposit) {
         this.deposit = deposit;
-    }
-
-    @Override
-    public String toString() {
-        return "TourismOrderDetailInfoDto{" +
-                "passenger='" + passenger + '\'' +
-                ", phone='" + phone + '\'' +
-                ", ifInsurance=" + ifInsurance +
-                ", payMoney=" + payMoney +
-                ", makeOrderTime='" + makeOrderTime + '\'' +
-                ", deposit='" + deposit + '\'' +
-                ", IfModified=" + IfModified +
-                ", tourismRefundId=" + tourismRefundId +
-                ", refundReason='" + refundReason + '\'' +
-                ", rejectReason='" + rejectReason + '\'' +
-                '}';
     }
 
     public Integer getIfModified() {

@@ -77,7 +77,10 @@ public class TourismController {
         int resultCode = tourismInfoService.updateTourismOrderDepartureTime(departureTime, beModifiedTime, travelOrderId);
         if(resultCode == 1)
             return new Result<>(200,"修改出发时间成功");
-        return new Result<>(201,"修改出发日期必须在出发前一天之前修改，当前已经超过修改日期");
+        else if(resultCode == 0)
+            return new Result<>(201,"修改出发日期必须在出发前一天之前修改，当前已经超过修改日期");
+        else
+            return new Result<>(202,"只有一次修改机会，请无重复操作");
     }
 
     /**
@@ -102,12 +105,20 @@ public class TourismController {
         if(resultCode == 1)
             return new Result(200,"申请成功，请耐心等待管理员确认");
         //申请人的uid与订单的uid不同
+        else if(resultCode == 0)
+            return new Result(202,"申请失败，请确保您为该订单的所属者");
         else if(resultCode == -1)
-            return new Result(401,"申请失败，请确保您为该订单的所属者");
+            return new Result(401,"申请失败，您当前的申请次数已达到限制");
         else if(resultCode == -2)
-            return new Result(402,"该订单退款正等待管理员处理中，请耐心等待");
+            return new Result(402,"申请失败，订单已安排");
         else if(resultCode == -3)
-            return new Result(403,"该订单已退款成功，此次申请失败");
+            return new Result(403,"申请失败，订单已完成");
+        else if(resultCode == -5)
+            return new Result(405,"该订单退款正等待管理员处理中，请耐心等待");
+        else if(resultCode == -4)
+            return new Result(404,"该订单已退款成功，此次申请失败");
+        else if(resultCode == -6)
+            return new Result(406,"此次申请失败，订单正在退款中");
         //插入数据库异常
         return new Result(400,"申请异常，可联系管理员");
     }
