@@ -74,9 +74,6 @@
 
 <!-- 底部栏退款和更换时间 -->
 <view class="button_footer">
-    <!-- <block wx:if="{{current == 0&& type==2}}"></block> -->
-    <!-- <block wx:else> -->
         <button bindtap="changeTime" style="border-color:{{time_border_color}};color:{{time_border_color}}" disabled="{{time_disabled}}">更换时间</button>
-    <!-- </block> -->
-    <button bindtap="applyRefund" style="border-color:{{refund_border_color}};color:{{refund_border_color}}" disabled="{{refund_disabled}}">{{applyRefundWord}}</button>
+    <block wx:if="{{current == 1}}"><button bindtap="applyRefund" style="border-color:{{refund_border_color}};color:{{refund_border_color}}" disabled="{{refund_disabled}}">{{applyRefundWord}}</button></block>
 </view>
