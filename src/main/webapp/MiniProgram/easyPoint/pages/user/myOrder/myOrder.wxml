@@ -52,7 +52,7 @@
                 <view class="line">
                     <view class="address_text">出发</view>
                     <view class="address">{{item.departurePlace}}</view>
-                    <view class="statusOrder">已支付定金</view>
+                    <view class="statusOrder">已付定金</view>
                 </view>
                 <view class="line last">
                     <view class="address_text">到达</view>

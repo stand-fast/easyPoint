@@ -57,4 +57,9 @@ public class AdminAccountServiceImpl implements AdminAccountService {
     public Integer updatePhone(String phone, String newPhone, String newPassword) {
         return adminAccountDao.updatePhone(phone, newPhone, newPassword);
     }
+
+    @Override
+    public Integer updateAdminName(String phone, String newName) {
+        return adminAccountDao.updateAdminName(phone, newName);
+    }
 }
