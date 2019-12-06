@@ -59,4 +59,11 @@
             password = #{newPassword}
         WHERE phone = #{phone}
     </update>
+
+    <!-- 修改用户名 -->
+    <update id="updateAdminName">
+        UPDATE admin_account
+        SET username = #{newName}
+        WHERE phone = #{phone}
+    </update>
 </mapper>

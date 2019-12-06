@@ -367,7 +367,7 @@ public class AccountController {
             return result;
         }
 
-        if(phone.equals(newPhone)){
+        if (phone.equals(newPhone)) {
             result.setCode(5);
             result.setMessage("新旧手机号码一致！");
             return result;
@@ -451,6 +451,45 @@ public class AccountController {
         }
 
         Integer flag = adminAccountService.updatePassword(phone, newPassword);
+
+        if (flag == 1) {
+            result.setCode(1);
+            result.setMessage("修改成功！");
+            return result;
+        } else {
+            result.setCode(-1);
+            result.setMessage("修改失败！");
+            return result;
+        }
+    }
+
+    /**
+     * 管理员修改用户名
+     *
+     * @param phone
+     * @param newName
+     * @return
+     */
+    @RequestMapping(value = "/updateAdminName", method = RequestMethod.POST)
+    @ResponseBody
+    public Result updateAdminName(String phone, String newName) {
+        Result result = new Result();
+
+        if (phone == null || newName == null || phone.equals("") || newName.equals("")) {
+            result.setCode(2);
+            result.setMessage("参数为空！");
+            return result;
+        }
+
+        AdminAccount account = adminAccountService.findAdminByPhone(phone);
+
+        if (account == null) {
+            result.setCode(0);
+            result.setMessage("账号不存在！");
+            return result;
+        }
+
+        Integer flag = adminAccountService.updateAdminName(phone, newName);
 
         if (flag == 1) {
             result.setCode(1);

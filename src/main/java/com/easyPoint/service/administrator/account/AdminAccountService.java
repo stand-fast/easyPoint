@@ -32,4 +32,7 @@ public interface AdminAccountService {
 
     // 更换手机号码
     Integer updatePhone(String phone, String newPhone, String newPassword);
+
+    // 修改用户名
+    Integer updateAdminName(String phone, String newName);
 }
