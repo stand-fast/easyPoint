@@ -34,10 +34,12 @@ App({
     })
   },
   globalData: {
+    uid: null,//用户id
+    userdata: null,//用户个人数据
+    token: null,//头部携带token
+    requestUrl: 'https://easypoint.club/miniProgram/',//公用请求路径
     userInfo: null, 
-    uid:null,
     isIphoneX:false,
-    requestUrl:'https://easypoint.club/miniProgram/'
   },
   onShow: function () {
         let that = this;
@@ -51,50 +53,50 @@ App({
             }
         })
   },
-  judgeToken:function(){
-      console.log("监测token是否过期");
-      var newTime = Date.parse(new Date());
-      var time = wx.getStorageSync("token").getTime;
-      var poor = (newTime - time) / 1000;
-      if (poor > 1800) {
-        console.log("token已过期，正在重新获取token")
-        wx.login({
-          success: res => {
-            // 发送 res.code 到后台换取 openId, sessionKey, unionId
-            if (res.code) {
-              that.setData({
-                isLogin: true,
-              })
-              wx.getUserInfo({
-                success: function (res_user) {
-                  wx.request({
-                    url: 'https://easypoint.club/miniProgram/getUserInfoAndToken',
-                    data: {
-                      code: res.code,//获取openid的话 需要向后台传递code,利用code请求api获取openid
-                      encryptedData: res_user.encryptedData,
-                      iv: res_user.iv
-                    },
-                    success: function (res) {
-                      let obj = {
-                        getTime: Date.parse(new Date()),
-                        token: res.data.token
-                      }
-                      console.log(obj)
-                      wx.setStorageSync("token", obj)
-                      wx.setStorageSync("userInfo", res.data.userInfo)
-                    },
-                    fail: function () {
-                      console.log("获取失败");
-                    }
-                  })
-                }
+  // judgeToken:function(){
+  //     console.log("监测token是否过期");
+  //     var newTime = Date.parse(new Date());
+  //     var time = wx.getStorageSync("token").getTime;
+  //     var poor = (newTime - time) / 1000;
+  //     if (poor > 1800) {
+  //       console.log("token已过期，正在重新获取token")
+  //       wx.login({
+  //         success: res => {
+  //           // 发送 res.code 到后台换取 openId, sessionKey, unionId
+  //           if (res.code) {
+  //             that.setData({
+  //               isLogin: true,
+  //             })
+  //             wx.getUserInfo({
+  //               success: function (res_user) {
+  //                 wx.request({
+  //                   url: 'https://easypoint.club/miniProgram/getUserInfoAndToken',
+  //                   data: {
+  //                     code: res.code,//获取openid的话 需要向后台传递code,利用code请求api获取openid
+  //                     encryptedData: res_user.encryptedData,
+  //                     iv: res_user.iv
+  //                   },
+  //                   success: function (res) {
+  //                     let obj = {
+  //                       getTime: Date.parse(new Date()),
+  //                       token: res.data.token
+  //                     }
+  //                     console.log(obj)
+  //                     wx.setStorageSync("token", obj)
+  //                     wx.setStorageSync("userInfo", res.data.userInfo)
+  //                   },
+  //                   fail: function () {
+  //                     console.log("获取失败");
+  //                   }
+  //                 })
+  //               }
 
-              })
-            }
-          }
-        })
-      }else{
-        console.log("token未过期")
-      }
-    }
+  //             })
+  //           }
+  //         }
+  //       })
+  //     }else{
+  //       console.log("token未过期")
+  //     }
+  //   }
 })
