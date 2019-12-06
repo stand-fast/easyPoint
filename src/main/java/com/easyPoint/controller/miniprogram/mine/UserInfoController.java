@@ -1,13 +1,12 @@
 package com.easyPoint.controller.miniprogram.mine;
 
-
-import com.easyPoint.Util.AesCbcUtil;
-import com.easyPoint.Util.JwtUtil;
 import com.easyPoint.dto.Result;
 import com.easyPoint.dto.pay.RefundParamDto;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.miniprogram.mine.UserInfoService;
 import com.easyPoint.service.pay.WxPayService;
+import com.easyPoint.utils.AesCbcUtil;
+import com.easyPoint.utils.JwtUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

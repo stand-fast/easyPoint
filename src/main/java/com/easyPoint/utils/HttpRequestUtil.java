@@ -1,4 +1,4 @@
-package com.easyPoint.Util;
+package com.easyPoint.utils;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -137,22 +137,22 @@ public class HttpRequestUtil {
         //1.指定读取证书格式为PKCS12
         KeyStore keyStore  = KeyStore.getInstance("PKCS12");
         //2.读取本机存放的PKCS12证书文件
-        FileInputStream instream = new FileInputStream(new File(com.easyPoint.Util.WxPayConstants.CERTIFICATE_PATH));//读取证书的安装路径
+        FileInputStream instream = new FileInputStream(new File(com.easyPoint.utils.WxPayConstants.CERTIFICATE_PATH));//读取证书的安装路径
         try {
             //指定PKCS12的密码(商户ID)
-            keyStore.load(instream, com.easyPoint.Util.WxPayConstants.MCH_ID.toCharArray());
+            keyStore.load(instream, com.easyPoint.utils.WxPayConstants.MCH_ID.toCharArray());
         } finally {
             instream.close();
         }
         System.out.println("------------发送请求");
         //3.ssl双向验证发送http请求报文
-        SSLContext sslcontext = SSLContexts.custom().loadKeyMaterial(keyStore, com.easyPoint.Util.WxPayConstants.MCH_ID.toCharArray()).build();
+        SSLContext sslcontext = SSLContexts.custom().loadKeyMaterial(keyStore, com.easyPoint.utils.WxPayConstants.MCH_ID.toCharArray()).build();
         SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslcontext,new String[] { "TLSv1" },null,
                 SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
         CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(sslsf).build();
         System.out.println("--------------4");
         //4.发送数据到微信的退款接口
-        HttpPost httpost= new HttpPost(com.easyPoint.Util.WxPayConstants.REFUND_URL);
+        HttpPost httpost= new HttpPost(com.easyPoint.utils.WxPayConstants.REFUND_URL);
         System.out.println("-------------5");
         httpost.setEntity(new StringEntity(param, "UTF-8"));
         HttpResponse weixinResponse = httpClient.execute(httpost);

@@ -33,4 +33,7 @@ public interface AdminAccountDao {
 
     // 更换手机号码
     Integer updatePhone(@Param("phone") String phone, @Param("newPhone") String newPhone, @Param("newPassword") String newPassword);
+
+    // 修改用户名
+    Integer updateAdminName(@Param("phone") String phone, @Param("newName") String newName);
 }

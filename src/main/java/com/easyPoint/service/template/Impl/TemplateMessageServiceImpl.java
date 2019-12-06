@@ -30,7 +30,7 @@ public class TemplateMessageServiceImpl implements TemplateMessageService {
             String url = MiniProConstants.TEMPLATE_SEND_URL + "?access_token=" + accessToken;
             System.out.println("发送模板消息");
             //发送模板消息请求
-            String re = HttpRequestUtil.sendPost(url,param);
+            String re = com.easyPoint.utils.HttpRequestUtil.sendPost(url,param);
             System.out.println("放回结果："+re);
             return;
         }
