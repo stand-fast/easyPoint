@@ -1,11 +1,12 @@
 {
     "pages": [
-      "pages/user/user/user",
-      "pages/user/myOrder/myOrder",
-      "pages/myIndex/myindex/myindex",
-      "pages/easyPointCar/bookTicket/bookTicket",
+        "pages/user/user/user",
+        "pages/user/myOrder/myOrder",
+        "pages/myIndex/myindex/myindex",
+        "pages/easyPointCar/bookTicket/bookTicket",
         "pages/user/refund/refund",
         "pages/user/refundDetail/refundDetail",
+        "pages/user/changeTime/changeTime",
         "pages/easyPointCar/queryTicket/queryTicket",
         "pages/user/myOrderCarDetail/myOrderCarDetail",
         "pages/user/myOrderRentDetail/myOrderRentDetail",

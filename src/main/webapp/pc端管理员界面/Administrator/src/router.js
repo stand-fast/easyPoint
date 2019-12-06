@@ -22,7 +22,7 @@ Vue.use(Router)
 
 const router = new Router({
   routes: [{
-      path: "/account",
+      path: "/login",
       name: '登陆',
       component: login,
     }, {
@@ -164,7 +164,7 @@ router.beforeEach(function (to, from, next) {
         next();
       }
     } else {
-      next("/account"); //跳转到登录页面
+      next("/login"); //跳转到登录页面
     }
   } else {
     next();
