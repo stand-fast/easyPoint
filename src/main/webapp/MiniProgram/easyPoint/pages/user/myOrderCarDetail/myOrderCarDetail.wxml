@@ -1,20 +1,25 @@
 <!--pages/user/myOrderCarDetail/myOrderCarDetail.wxml-->
+<!-- 订单状态-未完待定 -->
 <view class="car_order_status">
-    <text>{{ticketDetail.carOrderStatus}}</text>
+    <text wx:if="{{current == 0 }}">{{ticketDetail.carOrderStatus}}</text>
+    <text wx:if="{{current == 1 && state == 2}}">已付定金</text>
 </view>
 <view class="hr"></view>
 <view class="header">
     <view class="item first">
         <view class="item_text">出发时间</view>
-        <view class="time">{{ticketDetail.departureTime}}</view>
+        <view class="time" wx:if="{{current==0}}">{{ticketDetail.departureTime}}</view>
+        <view class="time" wx:else>{{departureTime}}</view>
     </view>
     <view class="item">
         <view class="item_text">出发地</view>
-        <view class="item_address">{{ticketDetail.departurePlace}}</view>
+        <view class="item_address" wx:if="{{current==0}}">{{ticketDetail.departurePlace}}</view>
+        <view class="item_address"  wx:else>{{departurePlace}}</view>
     </view>
     <view class="item">
         <view class="item_text">目的地</view>
-        <view class="item_address">{{ ticketDetail.destination}}</view>
+        <view class="item_address" wx:if="{{current==0}}">{{departurePlace}}</view>
+        <view class="item_address" wx:else>{{destination}}</view>
     </view>
 </view>
 <view class="passengers">
@@ -41,7 +46,8 @@
 <view class="responser">
     <view class="responser_text">联系人</view>
     <view class="item">
-        <view class="responser_people">{{ticketDetail.username}}</view>
+        <view class="responser_people" wx:if="{{current==0}}">{{ticketDetail.username}}</view>
+        <view class="responser_people" wx:if="{{current==1}}">{{ticketDetail.passenger}}</view>
         <view class="responser_phone">{{ticketDetail.phone}}</view>
     </view>
 </view>
@@ -50,11 +56,10 @@
     <view class="driver_info">
         <view class="driver_info_item">司机姓名：   {{ticketDetail.driverName}}</view>
         <view class="driver_info_item">联系方式：   <text>{{ticketDetail.driverPhone}}</text></view>
-        <view class="driver_info_item">车牌号码：   {{ticketDetail.licensePlateNumber}}({{ticketDetail.color}})</view>
+        <view class="driver_info_item">车牌号码：   {{ticketDetail.licensePlateNumber}}({{ticketDetail.color}})         </view>
     </view>
 </block>
-<block wx:if="{{current == 0}}"></block>
-<block wx:else>
+<block wx:if="{{current == 1}}">
     <view class="hr"></view>
     <view class="insurance" >
         <view class="insurance-item">
