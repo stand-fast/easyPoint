@@ -1,9 +1,8 @@
 // pages/user/refundDetail/refundDetail.js
 Page({
   data: {
-    btnWord:"取消退款",
     btnColor:"#56b4f6",
-    refundDetail:{
+    refundDetail:{//退款详情数据
       travelOrderId:"1271781671672",
       refundTime:"2019-06-30 18:22",
       money:"3000",

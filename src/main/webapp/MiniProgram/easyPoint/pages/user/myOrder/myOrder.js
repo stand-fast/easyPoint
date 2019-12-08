@@ -2,10 +2,8 @@
 const app = getApp()
 Page({
   data: {
-    //显示选项卡栏目部分
-    currenTab: 0,
-    //乡会包车部分假数据
-    ruralCommittee:[
+    currenTab: 0,//显示选项卡栏目部分
+    ruralCommittee: [//乡会包车部分假数据
       {
         ticketId: 623123513,
         departureTime: "2019-09-10 08:00",
@@ -23,8 +21,7 @@ Page({
         type: "2",
       }, 
     ],
-    //租车部分假数据
-    ticket_lists:[   
+    ticket_lists: [    //租车部分假数据
       {
           tourismId:"123123123123",
           departureTime: "2019-01-10 09:00",
@@ -40,8 +37,7 @@ Page({
           travelNum: "42",
       }
     ],
-    //租借部分假数据
-    rentItems:[
+    rentItems: [//租借部分假数据
       {
             goodName:"随身携带可充电荧光灯带哈哈哈",
             goodPrice:30,

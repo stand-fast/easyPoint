@@ -1,41 +1,34 @@
 // pages/user/myOrderCarDetail/myOrderCarDetail.js
 const app = getApp()
 Page({
+  data: {
+    current:"0",//订单详情类型0：包车，1：租车
+    ticketDetail:{//订单详情页面数据
+      //乡会车票订单信息
+      ticketId:"121312312",
+      price:130,
+      ticketNum: 5,
 
-    /**
-     * 页面的初始数据
-     */
-    data: {
-        current:"0",
-        ticketDetail:{
-          //乡会车票订单信息
-            ticketId:"121312312",
-            price:130,
-            ticketNum: 5,
+      //旅游出行订单信息
+      travelOrderId:"23123125132",
+      vehicleType: "七座大巴",
+      deposit: 100,
+      payMoney:100,
+      travelNum: 22,
+      color:'红色',
 
-          //旅游出行订单信息
-            travelOrderId:"23123125132",
-            vehicleType: "七座大巴",
-            deposit: 100,
-            payMoney:100,
-            travelNum: 22,
-            color:'红色',
-
-          //共有部分
-            ifInsurance: "1",
-            ifModified:'0',
-            departurePlace: "汕头",
-            destination: "广金广州本部",
-            makeOrderTime: "2019-08-10 08:00",
-            username: "吴彦祖",
-            phone: "12345678910",
-            carOrderStatus: "订单未安排",//新增订单状态
-            
-            //司机信息
-            driverName:"",
-            driverPhone:"12345678910",
-            licensePlateNumber:"粤A5910"
-        }
+      ifInsurance: "1",//是否购买保险
+      ifModified:'0',
+      departurePlace: "汕头",//出发地
+      destination: "广金广州本部",//目的地
+      makeOrderTime: "2019-08-10 08:00",//出发时间
+      username: "吴彦祖",//客户姓名
+      phone: "12345678910",//客户联系方式
+      carOrderStatus: "订单未安排",//新增订单状态
+      driverName:"",//租车-车辆信息-姓名
+      driverPhone: "12345678910",//租车-车辆信息-联系方式
+      licensePlateNumber: "粤A5910"//租车-车辆信息-车牌号
+    }
   },
   //页面加载完毕执行函数(放在首位)
   onLoad: function (options) {

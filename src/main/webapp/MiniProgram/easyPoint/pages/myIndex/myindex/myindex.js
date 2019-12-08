@@ -1,104 +1,120 @@
 // pages/myIndex/myindex/myindex.js
 var app = getApp()
 Page({
-
-    /**
-     * 页面的初始数据
-     */
-    data: {
-        hasAnnounce:false,
-        announcementMessage:[
-            "易点高校生活服务平台正式上线！",
-            "易点在线小助手，解决您的大学日常生活！"
-        ],
-        ads:[
-            "/images/myindex/adbg1.png",
-            "/images/myindex/adbg1.png",
-            "/images/myindex/adbg1.png"
-        ],
-        navs:[{
-            imgurl:"/images/icon/rent_icon.png",
-            name:"租赁闲置"
-        },{
-            imgurl:"/images/icon/car_icon.png",
-            name:"易点出行"
-        },{
-            imgurl:"/images/icon/edu_icon.png",
-            name:"教育培训"
-        },{
+  data: {
+    hasAnnounce: false, //是否有新公告
+    announcementMessage: [//公告
+          "易点高校生活服务平台正式上线！",
+          "易点在线小助手，解决您的大学日常生活！"
+      ],
+      
+    ads: [//轮播图
+          "/images/myindex/adbg1.png",
+          "/images/myindex/adbg1.png",
+          "/images/myindex/adbg1.png"
+      ],
+      //菜单数据
+    navs: [  //菜单数据
+        {
+          imgurl:"/images/icon/rent_icon.png",
+          name:"租赁闲置"
+        },
+        {
+          imgurl:"/images/icon/car_icon.png",
+          name:"易点出行"
+        },
+        {
+          imgurl:"/images/icon/edu_icon.png",
+          name:"教育培训"
+        },
+        {
             imgurl:"/images/icon/travel_icon.png",
             name:"旅游住宿"
-        },{
+        },
+        {
             imgurl:"/images/icon/partime_icon.png",
             name:"兼职实习"
-        },{
+        },
+        {
             imgurl:"/images/icon/food_icon.png",
             name:"娱乐美食"
-        }],
-        hot_list:[{
-            imgUrl:"/images/ads/rujiahotel.png",
-            recentHotName:"如家酒店",
-            price:"398"
-        }, {
-            imgUrl: "/images/ads/rujiahotel.png",
-            recentHotName: "如家酒店",
-            price: "398"
-          }, {
-            imgUrl: "/images/ads/rujiahotel.png",
-            recentHotName: "如家酒店",
-            price: "398"
-          }, {
-            imgUrl: "/images/ads/rujiahotel.png",
-            recentHotName: "如家酒店",
-            price: "398"
-          }, {
-            imgUrl: "/images/ads/rujiahotel.png",
-            recentHotName: "如家酒店",
-            price: "398"
-          }, {
-            imgUrl: "/images/ads/rujiahotel.png",
-            recentHotName: "如家酒店",
-            price: "398"
-          }]
+        }
+      ],
+      
+    hot_list: [//近期热门数据
+        {
+          imgUrl:"/images/ads/rujiahotel.png",
+          recentHotName:"如家酒店",
+          price:"398"
+        }, 
+        {
+          imgUrl: "/images/ads/rujiahotel.png",
+          recentHotName: "如家酒店",
+          price: "398"
+        }, 
+        {
+          imgUrl: "/images/ads/rujiahotel.png",
+          recentHotName: "如家酒店",
+          price: "398"
+        }, 
+        {
+          imgUrl: "/images/ads/rujiahotel.png",
+          recentHotName: "如家酒店",
+          price: "398"
+        }, 
+        {
+          imgUrl: "/images/ads/rujiahotel.png",
+          recentHotName: "如家酒店",
+          price: "398"
+        }, 
+        {
+          imgUrl: "/images/ads/rujiahotel.png",
+          recentHotName: "如家酒店",
+          price: "398"
+        }
+      ]
   },
+  //页面加载完毕执行函数(放在首位)
   onLoad: function (options) {
     var token = wx.getStorageSync("token");
     app.globalData.token = token;
     // this.getMessage();
     // this.getAnnouncements();
   },
-    jumpToDetail:function(e){
-        var id=e.currentTarget.dataset.index;
-        if(id==0){
-            wx.navigateTo({
-                url:'/pages/IdleAndRental/ldleRenIndex/ldleRenIndex',
-            })
-        }
-        else if(id==1){
-            wx.navigateTo({
-                url: '/pages/easyPointCar/bookTicket/bookTicket',
-            })
-        }
-        else if(id==2){
-            wx.navigateTo({
-                url: '/pages/educationTrain/edTraIndex/edTraIndex',
-            })
-        }
-        else if(id==3){
-            wx.navigateTo({
-                url: '',
-            })
-        }
-        else if(id==4){
-            wx.navigateTo({
-                url: '/pages/partInternJob/partimeJob/partimeJob',
-            })
-        }
-        else{
-            wx.navigateTo({
-                url: '',
-            })
-        }
+  jumpToDetail:function(e){
+      let id=e.currentTarget.dataset.index;
+      switch(id){
+        case 0:
+          wx.navigateTo({
+            url: '/pages/IdleAndRental/ldleRenIndex/ldleRenIndex',
+          })
+          break;
+        case 1:
+          wx.navigateTo({
+            url: '/pages/easyPointCar/bookTicket/bookTicket',
+          })
+          break;
+        case 2:
+          wx.navigateTo({
+            url: '/pages/educationTrain/edTraIndex/edTraIndex',
+          })
+          break;
+        case 3:
+          wx.navigateTo({
+            url: '',
+          })
+          break;
+        case 4:
+          wx.navigateTo({
+            url: '/pages/partInternJob/partimeJob/partimeJob',
+          })
+          break;
+        case 5:
+          wx.navigateTo({
+            url: '',
+          })
+          break;
+      }
     },
     toHotDetail:function(e){
         var index=e.currentTarget.dataset.index;
@@ -156,52 +172,4 @@ Page({
       }
     })
   },
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    }
 })

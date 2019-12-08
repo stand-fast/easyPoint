@@ -5,50 +5,50 @@ var judgePersonInfor = require('../../../utils/judgePersonInfor.js');//判断是
 var timePicker = require('../../../utils/timePicker.js');//时间选择控件
 const app = getApp()
 Page({
-    data: {
-        currentTab: 0,//选项卡0：旅游出行，1：校友会包车
-        dateTimeArray: null,//时间控件-开始时间数组
-        money: 0,//旅游出行-定金
-        insucheck: false,//旅游出行-是否购买保险
-        radioStatus: false,//旅游出行-是否往返
-        successShowmodal:false,//支付成功是否弹窗
-        is_back:0,//是否往返数据
-        is_insurance:0,//是否购买保险数据
-        imgUrls: [//轮播图
-            "/images/bg1_car.png",
-            "/images/bg2_car.png"
-        ],
-        associationsList: [//同乡会名称数据
-          {
-            associationId: "12312",
-            associationName:"汕头同乡会"
-          },
-          {
-            associationId: "6423123123",
-            associationName: "潮州同乡会"
-          },
-          {
-            associationId: "54386673123123",
-            associationName: "普宁同乡会"
-          },
-        ],
-        seatvehicleList: [//车辆类型数据
-          {
-            vehicleId: "2412624",
-            vehicleType: "7座大巴",
-            deposit: "100"
-          },
-          {
-            vehicleId: "88789624",
-            vehicleType: "35座大巴",
-            deposit: "200"
-          },
-          {
-            vehicleId: "745624",
-            vehicleType: "53座大巴",
-            deposit: "700"
-          },
-        ],
+  data: {
+    currentTab: 0,//选项卡0：旅游出行，1：校友会包车
+    dateTimeArray: null,//时间控件-开始时间数组
+    money: 0,//旅游出行-定金
+    insucheck: false,//旅游出行-是否购买保险
+    radioStatus: false,//旅游出行-是否往返
+    successShowmodal:false,//支付成功是否弹窗
+    is_back:0,//是否往返数据
+    is_insurance:0,//是否购买保险数据
+    imgUrls: [//轮播图
+        "/images/bg1_car.png",
+        "/images/bg2_car.png"
+    ],
+    associationsList: [//同乡会名称数据
+      {
+        associationId: "12312",
+        associationName:"汕头同乡会"
+      },
+      {
+        associationId: "6423123123",
+        associationName: "潮州同乡会"
+      },
+      {
+        associationId: "54386673123123",
+        associationName: "普宁同乡会"
+      },
+    ],
+    seatvehicleList: [//车辆类型数据
+      {
+        vehicleId: "2412624",
+        vehicleType: "7座大巴",
+        deposit: "100"
+      },
+      {
+        vehicleId: "88789624",
+        vehicleType: "35座大巴",
+        deposit: "200"
+      },
+      {
+        vehicleId: "745624",
+        vehicleType: "53座大巴",
+        deposit: "700"
+      },
+    ],
   },
   //页面加载完毕执行函数(放在首位)
   onLoad: function (options) {

@@ -2,8 +2,8 @@
 <view class="order_status">{{rentDetail.orderStatus}}</view>
 <view class="order_rent_host_item">
         <view class="item_list_text">订单用户</view>
-        <view class="item_list_orderHostname">{{ hostItem.orderHostName}}</view>
-        <view class="item_list_orderHostPhone">{{ hostItem.orderHostPhone}}</view>
+        <view class="item_list_orderHostname">{{ rentDetail.orderHostName}}</view>
+        <view class="item_list_orderHostPhone">{{ rentDetail.orderHostPhone}}</view>
 </view>
 <view class="order_rent_detail_item">
     <view class="shopname">{{rentDetail.shopName}} ></view>

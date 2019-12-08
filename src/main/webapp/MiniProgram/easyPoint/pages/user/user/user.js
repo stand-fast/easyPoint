@@ -2,8 +2,7 @@
 var app = getApp();
 Page({
   data: {
-    //订单选项数据
-    order_lists: [
+    order_lists: [ //订单选项数据
       {
           url:"/images/icon/user_signup.png",
           text:"我的报名"
@@ -17,8 +16,7 @@ Page({
           text: "我的发布"
       }
     ],
-    //其他栏目选项数据
-    item_lists: [
+    item_lists: [ //其他栏目选项数据
       {
         icon:"/images/icon/user_perinfos.png",
         text:"个人信息",
@@ -45,10 +43,8 @@ Page({
           url:""
       }
     ],
-    //登陆加锁
-    isLogin:false,
-    //是否有个人信息
-    isUserInformation:true,
+    isLogin: false,//登陆加锁  
+    isUserInformation: true,//是否有个人信息
   },
   //页面加载完毕执行函数(放在首位)
   onLoad: function (options) {

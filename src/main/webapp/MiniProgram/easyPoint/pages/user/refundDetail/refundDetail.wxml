@@ -36,5 +36,5 @@
     </view>
 </view>
 <view class="footer_btn">
-    <button style="border-color:{{btnColor}};color:{{btnColor}}" disabled="{{refundDetail.refund_status==2}}" bindtap="jumptoRefund">{{btnWord}}</button>
+    <button v-if="{{refundDetail.state==5}}" bindtap="jumptoRefund">取消退款</button>
 </view>

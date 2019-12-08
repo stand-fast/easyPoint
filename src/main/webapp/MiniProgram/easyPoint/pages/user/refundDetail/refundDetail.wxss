@@ -106,7 +106,8 @@ Page{
     margin: auto 0;
     text-align: center;
     margin-right: 50rpx;
-    border: 1rpx solid;
+    border: 1rpx solid #56b4f6;
+    color:#56b4f6;
 }
 .footer_btn button::after{
     border: none;
