@@ -25,7 +25,6 @@ Page({
         isbutton: true,
       })
     }
-    console.log(userData);
     if (userData == "") {
       // this.getMessage();              //请求用户个人信息函数
     }

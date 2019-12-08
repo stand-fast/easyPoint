@@ -60,10 +60,6 @@ Page({
   },
   //页面加载完毕执行函数(放在首位)
   onLoad: function (options) {
-    var obj = wx.getStorageSync("token");
-    this.setData({
-      token: obj.token,
-    })
     var type = options.type;
     this.getMessage(type);
   },
@@ -114,9 +110,6 @@ Page({
     wx.request({
       url: app.globalData.requestUrl+'findTravelOrder',
       method: 'get',
-      data:{
-        uid: app.globalData.uid,
-      },
       header: { 'content-type': 'application/x-www-form-urlencoded',token},
       success: function (res) {
         //console.log(res);

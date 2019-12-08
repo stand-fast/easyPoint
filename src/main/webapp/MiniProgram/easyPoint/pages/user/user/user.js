@@ -104,18 +104,25 @@ Page({
     })
   },
   //进入个人信息编辑界面
-  toEditUserInfos:function(){     
-    switch (this.data.isUserInformation){
-      case true:
-        wx.navigateTo({
-          url: '/pages/user/editInformation/editInformation?judge=' + 0
-        })
-        break;
-      case false:
-        wx.navigateTo({
-          url: '/pages/user/editInformation/editInformation?judge=' + 1
-        })
-        break;
+  toEditUserInfos: function () {
+    if (this.data.isLogin) {     
+      switch (this.data.isUserInformation){
+        case true:
+          wx.navigateTo({
+            url: '/pages/user/editInformation/editInformation?judge=' + 0
+          })
+          break;
+        case false:
+          wx.navigateTo({
+            url: '/pages/user/editInformation/editInformation?judge=' + 1
+          })
+          break;
+      }
+    } else {
+      wx.showToast({
+        title: '请先授权登陆',
+        icon: "none"
+      })
     }
   },
   //进入订单界面 1：我的报名，2：我的订单，3：我的发布

@@ -1,11 +1,14 @@
 <!--pages/user/refundDetail/refundDetail.wxml-->
 <view class="refund_status">退款状态：  
-    <text>{{refundDetail.refundStatusWord}}</text>
+    <text wx:if="{{refundDetail.state == 5}}">订单退款中</text>
+    <text wx:elif="{{refundDetail.state == 6}}">订单已退款</text>
+    <text wx:elif="{{refundDetail.state == 7}}">订单退款失败</text>
+    <text wx:elif="{{refundDetail.state == 8}}">订单已取消</text>
 </view>
 
 <!-- 订单编号与时间 -->
 <view class="refund_order">
-    <view class="refund_order_item">订单编号：  {{refundDetail.travelOrderId}}</view>
+    <view class="refund_order_item">订单编号：  {{travelOrderId}}</view>
     <view class="refund_order_item">退款时间：  {{refundDetail.refundTime}}</view>
 </view>
 

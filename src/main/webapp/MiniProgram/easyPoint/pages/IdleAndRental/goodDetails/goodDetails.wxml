@@ -41,7 +41,7 @@
                 <view class="title">种类：</view>
             </view>
             <view class="last">
-                <view wx:for="{{good_details_info.variety}}" wx:key="{{index}}" wx:for-item="item">
+                <view wx:for="{{good_details_info.variety}}" wx:key="key" wx:for-item="item">
                     <view class="goodtype_list">{{item}}</view>
                 </view>
             </view>

@@ -7,12 +7,6 @@ Page({
      */
     data: {
         current:"0",
-        //底部状态栏变化
-        refund_border_color:"#56b4f6",
-        time_border_color:"#56b4f6",
-        time_disabled:false,
-        refund_disabled:false,
-        applyRefundWord:"申请退款",
         ticketDetail:{
           //乡会车票订单信息
             ticketId:"121312312",
@@ -42,95 +36,74 @@ Page({
             driverPhone:"12345678910",
             licensePlateNumber:"粤A5910"
         }
-    }, 
-    applyRefund:function(){
-      if(this.data.applyRefundWord=="申请退款"){
-          wx.navigateTo({
-              url: '/pages/user/refund/refund?travelOrderId=' + this.data.travelOrderId,
-          })
-      }else{
-          wx.navigateTo({
-              url: '/pages/user/refundDetail/refundDetail?travelOrderId=' + this.data.travelOrderId,
-          })
-      }
-    },
-    changeTime:function(){
-      wx.navigateTo({
-          url: '/pages/user/changeTime/changeTime?current=' + this.data.current,
-      })
-    },
-    onLoad: function (options) {
-      var current = options.current;
-      //乡会车票详情数据-暂时不动
-      if (current == 0) {
-        var myOrderRentalCar = wx.getStorageSync('myOrderRentalCar');
-        console.log(myOrderRentalCar)
-        var ticketId = options.ticketId;
+  },
+  //页面加载完毕执行函数(放在首位)
+  onLoad: function (options) {
+    var current = options.current;
+    //乡会车票详情数据-暂时不动
+    if (current == 0) {
+      var myOrderRentalCar = wx.getStorageSync('myOrderRentalCar');
+      console.log(myOrderRentalCar)
+      var ticketId = options.ticketId;
 
-        //判断是正式票还是预约票,并获取上个界面的数据
-        this.setData({
-          current:0,
-          type:options.type,
-          departurePlace:myOrderRentalCar.departurePlace,
-          departureTime: myOrderRentalCar.departureTime,
-          destination: myOrderRentalCar.destination,
-          ticketNum: myOrderRentalCar.ticketNum
-        })
-        console.log(ticketId);
-        //this.getMessage(ticketId);
-        
-        //计算合计总价接上服务器后删除
-        var data = this.data.ticketDetail;
-        var sumDeposit = data.ticketNum * 10
-        if (data.isInsurance==1){
-          this.setData({
-            sumDeposit: sumDeposit,
-            totalPrice: sumDeposit + data.ticketNum * data.price,
-          })
-        } else {
-          this.setData({
-            totalPrice: data.ticketNum * data.price,
-          })
-        }
-      }
-      //租车车票详情数据
-      else if (current == 1) {
-        var myOrderRentalCar = wx.getStorageSync('myOrderRentalCar');
-        var travelOrderId = myOrderRentalCar.travelOrderId;
-        this.setData({
-          travelOrderId :travelOrderId,
-          departurePlace: myOrderRentalCar.departurePlace,
-          destination: myOrderRentalCar.destination,
-          departureTime: myOrderRentalCar.departureTime,
-          travelNum: myOrderRentalCar.travelNum,
-          state: myOrderRentalCar.state,
-          current: 1,
-        })
-        this.getMessageRentalCar(travelOrderId);
-      }
-      //底部栏状态变化
-      var refund_border_color=this.data.refund_border_color;
-      var time_border_color=this.data.time_border_color;
-      var refund_disabled=this.data.refund_disabled;
-      var time_disabled=this.data.time_disabled;
-      var carOrderStatus=this.data.ticketDetail.carOrderStatus;
-      if (carOrderStatus=="订单已安排"){
-          refund_border_color="#999",
-          refund_disabled=true
-      }else if(carOrderStatus=="订单未安排"){
-          refund_border_color="#56b4f6",
-          time_border_color= "#56b4f6"
-      }else{
-          refund_border_color = "#999",
-          time_border_color = "#999",
-          time_disabled=true,
-          refund_disabled=true
-      }
+      //判断是正式票还是预约票,并获取上个界面的数据
       this.setData({
-          refund_border_color:refund_border_color,
-          time_border_color:time_border_color,
-          refund_disabled:refund_disabled,
-          time_disabled:time_disabled
+        current: 0,
+        type: options.type,
+        departurePlace: myOrderRentalCar.departurePlace,
+        departureTime: myOrderRentalCar.departureTime,
+        destination: myOrderRentalCar.destination,
+        ticketNum: myOrderRentalCar.ticketNum
+      })
+      console.log(ticketId);
+      //this.getMessage(ticketId);
+
+      //计算合计总价接上服务器后删除
+      var data = this.data.ticketDetail;
+      var sumDeposit = data.ticketNum * 10
+      if (data.isInsurance == 1) {
+        this.setData({
+          sumDeposit: sumDeposit,
+          totalPrice: sumDeposit + data.ticketNum * data.price,
+        })
+      } else {
+        this.setData({
+          totalPrice: data.ticketNum * data.price,
+        })
+      }
+    }
+    //租车车票详情数据
+    else if (current == 1) {
+      var myOrderRentalCar = wx.getStorageSync('myOrderRentalCar');
+      var travelOrderId = myOrderRentalCar.travelOrderId;
+      this.setData({
+        travelOrderId: travelOrderId,
+        departurePlace: myOrderRentalCar.departurePlace,
+        destination: myOrderRentalCar.destination,
+        departureTime: myOrderRentalCar.departureTime,
+        travelNum: myOrderRentalCar.travelNum,
+        state: myOrderRentalCar.state,
+        current: 1,
+      })
+      this.getMessageRentalCar(travelOrderId);
+    }
+  },
+  //跳转订单退款状态页面
+  toRefundStatus:function(){
+    wx.navigateTo({
+      url: '/pages/user/refundDetail/refundDetail?travelOrderId=' + this.data.travelOrderId,
+    })
+  },
+  //跳转申请退款页面
+  toRefund:function(){
+    wx.navigateTo({
+      url: '/pages/user/refund/refund?travelOrderId=' + this.data.travelOrderId,
+    })
+  },
+  //跳转租车订单-更换时间
+  rentalChangeTime:function(){
+      wx.navigateTo({
+        url: '/pages/user/changeTime/changeTime?current=' + this.data.current + '&&travelOrderId=' + this.data.travelOrderId ,
       })
   },
   //获得乡会车票订单数据-暂时不动

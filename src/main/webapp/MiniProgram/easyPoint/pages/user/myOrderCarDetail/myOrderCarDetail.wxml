@@ -87,6 +87,7 @@
 
 <!-- 底部栏退款和更换时间 -->
 <view class="button_footer">
-    <button bindtap="changeTime" style="border-color:{{time_border_color}};color:{{time_border_color}}" disabled="{{time_disabled}}">更换时间</button>
-    <block wx:if="{{current == 1}}"><button bindtap="applyRefund" style="border-color:{{refund_border_color}};color:{{refund_border_color}}" disabled="{{refund_disabled}}">{{applyRefundWord}}</button></block>
+    <button  wx:if="{{current == 1 && state == 0}}" bindtap="rentalChangeTime">更换时间</button>
+    <block wx:if="{{current == 1 && state == 0 || state == 1 || state == 3}}"><button bindtap="toRefund"  >申请退款</button></block>
+    <block wx:if="{{current == 1 && state == 2 || state == 6 || state == 7 || statr == 8}}"><button bindtap="toRefundStatus">退款状态</button></block>
 </view>

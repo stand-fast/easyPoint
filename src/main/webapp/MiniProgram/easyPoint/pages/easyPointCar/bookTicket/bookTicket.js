@@ -1,13 +1,12 @@
 // pages/easyPointCar/bookTicket/bookTicket.js
-var dateTimePicker = require('../../../utils/dateTimePicker.js');//获取开始时间控件
+var dateTimePicker = require('../../../utils/dateTimePicker.js');//获取开始时间控件、开始时间数组
 var getUserInformation = require('../../../utils/getUserInfor.js');//获取个人信息
 var judgePersonInfor = require('../../../utils/judgePersonInfor.js');//判断是否填写有个人信息
-var timePicker = require('../../../utils/timePicker.js');//判断是否填写有个人信息
+var timePicker = require('../../../utils/timePicker.js');//时间选择控件
 const app = getApp()
 Page({
     data: {
         currentTab: 0,//选项卡0：旅游出行，1：校友会包车
-        dateTime: null,//时间控件-开始时间value
         dateTimeArray: null,//时间控件-开始时间数组
         money: 0,//旅游出行-定金
         insucheck: false,//旅游出行-是否购买保险
