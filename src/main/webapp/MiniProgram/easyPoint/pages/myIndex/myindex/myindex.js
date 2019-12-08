@@ -60,7 +60,13 @@ Page({
             recentHotName: "如家酒店",
             price: "398"
           }]
-    },
+  },
+  onLoad: function (options) {
+    var token = wx.getStorageSync("token");
+    app.globalData.token = token;
+    // this.getMessage();
+    // this.getAnnouncements();
+  },
     jumpToDetail:function(e){
         var id=e.currentTarget.dataset.index;
         if(id==0){
@@ -116,13 +122,6 @@ Page({
             url: '/pages/myIndex/search/search',
         })
     },
-    /**
-     * 生命周期函数--监听页面加载
-     */
-  onLoad: function (options) {
-    // this.getMessage();
-    // this.getAnnouncements();
-  },
   //获得数据
   getMessage: function () {
     var selt = this;

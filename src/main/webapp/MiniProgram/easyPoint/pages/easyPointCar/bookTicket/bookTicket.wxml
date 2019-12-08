@@ -2,7 +2,7 @@
 <view class="header">
     <view class="kong"></view>
     <swiper autoplay="true" interval="5000" duration="2000" circular="true" class="swiper_images">
-        <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+        <block wx:for="{{imgUrls}}" wx:key="key">
             <swiper-item>
                 <image src="{{item}}" class="slide-image"/>
             </swiper-item>
@@ -44,7 +44,7 @@
                 <view class="heng"></view>
                 <view class="formContent">
                     <view class="formTitle">出发时间</view>
-                    <picker mode="multiSelector" value="{{dateTime}}" bindchange="changeStartDateTime"  range="{{dateTimeArray}}">
+                    <picker mode="multiSelector" value="{{getStartTime}}" bindchange="changeStartDateTime"  range="{{dateTimeArray}}">
                         <input wx:if="{{!successShowmodal}}" value="{{startTime}}" placeholder="请选择出发时间" placeholder-class="placehold" disabled="true"  name="goTime"></input>
                     </picker>
                     <image class="cnimg" src="/images/icon/calendar.png"></image>
@@ -56,7 +56,7 @@
                     </view>
                     <view class="formTitle wang">往返</view>
                     <view wx:if="{{radioStatus}}">
-                        <picker mode="multiSelector" value="{{dateTime}}" bindchange="changereturnDateTime" range="{{dateTimeArray}}">
+                        <picker mode="multiSelector" value="{{getStartTime}}" bindchange="changereturnDateTime" range="{{dateTimeArray}}">
                             <input value="{{returnTime}}" placeholder="请选择返回时间" placeholder-class="placehold" disabled="true" name="returnTime" ></input>
                         </picker>
                     </view>

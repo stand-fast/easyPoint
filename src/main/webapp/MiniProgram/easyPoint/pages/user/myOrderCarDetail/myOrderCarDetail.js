@@ -13,7 +13,6 @@ Page({
         time_disabled:false,
         refund_disabled:false,
         applyRefundWord:"申请退款",
-
         ticketDetail:{
           //乡会车票订单信息
             ticketId:"121312312",
@@ -42,13 +41,7 @@ Page({
             driverName:"",
             driverPhone:"12345678910",
             licensePlateNumber:"粤A5910"
-        },
-        carOrderStatusList:[
-            "订单未安排",
-            "订单已安排",
-            "订单已退款",
-            "订单已完成",
-        ]
+        }
     }, 
     applyRefund:function(){
       if(this.data.applyRefundWord=="申请退款"){
@@ -194,53 +187,4 @@ Page({
       }
     })
   },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    }
 })

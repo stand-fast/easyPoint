@@ -88,8 +88,8 @@ Page({
                     nickName: userdata.nickName,
                     avatarUrl: userdata.avatarUrl
                   })
-                  app.globalData.uid = userdata.uid;
                   app.globalData.token = res.data.token;
+                  wx.setStorageSync("token", res.data.token);
                 },
                 fail:function(){
                   wx.showToast({

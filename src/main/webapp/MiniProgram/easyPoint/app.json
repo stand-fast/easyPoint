@@ -1,10 +1,10 @@
 {
     "pages": [
+      "pages/myIndex/myindex/myindex",
       "pages/user/user/user",
       "pages/user/editInformation/editInformation",
       "pages/user/myOrder/myOrder",
       "pages/IdleAndRental/editInformation/editInformation",
-        "pages/myIndex/myindex/myindex",
         "pages/easyPointCar/bookTicket/bookTicket",
         "pages/user/refund/refund",
         "pages/user/refundDetail/refundDetail",

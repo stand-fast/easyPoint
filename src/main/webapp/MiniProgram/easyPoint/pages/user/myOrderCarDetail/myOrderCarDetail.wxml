@@ -2,7 +2,15 @@
 <!-- 订单状态-未完待定 -->
 <view class="car_order_status">
     <text wx:if="{{current == 0 }}">{{ticketDetail.carOrderStatus}}</text>
-    <text wx:if="{{current == 1 && state == 2}}">已付定金</text>
+    <text wx:if="{{current == 1 && state == 0}}">订单未安排</text>
+    <text wx:elif="{{current == 1 && state == 1}}">订单已安排</text>
+    <text wx:elif="{{current == 1 && state == 2}}">订单已完成</text>
+    <text wx:elif="{{current == 1 && state == 3}}">订单已付款</text>
+    <text wx:elif="{{current == 1 && state == 4}}">订单已预约</text>
+    <text wx:elif="{{current == 1 && state == 5}}">订单退款中</text>
+    <text wx:elif="{{current == 1 && state == 6}}">订单已退款</text>
+    <text wx:elif="{{current == 1 && state == 7}}">订单退款失败</text>
+    <text wx:elif="{{current == 1 && state == 8}}">订单已取消</text>
 </view>
 <view class="hr"></view>
 <view class="header">
@@ -79,6 +87,6 @@
 
 <!-- 底部栏退款和更换时间 -->
 <view class="button_footer">
-        <button bindtap="changeTime" style="border-color:{{time_border_color}};color:{{time_border_color}}" disabled="{{time_disabled}}">更换时间</button>
+    <button bindtap="changeTime" style="border-color:{{time_border_color}};color:{{time_border_color}}" disabled="{{time_disabled}}">更换时间</button>
     <block wx:if="{{current == 1}}"><button bindtap="applyRefund" style="border-color:{{refund_border_color}};color:{{refund_border_color}}" disabled="{{refund_disabled}}">{{applyRefundWord}}</button></block>
 </view>

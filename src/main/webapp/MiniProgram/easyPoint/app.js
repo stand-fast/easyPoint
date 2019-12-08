@@ -34,8 +34,6 @@ App({
     })
   },
   globalData: {
-    uid: null,//用户id
-    userdata: null,//用户个人数据
     token: null,//头部携带token
     requestUrl: 'https://easypoint.club/miniProgram/',//公用请求路径
     userInfo: null, 
