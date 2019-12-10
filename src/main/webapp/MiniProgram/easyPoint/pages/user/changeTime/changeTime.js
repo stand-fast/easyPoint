@@ -1,6 +1,6 @@
 // pages/user/changeTime/changeTime.js
-var dateTimePicker = require('../../../utils/dateTimePicker.js');//获取开始时间控件、开始时间数组
-var timePicker = require('../../../utils/timePicker.js');//时间选择控件
+let dateTimePicker = require('../../../utils/dateTimePicker.js');//获取开始时间控件、开始时间数组
+let timePicker = require('../../../utils/timePicker.js');//时间选择控件
 const app = getApp()
 Page({
   data: {
@@ -15,7 +15,7 @@ Page({
   //页面加载完毕执行函数(放在首位)
   onLoad: function (options) {
     this.timeSelection();//时间选择控件
-    var current = options.options;
+    let current = options.options;
     this.setData({
       current,
     })
@@ -45,25 +45,37 @@ Page({
   },
   //乡会-更换时间-暂定
   selectTime: function (e) {
-      var index = e.detail.value;
-      var time = this.data.selectTimeList[index];
-      this.setData({
-          startTime:time
-      })
+    let index = e.detail.value;
+    let time = this.data.selectTimeList[index];
+    this.setData({
+        startTime:time
+    })
   },
   //租车提交数据
   rentalSubmit:function(){
-      var token = app.globalData.token;
-      wx.request({
-          url: "",
-          data: {
-              startTime:this.data.startTime
-          },
-          method: 'Post',
-          header: { 'content-type': 'application/x-www-form-urlencoded', token },
-          success: function (res) {
-
-          }
-     })
+    let token = app.globalData.token;
+    wx.request({
+      url: "",
+      data: {
+          startTime:this.data.startTime
+      },
+      method: 'Post',
+      header: { 'content-type': 'application/x-www-form-urlencoded', token },
+      success: function (res) {
+        let code = res.data.code;
+        if (res.header.token != undefined) {
+          app.replaceToken(res.header.token);
+        }
+        switch (code) {
+          case 200:
+            break;
+          case 201:
+            break;
+          case 501:
+            app.getPermission();
+            break;
+        }
+      }
+    })
   },
 })

@@ -1,8 +1,8 @@
 // pages/easyPointCar/bookTicket/bookTicket.js
-var dateTimePicker = require('../../../utils/dateTimePicker.js');//获取开始时间控件、开始时间数组
-var getUserInformation = require('../../../utils/getUserInfor.js');//获取个人信息
-var judgePersonInfor = require('../../../utils/judgePersonInfor.js');//判断是否填写有个人信息
-var timePicker = require('../../../utils/timePicker.js');//时间选择控件
+let dateTimePicker = require('../../../utils/dateTimePicker.js');//获取开始时间控件、开始时间数组
+let getUserInformation = require('../../../utils/getUserInfor.js');//获取个人信息
+let judgePersonInfor = require('../../../utils/judgePersonInfor.js');//判断是否填写有个人信息
+let timePicker = require('../../../utils/timePicker.js');//时间选择控件
 const app = getApp()
 Page({
   data: {
@@ -57,13 +57,70 @@ Page({
     this.timeSelection();//时间选择控件
 
     //同乡会数据处理，接上服务器后删除
-    var associations = this.data.associationsList;
-    var associationsName = [];
-    for (var i = 0; i < associations.length; i++) {
+    let associations = this.data.associationsList;
+    let associationsName = [];
+    for (let i = 0; i < associations.length; i++) {
       associationsName.push(associations[i].associationName)
     }
     this.setData({
       associations: associationsName,
+    })
+  },
+  //请求车辆类型数据以及对应应付定金
+  getMessage: function () {
+    let that = this;
+    let token = app.globalData.token;
+    wx.request({
+      url: app.globalData.requestUrl + 'findAllVehicleType',
+      method: 'Post',
+      header: { 'content-type': 'application/x-www-form-urlencoded', token },
+      success: function (res) {
+        let code = res.data.code;
+        if (res.header.token != undefined) {
+          app.replaceToken(res.header.token);
+        }
+        switch(code){
+          case 200:
+            let seatvehicle = res.data.data;
+            let seatNumber = [];
+            let seatDeposit = [];
+            for (let i = 0; i < seatvehicle.length; i++) {
+              seatNumber.push(seatvehicle[i].vehicleType)
+              seatDeposit.push(seatvehicle[i].deposit);
+            }
+            that.setData({
+              seatvehicleList: seatvehicle,
+              seatNumber: seatNumber,
+              seatDeposit: seatDeposit
+            })
+            break;
+          case 501:
+            app.getPermission();
+            break;
+        }
+      }
+    })
+  },
+  //请求同乡会名称数据
+  getCommitteeMessage: function () {
+    let token = app.globalData.token;
+    wx.request({
+      url: '接口路径',
+      method: 'get',
+      header: { 'content-type': 'application/x-www-form-urlencoded', token },
+      success: function (res) {
+        console.log(res.data)
+        let associations = res.data;
+        let associationsName = [];
+        for (let i = 0; i < associations.length; i++) {
+          associationsName.push(associations[i].associationName)
+        }
+        this.setData({
+          associationsList: res.data,
+          associations: associationsName,
+        })
+
+      }
     })
   },
   //初始化时间选择控件-获取时间数组以及当下时间
@@ -84,7 +141,7 @@ Page({
   },
   //选项卡切换
   swichNav: function (e) {
-    var that = this;
+    let that = this;
     if (this.data.currentTab === e.target.dataset.current){
       return false;
     }
@@ -96,7 +153,7 @@ Page({
   },
   //判断是否往返选择
   radiochange: function (e) {
-    var radioStatus = !this.data.radioStatus;
+    let radioStatus = !this.data.radioStatus;
     if (radioStatus == true) {
       this.setData({
         is_back: 1,
@@ -111,8 +168,8 @@ Page({
   },
   //选择车辆类型
   changeSeatType:function(e){
-    var index = e.detail.value;
-    var vehicleId = this.data.seatvehicleList[index].vehicleId
+    let index = e.detail.value;
+    let vehicleId = this.data.seatvehicleList[index].vehicleId
       this.setData({
           carType:this.data.seatNumber[index],
           money: this.data.seatDeposit[index],
@@ -133,7 +190,7 @@ Page({
   },
   //是否购买保险
   insuChange: function (e) {
-    var insucheck = this.data.insucheck;
+    let insucheck = this.data.insucheck;
     this.setData({
       insucheck: !insucheck,
     })
@@ -149,9 +206,9 @@ Page({
   },
   //选择同乡会名称
   selectAssoName: function (e) {
-    var index = e.detail.value;
-    var name=this.data.associationsList[index].associationName;
-    var associationId = this.data.associationsList[index].associationId;
+    let index = e.detail.value;
+    let name=this.data.associationsList[index].associationName;
+    let associationId = this.data.associationsList[index].associationId;
     //判断车票类型
     this.setData({
           assoName: name,
@@ -175,8 +232,8 @@ Page({
   },
   //提交拉起支付功能
   formSubmit: function (e) {
-    var that = this;
-    var token = app.globalData.token;
+    let that = this;
+    let token = app.globalData.token;
     if (token) {
       if (judgePersonInfor.judege()) {
         if (e.detail.value.startAddress == "") {
@@ -252,15 +309,15 @@ Page({
             method: 'Post',
             header: { 'content-type': 'application/x-www-form-urlencoded', token },
             success: function (res) {
-              var pay = res.data
+              let pay = res.data
               console.log(pay)
               //发起支付 
-              var timeStamp = pay.data.timeStamp + "";
+              let timeStamp = pay.data.timeStamp + "";
               console.log(timeStamp)
-              var packages = pay.data.packages;//统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=***
-              var paySign = pay.data.paySign;//paySign = MD5(appId=wxd678efh567hg6787&nonceStr=5K8264ILTKCH16CQ2502SI8ZNMTM67VS&package=prepay_id=wx2017033010242291fcfe0db70013231072&signType=MD5&timeStamp=1490840662&key=qazwsxedcrfvtgbyhnujmikolp111111) = 22D9B4E54AB1950F51E0649E8810ACD6
-              var nonceStr = pay.data.nonceStr;//随机字符串，长度为32个字符以下
-              var param = { "timeStamp": timeStamp, "package": packages, "paySign": paySign, "signType": "MD5", "nonceStr": nonceStr };
+              let packages = pay.data.packages;//统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=***
+              let paySign = pay.data.paySign;//paySign = MD5(appId=wxd678efh567hg6787&nonceStr=5K8264ILTKCH16CQ2502SI8ZNMTM67VS&package=prepay_id=wx2017033010242291fcfe0db70013231072&signType=MD5&timeStamp=1490840662&key=qazwsxedcrfvtgbyhnujmikolp111111) = 22D9B4E54AB1950F51E0649E8810ACD6
+              let nonceStr = pay.data.nonceStr;//随机字符串，长度为32个字符以下
+              let param = { "timeStamp": timeStamp, "package": packages, "paySign": paySign, "signType": "MD5", "nonceStr": nonceStr };
               that.pay(param);
             },
             fail: function () {
@@ -298,67 +355,6 @@ Page({
       },
       complete: function (res) {
         console.log("pay complete");
-      }
-    })
-  },
-  //请求车辆类型数据以及对应应付定金
-  getMessage: function () {
-      var selt = this;
-      var token = app.globalData.token;
-      wx.request({
-        url: app.globalData.requestUrl+'findAllVehicleType',
-        method: 'Post',
-        header: { 'content-type': 'application/x-www-form-urlencoded',token},
-        success: function (res) {
-          console.log(res);
-          if (res.header.token != undefined) {
-            let token = res.header.token;
-            wx.setStorageSync("token", res.header.token);
-            app.globalData.token = token;
-          }
-          if(res.data.code == 200){
-            var seatvehicle = res.data.data;
-            var seatNumber = [];
-            var seatDeposit = [];
-            for (var i = 0; i < seatvehicle.length; i++) {
-              seatNumber.push(seatvehicle[i].vehicleType)
-              seatDeposit.push(seatvehicle[i].deposit);
-            }
-            selt.setData({
-              seatvehicleList: seatvehicle,
-              seatNumber: seatNumber,
-              seatDeposit: seatDeposit
-            })
-          } else if (res.data.code == 501) {
-            wx.showToast({
-              title: '登录已经过期，请重新授权登录',
-              icon: "none"
-            })
-          }
-        }
-      })
-    },
-
-  //请求同乡会名称数据
-  getCommitteeMessage: function () {
-    var selt = this;
-    var token = app.globalData.token;
-    wx.request({
-      url: '接口路径',
-      method: 'get',
-      header: { 'content-type': 'application/x-www-form-urlencoded',token },
-      success: function (res) {
-        console.log(res.data)
-        var associations = res.data;
-        var associationsName = [];
-        for (var i = 0; i < associations.length; i++) {
-          associationsName.push(associations[i].associationName)
-        }
-        this.setData({
-          associationsList: res.data,
-          associations: associationsName,
-        })
-
       }
     })
   },

@@ -2,11 +2,11 @@
 const app = getApp()
 Page({
   data: {
-      success:false,//退款成功弹窗
+    success:false,//退款成功弹窗
   },
   //页面加载完毕执行函数(放在首位)
   onLoad: function (options) {
-    var obj = wx.getStorageSync("token");
+    let obj = wx.getStorageSync("token");
     this.setData({
       token: obj.token,
       travelOrderId: options.travelOrderId
@@ -15,8 +15,8 @@ Page({
   },
   //提交退款申请
   formSubmit: function (e) {     
-    var token = this.data.token;
-    var that = this;
+    let token = this.data.token;
+    let that = this;
     if (e.detail.value.reason==""){
       wx.showToast({
         title: '退款理由不能为空',
@@ -47,7 +47,7 @@ Page({
         },
         header: { 'content-type': 'application/x-www-form-urlencoded', token },
         success: function (res) {
-          var code = res.data.code;
+          let code = res.data.code;
           switch(code){
             case 200:
               wx.showToast({
@@ -82,8 +82,11 @@ Page({
                 duration: 2000
               })
               break;
-            }
+            case 501:
+              app.getPermission();
+              break;
           }
+        }
       })
     }
   },
@@ -113,6 +116,9 @@ Page({
             that.setData({
               reason: res.data.data.refundReason,
             })
+            break;
+          case 501:
+            app.getPermission();
             break;
         }
       }

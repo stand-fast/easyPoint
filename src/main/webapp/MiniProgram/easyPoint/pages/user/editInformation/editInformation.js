@@ -1,5 +1,5 @@
 // pages/user/editInformation/editInformation.js
-var app = getApp();
+let app = getApp();
 Page({
   data: {
     gradeSeclect: ["2016", "2017", "2018", "2019", "2020", "2021"],//选择年级
@@ -17,8 +17,8 @@ Page({
   },
   //页面加载完毕执行函数(放在首位)
   onLoad: function (options) {
-    var selt = this;
-    var userData = wx.getStorageSync('userInformation');
+    let that = this;
+    let userData = wx.getStorageSync('userInformation');
     if (options.judge == 1) {
       this.setData({
         isEdit: true,
@@ -29,7 +29,7 @@ Page({
       // this.getMessage();              //请求用户个人信息函数
     }
     else {
-      selt.setData({
+      that.setData({
         username: userData.username,
         gender: userData.gender,
         studentId: userData.studentId,
@@ -39,36 +39,136 @@ Page({
       })
     }
   },
+  //请求用户个人信息数据
+  getMessage: function () {
+    let that = this;
+    let token = app.globalData.token;
+    wx.request({
+      url: '接口路径',
+      method: 'Post',
+      header: { 'content-type': 'application/x-www-form-urlencoded' ,token},
+      success: function (res) {
+        if (res.data != '') {
+          console.log(res.data);
+          wx.setStorageSync("userInformation", res.data)
+          let data = res.data
+          that.setData({
+            username: userData.username,
+            gender: userData.gender,
+            studentId: userData.studentId,
+            grade: userData.grade,
+            major: userData.major,
+            phone: userData.phone,
+          })
+        }
+      },
+      fail: function () {
+        console.log("获取用户个人信息失败");
+      }
+    })
+  },
+  //点击获取验证码
+  getVerification: function (e) {
+    if (this.data.currentPhone == '') {
+      wx.showToast({
+        title: '手机号为空,请重新输入',
+        icon: "none",
+        duration: 2000
+      })
+    }
+    else if (this.data.currentPhone.length != "11") {
+      wx.showToast({
+        title: '手机号长度错误,请重新输入',
+        icon: "none",
+        duration: 2000
+      })
+    }
+    else if (!(/^1[3|4|5|6|7|8|9]\d{9}$/.test(this.data.currentPhone))) {
+      wx.showToast({
+        title: '手机号输入错误,请重新输入',
+        icon: "none",
+        duration: 2000
+      })
+    }
+    else {
+      let inter = setInterval(function () {
+        this.setData({
+          word: this.data.waitime + 's后重发',
+          waitime: this.data.waitime - 1,
+          disabled: true
+        });
+        if (this.data.waitime < 0) {
+          clearInterval(inter)
+          this.setData({
+            word: '重新获取',
+            waitime: 60,
+            disabled: false
+          });
+        }
+      }.bind(this), 1500);
+      let that = this;
+      let token = app.globalData.toen;
+      // wx.request({
+      //     url: '接口地址',
+      //     data: {
+      //         phone:that.data.currentPhone,
+      //     },
+      //     method: "POST",
+      //     header: {
+      //         'content-type': "application/x-www-form-urlencoded",token
+      //     },
+      //     success(res) {
+      //       wx.showToast({
+      //           title: '短信验证码发送成功，请注意查收',
+      //           duration:2000,
+      //           mask:true
+      //       })
+      //       that.setData({
+      //         phoneVerificationCode:res.data
+      //       })
+
+      //     },
+      //     fail(res){
+      //       wx.showToast({
+      //         title: '短信验证码发送失败，请稍后重试',
+      //         icon:'none',
+      //         duration: 2000,
+      //       })
+      //     }
+      // })
+
+    }
+  },
   //是否允许修改用户数据
   toEdit: function (e) {
-      var isEdit = !this.data.isEdit;
-      if (isEdit == true) {
-        this.setData({
-          isEdit: isEdit,
-          isbutton: true,
-        })
-      }else{
-        this.setData({
-          isEdit: isEdit,
-          isbutton: false,
-        })
-      }
-      //点击编辑时候选择性别
+    let isEdit = !this.data.isEdit;
+    if (isEdit == true) {
       this.setData({
-        check: this.data.gender
+        isEdit: isEdit,
+        isbutton: true,
       })
+    }else{
+      this.setData({
+        isEdit: isEdit,
+        isbutton: false,
+      })
+    }
+    //点击编辑时候选择性别
+    this.setData({
+      check: this.data.gender
+    })
   },
   //选择年级
   changePicker: function (e) {
-      var that = this
+      let that = this
       that.setData({
           grade: this.data.gradeSeclect[e.detail.value],
       })
   },
   // 选择性别
   changeSex: function (e) {
-    var check = this.data.check;
-    var cursex = e.currentTarget.dataset.index;
+    let check = this.data.check;
+    let cursex = e.currentTarget.dataset.index;
     if (check == null) {
         this.setData({
             check: cursex
@@ -83,14 +183,34 @@ Page({
         this.setData({ check: cursex })
     }
   },
+  //实时监听input里面的值的变化
+  watchTel: function (e) {       
+    let currentPhone = e.detail.value;
+    //定义了一个customerPhone，获取数据库里的电话赋值给customerPhone
+    let customerPhone = this.data.phone;
+    //跟数据库里面的号码一样就不显示
+    if (currentPhone == customerPhone && currentPhone.length == 11) {
+      this.setData({
+        isChangePhone: false,
+        currentPhone: currentPhone
+      })
+    }
+    //下面跟customerPhone比较，不一样就显示验证码那一栏
+    else if (currentPhone != customerPhone) {
+      this.setData({
+        isChangePhone: true,
+        currentPhone: currentPhone
+      })
+    }
+  },
   //提交个人信息数据
   formSubmit: function (e) {
-    var that = this;
+    let that = this;
     wx.showToast({
       title: '正在保存',
-      icon:'loading',
+      icon: 'loading',
     })
-    if (e.detail.value.username==""){
+    if (e.detail.value.username == "") {
       wx.showToast({
         title: '请输入您的真实姓名',
         icon: 'none',
@@ -104,7 +224,7 @@ Page({
         duration: 2000
       })
     }
-    else if (e.detail.value.phone==""){
+    else if (e.detail.value.phone == "") {
       wx.showToast({
         title: '请输入您的手机号码',
         icon: 'none',
@@ -127,65 +247,65 @@ Page({
     //     })
     //   }
     // }
-    else{
-      var userInformation = { 
+    else {
+      let userInformation = {
         "username": e.detail.value.username,
-        "gender": that.data.check, 
-        "studentId": e.detail.value.studentId, 
-        "grade": e.detail.value.grade, 
+        "gender": that.data.check,
+        "studentId": e.detail.value.studentId,
+        "grade": e.detail.value.grade,
         "major": e.detail.value.major,
-        "phone": e.detail.value.phone, 
+        "phone": e.detail.value.phone,
       };
       wx.setStorageSync("userInformation", userInformation);
       wx.showToast({
-          title: '保存成功',
-          icon:'succeed',
+        title: '保存成功',
+        icon: 'succeed',
       })
       //渲染界面
       that.setData({
         username: e.detail.value.username,
         gender: that.data.check,
-        studentId: e.detail.value.studentId, 
-        grade: e.detail.value.grade, 
+        studentId: e.detail.value.studentId,
+        grade: e.detail.value.grade,
         major: e.detail.value.major,
-        phone: e.detail.value.phone, 
+        phone: e.detail.value.phone,
       })
-    //   wx.request({
-    //     url: '接口路径',
-    //     header: {
-    //       "Content-Type": "application/x-www-form-urlencoded"
-    //     },
-    //     method: "POST",
-    //     data: {
-    //       openId: app.globalData.openId,
-    //       username: e.detail.value.username,
-    //       phone: e.detail.value.phone,
-    //       studentId: e.detail.value.studentId,
-    //       gender: that.data.check,
-    //       grade: that.data.grade,
-    //       major: e.detail.value.major,
-    //       verification:e.detail.value.verification,
-    //     },
-    //     success: function (res) {   //反馈回报名是否成功的信息
-    //       console.log(res.data);
-    //       wx.showToast({
-    //         title: '保存成功',
-    //         icon:'succeed',
-    //       })
-    //       that.setData({
-    //           isbutton:false,
-    //           isEdit:true
-    //       })
-    //      },
-    //     fail:function(res){
-    //       if (res.data.staus == 0) {
-    //         wx.showToast({
-    //           title: '保存失败，请稍后重试！！',
-    //           icon: 'none'
-    //         })
-    //       }
-    //     }
-    //    })
+      //   wx.request({
+      //     url: '接口路径',
+      //     header: {
+      //       "Content-Type": "application/x-www-form-urlencoded"
+      //     },
+      //     method: "POST",
+      //     data: {
+      //       openId: app.globalData.openId,
+      //       username: e.detail.value.username,
+      //       phone: e.detail.value.phone,
+      //       studentId: e.detail.value.studentId,
+      //       gender: that.data.check,
+      //       grade: that.data.grade,
+      //       major: e.detail.value.major,
+      //       verification:e.detail.value.verification,
+      //     },
+      //     success: function (res) {   //反馈回报名是否成功的信息
+      //       console.log(res.data);
+      //       wx.showToast({
+      //         title: '保存成功',
+      //         icon:'succeed',
+      //       })
+      //       that.setData({
+      //           isbutton:false,
+      //           isEdit:true
+      //       })
+      //      },
+      //     fail:function(res){
+      //       if (res.data.staus == 0) {
+      //         wx.showToast({
+      //           title: '保存失败，请稍后重试！！',
+      //           icon: 'none'
+      //         })
+      //       }
+      //     }
+      //    })
     }
 
     //测试接上数据库后删除
@@ -193,128 +313,6 @@ Page({
       isbutton: false,
       isEdit: false,
       isChangePhone: false,
-    })
-  },
-  //实时监听input里面的值的变化
-  watchTel: function (e) {       
-    var currentPhone = e.detail.value;
-    //定义了一个customerPhone，获取数据库里的电话赋值给customerPhone
-    var customerPhone = this.data.phone;
-    //跟数据库里面的号码一样就不显示
-    if (currentPhone == customerPhone && currentPhone.length == 11) {
-      this.setData({
-        isChangePhone: false,
-        currentPhone: currentPhone
-      })
-    }
-    //下面跟customerPhone比较，不一样就显示验证码那一栏
-    else if (currentPhone != customerPhone) {
-      this.setData({
-        isChangePhone: true,
-        currentPhone: currentPhone
-      })
-    }
-  },
-  //点击获取验证码
-  getVerification: function (e) {
-    if (this.data.currentPhone == '') {
-        wx.showToast({
-            title: '手机号为空,请重新输入',
-            icon: "none",
-            duration: 2000
-        })
-    }
-    else if (this.data.currentPhone.length != "11") {
-        wx.showToast({
-            title: '手机号长度错误,请重新输入',
-            icon: "none",
-            duration: 2000
-        })
-    }
-    else if (!(/^1[3|4|5|6|7|8|9]\d{9}$/.test(this.data.currentPhone))) {
-        wx.showToast({
-            title: '手机号输入错误,请重新输入',
-            icon: "none",
-            duration: 2000
-        })
-    }
-    else {
-        var inter = setInterval(function () {
-            this.setData({
-                word: this.data.waitime + 's后重发',
-                waitime: this.data.waitime - 1,
-                disabled: true
-            });
-            if (this.data.waitime < 0) {
-                clearInterval(inter)
-                this.setData({
-                    word: '重新获取',
-                    waitime: 60,
-                    disabled: false
-                });
-            }
-        }.bind(this), 1500);
-        var that = this;
-        // wx.request({
-        //     url: '接口地址',
-        //     data: {
-        //         phone:that.data.currentPhone,
-        //     },
-        //     method: "POST",
-        //     header: {
-        //         'content-type': "application/x-www-form-urlencoded"
-        //     },
-        //     success(res) {
-        //       wx.showToast({
-        //           title: '短信验证码发送成功，请注意查收',
-        //           duration:2000,
-        //           mask:true
-        //       })
-        //       that.setData({
-        //         phoneVerificationCode:res.data
-        //       })
-
-        //     },
-        //     fail(res){
-        //       wx.showToast({
-        //         title: '短信验证码发送失败，请稍后重试',
-        //         icon:'none',
-        //         duration: 2000,
-        //       })
-        //     }
-        // })
-
-    }
-  },
-  //请求用户个人信息数据
-  getMessage: function () {
-    var selt = this;
-    wx.request({
-      url: '接口路径',
-      method: 'Post', 
-      data: {
-        openId: app.globalData.openId,
-      },
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
-      success: function (res) {
-        if(res.data!=''){
-          console.log("获取用户个人信息成功");
-          console.log(res.data);
-          wx.setStorageSync("userInformation", res.data)
-          var data = res.data
-          selt.setData({
-            username: userData.username,
-            gender: userData.gender,
-            studentId: userData.studentId,
-            grade: userData.grade,
-            major: userData.major,
-            phone: userData.phone,
-          })
-        }
-      },
-      fail: function () {
-        console.log("获取用户个人信息失败");
-      }
     })
   },
 })

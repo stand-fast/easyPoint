@@ -128,7 +128,7 @@
         </view>
         <view class="dislog_item_choose">
             <view class="dislog_item_choose_title">选择取货时间</view>
-            <picker mode="multiSelector" value="{{dateTime}}" bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}" class="pickTime">
+            <picker mode="multiSelector" value="{{getStartTime}}" bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}" class="pickTime">
                 <input value="{{startTime}}" placeholder="请选择取货时间" placeholder-class="placehold" disabled="true"></input>
             </picker>
         </view>

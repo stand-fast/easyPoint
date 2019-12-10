@@ -56,8 +56,38 @@ Page({
   },
   //页面加载完毕执行函数(放在首位)
   onLoad: function (options) {
-    var type = options.type;
+    let type = options.type;
     this.getMessage(type);
+  },
+  //获得我的订单出行数据
+  getMessage: function (type) {
+    let that = this;
+    let token = app.globalData.token;
+    wx.request({
+      url: app.globalData.requestUrl + 'findTravelOrder',
+      method: 'get',
+      header: { 'content-type': 'application/x-www-form-urlencoded', token },
+      success: function (res) {
+        let code = res.data.code;
+        if (res.header.token != undefined) {
+          app.replaceToken(res.header.token);
+        }
+        switch (code) {
+          case 200:
+            console.log(res.data.data)
+            that.setData({
+              ticket_lists: res.data.data,
+            })
+            break;
+          case 201:
+            console.log("暂无订单");
+            break;
+          case 501:
+            app.getPermission();
+            break;
+        }
+      }
+    })
   },
   //切换选项卡，并请求数据
   swichNav:function(e){
@@ -65,7 +95,7 @@ Page({
         return false;
     }
     else {
-        var type = e.currentTarget.dataset.current;
+        let type = e.currentTarget.dataset.current;
         //this.getMessage(type);           //根据type请求数据，出行0，教育1，租借2
         this.setData({
             currenTab: type,
@@ -74,8 +104,8 @@ Page({
   },
   //跳转乡会包车车票详情数据-暂时不动
   toCommitteeDetail: function (e) {
-    var index = e.currentTarget.dataset.index;
-    var data = this.data.ruralCommittee[index];
+    let index = e.currentTarget.dataset.index;
+    let data = this.data.ruralCommittee[index];
     wx.setStorageSync('myOrderRentalCar', data)
     wx.navigateTo({
       url: '/pages/user/myOrderCarDetail/myOrderCarDetail?current=0&&ticketId=' + data.ticketId + "&&type=" + data.type,
@@ -83,8 +113,8 @@ Page({
   },
   //跳转租车车票详情数据
   toDetail:function(e){
-    var index=e.currentTarget.dataset.index;
-    var data = this.data.ticket_lists[index];
+    let index=e.currentTarget.dataset.index;
+    let data = this.data.ticket_lists[index];
     wx.setStorageSync('myOrderRentalCar', data)
     wx.navigateTo({
       url: '/pages/user/myOrderCarDetail/myOrderCarDetail?current='+'1'
@@ -92,40 +122,11 @@ Page({
   },
   //跳转租借车票详情数据-暂时不动
   jumpToRentDetail:function(e){
-    var index = e.currentTarget.dataset.index;
-    var data = this.data.rentItems[index];
+    let index = e.currentTarget.dataset.index;
+    let data = this.data.rentItems[index];
     wx.setStorageSync('myOrderRental', data)
     wx.navigateTo({
         url: '/pages/user/myOrderRentDetail/myOrderRentDetail?current=2&&rentOrderId=' + data.rentOrderId,
     })
-  },
-  //获得我的订单出行数据
-  getMessage: function (type) {
-    var selt = this;
-    var token = app.globalData.token;
-    wx.request({
-      url: app.globalData.requestUrl+'findTravelOrder',
-      method: 'get',
-      header: { 'content-type': 'application/x-www-form-urlencoded',token},
-      success: function (res) {
-        //console.log(res);
-        if (res.header.token != undefined){
-          app.globalData.token = res.header.token;
-        }
-        if(res.data.code == 200){
-          console.log(res.data.data)
-          selt.setData({
-            ticket_lists: res.data.data,
-          })
-        } else if (res.data.code == 201) {
-          console.log("暂无订单");
-        } else if (res.data.code == 501){
-          wx.showToast({
-            title: '登录已经过期，请重新授权登录',
-            icon:"none"
-            })
-          } 
-        }
-      })
   },
 })

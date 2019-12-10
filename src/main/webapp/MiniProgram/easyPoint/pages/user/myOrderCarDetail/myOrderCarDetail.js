@@ -32,12 +32,12 @@ Page({
   },
   //页面加载完毕执行函数(放在首位)
   onLoad: function (options) {
-    var current = options.current;
+    let current = options.current;
     //乡会车票详情数据-暂时不动
     if (current == 0) {
-      var myOrderRentalCar = wx.getStorageSync('myOrderRentalCar');
+      let myOrderRentalCar = wx.getStorageSync('myOrderRentalCar');
       console.log(myOrderRentalCar)
-      var ticketId = options.ticketId;
+      let ticketId = options.ticketId;
 
       //判断是正式票还是预约票,并获取上个界面的数据
       this.setData({
@@ -52,8 +52,8 @@ Page({
       //this.getMessage(ticketId);
 
       //计算合计总价接上服务器后删除
-      var data = this.data.ticketDetail;
-      var sumDeposit = data.ticketNum * 10
+      let data = this.data.ticketDetail;
+      let sumDeposit = data.ticketNum * 10
       if (data.isInsurance == 1) {
         this.setData({
           sumDeposit: sumDeposit,
@@ -67,8 +67,8 @@ Page({
     }
     //租车车票详情数据
     else if (current == 1) {
-      var myOrderRentalCar = wx.getStorageSync('myOrderRentalCar');
-      var travelOrderId = myOrderRentalCar.travelOrderId;
+      let myOrderRentalCar = wx.getStorageSync('myOrderRentalCar');
+      let travelOrderId = myOrderRentalCar.travelOrderId;
       this.setData({
         travelOrderId: travelOrderId,
         departurePlace: myOrderRentalCar.departurePlace,
@@ -80,6 +80,63 @@ Page({
       })
       this.getMessageRentalCar(travelOrderId);
     }
+  },
+  //获得租车车票订单数据
+  getMessageRentalCar: function (travelOrderId) {
+    let token = app.globalData.token;
+    let that = this;
+    wx.request({
+      url: app.globalData.requestUrl + 'findTravelOrderDetailInfo',
+      method: 'Post',
+      data: {
+        type: 0,
+        travelOrderId: travelOrderId,
+      },
+      header: { 'content-type': 'application/x-www-form-urlencoded', token },
+      success: function (res) {
+        let code = res.data.code;
+        if (res.header.token != undefined) {
+          app.replaceToken(res.header.token);
+        }
+        switch (code) {
+          case 200:
+            console.log(res.data.data)
+            that.setData({
+              ticketDetail: res.data.data,
+            })
+            break;
+          case 501:
+            app.getPermission();
+            break;
+        }
+      }
+    })
+  },
+  //获得乡会车票订单数据-暂时不动
+  getMessage: function (ticketId) {
+    let that = this;
+    let token = app.globalData.token;
+    wx.request({
+      url: '接口路径',
+      method: 'Post',
+      data: {
+        ticketId: ticketId,
+      },
+      header: { 'content-type': 'application/x-www-form-urlencoded', token},
+      success: function (res) {
+        let code = res.data.code;
+        if (res.header.token != undefined) {
+          app.replaceToken(res.header.token);
+        }
+        switch (code) {
+          case 200:
+            break;
+          case 501:
+            app.getPermission();
+            break;
+        }
+      }
+    })
   },
   //跳转订单退款状态页面
   toRefundStatus:function(){
@@ -98,59 +155,5 @@ Page({
       wx.navigateTo({
         url: '/pages/user/changeTime/changeTime?current=' + this.data.current + '&&travelOrderId=' + this.data.travelOrderId ,
       })
-  },
-  //获得乡会车票订单数据-暂时不动
-  getMessage: function (ticketId) {
-    var selt = this;
-    wx.request({
-      url: '接口路径',
-      method: 'Post',
-      data: {
-        uid:this.data.uid,
-        ticketId: ticketId,
-      },
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
-      success: function (res) {
-        var data = res.data;
-        if (data.isInsurance == 1) {
-          var sumDeposit = data.ticketNum * 10
-          selt.setData({
-            ticketDetail: data,
-            sumDeposit: sumDeposit,
-            totalPrice: sumDeposit + data.ticketNum * data.price,
-          })
-        }else{
-          selt.setData({
-            ticketDetail: data,
-            totalPrice: data.ticketNum * data.price,
-          })
-        }
-        if (res.data.code == 400) {
-          console.log(res.data.msg)
-        }
-      }
-    })
-  },
-  //获得租车车票订单数据
-  getMessageRentalCar: function (travelOrderId) {
-    var token = app.globalData.token;
-    var selt = this;
-    wx.request({
-      url: app.globalData.requestUrl +'findTravelOrderDetailInfo',
-      method: 'Post',
-      data: {
-        type: 0,
-        travelOrderId: travelOrderId,
-      },
-      header: { 'content-type': 'application/x-www-form-urlencoded' ,token},
-      success: function (res) {
-        if(res.data.code == 200){
-          console.log(res.data.data)
-          selt.setData({
-            ticketDetail: res.data.data,
-          })
-        }
-      }
-    })
   },
 })
