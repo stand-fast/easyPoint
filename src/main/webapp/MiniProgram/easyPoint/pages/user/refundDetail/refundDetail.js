@@ -11,7 +11,8 @@ Page({
       commitTime:"2019-06-30 18:22",
       passTime:"2019-06-30 18:22",
       failTime:"2019-06-30 18:22",
-      refundSuccessTime:"2019-06-30 18:22"
+      refundSuccessTime:"2019-06-30 18:22",
+      cancleRefundTime:"2019-06-30 14:50"
     },
   },
   //页面加载完毕执行函数(放在首位)
