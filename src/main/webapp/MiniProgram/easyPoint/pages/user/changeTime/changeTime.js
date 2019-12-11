@@ -1,15 +1,15 @@
 // pages/user/changeTime/changeTime.js
-let dateTimePicker = require('../../../utils/dateTimePicker.js');//获取开始时间控件、开始时间数组
-let timePicker = require('../../../utils/timePicker.js');//时间选择控件
+let dateTimePicker = require('../../../component/selectTime/dateTimePicker.js');//获取开始时间控件、开始时间数组
+let timePicker = require('../../../component/selectTime/timePicker.js');//时间选择控件
 const app = getApp()
 Page({
   data: {
-    current:0,//更换时间类型，0：乡会，1：租车
+    current: 1,//更换时间类型，0：乡会，1：租车
     dateTimeArray: null, //开始时间数组
     selectTimeList: [//乡会更换时间数据
-        "08-12 08:00",
-        "08-13 08:00",
-        "08-13 16: 00"
+      "08-12 08:00",
+      "08-13 08:00",
+      "08-13 16: 00"
     ],
   },
   //页面加载完毕执行函数(放在首位)
@@ -55,9 +55,10 @@ Page({
   rentalSubmit:function(){
     let token = app.globalData.token;
     wx.request({
-      url: "",
+      url: app.globalData.requestUrl + "updateTourismDepartureTime",
       data: {
-          startTime:this.data.startTime
+          travelOrderId: this.data.travelOrderId,
+          departureTime:this.data.startTime
       },
       method: 'Post',
       header: { 'content-type': 'application/x-www-form-urlencoded', token },
@@ -68,8 +69,17 @@ Page({
         }
         switch (code) {
           case 200:
+            wx.showToast({
+              title: '修改出发时间成功',
+              duration: 2000
+            })
             break;
           case 201:
+            wx.showToast({
+              title: '修改出发日期必须在出发前一天之前修改，当前已经超过修改日期',
+              icon: 'none',
+              duration: 2000
+            })
             break;
           case 501:
             app.getPermission();

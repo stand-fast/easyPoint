@@ -81,11 +81,12 @@ Page({
   },
   //请求轮播图数据
   getImg: function () {
-    let selt = this;
+    let that = this;
+    let token = app.globalData.token;
     wx.request({
       url: '接口路径',
       method: 'Post',
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      header: { 'content-type': 'application/x-www-form-urlencoded', token },
       success: function (res) {
         let code = res.data.code;
         if (res.header.token != undefined) {
@@ -93,7 +94,7 @@ Page({
         }
         switch (code) {
           case 200:
-            selt.setData({
+            that.setData({
               hot_list: res.data,
             })
             break;
@@ -106,7 +107,7 @@ Page({
   },
   //请求公告数据
   getAnnouncements: function () {
-    let selt = this;
+    let that = this;
     wx.request({
       url: '接口路径',
       method: 'Post',
@@ -118,7 +119,7 @@ Page({
         }
         switch (code) {
           case 200:
-            selt.setData({
+            that.setData({
               announcementMessage: res.data,
             })
             break;

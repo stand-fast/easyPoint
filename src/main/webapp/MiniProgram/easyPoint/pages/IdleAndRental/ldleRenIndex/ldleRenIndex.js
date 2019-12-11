@@ -10,10 +10,22 @@ Page({
         "/images/zulin.png",
     ],
     goodsTypeInterface: [//租赁种类数据
-      { goodsTypeId: 0, goodsTypeName:"音响设备"},
-      { goodsTypeId: 1, goodsTypeName:"电子设备"},
-      { goodsTypeId: 2, goodsTypeName:"玩具套餐"},
-      { goodsTypeId: 3, goodsTypeName:"正装用品"}   
+      { 
+        goodsTypeId: 0, 
+        goodsTypeName:"音响设备"
+      },
+      { 
+        goodsTypeId: 1, 
+        goodsTypeName:"电子设备"
+      },
+      { 
+        goodsTypeId: 2, 
+        goodsTypeName:"玩具套餐"
+      },
+      { 
+        goodsTypeId: 3, 
+        goodsTypeName:"正装用品"
+      }   
     ],
     rent_list:[//租赁商品数据
       {

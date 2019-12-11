@@ -1,8 +1,8 @@
 // pages/easyPointCar/bookTicket/bookTicket.js
-let dateTimePicker = require('../../../utils/dateTimePicker.js');//获取开始时间控件、开始时间数组
-let getUserInformation = require('../../../utils/getUserInfor.js');//获取个人信息
-let judgePersonInfor = require('../../../utils/judgePersonInfor.js');//判断是否填写有个人信息
-let timePicker = require('../../../utils/timePicker.js');//时间选择控件
+let dateTimePicker = require('../../../component/selectTime/dateTimePicker.js');//获取开始时间控件、开始时间数组
+let timePicker = require('../../../component/selectTime/timePicker.js');//时间选择控件
+let getUserInformation = require('../../../component/userInfor/getUserInfor.js');//获取个人信息
+let judgePersonInfor = require('../../../component/userInfor/judgePersonInfor.js');//判断是否填写有个人信息
 const app = getApp()
 Page({
   data: {
@@ -15,8 +15,8 @@ Page({
     is_back:0,//是否往返数据
     is_insurance:0,//是否购买保险数据
     imgUrls: [//轮播图
-        "/images/bg1_car.png",
-        "/images/bg2_car.png"
+      "/images/bg1_car.png",
+      "/images/bg2_car.png"
     ],
     associationsList: [//同乡会名称数据
       {
@@ -32,23 +32,7 @@ Page({
         associationName: "普宁同乡会"
       },
     ],
-    seatvehicleList: [//车辆类型数据
-      {
-        vehicleId: "2412624",
-        vehicleType: "7座大巴",
-        deposit: "100"
-      },
-      {
-        vehicleId: "88789624",
-        vehicleType: "35座大巴",
-        deposit: "200"
-      },
-      {
-        vehicleId: "745624",
-        vehicleType: "53座大巴",
-        deposit: "700"
-      },
-    ],
+    seatvehicleList:null, //车辆类型数据
   },
   //页面加载完毕执行函数(放在首位)
   onLoad: function (options) {

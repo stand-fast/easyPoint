@@ -1,5 +1,5 @@
 // pages/easyPointCar/queryTicket/queryTicket.js
-var judgePersonInfor = require('../../../utils/judgePersonInfor.js');//判断是否填写有个人信息
+var judgePersonInfor = require('../../../component/userInfor/judgePersonInfor.js');//判断是否填写有个人信息
 var app = getApp();
 Page({
   data: {

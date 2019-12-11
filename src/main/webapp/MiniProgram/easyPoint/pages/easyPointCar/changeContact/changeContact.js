@@ -1,4 +1,5 @@
 // pages/easyPointCar/changeContact/changeContact.js
+let app = getApp();
 Page({
   data: {
     showModal:false,//是否显示修改联系人窗口

@@ -23,6 +23,6 @@ Page({
   },
   //获取订单退款详情数据
   getRefundStatus: function (){
-    var token = app.globalData.token;
+    let token = app.globalData.token;
   }
 })
