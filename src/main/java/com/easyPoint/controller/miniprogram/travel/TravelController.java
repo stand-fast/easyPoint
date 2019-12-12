@@ -1,7 +1,9 @@
 package com.easyPoint.controller.miniprogram.travel;
 
 import com.easyPoint.dto.Result;
+import com.easyPoint.dto.travel.MiniTourismRefundPageDto;
 import com.easyPoint.pojo.travel.TravelOrderInfo;
+import com.easyPoint.service.miniprogram.travel.TourismInfoService;
 import com.easyPoint.service.miniprogram.travel.TravelInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,7 +33,6 @@ public class TravelController {
     @ResponseBody
     @RequestMapping("/findTravelOrder")
     public Result findTravelOrder(@RequestAttribute("uid")int uid){
-        System.out.println(uid);
         List<TravelOrderInfo> travelOrderInfos = travelInfoService.findListTravelOrderByUid(uid);
         if(travelOrderInfos.isEmpty())
             return new Result<>(201,"暂无订单");
@@ -52,4 +53,33 @@ public class TravelController {
                 travelInfoService.findTravelOrderDetailInfo(travelOrderId, type));
     }
 
+    /**
+     * 退款状态详情页面信息
+     * @param tourismRefundId
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("/tourism/refundPage")
+    public Result findTourismRefundPageInfo(@RequestParam("tourismRefundId")int tourismRefundId){
+        MiniTourismRefundPageDto refundPageInfo = travelInfoService.findRefundPageInfoById(tourismRefundId);
+        if(refundPageInfo == null)
+            return new Result(400,"参数错误");
+        return new Result<>(200,"查询退款页面成功",refundPageInfo);
+    }
+
+    /**
+     * 用户取消退款
+     * @param tourismRefundId 退款id
+     * @return 是否取消成功
+     */
+    @ResponseBody
+    @PostMapping("/tourism/cancelRefund")
+    public Result cancelTourismRefund(@RequestParam("tourismRefundId")int tourismRefundId){
+        if(tourismRefundId <= 0)
+            return new Result(401,"参数错误");
+        int resultCode = travelInfoService.cancelTourismRefund(tourismRefundId);
+        if(resultCode == 1)
+            return new Result(200,"取消退款成功");
+        return new Result(400,"当前状态不支持取消退款申请");
+    }
 }

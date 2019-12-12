@@ -157,22 +157,11 @@
                   where travel_order_id = #{travelOrderId} and tou.vehicle_id = v.vehicle_id
     </select>
 
-    <!--//查询退款原因和驳回原因-->
-    <!--Map<String, String> findMapRefundAndRejectReason(int tourismRefundId);-->
-    <select id="findMapRefundAndRejectReason" parameterType="int" resultType="Map">
-        SELECT refund_reason AS refundReason,
-               reject_reason AS rejectReason
-               FROM tourism_refund
-               WHERE tourism_refund_id = #{tourismRefundId}
-    </select>
-
-
 
     <!--修改出发日期-->
     <update id="updateTourismOrderDepartureTime">
         update travel_order set departure_time = #{departureTime}, state = 0
                              where travel_order_id = #{travelOrderId}
-                             and state != 2
                              and departure_time >= #{tomorrowDate}
     </update>
 
@@ -185,7 +174,7 @@
 
     <!--保存被修改的日期-->
     <update id="updateTourismModifiedDate">
-        update tourism_order set original_time = #{beModifiedTime}, is_modified = 1
+        update tourism_order set original_time = #{beModifiedTime}, is_modified = 1,
                                  license_plate_number = "", color = null, driver_name = null, driver_phone = null
                                  where travel_order_id = #{travelOrderId} and is_modified = 0
     </update>
@@ -233,14 +222,21 @@
                pay_money AS refundMoney,
                request_refund_time AS requestRefundTime,
                confirm_refund_time AS confirmRefundTime,
-               refund_time AS refundTime,
+               finish_time AS finishTime,
                refund_state AS refundState,
                reject_reason AS rejectReason
                 FROM tourism_refund tr, tourism_order tou
                 WHERE tr.tourism_refund_id = #{tourismRefundId}
-                AND tr.tourism_order_id = tou.tourism_order_id;
+                AND tr.travel_order_id = tou.travel_order_id;
 
     </select>
+
+    <!--//用户取消退款,修改退款状态-->
+    <!--int updateTourismRefundState(int tourismRefundId,String finishTime,int refundState);-->
+    <update id="updateTourismRefundState">
+        UPDATE tourism_refund SET refund_state = #{refundState},finish_time = #{finishTime} WHERE tourism_refund_id = #{tourismRefundId}
+                                                                AND refund_state = 1
+    </update>
 
     <!--//查询退款订单总数-->
     <!--int countTourismRefundNum();-->
@@ -289,7 +285,9 @@
     <!--int updateTourismRefund(TourismRefundInfo tourismRefundInfo);-->
     <update id="updateTourismRefundToSuccess" parameterType="TourismRefundInfo">
         UPDATE tourism_refund SET admi_uid = #{admiUid}, refund_state = #{refundState},
-                                  confirm_refund_time = #{confirmRefundTime}, refund_id = #{refundId},
+                                  confirm_refund_time = #{confirmRefundTime},
+                                  finish_time = #{finishTime},
+                                  refund_id = #{refundId},
                                   refund_fee = #{refundFee},
                                   reject_reason = #{rejectReason}
                               WHERE tourism_refund_id = #{tourismRefundId}

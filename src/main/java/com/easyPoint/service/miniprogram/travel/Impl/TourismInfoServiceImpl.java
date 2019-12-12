@@ -170,9 +170,14 @@ public class TourismInfoServiceImpl implements TourismInfoService {
 
 
 
-    //修改出发日期String departureTime, String beModifiedTime, String travelOrderId
+    //修改出发日期String departureTime, String originalTime, String travelOrderId
     @Override
-    public int updateTourismOrderDepartureTime(String departureTime, String beModifiedTime, int travelOrderId) {
+    public int updateTourismOrderDepartureTime(String departureTime, String originalTime, int travelOrderId) {
+        //查看订单状态
+        int state = tourismInfoDao.findStateById(travelOrderId);
+        //如果当前状态不支持更改信息，则直接返回
+        if(state != 0 && state != 1)
+            return -2;
         Long date = System.currentTimeMillis();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         //现在时间的后一天，如果比车辆出行时间早，则可以修改，否则不行
@@ -180,12 +185,12 @@ public class TourismInfoServiceImpl implements TourismInfoService {
         int resultCode = tourismInfoDao.updateTourismOrderDepartureTime(departureTime,tomorrowDate,travelOrderId);
         if(resultCode == 1){
             //出发日期修改成功
-            resultCode = tourismInfoDao.updateTourismModifiedDate(beModifiedTime,travelOrderId);
+            resultCode = tourismInfoDao.updateTourismModifiedDate(originalTime,travelOrderId);
             if(resultCode ==1)
                 return 1;
             //用户只有一次修改日期机会，不允许再次修改
             //将出发日期恢复为原来出发日期
-            tourismInfoDao.updateDepartureTimeToOriginalTime(beModifiedTime,travelOrderId);
+            tourismInfoDao.updateDepartureTimeToOriginalTime(originalTime,travelOrderId);
             //修改日期失败
             return -1;
         }else
@@ -223,7 +228,8 @@ public class TourismInfoServiceImpl implements TourismInfoService {
         else if(5 == state)
             return -4;
 
-        Integer tourismRefundId = (Integer)refundData.get("tourismRefundId");
+        Integer tourismRefundId = Integer.parseInt(refundData.get("tourismRefundId").toString());
+        System.out.println(tourismRefundId);
         if(tourismRefundId != null){
             //查询此时的退款状态
             int refundState = tourismInfoDao.findRefundState(tourismRefundId);
@@ -249,6 +255,7 @@ public class TourismInfoServiceImpl implements TourismInfoService {
 
             //保存新的tourismRefundId到tourism_order表中,并修改申请次数
             tourismInfoDao.updateTourismRefundId(tourismRefundInfo.getTravelOrderId(),tourismRefundInfo.getTourismRefundId());
+            return 1;
         }
         //返回保存是否成功
         return resultCode;

@@ -14,8 +14,8 @@ public class MiniTourismRefundPageDto {
     private String requestRefundTime;
     //管理员确定退款时间
     private String confirmRefundTime;
-    //退款时间
-    private String refundTime;
+    //取消退款或者退款成功时间
+    private String finishTime;
     //退款状态
     private Integer refundState;
     //驳回原因
@@ -29,7 +29,7 @@ public class MiniTourismRefundPageDto {
                 ", refundMoney=" + refundMoney +
                 ", requestRefundTime='" + requestRefundTime + '\'' +
                 ", confirmRefundTime='" + confirmRefundTime + '\'' +
-                ", refundTime='" + refundTime + '\'' +
+                ", finishTime='" + finishTime + '\'' +
                 ", refundState=" + refundState +
                 ", rejectReason='" + rejectReason + '\'' +
                 '}';
@@ -75,12 +75,12 @@ public class MiniTourismRefundPageDto {
         this.confirmRefundTime = confirmRefundTime;
     }
 
-    public String getRefundTime() {
-        return refundTime;
+    public String getFinishTime() {
+        return finishTime;
     }
 
-    public void setRefundTime(String refundTime) {
-        this.refundTime = refundTime;
+    public void setFinishTime(String finishTime) {
+        this.finishTime = finishTime;
     }
 
     public Integer getRefundState() {

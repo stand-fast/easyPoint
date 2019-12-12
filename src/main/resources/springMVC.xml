@@ -34,28 +34,28 @@
     <mvc:annotation-driven/>
 
 
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <!-- 指定拦截的路径 -->
-            <mvc:mapping path="/**"/>
-            <!-- 指定不拦截的路径 -->
-            <mvc:exclude-mapping path="/**/getUserInfoAndToken"/>
-            <mvc:exclude-mapping path="/**/pay.do"/>
-            <!--//不拦截管理员端-->
-            <mvc:exclude-mapping path="/administrator/**"/>
-            <bean class="com.easyPoint.interceptor.TokenInterceptor"/>
-        </mvc:interceptor>
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--&lt;!&ndash; 指定拦截的路径 &ndash;&gt;-->
+            <!--<mvc:mapping path="/**"/>-->
+            <!--&lt;!&ndash; 指定不拦截的路径 &ndash;&gt;-->
+            <!--<mvc:exclude-mapping path="/**/getUserInfoAndToken"/>-->
+            <!--<mvc:exclude-mapping path="/**/pay.do"/>-->
+            <!--&lt;!&ndash;//不拦截管理员端&ndash;&gt;-->
+            <!--<mvc:exclude-mapping path="/administrator/**"/>-->
+            <!--<bean class="com.easyPoint.interceptor.TokenInterceptor"/>-->
+        <!--</mvc:interceptor>-->
 
-        <mvc:interceptor>
-            <!-- 指定拦截的路径 -->
-            <mvc:mapping path="/administrator/**"/>
-            <!-- 指定不拦截的路径 -->
-            <!-- 登录 -->
-            <mvc:exclude-mapping path="/administrator/adminLogin/**"/>
-            <!-- 忘记密码 -->
-            <mvc:exclude-mapping path="/administrator/forgetPassword/**"/>
-            <bean class="com.easyPoint.interceptor.PcTokenInterceptor"/>
-        </mvc:interceptor>
+        <!--<mvc:interceptor>-->
+            <!--&lt;!&ndash; 指定拦截的路径 &ndash;&gt;-->
+            <!--<mvc:mapping path="/administrator/**"/>-->
+            <!--&lt;!&ndash; 指定不拦截的路径 &ndash;&gt;-->
+            <!--&lt;!&ndash; 登录 &ndash;&gt;-->
+            <!--<mvc:exclude-mapping path="/administrator/adminLogin/**"/>-->
+            <!--&lt;!&ndash; 忘记密码 &ndash;&gt;-->
+            <!--<mvc:exclude-mapping path="/administrator/forgetPassword/**"/>-->
+            <!--<bean class="com.easyPoint.interceptor.PcTokenInterceptor"/>-->
+        <!--</mvc:interceptor>-->
 
-    </mvc:interceptors>
+    <!--</mvc:interceptors>-->
 </beans>

@@ -7,8 +7,6 @@ import com.easyPoint.pojo.travel.TravelOrderInfo;
 import com.easyPoint.pojo.travel.VehicleInfo;
 
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Property;
-import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -66,8 +64,6 @@ public interface TourismInfoDao {
     //用户进入租车订单详情页面
     TourismOrderDetailInfoDto findTourismOrderDetailInfo(int travelOrderId);
 
-    //查询退款原因和驳回原因
-    Map<String, String> findMapRefundAndRejectReason(int tourismRefundId);
 
 
     //修改出发日期
@@ -101,6 +97,11 @@ public interface TourismInfoDao {
 
     //用户查看小程序退款状态页面的信息
     MiniTourismRefundPageDto findRefundPageInfoById(int tourismRefundId);
+
+    //用户取消退款,修改退款状态
+    int updateTourismRefundState(@Param("tourismRefundId") int tourismRefundId,
+                                 @Param("finishTime")String finishTime,
+                                 @Param("refundState") int refundState);
 
     //查询退款订单总数
     int countTourismRefundNum();

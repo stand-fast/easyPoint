@@ -65,22 +65,24 @@ public class TourismController {
      * FJW
      * 修改出发日期
      * @param departureTime 新的出发时间
-     * @param beModifiedTime 原出发日期
+     * @param originalTime 原出发日期
      * @param travelOrderId 订单编号
      * @return 验证码
      */
     @ResponseBody
     @RequestMapping("/updateTourismDepartureTime")
     public Result updateTourismDepartureTime(@RequestParam("departureTime")String departureTime,
-                                             @RequestParam("beModifiedTime")String beModifiedTime,
+                                             @RequestParam("originalTime")String originalTime,
                                              @RequestParam("travelOrderId")int travelOrderId){
-        int resultCode = tourismInfoService.updateTourismOrderDepartureTime(departureTime, beModifiedTime, travelOrderId);
+        int resultCode = tourismInfoService.updateTourismOrderDepartureTime(departureTime, originalTime, travelOrderId);
         if(resultCode == 1)
             return new Result<>(200,"修改出发时间成功");
         else if(resultCode == 0)
             return new Result<>(201,"修改出发日期必须在出发前一天之前修改，当前已经超过修改日期");
+        else if(resultCode == -2)
+            return new Result<>(202,"订单当前状态不支持更改信息");
         else
-            return new Result<>(202,"只有一次修改机会，请无重复操作");
+            return new Result<>(203,"只有一次修改机会，请无重复操作");
     }
 
     /**
@@ -118,7 +120,7 @@ public class TourismController {
         else if(resultCode == -4)
             return new Result(404,"该订单已退款成功，此次申请失败");
         else if(resultCode == -6)
-            return new Result(406,"此次申请失败，订单正在退款中");
+            return new Result(406,"订单正在退款中，此次申请失败");
         //插入数据库异常
         return new Result(400,"申请异常，可联系管理员");
     }

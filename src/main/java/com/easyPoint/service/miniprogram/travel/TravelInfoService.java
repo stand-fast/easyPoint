@@ -16,5 +16,8 @@ public interface TravelInfoService {
     //用户查看退款状态页面的信息
     MiniTourismRefundPageDto findRefundPageInfoById(int tourismRefundId);
 
+    //用户取消退款
+    int cancelTourismRefund(int tourismRefundId);
+
 
 }

@@ -9,5 +9,8 @@
         <module name="easyPoint" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="easyPoint" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
