@@ -2,8 +2,7 @@
 var app = getApp();
 Page({
   data: {
-    //订单选项数据
-    order_lists: [
+    order_lists: [ //订单选项数据
       {
           url:"/images/icon/user_signup.png",
           text:"我的报名"
@@ -17,8 +16,7 @@ Page({
           text: "我的发布"
       }
     ],
-    //其他栏目选项数据
-    item_lists: [
+    item_lists: [ //其他栏目选项数据
       {
         icon:"/images/icon/user_perinfos.png",
         text:"个人信息",
@@ -45,10 +43,8 @@ Page({
           url:""
       }
     ],
-    //登陆加锁
-    isLogin:false,
-    //是否有个人信息
-    isUserInformation:true,
+    isLogin: false,//登陆加锁  
+    isUserInformation: true,//是否有个人信息
   },
   //页面加载完毕执行函数(放在首位)
   onLoad: function (options) {
@@ -88,8 +84,8 @@ Page({
                     nickName: userdata.nickName,
                     avatarUrl: userdata.avatarUrl
                   })
-                  app.globalData.uid = userdata.uid;
                   app.globalData.token = res.data.token;
+                  wx.setStorageSync("token", res.data.token);
                 },
                 fail:function(){
                   wx.showToast({
@@ -104,18 +100,25 @@ Page({
     })
   },
   //进入个人信息编辑界面
-  toEditUserInfos:function(){     
-    switch (this.data.isUserInformation){
-      case true:
-        wx.navigateTo({
-          url: '/pages/user/editInformation/editInformation?judge=' + 0
-        })
-        break;
-      case false:
-        wx.navigateTo({
-          url: '/pages/user/editInformation/editInformation?judge=' + 1
-        })
-        break;
+  toEditUserInfos: function () {
+    if (this.data.isLogin) {     
+      switch (this.data.isUserInformation){
+        case true:
+          wx.navigateTo({
+            url: '/pages/user/editInformation/editInformation?judge=' + 0
+          })
+          break;
+        case false:
+          wx.navigateTo({
+            url: '/pages/user/editInformation/editInformation?judge=' + 1
+          })
+          break;
+      }
+    } else {
+      wx.showToast({
+        title: '请先授权登陆',
+        icon: "none"
+      })
     }
   },
   //进入订单界面 1：我的报名，2：我的订单，3：我的发布

@@ -1,3 +1,4 @@
+//时间控件-获取开始时间
 function withData(param) {
     return param < 10 ? '0' + param : '' + param;
 }
@@ -12,7 +13,6 @@ function getLoopArray(start, end) {
 }
 function getMonthDay(year, month) {
     var flag = year % 400 == 0 || (year % 4 == 0 && year % 100 != 0), array = null;
-
     switch (month) {
         case '01':
         case '03':
@@ -46,7 +46,6 @@ function getNewDateArry() {
         hour = withData(newDate.getHours()),
         minu = withData(newDate.getMinutes()),
         seco = withData(newDate.getSeconds());
-
     return [year, mont, date, hour, minu, seco];
 }
 function dateTimePicker(startYear, endYear, date) {
@@ -64,17 +63,51 @@ function dateTimePicker(startYear, endYear, date) {
     dateTimeArray[3] = getLoopArray(0, 23);
     dateTimeArray[4] = getLoopArray(0, 59);
     dateTimeArray[5] = getLoopArray(0, 59);
-
     dateTimeArray.forEach((current, index) => {
         dateTime.push(current.indexOf(defaultDate[index]));
     });
-
     return {
-        dateTimeArray: dateTimeArray,
-        dateTime: dateTime
+        dateTimeArray,
+        dateTime
     }
 }
+//初始化时间控件并获取当下时间
+function timeSelection() {
+  //获取完整的年月日 时分秒，以及默认显示的数组
+  var obj = this.dateTimePicker(2019, 2050);
+  //精确到分的处理，将数组的秒去掉
+  var lastArray = obj.dateTimeArray.pop();
+  var lastTime = obj.dateTime.pop();
+  //日期转换
+  var data = obj.dateTimeArray;
+  var getStartTime = obj.dateTime;
+  for (var i = 0; i < data.length; i++) {
+    var name;
+    switch (i) {
+      case 0:
+        name = "年";
+        break;
+      case 1:
+        name = "月";
+        break;
+      case 2:
+        name = "日";
+        break;
+      case 3:
+        name = "时";
+        break;
+      case 4:
+        name = "分";
+        break;
+    }
+    for (var j = 0; j < data[i].length; j++) {
+      data[i][j] = data[i][j] + name;
+    }
+  }
+  return [data, getStartTime]
+}
 module.exports = {
-    dateTimePicker: dateTimePicker,
-    getMonthDay: getMonthDay
+  timeSelection,
+  dateTimePicker,
+  getMonthDay
 }

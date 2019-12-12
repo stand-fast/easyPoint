@@ -153,7 +153,7 @@ export default {
       let that = this;
       let params = new URLSearchParams();
       params.append("phone", phone);
-      params.append("state", state);
+      params.append("state", state==1?0:1);
       let str = "确定要" + (state ? "禁用" : "启用") + "该账户?";
       if (confirm(str)) {
         this.$http

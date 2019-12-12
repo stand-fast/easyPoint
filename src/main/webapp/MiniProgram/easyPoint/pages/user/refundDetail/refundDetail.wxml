@@ -1,11 +1,14 @@
 <!--pages/user/refundDetail/refundDetail.wxml-->
 <view class="refund_status">退款状态：  
-    <text>{{refundDetail.refundStatusWord}}</text>
+    <text wx:if="{{refundDetail.state == 5}}">订单退款中</text>
+    <text wx:elif="{{refundDetail.state == 6}}">订单已退款</text>
+    <text wx:elif="{{refundDetail.state == 7}}">订单退款失败</text>
+    <text wx:elif="{{refundDetail.state == 8}}">订单已取消</text>
 </view>
 
 <!-- 订单编号与时间 -->
 <view class="refund_order">
-    <view class="refund_order_item">订单编号：  {{refundDetail.travelOrderId}}</view>
+    <view class="refund_order_item">订单编号：  {{travelOrderId}}</view>
     <view class="refund_order_item">退款时间：  {{refundDetail.refundTime}}</view>
 </view>
 
@@ -26,12 +29,16 @@
         <view class="process_dot" wx:if="{{refundDetail.refund_status==2}}"></view>
     </view>
     <view class="process_right"><!--右边文字叙述进度-->
-        <view class="process_right_text">您已成功提交申请退款  {{refundDetail.commitTime}}</view>
+        <view class="process_right_text">   {{refundDetail.commitTime}}</view>
+        <!-- 退款审核不通过——进度 -->
         <view class="process_right_text" wx:if="{{refundDetail.refund_status==3}}">退款审核不通过,具体原因请咨询客服  {{refundDetail.failTime}}</view>
+        <!-- 退款审核通过——进度 -->
         <view class="process_right_text" wx:if="{{refundDetail.refund_status>=1&&refundDetail.refund_status!=3}}">退款审核已通过，正在退款  {{refundDetail.passTime}}</view>
         <view class="process_right_text last" wx:if="{{refundDetail.refund_status==2}}">已退款  {{refundDetail.refundSuccessTime}}</view>
+        <!-- 取消退款——进度 -->
+        <view class="process_right_text" wx:if="{{refundDetail.refund_status==5}}">取消退款成功，订单待处理  {{refundDetail.cancleRefundTime}}</view>
     </view>
 </view>
 <view class="footer_btn">
-    <button style="border-color:{{btnColor}};color:{{btnColor}}" disabled="{{refundDetail.refund_status==2}}" bindtap="jumptoRefund">{{btnWord}}</button>
+    <button v-if="{{refundDetail.state==5}}" bindtap="jumptoRefund">取消退款</button>
 </view>

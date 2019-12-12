@@ -2,6 +2,7 @@
 Page{
     font-family: 黑体;
     background-color: #f2f2f2;
+    height: 100%;
 }
 .header{
     width: 100%;
@@ -51,23 +52,17 @@ Page{
 }
 .content {
     width: 100%;
+    height: calc(100% - 310rpx);
     display: flex;
     flex-direction: row;
-    margin-top: 6rpx;
 }
-.fix_normal{
-    height: 866rpx;
-}
-.fix_iphonex{
-    height: 1120rpx;
-}
-#left {
+.left {
     width: 200rpx;
     font-size: 28rpx;
     background-color: #fff;
+    height: 100%;
 }
-#left view {
-    width: 200rpx;
+.left view {
     text-align: center;
     height: 100rpx;
     line-height: 100rpx;
@@ -81,10 +76,11 @@ Page{
     color: #666;
     background-color: #fff;
 }
-#right {
+.right {
     width: 550rpx;
     overflow-y: scroll;
-    -webkit-overflow-scrolling: touch
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
 }
 scroll-view:last-child{
     height: inherit;
