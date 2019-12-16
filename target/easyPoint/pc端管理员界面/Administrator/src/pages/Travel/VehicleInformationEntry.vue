@@ -24,8 +24,8 @@
             <input v-model="driverPhone" maxlength="11" placeholder="司机联系方式" />
           </li>
           <div class="submitVihicle">
-            <span @click="submitVehicle">提交</span>
-            <span @click="submitFinish(id)" style="margin-left:5px">结单</span>
+            <span v-if="state ==1 || state ==0" @click="submitVehicle">提交</span>
+            <span v-if="state != 2" @click="submitFinish(id)" style="margin-left:5px">结单</span>
           </div>
         </ul>
       </div>
@@ -38,22 +38,25 @@ export default {
     return {
       navName: "旅游出行",
       navPlateName: "车辆信息",
-      datas: [],
-      licensePlateNumber: "",
-      vehicleType: "",
-      color: "",
-      driverName: "",
-      driverPhone: "",
-      id: "" //订单id
+      id: "", //订单id
+      state: "", //订单状态
+      datas: [], //车辆信息数据
+      licensePlateNumber: "", //车牌号
+      vehicleType: "", //车辆类型
+      color: "", //车辆颜色
+      driverName: "", //司机姓名
+      driverPhone: "" //司机联系方式
     };
   },
   mounted() {
     const id = this.$route.params.id;
+    const state = this.$route.params.state;
+    this.state = state;
     this.id = id;
-    console.log("根据" + id + "请求数据");
     this.setData(id);
   },
   computed: {
+    //验证输入信息是否合法
     check() {
       var reg = /^[1][3458]\d{9}$/; //验证手机号码
       if (this.licensePlateNumber == "") {
@@ -77,29 +80,38 @@ export default {
     }
   },
   methods: {
+    // 根据id请求数据
     async setData(id) {
-      var that = this;
+      let that = this;
       window.onscroll = e => e.preventDefault(); //兼容浏览器
       this.$http
         .get("findDriverInfo", { params: { travelOrderId: id } })
         .then(function(res) {
-          var data = res.data;
+          let data = res.data;
+          let code = data.code;
           console.log(data);
-          if (data.code == 200) {
-            that.licensePlateNumber = data.data.licensePlateNumber;
-            that.vehicleType = data.data.vehicleType;
-            that.color = data.data.color;
-            that.driverName = data.data.driverName;
-            that.driverPhone = data.data.driverPhone;
-            console.log("查询数据成功");
-          } else if (data.code == 201) {
-            console.log("已经加载完全部数据");
+          switch (code) {
+            case 200:
+              that.licensePlateNumber = data.data.licensePlateNumber;
+              that.vehicleType = data.data.vehicleType;
+              that.color = data.data.color;
+              that.driverName = data.data.driverName;
+              that.driverPhone = data.data.driverPhone;
+              console.log("查询数据成功");
+              break;
+            case 201:
+              alert("已经加载完全部数据");
+              break;
+            default:
+              that.$judgeToken(code);
+              break;
           }
         })
         .catch(function(e) {
           console.log(e);
         });
     },
+    //提交车辆信息
     submitVehicle() {
       var that = this;
       if (this.check == true) {
@@ -118,7 +130,7 @@ export default {
           )
         ) {
           this.$http
-            .get("easyPoint/addDriverInfoToTourismOrder", {
+            .get("addDriverInfoToTourismOrder", {
               params: {
                 travelOrderId: this.id,
                 licensePlateNumber: that.licensePlateNumber,
@@ -130,13 +142,19 @@ export default {
             })
             .then(function(res) {
               var data = res.data;
-              if (data.code == 200) {
-                console.log(data);
-                alert("租车订单安排车辆信息成功");
-                that.setData();
-              } else if (data.code == 201) {
-                console.log(data);
-                alert("安排车辆信息失败,请稍后提交");
+              let code = data.code;
+              console.log(data);
+              switch (code) {
+                case 200:
+                  alert("租车订单安排车辆信息成功");
+                  that.setData();
+                  break;
+                case 201:
+                  alert("安排车辆信息失败,请稍后提交");
+                  break;
+                default:
+                  that.$judgeToken(code);
+                  break;
               }
             })
             .catch(function(e) {
@@ -147,6 +165,7 @@ export default {
         }
       }
     },
+    //是否结单
     submitFinish(id) {
       var that = this;
       if (confirm("确定是否结单")) {
@@ -158,12 +177,18 @@ export default {
           })
           .then(function(res) {
             var data = res.data;
-            if (data.code == 200) {
-              console.log(data);
-              alert("结单成功");
-            } else if (data.code == 400) {
-              console.log(data);
-              alert("结单失败,请稍后重试");
+            let code = data.code;
+            console.log(data);
+            switch (code) {
+              case 200:
+                alert("结单成功");
+                break;
+              case 400:
+                alert("结单失败,请稍后重试");
+                break;
+              default:
+                that.$judgeToken(code);
+                break;
             }
           })
           .catch(function(e) {

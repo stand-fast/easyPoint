@@ -310,8 +310,8 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
         if(ifAgree == 0){
             //将不同意理由保存到tourismRefund表中，并修改其状态为不通过
             tourismInfoDao.updateTourismRefundToFail(uid, tourismRefundId, 2, confirmRefundTime, rejectReason);
-            //修改travel_order表中的订单状态为不通过
-            tourismInfoDao.updateTravelOrderState(7, idAndState.get("travelOrderId"));
+            //修改travel_order表中的订单状态为不通过 1：待处理，2：审核不通过；3：正在退款；4：已退款；5：已取消
+            tourismInfoDao.updateTravelOrderState(2, idAndState.get("travelOrderId"));
             //
             return 0;
         }
@@ -343,19 +343,25 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
                 TourismRefundInfo tourismRefundInfo = new TourismRefundInfo();
                 tourismRefundInfo.setAdmiUid(uid);
                 tourismRefundInfo.setTourismRefundId(tourismRefundId);
-                tourismRefundInfo.setRefundState(3);
+                tourismRefundInfo.setRefundState(4);
                 tourismRefundInfo.setConfirmRefundTime(confirmRefundTime);
+                tourismRefundInfo.setFinishTime(DateUtil.getDateTime());
                 tourismRefundInfo.setRejectReason(rejectReason);
                 tourismRefundInfo.setRefundId(resultMap.get("refund_id").toString());
                 tourismRefundInfo.setRefundFee(Integer.parseInt(resultMap.get("refund_fee").toString()));
                 tourismInfoDao.updateTourismRefundToSuccess(tourismRefundInfo);
-                //修改travel_order表中的订单状态为通过
-                tourismInfoDao.updateTravelOrderState(6, idAndState.get("travelOrderId"));
+                //修改travel_order表中的订单状态为通过 0：未安排；1已安排；2已完成；3已付款；4：已预约；5：已退款
+                tourismInfoDao.updateTravelOrderState(5, idAndState.get("travelOrderId"));
+                return 1;
+            }
+            //退款资金不足
+            else if("SUCCESS".equals(resultMap.get("return_code"))&&"FAIL".equals(resultMap.get("result_code"))&&"NOTENOUGH".equals(resultMap.get("err_code"))){
+                return 2;
             }
         }catch (Exception e){
             log.error("退款请求失败" + e);
-            return -2;
+            return -4;
         }
-        return 1;
+        return -5;
     }
 }

@@ -229,13 +229,19 @@ public class AdmiTourismController {
                                         @RequestParam("ifAgree")int ifAgree){
         int uid = 5;
         int resultCode = admiTourismInfoService.ifAgreeTourismRefund(uid, tourismRefundIdCode, rejectReason,ifAgree);
+        if(resultCode == 1)
+            return new Result(200,"退款成功");
         if(resultCode == -3)
             return new Result(402,"退款订单不是处理状态，退款失败");
         else if(resultCode == -2)
-            return new Result(401,"退款异常");
+            return new Result(401,"参数错误");
+        else if(resultCode == -4)
+            return new Result(400,"退款异常");
         else if(resultCode == 0)
             return new Result(201,"不通过成功");
-        return new Result(200,"退款成功");
+        else if(resultCode == 2)
+            return  new Result(202,"退款失败，请确保商户资金充足");
+        return new Result(405,"退款失败");
     }
 
     @ResponseBody

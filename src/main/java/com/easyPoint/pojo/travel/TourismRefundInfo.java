@@ -9,14 +9,14 @@ public class TourismRefundInfo {
     private Integer tourismRefundId;
     //travel_order表id
     private Integer travelOrderId;
-    //退款状态1：待处理，2：审核不通过；3：审核通过；4：已取消
+    //退款状态1：待处理，2：审核不通过；3：正在退款；4：已退款；5：已取消
     private Integer refundState;
     //用户申请退款时间
     private String requestRefundTime;
     //管理员确定退款时间
     private String confirmRefundTime;
-    //退款时间
-    private String refundTime;
+    //取消退款或者退款成功时间
+    private String finishTime;
     //微信退款单号
     private String refundId;
     //退款金额；单位为分
@@ -76,12 +76,12 @@ public class TourismRefundInfo {
         this.confirmRefundTime = confirmRefundTime;
     }
 
-    public String getRefundTime() {
-        return refundTime;
+    public String getFinishTime() {
+        return finishTime;
     }
 
-    public void setRefundTime(String refundTime) {
-        this.refundTime = refundTime;
+    public void setFinishTime(String finishTime) {
+        this.finishTime = finishTime;
     }
 
     public String getRefundId() {
@@ -124,7 +124,7 @@ public class TourismRefundInfo {
                 ", refundState=" + refundState +
                 ", requestRefundTime='" + requestRefundTime + '\'' +
                 ", confirmRefundTime='" + confirmRefundTime + '\'' +
-                ", refundTime='" + refundTime + '\'' +
+                ", finishTime='" + finishTime + '\'' +
                 ", refundId='" + refundId + '\'' +
                 ", refundFee='" + refundFee + '\'' +
                 ", refundReason='" + refundReason + '\'' +

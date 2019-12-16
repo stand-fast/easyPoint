@@ -7,8 +7,6 @@ import com.easyPoint.pojo.travel.TravelOrderInfo;
 import com.easyPoint.pojo.travel.VehicleInfo;
 
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Property;
-import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -66,8 +64,6 @@ public interface TourismInfoDao {
     //用户进入租车订单详情页面
     TourismOrderDetailInfoDto findTourismOrderDetailInfo(int travelOrderId);
 
-    //查询退款原因和驳回原因
-    Map<String, String> findMapRefundAndRejectReason(int tourismRefundId);
 
 
     //修改出发日期
@@ -75,22 +71,37 @@ public interface TourismInfoDao {
                                         @Param("tomorrowDate") String tomorrowDate,
                                         @Param("travelOrderId") int travelOrderId);
 
+    //恢复原出发日期
+    int updateDepartureTimeToOriginalTime(@Param("originalTime")String originalTime,
+                                          @Param("travelOrderId") int travelOrderId);
+
     //保存被修改的日期
     int updateTourismModifiedDate(@Param("beModifiedTime") String beModifiedTime,
                                   @Param("travelOrderId") int travelOrderId);
 
     //根据订单号查询下单用户和订单状态
-    Map findUidAndStateByTravelOrderId(int travelOrderId);
+    Map findAllowRefundData(int travelOrderId);
 
     //查询退款需要的订单信息：微信订单号和订单金额，是否为往返票
     TourismOrderInfo findRefundNeceInfo(int travelOrderId);
 
+    //查询退款状态
+    int findRefundState(int tourismRefundId);
+
     //用户申请退款
     int insertTourismRefund(TourismRefundInfo tourismRefundInfo);
 
-    //保存新的退款表id
+    //保存新的退款表id，并修改申请次数
     int updateTourismRefundId(@Param("travelOrderId")int travelOrderId,
                                 @Param("tourismRefundId")int tourismRefundId);
+
+    //用户查看小程序退款状态页面的信息
+    MiniTourismRefundPageDto findRefundPageInfoById(int tourismRefundId);
+
+    //用户取消退款,修改退款状态
+    int updateTourismRefundState(@Param("tourismRefundId") int tourismRefundId,
+                                 @Param("finishTime")String finishTime,
+                                 @Param("refundState") int refundState);
 
     //查询退款订单总数
     int countTourismRefundNum();

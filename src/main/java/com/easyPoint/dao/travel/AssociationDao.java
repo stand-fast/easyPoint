@@ -1,9 +1,13 @@
 package com.easyPoint.dao.travel;
 
 import com.easyPoint.dto.travel.BuyDetail;
+import com.easyPoint.dto.travel.MiniBuyTicketPageDto;
 import com.easyPoint.dto.travel.TicketDto;
 import com.easyPoint.dto.travel.TicketInfoDto;
 import com.easyPoint.pojo.travel.Association;
+import com.easyPoint.pojo.travel.AssociationOrderInfo;
+import com.easyPoint.pojo.travel.Passenger;
+import com.easyPoint.pojo.travel.Ticket;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -74,4 +78,27 @@ public interface AssociationDao {
 
     // 查询车票的购票数量
     Integer findBuyDetailNum(String ticketId);
+
+    //根据同乡会id查询车票信息
+    List<MiniBuyTicketPageDto> findTicketsById(int associationId);
+
+    //根据车票Id查询车票信息
+    Ticket findTicketInfoByid(int ticketId);
+
+    //修改车票剩余数量
+    int updateTicketSeatSurplus(@Param("ticketId")int ticketId,
+                                @Param("newSeatSurplus")int newSeatSurplus,
+                                @Param("version")int version);
+
+    //订单过期，恢复购买的票数
+    int updateExpireTicketSeatSurplus(@Param("ticketId")int ticketId,
+                                      @Param("travelNum")int travelNum);
+
+    //用户支付完押金后，提交订单插入数据库,分别插入travel_order、tourism_order表中
+    Integer insertTravelOrderInfo(AssociationOrderInfo associationOrderInfo);
+    Integer insertAssociationOrderInfo(AssociationOrderInfo associationOrderInfo);
+
+    //保存乘客人员信息
+    Integer insertAssociationPassengers(@Param("travelOrderId")int travelOrderId,
+                                        @Param("passengers") List<Passenger> passengers);
 }

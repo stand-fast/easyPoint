@@ -2,6 +2,7 @@ package com.easyPoint.dto.pay;
 
 /**
  * @author FJW
+ *
  * 后端发起微信支付回调前的请求参数
  */
 public class PaymentDto {
