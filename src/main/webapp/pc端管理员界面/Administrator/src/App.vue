@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-    <model />
-    <router-view />
+    <modelNew />
+    <!-- <model /> -->
   </div>
 </template>
 
 <script>
 import model from "./components/model.vue";
+import modelNew from "./components/modelNew.vue";
 export default {
   name: "app",
   components: {
-    model
+    model,
+    modelNew
   }
 };
 </script>

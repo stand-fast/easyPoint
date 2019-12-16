@@ -1,3 +1,97 @@
+/* 清除element自带 */
+.has-gutter th {
+    text-align: center;
+}
+
+.cell {
+    text-align: center;
+}
+
+.el-table__row td {
+    /* table的子项 */
+    text-align: center;
+}
+
+.el-drawer__header {
+    /* 抽屉header */
+    color: rgb(88, 86, 86);
+    font-weight: 600;
+}
+
+.el-drawer {
+    /* 抽屉宽度 */
+    width: 320px !important;
+}
+
+/* 分页组件 */
+.pageing {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+/* 模板弹窗 */
+.spring-model-con>li {
+    display: flex;
+    margin-top: 8px;
+    color: #606266;
+}
+
+.spring-model-con>li>span {
+    width: 70px;
+    align-self: center;
+    font-weight: 600;
+}
+
+.spring-model-con>li:last-child>span {
+    align-self: flex-start;
+}
+
+.spring-model-con>li span {
+    font-weight: 600;
+}
+
+.spring-model-con>li p {
+    font-size: 12px;
+    margin: 10px;
+    font-weight: 500;
+}
+
+.spring-model-con-button {
+    text-align: right;
+    margin-top: 20px;
+}
+
+/* 抽屉 */
+
+.drawer-model {
+    padding: 15px;
+}
+
+.drawer-model>li {
+    display: flex;
+    color: #606266;
+    align-items: center;
+}
+
+.drawer-model>li:nth-child(n + 2) {
+    margin-top: 20px;
+}
+
+.drawer-model>li>span {
+    min-width: 90px;
+    box-sizing: border-box;
+    padding: 0 5px;
+    font-weight: 600;
+}
+
+.drawer-model-button {
+    text-align: right;
+    margin-right: 15px;
+}
+
+
 h1 {
     font-size: 20px;
     height: 30px;
