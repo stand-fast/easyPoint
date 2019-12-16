@@ -49,6 +49,21 @@ public class TourismController {
     /**
      * 提交订单
      * @param  tourismOrderInfo 订单信息
+     *                          //租车填写信息页面的数据
+     *         passenger: "wan",//“乘客名”即username
+     *         phone: "17806531562",
+     *         departurePlace: '广东',
+     *         destination: '汕头',
+     *         travelNum: 52,
+     *         departureTime: '2019-07-01 8:30',
+     *         type: 0,
+     *         vehicleId: 3,
+     *         ifBack: 1,//是否往反
+     *         backTime: '2017-07-05 8:30',//返回时间
+     *         ifInsurance: 0,
+     * 		//支付金额
+     *         payMoney:0.01,//已付款金额，等于定金+（如有购买保险，加上）
+     *         body: '出行租车', //产品简单描述
      * @return 验证码
      */
     @ResponseBody

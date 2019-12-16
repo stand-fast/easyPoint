@@ -41,6 +41,24 @@ public class Ticket {
     private String driverName;
     // 司机手机号码
     private String driverPhone;
+    //乐观锁标识
+    private Integer version;
+
+    public String getVehicleType() {
+        return vehicleType;
+    }
+
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
 
     public Integer getTicketId() {
         return ticketId;

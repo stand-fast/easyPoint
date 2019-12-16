@@ -36,6 +36,7 @@ public class TravelInfoServiceImpl implements TravelInfoService {
             TourismOrderDetailInfoDto tourismOrderDetailInfo = tourismInfoDao.findTourismOrderDetailInfo(travelOrderId);
             return tourismOrderDetailInfo;
         }
+
         return null;
     }
 
