@@ -23,7 +23,7 @@
     </el-aside>
 
     <el-container class="model-wrapper-con">
-      <div class="model-wrapper-con-user">
+      <div v-show="loginUser!='未登录'" class="model-wrapper-con-user">
         <el-dropdown>
           <i class="el-icon-setting" style="margin-right: 15px"></i>
           <el-dropdown-menu slot="dropdown">
@@ -119,28 +119,49 @@
                 </li>
                 <li>
                   <span>账户:</span>
-                  {{loginUser.loginId}}
+                  <el-input
+                    class="model-input"
+                    maxlength="11"
+                    placeholder="账户"
+                    v-model="changeId"
+                    clearable
+                  ></el-input>
                 </li>
-                <!-- <li>
+                <li>
+                  <span>验证码:</span>
+                  <el-input class="model-input" placeholder="验证码" v-model="changeCode" clearable></el-input>
+                  <label class="drawer-model-code" @click="getCode(changeId)">{{code}}</label>
+                </li>
+                <li>
+                  <span>确认密码:</span>
+                  <el-input
+                    class="model-input"
+                    placeholder="请输入密码"
+                    autocomplete="new-password"
+                    type="password"
+                    v-model="changePassword"
+                    clearable
+                  ></el-input>
+                </li>
+                <li>
                   <span>再次输入:</span>
                   <el-input
                     class="model-input"
-                    placeholder="请再次输入新密码"
-                    type="password"
+                    placeholder="请再次输入密码"
                     autocomplete="new-password"
-                    v-model="ensurePassword"
+                    type="password"
+                    v-model="changeComfirmPassword"
                     clearable
                   ></el-input>
-                </li> -->
+                </li>
               </div>
               <div class="drawer-model-button">
-                <el-button type="primary" size="mini" @click="submitModifyPassword()">修改</el-button>
+                <el-button type="primary" size="mini" @click="submitChangeAccount()">修改</el-button>
               </div>
-              
             </el-drawer>
           </el-dropdown-menu>
         </el-dropdown>
-        <span>{{$username}}</span>
+        <span v-show="loginUser!='未登录'">{{$username}}</span>
       </div>
       <el-main>
         <router-view />
@@ -250,7 +271,13 @@ export default {
       newusername: "", //修改用户名部分-新用户名
       oldPassword: "", //修改密码部分-旧密码
       newPassword: "", //修改密码部分-新密码
-      ensurePassword: "" //修改密码部分-确认新密码
+      ensurePassword: "", //修改密码部分-确认新密码
+      changeId: "", //更换绑定部分-手机号码
+      changeCode: "123456", //更换绑定部分-验证码
+      changePassword: "", //更换绑定部分-密码
+      changeComfirmPassword: "", //更换绑定部分-确认密码
+      code: "获取验证码", //验证码倒计时
+      codeStatus: 0 //验证码加锁
     };
   },
   computed: {
@@ -328,8 +355,8 @@ export default {
                 that.changeId = "";
                 that.changeCode = "";
                 that.changePassword = "";
-                (that.changeComfirmPassword = ""), (that.showUserInfor = false);
-                that.showModifyAccounts = false;
+                that.changeComfirmPassword = "";
+                that.drawerModifyAccount = false;
                 alert("更换绑定成功,请重新登陆");
                 that.$store.dispatch("loginOut");
                 that.$router.push("/login");

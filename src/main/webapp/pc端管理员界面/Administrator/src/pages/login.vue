@@ -1,57 +1,73 @@
 <template>
   <div>
-    <ul class="PageContentRight">
-      <div class="PageContentRightTitle">
-        <div class="IconTitle"></div>
-        <div class="TitleText">登陆界面</div>
-      </div>
-      <div class="PageContent">
-        <div class="center">
-          <p>
-            <label>账户：</label>
-            <input v-model="loginId" class="loginInputs" placeholder="请输入账号" />
-          </p>
-          <p>
-            <label>密码：</label>
-            <input
-              placeholder="请输入密码"
-              autocomplete="off"
-              class="loginInputs"
+    <el-header class="model-wrapper-con-header">登陆界面</el-header>
+    <el-main class="el-main-content">
+      <el-popover
+        placement="top"
+        title="忘记密码"
+        width="300"
+        trigger="click"
+        v-model="showForgetPasswords"
+      >
+        <div class="spring-model-con">
+          <li>
+            <span>账户:</span>
+            <el-input
+              class="model-input"
+              maxlength="11"
+              placeholder="请输入账户"
+              v-model="forgetId"
+              clearable
+            ></el-input>
+          </li>
+          <li>
+            <span>验证码:</span>
+            <el-input class="model-input" placeholder="请输入验证码" v-model="forgetCode" clearable></el-input>
+            <label class="drawer-model-code" @click="getCode(forgetId)">{{code}}</label>
+          </li>
+          <li>
+            <span>密码:</span>
+            <el-input
+              class="model-input"
+              autocomplete="new-password"
               type="password"
-              v-model="loginPwd"
-            />
-          </p>
-          <el-button type="success" class="loginButton" @click="handleLogin">登陆</el-button>
-          <span @click="showForgetPassword()">忘记密码</span>
+              placeholder="请输入密码"
+              v-model="forgetPassword"
+              clearable
+            ></el-input>
+          </li>
+          <li>
+            <span>再次输入:</span>
+            <el-input
+              class="model-input"
+              autocomplete="new-password"
+              type="password"
+              placeholder="请输入再次输入密码"
+              v-model="forgetComfirm"
+              clearable
+            ></el-input>
+          </li>
         </div>
-      </div>
+        <div class="spring-model-con-button">
+          <el-button size="mini" type="text" @click="showForgetPasswords = false;">取消</el-button>
+          <el-button type="primary" size="mini" @click="submitForgetPassword()">提交</el-button>
+        </div>
+      </el-popover>
 
-      <!-- 登陆-忘记密码部分 -->
-      <div class="userInformation" v-show="showForgetPasswords">
-        <div class="inforTitle">登陆-忘记密码</div>
-        <div class="change-account">
-          <span>账户：</span>
-          <input placeholder="请输入账户" v-model="forgetId" />
-          <label @click="getCode(forgetId)">{{code}}</label>
-        </div>
-        <div class="change-account">
-          <span>验证码：</span>
-          <input placeholder="请输入验证码" v-model="forgetCode" />
-        </div>
-        <div class="change-account">
-          <span>新密码：</span>
-          <input placeholder="请输入密码" type="password" v-model="forgetPassword" />
-        </div>
-        <div class="change-account">
-          <span>再次输入：</span>
-          <input placeholder="请再次输入密码" type="password" v-model="forgetComfirm" />
-        </div>
-        <div class="InforButton">
-          <span @click="submitForgetPassword()">提交</span>
-          <span @click="showForgetPassword()">返回</span>
-        </div>
-      </div>
-    </ul>
+      <p class="login-input">
+        <span>账户：</span>
+        <el-input maxlength="11" placeholder="请输入账户" v-model="loginId" clearable></el-input>
+      </p>
+      <p class="login-input">
+        <span>密码：</span>
+        <el-input placeholder="请输入密码" type="password" v-model="loginPwd" clearable></el-input>
+      </p>
+      <p class="login-input">
+        <span></span>
+        <el-button class="login-button" @click="handleLogin">登陆</el-button>
+        <label @click="showForgetPasswords = true">忘记密码</label>
+      </p>
+    </el-main>
   </div>
 </template>
 <script>
@@ -161,38 +177,34 @@ export default {
   }
 };
 </script>
-<style scoped>
-.loginInputs {
-  padding: 0 20px;
-  width: 150px;
-  height: 40px;
-  border: 1px solid #8fd68b;
-}
-.loginButton {
-  width: 140px;
-}
-input:-internal-autofill-selected {
-  box-shadow: inset 0 0 0 1000px #ffffff !important;
-}
-.center {
+<style>
+.login-input {
   width: 300px;
-  margin: 0 auto;
-  text-align: center;
-  position: relative;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.center span {
-  position: absolute;
-  bottom: 0px;
-  right: 3px;
+.login-input:nth-of-type(1) {
+  margin-top: 120px;
+}
+.login-input > span {
+  min-width: 100px;
+  color: #9c9ea1;
+  font-weight: 600;
+}
+.login-input > label {
+  color: #9c9ea1;
+  font-size: 13px;
+  font-weight: 600;
+  margin-left: 10px;
+}
+.login-input > label:hover {
+  color: #409eff;
   cursor: pointer;
-  font-size: 14px;
-  padding: 5px;
-  border-radius: 3px;
 }
-.center span:hover {
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-}
-.center p {
-  margin: 40px 0;
+.login-button {
+  font-weight: 600;
+  width: 100px;
 }
 </style>
