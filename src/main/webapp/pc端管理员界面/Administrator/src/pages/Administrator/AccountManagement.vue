@@ -332,10 +332,6 @@ export default {
           });
       }
     },
-    //是否显示添加管理员部分
-    showAddAccount() {
-      this.showAddAccounts = !this.showAddAccounts;
-    },
     //格式化角色内容
     formatIdentity: function(row, column, cellValue, index) {
       return row.identity == 1 ? "管理员" : "超级管理员";

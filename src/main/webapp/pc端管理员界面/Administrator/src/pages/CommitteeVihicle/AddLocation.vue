@@ -64,7 +64,7 @@ export default {
       navName: "校友会包车",
       navPlateName: "添加上下车地点",
       showAddPlace: false, //是否显示添加上下车地点弹窗
-      inputPlace: "",//添加上下车地点-地点
+      inputPlace: "", //添加上下车地点-地点
       datas: [], //上下车地点数据
       pageSize: 8, //每页最大条数
       current: 1, //当前页码
@@ -83,13 +83,14 @@ export default {
     }
   },
   mounted() {
-    this.associationId = this.$route.params.id;//获取路由器传递的id值
+    this.associationId = this.$route.params.id; //获取路由器传递的id值
     console.log("根据" + this.associationId + "请求数据");
     this.handlePageChange(1);
   },
   methods: {
     //获取上下车地点数
     async handlePageChange(page) {
+      let that = this;
       let params = {
         associationId: this.associationId,
         startIndex: page,
@@ -113,15 +114,18 @@ export default {
               });
               this.datas = newdata;
               this.pageNumber =
-                data.data.totalNum % 10 == 0
-                  ? data.data.totalNum / 10
-                  : parseInt(data.data.totalNum / 10) + 1;
+                data.data.totalNum % this.pageSize == 0
+                  ? data.data.totalNum / this.pageSize
+                  : parseInt(data.data.totalNum / this.pageSize) + 1;
               break;
             case 2:
               alert("参数为空");
               break;
             case 3:
               alert("页码超出最大范围");
+              break;
+            default:
+              that.$judgeToken(code);
               break;
           }
         })
@@ -160,6 +164,9 @@ export default {
                 this.showAddPlace = false;
                 this.handlePageChange(this.current);
                 break;
+              default:
+                that.$judgeToken(code);
+                break;
             }
           })
           .catch(function(e) {
@@ -192,6 +199,9 @@ export default {
               break;
             case 2:
               alert("没添加过该地址或没有此同乡会");
+              break;
+            default:
+              that.$judgeToken(code);
               break;
           }
         })

@@ -99,7 +99,6 @@ export default {
   methods: {
     //按页码获取数据
     async getAssociation(page) {
-      window.onscroll = e => e.preventDefault(); //兼容浏览器
       let that = this;
       let params = {
         startIndex: page,
@@ -124,9 +123,9 @@ export default {
               this.datas = data.data.associationList;
               this.current = page;
               this.pageNumber =
-                data.data.totalNum % 10 == 0
-                  ? data.data.totalNum / 10
-                  : parseInt(data.data.totalNum / 10) + 1;
+                data.data.totalNum % this.pageSize == 0
+                  ? data.data.totalNum / this.pageSize 
+                  : parseInt(data.data.totalNum / this.pageSize ) + 1;
               break;
             case 2:
               alert("参数错误");
@@ -146,7 +145,6 @@ export default {
         let that = this;
         let params = new URLSearchParams();
         params.append("associationName", this.addAssociation);
-        window.onscroll = e => e.preventDefault(); //兼容浏览器
         this.$http
           .post("addAssociation", params)
           .then(res => {

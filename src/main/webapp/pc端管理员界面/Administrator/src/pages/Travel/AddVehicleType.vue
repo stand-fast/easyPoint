@@ -29,19 +29,12 @@
     </el-header>
     <!-- 内容 -->
     <el-table :data="datas">
-      <el-table-column label="车辆类型"  prop="vehicleType"></el-table-column>
+      <el-table-column label="车辆类型" prop="vehicleType"></el-table-column>
       <el-table-column label="定金" sortable prop="deposit"></el-table-column>
       <el-table-column label="操作" fixed="right">
         <template slot-scope="scope">
           <!-- 删除弹窗 -->
-          <el-popover
-            class="column-width-5"
-            placement="top"
-            width="230"
-            title="确认删除该车辆类型吗？"
-            trigger="click"
-            v-model="scope.row.visible"
-          >
+          <el-popover width="230" title="确认删除该车辆类型吗？" trigger="click" v-model="scope.row.visible">
             <div class="spring-model-con-button">
               <el-button type="text" size="mini" @click="scope.row.visible = false;">取消</el-button>
               <el-button type="primary" size="mini" @click="handledelete(scope.row.vehicleId)">确定</el-button>
@@ -108,7 +101,6 @@ export default {
     //获取首页数据以及页码总数
     async setData() {
       let that = this;
-      window.onscroll = e => e.preventDefault(); //兼容浏览器
       this.$http
         .get("getTotalPageAndFirstVehicleInfoList")
         .then(function(res) {

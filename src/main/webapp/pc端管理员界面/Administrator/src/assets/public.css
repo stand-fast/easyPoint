@@ -66,8 +66,14 @@
 .model-content-input {
     width: 300px;
     margin: 20px auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
 }
 
@@ -188,6 +194,59 @@
     text-align: right;
     margin-right: 15px;
 }
+
+/* 旅游出行-退款订单详情模板 */
+
+.delorder-model {
+    color: #606266;
+    font-size: 14px;
+}
+
+.delorder-model p {
+    padding: 6px 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.delorder-model>p>span {
+    color: #99a9bf;
+    margin-left: 200px;
+    min-width: 80px;
+}
+
+.delorder-model>p>label {
+    color: #606266;
+    min-width: 300px;
+}
+
+.delorder-model-button {
+    margin-top: 8px;
+    padding-left: 280px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.delorder-model-button span {
+    cursor: pointer;
+    min-width: 80px;
+    padding: 10px 0;
+    text-align: center;
+    color: #99a9bf;
+    border: 1px solid #99a9bf;
+    border-radius: 6px;
+}
+
+.delorder-model-button span:hover {
+    color: #fff;
+    background: #99a9bf;
+}
+
+.delorder-model-button span:last-child {
+    margin-left: 8px;
+}
+
 
 /* 以下旧版待删 */
 h1 {

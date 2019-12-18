@@ -101,7 +101,6 @@ export default {
     //获取首页数据以及页码总数
     async setData() {
       let that = this;
-      window.onscroll = e => e.preventDefault(); //兼容浏览器
       this.$http
         .get("getTotalPageAndFirstTourismOrderInfoList")
         .then(function(res) {
