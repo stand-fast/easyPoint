@@ -1,5 +1,6 @@
 <template>
   <el-container class="model-wrapper">
+    <!-- 左侧导航部分 -->
     <el-aside class="model-wrapper-left">
       <el-menu :default-openeds="[2]" class="model-wrapper-left">
         <el-submenu
@@ -22,13 +23,16 @@
       </el-menu>
     </el-aside>
 
+    <!-- 模块标题部分 -->
     <el-container class="model-wrapper-con">
       <div v-show="loginUser!='未登录'" class="model-wrapper-con-user">
         <el-dropdown>
           <i class="el-icon-setting" style="margin-right: 15px"></i>
           <el-dropdown-menu slot="dropdown">
             <!-- 退出登陆部分 -->
-            <el-dropdown-item>退出登陆</el-dropdown-item>
+            <el-dropdown-item>
+              <span @click="loginOut()">退出登陆</span>
+            </el-dropdown-item>
 
             <!-- 修改用户名部分 -->
             <el-dropdown-item>
@@ -68,6 +72,10 @@
                 <li>
                   <span>账户:</span>
                   {{loginUser.loginId}}
+                </li>
+                <li>
+                  <span>角色:</span>
+                  {{loginUser.name}}
                 </li>
                 <li>
                   <span>旧密码:</span>
@@ -116,6 +124,10 @@
                 <li>
                   <span>用户名:</span>
                   {{$username}}
+                </li>
+                <li>
+                  <span>角色:</span>
+                  {{loginUser.name}}
                 </li>
                 <li>
                   <span>账户:</span>
@@ -313,7 +325,6 @@ export default {
               that.$username = that.newusername;
               that.newusername = "";
               that.drawer = false;
-              alert("修改成功");
               break;
             case 2:
               alert("参数为空");

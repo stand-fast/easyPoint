@@ -1,13 +1,21 @@
 <template>
   <div>
-    <ul class="PageContentRight">
+    <!-- 顶部标题 -->
+    <el-header class="model-wrapper-con-header">{{navName}} - {{navPlateName}}</el-header>
+    <!-- 内容 -->
+    <el-main class="el-main-content">
+      <p class="">
+        <span>联系人</span>
+        <label>{{datas.passenger}}</label>
+      </p>
+    </el-main>
+    <!-- <ul class="PageContentRight">
       <div class="PageContentRightTitle">
         <div class="IconTitle"></div>
         <div class="TitleText">{{navName}} > {{navPlateName}}</div>
       </div>
       <div class="PageContent">
         <h1>租车退款订单详情</h1>
-        <!-- 订单详情数据 -->
         <div class="dealOrderWrapper">
           <li>
             <span>联系人</span>
@@ -51,7 +59,7 @@
             <span>退款原因</span>
             <div>{{datas.refundReason}}</div>
           </li>
-          <!-- 1：待处理，2：审核不通过；3：审核通过；4：已取消 -->
+          1：待处理，2：审核不通过；3：审核通过；4：已取消
           <li>
             <span>申请退款时间</span>
             <div>{{datas.requestRefundTime}}</div>
@@ -72,13 +80,12 @@
             <div v-else>无</div>
           </li>
         </div>
-        <!-- 订单详情按钮 -->
         <div class="dealOrderButton">
           <span v-if="datas.refundState==1" @click="viaOrder(datas.code)">通过</span>
           <span v-if="datas.refundState==1" @click="notViaOrder(datas.code)">不通过</span>
         </div>
       </div>
-    </ul>
+    </ul> -->
   </div>
 </template>
 <script>

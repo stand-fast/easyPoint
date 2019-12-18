@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 顶部标题 -->
     <el-header class="model-wrapper-con-header">
       {{navName}}-{{navPlateName}}
       <span @click="showAddAccounts = true;">添加管理员</span>
@@ -57,23 +58,22 @@
     </el-header>
     <!-- 内容 -->
     <el-table :data="datas">
-      <el-table-column label="用户名" sortable prop="username" class="column-width-5"></el-table-column>
-      <el-table-column prop="phone" sortable label="账户" class="column-width-5"></el-table-column>
+      <el-table-column label="用户名" prop="username" class="column-width-5"></el-table-column>
+      <el-table-column label="账户" prop="phone" class="column-width-5"></el-table-column>
       <el-table-column
-        prop="identity"
-        sortable
         label="角色"
+        prop="identity"
         class="column-width-5"
         :formatter="formatIdentity"
       ></el-table-column>
       <el-table-column
-        prop="state"
-        sortable
         label="状态"
+        sortable
+        prop="state"
         class="column-width-5"
         :formatter="formatState"
       ></el-table-column>
-      <el-table-column fixed="right" label="操作" style="width: 12%">
+      <el-table-column label="操作" fixed="right" style="width: 12%">
         <template slot-scope="scope">
           <!-- 禁用启用弹窗 -->
           <el-popover
@@ -311,7 +311,7 @@ export default {
                 that.identity = "1";
                 that.showAddAccounts = false;
                 that.handlePageChange(that.current);
-                //alert("添加成功");
+                alert("添加成功");
                 break;
               case 2:
                 alert("参数为空");

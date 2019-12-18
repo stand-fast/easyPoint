@@ -1,6 +1,8 @@
 <template>
   <div>
+    <!-- 顶部标题 -->
     <el-header class="model-wrapper-con-header">登陆界面</el-header>
+    <!-- 内容 -->
     <el-main class="el-main-content">
       <el-popover
         placement="top"
@@ -54,17 +56,17 @@
         </div>
       </el-popover>
 
-      <p class="login-input">
+      <p class="model-content-input">
         <span>账户：</span>
-        <el-input maxlength="11" placeholder="请输入账户" v-model="loginId" clearable></el-input>
+        <el-input maxlength="11" autocomplete="on" placeholder="请输入账户" v-model="loginId" clearable></el-input>
       </p>
-      <p class="login-input">
+      <p class="model-content-input">
         <span>密码：</span>
         <el-input placeholder="请输入密码" type="password" v-model="loginPwd" clearable></el-input>
       </p>
-      <p class="login-input">
+      <p class="model-content-input">
         <span></span>
-        <el-button class="login-button" @click="handleLogin">登陆</el-button>
+        <el-button class="model-content-button" @click="handleLogin">登陆</el-button>
         <label @click="showForgetPasswords = true">忘记密码</label>
       </p>
     </el-main>
@@ -100,10 +102,6 @@ export default {
         this.loginId = "";
         this.loginPwd = "";
       }
-    },
-    //显示忘记密码
-    showForgetPassword() {
-      this.showForgetPasswords = !this.showForgetPasswords;
     },
     //提交忘记密码
     submitForgetPassword() {
@@ -178,33 +176,4 @@ export default {
 };
 </script>
 <style>
-.login-input {
-  width: 300px;
-  margin: 20px auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.login-input:nth-of-type(1) {
-  margin-top: 120px;
-}
-.login-input > span {
-  min-width: 100px;
-  color: #9c9ea1;
-  font-weight: 600;
-}
-.login-input > label {
-  color: #9c9ea1;
-  font-size: 13px;
-  font-weight: 600;
-  margin-left: 10px;
-}
-.login-input > label:hover {
-  color: #409eff;
-  cursor: pointer;
-}
-.login-button {
-  font-weight: 600;
-  width: 100px;
-}
 </style>

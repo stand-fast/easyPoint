@@ -29,6 +29,76 @@
     width: 320px !important;
 }
 
+/* table的展开行 */
+.demo-table-expand {
+    font-size: 0;
+}
+
+.demo-table-expand label {
+    width: 90px;
+    color: #99a9bf;
+}
+
+.demo-table-expand .el-form-item {
+    margin-right: 0;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+/* 校友会包车-添加车辆模板 */
+.content-model-wrapper li {
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.selectIng {
+    width: 200px !important;
+}
+
+.releaseButton {
+    width: 120px !important;
+    font-size: 15px !important;
+}
+
+
+/* 模板居中input框 */
+.model-content-input {
+    width: 300px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.model-content-input:nth-of-type(1) {
+    margin-top: 100px;
+}
+
+.model-content-input>span {
+    min-width: 120px;
+    color: #9c9ea1;
+    font-weight: 600;
+}
+
+.model-content-input>label {
+    color: #9c9ea1;
+    font-size: 13px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.model-content-input>label:hover {
+    color: #409eff;
+    cursor: pointer;
+}
+
+.model-content-button {
+    font-weight: 600;
+    width: 100px;
+}
+
+
 /* 分页组件 */
 .pageing {
     width: 100%;
@@ -119,7 +189,7 @@
     margin-right: 15px;
 }
 
-
+/* 以下旧版待删 */
 h1 {
     font-size: 20px;
     height: 30px;
