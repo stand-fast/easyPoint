@@ -175,7 +175,9 @@
         </el-dropdown>
         <span v-show="loginUser!='未登录'">{{$username}}</span>
       </div>
+      <!-- 内容部分 -->
       <el-main>
+        <i class="el-icon-back model-back" @click="$router.back(-1)"></i>
         <router-view />
       </el-main>
     </el-container>
@@ -479,6 +481,19 @@ export default {
 };
 </script>
 <style>
+.model-back {
+  cursor: pointer;
+  position: absolute;
+  left: 235px;
+  top: 120px;
+  color: #9c9ea1;
+  font-size: 22px;
+  z-index: 9999;
+}
+.model-back:hover {
+  color: #409eff;
+}
+
 * {
   margin: 0;
   padding: 0;

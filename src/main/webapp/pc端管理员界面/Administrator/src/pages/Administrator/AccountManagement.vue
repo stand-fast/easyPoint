@@ -132,7 +132,7 @@
     <!-- 分页组件 -->
     <el-pagination
       class="pageing"
-      :page-size="pageCount"
+      :page-size="pageSize"
       :total="totalNumber"
       @current-change="handlePageChange"
       :current-page.sync="current"
@@ -153,7 +153,7 @@ export default {
       identity: 1, //添加管理员-权限-0:超级管理员-1:普通管理员
       datas: [], //管理员账户数据
       current: 1, //当前页码
-      pageCount: 9, //每页显示条目数
+      pageSize: 8, //每页最大条数
       totalNumber: 5 //总条目数
     };
   },
@@ -172,7 +172,7 @@ export default {
     //获取账户数据,根据页码
     async handlePageChange(page) {
       let that = this;
-      let params = { startIndex: page, pageSize: 9 };
+      let params = { startIndex: page, pageSize: this.pageSize };
       this.$http
         .get("findAllCommonAdmin", { params })
         .then(function(res) {
@@ -308,7 +308,7 @@ export default {
                 that.phone = "";
                 that.username = "";
                 that.password = "";
-                that.identity = "1";
+                that.identity = 1;
                 that.showAddAccounts = false;
                 that.handlePageChange(that.current);
                 alert("添加成功");

@@ -11,6 +11,9 @@
             <el-form-item label="订单编号">
               <span>{{ props.row.ticketId }}</span>
             </el-form-item>
+            <el-form-item label="发布时间">
+              <span>{{ props.row.issueTime }}</span>
+            </el-form-item>
             <el-form-item label="同乡会">
               <span>{{ props.row.associationName }}</span>
             </el-form-item>
@@ -26,8 +29,8 @@
             <el-form-item label="出发时间">
               <span>{{ props.row.departureTime }}</span>
             </el-form-item>
-            <el-form-item label="发布时间">
-              <span>{{ props.row.issueTime }}</span>
+            <el-form-item label="座位数">
+              <span>{{ props.row.seatNum }}</span>
             </el-form-item>
             <el-form-item label="车票类型">
               <span v-if=" props.row.type == 1">正式车票</span>
@@ -49,6 +52,7 @@
       <el-table-column label="目的地" prop="destination"></el-table-column>
       <el-table-column label="出发日期" sortable prop="departureDay"></el-table-column>
       <el-table-column label="出发时间" sortable prop="departureTime"></el-table-column>
+      <el-table-column label="座位数" sortable prop="seatNum"></el-table-column>
       <el-table-column label="车票类型" sortable prop="type" :formatter="formatType"></el-table-column>
       <el-table-column label="售价" sortable prop="price"></el-table-column>
       <el-table-column label="剩余票数" sortable prop="seatSurplus"></el-table-column>
@@ -64,7 +68,7 @@
           <el-popover width="180" title="确定要下架该车票订单吗？" trigger="click" v-model="scope.row.visible">
             <div class="spring-model-con-button">
               <el-button type="text" size="mini" @click="scope.row.visible = false;">取消</el-button>
-              <el-button type="primary" size="mini" @click="shelves(scope.row.ticketId)">确定</el-button>
+              <el-button type="primary" size="mini" @click="endTicket(scope.row.ticketId)">确定</el-button>
             </div>
           </el-popover>
 
@@ -81,7 +85,8 @@
     <!-- 分页组件 -->
     <el-pagination
       class="pageing"
-      :page-count="pageNumber"
+      :page-size="pageSize"
+      :total="totalNumber"
       @current-change="handlePageChange"
       :current-page.sync="current"
       layout="prev, pager, next, jumper"
@@ -95,9 +100,9 @@ export default {
       navName: "校友会包车",
       navPlateName: "我的发布",
       datas: [], //数据部分
-      pageSize: 8, //每页最大条数
       current: 1, //当前页码
-      pageNumber: 5 //页码总数
+      pageSize: 8, //每页最大条数
+      totalNumber: 5 //总条目数
     };
   },
   mounted() {
@@ -129,10 +134,8 @@ export default {
                 return res;
               });
               this.datas = data.data.ticketList;
-              this.pageNumber =
-                data.data.ticketNum % this.pageSize == 0
-                  ? data.data.ticketNum / this.pageSize
-                  : parseInt(data.data.ticketNum / this.pageSize) + 1;
+              this.totalNumber = data.data.ticketNum;
+              this.current = page;
               break;
             case 2:
               alert("参数为空");
@@ -166,7 +169,7 @@ export default {
               break;
             case 1:
               alert("下架成功");
-              this.getTicket();
+              this.handlePageChange(this.current);
               break;
             case 2:
               alert("参数为空");
@@ -179,13 +182,6 @@ export default {
         .catch(function(e) {
           console.log(e);
         });
-    },
-    shelves(id) {
-      if (confirm("确定要下架该车票订单吗?")) {
-        this.endTicket(id);
-      } else {
-        console.log("你取消了下架");
-      }
     },
     //跳转购票详情
     purchaseDetails(id) {

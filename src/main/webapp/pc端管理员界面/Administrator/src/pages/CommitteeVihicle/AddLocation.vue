@@ -50,7 +50,8 @@
     <!-- 分页组件 -->
     <el-pagination
       class="pageing"
-      :page-count="pageNumber"
+      :page-size="pageSize"
+      :total="totalNumber"
       @current-change="handlePageChange"
       :current-page.sync="current"
       layout="prev, pager, next, jumper"
@@ -66,9 +67,9 @@ export default {
       showAddPlace: false, //是否显示添加上下车地点弹窗
       inputPlace: "", //添加上下车地点-地点
       datas: [], //上下车地点数据
-      pageSize: 8, //每页最大条数
       current: 1, //当前页码
-      pageNumber: 5 //页码总数
+      pageSize: 8, //每页最大条数
+      totalNumber: 5 //总条目数
     };
   },
   computed: {
@@ -113,10 +114,8 @@ export default {
                 newdata.push({ place: res, visible: false });
               });
               this.datas = newdata;
-              this.pageNumber =
-                data.data.totalNum % this.pageSize == 0
-                  ? data.data.totalNum / this.pageSize
-                  : parseInt(data.data.totalNum / this.pageSize) + 1;
+              this.totalNumber = data.data.totalNum;
+              this.current = page;
               break;
             case 2:
               alert("参数为空");

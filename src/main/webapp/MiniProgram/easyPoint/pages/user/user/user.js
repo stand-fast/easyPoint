@@ -78,7 +78,8 @@ Page({
                   iv: res_user.iv
                 },
                 success: function (res) {
-                  var userdata = res.data.userInfo;
+                  console.log(res);
+                  let userdata = res.data.userInfo;
                   that.setData({
                     isLogin: true,
                     nickName: userdata.nickName,

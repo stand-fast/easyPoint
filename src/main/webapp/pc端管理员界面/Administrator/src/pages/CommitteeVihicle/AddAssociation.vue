@@ -61,8 +61,9 @@
     <!-- 分页组件 -->
     <el-pagination
       class="pageing"
-      :page-count="pageNumber"
-      @current-change="getAssociation"
+      :page-size="pageSize"
+      :total="totalNumber"
+      @current-change="handlePageChange"
       :current-page.sync="current"
       layout="prev, pager, next, jumper"
     ></el-pagination>
@@ -77,9 +78,9 @@ export default {
       showAddAssociation: false, //是否显示添加同乡会
       addAssociation: "", //添加同乡会-名称
       datas: [], //同乡会数据
-      pageSize: 8, //每页最大条数
       current: 1, //当前页码
-      pageNumber: 5 //页码总数
+      pageSize: 8, //每页最大条数
+      totalNumber: 5 //总条目数
     };
   },
   computed: {
@@ -94,11 +95,11 @@ export default {
     }
   },
   mounted() {
-    this.getAssociation(1);
+    this.handlePageChange(1);
   },
   methods: {
     //按页码获取数据
-    async getAssociation(page) {
+    async handlePageChange(page) {
       let that = this;
       let params = {
         startIndex: page,
@@ -121,11 +122,8 @@ export default {
                 return res;
               });
               this.datas = data.data.associationList;
+              this.totalNumber = data.data.totalNum;
               this.current = page;
-              this.pageNumber =
-                data.data.totalNum % this.pageSize == 0
-                  ? data.data.totalNum / this.pageSize 
-                  : parseInt(data.data.totalNum / this.pageSize ) + 1;
               break;
             case 2:
               alert("参数错误");
