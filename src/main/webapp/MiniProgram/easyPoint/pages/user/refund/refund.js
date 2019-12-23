@@ -6,17 +6,15 @@ Page({
   },
   //页面加载完毕执行函数(放在首位)
   onLoad: function (options) {
-    let obj = wx.getStorageSync("token");
     this.setData({
-      token: obj.token,
       travelOrderId: options.travelOrderId
     })
     this.getRefundMessage(options.travelOrderId)
   },
   //提交退款申请
   formSubmit: function (e) {     
-    let token = this.data.token;
     let that = this;
+    let token = app.globalData.token;
     if (e.detail.value.reason==""){
       wx.showToast({
         title: '退款理由不能为空',
@@ -36,18 +34,21 @@ Page({
           duration: 2000
       })
     }else{
-      console.log(app.globalData.uid);
       wx.request({
         url: app.globalData.requestUrl + 'tourismRefund',
         method: 'Post',
         data: {
           travelOrderId: that.data.travelOrderId,
           refundReason: e.detail.value.reason,
-          uid:app.globalData.uid,
         },
         header: { 'content-type': 'application/x-www-form-urlencoded', token },
         success: function (res) {
-          let code = res.data.code;
+          console.log(res.data);
+          let data = res.data;
+          let code = data.code;
+          if (res.header.token != undefined) {
+            app.replaceToken(res.header.token);
+          }
           switch(code){
             case 200:
               wx.showToast({
@@ -98,8 +99,8 @@ Page({
   },
   //租车-退款理由
   getRefundMessage: function (travelOrderId) {
-    let token = app.globalData.token;
     let that = this;
+    let token = app.globalData.token;
     wx.request({
       url: app.globalData.requestUrl + 'findTravelOrderDetailInfo',
       method: 'Post',
@@ -109,12 +110,16 @@ Page({
       },
       header: { 'content-type': 'application/x-www-form-urlencoded', token},
       success: function (res) {
-        // console.log(res)
-        let code = res.data.code;
+        console.log(res.data);
+        let data = res.data;
+        let code = data.code;
+        if (res.header.token != undefined) {
+          app.replaceToken(res.header.token);
+        }
         switch (code){
           case 200:
             that.setData({
-              reason: res.data.data.refundReason,
+              reason: data.data.refundReason,
             })
             break;
           case 501:
