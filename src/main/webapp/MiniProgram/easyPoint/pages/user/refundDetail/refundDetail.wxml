@@ -1,21 +1,22 @@
 <!--pages/user/refundDetail/refundDetail.wxml-->
 <view class="refund_status">退款状态：  
-    <text wx:if="{{refundDetail.state == 5}}">订单退款中</text>
-    <text wx:elif="{{refundDetail.state == 6}}">订单已退款</text>
-    <text wx:elif="{{refundDetail.state == 7}}">订单退款失败</text>
-    <text wx:elif="{{refundDetail.state == 8}}">订单已取消</text>
+    <text wx:if="{{refundDetail.refundState == 1}}">订单待处理</text>
+    <text wx:elif="{{refundDetail.refundState == 2}}">订单审核不通过</text>
+    <text wx:elif="{{refundDetail.refundState == 3}}">订单正在退款</text>
+    <text wx:elif="{{refundDetail.refundState == 4}}">订单已退款</text>
+    <text wx:elif="{{refundDetail.refundState == 5}}">订单已取消</text>
 </view>
 
 <!-- 订单编号与时间 -->
 <view class="refund_order">
-    <view class="refund_order_item">订单编号：  {{travelOrderId}}</view>
-    <view class="refund_order_item">退款时间：  {{refundDetail.refundTime}}</view>
+    <view class="refund_order_item">订单编号：  {{refundDetail.transactionId}}</view>
+    <view class="refund_order_item">退款时间：  {{refundDetail.requestRefundTime}}</view>
 </view>
 
 <!-- 退款金额部分 -->
 <view class="refund_process_money">
     <view class="refund_text">退款明细</view>
-    <view class="refund_money">合计￥ <text>{{refundDetail.money}}</text></view>
+    <view class="refund_money">合计￥ <text>{{refundDetail.refundMoney}}</text></view>
 </view>
 <view class="refund_process_text">退款进度</view>
 
@@ -23,22 +24,30 @@
 <view class="refund_process">
     <view class="process_left"><!--左边进度条-->
         <view class="process_dot"></view>
-        <view class="process_shu"  wx:if="{{refundDetail.refund_status>1||refundDetail.refund_status!=3}}"></view>
-        <view class="process_dot" wx:if="{{refundDetail.refund_status>1||refundDetail.refund_status!=3}}"></view>
-        <view class="process_shu" wx:if="{{refundDetail.refund_status==2}}"></view>
-        <view class="process_dot" wx:if="{{refundDetail.refund_status==2}}"></view>
+        <view class="process_shu"></view>
+        <view class="process_dot"></view>
+        <block wx:if="{{refundDetail.refundState==2}}">
+          <view class="process_shu"></view>
+          <view class="process_dot"></view>
+        </block>
+        <block wx:if="{{refundDetail.refundState==3}}">
+          <view class="process_shu"></view>
+          <view class="process_dot"></view>
+          <view class="process_shu"></view>
+          <view class="process_dot"></view>
+        </block>
     </view>
     <view class="process_right"><!--右边文字叙述进度-->
-        <view class="process_right_text">   {{refundDetail.commitTime}}</view>
+        <view class="process_right_text">你已经成功提交退款  {{refundDetail.requestRefundTime}}</view>
         <!-- 退款审核不通过——进度 -->
-        <view class="process_right_text" wx:if="{{refundDetail.refund_status==3}}">退款审核不通过,具体原因请咨询客服  {{refundDetail.failTime}}</view>
+        <view class="process_right_text" wx:if="{{refundDetail.refundState==2}}">退款审核不通过,具体原因请咨询客服  {{refundDetail.failTime}}</view>
         <!-- 退款审核通过——进度 -->
-        <view class="process_right_text" wx:if="{{refundDetail.refund_status>=1&&refundDetail.refund_status!=3}}">退款审核已通过，正在退款  {{refundDetail.passTime}}</view>
-        <view class="process_right_text last" wx:if="{{refundDetail.refund_status==2}}">已退款  {{refundDetail.refundSuccessTime}}</view>
+        <view class="process_right_text" wx:if="{{refundDetail.refundState == 3}}">退款审核已通过，正在退款  {{refundDetail.passTime}}</view>
+        <view class="process_right_text last" wx:if="{{refundDetail.refundState==4}}">已退款  {{refundDetail.refundSuccessTime}}</view>
         <!-- 取消退款——进度 -->
-        <view class="process_right_text" wx:if="{{refundDetail.refund_status==5}}">取消退款成功，订单待处理  {{refundDetail.cancleRefundTime}}</view>
+        <view class="process_right_text" wx:if="{{refundDetail.refundState==5}}">取消退款成功，订单待处理  {{refundDetail.cancleRefundTime}}</view>
     </view>
 </view>
 <view class="footer_btn">
-    <button v-if="{{refundDetail.state==5}}" bindtap="jumptoRefund">取消退款</button>
+    <button v-if="{{refundDetail.state==1}}" bindtap="jumptoRefund">取消退款</button>
 </view>

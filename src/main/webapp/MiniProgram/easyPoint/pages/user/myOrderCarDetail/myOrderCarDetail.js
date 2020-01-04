@@ -141,7 +141,7 @@ Page({
   //跳转订单退款状态页面
   toRefundStatus:function(){
     wx.navigateTo({
-      url: '/pages/user/refundDetail/refundDetail?travelOrderId=' + this.data.travelOrderId,
+      url: '/pages/user/refundDetail/refundDetail?tourismRefundId=' + this.data.ticketDetail.tourismRefundId,
     })
   },
   //跳转申请退款页面

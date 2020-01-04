@@ -29,6 +29,11 @@
     width: 320px !important;
 }
 
+ul {
+    /* 清楚小圆点 */
+    list-style: none;
+}
+
 /* table的展开行 */
 .demo-table-expand {
     font-size: 0;
@@ -245,92 +250,4 @@
 
 .delorder-model-button span:last-child {
     margin-left: 8px;
-}
-
-
-/* 以下旧版待删 */
-h1 {
-    font-size: 20px;
-    height: 30px;
-    color: #8fd68b;
-    line-height: 30px;
-    overflow: hidden;
-    text-align: center;
-}
-
-/* 添加同乡会以及添加车辆类型 */
-.addCommittee {
-    height: 50px;
-    line-height: 50px;
-    color: #8fd68b;
-    text-align: center;
-    overflow: hidden;
-}
-
-.addCommittee input {
-    margin-left: 20px;
-    margin-right: 10px;
-    border-radius: 2px;
-    border: 1px solid #8fd68b;
-    width: 200px;
-    height: 20px;
-    outline: none;
-    padding: 5px;
-}
-
-.addCommittee button {
-    background-color: #8fd68b;
-    border: none;
-    border-radius: 4px;
-    color: #f3f2f2;
-    width: 80px;
-    height: 30px;
-}
-
-.association {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-}
-
-.associationTitle {
-    background-color: #8fd68b;
-    color: #ffffff;
-}
-
-.association li {
-    height: 40px;
-    line-height: 30px;
-    border: 1px solid #ffffff;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 5px;
-    text-align: center;
-    overflow: hidden;
-}
-
-.nav:nth-child(2n + 1) {
-    background-color: #e9f7e8;
-    color: #96d892;
-}
-
-.nav:nth-child(2n) {
-    background-color: #ddf3dc;
-    color: #acb2ab;
-}
-
-.associationName {
-    width: 680px;
-}
-
-.associationPlace {
-    width: 300px;
-}
-
-.associationDelete {
-    width: 200px;
-}
-
-.enter {
-    cursor: pointer;
 }

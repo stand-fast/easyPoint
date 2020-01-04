@@ -25,7 +25,7 @@
 
     <!-- 模块标题部分 -->
     <el-container class="model-wrapper-con">
-      <div v-show="loginUser!='未登录'" class="model-wrapper-con-user">
+      <div v-show="loginUser!= '' " class="model-wrapper-con-user">
         <el-dropdown>
           <i class="el-icon-setting" style="margin-right: 15px"></i>
           <el-dropdown-menu slot="dropdown">
@@ -42,7 +42,7 @@
               <div class="drawer-model">
                 <li>
                   <span>用户名:</span>
-                  {{$username}}
+                  {{loginUser.username}}
                 </li>
                 <li>
                   <span>新用户名:</span>
@@ -67,7 +67,7 @@
               <div class="drawer-model">
                 <li>
                   <span>用户名:</span>
-                  {{$username}}
+                  {{loginUser.username}}
                 </li>
                 <li>
                   <span>账户:</span>
@@ -75,7 +75,7 @@
                 </li>
                 <li>
                   <span>角色:</span>
-                  {{loginUser.name}}
+                  {{loginUser.identity}}
                 </li>
                 <li>
                   <span>旧密码:</span>
@@ -123,11 +123,11 @@
               <div class="drawer-model">
                 <li>
                   <span>用户名:</span>
-                  {{$username}}
+                  {{loginUser.username}}
                 </li>
                 <li>
                   <span>角色:</span>
-                  {{loginUser.name}}
+                  {{loginUser.identity}}
                 </li>
                 <li>
                   <span>账户:</span>
@@ -173,7 +173,7 @@
             </el-drawer>
           </el-dropdown-menu>
         </el-dropdown>
-        <span v-show="loginUser!='未登录'">{{$username}}</span>
+        <span v-show="loginUser!= '' ">{{loginUser.username}}</span>
       </div>
       <!-- 内容部分 -->
       <el-main>
@@ -297,10 +297,10 @@ export default {
   computed: {
     //判断是否登陆是否显示信息
     loginUser() {
-      if (this.$store.state.data) {
-        return this.$store.state.data;
+      if (this.$store.state.loginUser.data) {
+        return this.$store.state.loginUser.data;
       } else {
-        return "未登录";
+        return "";
       }
     }
   },
@@ -324,7 +324,7 @@ export default {
               alert("账户不存在");
               break;
             case 1:
-              that.$username = that.newusername;
+              that.$store.state.loginUser.data.username = that.newusername;
               that.newusername = "";
               that.drawer = false;
               break;
@@ -371,7 +371,7 @@ export default {
                 that.changeComfirmPassword = "";
                 that.drawerModifyAccount = false;
                 alert("更换绑定成功,请重新登陆");
-                that.$store.dispatch("loginOut");
+                that.$store.dispatch("loginUser/loginOut");
                 that.$router.push("/login");
                 break;
               case 2:
@@ -428,7 +428,7 @@ export default {
                 that.ensurePassword = "";
                 that.drawerModifyPassword = false;
                 alert("修改成功,请重新登陆");
-                that.$store.dispatch("loginOut");
+                that.$store.dispatch("loginUser/loginOut");
                 that.$router.push("/login");
                 break;
               case 2:
@@ -452,7 +452,7 @@ export default {
     },
     //退出登陆
     loginOut() {
-      this.$store.dispatch("loginOut");
+      this.$store.dispatch("loginUser/loginOut");
       this.$router.push("/login");
     },
     //获取验证码按钮

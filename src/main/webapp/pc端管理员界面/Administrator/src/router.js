@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from "./store.js"
+import store from "./store/index.js" //vuex共享数据库
 import login from "./pages/login.vue" //登陆界面
+import home from "./pages/home.vue" //主界面
 import AccountManagement from "./pages/Administrator/AccountManagement.vue" //管理员板块-账号管理
 import AddAssociation from "./pages/CommitteeVihicle/AddAssociation.vue" //校友会包车-添加同乡会
 import AddLocation from "./pages/CommitteeVihicle/AddLocation.vue" //校友会包车-添加上写车地点
@@ -24,7 +25,13 @@ const router = new Router({
       path: "/login",
       name: '登陆',
       component: login,
-    }, {
+    },
+    {
+      path: "/",
+      name: '主页',
+      component: home,
+    },
+    {
       path: "/AccountManagement",
       name: '管理员板块-账号管理',
       component: AccountManagement,
@@ -141,11 +148,11 @@ const router = new Router({
 router.beforeEach(function (to, from, next) {
   if (to.meta && to.meta.needLogin) {
     //需要登录的页面
-    //console.log(store.state);
-    if (store.state.data) {
+    // console.log(store.state.loginUser.data);
+    if (store.state.loginUser.data) {
       //已登录
       if (to.path == '/AccountManagement') {
-        if (store.state.data.name == "超级管理员") {
+        if (store.state.loginUser.data.identity == "超级管理员") {
           next();
         } else {
           alert("没有权限");
