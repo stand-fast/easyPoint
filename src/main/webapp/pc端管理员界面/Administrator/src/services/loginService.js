@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import axios from "../assets/util/http";
+import axios from "../assets/util/http"; //引入axios
 export default {
     async login(loginId, loginPwd) {
         var params = new URLSearchParams();

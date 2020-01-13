@@ -21,17 +21,17 @@
             <view class="fullcontainer">
                 <view class="formContent first">
                     <view class="formTitle">出发地点</view>
-                    <input wx:if="{{!successShowmodal}}" placeholder="请输入出发地点" placeholder-class="placehold" type="text" name="startAddress"></input>
+                    <input wx:if="{{!successShowmodal}}" placeholder="请输入出发地点" placeholder-class="placehold" type="text" name="startAddress" value = "{{startAddress}}"></input>
                 </view>
                 <view class="heng"></view>
                 <view class="formContent">
                     <view class="formTitle">到达地点</view>
-                    <input wx:if="{{!successShowmodal}}" placeholder="请输入目的地" placeholder-class="placehold" type="text" name="endAddress"></input>
+                    <input wx:if="{{!successShowmodal}}" placeholder="请输入目的地" placeholder-class="placehold" type="text" name="endAddress" value = "{{endAddress}}"></input>
                 </view>
                 <view class="heng"></view>
                 <view class="formContent">
                     <view class="formTitle">出行人数</view>
-                    <input wx:if="{{!successShowmodal}}" placeholder="请输入具体人数" placeholder-class="placehold" type="number" name="perNumbers"></input>
+                    <input wx:if="{{!successShowmodal}}" placeholder="请输入具体人数" placeholder-class="placehold" type="number" name="perNumbers" value = "{{perNumbers}}"></input>
                 </view>
                 <view class="heng"></view>
                 <view class="formContent">

@@ -1,0 +1,68 @@
+/* 易点出行板块 */
+
+/* 校友会包车-添加车辆模板 */
+.content-model-wrapper li {
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.selectIng {
+    width: 200px !important;
+}
+
+.releaseButton {
+    width: 120px !important;
+    font-size: 15px !important;
+}
+
+/* 旅游出行-退款订单详情模板 */
+.delorder-model {
+    color: #606266;
+    font-size: 14px;
+}
+
+.delorder-model p {
+    padding: 6px 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.delorder-model>p>span {
+    color: #99a9bf;
+    margin-left: 200px;
+    min-width: 80px;
+}
+
+.delorder-model>p>label {
+    color: #606266;
+    min-width: 300px;
+}
+
+.delorder-model-button {
+    margin-top: 8px;
+    padding-left: 280px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.delorder-model-button span {
+    cursor: pointer;
+    min-width: 80px;
+    padding: 10px 0;
+    text-align: center;
+    color: #99a9bf;
+    border: 1px solid #99a9bf;
+    border-radius: 6px;
+}
+
+.delorder-model-button span:hover {
+    color: #fff;
+    background: #99a9bf;
+}
+
+.delorder-model-button span:last-child {
+    margin-left: 8px;
+}

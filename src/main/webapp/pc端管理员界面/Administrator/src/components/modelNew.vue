@@ -187,7 +187,7 @@
 export default {
   data() {
     return {
-      navigationName: [
+      navigationName: [//导航板块数据
         {
           id: "1",
           name: "易点出行",

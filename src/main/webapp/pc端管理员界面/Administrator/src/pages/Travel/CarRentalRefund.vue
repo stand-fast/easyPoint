@@ -70,9 +70,6 @@ export default {
     this.setData();
   },
   methods: {
-    test() {
-      console.log(1);
-    },
     //获取首页数据以及页码总数
     async setData() {
       let that = this;

@@ -53,6 +53,8 @@ Page({
             case 200:
               wx.showToast({
                 title: '申请成功，请耐心等待管理员确认',
+                icon: 'none',
+                duration: 2000
               })
               break;
             case 400:
@@ -64,7 +66,7 @@ Page({
               break;
             case 401:
               wx.showToast({
-                title: '申请失败，请确保您为该订单的所属者',
+                title: '申请失败，您当前的申请次数已达到限制',
                 icon: 'none',
                 duration: 2000
               })
@@ -118,9 +120,6 @@ Page({
         }
         switch (code){
           case 200:
-            that.setData({
-              reason: data.data.refundReason,
-            })
             break;
           case 501:
             app.getPermission();

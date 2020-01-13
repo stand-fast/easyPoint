@@ -40,14 +40,15 @@
     <view class="process_right"><!--右边文字叙述进度-->
         <view class="process_right_text">你已经成功提交退款  {{refundDetail.requestRefundTime}}</view>
         <!-- 退款审核不通过——进度 -->
-        <view class="process_right_text" wx:if="{{refundDetail.refundState==2}}">退款审核不通过,具体原因请咨询客服  {{refundDetail.failTime}}</view>
+        <view class="process_right_text" wx:if="{{refundDetail.refundState==2}}">退款审核不通过,原因是：{{refundDetail.rejectReason}},具体原因请咨询客服  {{refundDetail.requestRefundTime}}</view>
         <!-- 退款审核通过——进度 -->
-        <view class="process_right_text" wx:if="{{refundDetail.refundState == 3}}">退款审核已通过，正在退款  {{refundDetail.passTime}}</view>
-        <view class="process_right_text last" wx:if="{{refundDetail.refundState==4}}">已退款  {{refundDetail.refundSuccessTime}}</view>
+        <view class="process_right_text" wx:if="{{refundDetail.refundState == 3}}">退款审核已通过，正在退款</view>
+        <view class="process_right_text last" wx:if="{{refundDetail.refundState==4}}">已退款  {{refundDetail.finishTime}}</view>
         <!-- 取消退款——进度 -->
         <view class="process_right_text" wx:if="{{refundDetail.refundState==5}}">取消退款成功，订单待处理  {{refundDetail.cancleRefundTime}}</view>
     </view>
 </view>
 <view class="footer_btn">
-    <button v-if="{{refundDetail.state==1}}" bindtap="jumptoRefund">取消退款</button>
+    <button wx:if="{{refundDetail.refundState == 1}}" bindtap="cancelRefund">取消退款</button>
+    <button wx:elif="{{refundDetail.refundState == 2}}" bindtap="toRefund">申请退款</button>
 </view>

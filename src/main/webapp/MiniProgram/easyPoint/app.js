@@ -4,7 +4,7 @@ App({
   },
   globalData: {
     token: null,//头部携带token
-    requestUrl: 'https://easypoint.club/miniProgram/',//公用请求路径
+    requestUrl: 'https://www.easypoint.club/miniProgram/',//公用请求路径
   },
   replaceToken:function(token){
     this.globalData.token = token;
