@@ -1,12 +1,16 @@
 package com.easyPoint.controller.miniprogram.mine;
 
+import com.alibaba.fastjson.JSONObject;
 import com.easyPoint.dto.Result;
 import com.easyPoint.dto.pay.RefundParamDto;
+import com.easyPoint.pojo.travel.Passenger;
 import com.easyPoint.pojo.user.UserInfo;
 import com.easyPoint.service.miniprogram.mine.UserInfoService;
 import com.easyPoint.service.pay.WxPayService;
 import com.easyPoint.utils.AesCbcUtil;
 import com.easyPoint.utils.JwtUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.codec.binary.Base64;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -86,6 +92,18 @@ public class UserInfoController {
         refundParamDto.setRefund_fee(1);
         wxPayService.requestRefund(5, refundParamDto);
         return new Result(200,"成功");
+    }
+
+    @Test
+    public void te() throws JsonProcessingException {
+        List<Passenger> list = new ArrayList<>();
+        Passenger passenger1 = new Passenger();
+        passenger1.setPassengerName("lisi");
+        passenger1.setPhone("17806531562");
+        list.add(passenger1);
+        ObjectMapper mapper = new ObjectMapper();
+        String t = mapper.writeValueAsString(list);
+        System.out.println(t);
     }
 
 }

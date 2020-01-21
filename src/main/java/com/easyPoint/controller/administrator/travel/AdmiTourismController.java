@@ -210,7 +210,7 @@ public class AdmiTourismController {
         TourismRefundPageDetailDto tourismRefundPageDetailDto = admiTourismInfoService.findTourismRefundDetail(tourismRefundId);
         if(tourismRefundPageDetailDto != null)
             return new Result<>(200,"查询退款订单详情信息成功",tourismRefundPageDetailDto);
-        return new Result(400,"数据库查询异常");
+        return new Result(400,"发生异常");
     }
 
     /**

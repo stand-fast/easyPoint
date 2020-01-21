@@ -196,7 +196,7 @@
     <!--Ticket findTicketInfoByid(int ticketId);-->
     <select id="findTicketInfoByid" parameterType="int" resultType="Ticket">
         SELECT departure_day AS departureDay,
-                departure_time AS departuerTime,
+                departure_time AS departureTime,
                 departure_place AS departurePlace,
                 destination,
                 price,
@@ -204,7 +204,6 @@
                 version
                 FROM ticket
                 WHERE ticket_id = #{ticketId}
-                AND state = 1;
     </select>
 
     <!--//修改车票剩余数量-->
@@ -212,7 +211,7 @@
     <!--@Param("newSeatSurplus")int newSeatSurplus,-->
     <!--@Param("version")int version);-->
     <update id="updateTicketSeatSurplus">
-        UPDATE ticket SET seat_surplus = #{newSeatSurplus}
+        UPDATE ticket SET seat_surplus = #{newSeatSurplus},
                           version = version + 1
                       WHERE ticket_id = #{ticketId}
                       AND version = #{version}
@@ -265,7 +264,7 @@
     </insert>
 
     <!--//保存乘客人员信息-->
-    <!--Integer insertAssociationPassengers(List<Passenger> passengers);-->
+    <!--Integer insertAssociationPassengers(List<LinkedHashMap> passengers);-->
     <insert id="insertAssociationPassengers">
         INSERT INTO association_passengers (travel_order_id,passenger_name,phone)
                   VALUES
@@ -273,4 +272,21 @@
                       (#{travelOrderId}, #{item.passengerName}, #{item.phone})
                   </foreach>
     </insert>
+
+    <!--//查询小程序订单详情信息-->
+    <!--Map findAssociationOrderDetial(@Param("travelOrderId")int travelOrderId);-->
+    <select id="findAssociationOrderDetial" parameterType="int" resultType="Map">
+        SELECT departure_time AS departureTime,departure_place AS departurePlace,
+                destination, travel_num AS travelNum,price
+                FROM travel_order t, association_order a
+                WHERE t.travel_order_id = #{travelOrderId}
+                AND t.travel_order_id = a.travel_order_id;
+    </select>
+
+    <!--//查询联系人-->
+    <!--List<Passenger> findAssociationOrderPassengers(@Param("travelOrderId")int travelOrderId);-->
+    <select id="findAssociationOrderPassengers" parameterType="int" resultType="Map">
+        SELECT passenger_name AS passengerName, phone
+          FROM association_passengers WHERE travel_order_id = #{travelOrderId}
+    </select>
 </mapper>

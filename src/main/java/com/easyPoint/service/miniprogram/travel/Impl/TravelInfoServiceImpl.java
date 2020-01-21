@@ -1,14 +1,17 @@
 package com.easyPoint.service.miniprogram.travel.Impl;
 
+import com.easyPoint.dao.travel.AssociationDao;
 import com.easyPoint.dao.travel.TourismInfoDao;
 import com.easyPoint.dto.travel.MiniTourismRefundPageDto;
 import com.easyPoint.dto.travel.TourismOrderDetailInfoDto;
+import com.easyPoint.pojo.travel.Passenger;
 import com.easyPoint.pojo.travel.TravelOrderInfo;
 import com.easyPoint.service.miniprogram.travel.TravelInfoService;
 import com.easyPoint.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +24,9 @@ public class TravelInfoServiceImpl implements TravelInfoService {
 
     @Autowired
     TourismInfoDao tourismInfoDao;
+
+    @Autowired
+    AssociationDao associationDao;
     //出行模块订单，租车与包车共享
     @Override
     public List<TravelOrderInfo> findListTravelOrderByUid(int uid) {
@@ -36,8 +42,18 @@ public class TravelInfoServiceImpl implements TravelInfoService {
             TourismOrderDetailInfoDto tourismOrderDetailInfo = tourismInfoDao.findTourismOrderDetailInfo(travelOrderId);
             return tourismOrderDetailInfo;
         }
-
-        return null;
+        else {
+            //查询同乡会订单车票的详情信息
+            Map associationOrderDetial = associationDao.findAssociationOrderDetial(travelOrderId);
+            System.out.println("--------------"+associationOrderDetial.get("departureTime"));
+            associationOrderDetial.put("departureTime",associationOrderDetial.get("departureTime").toString());
+            //查询联系人
+            List<Map> passengers = associationDao.findAssociationOrderPassengers(travelOrderId);
+            Map<String ,Object> resultMap = new HashMap<>(2);
+            resultMap.put("associationOrderDetial",associationOrderDetial);
+            resultMap.put("passengers",passengers);
+            return resultMap;
+        }
     }
 
     /**

@@ -44,6 +44,31 @@ public class Ticket {
     //乐观锁标识
     private Integer version;
 
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "ticketId=" + ticketId +
+                ", associationId=" + associationId +
+                ", associationName='" + associationName + '\'' +
+                ", departureDay='" + departureDay + '\'' +
+                ", departureTime='" + departureTime + '\'' +
+                ", departurePlace='" + departurePlace + '\'' +
+                ", destination='" + destination + '\'' +
+                ", price=" + price +
+                ", seatNum=" + seatNum +
+                ", seatSurplus=" + seatSurplus +
+                ", type=" + type +
+                ", issueTime='" + issueTime + '\'' +
+                ", state=" + state +
+                ", licensePlateNumber='" + licensePlateNumber + '\'' +
+                ", vehicleType='" + vehicleType + '\'' +
+                ", color='" + color + '\'' +
+                ", driverName='" + driverName + '\'' +
+                ", driverPhone='" + driverPhone + '\'' +
+                ", version=" + version +
+                '}';
+    }
+
     public String getVehicleType() {
         return vehicleType;
     }

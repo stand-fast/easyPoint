@@ -1,3 +1,254 @@
+/* 清除element自带 */
+.has-gutter th {
+    text-align: center;
+}
+
+.cell {
+    text-align: center;
+}
+
+.el-main-content {
+    /* 组件content区域 */
+    height: 550px;
+    background-color: #fff;
+}
+
+.el-table__row td {
+    /* table的子项 */
+    text-align: center;
+}
+
+.el-drawer__header {
+    /* 抽屉header */
+    color: rgb(88, 86, 86);
+    font-weight: 600;
+}
+
+.el-drawer {
+    /* 抽屉宽度 */
+    width: 320px !important;
+}
+
+/* table的展开行 */
+.demo-table-expand {
+    font-size: 0;
+}
+
+.demo-table-expand label {
+    width: 90px;
+    color: #99a9bf;
+}
+
+.demo-table-expand .el-form-item {
+    margin-right: 0;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+/* 校友会包车-添加车辆模板 */
+.content-model-wrapper li {
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.selectIng {
+    width: 200px !important;
+}
+
+.releaseButton {
+    width: 120px !important;
+    font-size: 15px !important;
+}
+
+
+/* 模板居中input框 */
+.model-content-input {
+    width: 300px;
+    margin: 20px auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.model-content-input:nth-of-type(1) {
+    margin-top: 100px;
+}
+
+.model-content-input>span {
+    min-width: 120px;
+    color: #9c9ea1;
+    font-weight: 600;
+}
+
+.model-content-input>label {
+    color: #9c9ea1;
+    font-size: 13px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.model-content-input>label:hover {
+    color: #409eff;
+    cursor: pointer;
+}
+
+.model-content-button {
+    font-weight: 600;
+    width: 100px;
+}
+
+
+/* 分页组件 */
+.pageing {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+/* 模板弹窗 */
+.el-popover__title {
+    font-weight: 600;
+}
+
+.spring-model-con>li {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 8px;
+    color: #606266;
+}
+
+.spring-model-con>li>span {
+    min-width: 80px;
+    -ms-flex-item-align: center;
+    align-self: center;
+    font-weight: 600;
+}
+
+.spring-model-con>li span {
+    font-weight: 600;
+}
+
+.spring-model-con>li p {
+    font-size: 12px;
+    margin: 10px;
+    font-weight: 500;
+}
+
+.spring-model-con-button {
+    text-align: right;
+    margin-top: 20px;
+}
+
+/* 抽屉 */
+.drawer-model {
+    padding: 15px;
+}
+
+.drawer-model>li {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    color: #606266;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.drawer-model>li:nth-child(n + 2) {
+    margin-top: 20px;
+}
+
+.drawer-model>li>span {
+    min-width: 90px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 5px;
+    font-weight: 600;
+}
+
+.drawer-model-code {
+    -ms-flex-item-align: center;
+    align-self: center;
+    height: 15px;
+    cursor: pointer;
+    padding: 7px 5px;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    background: #409EFF;
+    margin-left: 10px;
+    font-size: 12px;
+    min-width: 70px;
+}
+
+.drawer-model-button {
+    text-align: right;
+    margin-right: 15px;
+}
+
+/* 旅游出行-退款订单详情模板 */
+
+.delorder-model {
+    color: #606266;
+    font-size: 14px;
+}
+
+.delorder-model p {
+    padding: 6px 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.delorder-model>p>span {
+    color: #99a9bf;
+    margin-left: 200px;
+    min-width: 80px;
+}
+
+.delorder-model>p>label {
+    color: #606266;
+    min-width: 300px;
+}
+
+.delorder-model-button {
+    margin-top: 8px;
+    padding-left: 280px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.delorder-model-button span {
+    cursor: pointer;
+    min-width: 80px;
+    padding: 10px 0;
+    text-align: center;
+    color: #99a9bf;
+    border: 1px solid #99a9bf;
+    border-radius: 6px;
+}
+
+.delorder-model-button span:hover {
+    color: #fff;
+    background: #99a9bf;
+}
+
+.delorder-model-button span:last-child {
+    margin-left: 8px;
+}
+
+
+/* 以下旧版待删 */
 h1 {
     font-size: 20px;
     height: 30px;
