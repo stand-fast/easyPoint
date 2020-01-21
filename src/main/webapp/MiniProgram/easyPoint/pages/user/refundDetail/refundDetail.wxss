@@ -87,7 +87,7 @@ Page{
     margin: 4rpx 0rpx;
 }
 .last{
-    margin-top: 32rpx;
+    margin-top: 20rpx;
 }
 .footer_btn{
     width: 100%;

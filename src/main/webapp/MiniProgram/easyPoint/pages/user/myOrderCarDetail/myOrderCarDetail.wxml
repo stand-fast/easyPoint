@@ -7,10 +7,7 @@
     <text wx:elif="{{current == 1 && state == 2}}">订单已完成</text>
     <text wx:elif="{{current == 1 && state == 3}}">订单已付款</text>
     <text wx:elif="{{current == 1 && state == 4}}">订单已预约</text>
-    <text wx:elif="{{current == 1 && state == 5}}">订单退款中</text>
-    <text wx:elif="{{current == 1 && state == 6}}">订单已退款</text>
-    <text wx:elif="{{current == 1 && state == 7}}">订单退款失败</text>
-    <text wx:elif="{{current == 1 && state == 8}}">订单已取消</text>
+    <text wx:elif="{{current == 1 && state == 5}}">订单已退款</text>
 </view>
 <view class="hr"></view>
 <view class="header">
@@ -88,6 +85,7 @@
 <!-- 底部栏退款和更换时间 -->
 <view class="button_footer">
     <button  wx:if="{{current == 1 && state == 0}}" bindtap="rentalChangeTime">更换时间</button>
-    <block wx:if="{{current == 1 && state == 0 || state == 1 || state == 3}}"><button bindtap="toRefund"  >申请退款</button></block>
-    <block wx:if="{{current == 1 && state == 5 || state == 6 || state == 7 || statr == 8}}"><button bindtap="toRefundStatus">退款状态</button></block>
+    <block wx:if="{{ticketDetail.tourismRefundId}}"><button bindtap="toRefundStatus">退款状态</button></block>
+    <block wx:else><button bindtap="toRefund"  >申请退款</button></block>
+    
 </view>

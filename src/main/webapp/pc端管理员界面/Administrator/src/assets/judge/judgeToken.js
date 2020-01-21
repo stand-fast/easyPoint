@@ -16,6 +16,6 @@ export function judgeToken(code) {
             break;
     }
     console.log("退出登陆")
-    this.$store.dispatch("loginOut");
+    this.$store.dispatch("loginUser/loginOut");
     this.$router.push("/login");
 }

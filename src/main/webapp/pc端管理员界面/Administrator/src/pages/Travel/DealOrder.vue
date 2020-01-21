@@ -127,9 +127,12 @@ export default {
     //通过退款
     viaOrder(code) {
       let that = this;
-      let params = { code: code, reason: that.rejectReason, ifAgree: 1 };
+      let params = new URLSearchParams();
+      params.append("code", code);
+      params.append("reason", that.rejectReason);
+      params.append("ifAgree", 1);
       this.$http
-        .get("tourism/ifAgree", { params })
+        .post("tourism/ifAgree", params)
         .then(function(res) {
           let data = res.data;
           let code = data.code;
@@ -139,6 +142,9 @@ export default {
               alert(data.message);
               break;
             case 201:
+              alert(data.message);
+              break;
+            case 400:
               alert(data.message);
               break;
             case 401:

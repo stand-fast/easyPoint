@@ -141,12 +141,14 @@ Page({
     if (radioStatus == true) {
       this.setData({
         is_back: 1,
-        radioStatus: radioStatus
+        radioStatus: radioStatus,
+        money:this.data.money * 2,
       })
     }else{
       this.setData({
         is_back: 0,
-        radioStatus: radioStatus
+        radioStatus: radioStatus,
+        money: this.data.money / 2,
       })
     }
   },
@@ -180,11 +182,11 @@ Page({
     })
     if (insucheck == true) {
       this.setData({
-        is_insurance: 1,
+        is_insurance: 0,
       })
     } else {
       this.setData({
-        is_insurance: 0,
+        is_insurance: 1,
       })
     }
   },
@@ -273,7 +275,7 @@ Page({
             }
           }
           wx.request({
-            url: 'https://easypoint.club/miniProgram/orderTourismOrder',
+            url: app.globalData.requestUrl +'orderTourismOrder',
             data: {
               passenger: getUserInformation.name,
               phone: getUserInformation.phone,
@@ -286,7 +288,7 @@ Page({
               ifBack: that.data.is_back,
               backTime: that.data.returnTime,
               ifInsurance: that.data.is_insurance,
-              payMoney: 0.01,//已付款金额，等于定金+（如有购买保险，加上）
+              payMoney: 0.02,//已付款金额，等于定金+（如有购买保险，加上）
               body: '出行租车', //产品简单描述
               // deposit: that.data.money,
             },
@@ -320,6 +322,7 @@ Page({
   },
   //支付
   pay: function (param) {
+    let that = this;
     wx.requestPayment({
       timeStamp: param.timeStamp,
       nonceStr: param.nonceStr,
@@ -331,6 +334,18 @@ Page({
           title: '支付成功',
           icon: 'success',
           duration: 2000
+        })
+        that.setData({
+          startAddress:"",
+          endAddress:"",
+          perNumbers:"",
+          carType:"",
+          startTime:"",
+          returnTime: "",
+          is_back: 0,
+          radioStatus: false,
+          is_insurance: 0,
+          insucheck: false,
         })
       },
       fail: function (res) {
