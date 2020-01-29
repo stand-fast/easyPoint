@@ -13,9 +13,12 @@ Page({
       orderStatus: "未完成",
       takeGoodTime:"2019-11-10 19:00",
       goodRentTime:1,
+      takePlace:"广金北苑四楼融创空间",
+      returnGoodTime:"2019-11-11 21:00",
       hostNote: "麻烦附上充电器",
       orderHostName: "吴彦祖",
-      orderHostPhone: 12345678910
+      orderHostPhone: 12345678910,
+      shopNote:"如需更换时间或其他额外需求请联系客服"
     },
   },
   //页面加载完毕执行函数(放在首位)

@@ -43,12 +43,12 @@ Page{
     padding: 0 40rpx;
 }
 .shopname{
-    width: 400rpx;
+    width: 600rpx;
     height: 46rpx;
     line-height: 46rpx;
     font-size: 30rpx;
     color: #333;
-    padding:32rpx 0 20rpx 0;
+    padding:20rpx 0 20rpx 0;
 }
 .detail_item_list_pic_name,.list_detail_line,.detail_item_lists{
     display: flex;
@@ -90,7 +90,7 @@ Page{
     height: 2rpx;
     color: #f2f2f2;
     background-color: #f2f2f2;
-    margin:24rpx 0;
+    margin:20rpx 0;
 }
 .detail_item_list_goodDecription{
     width: 450rpx;
@@ -127,7 +127,7 @@ Page{
     height: 40rpx;
     line-height: 40rpx;
     text-align: right;
-    color: #666;
+    color: #999;
     font-family: 微软雅黑;
     margin-left: 50rpx;
     display: -webkit-box;
@@ -139,7 +139,7 @@ Page{
     -webkit-box-orient: vertical;
 }
 .order_rent_order_numtime{
-    padding: 32rpx 40rpx;
+    padding: 24rpx 40rpx;
 }
 .goodSum{
     font-size: 30rpx;
@@ -156,6 +156,9 @@ Page{
     font-size: 26rpx;
     color: #333;
 }
+.order_numtime_text text{
+    color: #666;
+}
 .orderId_color{
-    color: #56b4f6;
+    color: #56b4f6!important;
 }

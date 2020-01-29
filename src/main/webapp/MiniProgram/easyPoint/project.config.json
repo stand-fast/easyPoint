@@ -59,13 +59,6 @@
 				},
 				{
 					"id": -1,
-					"name": "myOrder",
-					"pathName": "pages/user/myOrder/myOrder",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "myOrderRentDetail",
 					"pathName": "pages/user/myOrderRentDetail/myOrderRentDetail",
 					"query": "",
@@ -80,8 +73,8 @@
 				},
 				{
 					"id": -1,
-					"name": "refundDetail",
-					"pathName": "pages/user/refundDetail/refundDetail",
+					"name": "myOrder",
+					"pathName": "pages/user/myOrder/myOrder",
 					"query": "",
 					"scene": null
 				}
