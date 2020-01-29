@@ -5,6 +5,7 @@
 
     <!-- 内容 -->
     <el-main class="el-main-content">
+      <!-- 商品描述部分 -->
       <div class="wrapper-publish">
         <div class="publish-title">
           <span>商品描述填写</span>
@@ -68,12 +69,13 @@
           </li>
         </div>
       </div>
+      <!-- 内容说明部分 -->
       <div class="wrapper-publish">
         <div class="publish-title">
           <span>内容说明填写</span>
         </div>
         <div class="publish-content textarea">
-          <li class="content-item">
+          <li class="content-item textarea">
             <span class="item-title">押金说明：</span>
             <el-input
               type="textarea"
@@ -143,13 +145,25 @@
           </li>
         </div>
       </div>
+      <!-- 商品类别部分 -->
       <div class="wrapper-publish">
         <div class="publish-title">
           <span>商品类别填写</span>
         </div>
-        <div class="publish-content textarea"></div>
+        <div class="publish-content textarea">
+          <li class="content-item" v-for="(item,index) in datas.itemsData" :key="index">
+            <specifications :index="index" @items="handleItemsChange" />
+            <el-button @click="del(index)" class="delButton" type="primary">删除商品</el-button>
+          </li>
+          <div class="elButton">
+            <el-button @click="add" type="primary" icon="el-icon-edit">添加商品</el-button>
+          </div>
+        </div>
       </div>
-      <el-button @click="onSubmit">立即创建</el-button>
+      <div class="el-submit-button">
+        <el-button @click="onSubmit">上传</el-button>
+        <el-button>保存</el-button>
+      </div>
     </el-main>
   </div>
 </template>
@@ -158,6 +172,7 @@ import Vue from "vue";
 import Vuerify from "vuerify";
 Vue.use(Vuerify);
 
+import specifications from "../../components/specifications.vue";
 export default {
   data() {
     return {
@@ -180,9 +195,21 @@ export default {
         pickingDes: "", //取货说明
         returnDes: "", //还货说明
         businessTime: "", //营业时间
-        goodsDescribe: "" //商品描述
+        goodsDescribe: "", //商品描述
+        itemsData: [
+          //商品分类数据
+          {
+            filesName: "",
+            filesUrl: "",
+            types: "",
+            price: "",
+            items: [{ specifc: "" }]
+          }
+        ]
       }, //发布商品数据
+      boo: false, //判断商品类别是否校验通过
       themeData: [
+        //商品主题数据
         {
           value: "选项1",
           label: "音响设备"
@@ -203,6 +230,7 @@ export default {
       ]
     };
   },
+  //vuerify表单验证
   vuerify: {
     "datas.theme": {
       test: /\S/,
@@ -246,36 +274,88 @@ export default {
     }
   },
   computed: {
+    // 表单验证计算错误属性
     errors() {
       return this.$vuerify.$errors;
     }
   },
   methods: {
+    // 提交表单数据
     onSubmit() {
-      let verifyList = ["datas.shopName"];
+      console.log(this.datas.itemsData);
+      let verifyList = [
+        "datas.theme",
+        "datas.shopName",
+        "datas.merchantName",
+        "datas.minPrice",
+        "datas.maxPrice",
+        "datas.depositDes",
+        "datas.pickingDes",
+        "datas.returnDes",
+        "datas.businessTime",
+        "datas.goodsDescribe"
+      ];
       // check() 校验所有规则，参数可以设置需要校验的数组
-      if (!this.$vuerify.check(verifyList)) {
+      if (!this.$vuerify.check(verifyList) || this.boo == true) {
         return;
       }
       console.log("验证通过");
     },
+    //商品分类添加商品分类
+    add() {
+      this.datas.itemsData.push({
+        filesName: "",
+        filesUrl: "",
+        types: "",
+        price: "",
+        items: [{ specifc: "" }]
+      });
+    },
+    //商品分类删除商品分类
+    del(index) {
+      console.log(index);
+      if (confirm("确定要删除该商品数据吗?")) {
+        if (this.datas.itemsData.length == 1) {
+          alert("至少含有一个商品数据");
+        } else {
+          this.datas.itemsData.splice(index, 1);
+        }
+      } else {
+        console.log("你取消了删除");
+      }
+    },
+    //接受specifications组件数据
+    handleItemsChange(index, data, boo) {
+      this.datas.itemsData[index].filesName = data.filesName;
+      this.datas.itemsData[index].filesUrl = data.filesUrl;
+      this.datas.itemsData[index].types = data.types;
+      this.datas.itemsData[index].price = data.price;
+      this.datas.itemsData[index].items = JSON.parse(
+        JSON.stringify(data.items)
+      );
+      this.boo = boo;
+      //console.log(this.datas.itemsData);
+    },
+    //商品照片移除
     handleRemove(file, fileList) {
       console.log(file, fileList);
     },
+    //商品照片预览
     handlePreview(file) {
       console.log(file);
     }
   },
-  components: {
-    //ValidationProvider //注册validate表单验证
-  }
+  //组件
+  components: { specifications }
 };
 </script>
 <style>
+/* 板块容器 */
 .wrapper-publish {
   color: #333;
   font-size: 16px;
 }
+/* 容器标题 */
 .publish-title {
   line-height: 30px;
   border-bottom: 1px solid rgb(182, 179, 179);
@@ -293,6 +373,7 @@ export default {
   padding: 5px 20px;
   margin-left: 200px;
 }
+/* li的每一项，其中里面的input的type为textarea,就在content-item后面加textarea */
 .content-item {
   display: flex;
   padding: 10px 0;
@@ -307,6 +388,18 @@ export default {
 .content-item .el-input--suffix {
   width: 290px !important;
   min-width: 290px !important;
+}
+/* 删除商品 */
+.delButton {
+  margin-left: -50px;
+  margin-top: 50px;
+  width: 100px;
+  height: 40px;
+}
+/* 添加商品按钮 */
+.elButton {
+  margin-left: 350px;
+  margin-top: 20px;
 }
 /* 价格部分 */
 .item-price input {
@@ -332,5 +425,20 @@ export default {
   color: rgb(182, 55, 55);
   line-height: 40px;
   padding-left: 20px;
+}
+/* 商品类别input输入框 */
+.item-spec .el-input--suffix {
+  width: 120px !important;
+  min-width: 120px !important;
+}
+/* 上传保存按钮 */
+.el-submit-button {
+  width: 300px;
+  margin-top: 20px;
+  margin-left: 280px;
+  text-align: center;
+}
+.el-submit-button button {
+  width: 100px;
 }
 </style>

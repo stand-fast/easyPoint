@@ -1,8 +1,7 @@
 module.exports = {
   assetsDir: 'assets',
   lintOnSave: false,
-  publicPath: './',
-  VUE_CLI_BABEL_TRANSPILE_MODULES: true
+  publicPath: './'
   // pluginOptions: {
   //   'style-resources-loader': {
   //     preProcessor: 'less',

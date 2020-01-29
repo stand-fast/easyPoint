@@ -502,8 +502,8 @@ export default {
 .model-back {
   cursor: pointer;
   position: absolute;
-  left: 223px;
-  top: 46px;
+  right: 100px;
+  top: 120px;
   color: #9c9ea1;
   font-size: 18px;
   z-index: 9999;
