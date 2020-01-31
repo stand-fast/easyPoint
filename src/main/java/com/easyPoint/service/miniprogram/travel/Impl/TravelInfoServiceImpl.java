@@ -37,7 +37,7 @@ public class TravelInfoServiceImpl implements TravelInfoService {
     //用户查询出行订单详情信息
     @Override
     public Object findTravelOrderDetailInfo(int travelOrderId, int type) {
-        //判断小程序端点击的出行订单是租车还是包车模块;0为租车，1为包车
+        //判断小程序端点击的出行订单是租车还是包车模块;0为租车，1为同乡会包车
         if(type == 0) {
             TourismOrderDetailInfoDto tourismOrderDetailInfo = tourismInfoDao.findTourismOrderDetailInfo(travelOrderId);
             return tourismOrderDetailInfo;
@@ -47,12 +47,8 @@ public class TravelInfoServiceImpl implements TravelInfoService {
             Map associationOrderDetial = associationDao.findAssociationOrderDetial(travelOrderId);
             System.out.println("--------------"+associationOrderDetial.get("departureTime"));
             associationOrderDetial.put("departureTime",associationOrderDetial.get("departureTime").toString());
-            //查询联系人
-            List<Map> passengers = associationDao.findAssociationOrderPassengers(travelOrderId);
-            Map<String ,Object> resultMap = new HashMap<>(2);
-            resultMap.put("associationOrderDetial",associationOrderDetial);
-            resultMap.put("passengers",passengers);
-            return resultMap;
+
+            return associationOrderDetial;
         }
     }
 

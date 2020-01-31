@@ -88,10 +88,14 @@ export default {
     };
   },
   computed: {},
+  mounted() {
+    //判断是否登陆是否显示信息
+    this.judgeLogin();
+  },
   methods: {
     //登陆
     async handleLogin() {
-      const result = await this.$store.dispatch("login", {
+      const result = await this.$store.dispatch("loginUser/login", {
         loginId: this.loginId,
         loginPwd: this.loginPwd
       });
@@ -171,9 +175,13 @@ export default {
           }, 1000);
         }
       }
+    },
+    //判断用户是否登陆
+    judgeLogin() {
+      if (this.$store.state.loginUser.data) {
+        this.$router.push("/"); //跳转到首页
+      }
     }
   }
 };
 </script>
-<style>
-</style>

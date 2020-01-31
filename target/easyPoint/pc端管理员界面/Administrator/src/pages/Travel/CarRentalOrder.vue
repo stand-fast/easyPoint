@@ -192,6 +192,3 @@ export default {
   components: {}
 };
 </script>
-<style scoped>
-@import url(../../assets/travelOrder.css);
-</style>

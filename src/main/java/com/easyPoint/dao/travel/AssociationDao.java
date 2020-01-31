@@ -100,13 +100,8 @@ public interface AssociationDao {
     Integer insertTravelOrderInfo(AssociationOrderInfo associationOrderInfo);
     Integer insertAssociationOrderInfo(AssociationOrderInfo associationOrderInfo);
 
-    //保存乘客人员信息
-    Integer insertAssociationPassengers(@Param("travelOrderId")int travelOrderId,
-                                        @Param("passengers") List<LinkedHashMap> passengers);
 
     //查询小程序订单详情信息
     Map findAssociationOrderDetial(@Param("travelOrderId")int travelOrderId);
 
-    //查询联系人
-    List<Map> findAssociationOrderPassengers(@Param("travelOrderId")int travelOrderId);
 }

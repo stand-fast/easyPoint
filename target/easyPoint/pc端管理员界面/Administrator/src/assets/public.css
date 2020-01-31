@@ -1,5 +1,6 @@
 /* 清除element自带 */
 .has-gutter th {
+    /* table文字居中 */
     text-align: center;
 }
 
@@ -29,6 +30,11 @@
     width: 320px !important;
 }
 
+ul {
+    /* 清楚小圆点 */
+    list-style: none;
+}
+
 /* table的展开行 */
 .demo-table-expand {
     font-size: 0;
@@ -44,23 +50,6 @@
     margin-bottom: 0;
     width: 100%;
 }
-
-/* 校友会包车-添加车辆模板 */
-.content-model-wrapper li {
-    margin-top: 10px;
-    width: 100%;
-    text-align: center;
-}
-
-.selectIng {
-    width: 200px !important;
-}
-
-.releaseButton {
-    width: 120px !important;
-    font-size: 15px !important;
-}
-
 
 /* 模板居中input框 */
 .model-content-input {
@@ -111,7 +100,6 @@
     text-align: center;
     margin-top: 50px;
 }
-
 
 /* 模板弹窗 */
 .el-popover__title {
@@ -193,144 +181,4 @@
 .drawer-model-button {
     text-align: right;
     margin-right: 15px;
-}
-
-/* 旅游出行-退款订单详情模板 */
-
-.delorder-model {
-    color: #606266;
-    font-size: 14px;
-}
-
-.delorder-model p {
-    padding: 6px 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-}
-
-.delorder-model>p>span {
-    color: #99a9bf;
-    margin-left: 200px;
-    min-width: 80px;
-}
-
-.delorder-model>p>label {
-    color: #606266;
-    min-width: 300px;
-}
-
-.delorder-model-button {
-    margin-top: 8px;
-    padding-left: 280px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-}
-
-.delorder-model-button span {
-    cursor: pointer;
-    min-width: 80px;
-    padding: 10px 0;
-    text-align: center;
-    color: #99a9bf;
-    border: 1px solid #99a9bf;
-    border-radius: 6px;
-}
-
-.delorder-model-button span:hover {
-    color: #fff;
-    background: #99a9bf;
-}
-
-.delorder-model-button span:last-child {
-    margin-left: 8px;
-}
-
-
-/* 以下旧版待删 */
-h1 {
-    font-size: 20px;
-    height: 30px;
-    color: #8fd68b;
-    line-height: 30px;
-    overflow: hidden;
-    text-align: center;
-}
-
-/* 添加同乡会以及添加车辆类型 */
-.addCommittee {
-    height: 50px;
-    line-height: 50px;
-    color: #8fd68b;
-    text-align: center;
-    overflow: hidden;
-}
-
-.addCommittee input {
-    margin-left: 20px;
-    margin-right: 10px;
-    border-radius: 2px;
-    border: 1px solid #8fd68b;
-    width: 200px;
-    height: 20px;
-    outline: none;
-    padding: 5px;
-}
-
-.addCommittee button {
-    background-color: #8fd68b;
-    border: none;
-    border-radius: 4px;
-    color: #f3f2f2;
-    width: 80px;
-    height: 30px;
-}
-
-.association {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-}
-
-.associationTitle {
-    background-color: #8fd68b;
-    color: #ffffff;
-}
-
-.association li {
-    height: 40px;
-    line-height: 30px;
-    border: 1px solid #ffffff;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 5px;
-    text-align: center;
-    overflow: hidden;
-}
-
-.nav:nth-child(2n + 1) {
-    background-color: #e9f7e8;
-    color: #96d892;
-}
-
-.nav:nth-child(2n) {
-    background-color: #ddf3dc;
-    color: #acb2ab;
-}
-
-.associationName {
-    width: 680px;
-}
-
-.associationPlace {
-    width: 300px;
-}
-
-.associationDelete {
-    width: 200px;
-}
-
-.enter {
-    cursor: pointer;
 }

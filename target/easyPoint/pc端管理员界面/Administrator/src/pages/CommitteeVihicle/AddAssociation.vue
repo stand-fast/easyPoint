@@ -131,6 +131,9 @@ export default {
             case 3:
               alert("页码超出最大范围");
               break;
+            default:
+              that.$judgeToken(code);
+              break;
           }
         })
         .catch(function(e) {
