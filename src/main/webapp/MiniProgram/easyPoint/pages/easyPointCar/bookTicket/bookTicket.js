@@ -335,6 +335,9 @@ Page({
           icon: 'success',
           duration: 2000
         })
+        wx.navigateTo({
+          url: 'pages/user/myOrder/myOrder',
+        })
         that.setData({
           startAddress:"",
           endAddress:"",

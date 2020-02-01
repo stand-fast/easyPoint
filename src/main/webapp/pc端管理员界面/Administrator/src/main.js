@@ -7,8 +7,8 @@ import store from "./store/index.js" //引入vuex共享数据库
 store.dispatch("loginUser/autoLogin"); //刷新页面同步数据
 import axios from '../src/assets/util/http.js'; //封装AXIOS
 import ElementUI from 'element-ui'; //引入Element组件库
-import 'element-ui/lib/theme-chalk/index.css'; //引入组件库css
-import './plugins/element.js'; //引入组件库js
+import 'element-ui/lib/theme-chalk/index.css'; //引入Element组件库css
+import './plugins/element.js'; //引入Element组件库js
 
 import App from './App.vue';
 Vue.use(ElementUI);

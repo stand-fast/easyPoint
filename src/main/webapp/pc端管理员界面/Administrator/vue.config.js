@@ -1,7 +1,7 @@
 module.exports = {
   assetsDir: 'assets',
   lintOnSave: false,
-  publicPath: './',
+  publicPath: './'
   // pluginOptions: {
   //   'style-resources-loader': {
   //     preProcessor: 'less',
