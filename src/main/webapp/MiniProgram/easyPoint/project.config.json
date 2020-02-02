@@ -48,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 5,
 			"list": [
 				{
 					"id": -1,
@@ -83,6 +83,12 @@
 					"name": "refundDetail",
 					"pathName": "pages/user/refundDetail/refundDetail",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/easyPointCar/bookTicket/bookTicket",
+					"pathName": "pages/easyPointCar/bookTicket/bookTicket",
 					"scene": null
 				}
 			]

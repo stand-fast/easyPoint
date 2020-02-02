@@ -1,4 +1,4 @@
-// pages/easyPointCar/bookTicket/bookTicket.js
+ // pages/easyPointCar/bookTicket/bookTicket.js
 let dateTimePicker = require('../../../component/selectTime/dateTimePicker.js');//获取开始时间控件、开始时间数组
 let timePicker = require('../../../component/selectTime/timePicker.js');//时间选择控件
 let getUserInformation = require('../../../component/userInfor/getUserInfor.js');//获取个人信息
@@ -37,18 +37,19 @@ Page({
   //页面加载完毕执行函数(放在首位)
   onLoad: function (options) {
     this.getMessage();   //获取车票类型数据
-    //this.getCommitteeMessage()  //获取同乡会名称数据
+    this.getCommitteeMessage()  //获取同乡会名称数据
     this.timeSelection();//时间选择控件
-
-    //同乡会数据处理，接上服务器后删除
-    let associations = this.data.associationsList;
-    let associationsName = [];
-    for (let i = 0; i < associations.length; i++) {
-      associationsName.push(associations[i].associationName)
-    }
-    this.setData({
-      associations: associationsName,
-    })
+  },
+  getCommitteeData:function(){
+	  //同乡会数据处理，接上服务器后删除
+	  let associations = this.data.associationsList;
+	  let associationsName = [];
+	  for (let i = 0; i < associations.length; i++) {
+	    associationsName.push(associations[i].associationName)
+	  }
+	  this.setData({
+	    associations: associationsName,
+	  })
   },
   //请求车辆类型数据以及对应应付定金
   getMessage: function () {
@@ -88,8 +89,9 @@ Page({
   //请求同乡会名称数据
   getCommitteeMessage: function () {
     let token = app.globalData.token;
+	let that=this
     wx.request({
-      url: '接口路径',
+      url: 'https://www.easypoint.club/miniProgram/findAllAssociations',
       method: 'get',
       header: { 'content-type': 'application/x-www-form-urlencoded', token },
       success: function (res) {
@@ -99,11 +101,11 @@ Page({
         for (let i = 0; i < associations.length; i++) {
           associationsName.push(associations[i].associationName)
         }
-        this.setData({
-          associationsList: res.data,
+        that.setData({
+          associationsList: res.data.data,
           associations: associationsName,
         })
-
+		that.getCommitteeData()
       }
     })
   },

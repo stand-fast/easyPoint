@@ -4,49 +4,17 @@ Page({
   data: {
     showModal:false,//是否显示修改联系人窗口
     showModaladd:false,//是否显示添加联系人窗口
-    item_list:[//联系人数据
-      {
-        peopleId:'13312312311',
-        name:"李大华",
-        phone:"13345678910"
-      }, 
-      {
-        peopleId: '5435331',
-        name: "李明",
-        phone:"14123123910"
-      }
-    ]
+    item_list:[]//联系人数据
   },
   //页面加载完毕执行函数(放在首位)
   onLoad: function (options) {
-    //this.getMessage();
+    this.getMessage();
   },
   //请求临时联系人的信息
   getMessage: function () {
-    let that = this;
-    let token = app.globalData.token;
-    wx.request({
-      url: '接口路径',
-      method: 'Post',
-      header: { 'content-type': 'application/x-www-form-urlencoded', token },
-      success: function (res) {
-        let code = res.data.code;
-        if (res.header.token != undefined) {
-          app.replaceToken(res.header.token);
-        }
-        switch (code) {
-          case 200:
-            that.setData({
-              item_list: res.data,
-            })
-            break;
-          case 501:
-            app.getPermission();
-            break;
-        }
-
-      }
-    })
+	this.setData({
+	  item_list: wx.getStorageSync("Persons"),
+	})
   },
   //点击联系人携带数据返回上一个页面
   onPonstant: function (e) {
@@ -84,6 +52,7 @@ Page({
         item.splice(i, 1)
       }
     }
+	wx.setStorageSync("Persons", item)
     wx.showToast({
       title: '已删除',
     })
@@ -157,9 +126,13 @@ Page({
   //提交添加联系人部分
   addPerson: function (e) {
     if (this.judegeMessage(e) == true) {
-      //测试部分，接上服务器后删除
+	  let data=this.data.item_list
+	  data.push({peopleId: data.length, name: e.detail.value.name, phone: e.detail.value.phone})
+	  wx.setStorageSync("Persons", data)
+	  
       this.setData({
         showModaladd: false,
+		item_list:data
       })
       wx.showToast({
         title: '添加成功',
@@ -169,6 +142,13 @@ Page({
   //提交修改信息部分
   modifyPerson: function (e) {
     let that = this;
+	let data=this.data.item_list
+	data[this.data.peopleId]={peopleId: this.data.peopleId, 
+							  name: e.detail.value.name, 
+							  phone: e.detail.value.phone}
+	console.log(data)
+	wx.setStorageSync("Persons", data)
+
     if (that.judegeMessage(e) == true) {
       wx.showToast({
         title: '正在修改',
@@ -176,9 +156,9 @@ Page({
         duration: 2000
       })
 
-      //测试部分，接上服务器后删除
       this.setData({
         showModal: false,
+		item_list:data
       })
       wx.showToast({
         title: '修改成功',

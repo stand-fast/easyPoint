@@ -111,62 +111,116 @@ Page({
   },
   //发起支付功能
   confirmPay:function(){
-    // let that=this;
-    // let token = app.globalData.token;
-    // wx.request({
-    //   url: '接口路径',
-    //   header: {
-    //     "Content-Type": "application/x-www-form-urlencoded", token
-    //   },
-    //   method: "POST",
-    //   data: {
-    //     ticketId: selt.data.ticketInfos.ticketId,
-    //     price: selt.data.sumprice,
-    //     number:selt.data.number,
-    //     isInsurance: selt.data.radioStatus,
-    //     type: selt.data.ticketInfos.type,
-    //     username: selt.data.username,
-    //     phone: selt.data.phone,
-    //   },
-    //   success: function (res) {
-    //     console.log(res.data);
-    //     //弹出支付成功弹窗
-    //     this.setData({
-    //       showmodal: false,
-    //       successPay: true,
-    //     })
-    //   },
-    //   fail:function(res){
-    //     if (this.data.currentab==1){
-    //       if(res.data.status == 1){
-    //         wx.showToast({
-    //           title: '支付失败,剩余票数不足',
-    //           icon: 'loading',
-    //           duration: 2000
-    //         })
-    //       }
-    //     }else{
-    //       if (res.data.status == 1) {
-    //         wx.showToast({
-    //           title: '预约失败,剩余票数不足',
-    //           icon: 'loading',
-    //           duration: 2000
-    //         })
-    //       }
-    //     }
-    //   },
-    // })
+    let that=this;
+    let token = app.globalData.token;
+	let url
+	if(this.data.currentab===0){
+		url='https://www.easypoint.club/miniProgram/association/addAdvanceOrder'
+	}else{
+		url='https://www.easypoint.club/miniProgram/association/orderAdvanceSaleTicket'
+	}
+    wx.request({
+      url: url,
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded", token
+      },
+      method: "POST",
+      data: {
+        ticketId: that.data.ticketInfos.ticketId,
+		travelNum:this.data.number,
+		passenger:this.data.username,
+        // price: that.data.sumprice,
+        // number:that.data.number,
+        // isInsurance: that.data.radioStatus,
+        // type: that.data.ticketInfos.type,
+        // username: that.data.username,
+        phone: that.data.phone,
+      },
+      success: function (res) {
+		let pay = res.data
+		console.log(pay)
+		//发起支付 
+		if(that.data.currentab===0){
+			let timeStamp = pay.data.timeStamp + "";
+			console.log(timeStamp)
+			let packages = pay.data.packages;//统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=***
+			let paySign = pay.data.paySign;//paySign = MD5(appId=wxd678efh567hg6787&nonceStr=5K8264ILTKCH16CQ2502SI8ZNMTM67VS&package=prepay_id=wx2017033010242291fcfe0db70013231072&signType=MD5&timeStamp=1490840662&key=qazwsxedcrfvtgbyhnujmikolp111111) = 22D9B4E54AB1950F51E0649E8810ACD6
+			let nonceStr = pay.data.nonceStr;//随机字符串，长度为32个字符以下
+			let param = { "timeStamp": timeStamp, "package": packages, "paySign": paySign, "signType": "MD5", "nonceStr": nonceStr };
+			that.pay(param);
+		}else{
+			//弹出支付成功弹窗
+			that.setData({
+			  showmodal: false,
+			  successPay: true,
+			})
+		}
+      },
+      fail:function(res){
+        if (that.data.currentab==1){
+          if(res.data.status == 1){
+            wx.showToast({
+              title: '支付失败,剩余票数不足',
+              icon: 'loading',
+              duration: 2000
+            })
+          }
+        }else{
+          if (res.data.status == 1) {
+            wx.showToast({
+              title: '预约失败,剩余票数不足',
+              icon: 'loading',
+              duration: 2000
+            })
+          }
+        }
+      },
+    })
     
     //接上服务器后删除
-    this.setData({
-        showmodal:false,
-        successPay:true,
-    })
+    // this.setData({
+    //     showmodal:false,
+    //     successPay:true,
+    // })
   },
   //支付后的确认
   successBtn:function(){
     this.setData({
         successPay:false,
+    })
+  },
+  //支付
+  pay: function (param) {
+	let that=this
+    wx.requestPayment({
+      timeStamp: param.timeStamp,
+      nonceStr: param.nonceStr,
+      package: param.package,
+      signType: param.signType,
+      paySign: param.paySign,
+      success: function (res) {
+        wx.showToast({
+          title: '支付成功',
+          icon: 'success',
+          duration: 2000
+        })
+		that.setData({
+		    showmodal: false,
+		})
+      },
+      fail: function (res) {
+		wx.showToast({
+		  title: '支付失败',
+		  icon:'none',
+		  duration: 2000
+		})
+		that.setData({
+		    showmodal: false,
+		})
+      },
+      complete: function (res) {
+        console.log("pay complete");
+      }
     })
   },
 })

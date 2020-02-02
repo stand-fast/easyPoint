@@ -3,36 +3,18 @@ var judgePersonInfor = require('../../../component/userInfor/judgePersonInfor.js
 var app = getApp();
 Page({
   data: {
+	id:-1,
     ticketLength:1,//不为0时候显示车票数据，为零时候显示没有车票信息
     bgcolorZh:"#56b4f6",    //正式票颜色
     bgcolorYu:"#5697be",    //预约票颜色
-    ticketInfos:[//车票数据
-      {   
-          ticketId:"32ASD3",
-          departureTime:"07-01 18:00",
-          departurePlace:"汕头",
-          destination:"广金广州本部",
-          price:130,
-          seatSurplus:23,
-          type:1
-      },
-      {
-          ticketId: "32hjfsdfs123",
-          departureTime: "07-01 18:00",
-          departurePlace: "汕头",
-          destination: "广金广州本部",
-          price: 130,
-          seatSurplus: 23,
-          type: 2
-      },
-    ],
+    ticketInfos:[],//车票数据
   },
   //页面加载完毕执行函数(放在首位)
   onLoad: function (options) {
     this.setData({
       id: options.associationId
     })
-    //this.getTicketMessage();
+    this.getTicketMessage();
   },
   //跳转车票详情页面
   buyTicket: function (res) {
@@ -62,13 +44,14 @@ Page({
   },
   //请求车票数据
   getTicketMessage:function(id){
-    let token = app.globalDate.token;
+    let token = app.globalData.token;
+	let that=this
     wx.request({
-      url: '接口路径',
+      url: 'https://www.easypoint.club/miniProgram/findTickets',
       data: {
-        associationId: this.data.id,   //根据同乡会名称请求车票数据
+        associationId: that.data.id,   //根据同乡会名称请求车票数据
       },
-      method: 'Post',
+      method: 'GET',
       header: { 'content-type': 'application/x-www-form-urlencoded', token },
       success: function (res) {
         let code = res.data.code;
@@ -78,7 +61,7 @@ Page({
         switch (code) {
           case 200:
             that.setData({
-              townsmen_association: res.data,
+              ticketInfos: res.data.data,
             })
             break;
           case 501:
