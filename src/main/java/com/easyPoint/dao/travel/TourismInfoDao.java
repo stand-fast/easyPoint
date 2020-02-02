@@ -113,7 +113,7 @@ public interface TourismInfoDao {
     TourismRefundPageDetailDto findTourismRefundDetail(int tourismRefundId);
 
     //根据tourismRefundId查询travelOrderId和退款状态
-    HashMap<String,Integer> findOrderIdAndStateById(int tourismRefundId);
+    HashMap findOrderIdAndStateById(int tourismRefundId);
 
     //退款不通过：保存退款操作管理员uid，确认时间，修改状态，保存驳回理由
     int updateTourismRefundToFail(@Param("admiUid") int admiUid,

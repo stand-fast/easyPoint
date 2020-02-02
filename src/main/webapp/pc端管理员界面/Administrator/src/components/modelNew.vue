@@ -188,6 +188,7 @@ export default {
   data() {
     return {
       navigationName: [
+        //导航板块数据
         {
           id: "1",
           name: "易点出行",
@@ -242,6 +243,23 @@ export default {
         },
         {
           id: "2",
+          name: "租赁闲置",
+          icon: "el-icon-present",
+          nameSecond: [
+            {
+              name: "",
+              navitem: [
+                {
+                  id: "1",
+                  name: "发布商品",
+                  url: "#/PublishGoods"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          id: "3",
           name: "管理员账户",
           icon: "el-icon-menu",
           nameSecond: [
@@ -258,7 +276,7 @@ export default {
           ]
         },
         {
-          id: "3",
+          id: "4",
           name: "公告栏",
           icon: "el-icon-chat-line-square",
           nameSecond: [
@@ -484,10 +502,10 @@ export default {
 .model-back {
   cursor: pointer;
   position: absolute;
-  left: 235px;
+  right: 100px;
   top: 120px;
   color: #9c9ea1;
-  font-size: 22px;
+  font-size: 18px;
   z-index: 9999;
 }
 .model-back:hover {

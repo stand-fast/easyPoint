@@ -15,7 +15,6 @@ Page({
     chooseType:'',//商品规格已选择类别
     chooseSize: '',//商品规格已选择尺寸
     number: 0,//商品规格数量
-    save:'',//商品规格库存
     leaseDate:0,//商品规格租借天数
     dateTime: null, //开始时间value
     dateTimeArray: null, //开始时间数组
@@ -49,15 +48,15 @@ Page({
           items:[
             {
               itemId:123131231232,
-              specifc:"S",price:"15",save:"5"
+              specifc:"S",price:"15"
             },
             {
               itemId: 6785675,
-              specifc: "M", price: "15", save: "3"
+              specifc: "M", price: "15"
             },
             {
               itemId: 123123123,
-              specifc: "L", price: "15", save: "3"
+              specifc: "L", price: "15"
             }
           ]
         },
@@ -68,15 +67,15 @@ Page({
           items: [
             {
               itemId: 123131231232,
-              specifc: "S", price: "15", save: "5"
+              specifc: "S", price: "15"
             },
             {
               itemId: 6785675,
-              specifc: "M", price: "15", save: "3"
+              specifc: "M", price: "15"
             },
             {
               itemId: 123123123,
-              specifc: "L", price: "15", save: "3"
+              specifc: "L", price: "15"
             }
           ]
         }, 
@@ -87,19 +86,19 @@ Page({
           items: [
             {
               itemId: 123131231232,
-              specifc: "S", price: "15", save: "5"
+              specifc: "S", price: "15"
             },
             {
               itemId: 6785675,
-              specifc: "M", price: "15", save: "3"
+              specifc: "M", price: "15"
             },
             {
               itemId: 123123123,
-              specifc: "L", price: "15", save: "3"
+              specifc: "L", price: "15"
             },
             {
               itemId: 6785675,
-              specifc: "M", price: "15", save: "3"
+              specifc: "M", price: "15"
             },
           ]
         },
@@ -110,19 +109,19 @@ Page({
           items: [
             {
               itemId: 123131231232,
-              specifc: "S", price: "15", save: "5"
+              specifc: "S", price: "15"
             },
             {
               itemId: 6785675,
-              specifc: "M", price: "15", save: "3"
+              specifc: "M", price: "15"
             },
             {
               itemId: 123123123,
-              specifc: "L", price: "15", save: "3"
+              specifc: "L", price: "15"
             },
             {
               itemId: 6785675,
-              specifc: "M", price: "15", save: "3"
+              specifc: "M", price: "15"
             },
           ]
         },
@@ -134,26 +133,22 @@ Page({
             {
               itemId: 123131231232,
               specifc: "S", 
-              price: "15", 
-              save: "5"
+              price: "15"
             },
             {
               itemId: 6785675,
               specifc: "M", 
-              price: "15", 
-              save: "3"
+              price: "15"
             },
             {
               itemId: 123123123,
               specifc: "L", 
-              price: "15", 
-              save: "3"
+              price: "15"
             },
             {
               itemId: 6785675,
               specifc: "M", 
-              price: "15", 
-              save: "3"
+              price: "15"
             },
           ]
         }
@@ -254,9 +249,7 @@ Page({
       this.setData({
         sizeclick: -1,
         itemId: null,
-        save: 0,
         chooseSize: '',
-        save:'',
       })
     }
     for (let i = 0; i < goodletiety.length; i++) {
@@ -282,7 +275,6 @@ Page({
               itemId: size[i].itemId,//商品id
               setPrice:size[i].price,//金额
               chooseSize: size[i].specifc,//尺寸
-              save: size[i].save,//库存
           })
           break;
       }

@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import loginService from "../services/loginService.js";
+import loginService from "../services/loginService.js"; //引入loginService接口
 
 export default {
     namespaced: true, //开启命名空间

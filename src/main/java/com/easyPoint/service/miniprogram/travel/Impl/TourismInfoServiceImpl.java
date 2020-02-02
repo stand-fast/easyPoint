@@ -228,9 +228,10 @@ public class TourismInfoServiceImpl implements TourismInfoService {
         else if(5 == state)
             return -4;
 
-        Integer tourismRefundId = Integer.parseInt(refundData.get("tourismRefundId").toString());
-        System.out.println(tourismRefundId);
-        if(tourismRefundId != null){
+        System.out.println(1111);
+        System.out.println(refundData.get("tourismRefundId"));
+        if(refundData.get("tourismRefundId") != null){
+            Integer tourismRefundId = Integer.parseInt(refundData.get("tourismRefundId").toString());
             //查询此时的退款状态
             int refundState = tourismInfoDao.findRefundState(tourismRefundId);
             //退款待处理中

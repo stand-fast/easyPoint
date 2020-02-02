@@ -19,7 +19,8 @@ Page({
   //页面加载完毕执行函数(放在首位)
   onLoad: function (options) {
     this.setData({
-      tourismRefundId: options.tourismRefundId
+      tourismRefundId: options.tourismRefundId,
+      travelOrderId: options.travelOrderId,
     })
     this.getRefundStatus();
   },
@@ -52,6 +53,41 @@ Page({
         }
       }
     })
-
-  }
+  },
+  //取消退款
+  cancelRefund:function(){
+    let that = this;
+    let token = app.globalData.token;
+    wx.request({
+      url: app.globalData.requestUrl + 'tourism/cancelRefund',
+      method: 'Post',
+      data: {
+        tourismRefundId: this.data.tourismRefundId,
+      },
+      header: { 'content-type': 'application/x-www-form-urlencoded', token },
+      success: function (res) {
+        let code = res.data.code;
+        if (res.header.token != undefined) {
+          app.replaceToken(res.header.token);
+        }
+        switch (code) {
+          case 200:
+            wx.showToast({
+              title: '取消退款成功',
+              duration: 2000
+            })
+            break;
+          case 501:
+            app.getPermission();
+            break;
+        }
+      }
+    })
+  },
+  //跳转申请退款页面
+  toRefund: function () {
+    wx.navigateTo({
+      url: '/pages/user/refund/refund?travelOrderId=' + this.data.travelOrderId,
+    })
+  },
 })

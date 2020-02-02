@@ -10,7 +10,9 @@ import com.easyPoint.pojo.travel.Passenger;
 import com.easyPoint.pojo.travel.Ticket;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 乡会模块dao层
@@ -98,7 +100,8 @@ public interface AssociationDao {
     Integer insertTravelOrderInfo(AssociationOrderInfo associationOrderInfo);
     Integer insertAssociationOrderInfo(AssociationOrderInfo associationOrderInfo);
 
-    //保存乘客人员信息
-    Integer insertAssociationPassengers(@Param("travelOrderId")int travelOrderId,
-                                        @Param("passengers") List<Passenger> passengers);
+
+    //查询小程序订单详情信息
+    Map findAssociationOrderDetial(@Param("travelOrderId")int travelOrderId);
+
 }

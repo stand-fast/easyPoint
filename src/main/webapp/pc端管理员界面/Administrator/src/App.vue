@@ -6,11 +6,12 @@
 
 <script>
 import Vue from "vue";
-import modelNew from "./components/modelNew.vue";
+import modelNew from "./components/modelNew.vue"; //页面模板组件
+
 export default {
   name: "app",
   components: {
-    modelNew
+    modelNew,//注册页面模板组件
   },
   mounted() {
     this.getToken();
@@ -29,5 +30,6 @@ export default {
 </script>
 
 <style>
-@import url(./assets/public.css);
+@import url(./assets/public.css); /* 引入公共css */
+@import url(./assets/Travel.css); /* 引入易点出行板块css */
 </style>

@@ -53,11 +53,11 @@ export default {
     };
   },
   mounted() {
-    const id = this.$route.params.id;
-    const state = this.$route.params.state;
-    this.state = state;
-    this.id = id;
-    this.setData(id);
+    const id = this.$route.params.id; //通过路由获取订单id
+    const state = this.$route.params.state; //通过路由获取订单状态
+    this.state = state; //绑定订单状态
+    this.id = id; //绑定订单id
+    this.setData(id); // 根据id请求数据
   },
   computed: {
     //验证输入信息是否合法
@@ -153,10 +153,12 @@ export default {
               switch (code) {
                 case 200:
                   alert("租车订单安排车辆信息成功");
-                  that.setData();
                   break;
                 case 201:
                   alert("安排车辆信息失败,请稍后提交");
+                  break;
+                case 401:
+                  alert(data.message);
                   break;
                 default:
                   that.$judgeToken(code);

@@ -12,8 +12,17 @@ module.exports = {
   // devServer: {
   //   proxy: 'http://localhost:4000'
   // },
-
-  presets: [
-    '@vue/app'
+  "presets": [
+    "@vue/app"
+  ],
+  "plugins": [
+    [
+      "component",
+      {
+        "libraryName": "element-ui",
+        "styleLibraryName": "theme-chalk"
+      },
+      "syntax-dynamic-import"
+    ]
   ]
 }

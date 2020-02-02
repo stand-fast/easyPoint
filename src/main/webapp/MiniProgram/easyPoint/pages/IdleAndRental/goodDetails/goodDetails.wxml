@@ -93,7 +93,7 @@
         <image src="{{filesUrl}}"></image>
         <view class="dislog_item_goods">
             <view id="dislog_item_goods_price">￥ <text>{{setPrice}}</text></view>
-            <view id="dislog_item_goods_chooseType">已选择：{{chooseType}} + {{chooseSize}}码  ×{{number}}  <text> 库存：{{save}}</text></view>
+            <view id="dislog_item_goods_chooseType">已选择：{{chooseType}} + {{chooseSize}}码  ×{{number}}</view>
         </view>
     </view>
     <view class="hr"></view>

@@ -1,35 +1,39 @@
 <template>
   <div>
-    <ul class="PageContentRight">
-      <div class="PageContentRightTitle">
-        <div class="IconTitle"></div>
-        <div class="TitleText">{{navName}} > {{navPlateName}}</div>
-      </div>
-      <div class="PageContent">
-        <h1>车辆信息</h1>
-        <ul class="vehicleInfor">
-          <li>
-            <input v-model="licensePlateNumber" placeholder="车牌号" />
-          </li>
-          <li>
-            <input v-model="vehicleType" placeholder="车辆类型" />
-          </li>
-          <li>
-            <input v-model="color" placeholder="车身颜色" />
-          </li>
-          <li>
-            <input v-model="driverName" placeholder="司机姓名" />
-          </li>
-          <li>
-            <input v-model="driverPhone" maxlength="11" placeholder="司机联系方式" />
-          </li>
-          <div class="submitVihicle">
-            <span v-if="state ==1 || state ==0" @click="submitVehicle">提交</span>
-            <span v-if="state != 2" @click="submitFinish(id)" style="margin-left:5px">结单</span>
-          </div>
-        </ul>
-      </div>
-    </ul>
+    <!-- 顶部标题 -->
+    <el-header class="model-wrapper-con-header">{{navName}} - {{navPlateName}}</el-header>
+    <!-- 内容 -->
+    <el-main class="el-main-content">
+      <p class="model-content-input">
+        <span>车牌号：</span>
+        <el-input placeholder="请输入车牌号" v-model="licensePlateNumber" clearable></el-input>
+      </p>
+      <p class="model-content-input">
+        <span>车辆类型：</span>
+        <el-input placeholder="请输入车辆类型" v-model="vehicleType" clearable></el-input>
+      </p>
+      <p class="model-content-input">
+        <span>车身颜色：</span>
+        <el-input placeholder="请输入车身颜色" v-model="color" clearable></el-input>
+      </p>
+      <p class="model-content-input">
+        <span>司机姓名：</span>
+        <el-input placeholder="请输入司机姓名" v-model="driverName" clearable></el-input>
+      </p>
+      <p class="model-content-input">
+        <span>司机联系方式：</span>
+        <el-input placeholder="请输入司机联系方式" v-model="driverPhone" clearable maxlength="11"></el-input>
+      </p>
+      <p class="model-content-input">
+        <span></span>
+        <el-button
+          class="model-content-button"
+          v-if="state ==1 || state ==0"
+          @click="submitVehicle"
+        >提交</el-button>
+        <el-button class="model-content-button" v-if="state != 2" @click="submitFinish(id)">结单</el-button>
+      </p>
+    </el-main>
   </div>
 </template>
 <script>
@@ -49,11 +53,11 @@ export default {
     };
   },
   mounted() {
-    const id = this.$route.params.id;
-    const state = this.$route.params.state;
-    this.state = state;
-    this.id = id;
-    this.setData(id);
+    const id = this.$route.params.id; //通过路由获取订单id
+    const state = this.$route.params.state; //通过路由获取订单状态
+    this.state = state; //绑定订单状态
+    this.id = id; //绑定订单id
+    this.setData(id); // 根据id请求数据
   },
   computed: {
     //验证输入信息是否合法
@@ -83,9 +87,9 @@ export default {
     // 根据id请求数据
     async setData(id) {
       let that = this;
-      window.onscroll = e => e.preventDefault(); //兼容浏览器
+      let params = { travelOrderId: id };
       this.$http
-        .get("findDriverInfo", { params: { travelOrderId: id } })
+        .get("findDriverInfo", { params })
         .then(function(res) {
           let data = res.data;
           let code = data.code;
@@ -101,6 +105,9 @@ export default {
               break;
             case 201:
               alert("已经加载完全部数据");
+              break;
+            case 401:
+              alert("订单已经完成，不能再修改车辆信息");
               break;
             default:
               that.$judgeToken(code);
@@ -129,17 +136,16 @@ export default {
               this.driverPhone
           )
         ) {
+          let params = {
+            travelOrderId: this.id,
+            licensePlateNumber: that.licensePlateNumber,
+            vehicleType: that.vehicleType,
+            color: that.color,
+            driverName: that.driverName,
+            driverPhone: that.driverPhone
+          };
           this.$http
-            .get("addDriverInfoToTourismOrder", {
-              params: {
-                travelOrderId: this.id,
-                licensePlateNumber: that.licensePlateNumber,
-                vehicleType: that.vehicleType,
-                color: that.color,
-                driverName: that.driverName,
-                driverPhone: that.driverPhone
-              }
-            })
+            .get("addDriverInfoToTourismOrder", { params })
             .then(function(res) {
               var data = res.data;
               let code = data.code;
@@ -147,10 +153,12 @@ export default {
               switch (code) {
                 case 200:
                   alert("租车订单安排车辆信息成功");
-                  that.setData();
                   break;
                 case 201:
                   alert("安排车辆信息失败,请稍后提交");
+                  break;
+                case 401:
+                  alert(data.message);
                   break;
                 default:
                   that.$judgeToken(code);
@@ -167,14 +175,13 @@ export default {
     },
     //是否结单
     submitFinish(id) {
-      var that = this;
+      let that = this;
+      let params = {
+        travelOrderId: this.id
+      };
       if (confirm("确定是否结单")) {
         this.$http
-          .get("finishTourismOrder", {
-            params: {
-              travelOrderId: this.id
-            }
-          })
+          .get("finishTourismOrder", { params })
           .then(function(res) {
             var data = res.data;
             let code = data.code;
