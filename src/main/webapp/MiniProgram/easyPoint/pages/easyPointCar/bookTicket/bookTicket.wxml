@@ -83,7 +83,7 @@
                     <view class='modal_box'>
                         <view class="model_success">支付成功</view>
                         <view class="success_text">支付成功，请保持手机畅通，我们会在24小时内联系您</view>
-                        <button class="success_btn" bindtap="successBtn">我知道了</button>
+                        <button class="success_btn">我知道了</button>
                     </view>
             </block>
             </view>
