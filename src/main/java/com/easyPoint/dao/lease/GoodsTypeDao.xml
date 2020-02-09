@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easyPoint.dao.lease.GoodsTypeDao">
+
+    <!--//小程序查询所有租赁商品类别-->
+    <!--GoodsType findAllGoodsType(int belongToBigType);-->
+    <select id="findAllGoodsType" resultType="GoodsType">
+        SELECT goods_type_id AS goodsTypeId,
+               goods_type_name AS goodsTypeName
+               FROM goods_type
+               WHERE belong_to_big_type= #{belongToBigType}
+    </select>
+</mapper>
