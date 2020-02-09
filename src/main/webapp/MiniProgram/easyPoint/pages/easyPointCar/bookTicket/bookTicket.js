@@ -124,6 +124,9 @@ Page({
     this.setData({
         successShowmodal: false,
     })
+    wx.navigateTo({
+      url: '/pages/user/myOrder/myOrder',
+    })
   },
   //选项卡切换
   swichNav: function (e) {
@@ -332,15 +335,8 @@ Page({
       signType: param.signType,
       paySign: param.paySign,
       success: function (res) {
-        wx.showToast({
-          title: '支付成功',
-          icon: 'success',
-          duration: 2000
-        })
-        wx.navigateTo({
-          url: 'pages/user/myOrder/myOrder',
-        })
         that.setData({
+          successShowmodal:true,
           startAddress:"",
           endAddress:"",
           perNumbers:"",
