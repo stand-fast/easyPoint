@@ -94,6 +94,12 @@
                                     value (#{travelOrderId},#{vehicleId},#{passenger},#{phone}, #{ifInsurance}, #{payMoney}, #{makeOrderTime},#{outTradeNo},#{transactionId},#{ifBack})
     </insert>
 
+    <!--//查询租车订单状态-->
+    <!--Integer findStateById(int travelOrderId);-->
+    <select id="findStateById" parameterType="int" resultType="int">
+        SELECT state FROM travel_order WHERE travel_order_id = #{travelOrderId}
+    </select>
+
     <update id="updateTourismOrderInfoAddDriverInfo" parameterType="TourismOrderInfo">
         update tourism_order set license_plate_number = #{licensePlateNumber}, color = #{color},
                                  driver_name = #{driverName}, driver_phone = #{driverPhone},
@@ -256,14 +262,8 @@
     </update>
 
     <!--//根据tourismRefundId查询travelOrderId-->
-    <!--int findTravelOrderId(int tourismRefundId);-->
-    <select id="findTravelOrderId" parameterType="int" resultType="int">
-        SELECT travel_order_id FROM tourism_refund WHERE tourism_refund_id = #{tourismRefundId}
-    </select>
-
-    <!--//根据tourismRefundId查询travelOrderId-->
-    <!--int findTravelOrderId(int tourismRefundId);-->
+    <!--HashMap<String,Integer> findOrderIdAndStateById(int tourismRefundId);-->
     <select id="findOrderIdAndStateById" parameterType="int" resultType="HashMap">
-        SELECT travel_order_id AS travelOrderId, refund_state AS refund_state FROM tourism_refund WHERE tourism_refund_id = #{tourismRefundId}
+        SELECT travel_order_id AS travelOrderId, refundState AS refund_state FROM tourism_refund WHERE tourism_refund_id = #{tourismRefundId}
     </select>
 </mapper>

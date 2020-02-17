@@ -1,0 +1,113 @@
+/* pages/user/refundDetail/refundDetail.wxss */
+Page{
+    font-family: 黑体;
+    font-size: 30rpx;
+}
+.refund_status{
+    width: 100%;
+    height: 80rpx;
+    line-height: 80rpx;
+    border-top: 10rpx solid #f2f2f2;
+    border-bottom: 10rpx solid #f2f2f2;
+    padding-left: 50rpx;
+    color: #333;
+}
+.refund_status text{
+    color: #56b4f6;
+}
+.refund_order{
+    width: 100%;
+    height: 120rpx;
+    color: #666;
+    padding:20rpx 50rpx;
+    border-bottom: 10rpx solid #f2f2f2;
+}
+.refund_order_item{
+    width: 100%;
+    height: 60rpx;
+    line-height: 60rpx;
+}
+.refund_process_money{
+    width: 100%;
+    height: 80rpx;
+    line-height: 80rpx;
+    display: flex;
+    flex-direction: row; 
+    padding: 10rpx 50rpx;
+    color: #333;
+}
+.refund_text{
+    width: 140rpx;
+}
+.refund_money{
+    width: 300rpx;
+    text-align: right;
+    margin-left: 200rpx;
+    font-family: 微软雅黑;
+}
+.refund_money text{
+    color: #56b4f6;
+}
+.refund_process_text{
+    width: 100%;
+    height: 40rpx;
+    line-height: 40rpx;
+    color: #57b5f6;
+    padding-left: 50rpx;
+}
+.refund_process{
+    width: 100%;
+    margin-top: 20rpx;
+    padding-left:50rpx;
+    display: flex;
+    flex-direction: row;
+    color: #666;
+}
+.process_left{
+    margin:10rpx 0rpx 0rpx 10rpx;
+    width: 60rpx;
+}
+.process_dot{
+    width: 20rpx;
+    height: 20rpx;
+    background-color: #999;
+    border-radius: 50%;
+}
+.process_shu{
+    width: 4rpx;
+    height: 80rpx;
+    background-color: #999;
+    margin-left: 8rpx;
+}
+.process_right{
+    width: 600rpx;
+}
+.process_right_text{
+    height: 80rpx;
+    margin: 4rpx 0rpx;
+}
+.last{
+    margin-top: 32rpx;
+}
+.footer_btn{
+    width: 100%;
+    height: 100rpx;
+    position: fixed;
+    bottom: 0rpx;
+    display: flex;
+    flex-direction: row-reverse;
+    box-shadow: 0rpx 10rpx 80rpx 30rpx rgba(85, 85, 85, 0.10);
+}
+.footer_btn button{
+    width: 200rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+    margin: auto 0;
+    text-align: center;
+    margin-right: 50rpx;
+    border: 1rpx solid;
+}
+.footer_btn button::after{
+    border: none;
+}

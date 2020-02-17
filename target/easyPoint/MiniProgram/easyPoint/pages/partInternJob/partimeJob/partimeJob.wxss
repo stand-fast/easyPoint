@@ -1,0 +1,195 @@
+/* pages/internship/internship.wxss */
+Page{
+    background-color: #f4f4f4;
+    font-family: 黑体;
+    padding-bottom: 14rpx;
+    overflow-y:scroll;
+}
+.nav{
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: #ffffff;
+    height: 110rpx;
+}
+.nav_switch{
+    width: 30%;
+    border: 1rpx solid #eeeeee;
+    border-radius: 50rpx;
+    display: flex;
+    flex-direction: row;
+    height: 60rpx;
+    font-size: 30rpx;
+    color:#333333;
+    margin: auto 20rpx;
+    text-align: center;
+}
+.on{
+    color: #fff!important;
+    background-color: #56b4f6;
+    border-radius: 50rpx;
+}
+.nav_text_partime{
+    height: 60rpx;
+    line-height: 60rpx;
+    color: #bbb;
+    width: 50%;
+}
+.nav_search{
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+}
+.nav_search input{
+    width: 100%;
+    border: solid #fff;
+    background-color: #eeeeee;
+    height: 60rpx;
+    margin: auto 20rpx;
+    border-radius: 50rpx;
+    color: #bbb;
+    font-size: 30rpx;
+    padding-left: 40rpx;
+}
+.inputPh{
+    font-size: 32rpx;
+    color: #bbb;
+}
+.nav_search image{
+    width: 28rpx;
+    height: 34rpx;
+    position: fixed;
+    right: 32rpx;
+    top:40rpx;
+    margin-right: 20rpx;
+    z-index: 100;
+}
+.leaveTop{
+    margin-top: 120rpx;
+}
+.contain{
+    width: 100%;
+    overflow: hidden;
+}
+.jobInfos{
+    margin:  16rpx auto;
+    width: 700rpx;
+    border-radius: 16rpx;
+    background-color: #fff;
+    height: 288rpx;
+}
+.job_text{
+    width: 100%;
+    display: flex;
+    height: 80rpx;
+    flex-direction: row;
+}
+.jobName{
+    width: 380rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+    font-size: 30rpx;
+    color: #333;
+    margin-left: 24rpx;
+    margin-top: 30rpx;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: normal !important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.jobSalary{
+    width: 140rpx;
+    font-size: 30rpx;
+    font-family: 微软雅黑;
+    height: 44rpx;
+    line-height: 44rpx;
+    color: #56b4f6;
+    margin-left: 60rpx;
+    margin-top: 30rpx;
+    text-align: right;
+}
+.jobSettle{
+    width: 80rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+    margin-top: 30rpx;
+    margin-left: 10rpx;
+    font-size: 24rpx;
+    color: #bbb;
+}
+.remainPeople,.jobLocaTime,.lookDt{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 46rpx;
+    margin-top: 10rpx;
+    font-size: 26rpx;
+    color: #999;
+}
+.internship_text{
+    margin-left: 6rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+}
+.internship_text text{
+    color: #666;
+}
+.last{
+    width: 300rpx;
+}
+.jobLocaTime{
+    margin-bottom: 24rpx;
+}
+.endDate{
+    margin-left: 200rpx;
+    margin-right: 20rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+    width: 200rpx;
+}
+.lookDt{
+    height: 50rpx;
+    font-size: 34rpx;
+    color: #56b4f6;
+    justify-content: center;
+}
+.look_text{
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 26rpx;
+    margin-left: 24rpx;
+}
+.hr{
+    width: 100%;
+    height: 5rpx;
+    background-color: #eee;
+}
+.remainPeople image{
+    width: 28rpx;
+    height: 28rpx;
+    margin-left: 28rpx;
+    margin-top:10rpx;
+}
+.jobLocaTime image{
+    width: 30rpx;
+    height: 26rpx;
+    margin-left: 25rpx;
+    margin-top:10rpx;
+}
+.lookDt image{
+    width: 30rpx;
+    height: 30rpx;
+    margin: auto 0;
+}
+.more-noData{
+  margin: 10px 0;
+  width: 100%;
+  text-align: center;
+  font-size: 26rpx;
+  color: #999;
+}

@@ -7,6 +7,7 @@
       </div>
       <div class="PageContent">
         <h1>租车退款订单详情</h1>
+        <!-- 订单详情数据 -->
         <div class="dealOrderWrapper">
           <li>
             <span>联系人</span>
@@ -58,22 +59,23 @@
           <li>
             <span>退款状态</span>
             <div v-if="datas.refundState==1">待处理</div>
-            <div v-else-if="datas.ifInsurance==2">审核不通过</div>
-            <div v-else-if="datas.ifInsurance==3">审核通过</div>
-            <div v-else-if="datas.ifInsurance==4">已取消</div>
+            <div v-else-if="datas.refundState==2">审核不通过</div>
+            <div v-else-if="datas.refundState==3">审核通过</div>
+            <div v-else-if="datas.refundState==4">已取消</div>
           </li>
           <li>
             <span>驳回原因</span>
-            <div v-if="datas.ifInsurance==1">
+            <div v-if="datas.refundState==1">
               <input type="text" v-model="rejectReason" />
             </div>
-            <div v-else-if="datas.ifInsurance==2">{{datas.rejectReason}}</div>
+            <div v-else-if="datas.refundState==2">{{datas.rejectReason}}</div>
             <div v-else>无</div>
           </li>
         </div>
+        <!-- 订单详情按钮 -->
         <div class="dealOrderButton">
-          <span @click="viaOrder(datas.code)">通过</span>
-          <span @click="notViaOrder(datas.code)">不通过</span>
+          <span v-if="datas.refundState==1" @click="viaOrder(datas.code)">通过</span>
+          <span v-if="datas.refundState==1" @click="notViaOrder(datas.code)">不通过</span>
         </div>
       </div>
     </ul>
@@ -85,59 +87,77 @@ export default {
     return {
       navName: "旅游出行",
       navPlateName: "退款订单详情",
-      datas: "",
-      rejectReason: ""
+      datas: "", //订单详情数据
+      rejectReason: "" //驳回理由
     };
   },
   mounted() {
     const id = this.$route.params.id;
     this.id = id;
-    //console.log("根据" + id + "请求数据");
     this.setData(id);
   },
   methods: {
+    //根据id请求订单详情数据
     async setData(id) {
-      var that = this;
+      let that = this;
       window.onscroll = e => e.preventDefault(); //兼容浏览器
       this.$http
         .get("tourismRefund/detail", { params: { tourismRefundId: id } })
         .then(function(res) {
-          // var data = res.data;
-          var data = res.data;
+          let data = res.data;
+          let code = data.code;
           console.log(data);
-          if (data.code == 200) {
-            that.datas = data.data;
-            console.log(data.message);
-          } else if (data.code == 400) {
-            console.log(data.message);
-          } else if (data.code == 401) {
-            console.log(data.message);
+          switch (code) {
+            case 200:
+              that.datas = data.data;
+              console.log(data.message);
+              break;
+            case 400:
+              alert(data.message);
+              break;
+            case 401:
+              alert(data.message);
+              break;
+            default:
+              that.$judgeToken(code);
+              break;
           }
         })
         .catch(function(e) {
           console.log(e);
         });
     },
+    //通过退款
     viaOrder(code) {
-      var that = this;
+      let that = this;
       this.$http
         .get("tourism/ifAgree", {
           params: { code: code, reason: that.rejectReason, ifAgree: 1 }
         })
         .then(function(res) {
-          // var data = res.data;
-          var data = res.data;
+          let data = res.data;
+          let code = data.code;
           console.log(data);
-          if (data.code == 201) {
-            alert(data.message);
-          } else if (data.code == 401) {
-            alert(data.message);
+          switch (code) {
+            case 200:
+              alert(data.message);
+              break;
+            case 201:
+              alert(data.message);
+              break;
+            case 401:
+              alert(data.message);
+              break;
+            default:
+              that.$judgeToken(code);
+              break;
           }
         })
         .catch(function(e) {
           console.log(e);
         });
     },
+    //驳回退款
     notViaOrder(code) {
       var that = this;
       if (this.rejectReason == "") {
@@ -149,13 +169,22 @@ export default {
             params: { code: code, reason: that.rejectReason, ifAgree: 0 }
           })
           .then(function(res) {
-            // var data = res.data;
             var data = res.data;
+            let code = data.code;
             console.log(data);
-            if (data.code == 201) {
-              alert(data.message);
-            } else if (data.code == 401) {
-              alert(data.message);
+            switch (code) {
+              case 200:
+                alert(data.message);
+                break;
+              case 201:
+                alert(data.message);
+                break;
+              case 401:
+                alert(data.message);
+                break;
+              default:
+                that.$judgeToken(code);
+                break;
             }
           })
           .catch(function(e) {
