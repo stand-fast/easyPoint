@@ -22,7 +22,7 @@ import java.util.Map;
 
 /**
  * 有关管理员账号的操作
- *
+ * 有关管理员账号的操作
  * @author FHJ
  * @date 2019/11/10 17:14
  */
@@ -53,6 +53,7 @@ public class AccountController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         result.setCode(1);
         result.setMessage("成功！");
         return result;
@@ -81,6 +82,7 @@ public class AccountController {
 
         String token = request.getHeader("token");
         Integer check = JwtUtil.getIdentity(token);
+
         if (check != 0) {
             result.setCode(110);
             result.setMessage("非超级管理员，出现非法操作！");
