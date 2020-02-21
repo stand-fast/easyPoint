@@ -42,8 +42,8 @@ public class LeaseServiceImpl implements LeaseService {
     RedisTemplate redisTemplate;
 
     @Override
-    public List<GoodsType> findAllTypeById(int belongToBigType) {
-        return goodsTypeDao.findAllGoodsType(belongToBigType);
+    public List<GoodsType> findAllTypeById() {
+        return goodsTypeDao.findAllGoodsType();
     }
 
     /**

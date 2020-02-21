@@ -18,7 +18,7 @@ import java.util.Map;
  */
 public interface LeaseService {
     //根据所属大类别的id查询所有分类导航栏
-    List<GoodsType> findAllTypeById(int belongToBigType);
+    List<GoodsType> findAllTypeById();
 
     //查询热门专栏信息
     List<String> findAdvertisementImageUrl();

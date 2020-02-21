@@ -36,8 +36,8 @@ public class MiniLeaseController {
      */
     @ResponseBody
     @GetMapping("/lease/findLeaseType")
-    public Result findLeaseType(@RequestParam("belongToBigType")int belongToBigType){
-        List<GoodsType> goodsTypes = leaseService.findAllTypeById(belongToBigType);
+    public Result findLeaseType(){
+        List<GoodsType> goodsTypes = leaseService.findAllTypeById();
         if(!goodsTypes.isEmpty())
             return new Result<>(200,"查询所有分类导航名称成功",goodsTypes);
         return new Result(201,"暂无分类导航");
