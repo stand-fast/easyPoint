@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easyPoint.dao.business.GoodsDao">
+    <!-- 添加商品 -->
+    <insert id="addGoods" parameterType="goods">
+        INSERT INTO goods_table(good_id, good_name, business_name, lowest_price, highest_price, good_images, deposit,
+                                deposit_intruction, take_good_intruction, return_good_intruction, business_hours,
+                                good_description, lease_num, pro_img, goods_type_id, state)
+        VALUES (#{goodId}, #{goodName}, #{businessName}, #{lowestPrice}, #{highestPrice}, #{goodImages}, #{deposit},
+                #{depositIntruction}, #{takeGoodIntruction}, #{returnGoodIntruction}, #{businessHours},
+                #{goodDescription}, #{leaseNum}, #{proImg}, #{goodsTypeId}, #{state})
+    </insert>
+
+    <!-- 根据状态查询已发布过的所有商品 -->
+    <select id="findGoodsByState" parameterType="string" resultType="goodsDto">
+
+    </select>
+
+    <!-- 根据id修改商品状态 -->
+    <update id="updateStateById">
+        UPDATE goods_table
+        SET state = #{state}
+        WHERE good_id = #{goodId}
+    </update>
+
+    <!-- 根据id查询商品详情 -->
+    <select id="findGoodsDetailsById" parameterType="string" resultType="goodsDetailsDto">
+
+    </select>
+
+    <!-- 根据id删除商品 -->
+    <delete id="deleteGoodsById" parameterType="string">
+        DELETE
+        FROM goods_table
+        WHERE good_id = #{goodId}
+    </delete>
+
+    <!-- 根据Id查询某商品是否存在 -->
+    <select id="findGoodsById" parameterType="string" resultType="string">
+        SELECT state
+        FROM goods_table
+        WHERE good_id = #{goodId}
+    </select>
+
+    <!--  修改商品信息 -->
+    <update id="updateGoods" parameterType="goods">
+        UPDATE goods_table
+        <set>
+            <if test="goodName != null and goodName != ''">good_name = #{goodName}</if>
+            <if test="businessName != null and businessName != ''">business_name = #{businessName}</if>
+            <if test="lowestPrice != null and lowestPrice >= 0">lowest_price = #{lowestPrice}</if>
+            <if test="highestPrice != null and highestPrice >= 0">highest_price = #{highestPrice}</if>
+            <if test="goodImages !=  null and goodImages != ''">good_images = #{goodImages}</if>
+            <if test="deposit != null and deposit >= 0">deposit = #{deposit}</if>
+            <if test="depositIntruction != null depositIntruction != ''">deposit_intruction</if>
+            <if test="takeGoodIntruction != null takeGoodIntruction != ''">take_good_intruction</if>
+            <if test="returnGoodIntruction != null returnGoodIntruction != ''">return_good_intruction</if>
+            <if test="businessHours != null businessHours != ''">business_hours</if>
+            <if test="goodDescription != null goodDescription != ''">good_description</if>
+            <if test="proImg != null proImg != ''">pro_img</if>
+            <if test="goodsTypeId != null goodsTypeId != ''">goods_type_id</if>
+        </set>
+        WHERE good_id = #{goodId}
+    </update>
+</mapper>

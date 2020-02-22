@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easyPoint.dao.business.GoodsOrderDaoDao">
+    <!-- 查询所有订单 -->
+    <select id="findAllOrder" parameterType="string" resultType="goodOrderDto">
+
+    </select>
+</mapper>
