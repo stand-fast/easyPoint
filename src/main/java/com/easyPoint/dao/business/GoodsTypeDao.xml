@@ -8,12 +8,14 @@
         INSERT INTO goods_type (goods_type_name, state, description)
         VALUES (#{goodsTypeName}, #{state}, #{description})
     </insert>
+
     <!-- 根据id启用&禁用某个商品类别 -->
     <update id="forbiddenOrUse">
         UPDATE goods_type
         SET state = #{flag}
         WHERE goods_type_id = #{goodTypeId}
     </update>
+
     <!-- 根据id修改某个类别名和描述 -->
     <update id="updateName">
         UPDATE goods_type
@@ -23,6 +25,7 @@
         </set>
         WHERE goods_type_id = #{goodTypeId}
     </update>
+
     <!-- 查询所有商品类别 -->
     <select id="findAllGoodType" parameterType="string" resultType="goodsType">
         SELECT
@@ -37,12 +40,14 @@
             FROM goods_type
         </if>
     </select>
+
     <!-- 删除商品类目 -->
     <delete id="deleteType" parameterType="string">
         DELETE
         FROM goods_type
         WHERE goods_type_id = #{goodTypeId}
     </delete>
+
     <!-- 查询某个类目名的类目是否存在 -->
     <select id="findByIdOrName" resultType="integer">
         SELECT state

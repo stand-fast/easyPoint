@@ -43,4 +43,5 @@ public class GoodsTypeServiceImpl implements GoodsTypeService {
     public Integer findByIdOrName(String goodTypeId, String goodsTypeName) {
         return goodsTypeDao.findByIdOrName(goodTypeId, goodsTypeName);
     }
+
 }

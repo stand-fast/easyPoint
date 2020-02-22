@@ -17,4 +17,5 @@ public interface GoodsTypeService {
     Integer deleteType(String goodTypeId);
     // 查询某个id或名称的类目是否存在
     Integer findByIdOrName(String goodTypeId, String goodsTypeName);
+
 }

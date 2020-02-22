@@ -56,6 +56,7 @@ public class GoodsTypeController {
             result.setCode(-1);
             result.setMessage("添加失败！");
         }
+
         return result;
     }
 
@@ -94,6 +95,7 @@ public class GoodsTypeController {
             result.setCode(-1);
             result.setMessage("修改失败！");
         }
+
         return result;
     }
 
@@ -132,6 +134,7 @@ public class GoodsTypeController {
             result.setCode(-1);
             result.setMessage("修改失败！");
         }
+
         return result;
     }
 
@@ -156,6 +159,7 @@ public class GoodsTypeController {
             result.setMessage("查询成功！");
             result.setData(list);
         }
+
         return result;
     }
 
@@ -193,6 +197,7 @@ public class GoodsTypeController {
             result.setCode(-1);
             result.setMessage("删除失败！");
         }
+
         return result;
     }
 }

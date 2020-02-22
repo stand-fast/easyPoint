@@ -9,6 +9,7 @@ import java.util.List;
  * 商品类别
  */
 public interface GoodsTypeDao {
+
     // 添加商品类别
     Integer addGoodType(GoodsType goodsType);
     // 根据id启用&禁用某个商品类别
