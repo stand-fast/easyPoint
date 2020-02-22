@@ -296,6 +296,6 @@
     <!--//根据tourismRefundId查询travelOrderId-->
     <!--HashMap<String,Integer> findOrderIdAndStateById(int tourismRefundId);-->
     <select id="findOrderIdAndStateById" parameterType="int" resultType="HashMap">
-        SELECT travel_order_id AS travelOrderId, refund_state AS refundState FROM tourism_refund WHERE tourism_refund_id = #{tourismRefundId}
+        SELECT travel_order_id AS travelOrderId, refundState AS refund_state FROM tourism_refund WHERE tourism_refund_id = #{tourismRefundId}
     </select>
 </mapper>

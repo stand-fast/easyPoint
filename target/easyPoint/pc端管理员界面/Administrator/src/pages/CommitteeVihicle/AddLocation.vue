@@ -17,45 +17,26 @@
             <el-input class="model-input" placeholder="请输入上下车地点" v-model="inputPlace" clearable></el-input>
           </li>
         </div>
-        <div class="spring-model-con-button">
-          <el-button type="text" size="mini" @click="showAddPlace = false;">取消</el-button>
-          <el-button type="primary" size="mini" @click="setLocation">添加</el-button>
-        </div>
-      </el-popover>
-    </el-header>
-    <!-- 内容 -->
-    <el-table :data="datas">
-      <el-table-column label="上下车地点" prop="place"></el-table-column>
-      <el-table-column label="操作" fixed="right">
-        <template slot-scope="scope">
-          <!-- 删除弹窗 -->
-          <el-popover
-            class="column-width-5"
-            placement="top"
-            width="230"
-            title="确认删除该上下车地点吗？"
-            trigger="click"
-            v-model="scope.row.visible"
-          >
-            <div class="spring-model-con-button">
-              <el-button type="text" size="mini" @click="scope.row.visible = false;">取消</el-button>
-              <el-button type="primary" size="mini" @click="deleteLocation(scope.row.place)">确定</el-button>
-            </div>
-          </el-popover>
-          <!-- 删除按钮 -->
-          <el-button type="text" size="mini" @click="scope.row.visible = true;">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-    <!-- 分页组件 -->
-    <el-pagination
-      class="pageing"
-      :page-size="pageSize"
-      :total="totalNumber"
-      @current-change="handlePageChange"
-      :current-page.sync="current"
-      layout="prev, pager, next, jumper"
-    ></el-pagination>
+        <h1>已添加上下车地点</h1>
+        <div class="table-scroll">
+          <div class="association associationTitle">
+            <li class="committeePlace">上下车地点</li>
+            <li class="deleteCommitteePlace">操作</li>
+          </div>
+          <div class="nav association" v-for="(item,index) in placeList" :key="index">
+            <li class="committeePlace">{{item}}</li>
+            <li class="deleteCommitteePlace enter" @click="handleDelete(item,index)">删除</li>
+          </div>
+        </div>        
+        <paging
+          :value="current"
+          :pageSize="pageSize"
+          :pageNumber="pageNumber"
+          :panelNumber="panelNumber"
+          @input="handlePageChange"
+        ></paging>
+      </div>
+    </ul>
   </div>
 </template>
 <script>
@@ -63,13 +44,15 @@ export default {
   data() {
     return {
       navName: "校友会包车",
-      navPlateName: "添加上下车地点",
-      showAddPlace: false, //是否显示添加上下车地点弹窗
-      inputPlace: "", //添加上下车地点-地点
-      datas: [], //上下车地点数据
+      navPlateName: "添加上下车地点(汕头同乡会)",
+      placeList:[],
+      datas: [],
+      inputPlace: "",
+      pageSize: 10, //每页最大条数
+      panelNumber: 5, //最多显示多少个分页按钮
       current: 1, //当前页码
-      pageSize: 8, //每页最大条数
-      totalNumber: 5 //总条目数
+      pageNumber: 5, //页码总数
+      associationId:-1//当前同乡会ID
     };
   },
   computed: {
@@ -84,47 +67,75 @@ export default {
     }
   },
   mounted() {
-    this.associationId = this.$route.params.id; //获取路由器传递的id值
+    this.associationId = this.$route.params.id;
     console.log("根据" + this.associationId + "请求数据");
-    this.handlePageChange(1);
+    this.getLocation();
   },
   methods: {
-    //获取上下车地点数
-    async handlePageChange(page) {
-      let that = this;
-      let params = {
-        associationId: this.associationId,
-        startIndex: page,
-        pageSize: this.pageSize
+    async getLocation() {
+      var postData= {params:{
+          associationId:this.associationId,
+          startIndex:this.current,
+          pageSize:this.pageSize        
+        }
       };
+      var url="https://easypoint.club/administrator/findAllPlaces"
+      window.onscroll = e => e.preventDefault(); //兼容浏览器
       this.$http
-        .get("findAllPlaces", { params })
-        .then(res => {
+        .get(url,postData)
+        .then((res) => {
           console.log(res.data);
-          let data = res.data;
-          let code = data.code;
-          switch (code) {
+          var data = res.data;
+          switch(data.code){
             case 0:
-              alert("没有查询到数据");
+              alert("没有查询到数据")
               break;
             case 1:
-              console.log("查询成功");
-              let newdata = [];
-              data.data.placeList.forEach((res, index, arr) => {
-                newdata.push({ place: res, visible: false });
-              });
-              this.datas = newdata;
-              this.totalNumber = data.data.totalNum;
-              this.current = page;
+              console.log("查询成功")
+              this.placeList=data.data.placeList
+              this.pageNumber=data.data.totalNum%10==0?data.data.totalNum/10:parseInt(data.data.totalNum/10)+1
               break;
             case 2:
-              alert("参数为空");
-              break;
+              alert("参数为空")
+            break;    
             case 3:
-              alert("页码超出最大范围");
+              alert("页码超出最大范围")
+              break;                
+          }
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
+    },    
+    async setLocation(id) {
+      var url="https://easypoint.club/administrator/addAssociationPlace"
+      var qs = require('qs')
+      var postData= qs.stringify({
+        associationId:this.associationId,
+        place:this.inputPlace
+      });
+      window.onscroll = e => e.preventDefault(); //兼容浏览器
+      this.$http
+        .post(url,postData)
+        .then((res) => {
+          console.log(res.data);
+          var data = res.data;
+          switch(data.code){
+            case -3:
+              alert("此同乡会已经添加过该地址")
               break;
-            default:
-              that.$judgeToken(code);
+            case -2:
+              alert("该同乡会不存在")
+            break;
+            case -1:
+              alert("添加失败,请稍后再试")
+            break;
+            case 0:
+              alert("参数错误!")
+              break;
+            case 1:
+              alert("添加成功")
+              this.getLocation()
               break;
           }
         })
@@ -132,45 +143,61 @@ export default {
           console.log(e);
         });
     },
-    //添加上下车地点
-    setLocation(id) {
-      if (this.check) {
-        let that = this;
-        let params = new URLSearchParams();
-        params.append("associationId", this.associationId);
-        params.append("place", this.inputPlace);
-        this.$http
-          .post("addAssociationPlace", params)
-          .then(res => {
-            console.log(res.data);
-            let data = res.data;
-            let code = data.code;
-            switch (code) {
-              case -3:
-                alert("此同乡会已经添加过该地址");
-                break;
-              case -2:
-                alert("该同乡会不存在");
-                break;
-              case -1:
-                alert("添加失败,请稍后再试");
-                break;
-              case 0:
-                alert("参数错误!");
-                break;
-              case 1:
-                //alert("添加成功");
-                this.showAddPlace = false;
-                this.handlePageChange(this.current);
-                break;
-              default:
-                that.$judgeToken(code);
-                break;
-            }
-          })
-          .catch(function(e) {
-            console.log(e);
-          });
+    async deleteLocation(item,id) {
+      var qs = require('qs')
+      var postData= qs.stringify({
+        associationId:this.associationId,
+        place:item
+      });
+      var url="https://easypoint.club/administrator/deleteAssociationPlace"
+      window.onscroll = e => e.preventDefault(); //兼容浏览器
+      this.$http
+        .post(url,postData)
+        .then((res) => {
+          console.log(res.data);
+          var data = res.data;
+          switch(data.code){
+            case -1:
+              alert("删除失败");
+              break;
+            case 0:
+              alert("参数为空")
+              break;
+            case 1:
+              console.log("删除成功")
+              this.placeList.splice(id,1)
+              this.getLocation();
+              break;
+            case 2:
+              alert("没添加过该地址或没有此同乡会")
+              break;                 
+          }
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
+    },
+    handlePageChange(pageNum) {
+      var that = this;
+      this.current=pageNum;
+      this.getLocation()
+    },
+    handleAdd() {
+      var that = this;
+      if (this.check == true) {
+        if (confirm("上下车地点 : " + this.inputPlace)) {
+          this.setLocation()
+        } else {
+          console.log("你取消了添加");
+        }
+      }
+    },
+    handleDelete(item,id) {
+      var that = this;
+      if (confirm("确定删除该上下车地点?")) {
+        this.deleteLocation(item,id) 
+      } else {
+        console.log("您取消了删除！");
       }
     },
     //删除上下车地点

@@ -1,0 +1,28 @@
+<!--pages/internship/internship.wxml-->
+<import src='/template/internship.wxml'/>
+<view>
+    <view class='nav'>
+        <view class='nav_switch'>
+            <view class="{{currentTab==0 ? 'on' :''}} nav_text_partime" data-current='0' bindtap="swichNav">兼职</view>
+            <view class="{{currentTab==1 ? 'on' : ''}} nav_text_partime" data-current='1' bindtap="swichNav">实习</view>
+        </view>
+        <view class='nav_search'>
+            <input class='search_input' placeholder='请输入搜索信息'  type='text' placeholder-class='inputPh' bindinput="takeValue" confirm-type="search" bindconfirm="sendMsgTap"></input>
+            <image src="/images/icon/search.png"></image>
+        </view>
+    </view>
+
+    <view wx:if="{{currentTab == 0}}" class="leaveTop">
+        <block wx:for="{{part_time_job_info}}" wx:for-item="item" wx:key="id" wx:for-index="idx">
+            <template is="internship" data="{{item,part_time_job_id:part_time_job_id,currentTab}}"/>
+        </block>
+    </view>
+
+    <view wx:if="{{currentTab == 1}}" class="leaveTop">
+        <block wx:for="{{part_time_job_info}}" wx:for-item="item" wx:key="id">
+            <template is="internship" data="{{item,part_time_job_id:part_time_job_id,currentTab}}" />
+        </block>
+    </view>
+    <view wx:if="{{noData}}" class="more-noData">-我是有底线的-</view>
+    <view wx:else class="more-noData">-下拉查看更多-</view>
+</view>

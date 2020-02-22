@@ -1,0 +1,260 @@
+/* pages/internDetail/internDetail.wxss */
+Page{
+    background-color: #f4f4f4;
+    font-family: 黑体;
+}
+.header{
+    overflow: hidden;
+    margin-bottom: 92rpx;
+}
+.head,.jobInfos,.firmInfo{
+    width: 92%;
+    margin: 24rpx auto;
+    border:2rpx solid #eee;
+    border-radius: 10rpx;
+    background-color: #fff;
+}
+.headJob{
+    display: flex;
+    flex-direction: row;
+    height: 70rpx;
+}
+.jobName{
+    border-bottom: 2rpx solid #56b4f6;
+    width: 380rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    font-size: 30rpx;
+    color: #333;
+    padding-left: 24rpx;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: normal !important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.jobSalary{
+    width: 180rpx;
+    font-size: 30rpx;
+    font-family: 微软雅黑;
+    color: #56b4f6;
+    height: 70rpx;
+    line-height: 70rpx;
+    text-align: right;
+}
+.jobSettle{
+    width: 80rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    font-size: 24rpx;
+    color: #999;
+    padding-left: 20rpx;
+    padding-top: 4rpx;
+}
+.jobContent{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    font-size: 26rpx;
+    margin: auto;
+    padding:14rpx 24rpx;
+}
+.jobContent_menu,.infos_contains{
+    width: 150rpx;
+    color: #999;
+    line-height: 40rpx;
+}
+.jobContent_text,.infos_contains_text{
+    width: 500rpx;
+    color: #666;
+    line-height: 40rpx;
+}
+.infos_header,.firm_header{
+    width: 200rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    font-size: 30rpx;
+    color: #56b4f6;
+    border-bottom: 2rpx solid #56b4f6;
+    padding-left: 30rpx;
+}
+.infos_content{
+    display: flex;
+    flex-direction: row;
+    font-size: 26rpx;
+    margin: auto;
+    padding: 14rpx 18rpx 0rpx 28rpx;
+}
+.last{
+    margin-bottom:20rpx; 
+}
+.btn{
+    position: fixed;
+    bottom: 0rpx;
+    width: 100%;
+    height: 80rpx;
+    line-height: 80rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: center
+}
+button-hover{
+    background-color: #c3e6ff;
+}
+.btn image{
+    margin:auto 10rpx;
+    width:42rpx;
+    height: 40rpx;
+}
+.btn_text{
+    font-size: 30rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    margin-left:12rpx;
+    color: #fff;
+}
+.hr{
+    width: 100%;
+    height: 2rpx;
+    background-color: #eee;
+}
+.modal_box icon{
+    margin: 50rpx 0 20rpx 0;
+    width: 100%;
+    text-align: center
+}
+.title {
+    height: 60rpx;
+    line-height: 60rpx;
+    margin: 20rpx;
+    text-align: center;
+    font-size: 36rpx;
+    color: #56b4f6;
+}
+.content {
+    font-size: 26rpx;
+    height: 250rpx;
+    color: #999;
+    padding:0 30rpx;
+    margin-bottom: 10rpx;
+    overflow: hidden;
+    overflow-y: scroll; /*超出父盒子高度可滚动*/
+}
+.btn1 {
+    width: 100%;
+    height: 110rpx;
+    margin-top: 20rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background-color: white;
+}
+.cancel,.Sure{
+    width: 230rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    padding: 0 30rpx;
+    color: #999;
+    background-color: #eee;
+    text-align: center;
+    font-size: 30rpx;
+    border-radius: 60rpx;
+}
+.Sure {
+    color: #fff!important;
+    background-color: #56b4f6!important;
+}
+.modalMsg {
+    margin-top: 15rpx;
+    display: block;
+}
+.model_success{
+    margin:20rpx 0 30rpx 0;
+    text-align: center;
+    font-size: 36rpx;
+    color: #56b4f6;
+}
+.success_text{
+    margin-bottom: 40rpx;
+    text-align: center;
+    font-size: 26rpx;
+    color: #999;
+    height: 44rpx;
+    line-height: 44rpx;
+}
+.success_btn{
+    background-color: #56b4f6;
+    color: #fff;
+    margin-top: 60rpx;
+    margin-bottom: 20rpx;
+    width: 240rpx;
+    border-radius: 60rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+}
+.model_fail{
+    margin:20rpx 0 30rpx 0;
+    text-align: center;
+    font-size: 36rpx;
+    color: #ea3e4f;
+}
+.fail_text{
+    margin-bottom: 40rpx;
+    text-align: center;
+    font-size: 26rpx;
+    color: #999;
+    height: 44rpx;
+    line-height: 44rpx;
+}
+.fail_btn{
+    background-color: #ea3e4f;
+    color: #fff;
+    margin-top: 60rpx;
+    margin-bottom: 20rpx;
+    width: 240rpx;
+    border-radius: 60rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+}
+button::after { border: none; }
+.fileUnload{
+    display: flex;
+    flex-direction: row;
+}
+.fileText{
+    margin: 40rpx 0 14rpx 30rpx;
+    font-size: 30rpx;
+    color: #999;
+    background-color: #eee;
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    align-content: center;
+    width: 380rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    padding: 0 16rpx;
+}
+.chooseFileBtn{
+    margin: 40rpx 0 14rpx 16rpx;
+    background-color: #eee;
+    color: #999;
+    width: 200rpx;
+    font-size: 29rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+}
+.tipText{
+    font-size: 28rpx;
+    text-align: center;
+    color: #999;
+    height: 70rpx;
+    line-height: 70rpx;
+    margin-bottom:36rpx; 
+}
