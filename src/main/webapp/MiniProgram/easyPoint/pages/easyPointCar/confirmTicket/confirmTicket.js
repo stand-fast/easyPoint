@@ -87,10 +87,22 @@ Page({
   //点击加号
   getMax: function (e) {     
       let max = this.data.number;
-      let result=max+1;
+	  let result
+	  if(this.data.currentab!==0&&max+1>=5){
+		result = 5;
+		wx.showToast({
+		  title: '最多只能预约5张哦',
+		  icon:'none',
+		  duration: 2000
+		})
+	  }else{
+		result=max+1
+	  }
+
       this.setData({
-        number: result,
+        number: result
       })
+	  
       this.insuranceJudgment();
   },
   changeContact:function(){
