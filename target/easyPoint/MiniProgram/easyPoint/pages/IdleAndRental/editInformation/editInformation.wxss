@@ -1,0 +1,52 @@
+/* pages/IdleAndRental/editInformation/editInformation.wxss */
+.title{
+    width: 200rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    color: #999;
+    font-size: 30rpx;
+    margin: 90rpx 0 10rpx 88rpx;
+}
+.edit{
+    display: flex;
+    flex-direction: row;
+    width: 570rpx;
+    height: 60rpx;
+    margin:0 auto;
+    font-size: 30rpx;
+    border-bottom: 1rpx solid #f2f2f2;
+}
+.edit input{
+    width: 400rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    color: #333;
+    margin: 0 20rpx 0rpx 0;
+    border-radius: 10rpx;
+}
+.place{
+    color: #999;
+}
+.edit text{
+    width: 26rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    color: #999;
+    margin:0 20rpx 0rpx 160rpx;
+}
+.btn{
+    width: 600rpx;
+    height: 60rpx;
+    margin: 160rpx auto;
+}
+.btn button{
+    width: 600rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    color: #fff;
+    font-size: 30rpx;
+    background-color: #ffdd42;
+}
+.btn button::after{
+    border: none;
+}

@@ -1,0 +1,172 @@
+/* pages/IdleAndRental/ldleRenIndex/ldleRenIndex.wxss */
+Page{
+    font-family: 黑体;
+    background-color: #f2f2f2;
+}
+.header{
+    width: 100%;
+    height: 70rpx;
+    background-color: #fff;
+}
+.nav_switch{
+    width: 60%;
+    height: 70rpx;
+    display: flex;
+    margin:0 auto;
+    flex-direction: row;
+}
+.on{
+    color: #333!important;
+    border-bottom: 6rpx solid #ffdd42;
+}
+.nav_text{
+    margin:0 auto;
+    margin-top: 20rpx;
+    text-align: center;
+    font-size: 28rpx;
+    color: #666;
+}
+.scroll_picture {
+    width: 100%;
+    height: 240rpx;
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+    margin-top: 6rpx;
+    background-color: #fff;
+}
+.scroll_picture view{
+    display: inline-block;
+    height: 240rpx;
+    margin-right: 20rpx;
+    margin-top: 20rpx;
+}
+.scroll_picture view:first-child{
+    margin-left: 20rpx;
+}
+.scroll_picture image{
+    width: 500rpx;
+    height: 200rpx;
+    z-index: 1;
+}
+.content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 6rpx;
+}
+.fix_normal{
+    height: 866rpx;
+}
+.fix_iphonex{
+    height: 1120rpx;
+}
+#left {
+    width: 200rpx;
+    font-size: 28rpx;
+    background-color: #fff;
+}
+#left view {
+    width: 200rpx;
+    text-align: center;
+    height: 100rpx;
+    line-height: 100rpx;
+}
+.select {
+    background-color: #f2f2f2;
+    border-left: 6rpx solid #ffdd42;
+    color: #333;
+}
+.normal {
+    color: #666;
+    background-color: #fff;
+}
+#right {
+    width: 550rpx;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch
+}
+scroll-view:last-child{
+    height: inherit;
+}
+swiper{
+    width: 550rpx;
+    height: inherit;
+}
+.item_list{
+    width:500rpx;
+    height: 220rpx;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    border-radius: 10rpx;
+    margin:30rpx auto;
+}
+.item_list_picture{
+    height: 220rpx;
+}
+.item_list_picture image{
+    width: 180rpx;
+    height: 180rpx;
+    margin: 20rpx 10rpx 20rpx 20rpx;
+    border-radius: 10rpx;
+}
+.list_content{
+    margin: 20rpx 16rpx;
+}
+.list_content_title{
+    width: 240rpx;
+    font-size: 32rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+    color: #333;
+    margin-top: 10rpx;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: normal !important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.list_content_rend{
+    font-size: 24rpx;
+    height: 34rpx;
+    line-height: 34rpx;
+    color: #999;
+    margin-top: 10rpx;
+}
+.list_content_price{
+    font-size: 24rpx;
+    font-family: 微软雅黑;
+    color: #333;
+    margin-top: 34rpx;
+}
+.list_content_price text{
+    font-size: 30rpx;
+}
+.see{
+    display: flex;
+    flex-direction: row;
+    width:500rpx;
+    height: 220rpx;
+}
+.see image{
+    width: 40rpx;
+    height: 40rpx;
+    margin: 34rpx 10rpx 10rpx 130rpx;
+}
+.idleItem{
+    width: 100%;
+    font-size: 30rpx;
+    color: #999;
+    text-align: center;
+    margin-top: 400rpx;
+}
+/* 隐藏滚动条 */
+::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+    color: transparent;
+    display: none
+}

@@ -1,0 +1,134 @@
+/* pages/easyPointCar/elecTicket/elecTicket.wxss */
+Page{
+    background-color: #7ecef4;
+    font-family: 黑体;
+}
+.ticketContainer{
+    width: 92%; 
+    height: 1100rpx;
+    background-image: radial-gradient(circle at 448rpx 260rpx ,transparent 0%, transparent 8px,#fff 8px, #fff 100%);
+    background-position: 242rpx -16rpx;
+    margin: 28rpx auto;
+    border-radius: 14rpx;
+}
+.carInfos,.carFeatures{
+    height: 190rpx;
+    padding: 20rpx 40rpx;
+}
+.goTime,.address,.addressText,.carFeat_item,.conPer_item,.orderInfos_item{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 16rpx;
+}
+.addressText{
+    margin-top: 4rpx!important;
+}
+.goTime_title,.carFeat_item_title,.orderInfos_item_title{
+    width: 180rpx;
+    height: 48rpx;
+    line-height: 48rpx;
+    font-size: 30rpx;
+    color: #999;
+}
+.goTime_Text{
+    width: 340rpx;
+    height: 45rpx;
+    line-height: 45rpx;
+    font-size: 36rpx;
+    color: #7ecef4;
+}
+.startAdd,.endAdd{
+    width: 270rpx;
+    height: 80rpx;
+    line-height: 40rpx;
+    font-size: 30rpx;
+    text-align: center;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: normal !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.startAdd{
+    margin-right: 20rpx;
+}
+.endAdd{
+    margin-left: 20rpx;
+}
+.address image{
+    width: 40rpx;
+    height: 70rpx;
+}
+.addSta_text,.addEnd_text{
+    width: 50%;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 26rpx;
+    color: #999;
+    text-align: center;
+}
+.addSta_text{
+    margin-left: -40rpx;
+}
+.addEnd_text{
+    margin-left:40rpx; 
+}
+.carFeat_item_text,.conPer_item_text,.orderInfos_item_text{
+    width: 360rpx;
+    font-size: 30rpx;
+    color: #333;
+    height: 48rpx;
+    line-height: 48rpx;
+}
+.contactPer,.orderInfos{
+    height: 240rpx;
+    padding: 20rpx 40rpx;
+}
+.conPer_item_title{
+    width: 240rpx;
+    font-size: 30rpx;
+    height: 45rpx;
+    line-height: 45rpx;
+    color: #999;
+}
+.on{
+    color: #7ecef4!important;
+    font-family: 微软雅黑;
+}
+.orderInfos button{
+    border: none;
+    font-size: 30rpx;
+    height: 45rpx;
+    line-height: 45rpx;
+    background-color: #fff;
+    border-radius: 0rpx;
+    color: #7ecef4;
+    border-style: none;
+    justify-content: left;
+    margin: 0;
+    padding-left:0rpx; 
+}
+.orderInfos button::after{
+    border: none;
+}
+.hr{
+    width: 94%;
+    margin: 0 auto;
+    border: 2rpx solid rgb(242, 242, 242);
+    margin-top: 10rpx;
+}
+.hr_dash{
+    border-width: 3rpx;
+    border-color: rgb(242, 242, 242);
+    border-style: dashed;
+    width: 94%;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-top: 15rpx;
+}
+.lastline{
+    margin-bottom: 20rpx;
+}

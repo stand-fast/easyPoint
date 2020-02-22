@@ -1,0 +1,68 @@
+{
+    "pages": [
+        "pages/user/user/user",
+        "pages/user/myOrder/myOrder",
+        "pages/myIndex/myindex/myindex",
+        "pages/easyPointCar/bookTicket/bookTicket",
+        "pages/user/refund/refund",
+        "pages/user/refundDetail/refundDetail",
+        "pages/user/changeTime/changeTime",
+        "pages/easyPointCar/queryTicket/queryTicket",
+        "pages/user/myOrderCarDetail/myOrderCarDetail",
+        "pages/user/myOrderRentDetail/myOrderRentDetail",
+        "pages/user/editInformation/editInformation",
+        "pages/easyPointCar/confirmTicket/confirmTicket",
+        "pages/easyPointCar/changeContact/changeContact",
+        "pages/myIndex/search/search",
+        "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
+        "pages/IdleAndRental/confirmOrder/confirmOrder",
+        "pages/educationTrain/driveSchoolDetail/driveSchoolDetail",
+        "pages/IdleAndRental/editInformation/editInformation",
+        "pages/IdleAndRental/goodDetails/goodDetails",
+        "pages/easyPointCar/elecTicket/elecTicket",
+        "pages/partInternJob/partimeJob/partimeJob",
+        "pages/partInternJob/JobDetail/JobDetail",
+        "pages/educationTrain/edTraIndex/edTraIndex",
+        "pages/index/index",
+        "pages/socialcircle/mycircle/mycircle",
+        "pages/joinus/enterapply/enterapply"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#7ecef4",
+        "navigationBarTitleText": "WeChat",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#333333",
+        "backgroundColor": "#ffffff",
+        "selectedColor": "#333333",
+        "list": [
+            {
+                "pagePath": "pages/myIndex/myindex/myindex",
+                "text": "首页",
+                "iconPath": "/images/tarbar/home_before.png",
+                "selectedIconPath": "/images/tarbar/home_after.png"
+            },
+            {
+                "pagePath": "pages/socialcircle/mycircle/mycircle",
+                "text": "圈子",
+                "iconPath": "/images/tarbar/circle_before.png",
+                "selectedIconPath": "/images/tarbar/circle_after.png"
+            },
+            {
+                "pagePath": "pages/joinus/enterapply/enterapply",
+                "text": "入驻",
+                "iconPath": "/images/tarbar/enter_before.png",
+                "selectedIconPath": "/images/tarbar/enter_after.png"
+            },
+            {
+                "pagePath": "pages/user/user/user",
+                "text": "我的",
+                "iconPath": "/images/tarbar/user_before.png",
+                "selectedIconPath": "/images/tarbar/user_after.png"
+            }
+        ]
+    },
+    "sitemapLocation": "sitemap.json"
+}

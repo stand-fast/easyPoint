@@ -1,0 +1,79 @@
+<!--pages/user/myOrderCarDetail/myOrderCarDetail.wxml-->
+<view class="car_order_status">
+    <text>{{ticketDetail.carOrderStatus}}</text>
+</view>
+<view class="hr"></view>
+<view class="header">
+    <view class="item first">
+        <view class="item_text">出发时间</view>
+        <view class="time">{{ticketDetail.departureTime}}</view>
+    </view>
+    <view class="item">
+        <view class="item_text">出发地</view>
+        <view class="item_address">{{ticketDetail.departurePlace}}</view>
+    </view>
+    <view class="item">
+        <view class="item_text">目的地</view>
+        <view class="item_address">{{ ticketDetail.destination}}</view>
+    </view>
+</view>
+<view class="passengers">
+    <view class="item" wx:if="{{current==0}}">
+        <view class="passen_text" wx:if="{{type==1}}">正式票￥<text>{{ticketDetail.price}}</text></view>
+        <view class="passen_text" wx:if="{{type==2}}">预约票￥<text>{{ticketDetail.price}}</text></view>
+        <view class="passenNum">{{ticketNum}}张</view> 
+    </view>
+    <view class="item" wx:else>
+        <view class="passen_text">乘客数</view>
+        <view class="passenNum">{{travelNum}}位</view>
+    </view>
+
+    <view class="item" wx:if="{{current==0}}">
+        <view class="passen_text" wx:if="{{type==1}}">已付款 <text wx:if="{{ticketDetail.ifInsurance==1}}"> (含保险￥{{sumDeposit}})</text></view>
+        <view class="passen_text" wx:if="{{type==2}}">已预约 <text wx:if="{{ticketDetail.ifInsurance==1}}"> (含保险￥{{sumDeposit}})</text></view>
+        <view class="passen_price">合计 ￥<text>{{totalPrice}}</text></view>
+    </view>
+    <view class="item" wx:else>
+        <view class="passen_text">已支付定金</view>
+        <view class="passen_price">合计 ￥<text>{{ticketDetail.deposit}}</text></view>
+    </view>
+</view>
+<view class="responser">
+    <view class="responser_text">联系人</view>
+    <view class="item">
+        <view class="responser_people">{{ticketDetail.username}}</view>
+        <view class="responser_phone">{{ticketDetail.phone}}</view>
+    </view>
+</view>
+<block wx:if="{{ticketDetail.driverName}}">
+    <view class="hr"></view>
+    <view class="driver_info">
+        <view class="driver_info_item">司机姓名：   {{ticketDetail.driverName}}</view>
+        <view class="driver_info_item">联系方式：   <text>{{ticketDetail.driverPhone}}</text></view>
+        <view class="driver_info_item">车牌号码：   {{ticketDetail.licensePlateNumber}}({{ticketDetail.color}})</view>
+    </view>
+</block>
+<block wx:if="{{current == 0}}"></block>
+<block wx:else>
+    <view class="hr"></view>
+    <view class="insurance" >
+        <view class="insurance-item">
+            <view class="insurance-item_text">购买保险</view>
+            <view class="insurance-item_status" wx:if="{{ticketDetail.ifInsurance==1}}">是</view> 
+            <view class="insurance-item_status" wx:else>否</view> 
+        </view>
+    </view>
+</block>
+
+<!-- 订单编号与时间 -->
+<view class="car_order">
+    <view class="hr"></view>
+    <view class="car_order_item">订单编号：   <text>{{ticketDetail.travelOrderId}}</text></view>
+    <view class="car_order_item">下单时间：   {{ticketDetail.makeOrderTime}}</view>
+</view>
+
+<!-- 底部栏退款和更换时间 -->
+<view class="button_footer">
+        <button bindtap="changeTime" style="border-color:{{time_border_color}};color:{{time_border_color}}" disabled="{{time_disabled}}">更换时间</button>
+    <block wx:if="{{current == 1}}"><button bindtap="applyRefund" style="border-color:{{refund_border_color}};color:{{refund_border_color}}" disabled="{{refund_disabled}}">{{applyRefundWord}}</button></block>
+</view>

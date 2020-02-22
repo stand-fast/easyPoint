@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easyPoint.dao.InternshipDao">
+
+
+    <!--//下拉加载更多-->
+    <!--public InternshipInfo[] findAddInternshipInfo(int pageNum);-->
+
+
+    <select id="findAddInternshipInfo" parameterType="int" resultType="internshipInfo">
+        select * from internship_info where state = 1 limit #{pageNum} , 10
+    </select>
+</mapper>
