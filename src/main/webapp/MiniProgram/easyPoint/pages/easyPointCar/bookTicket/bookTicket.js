@@ -340,6 +340,7 @@ Page({
         wx.navigateTo({
           url: 'pages/user/myOrder/myOrder',
         })
+		wx.navigateBack()
         that.setData({
           startAddress:"",
           endAddress:"",
