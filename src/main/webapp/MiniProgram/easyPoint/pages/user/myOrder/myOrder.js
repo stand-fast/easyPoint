@@ -3,40 +3,8 @@ const app = getApp()
 Page({
   data: {
     currenTab: 0,//显示选项卡栏目部分
-    ruralCommittee: [//乡会包车部分假数据
-      {
-        ticketId: 623123513,
-        departureTime: "2019-09-10 08:00",
-        departurePlace: "汕头",
-        destination: "广州广金本部",
-        ticketNum: "10",
-        type: "1",
-      },
-      {
-        ticketId: 12357568583,
-        departureTime: "2019-09-10 18:00",
-        departurePlace: "汕头",
-        destination: "广州广金本部",
-        ticketNum: "5",
-        type: "2",
-      }, 
-    ],
-    ticket_lists: [    //租车部分假数据
-      {
-          tourismId:"123123123123",
-          departureTime: "2019-01-10 09:00",
-          departurePlace: "广州广金本部",
-          destination: "白云山",
-          travelNum: "22",
-      },
-      {
-          tourismId: "123123123123123112541",
-          departureTime: "2019-01-10 09:00",
-          departurePlace: "广州广金本部",
-          destination: "白云山",
-          travelNum: "42",
-      }
-    ],
+    ruralCommittee: [], //乡会包车部分假数据
+    ticket_lists: [],  //租车部分假数据
     rentItems: [//租借部分假数据
       {
             goodName:"随身携带可充电荧光灯带哈哈哈",
