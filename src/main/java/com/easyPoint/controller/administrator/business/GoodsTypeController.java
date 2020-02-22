@@ -164,7 +164,7 @@ public class GoodsTypeController {
     }
 
     /**
-     * 根据id删除
+     * 根据id删除根据id删除
      *
      * @param goodTypeId
      * @return

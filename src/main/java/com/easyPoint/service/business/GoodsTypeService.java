@@ -5,7 +5,7 @@ import com.easyPoint.pojo.business.GoodsType;
 import java.util.List;
 
 public interface GoodsTypeService {
-    // 添加商品类别
+    // 添加商品类别添加商品类别
     Integer addGoodType(GoodsType goodsType);
     // 根据id启用&禁用某个商品类别
     Integer forbiddenOrUse(String goodTypeId, Integer flag);

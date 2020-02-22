@@ -13,7 +13,7 @@ public class GoodsTypeServiceImpl implements GoodsTypeService {
 
     @Autowired
     GoodsTypeDao goodsTypeDao;
-
+    // 添加商品类别
     @Override
     public Integer addGoodType(GoodsType goodsType) {
         return goodsTypeDao.addGoodType(goodsType);

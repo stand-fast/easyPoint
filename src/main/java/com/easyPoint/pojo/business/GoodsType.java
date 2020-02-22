@@ -7,6 +7,7 @@ public class GoodsType {
     private String goodsTypeId;
     private String goodsTypeName;
     private Integer state;
+    // 类别描述
     private String description;
 
     public String getGoodsTypeId() {

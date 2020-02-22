@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface GoodsTypeDao {
 
-    // 添加商品类别
+    // 添加商品类别添加商品类别
     Integer addGoodType(GoodsType goodsType);
     // 根据id启用&禁用某个商品类别
     Integer forbiddenOrUse(@Param("goodTypeId") String goodTypeId, @Param("flag") Integer flag);

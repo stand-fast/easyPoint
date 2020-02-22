@@ -20,6 +20,7 @@ public class GoodOrder {
     private String receiveAddress;
     private String note;
     private String refund;
+    // 状态
     private String state;
     private String outTradeNo;
     private String transactionId;

@@ -11,6 +11,7 @@ public class GoodsDto {
     private String proImg;
     private String businessName;
     private Integer leaseNum;
+    // 状态
     private String state;
 
     public String getGoodId() {

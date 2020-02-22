@@ -41,7 +41,7 @@
         </if>
     </select>
 
-    <!-- 删除商品类目 -->
+    <!-- 删除商品类目删除商品类目 -->
     <delete id="deleteType" parameterType="string">
         DELETE
         FROM goods_type

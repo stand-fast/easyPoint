@@ -11,7 +11,7 @@ import java.util.List;
  * 租赁物品
  */
 public interface GoodsDao {
-    // 添加商品
+    // 添加商品添加商品
     Integer addGoods(Goods goods);
     // 根据状态查询已发布过的所有商品
     List<GoodsDto> findGoodsByState(String state);

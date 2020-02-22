@@ -9,6 +9,7 @@ public class GoodVariety {
     private String variety;
     private String size;
     private double price;
+    // 显示图片
     private String img;
 
     public Integer getVarietyId() {

@@ -21,6 +21,7 @@ public class Goods {
     private Integer leaseNum;
     private String proImg;
     private List<GoodVariety> goodVarietyList;
+    // 状态
     private String state;
 
     public String getGoodId() {
