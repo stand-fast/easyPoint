@@ -13,7 +13,7 @@ Page({
   //请求临时联系人的信息
   getMessage: function () {
 	this.setData({
-	  item_list: wx.getStorageSync("Persons")||[],
+	  item_list: wx.getStorageSync("Persons"),
 	})
   },
   //点击联系人携带数据返回上一个页面
@@ -37,7 +37,7 @@ Page({
   deleteContact: function (e) {     
     let that = this;
     let index=e.currentTarget.dataset.index;
-    // console.log(index)
+    console.log(index)
     let item = this.data.item_list;
     let peopleId = this.data.item_list[index].peopleId
     wx.showToast({
@@ -127,7 +127,6 @@ Page({
   addPerson: function (e) {
     if (this.judegeMessage(e) == true) {
 	  let data=this.data.item_list
-	  console.log(this.data,data)
 	  data.push({peopleId: data.length, name: e.detail.value.name, phone: e.detail.value.phone})
 	  wx.setStorageSync("Persons", data)
 	  
@@ -147,7 +146,7 @@ Page({
 	data[this.data.peopleId]={peopleId: this.data.peopleId, 
 							  name: e.detail.value.name, 
 							  phone: e.detail.value.phone}
-	// console.log(data)
+	console.log(data)
 	wx.setStorageSync("Persons", data)
 
     if (that.judegeMessage(e) == true) {
@@ -161,15 +160,6 @@ Page({
         showModal: false,
 		item_list:data
       })
-	  let pages = getCurrentPages();
-	  let prevPage = pages[pages.length - 2]; //上一个页面
-	  //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
-	  prevPage.setData({
-	    mydata: {
-	      name: e.detail.value.name,
-	      phone: e.detail.value.phone
-	    }
-	  })
       wx.showToast({
         title: '修改成功',
       })

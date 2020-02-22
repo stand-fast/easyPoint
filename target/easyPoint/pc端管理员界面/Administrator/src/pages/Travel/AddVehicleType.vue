@@ -25,23 +25,34 @@
           <el-button type="text" size="mini" @click="showAddVehicle = false;">取消</el-button>
           <el-button type="primary" size="mini" @click="handleAdd()">添加</el-button>
         </div>
-        <!-- 遍历所有车辆类型数据 -->
-        <div class="nav association" v-for="item in datas" :key="item.vehicleId">
-          <li class="associationName">{{item.vehicleType}}</li>
-          <li class="associationPlace">{{item.deposit}}</li>
-          <li class="associationDelete enter" @click="handledelete(item.vehicleId)">删除</li>
-        </div>
-
-        <!-- 页码组件 -->
-        <paging
-          :value="current"
-          :pageSize="pageSize"
-          :pageNumber="pageNumber"
-          :panelNumber="panelNumber"
-          @input="handlePageChange"
-        ></paging>
-      </div>
-    </ul>
+      </el-popover>
+    </el-header>
+    <!-- 内容 -->
+    <el-table :data="datas">
+      <el-table-column label="车辆类型" prop="vehicleType"></el-table-column>
+      <el-table-column label="定金" sortable prop="deposit"></el-table-column>
+      <el-table-column label="操作" fixed="right">
+        <template slot-scope="scope">
+          <!-- 删除弹窗 -->
+          <el-popover width="230" title="确认删除该车辆类型吗？" trigger="click" v-model="scope.row.visible">
+            <div class="spring-model-con-button">
+              <el-button type="text" size="mini" @click="scope.row.visible = false;">取消</el-button>
+              <el-button type="primary" size="mini" @click="handledelete(scope.row.vehicleId)">确定</el-button>
+            </div>
+          </el-popover>
+          <!-- 删除按钮 -->
+          <el-button type="text" size="mini" @click="scope.row.visible = true;">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <!-- 分页组件 -->
+    <el-pagination
+      class="pageing"
+      :page-count="pageNumber"
+      @current-change="handlePageChange"
+      :current-page.sync="current"
+      layout="prev, pager, next, jumper"
+    ></el-pagination>
   </div>
 </template>
 
@@ -51,11 +62,10 @@ export default {
     return {
       navName: "旅游出行",
       navPlateName: "添加发布车辆类型",
+      showAddVehicle: false, //是否显示添加车辆类型弹窗
       location: "", //车辆类型
       deposit: "", //定金
       datas: [], //车辆类型数据
-      pageSize: 10, //每页最大条数
-      panelNumber: 5, //最多显示多少个分页按钮
       current: 1, //当前页码
       pageNumber: 5 //页码总数
     };
@@ -91,7 +101,6 @@ export default {
     //获取首页数据以及页码总数
     async setData() {
       let that = this;
-      window.onscroll = e => e.preventDefault(); //兼容浏览器
       this.$http
         .get("getTotalPageAndFirstVehicleInfoList")
         .then(function(res) {
@@ -102,6 +111,10 @@ export default {
             case 200:
               that.pageNumber = data.data.totalPage;
               that.current = 1;
+              data.data.vehicleInfoList.forEach((res, index, arr) => {
+                res.visible = false;
+                return res;
+              });
               that.datas = data.data.vehicleInfoList;
               console.log("查询订单页数以及首页订单信息成功");
               break;
@@ -120,8 +133,9 @@ export default {
     //获取分页数据
     async handlePageChange(page) {
       let that = this;
+      let params = { pageNum: page };
       this.$http
-        .get("findListPageNumVehicleInfo", { params: { pageNum: page } })
+        .get("findListPageNumVehicleInfo", { params })
         .then(function(res) {
           console.log(res.data);
           let data = res.data;
@@ -148,43 +162,8 @@ export default {
     //添加车辆类型
     async handleAdd() {
       let that = this;
-      if (this.check == true) {
-        if (
-          confirm("车辆类型 : " + this.location + "\r定金 : " + this.deposit)
-        ) {
-          this.$http
-            .get("addNewVehicleInfo", {
-              params: { vehicleType: that.location, deposit: that.deposit }
-            })
-            .then(function(res) {
-              console.log(res.data);
-              let data = res.data;
-              let code = data.code;
-              switch (code) {
-                case 200:
-                  alert("添加车辆类型成功");
-                  that.setData();
-                  break;
-                case 400:
-                  alert("该车辆类型已存在,请重新输入");
-                  break;
-                default:
-                  that.$judgeToken(code);
-                  break;
-              }
-            })
-            .catch(function(e) {
-              console.log(e);
-            });
-        } else {
-          console.log("你取消了添加");
-        }
-      }
-    },
-    //删除车辆类型
-    async handledelete(vehicleId) {
-      let that = this;
-      if (confirm("确定删除该车辆类型?")) {
+      if (this.check) {
+        let params = { vehicleType: that.location, deposit: that.deposit };
         this.$http
           .get("addNewVehicleInfo", { params })
           .then(function(res) {
@@ -193,8 +172,12 @@ export default {
             let code = data.code;
             switch (code) {
               case 200:
-                alert("删除车辆类型成功");
+                alert("添加车辆类型成功");
+                that.showAddVehicle = false;
                 that.setData();
+                break;
+              case 400:
+                alert("该车辆类型已存在,请重新输入");
                 break;
               default:
                 that.$judgeToken(code);
@@ -205,10 +188,32 @@ export default {
             console.log(e);
           });
       }
+    },
+    //删除车辆类型
+    async handledelete(vehicleId) {
+      let that = this;
+      let params = { vehicleId: vehicleId };
+      this.$http
+        .get("deleteVehicleType", { params })
+        .then(function(res) {
+          console.log(res.data);
+          let data = res.data;
+          let code = data.code;
+          switch (code) {
+            case 200:
+              // alert("删除车辆类型成功");
+              that.setData();
+              break;
+            default:
+              that.$judgeToken(code);
+              break;
+          }
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
     }
   },
-  components: {
-    paging
-  }
+  components: {}
 };
 </script>

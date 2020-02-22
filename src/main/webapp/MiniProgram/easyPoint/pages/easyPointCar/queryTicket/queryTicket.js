@@ -14,9 +14,7 @@ Page({
     this.setData({
       id: options.associationId
     })
-  },
-  onShow: function(){
-	this.getTicketMessage();
+    this.getTicketMessage();
   },
   //跳转车票详情页面
   buyTicket: function (res) {
@@ -56,7 +54,6 @@ Page({
       method: 'GET',
       header: { 'content-type': 'application/x-www-form-urlencoded', token },
       success: function (res) {
-		console.log(res)
         let code = res.data.code;
         if (res.header.token != undefined) {
           app.replaceToken(res.header.token);

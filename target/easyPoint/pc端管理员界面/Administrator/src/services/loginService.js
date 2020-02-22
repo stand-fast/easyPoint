@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import axios from "../assets/util/http";
+import axios from "../assets/util/http"; //引入axios
 export default {
     async login(loginId, loginPwd) {
         var params = new URLSearchParams();
@@ -13,17 +13,18 @@ export default {
                     Vue.prototype.$token = res.data.data.token;
                     Vue.prototype.$username = res.data.data.admin.username;
                     return new Promise(resolve => {
-                        if (admin.identity == 1) {
-                            resolve({
-                                loginId: admin.phone,
-                                name: "管理员"
-                            })
-                        } else if (admin.identity == 0) {
-                            resolve({
-                                loginId: admin.phone,
-                                name: "超级管理员"
-                            })
+                        let identity = "";
+                        if (admin.identity == 0) {
+                            identity = "超级管理员";
+                        } else if (admin.identity == 1) {
+                            identity = "管理员";
                         }
+                        resolve({
+                            loginId: admin.phone,
+                            identity: identity,
+                            token: res.data.data.token,
+                            username: res.data.data.admin.username
+                        })
                     })
                 }
             })

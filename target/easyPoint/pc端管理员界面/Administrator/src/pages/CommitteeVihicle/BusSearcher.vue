@@ -1,57 +1,49 @@
 <template>
   <div>
-    <ul class="PageContentRight">
-      <div class="PageContentRightTitle">
-        <div class="IconTitle"></div>
-        <div class="TitleText">{{navName}} > {{navPlateName}}</div>
-      </div>
-      <div class="PageContent">
-        <h1>添加车辆</h1>
-        <ul class="BusSearcherInput">
-          <li>
-            <el-select v-model="committee" placeholder="请选择同乡会" class="selectIng" @change="getOptionLocation()">
-              <el-option
-                v-for="item in CommitteeOptions"
-                :key="item.associationId"
-                :label="item.associationName"
-                :value="item.associationName"
-              ></el-option>
-            </el-select>
-          </li>
-          <li>
-            <el-select v-model="departure" placeholder="请选择出发地" class="selectIng">
-              <el-option
-                v-for="(item,index) in departureOptions"
-                :key="index"
-                :label="item"
-                :value="item"
-              ></el-option>
-            </el-select>
-          </li>
-          <li>
-            <el-select v-model="destination" placeholder="请选择目的地" class="selectIng">
-              <el-option
-                v-for="(item,index) in departureOptions"
-                :key="index"
-                :label="item"
-                :value="item"
-              ></el-option>
-            </el-select>
-          </li>
-          <li>
-            <div class="block">
-              <el-date-picker
-                class="selectIng"
-                v-model="departureDay"
-                type="date"
-                placeholder="选择出发日期"
-                format="yyyy 年 MM 月 dd 日"
-                value-format="yyyy-MM-dd"
-              ></el-date-picker>
-            </div>
-          </li>
-          <li>
-            <el-time-select
+    <!-- 顶部标题 -->
+    <el-header class="model-wrapper-con-header">{{navName}} - {{navPlateName}}</el-header>
+
+    <!-- 内容 -->
+    <el-main class="el-main-content">
+      <ul class="content-model-wrapper">
+        <li>
+          <el-select
+            v-model="committee"
+            placeholder="请选择同乡会"
+            class="selectIng"
+            @change="getOptionLocation()"
+          >
+            <el-option
+              v-for="item in CommitteeOptions"
+              :key="item.associationId"
+              :label="item.associationName"
+              :value="item.associationName"
+            ></el-option>
+          </el-select>
+        </li>
+        <li>
+          <el-select v-model="departure" placeholder="请选择出发地" class="selectIng">
+            <el-option
+              v-for="(item,index) in departureOptions"
+              :key="index"
+              :label="item"
+              :value="item"
+            ></el-option>
+          </el-select>
+        </li>
+        <li>
+          <el-select v-model="destination" placeholder="请选择目的地" class="selectIng">
+            <el-option
+              v-for="(item,index) in departureOptions"
+              :key="index"
+              :label="item"
+              :value="item"
+            ></el-option>
+          </el-select>
+        </li>
+        <li>
+          <div class="block">
+            <el-date-picker
               class="selectIng"
               v-model="departureDay"
               type="date"
@@ -70,38 +62,32 @@
               step: '00:15',
               end: '18:30'
             }"
-              placeholder="选择出发时间"
-            ></el-time-select>
-          </li>
-          <li>
-            <el-input v-model="smallint" type="number" placeholder="请输入座位数" class="selectIng"></el-input>
-          </li>
-          <li>
-            <el-input v-model="price" type="number" placeholder="请输入售价" class="selectIng"></el-input>
-          </li>
-          <li>
-            <el-select v-model="type" placeholder="请选择是否预售" class="selectIng">
-              <el-option
-                v-for="item in TypeOptions"
-                :key="item.id"
-                :label="item.type"
-                :value="item.type"
-              ></el-option>
-            </el-select>
-          </li>
-          <li>
-            <el-row>
-              <el-button
-                class="releaseButton"
-                @click="addTicket()"
-                :loading="isRelease"
-                type="success"
-              >发布</el-button>
-            </el-row>
-          </li>
-        </ul>
-      </div>
-    </ul>
+            placeholder="选择出发时间"
+          ></el-time-select>
+        </li>
+        <li>
+          <el-input v-model="smallint" type="number" placeholder="请输入座位数" class="selectIng"></el-input>
+        </li>
+        <li>
+          <el-input v-model="price" type="number" placeholder="请输入售价" class="selectIng"></el-input>
+        </li>
+        <li>
+          <el-select v-model="type" placeholder="请选择是否预售" class="selectIng">
+            <el-option
+              v-for="item in TypeOptions"
+              :key="item.id"
+              :label="item.type"
+              :value="item.id"
+            ></el-option>
+          </el-select>
+        </li>
+        <li>
+          <el-row>
+            <el-button class="releaseButton" @click="addTicket()" :loading="isRelease">发布</el-button>
+          </el-row>
+        </li>
+      </ul>
+    </el-main>
   </div>
 </template>
 <script>
@@ -121,17 +107,18 @@ export default {
           type: "是"
         }
       ],
-      committee: "",
-      departure: "",
-      destination: "",
-      departureDay: "",
-      epartureTime: "",
-      smallint: "",
-      price: "",
-      type: "",
-      associationId:-1,
-      isRelease: false, //是否发布
-      departureOptions:[]
+      CommitteeOptions: [], //同乡会数据
+      committee: "", //同乡会绑定数据
+      departureOptions: [], //上下车地点数据
+      departure: "", //出发地
+      destination: "", //目的地
+      departureDay: "", //出发日期
+      epartureTime: "", //出发时间
+      smallint: "", //座位数
+      price: "", //售价
+      type: "", //车票类型
+      associationId: -1,
+      isRelease: false //是否发布
     };
   },
   computed: {
@@ -170,122 +157,127 @@ export default {
       } else {
         return true;
       }
-    },
-
+    }
   },
   mounted() {
-    this.getAssociation();  //获取乡会以及乡会上下车信息
+    this.getAssociation(); //获取乡会以及乡会上下车信息
   },
   methods: {
+    //获取同乡会数据
     async getAssociation() {
-      var url="https://easypoint.club/administrator/getAllAssociation"
-      window.onscroll = e => e.preventDefault(); //兼容浏览器
+      let that = this;
       this.$http
-        .get(url)
-        .then((res) => {
+        .get("getAllAssociation")
+        .then(res => {
           console.log(res.data);
-          var data = res.data;
-          switch(data.code){
+          let data = res.data;
+          switch (data.code) {
             case 0:
-              alert("没有查询到数据")
+              alert("没有查询到数据");
               break;
             case 1:
-              console.log("查询同乡会成功")
-              this.CommitteeOptions=data.data.associationList
-              break;          
-          }
-        })
-        .catch(function(e) {
-          console.log(e);
-        });
-    },    
-    async getLocation(id) {
-      var postData= {params:{
-          associationId:id,
-          startIndex:1,
-          pageSize:10        
-        }
-      };
-      var url="https://easypoint.club/administrator/findAllPlaces"
-      window.onscroll = e => e.preventDefault(); //兼容浏览器
-      this.$http
-        .get(url,postData)
-        .then((res) => {
-          console.log(res.data);
-          var data = res.data;
-          switch(data.code){
-            case 0:
-              alert("没有查询到数据")
+              console.log("查询同乡会成功");
+              this.CommitteeOptions = data.data.associationList;
               break;
-            case 1:
-              console.log("查询上车地点成功")
-              this.departureOptions=data.data.placeList
+            default:
+              that.$judgeToken(code);
               break;
-            case 2:
-              alert("参数为空")
-              break;   
-            case 3:
-              alert("页码超出最大范围")
-              break;          
-          }
-        })
-        .catch(function(e) {
-          console.log(e);
-        });
-    },    
-    async addTicket() {
-      var typeNum;
-      if(this.type=="否"){
-        typeNum=1
-      }else{
-        typeNum=2
-      }
-      window.onscroll = e => e.preventDefault(); //兼容浏览器
-      var qs = require('qs')
-      var url="https://easypoint.club/administrator/addTicket"
-      var postData=qs.stringify({
-        associationId:this.associationId,
-        departurePlace:this.departure,
-        destination:this.destination,
-        departureDay:this.departureDay,
-        departureTime:this.epartureTime,
-        seatNum:this.smallint,
-        price:this.price,
-        type: typeNum
-      })
-      this.$http
-        .post(url,postData)
-        .then(function(res) {
-          console.log(res.data);
-          var data = res.data;
-          switch(data.code){
-            case -1:
-              alert("添加车票失败！")
-              break;
-            case 1:
-              alert("添加车票成功！")
-              this.departureOptions=data.data.placeList
-              break;
-            case 2:
-              alert("参数为空(欠缺)！	")
-              break;         
           }
         })
         .catch(function(e) {
           console.log(e);
         });
     },
+    //获取上下车地点数据
+    async getLocation(id) {
+      let that = this;
+      let params = {
+        associationId: id,
+        startIndex: 1,
+        pageSize: 10
+      };
+      this.$http
+        .get("findAllPlaces", { params })
+        .then(res => {
+          console.log(res.data);
+          let data = res.data;
+          let code = data.code;
+          this.departureOptions = "";
+          switch (code) {
+            case 0:
+              alert("没有查询到数据");
+              break;
+            case 1:
+              console.log("查询上车地点成功");
+              this.departureOptions = data.data.placeList;
+              break;
+            case 2:
+              alert("参数为空");
+              break;
+            case 3:
+              alert("页码超出最大范围");
+              break;
+            default:
+              that.$judgeToken(code);
+              break;
+          }
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
+    },
+    //添加同乡会车票
+    addTicket() {
+      if (this.check) {
+        let that = this;
+        let params = new URLSearchParams();
+        params.append("associationId", this.associationId);
+        params.append("departurePlace", this.departure);
+        params.append("destination", this.destination);
+        params.append("departureDay", this.departureDay);
+        params.append("departureTime", this.epartureTime);
+        params.append("seatNum", this.smallint);
+        params.append("price", this.price);
+        params.append("type", this.type);
+        this.$http
+          .post("addTicket", params)
+          .then(function(res) {
+            console.log(res.data);
+            let data = res.data;
+            let code = data.code;
+            switch (code) {
+              case -1:
+                alert("添加车票失败！");
+                break;
+              case 1:
+                alert("添加车票成功！");
+                this.departureOptions = data.data.placeList;
+                break;
+              case 2:
+                alert("参数为空(欠缺)！	");
+                break;
+              default:
+                that.$judgeToken(code);
+                break;
+            }
+          })
+          .catch(function(e) {
+            console.log(e);
+          });
+      }
+    },
+    //更换同乡会时候处理数据
     getOptionLocation() {
-      var CommitteeOptions = this.CommitteeOptions;
+      let CommitteeOptions = this.CommitteeOptions;
       this.departure = "";
       this.destination = "";
-      for (var i = 0; i < CommitteeOptions.length; i++) {
+      for (let i = 0; i < CommitteeOptions.length; i++) {
         if (CommitteeOptions[i].associationName == this.committee) {
-          this.associationId=CommitteeOptions[i].associationId
-          this.getLocation(this.associationId)
+          this.associationId = CommitteeOptions[i].associationId;
+          this.getLocation(this.associationId);
         }
       }
-    },    
+    }
   },
   components: {}
 };
