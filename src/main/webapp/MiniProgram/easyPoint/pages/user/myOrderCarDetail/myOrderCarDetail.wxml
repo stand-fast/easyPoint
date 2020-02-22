@@ -23,7 +23,7 @@
     </view>
     <view class="item">
         <view class="item_text">目的地</view>
-        <view class="item_address" wx:if="{{current==0}}">{{departurePlace}}</view>
+        <view class="item_address" wx:if="{{current==0}}">{{destination}}</view>
         <view class="item_address" wx:else>{{destination}}</view>
     </view>
 </view>

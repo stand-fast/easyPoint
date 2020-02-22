@@ -100,6 +100,7 @@ Page({
         }
         switch (code) {
           case 200:
+            console.log(res);
             console.log(res.data.data)
             that.setData({
               ticketDetail: res.data.data,
