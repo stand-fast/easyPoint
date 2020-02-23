@@ -70,22 +70,14 @@ Page({
         })
     }
   },
-  //跳转乡会包车车票详情数据-暂时不动
-  toCommitteeDetail: function (e) {
-    let index = e.currentTarget.dataset.index;
-    let data = this.data.ruralCommittee[index];
-    wx.setStorageSync('myOrderRentalCar', data)
-    wx.navigateTo({
-      url: '/pages/user/myOrderCarDetail/myOrderCarDetail?current=0&&ticketId=' + data.ticketId + "&&type=" + data.type,
-    }) 
-  },
-  //跳转租车车票详情数据
+  //跳转详情数据
   toDetail:function(e){
     let index=e.currentTarget.dataset.index;
     let data = this.data.ticket_lists[index];
+    let type = e.currentTarget.dataset.type;
     wx.setStorageSync('myOrderRentalCar', data)
     wx.navigateTo({
-      url: '/pages/user/myOrderCarDetail/myOrderCarDetail?current='+'1'
+      url: '/pages/user/myOrderCarDetail/myOrderCarDetail?type=' + type + "&&travelOrderId=" + data.travelOrderId
     })
   },
   //跳转租借车票详情数据-暂时不动
