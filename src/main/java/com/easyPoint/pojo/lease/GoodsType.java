@@ -9,14 +9,14 @@ public class GoodsType {
     //类别名	音响设备；装饰灯具；玩具套餐；正装用品；其他
     private String goodsTypeName;
     //类别所属大类别	0：租赁物品；1：闲置共享
-    private Integer belongToBigType;
+    private String description;
 
     @Override
     public String toString() {
         return "GoodsType{" +
                 "goodsTypeId=" + goodsTypeId +
                 ", goodsTypeName='" + goodsTypeName + '\'' +
-                ", belongToBigType=" + belongToBigType +
+                ", description=" + description +
                 '}';
     }
 
@@ -36,11 +36,11 @@ public class GoodsType {
         this.goodsTypeName = goodsTypeName;
     }
 
-    public Integer getBelongToBigType() {
-        return belongToBigType;
+    public String getDescription() {
+        return description;
     }
 
-    public void setBelongToBigType(Integer belongToBigType) {
-        this.belongToBigType = belongToBigType;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

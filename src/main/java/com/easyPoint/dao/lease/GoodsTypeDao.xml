@@ -10,6 +10,6 @@
         SELECT goods_type_id AS goodsTypeId,
                goods_type_name AS goodsTypeName
                FROM goods_type
-               WHERE belong_to_big_type= #{belongToBigType}
+               WHERE state = 1
     </select>
 </mapper>

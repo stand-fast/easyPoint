@@ -11,5 +11,5 @@ import java.util.Map;
  */
 public interface GoodsTypeDao {
     //小程序查询所有租赁商品类别
-    List<GoodsType> findAllGoodsType(int belongToBigType);
+    List<GoodsType> findAllGoodsType();
 }
