@@ -79,8 +79,13 @@ Page({
           switch (code) {
             case 200:
               wx.showToast({
-                title: '修改timeData成功',
-                duration: 2000
+                title: '更换时间成功',
+                duration: 1000
+              })
+              setTimeout(function () {
+                wx.navigateBack({
+                  delta: 3
+                })
               })
               break;
             case 201:

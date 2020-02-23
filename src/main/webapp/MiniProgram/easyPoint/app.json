@@ -1,15 +1,15 @@
 {
     "pages": [
       "pages/myIndex/myindex/myindex",
-      "pages/easyPointCar/bookTicket/bookTicket",
+      "pages/user/myOrderRentDetail/myOrderRentDetail",
+      "pages/easyPointCar/changeContact/changeContact",
       "pages/user/user/user",
+      "pages/easyPointCar/bookTicket/bookTicket",
       "pages/user/myOrder/myOrder",
       "pages/user/changeTime/changeTime",
       "pages/IdleAndRental/goodDetails/goodDetails",
       "pages/user/refundDetail/refundDetail",
-      "pages/easyPointCar/changeContact/changeContact",
       "pages/easyPointCar/queryTicket/queryTicket",
-      "pages/user/myOrderRentDetail/myOrderRentDetail",
       "pages/user/refund/refund",
       "pages/IdleAndRental/ldleRenIndex/ldleRenIndex",
       "pages/user/editInformation/editInformation",

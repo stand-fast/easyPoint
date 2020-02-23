@@ -26,6 +26,7 @@ Page({
     })
   },
   onShow: function () {
+    let userInformation = wx.getStorageSync('userInformation');
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1]; //当前页面
     let json = currPage.data.mydata;
@@ -115,10 +116,19 @@ Page({
         showmodal:true,
     })
   },
-  //隐藏温馨提示弹窗
+  //隐藏确认支付确认预约弹窗
   modal_click_Hidden: function () {       //隐藏弹框
     this.setData({
         showmodal: false,
+    })
+  },
+  //支付成功、预约成功后退
+  modal_success_Hidden() {
+    this.setData({
+      successPay: false,
+    })
+    wx.navigateBack({
+      delta: 3
     })
   },
   //发起支付功能
@@ -139,34 +149,29 @@ Page({
       method: "POST",
       data: {
         ticketId: that.data.ticketInfos.ticketId,
-		travelNum:this.data.number,
-		passenger:this.data.username,
-        // price: that.data.sumprice,
-        // number:that.data.number,
-        // isInsurance: that.data.radioStatus,
-        // type: that.data.ticketInfos.type,
-        // username: that.data.username,
+        travelNum:this.data.number,
+        passenger:this.data.username,
         phone: that.data.phone,
       },
       success: function (res) {
-		let pay = res.data
-		console.log(pay)
-		//发起支付 
-		if(that.data.currentab===0){
-			let timeStamp = pay.data.timeStamp + "";
-			console.log(timeStamp)
-			let packages = pay.data.packages;//统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=***
-			let paySign = pay.data.paySign;//paySign = MD5(appId=wxd678efh567hg6787&nonceStr=5K8264ILTKCH16CQ2502SI8ZNMTM67VS&package=prepay_id=wx2017033010242291fcfe0db70013231072&signType=MD5&timeStamp=1490840662&key=qazwsxedcrfvtgbyhnujmikolp111111) = 22D9B4E54AB1950F51E0649E8810ACD6
-			let nonceStr = pay.data.nonceStr;//随机字符串，长度为32个字符以下
-			let param = { "timeStamp": timeStamp, "package": packages, "paySign": paySign, "signType": "MD5", "nonceStr": nonceStr };
-			that.pay(param);
-		}else{
-			//弹出支付成功弹窗
-			that.setData({
-			  showmodal: false,
-			  successPay: true,
-			})
-		}
+      let pay = res.data
+      console.log(pay)
+      //发起支付 
+      if(that.data.currentab===0){
+        let timeStamp = pay.data.timeStamp + "";
+        console.log(timeStamp)
+        let packages = pay.data.packages;//统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=***
+        let paySign = pay.data.paySign;//paySign = MD5(appId=wxd678efh567hg6787&nonceStr=5K8264ILTKCH16CQ2502SI8ZNMTM67VS&package=prepay_id=wx2017033010242291fcfe0db70013231072&signType=MD5&timeStamp=1490840662&key=qazwsxedcrfvtgbyhnujmikolp111111) = 22D9B4E54AB1950F51E0649E8810ACD6
+        let nonceStr = pay.data.nonceStr;//随机字符串，长度为32个字符以下
+        let param = { "timeStamp": timeStamp, "package": packages, "paySign": paySign, "signType": "MD5", "nonceStr": nonceStr };
+        that.pay(param);
+      }else{
+        //弹出支付成功弹窗
+        that.setData({
+            showmodal: false,
+            successPay: true,
+        })
+      }
       },
       fail:function(res){
         if (that.data.currentab==1){
@@ -194,12 +199,6 @@ Page({
     //     showmodal:false,
     //     successPay:true,
     // })
-  },
-  //支付后的确认
-  successBtn:function(){
-    this.setData({
-        successPay:false,
-    })
   },
   //支付
   pay: function (param) {

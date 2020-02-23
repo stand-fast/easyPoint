@@ -45,7 +45,7 @@ Page({
   //请求车票数据
   getTicketMessage:function(id){
     let token = app.globalData.token;
-	let that=this
+	  let that=this
     wx.request({
       url: 'https://www.easypoint.club/miniProgram/findTickets',
       data: {
@@ -60,6 +60,7 @@ Page({
         }
         switch (code) {
           case 200:
+            console.log(res.data.data);
             that.setData({
               ticketInfos: res.data.data,
             })

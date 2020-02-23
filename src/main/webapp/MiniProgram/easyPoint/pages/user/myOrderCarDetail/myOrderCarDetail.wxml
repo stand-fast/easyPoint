@@ -60,7 +60,7 @@
         <view class="driver_info_item">车牌号码：   {{ticketDetail.licensePlateNumber}}({{ticketDetail.color}})</view>
     </view>
 </block>
-<block wx:if="{{type == 1}}">
+<block wx:if="{{type == 0}}">
     <view class="hr"></view>
     <view class="insurance" >
         <view class="insurance-item">
@@ -74,7 +74,7 @@
 <!-- 订单编号与时间 -->
 <view class="car_order">
     <view class="hr"></view>
-    <view class="car_order_item">订单编号：   <text>{{travelOrderId}}</text></view>
+    <view class="car_order_item" wx:if="{{type == 0}}">订单编号：   <text>{{travelOrderId}}</text></view>
     <view class="car_order_item" wx:if="{{type == 0}}">下单时间：   {{ticketDetail.makeOrderTime}}</view>
 </view>
 

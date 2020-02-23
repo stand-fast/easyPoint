@@ -12,9 +12,12 @@ Page({
   },
   //请求临时联系人的信息
   getMessage: function () {
-	this.setData({
-	  item_list: wx.getStorageSync("Persons"),
-	})
+    if (wx.getStorageSync("Persons")==""){
+      wx.setStorageSync("Persons", []);
+    }
+    this.setData({
+      item_list: wx.getStorageSync("Persons"),
+    })
   },
   //点击联系人携带数据返回上一个页面
   onPonstant: function (e) {
@@ -37,7 +40,6 @@ Page({
   deleteContact: function (e) {     
     let that = this;
     let index=e.currentTarget.dataset.index;
-    console.log(index)
     let item = this.data.item_list;
     let peopleId = this.data.item_list[index].peopleId
     wx.showToast({
@@ -52,7 +54,7 @@ Page({
         item.splice(i, 1)
       }
     }
-	wx.setStorageSync("Persons", item)
+	  wx.setStorageSync("Persons", item)
     wx.showToast({
       title: '已删除',
     })
@@ -129,10 +131,9 @@ Page({
 	  let data=this.data.item_list
 	  data.push({peopleId: data.length, name: e.detail.value.name, phone: e.detail.value.phone})
 	  wx.setStorageSync("Persons", data)
-	  
       this.setData({
         showModaladd: false,
-		item_list:data
+		    item_list:data
       })
       wx.showToast({
         title: '添加成功',

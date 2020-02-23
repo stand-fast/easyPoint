@@ -54,11 +54,13 @@ Page({
               wx.showToast({
                 title: '申请成功，请耐心等待管理员确认',
                 icon: 'none',
-                duration: 2000
+                duration: 1000
               })
-              wx.switchTab({
-                url: '/pages/user/user/user'
-              })
+              setTimeout(function () {
+                wx.navigateBack({
+                  delta: 2
+                })
+              }, 1000) //延迟时间 这里是1秒
               break;
             case 400:
               wx.showToast({
