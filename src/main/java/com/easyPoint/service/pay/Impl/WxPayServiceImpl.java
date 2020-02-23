@@ -130,7 +130,7 @@ public class WxPayServiceImpl implements WxPayService {
             String prepay_id = map.get("prepay_id").toString();//返回的预付单信息
             //将prepay_id缓存到redis中，用户模板消息发送
             redisTemplate.opsForValue().set(out_trade_no + "_prepayId",prepay_id,2, TimeUnit.HOURS);
-            String packageParam = new StringBuffer().append("prepay_id=").append(prepay_id).toString();
+                String packageParam = new StringBuffer().append("prepay_id=").append(prepay_id).toString();
             String timeStamp = System.currentTimeMillis() / 1000 +"";
             String stringSignTemp = "appId=" + MiniProConstants.APPID + "&nonceStr=" + nonceStr + "&package=prepay_id=" + prepay_id + "&signType=MD5&timeStamp=" + timeStamp;
             //再次签名

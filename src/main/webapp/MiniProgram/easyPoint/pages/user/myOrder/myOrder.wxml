@@ -7,40 +7,13 @@
     </view>
 </view>
 <block wx:if="{{currenTab==0}}">
-  <view wx:for="{{ruralCommittee}}" wx:key="key" class="ticket_list" bindtap="toCommitteeDetail" data-index="{{index}}">
-    <view class="ticket_time">
-      <view class="go_time_text">出发时间</view>
-      <view class="go_time">{{item.departureTime}}</view>
-      <view class="ticket_type">校友会包车</view>
-    </view>
-    <view class="ticketContent">
-    <view class="content_left">
-      <view class="circle"></view>
-      <view class="heng"></view>
-      <view class="circle"></view>
-    </view>
-    <view class="content_right">
-    <view class="line">
-        <view class="address_text">出发</view>
-        <view class="address">{{item.departurePlace}}</view>
-          <view class="status" wx:if="{{item.type==1}}">已付款</view>
-          <view class="status" wx:elif="{{item.type==2}}">已预约</view>
-    </view>
-    <view class="line last">
-        <view class="address_text">到达</view>
-        <view class="address">{{item.destination}}</view>
-        <view class="status">{{item.ticketNum}}张</view>
-    </view>
-    </view>
-    </view>
-  </view>
-
-    <!-- 租车车票部分 -->
-    <view wx:for="{{ticket_lists}}" wx:key="key" class="ticket_list" bindtap="toDetail" data-index="{{index}}">
+    <!-- 车票部分 -->
+    <view wx:for="{{ticket_lists}}" wx:key="key" class="ticket_list" data-type="{{item.type}}" bindtap="toDetail" data-index="{{index}}">
         <view class="ticket_time">
             <view class="go_time_text">出发时间</view>
             <view class="go_time">{{item.departureTime}}</view>
-            <view class="ticket_type">旅游出行</view>
+            <view class="ticket_type" wx:if="{{item.type == 0}}">旅游出行</view>
+            <view class="ticket_type" wx:else>校友会包车</view>
         </view>
         <view class="ticketContent">
             <view class="content_left">
@@ -52,7 +25,12 @@
                 <view class="line">
                     <view class="address_text">出发</view>
                     <view class="address">{{item.departurePlace}}</view>
-                    <view class="statusOrder">已付定金</view>
+                    <view class="status" wx:if="{{item.state == 0}}">未安排</view>
+                    <view class="status" wx:if="{{item.state == 1}}">已安排</view>
+                    <view class="status" wx:if="{{item.state == 2}}">已完成</view>
+                    <view class="status" wx:if="{{item.state == 3}}">已付款</view>
+                    <view class="status" wx:if="{{item.state == 4}}">已预约</view>
+                    <view class="status" wx:if="{{item.state == 5}}">已退款</view>
                 </view>
                 <view class="line last">
                     <view class="address_text">到达</view>

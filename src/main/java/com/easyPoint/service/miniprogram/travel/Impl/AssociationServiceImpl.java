@@ -201,6 +201,13 @@ public class AssociationServiceImpl implements AssociationService {
         associationDao.insertTravelOrderInfo(associationOrderInfo);
         associationDao.insertAssociationOrderInfo(associationOrderInfo);
 
+        //修改车票预约人数
+        while(true){
+            int result = associationDao.updateTicketSeatSurplus(ticketId,ticket.getSeatSurplus() + travelNum,ticket.getVersion());
+            if(result == 1)
+                break;
+        }
+
         return 1;
     }
 }

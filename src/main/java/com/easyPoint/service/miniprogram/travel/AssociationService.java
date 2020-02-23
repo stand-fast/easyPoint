@@ -1,11 +1,8 @@
 package com.easyPoint.service.miniprogram.travel;
 
-import com.easyPoint.dto.pay.MiniPaymentDto;
 import com.easyPoint.dto.travel.MiniBuyTicketPageDto;
 import com.easyPoint.pojo.travel.Association;
-import com.easyPoint.pojo.travel.Passenger;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 

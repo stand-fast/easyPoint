@@ -26,7 +26,6 @@ Page({
     })
   },
   onShow: function () {
-	let userInformation = wx.getStorageSync('userInformation');
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1]; //当前页面
     let json = currPage.data.mydata;
@@ -189,6 +188,7 @@ Page({
         }
       },
     })
+    
     //接上服务器后删除
     // this.setData({
     //     showmodal:false,
@@ -200,9 +200,6 @@ Page({
     this.setData({
         successPay:false,
     })
-	wx.navigateBack({
-	  delta: 1  // 返回上一级页面。
-	})
   },
   //支付
   pay: function (param) {
@@ -217,16 +214,11 @@ Page({
         wx.showToast({
           title: '支付成功',
           icon: 'success',
-          duration: 1000
+          duration: 2000
         })
 		that.setData({
 		    showmodal: false,
 		})
-		setTimeout(()=>{
-			wx.navigateBack({
-			  delta: 1  // 返回上一级页面。
-			})
-		},1000)
       },
       fail: function (res) {
 		wx.showToast({
@@ -242,5 +234,5 @@ Page({
         console.log("pay complete");
       }
     })
-  }
+  },
 })

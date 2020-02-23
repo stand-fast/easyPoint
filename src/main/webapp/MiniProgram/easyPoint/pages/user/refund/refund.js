@@ -56,6 +56,9 @@ Page({
                 icon: 'none',
                 duration: 2000
               })
+              wx.switchTab({
+                url: '/pages/user/user/user'
+              })
               break;
             case 400:
               wx.showToast({
@@ -85,6 +88,13 @@ Page({
                 duration: 2000
               })
               break;
+            case 405:
+              wx.showToast({
+                title: '该订单退款正等待管理员处理中，请耐心等待',
+                icon: 'none',
+                duration: 2000
+              })
+              break;
             case 501:
               app.getPermission();
               break;
@@ -98,34 +108,5 @@ Page({
     this.setData({
         success: false
     })
-  },
-  //租车-退款理由
-  getRefundMessage: function (travelOrderId) {
-    let that = this;
-    let token = app.globalData.token;
-    wx.request({
-      url: app.globalData.requestUrl + 'findTravelOrderDetailInfo',
-      method: 'Post',
-      data: {
-        type:0,
-        travelOrderId: travelOrderId,
-      },
-      header: { 'content-type': 'application/x-www-form-urlencoded', token},
-      success: function (res) {
-        console.log(res.data);
-        let data = res.data;
-        let code = data.code;
-        if (res.header.token != undefined) {
-          app.replaceToken(res.header.token);
-        }
-        switch (code){
-          case 200:
-            break;
-          case 501:
-            app.getPermission();
-            break;
-        }
-      }
-    })
-  },
+  }
 })
