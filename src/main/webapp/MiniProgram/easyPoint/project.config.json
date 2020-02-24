@@ -21,7 +21,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.9.4",
+	"libVersion": "2.10.1",
 	"appid": "wx1c379b39de912818",
 	"projectname": "easyPoint",
 	"debugOptions": {
@@ -47,6 +47,10 @@
 			"currentL": -1,
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": -1,
 			"list": [
@@ -59,22 +63,15 @@
 				},
 				{
 					"id": -1,
-					"name": "myOrderRentDetail",
-					"pathName": "pages/user/myOrderRentDetail/myOrderRentDetail",
+					"name": "protocaldetail",
+					"pathName": "pages/protocal/protocaldetail/protocaldetail",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "myOrderCarDetail",
-					"pathName": "pages/user/myOrderCarDetail/myOrderCarDetail",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "myOrder",
-					"pathName": "pages/user/myOrder/myOrder",
+					"name": "protocal",
+					"pathName": "pages/protocal/protocal/protocal",
 					"query": "",
 					"scene": null
 				}

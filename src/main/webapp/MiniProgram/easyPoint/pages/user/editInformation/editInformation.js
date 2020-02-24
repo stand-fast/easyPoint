@@ -13,7 +13,7 @@ Page({
     index: null,//性别
     phone: '',//手机号码
     isChangePhone: false,    //是否更改手机号码
-    word: "获取验证码",//验证码倒计时数字
+    word: "获取",//验证码倒计时数字
   },
   //页面加载完毕执行函数(放在首位)
   onLoad: function (options) {
