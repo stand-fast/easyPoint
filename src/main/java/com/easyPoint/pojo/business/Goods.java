@@ -20,9 +20,18 @@ public class Goods {
     private String goodDescription;
     private Integer leaseNum;
     private String proImg;
+    private GoodsType goodsType;
     private List<GoodVariety> goodVarietyList;
     // 状态
     private String state;
+
+    public GoodsType getGoodsType() {
+        return goodsType;
+    }
+
+    public void setGoodsType(GoodsType goodsType) {
+        this.goodsType = goodsType;
+    }
 
     public String getGoodId() {
         return goodId;
