@@ -19,6 +19,7 @@
         <!--<context:include-filter type="annotation" expression="org.spring-contextngframework.stereotype.Controller"/>-->
     </context:component-scan>
 
+
     <!-- 配置视图解析器对象 -->
     <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>

@@ -1,20 +1,34 @@
 <template>
   <div id="app">
-    <model />
-    <router-view />
+    <modelNew />
   </div>
 </template>
 
 <script>
-import model from "./components/model.vue";
+import Vue from "vue";
+import modelNew from "./components/modelNew.vue";//页面模板组件
 export default {
   name: "app",
   components: {
-    model
+    modelNew
+  },
+  mounted() {
+    this.getToken();
+  },
+  methods: {
+    getToken() {
+      let item = localStorage.getItem("loginUser");
+      let user = null;
+      if (item) {
+        user = JSON.parse(item);
+        Vue.prototype.$token = user.token;
+      }
+    }
   }
 };
 </script>
 
 <style>
-@import url(./assets/public.css);
+@import url(./assets/public.css);/* 引入公共css */
+@import url(./assets/Travel.css);/* 引入易点出行板块css */
 </style>

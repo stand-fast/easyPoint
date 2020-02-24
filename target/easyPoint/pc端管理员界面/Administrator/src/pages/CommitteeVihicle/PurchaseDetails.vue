@@ -1,49 +1,35 @@
 <template>
   <div>
-    <ul class="PageContentRight">
-      <div class="PageContentRightTitle">
-        <div class="IconTitle"></div>
-        <div class="TitleText">{{navName}} > {{navPlateName}}</div>
-      </div>
-      <div class="PageContent">
-        <h1>购票详情</h1>
-        <div class="purchaseDetails title">
-          <li class="navBigger">姓名</li>
-          <li class="navBigger">联系方式</li>
-          <li class="navBigger">票价</li>
-          <li class="navBigger">数量</li>
-          <li class="navBigger">购票时间</li>
-        </div>
-        <div class="purchaseDetails type" v-for="(item,index) in datas" :key=index>
-          <li class="navBigger">{{item.name||"未添加"}}</li>
-          <li class="navBigger">{{item.phone||"未添加"}}</li>
-          <li class="navBigger">￥{{item.price||"未添加"}}</li>
-          <li class="navBigger">{{item.buyNum||"未添加"}}</li>
-          <li class="navBigger">{{item.buyTime||"未添加"}}</li>
-        </div>
-
-        <paging
-          :value="current"
-          :pageSize="pageSize"
-          :pageNumber="pageNumber"
-          :panelNumber="panelNumber"
-          @input="handlePageChange"
-        ></paging>
-      </div>
-    </ul>
+    <!-- 顶部标题 -->
+    <el-header class="model-wrapper-con-header">{{navName}}-{{navPlateName}}</el-header>
+    <!-- 内容 -->
+    <el-table :data="datas">
+      <!-- 展示数据项部分 -->
+      <el-table-column label="姓名" prop="name"></el-table-column>
+      <el-table-column label="联系方式" prop="phone"></el-table-column>
+      <el-table-column label="票价" prop="price"></el-table-column>
+      <el-table-column label="数量" sortable prop="buyNum"></el-table-column>
+      <el-table-column label="购票时间" sortable prop="buyTime"></el-table-column>
+    </el-table>
+    <!-- 分页组件 -->
+    <el-pagination
+      class="pageing"
+      :page-count="pageNumber"
+      @current-change="handlePageChange"
+      :current-page.sync="current"
+      layout="prev, pager, next, jumper"
+    ></el-pagination>
   </div>
 </template>
 <script>
-import paging from "../../components/paging.vue";
 export default {
   data() {
     return {
-      plateId:-1,
       navName: "校友会包车",
       navPlateName: "购票详情",
-      datas: [],
-      pageSize: 10, //每页最大条数
-      panelNumber: 5, //最多显示多少个分页按钮
+      plateId: -1, //订单id
+      datas: [], //订单购票详情数据
+      pageSize: 8, //每页最大条数
       current: 1, //当前页码
       pageNumber: 5 //页码总数
     };
@@ -51,94 +37,50 @@ export default {
   mounted() {
     this.plateId = this.$route.params.id;
     console.log("根据" + this.plateId + "请求数据");
-    this.setData(); //获取订单数据
+    this.handlePageChange(1); //获取订单数据
   },
   methods: {
-    async setData() {
-      window.onscroll = e => e.preventDefault(); //兼容浏览器
-      console.log("请求购票详情数据");
-      var qs = require('qs')
-      var postData={params:{
-          ticketId:this.plateId,
-          startIndex:this.current,
-          pageSize:this.pageSize
-        }
+    async handlePageChange(page) {
+      let that = this;
+      let params = {
+        ticketId: this.plateId,
+        startIndex: page,
+        pageSize: this.pageSize
       };
-      var url="https://easypoint.club/administrator/findBuyDetail"
-      window.onscroll = e => e.preventDefault(); //兼容浏览器
       this.$http
-        .get(url,postData)
-        .then((res) => {
+        .get("findBuyDetail", { params })
+        .then(res => {
           console.log(res.data);
           var data = res.data;
-          switch(data.code){
+          switch (data.code) {
             case 0:
-              alert("暂无购票信息")
+              alert("暂无购票信息");
               break;
             case 1:
-              console.log("查询成功")
-              this.datas=data.data.detail
-              this.pageNumber=data.data.total%10==0?data.data.total/10:parseInt(data.data.total/10)+1
+              console.log("查询成功");
+              this.datas = data.data.detail;
+              this.current = page;
+              this.pageNumber =
+                data.data.total % this.pageSize == 0
+                  ? data.data.total / this.pageSize
+                  : parseInt(data.data.total / this.pageSize) + 1;
               break;
             case 2:
-              alert("参数为空")
-              break;     
+              alert("参数为空");
+              break;
             case 3:
-              alert("页码超出最大范围")
-              break;                       
+              alert("页码超出最大范围");
+              break;
+            default:
+              that.$judgeToken(code);
+              break;
           }
         })
         .catch(function(e) {
           console.log(e);
         });
-    },
-    handlePageChange(pageNum) {
-      this.current=pageNum;
-      this.setData(this.id);
     }
   },
-  components: {
-    paging
-  }
+  components: {}
 };
 </script>
-<style scoped>
-.purchaseDetails {
-  height: 40px;
-  line-height: 40px;
-  display: flex;
-  text-align: center;
-}
-
-.title {
-  color: #ffffff;
-  margin-top: 10px;
-  background-color: #8fd68b;
-}
-
-.title li {
-  font-size: 14px;
-}
-
-.purchaseDetails li {
-  font-size: 14px;
-  overflow: hidden;
-  box-sizing: border-box;
-  border: 1px solid #ffffff;
-}
-
-.type:nth-child(2n) {
-  color: #999999;
-  background-color: #b4e3b1;
-}
-
-.type:nth-child(2n + 1) {
-  color: #8fd68b;
-  background-color: #e9f7e8;
-}
-.navBigger {
-  padding: 0 5px;
-  box-sizing: border-box;
-  width: 240px;
-}
-</style>

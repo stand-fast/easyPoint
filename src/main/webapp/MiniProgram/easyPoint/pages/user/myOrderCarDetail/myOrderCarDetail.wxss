@@ -177,6 +177,8 @@ Page{
     margin: auto 0;
     margin-right: 30rpx;
     background-color: #fff;
+    border-color:#56b4f6;
+    color: #56b4f6; 
 }
 .button_footer button::after{
     border: none;

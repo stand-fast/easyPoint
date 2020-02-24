@@ -45,7 +45,7 @@
         </init-param>
         <init-param>
             <param-name>cors.supportedHeaders</param-name>
-            <param-value>token,Accept, Origin,X-Requested-With, Content-Type, Last-Modified</param-value>
+            <param-value>access_token,Accept, Origin,X-Requested-With, Content-Type, Last-Modified</param-value>
         </init-param>
         <init-param>
             <param-name>cors.exposedHeaders</param-name>

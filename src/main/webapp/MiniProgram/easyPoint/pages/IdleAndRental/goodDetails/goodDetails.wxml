@@ -41,7 +41,7 @@
                 <view class="title">种类：</view>
             </view>
             <view class="last">
-                <view wx:for="{{good_details_info.variety}}" wx:key="{{index}}" wx:for-item="item">
+                <view wx:for="{{good_details_info.letiety}}" wx:key="key" wx:for-item="item">
                     <view class="goodtype_list">{{item}}</view>
                 </view>
             </view>
@@ -84,7 +84,7 @@
         </view>
         <text class="Text">浏览并同意易点协议</text>
     </view>
-    <view class="submitBtn"><button bindtap="toRent">{{word}}</button></view>
+    <view class="submitBtn"><button bindtap="toRent">租借</button></view>
 </view>
 <!-- 底部选择租赁规格栏 -->
 <view class="dialog_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
@@ -93,42 +93,42 @@
         <image src="{{filesUrl}}"></image>
         <view class="dislog_item_goods">
             <view id="dislog_item_goods_price">￥ <text>{{setPrice}}</text></view>
-            <view id="dislog_item_goods_chooseType">已选择：{{chooseType}} + {{chooseSize}}码  ×{{number}}  <text> 库存：{{save}}</text></view>
+            <view id="dislog_item_goods_chooseType">已选择：{{chooseType}} + {{chooseSize}}码  ×{{number}}</view>
         </view>
     </view>
     <view class="hr"></view>
     <scroll-view scroll-y="true" class="scroll_bar">
         <view class="dislog_item_title">选择类别</view>
-        <view class="dialog_item_list" style="height:{{typeHeight}}rpx">
-            <view wx:for="{{good_details_info.goodVariety}}" wx:key="name" class='dialog_content' wx:for-item="item">
-                <view class="{{typeclick==index?'type_pre':'type_nor'}}" bindtap='typeClick' data-index="{{index}}">{{item.itemName}}</view>
+        <view class="dialog_item_list">
+            <view wx:for="{{good_details_info.goodletiety}}" wx:key="key" class='dialog_content' wx:for-item="item">
+                <view class="{{typeclick==index?'type type_pre':'type'}}" bindtap='typeClick' data-index="{{index}}">{{item.itemName}}</view>
             </view>
         </view>
         <view class="dislog_item_title">选择尺寸</view>
-        <view class="dialog_item_list" style="height:{{sizeHeight}}rpx">
-            <view wx:for="{{good_details_info.goodVariety[typeclick].items}}" wx:key="name" class='dialog_content size' wx:for-item="item">
-                <view class="{{sizeclick==index?'type_pre':'type_nor'}}" bindtap='sizeClick' data-index="{{index}}">{{item.specifc}}</view>
+        <view class="dialog_item_list">
+            <view wx:for="{{good_details_info.goodletiety[typeclick].items}}" wx:key="key" class='dialog_content size' wx:for-item="item">
+                <view class="{{sizeclick==index?'type type_pre':'type'}}" bindtap='sizeClick' data-index="{{index}}">{{item.specifc}}</view>
             </view>
         </view>
         <view class="dislog_item_choose">
             <view class="dislog_item_choose_title">选择数量</view>
             <view class="dislog_item_choose_stepper">
-                <view class="jian" bindtap="bindMinus">-</view>
+                <view class="jian" bindtap="quantityMinus">-</view>
                 <input class="number" type="number" disabled="true" value="{{number}}" bindinput="bindManual"></input>
-                <view class="jia" bindtap="bindPlus">+</view>
+                <view class="jia" bindtap="quantityPlus">+</view>
             </view>
         </view>
         <view class="dislog_item_choose">
             <view class="dislog_item_choose_title">选择租借天数</view>
             <view class="dislog_item_choose_stepper">
-                <view class="jian" bindtap="bindMinus1">-</view>
+                <view class="jian" bindtap="leaseMinus">-</view>
                 <input class="number" type="number" disabled="true" value="{{leaseDate}}" bindinput="bindManual"></input>
-                <view class="jia" bindtap="bindPlus1">+</view>
+                <view class="jia" bindtap="leasePlus">+</view>
             </view>
         </view>
         <view class="dislog_item_choose">
             <view class="dislog_item_choose_title">选择取货时间</view>
-            <picker mode="multiSelector" value="{{dateTime}}" bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}" class="pickTime">
+            <picker mode="multiSelector" value="{{getStartTime}}" bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}" class="pickTime">
                 <input value="{{startTime}}" placeholder="请选择取货时间" placeholder-class="placehold" disabled="true"></input>
             </picker>
         </view>

@@ -1,22 +1,23 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from "./store.js"
+import store from "./store/index.js" //vuex共享数据库
 import login from "./pages/login.vue" //登陆界面
-import AccountManagement from "./pages/Administrator/AccountManagement.vue" //管理员板块-账号管理
-import AddAssociation from "./pages/CommitteeVihicle/AddAssociation.vue" //校友会包车-添加同乡会
-import AddLocation from "./pages/CommitteeVihicle/AddLocation.vue" //校友会包车-添加上写车地点
-import BusSearcher from "./pages/CommitteeVihicle/BusSearcher.vue" //校友会包车-添加车辆
-import TicketManagement from "./pages/CommitteeVihicle/TicketManagement.vue" //校友会包车-我的发布
-import PurchaseDetails from "./pages/CommitteeVihicle/PurchaseDetails.vue" //校友会包车-购票详情
-import Vehicle from "./pages/CommitteeVihicle/Vehicle.vue" //校友会包车-车辆信息
-import HistoryTicket from "./pages/CommitteeVihicle/HistoryTicket.vue" //校友会包车-历史发布
-import AddVehicleType from "./pages/Travel/AddVehicleType.vue" //旅游出行-添加发布车辆类型
-import CarRentalOrder from "./pages/Travel/CarRentalOrder.vue" //旅游出行-租车订单
-import CarRentalRefund from "./pages/Travel/CarRentalRefund.vue" //旅游出行-租车退款订单
-import DealOrder from "./pages/Travel/DealOrder.vue" //旅游出行-租车退款订单详情
-import vehicleEntry from "./pages/Travel/VehicleInformationEntry.vue" //旅游出行-租车订单车辆信息
-import CurrentAnnouncement from "./pages/CurrentAnnouncement.vue" //公告栏-当前公告
-import JoinList from "./pages/BusinessesJoined/JoinList.vue" //已加盟商家-学生商家
+import home from "./pages/home.vue" //主界面
+const AccountManagement = () => import('./pages/Administrator/AccountManagement.vue') //管理员板块-账号管理
+const AddAssociation = () => import('./pages/CommitteeVihicle/AddAssociation.vue') //校友会包车-添加同乡会
+const AddLocation = () => import('./pages/CommitteeVihicle/AddLocation.vue') //校友会包车-添加上写车地点
+const BusSearcher = () => import('./pages/CommitteeVihicle/BusSearcher.vue') //校友会包车-添加车辆
+const TicketManagement = () => import('./pages/CommitteeVihicle/TicketManagement.vue') //校友会包车-我的发布
+const PurchaseDetails = () => import('./pages/CommitteeVihicle/PurchaseDetails.vue') //校友会包车-购票详情
+const Vehicle = () => import('./pages/CommitteeVihicle/Vehicle.vue') //校友会包车-车辆信息
+const HistoryTicket = () => import('./pages/CommitteeVihicle/HistoryTicket.vue') //校友会包车-历史发布
+const AddVehicleType = () => import('./pages/Travel/AddVehicleType.vue') //旅游出行-添加发布车辆类型
+const CarRentalOrder = () => import('./pages/Travel/CarRentalOrder.vue') //旅游出行-租车订单
+const CarRentalRefund = () => import('./pages/Travel/CarRentalRefund.vue') //旅游出行-租车退款订单
+const DealOrder = () => import('./pages/Travel/DealOrder.vue') //旅游出行-租车退款订单详情
+const vehicleEntry = () => import('./pages/Travel/VehicleInformationEntry.vue') //旅游出行-租车订单车辆信息
+const PublishGoods = () => import('./pages/LeaseIdle/PublishGoods.vue') //租赁闲置-发布商品
+const CurrentAnnouncement = () => import('./pages/Announcement/CurrentAnnouncement.vue') //公告栏-当前公告
 
 Vue.use(Router)
 
@@ -25,7 +26,13 @@ const router = new Router({
       path: "/login",
       name: '登陆',
       component: login,
-    }, {
+    },
+    {
+      path: "/",
+      name: '主页',
+      component: home,
+    },
+    {
       path: "/AccountManagement",
       name: '管理员板块-账号管理',
       component: AccountManagement,
@@ -130,17 +137,17 @@ const router = new Router({
       }
     },
     {
-      path: "/CurrentAnnouncement",
-      name: '公告栏-当前公告',
-      component: CurrentAnnouncement,
+      path: "/PublishGoods",
+      name: '租赁闲置-发布商品',
+      component: PublishGoods,
       meta: {
         needLogin: true
       }
     },
     {
-      path: "/JoinList",
-      name: '商家加盟列表',
-      component: JoinList,
+      path: "/CurrentAnnouncement",
+      name: '公告栏-当前公告',
+      component: CurrentAnnouncement,
       meta: {
         needLogin: true
       }
@@ -150,11 +157,11 @@ const router = new Router({
 router.beforeEach(function (to, from, next) {
   if (to.meta && to.meta.needLogin) {
     //需要登录的页面
-    //console.log(store.state);
-    if (store.state.data) {
+    // console.log(store.state.loginUser.data);
+    if (store.state.loginUser.data) {
       //已登录
       if (to.path == '/AccountManagement') {
-        if (store.state.data.name == "超级管理员") {
+        if (store.state.loginUser.data.identity == "超级管理员") {
           next();
         } else {
           alert("没有权限");

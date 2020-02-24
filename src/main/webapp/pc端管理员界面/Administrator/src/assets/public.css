@@ -1,85 +1,184 @@
-h1 {
-    font-size: 20px;
-    height: 30px;
-    color: #8fd68b;
-    line-height: 30px;
-    overflow: hidden;
+/* 清除element自带 */
+.has-gutter th {
+    /* table文字居中 */
     text-align: center;
 }
 
-/* 添加同乡会以及添加车辆类型 */
-.addCommittee {
-    height: 50px;
-    line-height: 50px;
-    color: #8fd68b;
+.cell {
     text-align: center;
-    overflow: hidden;
 }
 
-.addCommittee input {
-    margin-left: 20px;
-    margin-right: 10px;
-    border-radius: 2px;
-    border: 1px solid #8fd68b;
-    width: 200px;
-    height: 20px;
-    outline: none;
-    padding: 5px;
+.el-main-content {
+    /* 组件content区域 */
+    height: 550px;
+    background-color: #fff;
 }
 
-.addCommittee button {
-    background-color: #8fd68b;
-    border: none;
-    border-radius: 4px;
-    color: #f3f2f2;
-    width: 80px;
-    height: 30px;
+.el-table__row td {
+    /* table的子项 */
+    text-align: center;
 }
 
-.association {
+.el-drawer__header {
+    /* 抽屉header */
+    color: rgb(88, 86, 86);
+    font-weight: 600;
+}
+
+.el-drawer {
+    /* 抽屉宽度 */
+    width: 320px !important;
+}
+
+ul {
+    /* 清楚小圆点 */
+    list-style: none;
+}
+
+/* table的展开行 */
+.demo-table-expand {
+    font-size: 0;
+}
+
+.demo-table-expand label {
+    width: 90px;
+    color: #99a9bf;
+}
+
+.demo-table-expand .el-form-item {
+    margin-right: 0;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+/* 模板居中input框 */
+.model-content-input {
+    width: 300px;
+    margin: 20px auto;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
 }
 
-.associationTitle {
-    background-color: #8fd68b;
-    color: #ffffff;
+.model-content-input:nth-of-type(1) {
+    margin-top: 100px;
 }
 
-.association li {
-    height: 40px;
-    line-height: 30px;
-    border: 1px solid #ffffff;
+.model-content-input>span {
+    min-width: 120px;
+    color: #9c9ea1;
+    font-weight: 600;
+}
+
+.model-content-input>label {
+    color: #9c9ea1;
+    font-size: 13px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.model-content-input>label:hover {
+    color: #409eff;
+    cursor: pointer;
+}
+
+.model-content-button {
+    font-weight: 600;
+    width: 100px;
+}
+
+
+/* 分页组件 */
+.pageing {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* 模板弹窗 */
+.el-popover__title {
+    font-weight: 600;
+}
+
+.spring-model-con>li {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 8px;
+    color: #606266;
+}
+
+.spring-model-con>li>span {
+    min-width: 80px;
+    -ms-flex-item-align: center;
+    align-self: center;
+    font-weight: 600;
+}
+
+.spring-model-con>li span {
+    font-weight: 600;
+}
+
+.spring-model-con>li p {
+    font-size: 12px;
+    margin: 10px;
+    font-weight: 500;
+}
+
+.spring-model-con-button {
+    text-align: right;
+    margin-top: 20px;
+}
+
+/* 抽屉 */
+.drawer-model {
+    padding: 15px;
+}
+
+.drawer-model>li {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    color: #606266;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.drawer-model>li:nth-child(n + 2) {
+    margin-top: 20px;
+}
+
+.drawer-model>li>span {
+    min-width: 90px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    padding: 5px;
-    text-align: center;
-    overflow: hidden;
+    padding: 0 5px;
+    font-weight: 600;
 }
 
-.nav:nth-child(2n + 1) {
-    background-color: #e9f7e8;
-    color: #96d892;
-}
-
-.nav:nth-child(2n) {
-    background-color: #ddf3dc;
-    color: #acb2ab;
-}
-
-.associationName {
-    width: 680px;
-}
-
-.associationPlace {
-    width: 300px;
-}
-
-.associationDelete {
-    width: 200px;
-}
-
-.enter {
+.drawer-model-code {
+    -ms-flex-item-align: center;
+    align-self: center;
+    height: 15px;
     cursor: pointer;
+    padding: 7px 5px;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    background: #409EFF;
+    margin-left: 10px;
+    font-size: 12px;
+    min-width: 70px;
+}
+
+.drawer-model-button {
+    text-align: right;
+    margin-right: 15px;
 }

@@ -3,10 +3,10 @@ import Vue from 'vue';
 axios.defaults.timeout = 5000;
 axios.defaults.baseURL = 'https://easypoint.club/administrator/'; //这是调用数据接口
 
-// http request 拦截器，通过这个，我们就可以把Cookie传到后台
+// http request 拦截器，通过这个，我们就可以把token传到后台
 axios.interceptors.request.use(
     config => {
-        const token = Vue.prototype.$token; //获取Cookie
+        const token = Vue.prototype.$token; //获取token
         config.headers = {
             'Content-Type': 'application/x-www-form-urlencoded' //设置跨域头部
         };

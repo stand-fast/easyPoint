@@ -1,158 +1,206 @@
 <template>
   <div>
-    <ul class="PageContentRight">
-      <div class="PageContentRightTitle">
-        <div class="IconTitle"></div>
-        <div class="TitleText">{{navName}} > {{navPlateName}}</div>
-      </div>
-      <div class="PageContent">
-        <h1>我的历史发布订单</h1>
-        <div class="table-scroll">
-          <div class="renderOrderNav title">
-            <li class="navmiddle">同乡会</li>
-            <li class="navBigger">出发地</li>
-            <li class="navBigger">目的地</li>
-            <li class="navTime">出发时间</li>
-            <li class="navTime">发布时间</li>
-            <li class="navmiddle">车辆类型</li>
-            <li class="navmiddle">售价</li>
-            <li class="navmiddle">剩余票数</li>
-            <li class="navmiddle">购票详情</li>
-            <li class="navmiddle">车辆信息</li>
-            <li class="navSmall">操作</li>
-          </div>
-          <div class="renderOrderNav type" v-for="item in ticketList" :key="item.ticketId">
-            <li class="navmiddle">{{item.associationName}}</li>
-            <li class="navBigger">{{item.departurePlace}}</li>
-            <li class="navBigger">{{item.destination}}</li>
-            <li class="navTime">{{item.departureDay}}&nbsp;{{item.departureTime}}</li>
-            <li class="navTime">{{item.issueTime}}</li>
-            <li class="navmiddle">{{item.seatNum}}座大巴</li>
-            <li class="navmiddle">￥{{item.price}}</li>
-            <li class="navmiddle">{{item.seatSurplus}}</li>
-            <li class="navmiddle enter" @click="purchaseDetails(item.ticketId)">购票详情</li>
-            <li class="navmiddle enter" @click="vehicleInformation(item.ticketId)">车辆信息</li>
-            <li class="navSmall enter" @click="shelves(item.ticketId)">删除</li>
-          </div>
-        </div>
-        <paging
-          :value="current"
-          :pageSize="pageSize"
-          :pageNumber="pageNumber"
-          :panelNumber="panelNumber"
-          @input="handlePageChange"
-        ></paging>
-      </div>
-    </ul>
+    <!-- 顶部标题 -->
+    <el-header class="model-wrapper-con-header">{{navName}}-{{navPlateName}}</el-header>
+    <!-- 内容 -->
+    <el-table :data="datas">
+      <!-- 展开部分 -->
+      <el-table-column type="expand">
+        <template slot-scope="props">
+          <el-form label-position="left" inline class="demo-table-expand">
+            <el-form-item label="订单编号">
+              <span>{{ props.row.ticketId }}</span>
+            </el-form-item>
+            <el-form-item label="发布时间">
+              <span>{{ props.row.issueTime }}</span>
+            </el-form-item>
+            <el-form-item label="同乡会">
+              <span>{{ props.row.associationName }}</span>
+            </el-form-item>
+            <el-form-item label="出发地">
+              <span>{{ props.row.departurePlace }}</span>
+            </el-form-item>
+            <el-form-item label="目的地">
+              <span>{{ props.row.destination }}</span>
+            </el-form-item>
+            <el-form-item label="出发日期">
+              <span>{{ props.row.departureDay }}</span>
+            </el-form-item>
+            <el-form-item label="出发时间">
+              <span>{{ props.row.departureTime }}</span>
+            </el-form-item>
+            <el-form-item label="座位数">
+              <span>{{ props.row.seatNum }}</span>
+            </el-form-item>
+            <el-form-item label="车票类型">
+              <span v-if=" props.row.type == 1">正式车票</span>
+              <span v-else-if=" props.row.type == 2">预售车票</span>
+            </el-form-item>
+            <el-form-item label="售价">
+              <span>{{ props.row.price }}</span>
+            </el-form-item>
+            <el-form-item label="剩余票数">
+              <span>{{ props.row.seatSurplus }}</span>
+            </el-form-item>
+          </el-form>
+        </template>
+      </el-table-column>
+
+      <!-- 展示数据项部分 -->
+      <el-table-column label="同乡会" prop="associationName"></el-table-column>
+      <el-table-column label="出发地" prop="departurePlace"></el-table-column>
+      <el-table-column label="目的地" prop="destination"></el-table-column>
+      <el-table-column label="出发日期" sortable prop="departureDay"></el-table-column>
+      <el-table-column label="出发时间" sortable prop="departureTime"></el-table-column>
+      <el-table-column label="座位数" sortable prop="seatNum"></el-table-column>
+      <el-table-column label="车票类型" sortable prop="type" :formatter="formatType"></el-table-column>
+      <el-table-column label="售价" sortable prop="price"></el-table-column>
+      <el-table-column label="剩余票数" sortable prop="seatSurplus"></el-table-column>
+      <el-table-column label="操作" width="200" fixed="right">
+        <template slot-scope="scope">
+          <!-- 购票详情按钮 -->
+          <el-button size="mini" type="text" @click="purchaseDetails(scope.row.ticketId)">购票详情</el-button>
+
+          <!-- 车辆信息按钮 -->
+          <el-button size="mini" type="text" @click="vehicleInformation(scope.row.ticketId)">车辆信息</el-button>
+
+          <!-- 下架弹窗 -->
+          <el-popover
+            width="180"
+            title="确定要删除该历史发布车票吗？"
+            trigger="click"
+            v-model="scope.row.visible"
+          >
+            <div class="spring-model-con-button">
+              <el-button type="text" size="mini" @click="scope.row.visible = false;">取消</el-button>
+              <el-button type="primary" size="mini" @click="deleteTicket(scope.row.ticketId)">确定</el-button>
+            </div>
+          </el-popover>
+
+          <!-- 下架按钮 -->
+          <el-button
+            style="margin-left:15px"
+            size="mini"
+            type="text"
+            @click="scope.row.visible = true;"
+          >删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <!-- 分页组件 -->
+    <el-pagination
+      class="pageing"
+      :page-size="pageSize"
+      :total="totalNumber"
+      @current-change="handlePageChange"
+      :current-page.sync="current"
+      layout="prev, pager, next, jumper"
+    ></el-pagination>
   </div>
 </template>
 <script>
-import paging from "../../components/paging.vue";
 export default {
   data() {
     return {
       navName: "校友会包车",
       navPlateName: "历史发布",
-      datas: [],
-      ticketList:[],      
-      pageSize: 10, //每页最大条数
-      panelNumber: 5, //最多显示多少个分页按钮
+      datas: [], //历史发布数据部分
       current: 1, //当前页码
-      pageNumber: 5 //页码总数,
-
+      pageSize: 8, //每页最大条数
+      totalNumber: 5 //总条目数
     };
   },
   mounted() {
-    this.getTicket(); //获取历史发布订单数据
+    this.handlePageChange(1); //获取历史发布订单数据
   },
   methods: {
-    async getTicket() {
-      var postData= {params:{
-          state:2,
-          startIndex:this.current,
-          pageSize:this.pageSize
-        }
+    //根据页码获得历史发布数据
+    async handlePageChange(page) {
+      let that = this;
+      let params = {
+        state: 2,
+        startIndex: page,
+        pageSize: this.pageSize
       };
-      var url="https://easypoint.club/administrator/getTicket"
-      // var url="https://result.eolinker.com/2SwDXYE6f7523ffc165aa2ff23d95e8789302dd644a90b4?uri=administrator/getTicket"
-      window.onscroll = e => e.preventDefault(); //兼容浏览器
       this.$http
-        .get(url,postData)
-        .then((res) => {
+        .get("getTicket", { params })
+        .then(res => {
           console.log(res.data);
-          var data = res.data;
-          switch(data.code){
+          let data = res.data;
+          switch (data.code) {
             case 0:
-              alert("没有查询到数据")
+              alert("没有查询到数据");
               break;
             case 1:
-              console.log("查询成功")
-              this.ticketList=data.data.ticketList
-              this.pageNumber=data.data.ticketNum%10==0?data.data.ticketNum/10:parseInt(data.data.ticketNum/10)+1
+              console.log("查询成功");
+              data.data.ticketList.forEach((res, index, arr) => {
+                res.visible = false;
+                return res;
+              });
+              this.datas = data.data.ticketList;
+              this.totalNumber = data.data.ticketNum;
+              this.current = page;
               break;
             case 2:
-              alert("参数为空")
-            break;    
+              alert("参数为空");
+              break;
             case 3:
-              alert("页码超出最大范围")
-              break;                
+              alert("页码超出最大范围");
+              break;
+            default:
+              that.$judgeToken(code);
+              break;
           }
         })
         .catch(function(e) {
           console.log(e);
         });
-    },    
+    },
+    //删除订单数据
     async deleteTicket(id) {
-      var qs = require('qs')
-      var postData=qs.stringify({
-        ticketId:id
-      });
-      var url="https://easypoint.club/administrator/deleteTicket"
-      window.onscroll = e => e.preventDefault(); //兼容浏览器
+      let that = this;
+      let params = new URLSearchParams();
+      params.append("ticketId", id);
       this.$http
-        .post(url,postData)
-        .then((res) => {
+        .post("deleteTicket", params)
+        .then(res => {
           console.log(res.data);
-          var data = res.data;
-          switch(data.code){
+          let data = res.data;
+          switch (data.code) {
             case -1:
-              alert("下架失败")
+              alert("删除失败");
               break;
             case 1:
-              alert("下架成功")
-              this.getTicket(); 
+              alert("删除成功");
+              this.handlePageChange(this.current);
               break;
             case 2:
-              alert("参数为空")
-              break;                
+              alert("参数为空");
+              break;
+            default:
+              that.$judgeToken(code);
+              break;
           }
         })
         .catch(function(e) {
           console.log(e);
         });
-    },  
-    handlePageChange(pageNum) {
-      this.current=pageNum;
-      this.getTicket()
     },
+    //跳转订单详情
     purchaseDetails(id) {
       this.$router.push("/PurchaseDetails/" + id);
       console.log(id);
     },
-    shelves(id) {
-      if (confirm("确定要删除该历史车票订单吗?")) {
-        this.deleteTicket(id)
-      } else {
-        console.log("你取消了删除");
-      }
-    },
+    //跳转车辆类型页面
     vehicleInformation(id) {
       this.$router.push("/Vehicle/" + id);
       console.log(id);
+    },
+    //格式化车票类型数据
+    formatType: function(row, column, cellValue, index) {
+      return row.type == 1 ? "正式车票" : "预售车票";
     }
   },
-  components: {
-    paging
-  }
+  components: {}
 };
 </script>

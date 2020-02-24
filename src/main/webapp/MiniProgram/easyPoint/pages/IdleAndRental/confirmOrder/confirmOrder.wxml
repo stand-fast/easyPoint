@@ -1,16 +1,16 @@
 <!--pages/IdleAndRental/confirmOrder/confirmOrder.wxml-->
 <form bindsubmit="formSubmit">
 <view class="header">
-    <view class="customer_name">{{userInformation.username}}</view>
-    <view class="customer_phone">{{userInformation.phone}}</view>
+    <view class="customer_name">{{name}}</view>
+    <view class="customer_phone">{{phone}}</view>
     <image src="/images/icon/rentEdit.png" bindtap="toEdit"></image>
 </view>
 <view class="good_item">
     <view class="provider">{{good_details_info.companyName}}</view>
     <view class="good_content">
-        <image src="{{good_details_info.img}}"></image>
+        <image src="{{good_details_info.filesUrl}}"></image>
         <view class="content_item">
-            <view class="good_name">{{good_details_info.variety}} <text> {{good_details_info.size}}码</text></view>
+            <view class="good_name">{{good_details_info.category}} <text> {{good_details_info.chooseSize}}码</text></view>
             <view class="good_price">￥{{good_details_info.price}} <text>×{{good_details_info.number}}</text></view>
         </view>
     </view>
@@ -26,7 +26,7 @@
     </view>
     <view class="order_item">
         <view class="order_item_title">取货时间</view>
-        <view class="order_item_text">{{good_details_info.startTime}}</view>
+        <view class="order_item_text">{{good_details_info.pickTime}}</view>
     </view>
     <view class="order_item">
         <view class="order_item_title last">备注信息</view>
