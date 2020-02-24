@@ -14,6 +14,7 @@ import com.easyPoint.service.miniprogram.travel.TourismInfoService;
 import com.easyPoint.service.pay.WxPayService;
 import com.easyPoint.service.template.TemplateMessageService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.omg.PortableInterceptor.INACTIVE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -169,9 +170,14 @@ public class TourismInfoServiceImpl implements TourismInfoService {
 
 
 
-    //修改出发日期String departureTime, String beModifiedTime, String travelOrderId
+    //修改出发日期String departureTime, String originalTime, String travelOrderId
     @Override
-    public int updateTourismOrderDepartureTime(String departureTime, String beModifiedTime, int travelOrderId) {
+    public int updateTourismOrderDepartureTime(String departureTime, String originalTime, int travelOrderId) {
+        //查看订单状态
+        int state = tourismInfoDao.findStateById(travelOrderId);
+        //如果当前状态不支持更改信息，则直接返回
+        if(state != 0 && state != 1)
+            return -2;
         Long date = System.currentTimeMillis();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         //现在时间的后一天，如果比车辆出行时间早，则可以修改，否则不行
@@ -179,11 +185,14 @@ public class TourismInfoServiceImpl implements TourismInfoService {
         int resultCode = tourismInfoDao.updateTourismOrderDepartureTime(departureTime,tomorrowDate,travelOrderId);
         if(resultCode == 1){
             //出发日期修改成功
-            resultCode = tourismInfoDao.updateTourismModifiedDate(beModifiedTime,travelOrderId);
+            resultCode = tourismInfoDao.updateTourismModifiedDate(originalTime,travelOrderId);
             if(resultCode ==1)
                 return 1;
+            //用户只有一次修改日期机会，不允许再次修改
+            //将出发日期恢复为原来出发日期
+            tourismInfoDao.updateDepartureTimeToOriginalTime(originalTime,travelOrderId);
             //修改日期失败
-            return 0;
+            return -1;
         }else
             return 0;
     }
@@ -199,16 +208,42 @@ public class TourismInfoServiceImpl implements TourismInfoService {
     public int requestTourismOrderRefund(int uid, TourismRefundInfo tourismRefundInfo) {
 
         //查询退款订单的信息
-        Map uidAndState = tourismInfoDao.findUidAndStateByTravelOrderId(tourismRefundInfo.getTravelOrderId());
+        Map refundData = tourismInfoDao.findAllowRefundData(tourismRefundInfo.getTravelOrderId());
         //判断申请用户是否为该订单的下单用户
-        if(uid != Integer.parseInt(uidAndState.get("uid").toString()))
+        if(uid != Integer.parseInt(refundData.get("uid").toString()))
+            return 0;
+        //判断订单的退款申请次数是否达到限制
+        int refundNumber = Integer.parseInt(refundData.get("refundNumber").toString());
+        if(refundNumber ==2)
             return -1;
         //判断订单状态，处理中和退款成功的状态不能在次申请退款
-        int state = Integer.parseInt(uidAndState.get("state").toString());
-        if(5 == state)
+        int state = Integer.parseInt(refundData.get("state").toString());
+        //订单已安排
+        if(1 == state)
             return -2;
-        else if(6 == state)
+        //订单已完成
+        else if(2 == state)
             return -3;
+        //订单已退款成功
+        else if(5 == state)
+            return -4;
+
+        System.out.println(1111);
+        System.out.println(refundData.get("tourismRefundId"));
+        if(refundData.get("tourismRefundId") != null){
+            Integer tourismRefundId = Integer.parseInt(refundData.get("tourismRefundId").toString());
+            //查询此时的退款状态
+            int refundState = tourismInfoDao.findRefundState(tourismRefundId);
+            //退款待处理中
+            if(refundState == 1)
+                return -5;
+            //正在退款中
+            else if(refundState == 3)
+                return -6;
+            //退款成功后
+            else if(refundState == 4)
+                return -4;
+        }
         //生成申请退款时间
         String requestRefundTime = DateUtil.getDateTime();
         //设置申请退款时间
@@ -218,10 +253,10 @@ public class TourismInfoServiceImpl implements TourismInfoService {
         //将申请退款信息保存到数据库
         int resultCode = tourismInfoDao.insertTourismRefund(tourismRefundInfo);
         if(resultCode != 0){
-            //修改travel_order表的订单状态
-            tourismInfoDao.updateTravelOrderState(5,tourismRefundInfo.getTravelOrderId());
-            //保存新的tourismRefundId到tourism_order表中
+
+            //保存新的tourismRefundId到tourism_order表中,并修改申请次数
             tourismInfoDao.updateTourismRefundId(tourismRefundInfo.getTravelOrderId(),tourismRefundInfo.getTourismRefundId());
+            return 1;
         }
         //返回保存是否成功
         return resultCode;

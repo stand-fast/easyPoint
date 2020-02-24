@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.io.ByteArrayInputStream;
 
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -29,17 +30,18 @@ public class WxPayServiceImpl implements WxPayService {
     @Autowired
     private UserInfoDao userInfoDao;
 
-    @Autowired
-    private TourismInfoDao tourismInfoDao;
 
     @Autowired
     private RedisTemplate<String,String> redisTemplate;
 
     //发起微信支付
     /**
-     *  uid
-     *  totalFee 订单总金额，单位为分。
-     *  body  商品简单描述，该字段请按照规范传递。
+     * 需要参数；
+     *  uid:用户id
+     *  paymentDto:
+     *              totalFee 订单总金额，单位为分。
+     *              body  商品简单描述，该字段请按照规范传递。
+     *  notifyUrl:支付成功回调函数
      * @return MiniPaymentDto
      */
     @Override
@@ -58,8 +60,14 @@ public class WxPayServiceImpl implements WxPayService {
         paymentDto.setNotify_url(notifyUrl);//通知地址(需要是外网可以访问的)
         paymentDto.setTrade_type(WxPayConstants.TRADE_TYPE);
         paymentDto.setOpenid(openId);
-        String preSign = paymentDto.toString1();
-
+        long time = System.currentTimeMillis();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        String timeStart = simpleDateFormat.format(time);
+        //交易起始时间
+        paymentDto.setTime_start(timeStart);
+        //十分钟后过期
+        String timeExpire = simpleDateFormat.format(time + 10 * 60 * 1000);
+        paymentDto.setTime_expire(timeExpire);
         Map<String, Object> sParaTemp = new HashMap<>();
         sParaTemp.put("appid", paymentDto.getAppid());
         sParaTemp.put("mch_id", paymentDto.getMch_id());
@@ -71,11 +79,13 @@ public class WxPayServiceImpl implements WxPayService {
         sParaTemp.put("notify_url",paymentDto.getNotify_url());
         sParaTemp.put("trade_type", paymentDto.getTrade_type());
         sParaTemp.put("openid", paymentDto.getOpenid());
+        sParaTemp.put("time_start",paymentDto.getTime_start());
+        sParaTemp.put("time_expire",paymentDto.getTime_expire());
         List keys = new ArrayList<>(sParaTemp.keySet());
         //参数名ASCII码从小到大排序（字典序）；
         Collections.sort(keys);
         //拼接字符串
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuffer = new StringBuilder();
         for (int i = 0; i < keys.size(); i++) {
             String key = (String) keys.get(i);
             String value =  sParaTemp.get(key) + "";
@@ -119,8 +129,8 @@ public class WxPayServiceImpl implements WxPayService {
 //            }
             String prepay_id = map.get("prepay_id").toString();//返回的预付单信息
             //将prepay_id缓存到redis中，用户模板消息发送
-            redisTemplate.opsForValue().set(out_trade_no + "_prepayId",prepay_id,7, TimeUnit.HOURS);
-            String packageParam = new StringBuffer().append("prepay_id=").append(prepay_id).toString();
+            redisTemplate.opsForValue().set(out_trade_no + "_prepayId",prepay_id,2, TimeUnit.HOURS);
+                String packageParam = new StringBuffer().append("prepay_id=").append(prepay_id).toString();
             String timeStamp = System.currentTimeMillis() / 1000 +"";
             String stringSignTemp = "appId=" + MiniProConstants.APPID + "&nonceStr=" + nonceStr + "&package=prepay_id=" + prepay_id + "&signType=MD5&timeStamp=" + timeStamp;
             //再次签名
@@ -168,7 +178,7 @@ public class WxPayServiceImpl implements WxPayService {
         //参数名ASCII码从小到大排序（字典序）；
         Collections.sort(keys);
         //拼接字符串
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuffer = new StringBuilder();
         for (int i = 0; i < keys.size(); i++) {
             String key = (String) keys.get(i);
             String value =  sParaTemp.get(key) + "";

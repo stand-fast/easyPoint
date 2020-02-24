@@ -49,6 +49,21 @@ public class TourismController {
     /**
      * 提交订单
      * @param  tourismOrderInfo 订单信息
+     *                          //租车填写信息页面的数据
+     *         passenger: "wan",//“乘客名”即username
+     *         phone: "17806531562",
+     *         departurePlace: '广东',
+     *         destination: '汕头',
+     *         travelNum: 52,
+     *         departureTime: '2019-07-01 8:30',
+     *         type: 0,
+     *         vehicleId: 3,
+     *         ifBack: 1,//是否往反
+     *         backTime: '2017-07-05 8:30',//返回时间
+     *         ifInsurance: 0,
+     * 		//支付金额
+     *         payMoney:0.01,//已付款金额，等于定金+（如有购买保险，加上）
+     *         body: '出行租车', //产品简单描述
      * @return 验证码
      */
     @ResponseBody
@@ -65,19 +80,24 @@ public class TourismController {
      * FJW
      * 修改出发日期
      * @param departureTime 新的出发时间
-     * @param beModifiedTime 原出发日期
+     * @param originalTime 原出发日期
      * @param travelOrderId 订单编号
      * @return 验证码
      */
     @ResponseBody
     @RequestMapping("/updateTourismDepartureTime")
     public Result updateTourismDepartureTime(@RequestParam("departureTime")String departureTime,
-                                             @RequestParam("beModifiedTime")String beModifiedTime,
+                                             @RequestParam("originalTime")String originalTime,
                                              @RequestParam("travelOrderId")int travelOrderId){
-        int resultCode = tourismInfoService.updateTourismOrderDepartureTime(departureTime, beModifiedTime, travelOrderId);
+        int resultCode = tourismInfoService.updateTourismOrderDepartureTime(departureTime, originalTime, travelOrderId);
         if(resultCode == 1)
             return new Result<>(200,"修改出发时间成功");
-        return new Result<>(201,"修改出发日期必须在出发前一天之前修改，当前已经超过修改日期");
+        else if(resultCode == 0)
+            return new Result<>(201,"修改出发日期必须在出发前一天之前修改，当前已经超过修改日期");
+        else if(resultCode == -2)
+            return new Result<>(202,"订单当前状态不支持更改信息");
+        else
+            return new Result<>(203,"只有一次修改机会，请无重复操作");
     }
 
     /**
@@ -102,12 +122,20 @@ public class TourismController {
         if(resultCode == 1)
             return new Result(200,"申请成功，请耐心等待管理员确认");
         //申请人的uid与订单的uid不同
+        else if(resultCode == 0)
+            return new Result(202,"申请失败，请确保您为该订单的所属者");
         else if(resultCode == -1)
-            return new Result(401,"申请失败，请确保您为该订单的所属者");
+            return new Result(401,"申请失败，您当前的申请次数已达到限制");
         else if(resultCode == -2)
-            return new Result(402,"该订单退款正等待管理员处理中，请耐心等待");
+            return new Result(402,"申请失败，订单已安排");
         else if(resultCode == -3)
-            return new Result(403,"该订单已退款成功，此次申请失败");
+            return new Result(403,"申请失败，订单已完成");
+        else if(resultCode == -5)
+            return new Result(405,"该订单退款正等待管理员处理中，请耐心等待");
+        else if(resultCode == -4)
+            return new Result(404,"该订单已退款成功，此次申请失败");
+        else if(resultCode == -6)
+            return new Result(406,"订单正在退款中，此次申请失败");
         //插入数据库异常
         return new Result(400,"申请异常，可联系管理员");
     }

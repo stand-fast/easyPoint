@@ -153,7 +153,7 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
         //查询订单状态
         int state = tourismInfoDao.findStateById(tourismOrderInfo.getTravelOrderId());
         //订单状态不为未安排和已安排，不允许修改安排车辆的信息
-        if(state != 0 || state != 1)
+        if(state != 0 && state != 1)
             return -1;
         //生成安排时间
         Date date = new Date();
@@ -204,7 +204,7 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
         try{
             String param = objectMapper.writeValueAsString(messageTemplateDto);
             //发送模板消息，通知用户管理员已经为其租车订单安排车辆信息
-            templateMessageService.sendTemplateMessage(param);
+            //templateMessageService.sendTemplateMessage(param);
         }catch (Exception e){
             log.error("messageTemplateDto类转换为Json数据出现异常" + e);
             return 0;
@@ -302,23 +302,27 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
         }
         int tourismRefundId = Integer.parseInt(decryptRefundId);
         //查询travelOrderId和退款状态
-        HashMap<String, Integer> idAndState = tourismInfoDao.findOrderIdAndStateById(tourismRefundId);
+        HashMap idAndState = tourismInfoDao.findOrderIdAndStateById(tourismRefundId);
+        int refundState = Integer.parseInt(idAndState.get("refundState").toString());
+        int travelOrderId = Integer.parseInt(idAndState.get("travelOrderId").toString());
         //判断此时的退款状态是否支持退款
-        if(idAndState.get("refundState") != 1)
+        if(refundState != 1)
             return -3;
         //管理员不同意退款
         if(ifAgree == 0){
             //将不同意理由保存到tourismRefund表中，并修改其状态为不通过
+            //修改travel_order表中的订单状态为不通过 1：待处理，2：审核不通过；3：正在退款；4：已退款；5：已取消
             tourismInfoDao.updateTourismRefundToFail(uid, tourismRefundId, 2, confirmRefundTime, rejectReason);
-            //修改travel_order表中的订单状态为不通过
-            tourismInfoDao.updateTravelOrderState(7, idAndState.get("travelOrderId"));
+            //
+            //tourismInfoDao.updateTravelOrderState(2, travelOrderId);
             //
             return 0;
         }
         //管理员同意退款
         //发起退款
         //根据订单编号查找微信订单号，订单付款金额，是否为往返票
-        TourismOrderInfo tourismOrderInfo = tourismInfoDao.findRefundNeceInfo(idAndState.get("travelOrderId"));
+        System.out.println("------------------------");
+        TourismOrderInfo tourismOrderInfo = tourismInfoDao.findRefundNeceInfo(travelOrderId);
         //构造退款参数对象
         RefundParamDto refundParamDto = new RefundParamDto();
         //设置微信订单号
@@ -343,19 +347,25 @@ public class AdmiTourismInfoServiceImpl implements AdmiTourismInfoService {
                 TourismRefundInfo tourismRefundInfo = new TourismRefundInfo();
                 tourismRefundInfo.setAdmiUid(uid);
                 tourismRefundInfo.setTourismRefundId(tourismRefundId);
-                tourismRefundInfo.setRefundState(3);
+                tourismRefundInfo.setRefundState(4);
                 tourismRefundInfo.setConfirmRefundTime(confirmRefundTime);
+                tourismRefundInfo.setFinishTime(DateUtil.getDateTime());
                 tourismRefundInfo.setRejectReason(rejectReason);
                 tourismRefundInfo.setRefundId(resultMap.get("refund_id").toString());
                 tourismRefundInfo.setRefundFee(Integer.parseInt(resultMap.get("refund_fee").toString()));
                 tourismInfoDao.updateTourismRefundToSuccess(tourismRefundInfo);
-                //修改travel_order表中的订单状态为通过
-                tourismInfoDao.updateTravelOrderState(6, idAndState.get("travelOrderId"));
+                //修改travel_order表中的订单状态为通过 0：未安排；1已安排；2已完成；3已付款；4：已预约；5：已退款
+                tourismInfoDao.updateTravelOrderState(5, travelOrderId);
+                return 1;
+            }
+            //退款资金不足
+            else if("SUCCESS".equals(resultMap.get("return_code"))&&"FAIL".equals(resultMap.get("result_code"))&&"NOTENOUGH".equals(resultMap.get("err_code"))){
+                return 2;
             }
         }catch (Exception e){
             log.error("退款请求失败" + e);
-            return -2;
+            return -4;
         }
-        return 1;
+        return -5;
     }
 }

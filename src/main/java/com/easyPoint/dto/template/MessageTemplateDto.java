@@ -15,7 +15,7 @@ public class MessageTemplateDto {
     private String color;
     //通知内容中的重点对象
     private String emphasis_keyword;
-
+    //通知模板点击跳转页
     private String page;
 
     public String getPage() {

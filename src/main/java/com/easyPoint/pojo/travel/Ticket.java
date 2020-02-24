@@ -41,6 +41,49 @@ public class Ticket {
     private String driverName;
     // 司机手机号码
     private String driverPhone;
+    //乐观锁标识
+    private Integer version;
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "ticketId=" + ticketId +
+                ", associationId=" + associationId +
+                ", associationName='" + associationName + '\'' +
+                ", departureDay='" + departureDay + '\'' +
+                ", departureTime='" + departureTime + '\'' +
+                ", departurePlace='" + departurePlace + '\'' +
+                ", destination='" + destination + '\'' +
+                ", price=" + price +
+                ", seatNum=" + seatNum +
+                ", seatSurplus=" + seatSurplus +
+                ", type=" + type +
+                ", issueTime='" + issueTime + '\'' +
+                ", state=" + state +
+                ", licensePlateNumber='" + licensePlateNumber + '\'' +
+                ", vehicleType='" + vehicleType + '\'' +
+                ", color='" + color + '\'' +
+                ", driverName='" + driverName + '\'' +
+                ", driverPhone='" + driverPhone + '\'' +
+                ", version=" + version +
+                '}';
+    }
+
+    public String getVehicleType() {
+        return vehicleType;
+    }
+
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
 
     public Integer getTicketId() {
         return ticketId;

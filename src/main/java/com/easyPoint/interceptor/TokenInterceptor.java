@@ -68,7 +68,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         ObjectMapper mapper = new ObjectMapper();
         String loginOverdueResponse = null;
         try {
-            loginOverdueResponse = mapper.writeValueAsString(new Result<>(400,"登录已经过期，重新登录！"));
+            loginOverdueResponse = mapper.writeValueAsString(new Result<>(501,"登录已经过期，重新登录！"));
         } catch (JsonProcessingException e) {
             log.error("TokenIntercptor转换JSON格式出错");
         }

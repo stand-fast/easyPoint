@@ -18,6 +18,9 @@ public class TemplateMessageServiceImpl implements TemplateMessageService {
 
     public static final Logger log = LoggerFactory.getLogger(TemplateMessageServiceImpl.class);
 
+    /**
+     * 参数param：MessageTemplateDto的Json格式数据
+     */
     @Autowired
     private RedisTemplate<String,String> redisTemplate;
 
