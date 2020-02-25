@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easyPoint.dao.lease.LeaseGoodsDao">
+
+    <!--//查询热门专栏图片路径-->
+    <!--List<String> findImageUrl();-->
+    <select id="findImageUrl" resultType="String">
+        SELECT advertisement_image FROM lease_recent_hot WHERE state = 0
+    </select>
+
+    <!--//根据租赁商品的类别查询小程序租赁商品界面的简要信息-->
+    <!--List<Map> findLeaseGoodsByTypeId(int goodsTypeId);-->
+    <select id="findLeaseGoodsByTypeId" parameterType="int" resultType="Map">
+        SELECT good_id AS goodId,
+               good_name AS goodName,
+               lowest_price AS lowestPrice,
+               lease_num AS leaseNum,
+               pro_img AS proImg
+               FROM goods_table
+               WHERE goods_type_id = #{goodsTypeId} AND state = 1
+    </select>
+
+    <!--//根据租赁商品id查询小程序租赁商品的详情页面信息-->
+    <!--LeaseGood findLeaseGoodDetailById(int goodId);-->
+    <select id="findLeaseGoodDetailById" parameterType="int" resultType="LeaseGood">
+        SELECT good_id AS goodId,good_name AS goodName,
+               business_name AS businessName,lowest_price AS lowestPrice,
+               highest_price AS highestPrice,good_images AS goodImages,
+               deposit,deposit_instruction AS depositInstruction,
+               take_good_instruction AS takeGoodInstruction,
+               return_good_instruction AS returnGoodInstruction,
+               business_hours AS businessHours,
+               good_description AS goodDescription,lease_num AS leaseNum
+               FROM goods_table WHERE good_id = #{goodId}
+    </select>
+
+    <!--//根据商品id查询该商品的所有规格-->
+    <!--List<GoodVariety> findVarietyByGoodId(int goodId);-->
+    <select id="findVarietyByGoodId" parameterType="int" resultType="GoodVariety">
+        SELECT variety_id AS varietyId,
+               variety,
+               size,
+               price,
+               img
+               FROM good_variety WHERE good_id = #{goodId}
+    </select>
+
+    <!--//保存租赁订单信息-->
+    <!--int addLeaseOrder(GoodOrder goodOrder);-->
+    <insert id="addLeaseOrder" parameterType="GoodOrder">
+        INSERT INTO good_order (uid,
+                                good_id,
+                                variety_id,
+                                user_name,
+                                phone,
+                                number,
+                                total_price,
+                                size,
+                                lease_date,
+                                receive_time,
+                                receive_address,
+                                note,
+                                state,
+                                out_trade_no,
+                                transaction_id,
+                                make_order_time) value (
+                                #{uid},
+                                #{goodId},
+                                #{varietyId},
+                                #{userName},
+                                #{phone},
+                                #{number},
+                                #{totalPrice},
+                                #{size},
+                                #{leaseDate},
+                                #{receiveTime},
+                                #{receiveAddress},
+                                #{note},
+                                #{state},
+                                #{outTradeNo},
+                                #{transactionId},
+                                #{makeOrderTime}
+                                )
+    </insert>
+
+    <!--//查询订单页面信息-->
+    <!--List<MiniLeaseOrderPageDto> findMiniOrderPageInfo();-->
+    <select id="findMiniOrderPageInfo" resultType="MiniLeaseOrderPageDto">
+        SELECT good_order_id AS goodOrderId,
+               good_name AS goodName,
+               price,
+               number,
+               o.state,
+               good_description AS goodDescription
+               FROM good_order o LEFT JOIN goods_table t ON o.good_id = t.good_id
+               LEFT JOIN good_variety v ON o.variety_id = v.variety_id
+               WHERE uid = #{uid}
+               ORDER BY good_order_id DESC
+    </select>
+
+    <!--//查询小程序租赁订单详情页数据-->
+    <!--MiniLeaseOrderDetailDto findMiniOrderDetailById(int goodOrderId);-->
+    <select id="findMiniOrderDetailById" parameterType="int" resultType="MiniLeaseOrderDetailDto">
+        SELECT user_name, phone,
+                business_name AS businessName,
+                good_name AS goodName,
+                price,
+                good_description AS goodDescription,
+                deposit,
+                number,
+                total_price AS totalPrice,
+                o.size,
+                lease_date AS leaseDate,
+                receive_address AS receiveAddress,
+                receive_time AS receiveTime,
+                return_time AS returnTime,
+                make_order_time AS makeOrderTime,
+                note,
+                o.state,
+                transaction_id AS transactionId
+                FROM good_order o LEFT JOIN goods_table t ON o.good_id = t.good_id
+                LEFT JOIN good_variety v ON o.variety_id = v.variety_id
+                WHERE good_order_id = #{goodOrderId}
+    </select>
+</mapper>

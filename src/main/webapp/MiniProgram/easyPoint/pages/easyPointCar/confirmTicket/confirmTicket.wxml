@@ -55,13 +55,13 @@
             <view class="changeContact" bindtap="changeContact">更换联系人</view>
         </view>
     </view>
-    <view class="content_insurance"  wx:if="{{currentab==0}}">
+    <!-- <view class="content_insurance"  wx:if="{{currentab==0}}">
         <view class='{{radioStatus?"circle2":"circle1"}}' bindtap="radiochange">
             <image src="/images/icon/right.png" wx:if="{{radioStatus}}"></image>
         </view>
         <text class="buytext">购买保险</text>
         <text class="detail" bindtap="insuDetail">详情  ></text>
-    </view>
+    </view> -->
     <view class="returnState">
         <view bindtap="returnState">乘车退改说明</view>
     </view>
@@ -87,14 +87,14 @@
         </view>
     </block>
      <block wx:if='{{successPay}}'>
-        <view class='mask_layer' bindtap='modal_click_Hidden' />
-        <view class='modal_box'>
+        <view class='mask_layer' bindtap='modal_success_Hidden' />
+        <view class='modal_box'  bindtap='modal_success_Hidden' >
             <icon type="success" color="blue" size="48" color="#1296db"></icon>
             <view wx:if="{{currentab==0}}" class="modal_box_title">支付成功</view>
              <view wx:if="{{currentab==1}}" class="modal_box_title">预约成功</view>
             <view wx:if="{{currentab==0}}" class="modal_box_content">感谢您的信任和使用，祝您旅途愉快！</view>
             <view wx:if="{{currentab==1}}" class="modal_box_content">预约结果请留意消息通知，谢谢配合哈！</view>
-            <button class="modal_box_btn" bindtap="successBtn">确定</button>
+            <button class="modal_box_btn">确定</button>
         </view>
     </block>
 </view>

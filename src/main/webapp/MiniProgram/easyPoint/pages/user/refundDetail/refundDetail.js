@@ -74,8 +74,13 @@ Page({
           case 200:
             wx.showToast({
               title: '取消退款成功',
-              duration: 2000
+              duration: 1000
             })
+            setTimeout(function () {
+              wx.navigateBack({
+                delta: 2
+              })
+            }, 1000) //延迟时间 这里是1秒
             break;
           case 501:
             app.getPermission();

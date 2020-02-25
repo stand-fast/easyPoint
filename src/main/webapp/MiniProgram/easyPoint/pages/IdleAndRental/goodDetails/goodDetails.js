@@ -7,6 +7,7 @@ let app = getApp();
 Page({
   data: {
     currentTab: 0,//选项卡类别0：商品详情，1：交易流程
+	currentID: 0, //当前的商品id
     showModalStatus: true,//是否显示商品规格弹窗
     check: false,//是否同意易点协议
     typeclick: null,//选择的商品种类
@@ -158,6 +159,120 @@ Page({
   //页面加载完毕执行函数(放在首位)
   onLoad: function (options) {
     this.timeSelection();
+	this.setData({
+		currentID:options.id
+	})
+	this.getMessage(options.id)
+  },
+  getMessage: function (id) {
+    let that = this;
+    let token = app.globalData.token;
+  	// let id = this.data.goodsTypeInterface[this.data.flag].goodsTypeId
+    wx.request({
+      url: 'https://www.easypoint.club/miniProgram/lease/detail',
+      data: {
+        goodId: id,   //请求数据
+      },
+      method: 'GET',
+      header: { 'content-type': 'application/x-www-form-urlencoded', token},
+      success: function (res) {
+        let code = res.data.code;
+        if (res.header.token != undefined) {
+          app.replaceToken(res.header.token);
+        }
+        switch (code) {
+          case 200:case 201:
+		    that.getSize(id,res.data.data)
+            // that.setGoodsInfo(res.data.data,id)
+            break;
+          case 501:
+            app.getPermission();
+            break;
+        }
+      }
+    })
+  },
+  getSize: function(id,details){
+	  let that = this;
+	  let token = app.globalData.token;
+	  // let id = this.data.goodsTypeInterface[this.data.flag].goodsTypeId
+	  wx.request({
+	    url: 'https://www.easypoint.club/miniProgram/lease/varieties',
+	    data: {
+	      goodId: id,   //请求数据
+	    },
+	    method: 'GET',
+	    header: { 'content-type': 'application/x-www-form-urlencoded', token},
+	    success: function (res) {
+	      let code = res.data.code;
+	      if (res.header.token != undefined) {
+	        app.replaceToken(res.header.token);
+	      }
+	      switch (code) {
+	        case 200:case 201:
+	          that.setGoodsInfo(res.data.data,details)
+	          break;
+	        case 501:
+	          app.getPermission();
+	          break;
+	      }
+	    }
+	  })
+  },
+  setGoodsInfo: function(data,details){
+	  // this.data.good_details_info.goodletiety
+  	  let goodletiety = this.setSize(data)
+	  let goodDetails = {
+		detailsImg:[//轮播图
+		  "/images/guotai.png",
+		  "/images/guotai.png",
+		  "/images/guotai.png",
+		  "/images/guotai.png",
+		  "/images/guotai.png",
+		],
+		goodName:details.goodName,//商品名称
+		price:details.lowestPrice,//价格
+		deposit:details.deposit,//押金
+		companyName:details.businessName,//提供商
+		leaseNum:details.leaseNum,//已租次数
+		detailInfo:details.goodDescription,//商品详情详细
+		letiety:[],//种类
+		depositInstructions:details.depositInstruction,//押金说明
+		receivedGood: details.takeGoodInstruction,//取货
+		returnGood: details.returnGoodInstruction,//还货
+		businessHours:"早上10：30至晚上21：00",//营业时间
+		goodletiety:goodletiety
+	  }
+	  let hourArray = details.businessHours.split("-")
+	  goodDetails.businessHours = `早上${hourArray[0]}至晚上${hourArray[1]}`
+	  // detailsImg = details.goodImages.split("&")
+	  // console.log(goodDetails)
+	  this.setData({
+		  good_details_info:goodDetails
+	  })
+  },
+  setSize(data){
+	  console.log(data)
+	  let setGoodletiety = data.map((ele)=>{
+		let obj = {
+			filesname:"",
+			// filesUrl: ele.img,
+			filesUrl: "/images/guotai.png",
+			itemName: ele.variety,
+			varietyId: ele.varietyId
+		}
+		let allSize = ele.size.split("&")
+		obj.items = allSize.map((sizeEle)=>{
+			let obj = {
+				itemId:0,
+				specifc:sizeEle,
+				price:ele.price
+			}
+			return obj
+		})
+		return obj
+	  })
+	  return setGoodletiety
   },
   //初始化时间选择控件-获取时间数组以及当下时间
   timeSelection: function () {

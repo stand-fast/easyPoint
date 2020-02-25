@@ -1,4 +1,4 @@
-// pages/easyPointCar/bookTicket/bookTicket.js
+ // pages/easyPointCar/bookTicket/bookTicket.js
 let dateTimePicker = require('../../../component/selectTime/dateTimePicker.js');//获取开始时间控件、开始时间数组
 let timePicker = require('../../../component/selectTime/timePicker.js');//时间选择控件
 let getUserInformation = require('../../../component/userInfor/getUserInfor.js');//获取个人信息
@@ -12,6 +12,7 @@ Page({
     insucheck: false,//旅游出行-是否购买保险
     radioStatus: false,//旅游出行-是否往返
     successShowmodal:false,//支付成功是否弹窗
+    assoName:"",//乡会名称
     is_back:0,//是否往返数据
     is_insurance:0,//是否购买保险数据
     imgUrls: [//轮播图
@@ -37,18 +38,19 @@ Page({
   //页面加载完毕执行函数(放在首位)
   onLoad: function (options) {
     this.getMessage();   //获取车票类型数据
-    //this.getCommitteeMessage()  //获取同乡会名称数据
+    this.getCommitteeMessage()  //获取同乡会名称数据
     this.timeSelection();//时间选择控件
-
-    //同乡会数据处理，接上服务器后删除
-    let associations = this.data.associationsList;
-    let associationsName = [];
-    for (let i = 0; i < associations.length; i++) {
-      associationsName.push(associations[i].associationName)
-    }
-    this.setData({
-      associations: associationsName,
-    })
+  },
+  getCommitteeData:function(){
+	  //同乡会数据处理，接上服务器后删除
+	  let associations = this.data.associationsList;
+	  let associationsName = [];
+	  for (let i = 0; i < associations.length; i++) {
+	    associationsName.push(associations[i].associationName)
+	  }
+	  this.setData({
+	    associations: associationsName,
+	  })
   },
   //请求车辆类型数据以及对应应付定金
   getMessage: function () {
@@ -88,8 +90,9 @@ Page({
   //请求同乡会名称数据
   getCommitteeMessage: function () {
     let token = app.globalData.token;
+	let that=this
     wx.request({
-      url: '接口路径',
+      url: 'https://www.easypoint.club/miniProgram/findAllAssociations',
       method: 'get',
       header: { 'content-type': 'application/x-www-form-urlencoded', token },
       success: function (res) {
@@ -99,11 +102,11 @@ Page({
         for (let i = 0; i < associations.length; i++) {
           associationsName.push(associations[i].associationName)
         }
-        this.setData({
-          associationsList: res.data,
+        that.setData({
+          associationsList: res.data.data,
           associations: associationsName,
         })
-
+		that.getCommitteeData()
       }
     })
   },
@@ -121,6 +124,9 @@ Page({
   modal_click_Hidden: function () {       //隐藏弹框
     this.setData({
         successShowmodal: false,
+    })
+    wx.navigateTo({
+      url: '/pages/user/myOrder/myOrder',
     })
   },
   //选项卡切换
@@ -197,24 +203,24 @@ Page({
     let associationId = this.data.associationsList[index].associationId;
     //判断车票类型
     this.setData({
-          assoName: name,
-          associationId: associationId,
+      assoName: name,
+      associationId: associationId,
     })
   },
   //同乡会-跳转到车票查询
   searchAsso:function(){
-      if (this.data.assoName==""){
-        wx.showToast({
-          title: '请选择同乡会',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-      else(
-        wx.navigateTo({
-          url: '/pages/easyPointCar/queryTicket/queryTicket?associationId=' + this.data.associationId
-        })
-      )
+    if (this.data.assoName==""){
+      wx.showToast({
+        title: '请选择同乡会',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+    else(
+      wx.navigateTo({
+        url: '/pages/easyPointCar/queryTicket/queryTicket?associationId=' + this.data.associationId
+      })
+    )
   },
   //提交拉起支付功能
   formSubmit: function (e) {
@@ -330,15 +336,8 @@ Page({
       signType: param.signType,
       paySign: param.paySign,
       success: function (res) {
-        wx.showToast({
-          title: '支付成功',
-          icon: 'success',
-          duration: 2000
-        })
-        wx.navigateTo({
-          url: 'pages/user/myOrder/myOrder',
-        })
         that.setData({
+          successShowmodal:true,
           startAddress:"",
           endAddress:"",
           perNumbers:"",
