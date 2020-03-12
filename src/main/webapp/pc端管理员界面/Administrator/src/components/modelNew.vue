@@ -251,6 +251,11 @@ export default {
               navitem: [
                 {
                   id: "1",
+                  name: "添加商品类目",
+                  url: "#/addCategory"
+                },
+                {
+                  id: "2",
                   name: "发布商品",
                   url: "#/PublishGoods"
                 }
@@ -502,8 +507,8 @@ export default {
 .model-back {
   cursor: pointer;
   position: absolute;
-  right: 100px;
-  top: 120px;
+  right: 60px;
+  top: 125px;
   color: #9c9ea1;
   font-size: 18px;
   z-index: 9999;
