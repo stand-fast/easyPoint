@@ -20,8 +20,7 @@ public class GoodOrder {
     private String receiveAddress;
     private String note;
     private String refund;
-    // 状态
-    private String state;
+    private Integer state;
     private String outTradeNo;
     private String transactionId;
 
@@ -153,11 +152,11 @@ public class GoodOrder {
         this.refund = refund;
     }
 
-    public String getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 

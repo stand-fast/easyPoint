@@ -1,23 +1,21 @@
 package com.easyPoint.dto.business;
 
-import com.easyPoint.pojo.business.Goods;
-
 /**
  * 订单详情
  */
 public class GoodOrderDto {
-     private String goodOrderId;
-     private Goods goods;
-     private double price;
-     private String userName;
-     private String phone;
-     private Integer number;
-     private String size;
-     private Integer leaseDate;
-     private String makeOrderTime;
-     private String receiveTime;
-     private String state;
-     private String transactionId;
+    private String goodOrderId;
+    private GoodsDto goodsDto;
+    private double price;
+    private String userName;
+    private String phone;
+    private Integer number;
+    private String size;
+    private Integer leaseDate;
+    private String makeOrderTime;
+    private String receiveTime;
+    private Integer state;
+    private String transactionId;
 
     public String getGoodOrderId() {
         return goodOrderId;
@@ -27,12 +25,12 @@ public class GoodOrderDto {
         this.goodOrderId = goodOrderId;
     }
 
-    public Goods getGoods() {
-        return goods;
+    public GoodsDto getGoodsDto() {
+        return goodsDto;
     }
 
-    public void setGoods(Goods goods) {
-        this.goods = goods;
+    public void setGoodsDto(GoodsDto goodsDto) {
+        this.goodsDto = goodsDto;
     }
 
     public double getPrice() {
@@ -99,11 +97,11 @@ public class GoodOrderDto {
         this.receiveTime = receiveTime;
     }
 
-    public String getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 

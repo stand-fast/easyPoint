@@ -11,8 +11,15 @@ public class GoodsDto {
     private String proImg;
     private String businessName;
     private Integer leaseNum;
-    // 状态
-    private String state;
+    private double deposit;
+
+    public double getDeposit() {
+        return deposit;
+    }
+
+    public void setDeposit(double deposit) {
+        this.deposit = deposit;
+    }
 
     public String getGoodId() {
         return goodId;
@@ -68,13 +75,5 @@ public class GoodsDto {
 
     public void setLeaseNum(Integer leaseNum) {
         this.leaseNum = leaseNum;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
     }
 }

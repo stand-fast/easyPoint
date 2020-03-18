@@ -6,20 +6,28 @@
     <!-- 添加商品 -->
     <insert id="addGoods" parameterType="goods">
         INSERT INTO goods_table(good_id, good_name, business_name, lowest_price, highest_price, good_images, deposit,
-                                deposit_intruction, take_good_intruction, return_good_intruction, business_hours,
+                                deposit_instruction, take_good_instruction, return_good_instruction, business_hours,
                                 good_description, lease_num, pro_img, goods_type_id, state)
         VALUES (#{goodId}, #{goodName}, #{businessName}, #{lowestPrice}, #{highestPrice}, #{goodImages}, #{deposit},
-                #{depositIntruction}, #{takeGoodIntruction}, #{returnGoodIntruction}, #{businessHours},
+                #{depositInstruction}, #{takeGoodInstruction}, #{returnGoodInstruction}, #{businessHours},
                 #{goodDescription}, #{leaseNum}, #{proImg}, #{goodsTypeId}, #{state})
     </insert>
 
     <!-- 根据状态查询已发布过的所有商品 -->
-    <select id="findGoodsByState" parameterType="string" resultType="goodsDto">
-
+    <select id="findGoodsByState" parameterType="Integer" resultType="goodsDto">
+        SELECT good_id       AS goodId,
+               good_name     AS goodName,
+               lowest_price  AS lowestPrice,
+               highest_price AS highestPrice,
+               pro_img       AS proImg,
+               business_name AS businessName,
+               lease_name    AS leaseName
+        FROM goods_table
+        WHERE state = #{state}
     </select>
 
     <!-- 根据id修改商品状态 -->
-    <update id="updateStateById">
+    <update id="updateStateById" parameterType="string">
         UPDATE goods_table
         SET state = #{state}
         WHERE good_id = #{goodId}
@@ -27,7 +35,16 @@
 
     <!-- 根据id查询商品详情 -->
     <select id="findGoodsDetailsById" parameterType="string" resultType="goodsDetailsDto">
-
+        SELECT good_name               AS goodName,
+               business_name           AS businessName,
+               lowest_price            AS lowestPrice,
+               highest_price           AS highestPrice,
+               deposit_instruction     AS depositInstruction,
+               take_good_instruction   AS takeGoodInstruction,
+               return_good_instruction AS returnGoodInstruction,
+               lease_num               AS leaseNum,
+               pro_img                 AS proImg
+        FROM goods_table
     </select>
 
     <!-- 根据id删除商品 -->
@@ -54,9 +71,9 @@
             <if test="highestPrice != null and highestPrice >= 0">highest_price = #{highestPrice}</if>
             <if test="goodImages !=  null and goodImages != ''">good_images = #{goodImages}</if>
             <if test="deposit != null and deposit >= 0">deposit = #{deposit}</if>
-            <if test="depositIntruction != null depositIntruction != ''">deposit_intruction</if>
-            <if test="takeGoodIntruction != null takeGoodIntruction != ''">take_good_intruction</if>
-            <if test="returnGoodIntruction != null returnGoodIntruction != ''">return_good_intruction</if>
+            <if test="depositInstruction != null depositInstruction != ''">deposit_instruction</if>
+            <if test="takeGoodInstruction != null takeGoodInstruction != ''">take_good_instruction</if>
+            <if test="returnGoodInstruction != null returnGoodInstruction != ''">return_good_instruction</if>
             <if test="businessHours != null businessHours != ''">business_hours</if>
             <if test="goodDescription != null goodDescription != ''">good_description</if>
             <if test="proImg != null proImg != ''">pro_img</if>

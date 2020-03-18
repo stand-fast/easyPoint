@@ -2,9 +2,43 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.easyPoint.dao.business.GoodsOrderDaoDao">
+<mapper namespace="com.easyPoint.dao.business.GoodsOrderDao">
     <!-- 查询所有订单 -->
-    <select id="findAllOrder" parameterType="string" resultType="goodOrderDto">
-
+    <resultMap id="goodOrderDtoMap" type="goodOrderDto">
+        <id property="goodOrderId" column="o.good_order_id"/>
+        <result column="v.price" property="price"/>
+        <result column="o.user_name" property="userName"/>
+        <result column="o.phone" property="phone"/>
+        <result column="o.number" property="number"/>
+        <result column="v.size" property="size"/>
+        <result column="o.lease_date" property="leaseDate"/>
+        <result column="o.make_order_time" property="makeOrderTime"/>
+        <result column="o.receive_time" property="receiveTime"/>
+        <result column="o.state" property="state"/>
+        <result column="o.transaction_id" property="transactionId"/>
+        <association property="goodsDto" column="good_id" javaType="goodsDto" select="getGoodsDto"/>
+    </resultMap>
+    <select id="findAllOrder" parameterType="string" resultMap="goodOrderDtoMap">
+        SELECT o.good_order_id AS goodOrderId,
+        v.price,
+        o.user_name AS userName,
+        o.phone,
+        o.number,
+        v.size,
+        o.lease_date AS leaseDate,
+        o.make_order_time AS makeOrderTime,
+        o.receive_time AS receiveTime,
+        o.state,
+        o.transaction_id AS transactionId
+        FROM good_order o, good_variety v
+        <where>o.variety_id = v.variety_id
+            <if test="state != null">AND state = #{state}</if>
+        </where>
     </select>
+    <select id="getGoodsDto" parameterType="string" resultType="goodsDto">
+        SELECT good_name AS goodName, business_name AS businessName, deposit, pro_img AS proImg
+        FROM goods_table
+        WHERE good_id = goodId
+    </select>
+
 </mapper>

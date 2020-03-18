@@ -13,7 +13,6 @@ public class GoodsDetailsDto {
     private String takeGoodInstruction;
     private String returnGoodInstruction;
     private String goodDescription;
-    // 已租次数
     private Integer leaseNum;
 
     public String getGoodName() {
