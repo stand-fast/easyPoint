@@ -100,7 +100,7 @@ Page{
     color: #666;
 }
 .item_last button{
-    width: 190rpx;
+    width: 120rpx;
     height: 50rpx;
     line-height: 50rpx;
     font-size: 26rpx;

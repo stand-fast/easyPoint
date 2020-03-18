@@ -1,0 +1,28 @@
+/* pages/protocal/protocal/protocal.wxss */
+Page{
+    background-color: #f2f2f2;
+}
+.protocal-container{
+    margin: 10rpx 0rpx;
+    background-color: #ffffff;
+}
+.protocal-item {
+    display: flex;
+    flex-direction: row;
+    width: 750rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    padding: 0rpx 60rpx;
+    color: #666666;
+    border-bottom: 2rpx solid #f2f2f2;
+}
+.protocal-text{
+    width: 580rpx;
+    font-size: 30rpx;
+}
+.protocal-image{
+    width: 40rpx;
+    height: 30rpx;
+    margin: auto 0;
+    transform: rotate(270deg)
+}

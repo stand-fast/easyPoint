@@ -6,8 +6,8 @@ Page({
      */
     data: {
       userInformation:{
-        username: "广金吴彦祖",
-        phone: "12345678910",
+        username: "",
+        phone: "",
       }
     },
     clearName:function(e){

@@ -1,0 +1,32 @@
+/* pages/protocal/protocaldetail/prtocaldetail.wxss */
+
+Page {
+    background-color: #f2f2f2;
+}
+
+.detail-container {
+    width: 700rpx;
+    min-height: 1100rpx;
+    height: auto!important;
+    margin: 30rpx auto;
+    background-color: #fff;
+    border-radius: 8rpx;
+}
+
+.detail-title {
+    font-size: 36rpx;
+    text-align: center;
+    color: #65b8e2;
+    padding: 55rpx 0rpx 40rpx 0rpx;
+}
+
+.detail-text{
+    line-height: 50rpx;
+    font-size: 30rpx;
+    color: #666666;
+    padding: 0rpx 52rpx 55rpx 52rpx;
+}
+
+.bold{
+    font-weight: bold;
+}

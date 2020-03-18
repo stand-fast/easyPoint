@@ -6,32 +6,30 @@
     <el-main class="el-main-content">
       <p class="model-content-input">
         <span>车牌号：</span>
-        <el-input placeholder="请输入车牌号" v-model="licensePlateNumberChange" clearable></el-input>
+        <el-input placeholder="请输入车牌号" v-model="licensePlateNumber" clearable></el-input>
       </p>
       <p class="model-content-input">
         <span>车辆类型：</span>
-        <el-input placeholder="请输入车辆类型" v-model="vehicleTypeChange" clearable></el-input>
+        <el-input placeholder="请输入车辆类型" v-model="vehicleType" clearable></el-input>
       </p>
       <p class="model-content-input">
         <span>车身颜色：</span>
-        <el-input placeholder="请输入车身颜色" v-model="colorChange" clearable></el-input>
+        <el-input placeholder="请输入车身颜色" v-model="color" clearable></el-input>
       </p>
       <p class="model-content-input">
         <span>司机姓名：</span>
-        <el-input placeholder="请输入司机姓名" v-model="driverNameChange" clearable></el-input>
+        <el-input placeholder="请输入司机姓名" v-model="driverName" clearable></el-input>
       </p>
       <p class="model-content-input">
         <span>司机联系方式：</span>
-        <el-input placeholder="请输入司机联系方式" v-model="driverPhoneChange" clearable maxlength="11"></el-input>
+        <el-input placeholder="请输入司机联系方式" v-model="driverPhone" clearable maxlength="11"></el-input>
       </p>
       <p class="model-content-input">
         <span></span>
         <el-button class="model-content-button" @click="updateTicketInfo()">提交</el-button>
-        <el-button class="model-content-button" @click="submitFinish(id)">结单</el-button>
       </p>
     </el-main>
   </div>
-
 </template>
 <script>
 export default {
@@ -39,17 +37,12 @@ export default {
     return {
       navName: "旅游出行",
       navPlateName: "车辆信息",
-      id: "",//订单id,
-      licensePlateNumber: "",//车牌号
-      licensePlateNumberChange: "",//修改车牌号
-      vehicleType: "",//车辆类型
-      vehicleTypeChange: "",//修改车辆类型
-      color: "",//颜色
-      colorChange: "",//修改车辆颜色
-      driverName: "",//司机姓名
-      driverNameChange: "",//修改司机姓名
-      driverPhone: "",//司机联系方式
-      driverPhoneChange: "",//修改司机联系方式
+      id: "", //订单id,
+      licensePlateNumber: "", //车牌号
+      vehicleType: "", //车辆类型
+      color: "", //颜色
+      driverName: "", //司机姓名
+      driverPhone: "" //司机联系方式
     };
   },
   mounted() {
@@ -86,7 +79,7 @@ export default {
     //请求车辆信息数据
     async findTicketInfo(id) {
       let that = this;
-      let params = { "ticketId": id};
+      let params = { ticketId: id };
       this.$http
         .get("findTicketInfo", { params })
         .then(res => {
@@ -100,11 +93,17 @@ export default {
             case 1:
               console.log("查询成功");
               let info = data.data.ticketInfo;
-              this.licensePlateNumber = info.licensePlateNumber;
-              this.vehicleType = info.vehicleType;
-              this.color = info.color;
-              this.driverName = info.driverName;
-              this.driverPhone = info.driverPhone;
+              that.licensePlateNumber =
+                info.licensePlateNumber == "未添加"
+                  ? ""
+                  : info.licensePlateNumber;
+              that.vehicleType =
+                info.vehicleType == "未添加" ? "" : info.vehicleType;
+              that.color = info.color == "未添加" ? "" : info.color;
+              that.driverName =
+                info.driverName == "未添加" ? "" : info.driverName;
+              that.driverPhone =
+                info.driverPhone == "未添加" ? "" : info.driverPhone;
               break;
             case 2:
               alert("参数为空");
@@ -123,11 +122,11 @@ export default {
       let that = this;
       let params = new URLSearchParams();
       params.append("ticketId", this.id);
-      params.append("licensePlateNumber", this.licensePlateNumberChange || this.licensePlateNumber );
-      params.append("vehicleType", this.vehicleTypeChange || this.vehicleType);
-      params.append("color", this.colorChange || this.color);
-      params.append("driverName", this.driverNameChange || this.driverName);
-      params.append("driverPhone", this.driverPhoneChange || this.driverPhone);
+      params.append("licensePlateNumber", this.licensePlateNumber);
+      params.append("vehicleType", this.vehicleType);
+      params.append("color", this.color);
+      params.append("driverName", this.driverName);
+      params.append("driverPhone", this.driverPhone);
       this.$http
         .post("updateTicketInfo", params)
         .then(res => {
@@ -141,11 +140,6 @@ export default {
             case 1:
               alert("修改成功");
               this.findTicketInfo(this.id);
-              this.licensePlateNumberChange = "";
-              this.vehicleTypeChange = "";
-              this.colorChange = "";
-              this.driverNameChange = "";
-              this.driverPhoneChange = "";
               break;
             case 2:
               alert("参数为空");
@@ -158,37 +152,6 @@ export default {
         .catch(function(e) {
           console.log(e);
         });
-    },
-    //结单
-    submitFinish(id) {
-      let that = this;
-      if (confirm("确定是否结单")) {
-        let params = {
-              travelOrderId: 11
-        };
-        this.$http
-          .get("接口路径", { params })
-          .then(function(res) {
-            let data = res.data;
-            let code = data.code;
-            switch(code){
-              case 200:
-                console.log(data);
-                alert("结单成功");
-              case 400:
-                console.log(data);
-                alert("结单失败,请稍后重试");
-              default:
-                that.$judgeToken(code);
-                break;
-            }
-          })
-          .catch(function(e) {
-            console.log(e);
-          });
-      } else {
-        console.log("你取消了结单");
-      }
     }
   }
 };
