@@ -22,16 +22,7 @@ public class Goods {
     private String proImg;
     private GoodsType goodsType;
     private List<GoodVariety> goodVarietyList;
-    // 状态
-    private String state;
-
-    public GoodsType getGoodsType() {
-        return goodsType;
-    }
-
-    public void setGoodsType(GoodsType goodsType) {
-        this.goodsType = goodsType;
-    }
+    private Integer state;
 
     public String getGoodId() {
         return goodId;
@@ -145,6 +136,14 @@ public class Goods {
         this.proImg = proImg;
     }
 
+    public GoodsType getGoodsType() {
+        return goodsType;
+    }
+
+    public void setGoodsType(GoodsType goodsType) {
+        this.goodsType = goodsType;
+    }
+
     public List<GoodVariety> getGoodVarietyList() {
         return goodVarietyList;
     }
@@ -153,11 +152,11 @@ public class Goods {
         this.goodVarietyList = goodVarietyList;
     }
 
-    public String getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 }
