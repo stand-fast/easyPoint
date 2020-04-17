@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 /**
  * @author FHJ
  * @date 2020/3/18 21:53
  */
+
 @Service("goodsOrderService")
 public class GoodsOrderServiceImpl implements GoodsOrderService {
 
@@ -19,7 +21,12 @@ public class GoodsOrderServiceImpl implements GoodsOrderService {
     GoodsOrderDao goodsOrderDao;
 
     @Override
-    public List<GoodOrderDto> findAllOrder(Integer state) {
-        return goodsOrderDao.findAllOrder(state);
+    public List<GoodOrderDto> findAllOrder(Integer state, Integer startIndex, Integer pageSize) {
+        return goodsOrderDao.findAllOrder(state, startIndex, pageSize);
+    }
+
+    @Override
+    public Integer findAllOrderNum(Integer state) {
+        return goodsOrderDao.findAllOrderNum(state);
     }
 }

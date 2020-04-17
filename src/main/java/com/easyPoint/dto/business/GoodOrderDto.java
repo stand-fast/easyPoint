@@ -1,19 +1,21 @@
 package com.easyPoint.dto.business;
 
+
 /**
  * 订单详情
  */
+
 public class GoodOrderDto {
     private String goodOrderId;
-    private GoodsDto goodsDto;
-    private double price;
+    private GoodsDtoForOrder goodsDtoForOrder;
     private String userName;
     private String phone;
     private Integer number;
-    private String size;
     private Integer leaseDate;
-    private String makeOrderTime;
+    private String size;
+    private Double totalPrice;
     private String receiveTime;
+    private String makeOrderTime;
     private Integer state;
     private String transactionId;
 
@@ -25,20 +27,12 @@ public class GoodOrderDto {
         this.goodOrderId = goodOrderId;
     }
 
-    public GoodsDto getGoodsDto() {
-        return goodsDto;
+    public GoodsDtoForOrder getGoodsDtoForOrder() {
+        return goodsDtoForOrder;
     }
 
-    public void setGoodsDto(GoodsDto goodsDto) {
-        this.goodsDto = goodsDto;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
+    public void setGoodsDtoForOrder(GoodsDtoForOrder goodsDtoForOrder) {
+        this.goodsDtoForOrder = goodsDtoForOrder;
     }
 
     public String getUserName() {
@@ -65,14 +59,6 @@ public class GoodOrderDto {
         this.number = number;
     }
 
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
     public Integer getLeaseDate() {
         return leaseDate;
     }
@@ -81,12 +67,20 @@ public class GoodOrderDto {
         this.leaseDate = leaseDate;
     }
 
-    public String getMakeOrderTime() {
-        return makeOrderTime;
+    public String getSize() {
+        return size;
     }
 
-    public void setMakeOrderTime(String makeOrderTime) {
-        this.makeOrderTime = makeOrderTime;
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public String getReceiveTime() {
@@ -95,6 +89,14 @@ public class GoodOrderDto {
 
     public void setReceiveTime(String receiveTime) {
         this.receiveTime = receiveTime;
+    }
+
+    public String getMakeOrderTime() {
+        return makeOrderTime;
+    }
+
+    public void setMakeOrderTime(String makeOrderTime) {
+        this.makeOrderTime = makeOrderTime;
     }
 
     public Integer getState() {

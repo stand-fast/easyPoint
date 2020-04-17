@@ -3,6 +3,7 @@ package com.easyPoint.service.business.impl;
 import com.easyPoint.dao.business.GoodsDao;
 import com.easyPoint.dto.business.GoodsDetailsDto;
 import com.easyPoint.dto.business.GoodsDto;
+import com.easyPoint.pojo.business.GoodVariety;
 import com.easyPoint.pojo.business.Goods;
 import com.easyPoint.service.business.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,16 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public List<GoodsDto> findGoodsByState(Integer state) {
-        return goodsDao.findGoodsByState(state);
+    public List<GoodsDto> findGoodsByState(Integer state, Integer startIndex, Integer pageSize) {
+        return goodsDao.findGoodsByState(state, startIndex, pageSize);
     }
 
     @Override
+    public Integer findGoodsNumByState(Integer state) {
+        return goodsDao.findGoodsNumByState(state);
+    }
+
+   @Override
     public Integer updateStateById(String goodsId, Integer newState) {
         return goodsDao.updateStateById(goodsId, newState);
     }
@@ -53,5 +59,10 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public Integer updateGoods(Goods goods) {
         return goodsDao.updateGoods(goods);
+    }
+
+    @Override
+    public Integer addGoodVariety(GoodVariety goodVariety) {
+        return goodsDao.addGoodVariety(goodVariety);
     }
 }

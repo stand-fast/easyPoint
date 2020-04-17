@@ -1,8 +1,10 @@
 package com.easyPoint.pojo.business;
 
+
 /**
  * 商品订单
  */
+
 public class GoodOrder {
     private String goodOrderId;
     private String goodId;
@@ -11,7 +13,7 @@ public class GoodOrder {
     private String userName;
     private String phone;
     private Integer number;
-    private double totalPrice;
+    private Double totalPrice;
     private String size;
     private Integer leaseDate;
     private String makeOrderTime;
@@ -80,11 +82,11 @@ public class GoodOrder {
         this.number = number;
     }
 
-    public double getTotalPrice() {
+    public Double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
     }
 

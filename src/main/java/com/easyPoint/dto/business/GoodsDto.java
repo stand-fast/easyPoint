@@ -1,23 +1,25 @@
 package com.easyPoint.dto.business;
 
+
 /**
  * 根据状态查询所有商品
  */
+
 public class GoodsDto {
     private String goodId;
     private String goodName;
-    private double lowestPrice;
-    private double highestPrice;
+    private Double lowestPrice;
+    private Double highestPrice;
     private String proImg;
     private String businessName;
     private Integer leaseNum;
-    private double deposit;
+    private Double deposit;
 
-    public double getDeposit() {
+    public Double getDeposit() {
         return deposit;
     }
 
-    public void setDeposit(double deposit) {
+    public void setDeposit(Double deposit) {
         this.deposit = deposit;
     }
 
@@ -37,19 +39,19 @@ public class GoodsDto {
         this.goodName = goodName;
     }
 
-    public double getLowestPrice() {
+    public Double getLowestPrice() {
         return lowestPrice;
     }
 
-    public void setLowestPrice(double lowestPrice) {
+    public void setLowestPrice(Double lowestPrice) {
         this.lowestPrice = lowestPrice;
     }
 
-    public double getHighestPrice() {
+    public Double getHighestPrice() {
         return highestPrice;
     }
 
-    public void setHighestPrice(double highestPrice) {
+    public void setHighestPrice(Double highestPrice) {
         this.highestPrice = highestPrice;
     }
 

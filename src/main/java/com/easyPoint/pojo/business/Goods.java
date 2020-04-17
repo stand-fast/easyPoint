@@ -9,10 +9,10 @@ public class Goods {
     private String goodId;
     private String goodName;
     private String businessName;
-    private double lowestPrice;
-    private double highestPrice;
+    private Double lowestPrice;
+    private Double highestPrice;
     private String goodImages;
-    private double deposit;
+    private Double deposit;
     private String depositInstruction;
     private String takeGoodInstruction;
     private String returnGoodInstruction;
@@ -20,9 +20,18 @@ public class Goods {
     private String goodDescription;
     private Integer leaseNum;
     private String proImg;
+    private Integer goodsTypeId;
     private GoodsType goodsType;
     private List<GoodVariety> goodVarietyList;
     private Integer state;
+
+    public Integer getGoodsTypeId() {
+        return goodsTypeId;
+    }
+
+    public void setGoodsTypeId(Integer goodsTypeId) {
+        this.goodsTypeId = goodsTypeId;
+    }
 
     public String getGoodId() {
         return goodId;
@@ -48,19 +57,19 @@ public class Goods {
         this.businessName = businessName;
     }
 
-    public double getLowestPrice() {
+    public Double getLowestPrice() {
         return lowestPrice;
     }
 
-    public void setLowestPrice(double lowestPrice) {
+    public void setLowestPrice(Double lowestPrice) {
         this.lowestPrice = lowestPrice;
     }
 
-    public double getHighestPrice() {
+    public Double getHighestPrice() {
         return highestPrice;
     }
 
-    public void setHighestPrice(double highestPrice) {
+    public void setHighestPrice(Double highestPrice) {
         this.highestPrice = highestPrice;
     }
 
@@ -72,11 +81,11 @@ public class Goods {
         this.goodImages = goodImages;
     }
 
-    public double getDeposit() {
+    public Double getDeposit() {
         return deposit;
     }
 
-    public void setDeposit(double deposit) {
+    public void setDeposit(Double deposit) {
         this.deposit = deposit;
     }
 

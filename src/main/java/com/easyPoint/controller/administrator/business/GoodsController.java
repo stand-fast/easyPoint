@@ -3,6 +3,7 @@ package com.easyPoint.controller.administrator.business;
 import com.easyPoint.dto.Result;
 import com.easyPoint.dto.business.GoodsDetailsDto;
 import com.easyPoint.dto.business.GoodsDto;
+import com.easyPoint.pojo.business.GoodVariety;
 import com.easyPoint.pojo.business.Goods;
 import com.easyPoint.service.business.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,25 +41,13 @@ public class GoodsController {
 
         String goodName = goods.getGoodName();
         String businessName = goods.getBusinessName();
-        double lowestPrice = goods.getLowestPrice();
-        double highestPrice = goods.getHighestPrice();
-        String goodImages = goods.getGoodImages();
-        double deposit = goods.getDeposit();
-        String depositInstruction = goods.getDepositInstruction();
-        String takeGoodInstruction = goods.getTakeGoodInstruction();
-        String returnGoodInstruction = goods.getReturnGoodInstruction();
-        String businessHours = goods.getBusinessHours();
-        String goodDescription = goods.getGoodDescription();
+        Double lowestPrice = goods.getLowestPrice();
         String proImg = goods.getProImg();
-        String goodsTypeId = goods.getGoodId();
+        Integer goodsTypeId = goods.getGoodsTypeId();
         Integer state = goods.getState();
 
         if (goodName == null || goodName.equals("") || businessName == null || businessName.equals("") ||
-                lowestPrice < 0 || highestPrice < 0 || goodImages == null || goodImages.equals("") ||
-                deposit < 0 || depositInstruction == null || depositInstruction.equals("") ||
-                takeGoodInstruction == null || takeGoodInstruction.equals("") || returnGoodInstruction == null || returnGoodInstruction.equals("") ||
-                businessHours == null || businessHours.equals("") || goodDescription == null || goodDescription.equals("") ||
-                proImg == null || proImg.equals("") || goodsTypeId == null || goodsTypeId.equals("") ||
+                lowestPrice == null || lowestPrice.equals("") || proImg == null || proImg.equals("") || goodsTypeId == null || goodsTypeId < 0 ||
                 (state != 1 && state != 2 && state != 3)) {
             result.setCode(2);
             result.setMessage("参数有误");
@@ -73,14 +62,33 @@ public class GoodsController {
 
         Integer flag = goodsService.addGoods(goods);
 
-        if (flag != null && flag == 1) {
+        List<GoodVariety> goodVarietyList = goods.getGoodVarietyList();
+
+        if (flag != null && flag == 1 && (goodVarietyList == null || goodVarietyList.size() == 0)) {
             result.setCode(1);
             result.setMessage("添加成功！");
+        } else if (goodVarietyList.size() > 0 && flag == 1) {
+            int tmp = 1;
+            int size = goodVarietyList.size();
+            for (int i = 0; i < size; i++) {
+                GoodVariety goodVariety = goodVarietyList.get(i);
+                goodVariety.setGoodId(id);
+                tmp = goodsService.addGoodVariety(goodVariety);
+                if (tmp != 1) {
+                    break;
+                }
+            }
+            if (tmp != 1) {
+                result.setCode(-1);
+                result.setMessage("添加失败！");
+            } else {
+                result.setCode(1);
+                result.setMessage("添加成功！");
+            }
         } else {
             result.setCode(-1);
             result.setMessage("添加失败！");
         }
-
         return result;
     }
 
@@ -92,30 +100,38 @@ public class GoodsController {
      */
     @ResponseBody
     @RequestMapping(value = "/findGoodsByState", method = RequestMethod.GET)
-    public Result findGoodsByState(Integer state) {
+    public Result findGoodsByState(Integer state, Integer startIndex, Integer pageSize) {
         Result result = new Result();
 
-        if (state == null || (state != 1 && state != 2 && state != 3)) {
+        if (state == null || (state != 1 && state != 2 && state != 3) || startIndex == null || startIndex <= 0 || pageSize == null || pageSize <= 0) {
             result.setCode(2);
             result.setMessage("参数有误");
             return result;
         }
 
-        List<GoodsDto> list = new ArrayList<>();
+        // 查询总量
+        Integer goodsNum = goodsService.findGoodsNumByState(state);
 
-        list = goodsService.findGoodsByState(state);
-
-        if (list.size() == 0) {
+        if (goodsNum == 0) {
             result.setCode(0);
-            result.setMessage("暂时没有订单");
-        } else {
-            result.setCode(1);
-            result.setMessage("查询成功");
-            Map<String, List<GoodsDto>> map = new HashMap<>();
-            map.put("goods", list);
-            result.setData(map);
+            result.setMessage("暂时没有商品！");
+            return result;
         }
 
+        if ((startIndex - 1) * pageSize >= goodsNum) {
+            result.setCode(3);
+            result.setMessage("页码超出最大范围！");
+            return result;
+        }
+
+        List<GoodsDto> list = goodsService.findGoodsByState(state, (startIndex - 1) * pageSize, pageSize);
+
+        result.setCode(1);
+        result.setMessage("查询成功！");
+        Map<String, Object> map = new HashMap<>(2);
+        map.put("goodsList", list);
+        map.put("totalNum", goodsNum);
+        result.setData(map);
         return result;
     }
 
@@ -239,29 +255,36 @@ public class GoodsController {
     @RequestMapping(value = "/updateGoods", method = RequestMethod.POST)
     public Result updateGoods(Goods goods) {
         Result result = new Result();
-
+        String goodId = goods.getGoodId();
         String goodName = goods.getGoodName();
         String businessName = goods.getBusinessName();
-        double lowestPrice = goods.getLowestPrice();
-        double highestPrice = goods.getHighestPrice();
+        Double lowestPrice = goods.getLowestPrice();
+        Double highestPrice = goods.getHighestPrice();
         String goodImages = goods.getGoodImages();
-        double deposit = goods.getDeposit();
+        Double deposit = goods.getDeposit();
         String depositInstruction = goods.getDepositInstruction();
         String takeGoodInstruction = goods.getTakeGoodInstruction();
         String returnGoodInstruction = goods.getReturnGoodInstruction();
         String businessHours = goods.getBusinessHours();
         String goodDescription = goods.getGoodDescription();
         String proImg = goods.getProImg();
-        String goodsTypeId = goods.getGoodId();
+        Integer goodsTypeId = goods.getGoodsTypeId();
 
-        if (goodName == null || goodName.equals("") || businessName == null || businessName.equals("") ||
-                lowestPrice < 0 || highestPrice < 0 || goodImages == null || goodImages.equals("") ||
-                deposit < 0 || depositInstruction == null || depositInstruction.equals("") ||
-                takeGoodInstruction == null || takeGoodInstruction.equals("") || returnGoodInstruction == null || returnGoodInstruction.equals("") ||
-                businessHours == null || businessHours.equals("") || goodDescription == null || goodDescription.equals("") ||
-                proImg == null || proImg.equals("") || goodsTypeId == null || goodsTypeId.equals("")) {
+        if ((goodId == null || goodId.equals("")) || (lowestPrice == null && highestPrice == null && deposit == null && (goodName == null || goodName.equals("")) && (businessName == null || businessName.equals("")) &&
+                (goodImages == null || goodImages.equals("")) && (depositInstruction == null || depositInstruction.equals("")) &&
+                (takeGoodInstruction == null || takeGoodInstruction.equals("")) && (returnGoodInstruction == null || returnGoodInstruction.equals(""))
+                && (businessHours == null || businessHours.equals("")) && (goodDescription == null || goodDescription.equals("")) &&
+                (proImg == null || proImg.equals("")) && goodsTypeId == null)) {
             result.setCode(2);
             result.setMessage("参数有误");
+            return result;
+        }
+
+        String str = goodsService.findGoodsById(goodId);
+
+        if (str == null) {
+            result.setCode(0);
+            result.setMessage("该商品不存在！");
             return result;
         }
 
@@ -269,10 +292,10 @@ public class GoodsController {
 
         if (flag != null && flag == 1) {
             result.setCode(1);
-            result.setMessage("删除成功！");
+            result.setMessage("修改成功！");
         } else {
             result.setCode(-1);
-            result.setMessage("删除失败！");
+            result.setMessage("修改失败！");
         }
 
         return result;

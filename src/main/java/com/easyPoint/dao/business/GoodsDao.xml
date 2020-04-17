@@ -14,23 +14,30 @@
     </insert>
 
     <!-- 根据状态查询已发布过的所有商品 -->
-    <select id="findGoodsByState" parameterType="Integer" resultType="goodsDto">
+    <select id="findGoodsByState" resultType="goodsDto">
         SELECT good_id       AS goodId,
                good_name     AS goodName,
                lowest_price  AS lowestPrice,
                highest_price AS highestPrice,
                pro_img       AS proImg,
                business_name AS businessName,
-               lease_name    AS leaseName
+               lease_num     AS leaseNum
+        FROM goods_table
+        WHERE state = #{state}
+        LIMIT #{startIndex}, #{pageSize}
+    </select>
+
+    <select id="findGoodsNumByState" parameterType="Integer" resultType="Integer">
+        SELECT COUNT(*)
         FROM goods_table
         WHERE state = #{state}
     </select>
 
     <!-- 根据id修改商品状态 -->
-    <update id="updateStateById" parameterType="string">
+    <update id="updateStateById">
         UPDATE goods_table
-        SET state = #{state}
-        WHERE good_id = #{goodId}
+        SET state = #{newState}
+        WHERE good_id = #{goodsId}
     </update>
 
     <!-- 根据id查询商品详情 -->
@@ -45,40 +52,53 @@
                lease_num               AS leaseNum,
                pro_img                 AS proImg
         FROM goods_table
+        WHERE good_id = #{goodsId}
     </select>
 
     <!-- 根据id删除商品 -->
     <delete id="deleteGoodsById" parameterType="string">
         DELETE
         FROM goods_table
-        WHERE good_id = #{goodId}
+        WHERE good_id = #{goodsId}
     </delete>
 
     <!-- 根据Id查询某商品是否存在 -->
     <select id="findGoodsById" parameterType="string" resultType="string">
         SELECT state
         FROM goods_table
-        WHERE good_id = #{goodId}
+        WHERE good_id = #{goodsId}
     </select>
 
     <!--  修改商品信息 -->
     <update id="updateGoods" parameterType="goods">
         UPDATE goods_table
         <set>
-            <if test="goodName != null and goodName != ''">good_name = #{goodName}</if>
-            <if test="businessName != null and businessName != ''">business_name = #{businessName}</if>
-            <if test="lowestPrice != null and lowestPrice >= 0">lowest_price = #{lowestPrice}</if>
-            <if test="highestPrice != null and highestPrice >= 0">highest_price = #{highestPrice}</if>
-            <if test="goodImages !=  null and goodImages != ''">good_images = #{goodImages}</if>
-            <if test="deposit != null and deposit >= 0">deposit = #{deposit}</if>
-            <if test="depositInstruction != null depositInstruction != ''">deposit_instruction</if>
-            <if test="takeGoodInstruction != null takeGoodInstruction != ''">take_good_instruction</if>
-            <if test="returnGoodInstruction != null returnGoodInstruction != ''">return_good_instruction</if>
-            <if test="businessHours != null businessHours != ''">business_hours</if>
-            <if test="goodDescription != null goodDescription != ''">good_description</if>
-            <if test="proImg != null proImg != ''">pro_img</if>
-            <if test="goodsTypeId != null goodsTypeId != ''">goods_type_id</if>
+            <if test="goodName != null and goodName != ''">good_name = #{goodName},</if>
+            <if test="businessName != null and businessName != ''">business_name = #{businessName},</if>
+            <if test="lowestPrice != null and lowestPrice != ''">lowest_price = #{lowestPrice},</if>
+            <if test="highestPrice != null and highestPrice != ''">highest_price = #{highestPrice},</if>
+            <if test="goodImages !=  null and goodImages != ''">good_images = #{goodImages},</if>
+            <if test="deposit != null and deposit != ''">deposit = #{deposit},</if>
+            <if test="depositInstruction != null and depositInstruction != ''">deposit_instruction =
+                #{depositInstruction},
+            </if>
+            <if test="takeGoodInstruction != null and takeGoodInstruction != ''">take_good_instruction =
+                #{takeGoodInstruction},
+            </if>
+            <if test="returnGoodInstruction != null and returnGoodInstruction != ''">return_good_instruction =
+                #{returnGoodInstruction},
+            </if>
+            <if test="businessHours != null and businessHours != ''">business_hours = #{businessHours},</if>
+            <if test="goodDescription != null and goodDescription != ''">good_description = #{goodDescription},</if>
+            <if test="proImg != null and proImg != ''">pro_img = #{proImg},</if>
+            <if test="goodsTypeId != null and goodsTypeId != ''">goods_type_id = #{goodsTypeId}</if>
         </set>
         WHERE good_id = #{goodId}
     </update>
+
+    <!-- 添加商品类别 -->
+    <insert id="addGoodVariety" parameterType="goodVariety">
+        INSERT INTO good_variety (good_id, variety, size, price, img)
+        VALUES (#{goodId}, #{variety}, #{size}, #{price}, #{img})
+    </insert>
 </mapper>
