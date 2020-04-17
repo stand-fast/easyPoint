@@ -274,17 +274,23 @@ export default {
           let code = res.data.code;
           switch (code) {
             case -1:
-              alert("删除失败");
+              this.$message({
+                message: '删除失败,请稍后重试',
+                type: 'warning'
+              });
               break;
             case 1:
               that.findAllGoodType(that.current);
-              //alert("删除成功");
+              that.$message({
+                message: '删除成功',
+                type: 'success'
+              });
               break;
             case 2:
-              alert("参数为空");
+              that.$message.error('参数为空');
               break;
             case 110:
-              alert("商品类别不存在");
+              that.$message.error('商品类别不存在');
               break;
             default:
               that.$judgeToken(code);
@@ -308,17 +314,23 @@ export default {
           let code = res.data.code;
           switch (code) {
             case -1:
-              alert("修改失败");
+              this.$message({
+                message: '修改失败,请稍后重试',
+                type: 'warning'
+              });
               break;
             case 1:
               that.findAllGoodType();
-              //alert("修改成功");
+              that.$message({
+                message: '修改成功',
+                type: 'success'
+              });
               break;
             case 2:
-              alert("参数为空");
+              that.$message.error('参数为空');
               break;
             case 3:
-              alert("该商品类别不存在");
+              that.$message.error('该商品类别不存在');
               break;
             default:
               that.$judgeToken(code);
@@ -331,6 +343,48 @@ export default {
     },
     //修改商品类别
     ModifyCategory(){
+      let that = this;
+      let params = new URLSearchParams();
+      params.append("goodTypeId", this.modifyId);
+      params.append("newName", this.newName);
+      params.append("newDes", this.newDes);
+      this.$http
+        .post("updateNameAndDec", params)
+        .then(function(res) {
+          console.log(res.data);
+          let code = res.data.code;
+          switch (code) {
+            case -1:
+              this.$message({
+                message: '修改失败,请稍后重试',
+                type: 'warning'
+              });
+              break;
+            case 1:
+              that.findAllGoodType();
+              that.$message({
+                message: '修改成功',
+                type: 'success'
+              });
+              that.modifydrawer = false;
+              that.modifyId = "";
+              that.newName = "";
+              that.newDes = "";
+              break;
+            case 2:
+              that.$message.error('参数为空');
+              break;
+            case 3:
+              that.$message.error('该商品类别不存在');
+              break;
+            default:
+              that.$judgeToken(code);
+              break;
+          }
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
     },
     //显示修改商品类目抽屉
     displayModify(index){
