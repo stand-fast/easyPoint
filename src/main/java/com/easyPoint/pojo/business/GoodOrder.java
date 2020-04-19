@@ -21,7 +21,6 @@ public class GoodOrder {
     private String returnTime;
     private String receiveAddress;
     private String note;
-    private String refund;
     private Integer state;
     private String outTradeNo;
     private String transactionId;
@@ -144,14 +143,6 @@ public class GoodOrder {
 
     public void setNote(String note) {
         this.note = note;
-    }
-
-    public String getRefund() {
-        return refund;
-    }
-
-    public void setRefund(String refund) {
-        this.refund = refund;
     }
 
     public Integer getState() {

@@ -191,16 +191,16 @@ public class GoodsController {
             return result;
         }
 
-        GoodsDetailsDto goodsDetailsDto = goodsService.findGoodsDetailsById(goodsId);
+        Goods goods = goodsService.findGoodsDetailsById(goodsId);
 
-        if (goodsDetailsDto == null) {
+        if (goods == null) {
             result.setCode(0);
             result.setMessage("该商品不存在！");
         } else {
             result.setCode(1);
             result.setMessage("查询成功");
-            Map<String, GoodsDetailsDto> map = new HashMap<>();
-            map.put("goodsDetails", goodsDetailsDto);
+            Map<String, Goods> map = new HashMap<>();
+            map.put("goodsDetails", goods);
             result.setData(map);
         }
 

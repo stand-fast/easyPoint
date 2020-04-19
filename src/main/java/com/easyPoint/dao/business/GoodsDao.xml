@@ -41,19 +41,61 @@
     </update>
 
     <!-- 根据id查询商品详情 -->
-    <select id="findGoodsDetailsById" parameterType="string" resultType="goodsDetailsDto">
-        SELECT good_name               AS goodName,
-               business_name           AS businessName,
-               lowest_price            AS lowestPrice,
-               highest_price           AS highestPrice,
-               deposit_instruction     AS depositInstruction,
-               take_good_instruction   AS takeGoodInstruction,
-               return_good_instruction AS returnGoodInstruction,
-               lease_num               AS leaseNum,
-               pro_img                 AS proImg
-        FROM goods_table
-        WHERE good_id = #{goodsId}
+    <select id="findGoodsDetailsById" parameterType="string" resultMap="goodsDetailsMap">
+        SELECT g.good_id,
+               g.good_name,
+               g.business_name,
+               g.lowest_price,
+               g.highest_price,
+               g.good_images,
+               g.deposit,
+               g.deposit_instruction,
+               g.take_good_instruction,
+               g.return_good_instruction,
+               g.business_hours,
+               g.good_description,
+               g.lease_num,
+               g.pro_img,
+               g.state,
+               t.goods_type_name,
+               t.state,
+               t.description,
+               v.variety,
+               v.size,
+               v.price,
+               v.img
+        FROM goods_table g, goods_type t, good_variety v
+        WHERE g.good_id = #{goodsId} AND g.goods_type_id = t.goods_type_id AND g.good_id = v.good_id
     </select>
+
+    <resultMap id="goodsDetailsMap" type="goods">
+        <id column="good_id" property="goodId"/>
+        <result column="good_name" property="goodName"/>
+        <result column="business_name" property="businessName"/>
+        <result column="lowest_price" property="lowestPrice"/>
+        <result column="highest_price" property="highestPrice"/>
+        <result column="good_images" property="goodImages"/>
+        <result column="deposit" property="deposit"/>
+        <result column="deposit_instruction" property="depositInstruction"/>
+        <result column="take_good_instruction" property="takeGoodInstruction"/>
+        <result column="return_good_instruction" property="returnGoodInstruction"/>
+        <result column="business_hours" property="businessHours"/>
+        <result column="good_description" property="goodDescription"/>
+        <result column="lease_num" property="leaseNum"/>
+        <result column="pro_img" property="proImg"/>
+        <result column="state" property="state"/>
+        <association property="goodsType" javaType="goodsType">
+            <result column="goods_type_name" property="goodsTypeName"/>
+            <result column="state" property="state"/>
+            <result column="description" property="description"/>
+        </association>
+        <collection property="goodVarietyList" ofType="goodVariety">
+            <result column="variety" property="variety"/>
+            <result column="size" property="size"/>
+            <result column="price" property="price"/>
+            <result column="img" property="img"/>
+        </collection>
+    </resultMap>
 
     <!-- 根据id删除商品 -->
     <delete id="deleteGoodsById" parameterType="string">

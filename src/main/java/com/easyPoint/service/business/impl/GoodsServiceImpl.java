@@ -42,7 +42,7 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public GoodsDetailsDto findGoodsDetailsById(String goodsId) {
+    public Goods findGoodsDetailsById(String goodsId) {
         return goodsDao.findGoodsDetailsById(goodsId);
     }
 
