@@ -26,7 +26,7 @@ public interface GoodsDao {
     Integer updateStateById(@Param("goodsId") String goodsId, @Param("newState") Integer newState);
 
     // 根据id查询商品详情
-    GoodsDetailsDto findGoodsDetailsById(String goodsId);
+    Goods findGoodsDetailsById(String goodsId);
 
     // 根据id删除商品
     Integer deleteGoodsById(String goodsId);
