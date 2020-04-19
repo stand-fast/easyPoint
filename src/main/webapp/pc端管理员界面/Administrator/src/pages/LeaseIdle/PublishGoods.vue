@@ -13,58 +13,59 @@
         <div class="publish-content">
           <li class="content-item">
             <span class="item-title">选择主题：</span>
-            <el-select v-model="datas.theme" clearable placeholder="请选择商品主题">
+            <el-select v-model="datas.goodsTypeId" clearable placeholder="请选择商品主题">
               <el-option
                 v-for="item in themeData"
                 :key="item.value"
-                :label="item.label"
-                :value="item.value"
+                :label="item.goodsTypeName"
+                :value="item.goodsTypeId"
               ></el-option>
             </el-select>
-            <span class="error" v-if="errors['datas.theme']">{{errors['datas.theme']}}</span>
+            <span class="error" v-if="errors['datas.goodsTypeId']">{{errors['datas.goodsTypeId']}}</span>
           </li>
           <li class="content-item">
             <span class="item-title">商品名称：</span>
             <el-input
               placeholder="请输入商品名称"
-              v-model="datas.shopName"
+              v-model="datas.goodName"
               maxlength="10"
               show-word-limit
               clearable
             ></el-input>
-            <span class="error" v-if="errors['datas.shopName']">{{errors['datas.shopName']}}</span>
+            <span class="error" v-if="errors['datas.goodName']">{{errors['datas.goodName']}}</span>
           </li>
           <li class="content-item">
             <span class="item-title">商家名称：</span>
             <el-input
               placeholder="请输入商家名称"
-              v-model="datas.merchantName"
+              v-model="datas.businessName"
               maxlength="10"
               show-word-limit
               clearable
             ></el-input>
-            <span class="error" v-if="errors['datas.merchantName']">{{errors['datas.merchantName']}}</span>
+            <span class="error" v-if="errors['datas.businessName']">{{errors['datas.businessName']}}</span>
           </li>
           <li class="content-item item-price">
             <span class="item-title">商家价格：</span>
-            <el-input placeholder="最低价" type="number" v-model="datas.minPrice" clearable></el-input>
+            <el-input placeholder="最低价" type="number" v-model="datas.lowestPrice" clearable></el-input>
             <label>-</label>
-            <el-input placeholder="最高价" type="number" v-model="datas.maxPrice" clearable></el-input>
-            <span class="error" v-if="errors['datas.minPrice']">{{errors['datas.minPrice']}}</span>
-            <span class="error" v-if="errors['datas.maxPrice']">{{errors['datas.maxPrice']}}</span>
+            <el-input placeholder="最高价" type="number" v-model="datas.highestPrice" clearable></el-input>
+            <span class="error" v-if="errors['datas.lowestPrice']">{{errors['datas.lowestPrice']}}</span>
+            <span class="error" v-if="errors['datas.highestPrice']">{{errors['datas.highestPrice']}}</span>
           </li>
           <li class="content-item">
             <span class="item-title">商品照片：</span>
             <el-upload
-              class="upload-demo modelPublish"
-              action="https://jsonplaceholder.typicode.com/posts/"
-              :on-preview="handlePreview"
+              class="upload-demo modelPublish" 
+              action="https://easypoint.club/administrator/imagesUpload"
+              :on-success="uploadSuccess"
               :on-remove="handleRemove"
-              :file-list="datas.fileList"
+              :file-list="fileList"
               list-type="picture"
             >
               <el-button size="small" type="primary">点击上传</el-button>
-              <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+              <div slot="tip" class="el-upload__tip">第一张为页面图片，只能上传jpg/png文件，且不超过500kb</div>
+              <span class="error" v-if="errors['datas.proImg']">{{errors['datas.proImg']}}</span>
             </el-upload>
           </li>
         </div>
@@ -81,12 +82,12 @@
               type="textarea"
               :autosize="{ minRows: 2, maxRows: 4}"
               placeholder="请输入押金说明"
-              v-model="datas.depositDes"
+              v-model="datas.depositInstruction"
               maxlength="100"
               show-word-limit
               clearable
             ></el-input>
-            <span class="error" v-if="errors['datas.depositDes']">{{errors['datas.depositDes']}}</span>
+            <span class="error" v-if="errors['datas.depositInstruction']">{{errors['datas.depositInstruction']}}</span>
           </li>
           <li class="content-item textarea">
             <span class="item-title">取货说明：</span>
@@ -94,12 +95,12 @@
               type="textarea"
               :autosize="{ minRows: 2, maxRows: 4}"
               placeholder="请输入取货说明"
-              v-model="datas.pickingDes"
+              v-model="datas.takeGoodInstruction"
               maxlength="100"
               show-word-limit
               clearable
             ></el-input>
-            <span class="error" v-if="errors['datas.pickingDes']">{{errors['datas.pickingDes']}}</span>
+            <span class="error" v-if="errors['datas.takeGoodInstruction']">{{errors['datas.takeGoodInstruction']}}</span>
           </li>
           <li class="content-item textarea">
             <span class="item-title">还货说明：</span>
@@ -107,12 +108,12 @@
               type="textarea"
               :autosize="{ minRows: 2, maxRows: 4}"
               placeholder="请输入还货说明"
-              v-model="datas.returnDes"
+              v-model="datas.returnGoodInstruction"
               maxlength="100"
               show-word-limit
               clearable
             ></el-input>
-            <span class="error" v-if="errors['datas.returnDes']">{{errors['datas.returnDes']}}</span>
+            <span class="error" v-if="errors['datas.returnGoodInstruction']">{{errors['datas.returnGoodInstruction']}}</span>
           </li>
           <li class="content-item textarea">
             <span class="item-title">营业时间：</span>
@@ -120,12 +121,12 @@
               type="textarea"
               :autosize="{ minRows: 2, maxRows: 4}"
               placeholder="请输入营业时间"
-              v-model="datas.businessTime"
+              v-model="datas.businessHours"
               maxlength="100"
               show-word-limit
               clearable
             ></el-input>
-            <span class="error" v-if="errors['datas.businessTime']">{{errors['datas.businessTime']}}</span>
+            <span class="error" v-if="errors['datas.businessHours']">{{errors['datas.businessHours']}}</span>
           </li>
           <li class="content-item textarea">
             <span class="item-title">商品描述：</span>
@@ -133,15 +134,15 @@
               type="textarea"
               :autosize="{ minRows: 2, maxRows: 4}"
               placeholder="请输入商品描述"
-              v-model="datas.goodsDescribe"
+              v-model="datas.goodDescription"
               maxlength="100"
               show-word-limit
               clearable
             ></el-input>
             <span
               class="error"
-              v-if="errors['datas.goodsDescribe']"
-            >{{errors['datas.goodsDescribe']}}</span>
+              v-if="errors['datas.goodDescription']"
+            >{{errors['datas.goodDescription']}}</span>
           </li>
         </div>
       </div>
@@ -151,8 +152,8 @@
           <span>商品类别填写</span>
         </div>
         <div class="publish-content textarea">
-          <li class="content-item" v-for="(item,index) in datas.itemsData" :key="index">
-            <specifications :index="index" @items="handleItemsChange" />
+          <li class="content-item" v-for="(item,index) in datas.goodVarietyList" :key="index">
+            <specifications :index="index" @items="handleItemsChange" @errorSpecifications="errorSpecifications" />
             <el-button @click="del(index)" class="delButton" type="primary">删除商品</el-button>
           </li>
           <div class="elButton">
@@ -161,8 +162,8 @@
         </div>
       </div>
       <div class="el-submit-button">
-        <el-button @click="onSubmit">上传</el-button>
-        <el-button>保存</el-button>
+        <el-button @click="onSubmit(1)">上传</el-button>
+        <el-button @click="onSubmit(2)">保存</el-button>
       </div>
     </el-main>
   </div>
@@ -178,97 +179,94 @@ export default {
     return {
       navName: "租赁闲置",
       navPlateName: "发布商品",
+      fileList: [], //商品图片
+      upload_success_list:[],
+      status: false, //判断商品类别是否校验通过
+      themeData: [],//商品类别数据
+      verifyList:[
+        "datas.goodsTypeId",
+        "datas.goodName",
+        "datas.businessName",
+        "datas.lowestPrice",
+        "datas.highestPrice",
+        "datas.depositInstruction",
+        "datas.proImg",
+        "datas.takeGoodInstruction",
+        "datas.returnGoodInstruction",
+        "datas.businessHours",
+        "datas.goodDescription"
+      ],//验证部分
       datas: {
-        theme: "", //主题
-        shopName: "", //商品名称
-        merchantName: "", //商家名称
-        minPrice: "", //最低价格
-        maxPrice: "", //最高价格
-        fileList: [
-          // {
-          //   name: "food.jpeg",
-          //   url:
-          //     "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100"
-          // },
-        ], //商品图片
-        depositDes: "", //押金说明
-        pickingDes: "", //取货说明
-        returnDes: "", //还货说明
-        businessTime: "", //营业时间
-        goodsDescribe: "", //商品描述
-        itemsData: [
+        goodsTypeId: null, //主题
+        goodName: "", //商品名称
+        businessName: "", //商家名称
+        lowestPrice: null, //最低价格
+        highestPrice: null, //最高价格
+        goodImages:"1",//轮播图图片路径
+        deposit:0,//押金
+        depositInstruction: "", //押金说明
+        takeGoodInstruction: "", //取货说明
+        returnGoodInstruction: "", //还货说明
+        businessHours: "", //营业时间
+        goodDescription: "", //商品描述
+        proImg:"1",//页面图片
+        state:1,//1：正在售卖；2：未发布；3：已下架
+        goodVarietyList: [  
           //商品分类数据
           {
-            filesName: "",
-            filesUrl: "",
-            types: "",
+            variety: "",
             price: "",
-            items: [{ specifc: "" }]
+            img: "",
+            size: "",
           }
         ]
       }, //发布商品数据
-      boo: false, //判断商品类别是否校验通过
-      themeData: [
-        //商品主题数据
-        {
-          value: "选项1",
-          label: "音响设备"
-        },
-        {
-          value: "选项2",
-          label: "电子设备"
-          //disabled: true
-        },
-        {
-          value: "选项3",
-          label: "玩具套餐"
-        },
-        {
-          value: "选项4",
-          label: "正装用品"
-        }
-      ]
+      
     };
   },
   //vuerify表单验证
   vuerify: {
-    "datas.theme": {
+    "datas.goodsTypeId": {
       test: /\S/,
       message: "请选择商品主题"
     },
-    "datas.shopName": {
+    "datas.goodName": {
       test: /\S/,
       message: "商品名称不能为空"
     },
-    "datas.merchantName": {
+    "datas.proImg":{
+      test: /\S/,
+      message: "请添加商品照片"
+    },
+    "datas.businessName": {
       test: /\S/,
       message: "商家名称不能为空"
     },
-    "datas.minPrice": {
+    "datas.lowestPrice": {
       test: /\S/,
       message: "商品最低价不能为空"
     },
-    "datas.maxPrice": {
+    "datas.highestPrice": {
       test: /\S/,
       message: "商品最高价不能为空"
     },
-    "datas.depositDes": {
+    "datas.depositInstruction": {
       test: /\S/,
       message: "押金说明不能为空"
     },
-    "datas.pickingDes": {
+    "datas.takeGoodInstruction": {
       test: /\S/,
       message: "取货说明不能为空"
     },
-    "datas.returnDes": {
+    "datas.returnGoodInstruction": {
       test: /\S/,
       message: "还货说明不能为空"
     },
-    "datas.businessTime": {
+    "datas.businessHours": {
       test: /\S/,
       message: "营业时间不能为空"
     },
-    "datas.goodsDescribe": {
+    "datas.goodDescription": {
       test: /\S/,
       message: "商品描述不能为空"
     }
@@ -279,71 +277,220 @@ export default {
       return this.$vuerify.$errors;
     }
   },
+  mounted() {
+    const goodId = this.$route.params.goodId; //通过路由器获取id
+    this.findAllGoodType();//获取商品种类
+    if(goodId !== 'null'){
+      this.getGoodDetails(goodId);//获取详情数据
+    }
+  },
   methods: {
+    //根据goodID获取详情数据
+    getGoodDetails(goodId){
+      let that = this;
+      let params = { goodsId:goodId };
+      this.$http
+        .get("findGoodsDetailsById", { params })
+        .then(function(res) {
+          let data = res.data;
+          let code = data.code;
+          console.log(data);
+          // switch (code) {
+          //   case 200:
+          //     that.datas = data.data;
+          //     console.log(data.message);
+          //     break;
+          //   case 1:
+          //     break;
+          //   case 401:
+          //     alert(data.message);
+          //     break;
+          //   default:
+          //     that.$judgeToken(code);
+          //     break;
+          // }
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
+    },
+    //获取商品种类
+    findAllGoodType(){
+      let that = this;
+      let params = {};
+      this.$http
+        .get("findAllGoodType", { params })
+        .then(res => {
+          let data = res.data;
+          let code = data.code;
+          switch (code) {
+            case 0:
+              this.$message({
+                message: '商品类目为空，请添加商品类目',
+                type: 'warning'
+              });
+              break;
+            case 1:
+              that.themeData = data.data;
+              break;
+            default:
+              that.$judgeToken(code);
+              break;
+          }
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
+
+    },
     // 提交表单数据
-    onSubmit() {
-      console.log(this.datas.itemsData);
-      let verifyList = [
-        "datas.theme",
-        "datas.shopName",
-        "datas.merchantName",
-        "datas.minPrice",
-        "datas.maxPrice",
-        "datas.depositDes",
-        "datas.pickingDes",
-        "datas.returnDes",
-        "datas.businessTime",
-        "datas.goodsDescribe"
-      ];
-      // check() 校验所有规则，参数可以设置需要校验的数组
-      if (!this.$vuerify.check(verifyList) || this.boo == true) {
+    onSubmit(state) {
+      console.log(this.datas);
+      if (this.$vuerify.check(this.verifyList) && this.status == true) { //校验
+        this.datas.state = state;
+        let that = this;
+        let params = new URLSearchParams();
+        for(let key in this.datas){
+          // if(key== 'goodVarietyList'){
+          //   let goodVarietyList = this.datas[key];
+          //   let variety = "",size="",price="",img="";
+          //   // for(let i=0;i<goodVarietyList.length;i++){
+          //   //   if(i==0){
+          //   //     variety = goodVarietyList[i].variety;
+          //   //     price = goodVarietyList[i].price;
+          //   //     img = goodVarietyList[i].img;
+          //   //     size = goodVarietyList[i].size;
+          //   //   }else{
+          //   //     variety = '&' + variety + goodVarietyList[i].variety;
+          //   //     price = '&' + price + goodVarietyList[i].price;
+          //   //     img = '&' + img + goodVarietyList[i].img;
+          //   //     size = '|' + size + goodVarietyList[i].size;
+          //   //   }
+          //   // }
+          //   params.append('variety', variety);
+          //   params.append('price', price);
+          //   params.append('img', img);
+          //   params.append('size', size);
+          // }else{
+            params.append(key, this.datas[key]);
+          // }
+        }
+        this.$http
+          .post("addGoods", params)
+          .then(res => {
+            console.log(res.data);
+            let data = res.data;
+            let code = data.code;
+            switch (code) {
+              case -1:
+                this.$message({
+                  message: '添加失败！请稍后再试',
+                  type: 'warning'
+                });
+                break;
+              case 1:
+                that.$message({
+                  message: '添加成功',
+                  type: 'success'
+                });
+                // setTimeout(() => {
+                //  that.$router.go(0)
+                // }, 1500);
+                break;
+              case 2:
+                that.$message.error('参数有误');
+                break;
+              default:
+                that.$judgeToken(code);
+                break;
+            }
+          })
+          .catch(function(e) {
+            console.log(e);
+          });
         return;
       }
-      console.log("验证通过");
+    },
+    //商品图片上传
+    uploadSuccess(response){
+      console.log(response);
+      let code = response.code;
+      switch(code){
+        case -1:
+          this.$message.error('上传失败,请稍后重试');
+          break;
+        case 1:
+          console.log('上传成功');
+          this.upload_success_list.push(response.data.imgUrl);
+          console.log(this.upload_success_list);
+          this.setUploadImg(this.upload_success_list);
+          break;
+      }
+    },
+    //商品照片移除
+    handleRemove(file) {
+      console.log(file);
+      let deleteIndex;
+      let fileurl = file.response.data.imgUrl;
+      this.upload_success_list.findIndex((url,index)=>{
+        if(url ==fileurl) deleteIndex = index;
+      })
+      // console.log(deleteIndex);
+      this.upload_success_list.splice(deleteIndex,1);
+      // console.log(this.upload_success_list);
+      this.setUploadImg(this.upload_success_list)
+    },
+    //上传成功或者删除图片更新data.proImg、datas.goodImages
+    setUploadImg(list){
+      if(list[0]){
+        for(let i=0;i<list.length;i++){
+          if(i==0){
+            this.datas.proImg = list[0];
+            this.datas.goodImages = list[0];
+          }else{
+            this.datas.goodImages += '&' +list[i];
+          }
+        }
+      }else{
+        this.datas.proImg = "";
+        this.datas.goodImages = "";
+      }
+    },
+    //接受specifications组件数据
+    handleItemsChange(index, data) {
+      this.datas.goodVarietyList[index].variety = data.variety;
+      this.datas.goodVarietyList[index].price = data.price;
+      this.datas.goodVarietyList[index].img = data.img;
+      this.datas.goodVarietyList[index].size = data.size;
+    },
+    //Specifications是否校验完成
+    errorSpecifications(status){
+      this.status = status;
     },
     //商品分类添加商品分类
     add() {
-      this.datas.itemsData.push({
-        filesName: "",
-        filesUrl: "",
-        types: "",
+      this.datas.goodVarietyList.push({
+        variety: "",
         price: "",
-        items: [{ specifc: "" }]
+        img: "",
+        size: "",
       });
     },
     //商品分类删除商品分类
     del(index) {
-      console.log(index);
       if (confirm("确定要删除该商品数据吗?")) {
-        if (this.datas.itemsData.length == 1) {
-          alert("至少含有一个商品数据");
+        if (this.datas.goodVarietyList.length == 1) {
+          this.$message({
+            message: '至少含有一个商品数据',
+            type: 'warning'
+          });
         } else {
-          this.datas.itemsData.splice(index, 1);
+          this.datas.goodVarietyList.splice(index, 1);
         }
       } else {
         console.log("你取消了删除");
       }
     },
-    //接受specifications组件数据
-    handleItemsChange(index, data, boo) {
-      this.datas.itemsData[index].filesName = data.filesName;
-      this.datas.itemsData[index].filesUrl = data.filesUrl;
-      this.datas.itemsData[index].types = data.types;
-      this.datas.itemsData[index].price = data.price;
-      this.datas.itemsData[index].items = JSON.parse(
-        JSON.stringify(data.items)
-      );
-      this.boo = boo;
-      //console.log(this.datas.itemsData);
-    },
-    //商品照片移除
-    handleRemove(file, fileList) {
-      console.log(file, fileList);
-    },
-    //商品照片预览
-    handlePreview(file) {
-      console.log(file);
-    }
   },
   //组件
   components: { specifications }

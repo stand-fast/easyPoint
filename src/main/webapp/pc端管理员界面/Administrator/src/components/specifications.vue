@@ -1,17 +1,17 @@
 <template>
   <div class="specificationContent">
-    <div class="specifcationImg" v-if="filesUrl =='' ">
-      <button type="button">
-        +
-        <input type="file" @change="changeImage($event)" />
-      </button>
-    </div>
-    <div class="specifcationImg" v-else>
-      <img :src="filesUrl" />
-      <button type="button" class="addImgReadd">
-        更换
-        <input type="file" @change="changeImage($event)" />
-      </button>
+    <div class="specifcationImg">
+      <el-upload
+        action="https://easypoint.club/administrator/imagesUpload"
+        list-type="picture-card"
+        :on-success="uploadSuccess"
+        :before-upload = 'beforeUpload'
+        :on-remove="handleRemove">
+        <i class="el-icon-plus"></i>
+      </el-upload>
+      <el-dialog :visible.sync="dialogVisible">
+        <img width="100%" :src="dialogImageUrl" alt="">
+      </el-dialog>
     </div>
     <div class="specifcIng">
       <li class="specifc-item">
@@ -20,12 +20,13 @@
           placeholder="请输入商品类别名称"
           type="text"
           :blur="sumbitData()"
-          v-model="types"
+          v-model="datas.variety"
           maxlength="8"
           show-word-limit
           clearable
         ></el-input>
-        <span class="error" v-if="errors['types']">{{errors['types']}}</span>
+        <span class="error" v-if="errors['datas.img']">{{errors['datas.img']}}</span>
+        <span class="error" v-if="errors['datas.variety']">{{errors['datas.variety']}}</span>
       </li>
       <li class="specifc-item">
         <span>价格:</span>
@@ -33,10 +34,10 @@
           placeholder="请输入商品类别价格"
           type="Number"
           :blur="sumbitData()"
-          v-model="price"
+          v-model="datas.price"
           clearable
         ></el-input>
-        <span class="error" v-if="errors['price']">{{errors['price']}}</span>
+        <span class="error" v-if="errors['datas.price']">{{errors['datas.price']}}</span>
       </li>
       <li class="specifc-item specifc-container">
         <span>尺寸:</span>
@@ -65,24 +66,28 @@ export default {
   name: "imgUpload",
   data() {
     return {
-      filesName: "",
-      filesUrl: "",
-      types: "",
-      price: "",
-      items: [{ specifc: "" }]
+      datas:{
+        variety:"",
+        price:"",
+        img:"",
+        size:"",
+      },
+      items: [{ specifc: "" }],//尺寸list
+      dialogImageUrl: '',
+      dialogVisible: false,
     };
   },
   // vuerify表单验证
   vuerify: {
-    filesUrl: {
+    "datas.img": {
       test: /\S/,
-      message: "请添加商品类别图片"
+      message: "请添加商品规格图片"
     },
-    types: {
+    "datas.variety": {
       test: /\S/,
       message: "请输入商品类别名称"
     },
-    price: {
+    "datas.price": {
       test: /\S/,
       message: "请输入商品类别价格"
     }
@@ -90,12 +95,14 @@ export default {
   props: {
     index: {
       type: Number
-    }
+    },
   },
   computed: {
+    //错误信息
     errors() {
       return this.$vuerify.$errors;
     },
+    //遍历所有规格参数
     specifcErrors() {
       let data = this.items;
       let boo = false;
@@ -108,66 +115,87 @@ export default {
     }
   },
   methods: {
+    //想父组件提交并整理数据
     sumbitData() {
-      let data = {
-        items: JSON.parse(JSON.stringify(this.items)),
-        filesName: this.filesName,
-        filesUrl: this.filesUrl,
-        types: this.types,
-        price: this.price
-      };
       let boo = this.specifcErrors;
-      let verifyList = ["filesUrl", "types", "price"];
+      let verifyList = ["datas.img","datas.variety", "datas.price"];
       // check() 校验所有规则，参数可以设置需要校验的数组
-      if (!this.$vuerify.check(verifyList) || boo) {
-        this.$emit("items", this.index, data, boo);
-        return;
+      if (this.$vuerify.check(verifyList) && !boo) {
+        let size = "";
+        for(let i=0;i < this.items.length;i++){
+          i ==  this.items.length-1?
+          size += this.items[i].specifc
+          :
+          size = size + this.items[i].specifc + '&'
+        }
+        this.datas.size = size;
+        console.log(this.datas)
+        this.$emit("items", this.index, this.datas);
+        this.$emit("errorSpecifications", true);
+      }else{
+        this.$emit("errorSpecifications", false);
       }
-      boo = false;
-      this.$emit("items", this.index, data, boo);
     },
-    changeImage(e) {
-      let files = e.target.files[0];
-      if (files != undefined) {
-        this.filesUrl = this.getObjectURL(files);
-        this.filesName = files.name;
-        this.sumbitData();
+    uploadSuccess(response){
+      console.log(response);
+      let code = response.code;
+      switch(code){
+        case -1:
+          this.dialogImageUrl='';
+          this.dialogVisible=false;
+          document.getElementsByClassName('el-upload--picture-card')[this.index].style.display = 'block';
+          this.$message.error('上传失败,请稍后重试');
+          break;
+        case 1:
+          console.log('上传成功');
+          this.datas.img = response.data.imgUrl;
+          break;
       }
     },
+    beforeUpload(){
+      document.getElementsByClassName('el-upload--picture-card')[this.index].style.display = 'none';
+    },
+    handleRemove(e){
+      document.getElementsByClassName('el-upload--picture-card')[this.index].style.display = 'block';
+      this.datas.img = "";
+    },
+    //添加尺寸
     add() {
       this.items.push({ specifc: "" });
       this.sumbitData();
     },
+    //删除尺寸
     deleteSpecifc(index) {
       if (confirm("确定要删除该尺寸吗?")) {
         if (this.items.length == 1) {
-          alert("至少含有一个尺寸数据");
+            this.$message({
+              message: '至少含有一个尺寸数据',
+              type: 'warning'
+            });
         } else {
           this.items.splice(index, 1);
           this.sumbitData();
         }
       }
     },
-    getObjectURL(file) {
-      let url = null;
-      if (window.createObjectURL != undefined) {
-        // basic
-        url = window.createObjectURL(file);
-      } else if (window.webkitURL != undefined) {
-        // webkit or chrome
-        url = window.webkitURL.createObjectURL(file);
-      } else if (window.URL != undefined) {
-        // mozilla(firefox)
-        url = window.URL.createObjectURL(file);
-      }
-      return url;
-    }
   }
 };
 </script>
-<style scoped>
+<style>
 li {
   list-style: none;
+}
+/* 上传图片修改element内置 */
+.el-upload-list--picture-card .el-upload-list__item{
+  margin-top: 6px;
+  width: 60px !important;
+  height: 60px !important;
+}
+.specifcationImg .el-upload--picture-card{
+  margin-top: 6px;
+  width: 60px !important;
+  height: 60px !important;
+  line-height: 70px;
 }
 /* 组件容器 */
 .specificationContent {
@@ -180,36 +208,7 @@ li {
   display: flex;
   flex-direction: column;
 }
-.specifcationImg button {
-  background: #ffffff;
-  position: relative;
-  overflow: hidden;
-}
-.specifcationImg button input {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  opacity: 0;
-}
-.specifcationImg .addImgReadd {
-  width: 60px;
-  height: 20px;
-}
-.specifcationImg button {
-  border: 1px solid #dcdfe6;
-  border-radius: 4px;
-  width: 60px;
-  height: 60px;
-  box-sizing: border-box;
-  background-color: none;
-  margin-top: 5px;
-}
-.specifcationImg img {
-  width: 58px;
-  height: 58px;
-}
+
 /* 商品分类容器 */
 .specifcIng {
   display: flex;
@@ -240,7 +239,7 @@ li {
   min-width: 300px;
   display: flex;
 }
-.specifc-item span {
+.specifc-item>span {
   min-width: 70px;
   box-sizing: border-box;
   padding-left: 10px;
@@ -250,10 +249,12 @@ li {
 .specifc-item input {
   width: 230px !important;
   min-width: 230px !important;
+  min-height: 40px;
 }
-.specifc-item .el-input--suffix {
+.specifcIng .specifc-item .el-input--suffix {
   width: 230px !important;
   min-width: 230px !important;
+  min-height: 40px;
 }
 /* 尺寸容器 */
 .specifc-container {
@@ -267,6 +268,7 @@ li {
 /* 尺寸input框 */
 .specifc-item .specifcText input {
   width: 100px !important;
+  min-height: 40px;
   min-width: 100px !important;
 }
 .specifc-item .specifcText .el-input {
@@ -277,12 +279,19 @@ li {
 }
 /* 删除尺寸图标 */
 .specifcIcon {
+  z-index: 200;
   position: absolute;
-  right: -7px;
-  top: -14px;
+  right: 0px;
+  top: -7px;
+  color:#ef5657 !important;
 }
 .addButton {
   height: 40px;
-  width: 50px !important;
+}
+
+/* 修改element内置css */
+.specifcIng i{
+  padding: 0;
+  color: #fff;
 }
 </style>
