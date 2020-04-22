@@ -19,8 +19,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -120,7 +118,7 @@ public class LeaseServiceImpl implements LeaseService {
         goodOrder.setOutTradeNo(map.get("out_trade_no").toString());
         //保存购买用户id
         goodOrder.setUid(uid);
-        //订单状态1：未发货；2已取货；3：已完成
+        //订单状态1：未完成；2：已完成
         goodOrder.setState(1);
         //将订单信息保存到redis中，待支付完成后保存入数据库
         redisTemplate.opsForValue().set("lease_" + goodOrder.getOutTradeNo(), goodOrder, 10,TimeUnit.MINUTES);
