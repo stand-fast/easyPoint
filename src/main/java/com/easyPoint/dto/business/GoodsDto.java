@@ -1,18 +1,27 @@
 package com.easyPoint.dto.business;
 
+
 /**
  * 根据状态查询所有商品
  */
+
 public class GoodsDto {
     private String goodId;
     private String goodName;
-    private double lowestPrice;
-    private double highestPrice;
+    private Double lowestPrice;
+    private Double highestPrice;
     private String proImg;
     private String businessName;
     private Integer leaseNum;
-    // 状态
-    private String state;
+    private Double deposit;
+
+    public Double getDeposit() {
+        return deposit;
+    }
+
+    public void setDeposit(Double deposit) {
+        this.deposit = deposit;
+    }
 
     public String getGoodId() {
         return goodId;
@@ -30,19 +39,19 @@ public class GoodsDto {
         this.goodName = goodName;
     }
 
-    public double getLowestPrice() {
+    public Double getLowestPrice() {
         return lowestPrice;
     }
 
-    public void setLowestPrice(double lowestPrice) {
+    public void setLowestPrice(Double lowestPrice) {
         this.lowestPrice = lowestPrice;
     }
 
-    public double getHighestPrice() {
+    public Double getHighestPrice() {
         return highestPrice;
     }
 
-    public void setHighestPrice(double highestPrice) {
+    public void setHighestPrice(Double highestPrice) {
         this.highestPrice = highestPrice;
     }
 
@@ -68,13 +77,5 @@ public class GoodsDto {
 
     public void setLeaseNum(Integer leaseNum) {
         this.leaseNum = leaseNum;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
     }
 }

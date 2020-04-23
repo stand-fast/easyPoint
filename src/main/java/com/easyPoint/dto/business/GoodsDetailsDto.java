@@ -3,17 +3,17 @@ package com.easyPoint.dto.business;
 /**
  * 根据id查询商品详情
  */
+
 public class GoodsDetailsDto {
     private String goodName;
     private String businessName;
-    private double lowestPrice;
-    private double highestPrice;
+    private Double lowestPrice;
+    private Double highestPrice;
     private String proImg;
     private String depositInstruction;
     private String takeGoodInstruction;
     private String returnGoodInstruction;
     private String goodDescription;
-    // 已租次数
     private Integer leaseNum;
 
     public String getGoodName() {
@@ -32,19 +32,19 @@ public class GoodsDetailsDto {
         this.businessName = businessName;
     }
 
-    public double getLowestPrice() {
+    public Double getLowestPrice() {
         return lowestPrice;
     }
 
-    public void setLowestPrice(double lowestPrice) {
+    public void setLowestPrice(Double lowestPrice) {
         this.lowestPrice = lowestPrice;
     }
 
-    public double getHighestPrice() {
+    public Double getHighestPrice() {
         return highestPrice;
     }
 
-    public void setHighestPrice(double highestPrice) {
+    public void setHighestPrice(Double highestPrice) {
         this.highestPrice = highestPrice;
     }
 

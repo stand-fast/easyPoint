@@ -8,7 +8,7 @@ public class GoodVariety {
     private String goodId;
     private String variety;
     private String size;
-    private double price;
+    private Double price;
     // 显示图片
     private String img;
 
@@ -44,11 +44,11 @@ public class GoodVariety {
         this.size = size;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

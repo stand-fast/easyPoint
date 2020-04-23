@@ -16,7 +16,9 @@ const CarRentalOrder = () => import('./pages/Travel/CarRentalOrder.vue') //旅�
 const CarRentalRefund = () => import('./pages/Travel/CarRentalRefund.vue') //旅游出行-租车退款订单
 const DealOrder = () => import('./pages/Travel/DealOrder.vue') //旅游出行-租车退款订单详情
 const vehicleEntry = () => import('./pages/Travel/VehicleInformationEntry.vue') //旅游出行-租车订单车辆信息
+const addCategory = () => import('./pages/LeaseIdle/addCategory.vue') //租赁闲置-添加商品类目
 const PublishGoods = () => import('./pages/LeaseIdle/PublishGoods.vue') //租赁闲置-发布商品
+const MyReleasesGoods = () => import('./pages/LeaseIdle/MyReleasesGoods.vue') //租赁闲置-我的发布
 const CurrentAnnouncement = () => import('./pages/Announcement/CurrentAnnouncement.vue') //公告栏-当前公告
 
 Vue.use(Router)
@@ -137,9 +139,25 @@ const router = new Router({
       }
     },
     {
-      path: "/PublishGoods",
+      path: "/addCategory",
+      name: '租赁闲置-添加商品类目',
+      component: addCategory,
+      meta: {
+        needLogin: true
+      }
+    },
+    {
+      path: "/PublishGoods/:goodId",
       name: '租赁闲置-发布商品',
       component: PublishGoods,
+      meta: {
+        needLogin: true
+      }
+    },
+    {
+      path: "/MyReleasesGoods",
+      name: '租赁闲置-我的发布',
+      component: MyReleasesGoods,
       meta: {
         needLogin: true
       }

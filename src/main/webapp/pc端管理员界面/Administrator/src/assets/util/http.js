@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Vue from 'vue';
 axios.defaults.timeout = 5000;
-axios.defaults.baseURL = 'https://easypoint.club/administrator/'; //这是调用数据接口
+axios.defaults.baseURL = '/api'; //这是调用数据接口
 
 // http request 拦截器，通过这个，我们就可以把token传到后台
 axios.interceptors.request.use(

@@ -1,23 +1,23 @@
 package com.easyPoint.dto.business;
 
-import com.easyPoint.pojo.business.Goods;
 
 /**
  * 订单详情
  */
+
 public class GoodOrderDto {
-     private String goodOrderId;
-     private Goods goods;
-     private double price;
-     private String userName;
-     private String phone;
-     private Integer number;
-     private String size;
-     private Integer leaseDate;
-     private String makeOrderTime;
-     private String receiveTime;
-     private String state;
-     private String transactionId;
+    private String goodOrderId;
+    private GoodsDtoForOrder goodsDtoForOrder;
+    private String userName;
+    private String phone;
+    private Integer number;
+    private Integer leaseDate;
+    private String size;
+    private Double totalPrice;
+    private String receiveTime;
+    private String makeOrderTime;
+    private Integer state;
+    private String transactionId;
 
     public String getGoodOrderId() {
         return goodOrderId;
@@ -27,20 +27,12 @@ public class GoodOrderDto {
         this.goodOrderId = goodOrderId;
     }
 
-    public Goods getGoods() {
-        return goods;
+    public GoodsDtoForOrder getGoodsDtoForOrder() {
+        return goodsDtoForOrder;
     }
 
-    public void setGoods(Goods goods) {
-        this.goods = goods;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
+    public void setGoodsDtoForOrder(GoodsDtoForOrder goodsDtoForOrder) {
+        this.goodsDtoForOrder = goodsDtoForOrder;
     }
 
     public String getUserName() {
@@ -67,14 +59,6 @@ public class GoodOrderDto {
         this.number = number;
     }
 
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
     public Integer getLeaseDate() {
         return leaseDate;
     }
@@ -83,12 +67,20 @@ public class GoodOrderDto {
         this.leaseDate = leaseDate;
     }
 
-    public String getMakeOrderTime() {
-        return makeOrderTime;
+    public String getSize() {
+        return size;
     }
 
-    public void setMakeOrderTime(String makeOrderTime) {
-        this.makeOrderTime = makeOrderTime;
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public String getReceiveTime() {
@@ -99,11 +91,19 @@ public class GoodOrderDto {
         this.receiveTime = receiveTime;
     }
 
-    public String getState() {
+    public String getMakeOrderTime() {
+        return makeOrderTime;
+    }
+
+    public void setMakeOrderTime(String makeOrderTime) {
+        this.makeOrderTime = makeOrderTime;
+    }
+
+    public Integer getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 

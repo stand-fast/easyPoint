@@ -1,35 +1,41 @@
 /* pages/user/user/user.wxss */
-Page{
+
+Page {
     background-color: #fff;
     font-family: 黑体;
 }
-.header{
+
+.header {
     width: 100%;
     height: 160rpx;
     background-color: #56b4f6;
     display: flex;
     flex-direction: row;
 }
-.header image{
-  width: 120rpx;
-  height: 120rpx;
-  border-radius: 120rpx;
+
+.header image {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 120rpx;
 }
-.username{
-  width: 500rpx;
-  height: 40rpx;
-  line-height: 40rpx;
-  font-size: 32rpx;
-  color: #fff;
-  margin: 50rpx 0rpx 0rpx 30rpx;
+
+.username {
+    width: 500rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 32rpx;
+    color: #fff;
+    margin: 50rpx 0rpx 0rpx 30rpx;
 }
-.userImg{
-  overflow:hidden; 
-  width: 120rpx;
-  height: 120rpx;
-  border-radius:120rpx;
+
+.userImg {
+    overflow: hidden;
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 120rpx;
 }
-.noname{
+
+.noname {
     width: 140rpx;
     height: 50rpx;
     line-height: 50rpx;
@@ -38,7 +44,8 @@ Page{
     border-radius: 25rpx;
     margin: 44rpx 0rpx 0rpx 30rpx;
 }
-.noname button{
+
+.noname button {
     padding: 0;
     line-height: 50rpx;
     font-size: 28rpx;
@@ -47,16 +54,19 @@ Page{
     width: 140rpx;
     height: 50rpx;
 }
-.noname button::after{
+
+.noname button::after {
     border: none;
 }
-.header image{
+
+.header image {
     width: 140rpx;
     height: 140rpx;
     background-color: #fff;
     margin-left: 60rpx;
 }
-.editUserInfos{
+
+.editUserInfos {
     width: 100%;
     height: 80rpx;
     display: flex;
@@ -64,12 +74,14 @@ Page{
     background-color: #fff;
     justify-content: center;
 }
-.editUserInfos image{
+
+.editUserInfos image {
     width: 32rpx;
     height: 28rpx;
     margin: auto 10rpx;
 }
-.edit_text{
+
+.edit_text {
     width: 160rpx;
     height: 34rpx;
     line-height: 34rpx;
@@ -77,57 +89,157 @@ Page{
     color: #65b8e2;
     margin: auto 10rpx;
 }
-.kong{
+
+.kong {
     width: 100%;
     height: 40rpx;
     background-color: #f2f2f2;
 }
-.order_lists{
+
+.order_lists {
     width: 100%;
     height: 200rpx;
     background-color: #fff;
     display: flex;
     flex-wrap: wrap;
 }
-.order_list{
+
+.order_list {
     width: 33%;
     height: 200rpx;
     text-align: center;
 }
-.order_list image{
+
+.order_list image {
     width: 80rpx;
     height: 80rpx;
-    margin: 36rpx  0 10rpx 0rpx;
+    margin: 36rpx 0 10rpx 0rpx;
 }
-.order_list_text{
+
+.order_list_text {
     height: 40rpx;
     line-height: 40rpx;
     font-size: 28rpx;
     color: #666;
 }
-.item_lists{
+
+.item_lists {
     width: 100%;
     height: 500rpx;
 }
-.item_list{
+
+.item_list {
     width: 100%;
     height: 100rpx;
     background-color: #fff;
     display: flex;
     flex-direction: row;
-    border-bottom:4rpx solid #f2f2f2;
+    border-bottom: 4rpx solid #f2f2f2;
 }
-.item_list image{
+
+.item_list image {
     width: 45rpx;
     height: 45rpx;
     margin: auto 0rpx;
     margin-left: 50rpx;
     margin-right: 20rpx;
 }
-.item_list_text{
+
+.item_list_text {
     width: 140rpx;
     height: 100rpx;
     line-height: 100rpx;
     font-size: 30rpx;
     color: #666;
+}
+
+/* 弹窗部分 */
+.user_mask_layer {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    background: #000;
+    opacity: 0.5;
+    overflow: hidden;
+}
+
+.user_modal_box {
+    width: 670rpx;
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    z-index: 1001;
+    background: #fafafa;
+    border-radius: 20rpx;
+    margin:0 40rpx;
+}
+
+.protocal{
+    top: 74rpx;
+}
+
+.about{
+    top: 140rpx;
+}
+
+.quit{
+    top: 440rpx;
+    height: 230rpx;
+}
+
+.modal_box_title{
+    width: 100%;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 34rpx;
+    font-family: 黑体;
+    margin: 40rpx 0rpx 30rpx 0rpx;
+    text-align: center;
+}
+
+.modal_box_text{
+    line-height: 50rpx;
+    font-size: 28rpx;
+    color: #666;
+    padding: 0rpx 60rpx 30rpx 60rpx;
+}
+
+.modal_button{
+    width: 100%;
+    height: 100rpx;
+    border-top: 2rpx solid #dfdfdf;
+    display: flex;
+    flex-direction: row;
+}
+
+.btn{
+    width: 50%;
+    line-height: 100rpx;
+    font-size: 30rpx;
+    background-color: #fafafa;
+    border-radius: 0rpx;
+}
+button::after{
+    display: none;
+    border: none;
+}
+
+.cancle{
+    color: #666;
+    border-right: 2rpx solid #dfdfdf;
+}
+
+.comfirm{
+    color: #56b4f6;
+}
+
+.account_text{
+    width: 100%;
+    text-align: center;
+    height: 130rpx;
+    line-height: 130rpx;
+    font-size: 32rpx;
 }

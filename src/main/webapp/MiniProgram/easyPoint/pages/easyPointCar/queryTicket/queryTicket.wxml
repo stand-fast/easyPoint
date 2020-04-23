@@ -62,7 +62,7 @@
                 <view class="right_contain">
                     <view class="ticketPrice">￥{{item.price}}</view>
                     <button bindtap="buyTicket"  data-id='{{idx}}' data-type="{{item.type}}">预约</button>
-                    <view class="ticketRemain">剩余{{item.seatSurplus}}张</view>
+                    <view class="ticketRemain">已预约{{item.seatSurplus}}人</view>
                 </view>
             </view>
         </view>

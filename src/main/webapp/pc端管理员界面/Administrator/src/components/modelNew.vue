@@ -38,146 +38,154 @@
             <el-dropdown-item>
               <span @click="drawer = true">修改用户名</span>
             </el-dropdown-item>
-            <el-drawer title="修改用户名" :visible.sync="drawer" :with-header="false">
-              <div class="drawer-model">
-                <li>
-                  <span>用户名:</span>
-                  {{loginUser.username}}
-                </li>
-                <li>
-                  <span>新用户名:</span>
-                  <el-input
-                    class="model-input"
-                    placeholder="请输入新的用户名"
-                    v-model="newusername"
-                    clearable
-                  ></el-input>
-                </li>
-              </div>
-              <div class="drawer-model-button">
-                <el-button type="primary" size="mini" @click="submitModifyUsername">修改</el-button>
-              </div>
-            </el-drawer>
 
             <!-- 修改密码部分 -->
             <el-dropdown-item>
               <span @click="drawerModifyPassword = true">修改密码</span>
             </el-dropdown-item>
-            <el-drawer title="修改密码" :visible.sync="drawerModifyPassword" :with-header="false">
-              <div class="drawer-model">
-                <li>
-                  <span>用户名:</span>
-                  {{loginUser.username}}
-                </li>
-                <li>
-                  <span>账户:</span>
-                  {{loginUser.loginId}}
-                </li>
-                <li>
-                  <span>角色:</span>
-                  {{loginUser.identity}}
-                </li>
-                <li>
-                  <span>旧密码:</span>
-                  <el-input
-                    class="model-input"
-                    placeholder="请输入旧密码"
-                    type="password"
-                    v-model="oldPassword"
-                    clearable
-                  ></el-input>
-                </li>
-                <li>
-                  <span>新密码:</span>
-                  <el-input
-                    class="model-input"
-                    placeholder="请输入新密码"
-                    type="password"
-                    autocomplete="new-password"
-                    v-model="newPassword"
-                    clearable
-                  ></el-input>
-                </li>
-                <li>
-                  <span>再次输入:</span>
-                  <el-input
-                    class="model-input"
-                    placeholder="请再次输入新密码"
-                    type="password"
-                    autocomplete="new-password"
-                    v-model="ensurePassword"
-                    clearable
-                  ></el-input>
-                </li>
-              </div>
-              <div class="drawer-model-button">
-                <el-button type="primary" size="mini" @click="submitModifyPassword()">修改</el-button>
-              </div>
-            </el-drawer>
 
             <!-- 更换绑定部分 -->
             <el-dropdown-item>
               <span @click="drawerModifyAccount = true">更换绑定</span>
             </el-dropdown-item>
-            <el-drawer title="更换绑定" :visible.sync="drawerModifyAccount" :with-header="false">
-              <div class="drawer-model">
-                <li>
-                  <span>用户名:</span>
-                  {{loginUser.username}}
-                </li>
-                <li>
-                  <span>角色:</span>
-                  {{loginUser.identity}}
-                </li>
-                <li>
-                  <span>账户:</span>
-                  <el-input
-                    class="model-input"
-                    maxlength="11"
-                    placeholder="账户"
-                    v-model="changeId"
-                    clearable
-                  ></el-input>
-                </li>
-                <li>
-                  <span>验证码:</span>
-                  <el-input class="model-input" placeholder="验证码" v-model="changeCode" clearable></el-input>
-                  <label class="drawer-model-code" @click="getCode(changeId)">{{code}}</label>
-                </li>
-                <li>
-                  <span>确认密码:</span>
-                  <el-input
-                    class="model-input"
-                    placeholder="请输入密码"
-                    autocomplete="new-password"
-                    type="password"
-                    v-model="changePassword"
-                    clearable
-                  ></el-input>
-                </li>
-                <li>
-                  <span>再次输入:</span>
-                  <el-input
-                    class="model-input"
-                    placeholder="请再次输入密码"
-                    autocomplete="new-password"
-                    type="password"
-                    v-model="changeComfirmPassword"
-                    clearable
-                  ></el-input>
-                </li>
-              </div>
-              <div class="drawer-model-button">
-                <el-button type="primary" size="mini" @click="submitChangeAccount()">修改</el-button>
-              </div>
-            </el-drawer>
+  
           </el-dropdown-menu>
         </el-dropdown>
         <span v-show="loginUser!= '' ">{{loginUser.username}}</span>
       </div>
+
+      <!-- 修改用户名抽屉 -->
+      <el-drawer title="修改用户名" :visible.sync="drawer" :with-header="false">
+        <div class="drawer-model">
+          <li>
+            <span>用户名:</span>
+            {{loginUser.username}}
+          </li>
+          <li>
+            <span>新用户名:</span>
+            <el-input
+              class="model-input"
+              placeholder="请输入新的用户名"
+              v-model="newusername"
+              clearable
+            ></el-input>
+          </li>
+        </div>
+        <div class="drawer-model-button">
+          <el-button type="primary" size="mini" @click="submitModifyUsername">修改</el-button>
+        </div>
+      </el-drawer>
+      
+      <!-- 修改密码抽屉 -->
+      <el-drawer title="修改密码" :visible.sync="drawerModifyPassword" :with-header="false">
+        <div class="drawer-model">
+          <li>
+            <span>用户名:</span>
+            {{loginUser.username}}
+          </li>
+          <li>
+            <span>账户:</span>
+            {{loginUser.loginId}}
+          </li>
+          <li>
+            <span>角色:</span>
+            {{loginUser.identity}}
+          </li>
+          <li>
+            <span>旧密码:</span>
+            <el-input
+              class="model-input"
+              placeholder="请输入旧密码"
+              type="password"
+              v-model="oldPassword"
+              clearable
+            ></el-input>
+          </li>
+          <li>
+            <span>新密码:</span>
+            <el-input
+              class="model-input"
+              placeholder="请输入新密码"
+              type="password"
+              autocomplete="new-password"
+              v-model="newPassword"
+              clearable
+            ></el-input>
+          </li>
+          <li>
+            <span>再次输入:</span>
+            <el-input
+              class="model-input"
+              placeholder="请再次输入新密码"
+              type="password"
+              autocomplete="new-password"
+              v-model="ensurePassword"
+              clearable
+            ></el-input>
+          </li>
+        </div>
+        <div class="drawer-model-button">
+          <el-button type="primary" size="mini" @click="submitModifyPassword()">修改</el-button>
+        </div>
+      </el-drawer>
+      
+      <!-- 更换绑定抽屉 -->
+      <el-drawer title="更换绑定" :visible.sync="drawerModifyAccount" :with-header="false">
+        <div class="drawer-model">
+          <li>
+            <span>用户名:</span>
+            {{loginUser.username}}
+          </li>
+          <li>
+            <span>角色:</span>
+            {{loginUser.identity}}
+          </li>
+          <li>
+            <span>账户:</span>
+            <el-input
+              class="model-input"
+              maxlength="11"
+              placeholder="账户"
+              v-model="changeId"
+              clearable
+            ></el-input>
+          </li>
+          <li>
+            <span>验证码:</span>
+            <el-input class="model-input" placeholder="验证码" v-model="changeCode" clearable></el-input>
+            <label class="drawer-model-code" @click="getCode(changeId)">{{code}}</label>
+          </li>
+          <li>
+            <span>确认密码:</span>
+            <el-input
+              class="model-input"
+              placeholder="请输入密码"
+              autocomplete="new-password"
+              type="password"
+              v-model="changePassword"
+              clearable
+            ></el-input>
+          </li>
+          <li>
+            <span>再次输入:</span>
+            <el-input
+              class="model-input"
+              placeholder="请再次输入密码"
+              autocomplete="new-password"
+              type="password"
+              v-model="changeComfirmPassword"
+              clearable
+            ></el-input>
+          </li>
+        </div>
+        <div class="drawer-model-button">
+          <el-button type="primary" size="mini" @click="submitChangeAccount()">修改</el-button>
+        </div>
+      </el-drawer>
+
       <!-- 内容部分 -->
       <el-main>
-        <i class="el-icon-back model-back" @click="$router.back(-1)"></i>
+        <!-- <i class="el-icon-back model-back" @click="$router.back(-1)"></i> -->
         <router-view />
       </el-main>
     </el-container>
@@ -251,8 +259,18 @@ export default {
               navitem: [
                 {
                   id: "1",
+                  name: "添加商品类目",
+                  url: "#/addCategory"
+                },
+                {
+                  id: "2",
                   name: "发布商品",
-                  url: "#/PublishGoods"
+                  url: "#/PublishGoods/null"
+                },
+                {
+                  id: "3",
+                  name: "我的发布",
+                  url: "#/MyReleasesGoods"
                 }
               ]
             }
@@ -502,8 +520,8 @@ export default {
 .model-back {
   cursor: pointer;
   position: absolute;
-  right: 100px;
-  top: 120px;
+  right: 60px;
+  top: 125px;
   color: #9c9ea1;
   font-size: 18px;
   z-index: 9999;
@@ -545,9 +563,14 @@ a {
   color: #9c9ea1;
   font-weight: 600;
   line-height: 60px;
+  display: flex;
 }
 .model-wrapper-con-header > span {
+  margin-left: 10px;
   cursor: pointer;
+}
+.model-wrapper-con-header > span.active {
+  color: #409eff;
 }
 .model-wrapper-con-header > span:hover {
   color: #409eff;

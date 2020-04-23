@@ -12,6 +12,7 @@ Page({
     insucheck: false,//旅游出行-是否购买保险
     radioStatus: false,//旅游出行-是否往返
     successShowmodal:false,//支付成功是否弹窗
+    assoName:"",//乡会名称
     is_back:0,//是否往返数据
     is_insurance:0,//是否购买保险数据
     imgUrls: [//轮播图
@@ -202,24 +203,24 @@ Page({
     let associationId = this.data.associationsList[index].associationId;
     //判断车票类型
     this.setData({
-          assoName: name,
-          associationId: associationId,
+      assoName: name,
+      associationId: associationId,
     })
   },
   //同乡会-跳转到车票查询
   searchAsso:function(){
-      if (this.data.assoName==""){
-        wx.showToast({
-          title: '请选择同乡会',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-      else(
-        wx.navigateTo({
-          url: '/pages/easyPointCar/queryTicket/queryTicket?associationId=' + this.data.associationId
-        })
-      )
+    if (this.data.assoName==""){
+      wx.showToast({
+        title: '请选择同乡会',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+    else(
+      wx.navigateTo({
+        url: '/pages/easyPointCar/queryTicket/queryTicket?associationId=' + this.data.associationId
+      })
+    )
   },
   //提交拉起支付功能
   formSubmit: function (e) {
