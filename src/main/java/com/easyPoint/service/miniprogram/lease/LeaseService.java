@@ -27,10 +27,10 @@ public interface LeaseService {
     List<Map> findLeaseGoodsByTypeId(int goodsTypeId);
 
     //根据商品id查询商品详细信息
-    LeaseGood findLeaseGoodById(int goodId);
+    LeaseGood findLeaseGoodById(String goodId);
 
     //根据商品id查询该商品的所有规格
-    List<GoodVariety> findLeaseGoodsVarietiesByGoodId(int goodId);
+    List<GoodVariety> findLeaseGoodsVarietiesByGoodId(String goodId);
 
     //小程序发起支付请求提交预订单
     Map addAdvanceOrder(int uid, GoodOrder goodOrder)throws Exception;

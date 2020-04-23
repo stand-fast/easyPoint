@@ -1,7 +1,7 @@
 package com.easyPoint.controller.administrator.business;
 
+import com.alibaba.fastjson.JSONArray;
 import com.easyPoint.dto.Result;
-import com.easyPoint.dto.business.GoodsDetailsDto;
 import com.easyPoint.dto.business.GoodsDto;
 import com.easyPoint.pojo.business.GoodVariety;
 import com.easyPoint.pojo.business.Goods;
@@ -45,10 +45,11 @@ public class GoodsController {
         String proImg = goods.getProImg();
         Integer goodsTypeId = goods.getGoodsTypeId();
         Integer state = goods.getState();
+        String goodVarietyString = goods.getGoodVarietyString();
 
         if (goodName == null || goodName.equals("") || businessName == null || businessName.equals("") ||
                 lowestPrice == null || lowestPrice.equals("") || proImg == null || proImg.equals("") || goodsTypeId == null || goodsTypeId < 0 ||
-                (state != 1 && state != 2 && state != 3)) {
+                (state != 1 && state != 2 && state != 3) || goodVarietyString == null || goodVarietyString.equals("")) {
             result.setCode(2);
             result.setMessage("参数有误");
             return result;
@@ -62,7 +63,7 @@ public class GoodsController {
 
         Integer flag = goodsService.addGoods(goods);
 
-        List<GoodVariety> goodVarietyList = goods.getGoodVarietyList();
+        List<GoodVariety> goodVarietyList = JSONArray.parseArray(goodVarietyString, GoodVariety.class);
 
         if (flag != null && flag == 1 && (goodVarietyList == null || goodVarietyList.size() == 0)) {
             result.setCode(1);

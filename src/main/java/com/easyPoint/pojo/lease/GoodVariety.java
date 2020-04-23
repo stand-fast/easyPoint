@@ -8,7 +8,7 @@ import java.math.BigDecimal;
  */
 public class GoodVariety {
     private Integer varietyId;
-    private Integer goodId;//商品编号
+    private String goodId;//商品编号
     private String variety;//规格名称
     private String size;//尺寸	以&为分割符，S&M&L
     private BigDecimal price;//价格
@@ -34,11 +34,11 @@ public class GoodVariety {
         this.varietyId = varietyId;
     }
 
-    public Integer getGoodId() {
+    public String getGoodId() {
         return goodId;
     }
 
-    public void setGoodId(Integer goodId) {
+    public void setGoodId(String goodId) {
         this.goodId = goodId;
     }
 
