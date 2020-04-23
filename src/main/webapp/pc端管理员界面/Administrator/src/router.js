@@ -19,6 +19,7 @@ const vehicleEntry = () => import('./pages/Travel/VehicleInformationEntry.vue') 
 const addCategory = () => import('./pages/LeaseIdle/addCategory.vue') //租赁闲置-添加商品类目
 const PublishGoods = () => import('./pages/LeaseIdle/PublishGoods.vue') //租赁闲置-发布商品
 const MyReleasesGoods = () => import('./pages/LeaseIdle/MyReleasesGoods.vue') //租赁闲置-我的发布
+const GoodOrders = () => import('./pages/LeaseIdle/GoodOrders.vue') //租赁闲置-商品订单
 const CurrentAnnouncement = () => import('./pages/Announcement/CurrentAnnouncement.vue') //公告栏-当前公告
 
 Vue.use(Router)
@@ -158,6 +159,14 @@ const router = new Router({
       path: "/MyReleasesGoods",
       name: '租赁闲置-我的发布',
       component: MyReleasesGoods,
+      meta: {
+        needLogin: true
+      }
+    },
+    {
+      path: "/GoodOrders",
+      name: '租赁闲置-商品订单',
+      component: GoodOrders,
       meta: {
         needLogin: true
       }

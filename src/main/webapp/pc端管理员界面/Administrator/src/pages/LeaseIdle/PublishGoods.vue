@@ -197,19 +197,19 @@ export default {
         "datas.goodDescription"
       ],//验证部分
       datas: {
-        goodsTypeId: null, //主题
+        goodsTypeId: "", //主题
         goodName: "", //商品名称
         businessName: "", //商家名称
-        lowestPrice: null, //最低价格
-        highestPrice: null, //最高价格
-        goodImages:"1",//轮播图图片路径
+        lowestPrice: "", //最低价格
+        highestPrice: "", //最高价格
+        goodImages:"",//轮播图图片路径
         deposit:0,//押金
         depositInstruction: "", //押金说明
         takeGoodInstruction: "", //取货说明
         returnGoodInstruction: "", //还货说明
         businessHours: "", //营业时间
         goodDescription: "", //商品描述
-        proImg:"1",//页面图片
+        proImg:"",//页面图片
         state:1,//1：正在售卖；2：未发布；3：已下架
         goodVarietyList: [  
           //商品分类数据
@@ -351,29 +351,10 @@ export default {
         let that = this;
         let params = new URLSearchParams();
         for(let key in this.datas){
-          // if(key== 'goodVarietyList'){
-          //   let goodVarietyList = this.datas[key];
-          //   let variety = "",size="",price="",img="";
-          //   // for(let i=0;i<goodVarietyList.length;i++){
-          //   //   if(i==0){
-          //   //     variety = goodVarietyList[i].variety;
-          //   //     price = goodVarietyList[i].price;
-          //   //     img = goodVarietyList[i].img;
-          //   //     size = goodVarietyList[i].size;
-          //   //   }else{
-          //   //     variety = '&' + variety + goodVarietyList[i].variety;
-          //   //     price = '&' + price + goodVarietyList[i].price;
-          //   //     img = '&' + img + goodVarietyList[i].img;
-          //   //     size = '|' + size + goodVarietyList[i].size;
-          //   //   }
-          //   // }
-          //   params.append('variety', variety);
-          //   params.append('price', price);
-          //   params.append('img', img);
-          //   params.append('size', size);
-          // }else{
+          key== 'goodVarietyList'?
+            params.append('GoodVarietyString', JSON.stringify(this.datas[key]))
+            :
             params.append(key, this.datas[key]);
-          // }
         }
         this.$http
           .post("addGoods", params)
@@ -393,9 +374,9 @@ export default {
                   message: '添加成功',
                   type: 'success'
                 });
-                // setTimeout(() => {
-                //  that.$router.go(0)
-                // }, 1500);
+                setTimeout(() => {
+                 that.$router.go(0)
+                }, 1500);
                 break;
               case 2:
                 that.$message.error('参数有误');

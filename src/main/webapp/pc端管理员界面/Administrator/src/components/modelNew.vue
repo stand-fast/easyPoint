@@ -271,6 +271,11 @@ export default {
                   id: "3",
                   name: "我的发布",
                   url: "#/MyReleasesGoods"
+                },
+                {
+                  id: "4",
+                  name: "商品订单",
+                  url: "#/GoodOrders"
                 }
               ]
             }
