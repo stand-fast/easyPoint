@@ -1,5 +1,8 @@
 package com.easyPoint.pojo.business;
 
+
+import com.alibaba.fastjson.JSONArray;
+
 import java.util.List;
 
 /**
@@ -23,7 +26,16 @@ public class Goods {
     private Integer goodsTypeId;
     private GoodsType goodsType;
     private List<GoodVariety> goodVarietyList;
+    private String goodVarietyString;
     private Integer state;
+
+    public String getGoodVarietyString() {
+        return goodVarietyString;
+    }
+
+    public void setGoodVarietyString(String goodVarietyString) {
+        this.goodVarietyString = goodVarietyString;
+    }
 
     public Integer getGoodsTypeId() {
         return goodsTypeId;
