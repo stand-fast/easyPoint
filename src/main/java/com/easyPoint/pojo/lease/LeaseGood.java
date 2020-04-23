@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  * 租赁商品信息
  */
 public class LeaseGood {
-    private Integer goodId;//商品编号
+    private String goodId;//商品编号
     private String goodName;//商品名称
     private String businessName;//商家名称
     private BigDecimal lowestPrice;//商品最低价格
@@ -54,11 +54,11 @@ public class LeaseGood {
         this.businessName = businessName;
     }
 
-    public Integer getGoodId() {
+    public String getGoodId() {
         return goodId;
     }
 
-    public void setGoodId(Integer goodId) {
+    public void setGoodId(String goodId) {
         this.goodId = goodId;
     }
 

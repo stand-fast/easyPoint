@@ -23,8 +23,8 @@
     </select>
 
     <!--//根据租赁商品id查询小程序租赁商品的详情页面信息-->
-    <!--LeaseGood findLeaseGoodDetailById(int goodId);-->
-    <select id="findLeaseGoodDetailById" parameterType="int" resultType="LeaseGood">
+    <!--LeaseGood findLeaseGoodDetailById(String goodId);-->
+    <select id="findLeaseGoodDetailById" parameterType="String" resultType="LeaseGood">
         SELECT good_id AS goodId,good_name AS goodName,
                business_name AS businessName,lowest_price AS lowestPrice,
                highest_price AS highestPrice,good_images AS goodImages,
@@ -37,8 +37,8 @@
     </select>
 
     <!--//根据商品id查询该商品的所有规格-->
-    <!--List<GoodVariety> findVarietyByGoodId(int goodId);-->
-    <select id="findVarietyByGoodId" parameterType="int" resultType="GoodVariety">
+    <!--List<GoodVariety> findVarietyByGoodId(String goodId);-->
+    <select id="findVarietyByGoodId" parameterType="String" resultType="GoodVariety">
         SELECT variety_id AS varietyId,
                variety,
                size,

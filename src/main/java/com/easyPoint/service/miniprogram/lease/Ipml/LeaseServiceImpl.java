@@ -69,7 +69,7 @@ public class LeaseServiceImpl implements LeaseService {
      * @return
      */
     @Override
-    public LeaseGood findLeaseGoodById(int goodId) {
+    public LeaseGood findLeaseGoodById(String goodId) {
         return leaseGoodsDao.findLeaseGoodDetailById(goodId);
     }
 
@@ -79,7 +79,7 @@ public class LeaseServiceImpl implements LeaseService {
      * @return
      */
     @Override
-    public List<GoodVariety> findLeaseGoodsVarietiesByGoodId(int goodId) {
+    public List<GoodVariety> findLeaseGoodsVarietiesByGoodId(String goodId) {
         return leaseGoodsDao.findVarietyByGoodId(goodId);
     }
 

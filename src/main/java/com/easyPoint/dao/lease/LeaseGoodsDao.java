@@ -23,10 +23,10 @@ public interface LeaseGoodsDao {
     List<Map> findLeaseGoodsByTypeId(int goodsTypeId);
 
     //根据租赁商品id查询小程序租赁商品的详情页面信息
-    LeaseGood findLeaseGoodDetailById(int goodId);
+    LeaseGood findLeaseGoodDetailById(String goodId);
 
     //根据商品id查询该商品的所有规格
-    List<GoodVariety> findVarietyByGoodId(int goodId);
+    List<GoodVariety> findVarietyByGoodId(String goodId);
 
     //保存租赁订单信息
     int addLeaseOrder(GoodOrder goodOrder);

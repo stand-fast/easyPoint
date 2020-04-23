@@ -76,7 +76,7 @@ public class MiniLeaseController {
      */
     @GetMapping("lease/detail")
     @ResponseBody
-    public Result findLeaseGoodsDetail(@RequestParam("goodId")int goodId){
+    public Result findLeaseGoodsDetail(@RequestParam("goodId")String goodId){
         LeaseGood leaseGood = leaseService.findLeaseGoodById(goodId);
         if(leaseGood!=null)
             return new Result<>(200,"查询该租赁商品详细信息成功",leaseGood);
@@ -90,7 +90,7 @@ public class MiniLeaseController {
      */
     @GetMapping("lease/varieties")
     @ResponseBody
-    public Result findLeaseGoodsVarieties(@RequestParam("goodId")int goodId){
+    public Result findLeaseGoodsVarieties(@RequestParam("goodId")String goodId){
         List<GoodVariety> leaseGoodsVarieties = leaseService.findLeaseGoodsVarietiesByGoodId(goodId);
         if(!leaseGoodsVarieties.isEmpty())
             return new Result<>(200,"查询该租赁商品的所有规格信息成功",leaseGoodsVarieties);
