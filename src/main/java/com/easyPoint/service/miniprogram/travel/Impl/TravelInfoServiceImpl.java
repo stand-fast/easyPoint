@@ -4,14 +4,12 @@ import com.easyPoint.dao.travel.AssociationDao;
 import com.easyPoint.dao.travel.TourismInfoDao;
 import com.easyPoint.dto.travel.MiniTourismRefundPageDto;
 import com.easyPoint.dto.travel.TourismOrderDetailInfoDto;
-import com.easyPoint.pojo.travel.Passenger;
 import com.easyPoint.pojo.travel.TravelOrderInfo;
 import com.easyPoint.service.miniprogram.travel.TravelInfoService;
 import com.easyPoint.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +42,7 @@ public class TravelInfoServiceImpl implements TravelInfoService {
         }
         else {
             //查询同乡会订单车票的详情信息
-            Map associationOrderDetial = associationDao.findAssociationOrderDetial(travelOrderId);
+                Map associationOrderDetial = associationDao.findAssociationOrderDetial(travelOrderId);
             System.out.println("--------------"+associationOrderDetial.get("departureTime"));
             associationOrderDetial.put("departureTime",associationOrderDetial.get("departureTime").toString());
 

@@ -265,7 +265,12 @@ export default {
                 {
                   id: "2",
                   name: "发布商品",
-                  url: "#/PublishGoods"
+                  url: "#/PublishGoods/null"
+                },
+                {
+                  id: "3",
+                  name: "我的发布",
+                  url: "#/MyReleasesGoods"
                 }
               ]
             }
@@ -558,9 +563,14 @@ a {
   color: #9c9ea1;
   font-weight: 600;
   line-height: 60px;
+  display: flex;
 }
 .model-wrapper-con-header > span {
+  margin-left: 10px;
   cursor: pointer;
+}
+.model-wrapper-con-header > span.active {
+  color: #409eff;
 }
 .model-wrapper-con-header > span:hover {
   color: #409eff;

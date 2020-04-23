@@ -203,7 +203,10 @@ export default {
           let code = data.code;
           switch (code) {
             case 0:
-              alert("商品类目为空");
+              this.$message({
+                message: '商品类目为空，请添加商品类目',
+                type: 'warning'
+              });
               break;
             case 1:
               data.data.forEach((res, index, arr) => {
@@ -212,7 +215,6 @@ export default {
                 return res;
               });
               that.datas = data.data;
-              console.log(data.data);
               break;
             default:
               that.$judgeToken(code);
@@ -234,26 +236,35 @@ export default {
         this.$http
           .post("addGoodType", params)
           .then(res => {
-            console.log(res);
+            console.log(res.data);
             let data = res.data;
             let code = data.code;
             switch (code) {
               case -1:
-                alert("添加失败！请稍后再试");
+                this.$message({
+                  message: '添加失败！请稍后再试',
+                  type: 'warning'
+                });
                 break;
               case 1:
-                console.log(data);
                 this.showAddCategory = false;
                 this.goodsTypeName = "";
                 this.description = "";
                 this.state = 1;
+                that.$message({
+                  message: '添加成功',
+                  type: 'success'
+                });
                 this.findAllGoodType();
                 break;
               case 2:
-                alert("商品类目参数为空");
+                that.$message.error('商品类目参数为空');
                 break;
               case 3:
-                alert("商品类目名已经存在");
+                that.$message.error('商品类目名已经存在');
+                break;
+              default:
+                that.$judgeToken(code);
                 break;
             }
           })

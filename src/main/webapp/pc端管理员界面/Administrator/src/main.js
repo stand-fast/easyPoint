@@ -15,6 +15,7 @@ Vue.use(ElementUI);
 Vue.prototype.$judgeToken = judgeToken; //处理token异常函数
 Vue.prototype.$token = ''; //存储token
 Vue.prototype.$http = axios; //全局引入axios
+Vue.prototype.$imgRequest = 'https://easypoint.club/images/'
 
 Vue.config.productionTip = false
 
