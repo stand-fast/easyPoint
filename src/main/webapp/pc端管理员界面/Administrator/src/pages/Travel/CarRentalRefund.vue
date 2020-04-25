@@ -86,7 +86,10 @@ export default {
               console.log("请求退款订单首页数据和总页数成功");
               break;
             case 201:
-              alert("暂无订单信息");
+              that.$message({
+                message: '暂无订单信息',
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);
@@ -114,10 +117,16 @@ export default {
               console.log(data.message);
               break;
             case 201:
-              alert(data.message);
+              that.$message({
+                message: data.message,
+                type: 'warning'
+              });
               break;
             case 401:
-              alert(data.message);
+              that.$message({
+                message: data.message,
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);

@@ -359,18 +359,31 @@ export default {
           let code = res.data.code;
           switch (code) {
             case -1:
-              alert("修改失败");
+              that.$message({
+                message: '修改失败',
+                type: 'warning'
+              });
               break;
             case 0:
-              alert("账户不存在");
+              that.$message({
+                message: '账户不存在',
+                type: 'warning'
+              });
               break;
             case 1:
               that.$store.state.loginUser.data.username = that.newusername;
               that.newusername = "";
               that.drawer = false;
+              that.$message({
+                message: '修改成功',
+                type: 'success'
+              });
               break;
             case 2:
-              alert("参数为空");
+              that.$message({
+                message: '参数为空',
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);
@@ -385,7 +398,10 @@ export default {
     submitChangeAccount() {
       let that = this;
       if (this.changePassword != this.changeComfirmPassword) {
-        alert("两次密码输入不一致");
+        that.$message({
+          message: '两次密码输入不一致',
+          type: 'warning'
+        });
       } else {
         let params = new URLSearchParams();
         params.append("phone", this.loginUser.loginId);
@@ -400,35 +416,59 @@ export default {
             let code = res.data.code;
             switch (code) {
               case -1:
-                alert("修改失败");
+                that.$message({
+                  message: '修改失败',
+                  type: 'warning'
+                });
                 break;
               case 0:
-                alert("账户不存在");
+                that.$message({
+                  message: '账户不存在',
+                  type: 'warning'
+                });
                 break;
               case 1:
+                that.$message({
+                  message: '更换绑定成功,请重新登陆',
+                  type: 'success'
+                });
                 that.changeId = "";
                 that.changeCode = "";
                 that.changePassword = "";
                 that.changeComfirmPassword = "";
                 that.drawerModifyAccount = false;
-                alert("更换绑定成功,请重新登陆");
                 that.$store.dispatch("loginUser/loginOut");
                 that.$router.push("/login");
                 break;
               case 2:
-                alert("参数为空");
+                that.$message({
+                  message: '参数为空',
+                  type: 'warning'
+                });
                 break;
               case 3:
-                alert("验证码错误");
+                that.$message({
+                  message: '验证码错误',
+                  type: 'warning'
+                });
                 break;
               case 4:
-                alert("两次密码输入不一致");
+                that.$message({
+                  message: '两次密码输入不一致',
+                  type: 'warning'
+                });
                 break;
               case 5:
-                alert("新旧手机号码一致");
+                that.$message({
+                  message: '新旧手机号码一致',
+                  type: 'warning'
+                });
                 break;
-              case 5:
-                alert("新手机号码已被注册");
+              case 6:
+                that.$message({
+                  message: '新手机号码已被注册',
+                  type: 'warning'
+                });
                 break;
               default:
                 that.$judgeToken(code);
@@ -444,7 +484,10 @@ export default {
     submitModifyPassword() {
       let that = this;
       if (this.newPassword != this.ensurePassword) {
-        alert("两次密码输入不一致");
+        that.$message({
+          message: '两次密码输入不一致',
+          type: 'warning'
+        });
       } else {
         let params = new URLSearchParams();
         params.append("phone", this.loginUser.loginId);
@@ -458,28 +501,46 @@ export default {
             let code = res.data.code;
             switch (code) {
               case -1:
-                alert("修改失败");
+                that.$message({
+                  message: '修改失败',
+                  type: 'warning'
+                });
                 break;
               case 0:
-                alert("账户不存在");
+                that.$message({
+                  message: '账户不存在',
+                  type: 'warning'
+                });
                 break;
               case 1:
+                that.$message({
+                  message: '修改成功,请重新登陆',
+                  type: 'success'
+                });
                 that.oldPassword = "";
                 that.newPassword = "";
                 that.ensurePassword = "";
                 that.drawerModifyPassword = false;
-                alert("修改成功,请重新登陆");
                 that.$store.dispatch("loginUser/loginOut");
                 that.$router.push("/login");
                 break;
               case 2:
-                alert("参数为空");
+                that.$message({
+                  message: '参数为空',
+                  type: 'warning'
+                });
                 break;
               case 3:
-                alert("旧密码错误");
+                that.$message({
+                  message: '旧密码错误',
+                  type: 'warning'
+                });
                 break;
               case 4:
-                alert("两次密码输入不一致");
+                that.$message({
+                  message: '两次密码输入不一致',
+                  type: 'warning'
+                });
                 break;
               default:
                 that.$judgeToken(code);
@@ -493,6 +554,10 @@ export default {
     },
     //退出登陆
     loginOut() {
+      this.$message({
+        message: '退出登陆成功',
+        type: 'success'
+      });
       this.$store.dispatch("loginUser/loginOut");
       this.$router.push("/login");
     },
@@ -502,7 +567,10 @@ export default {
       let num = 60;
       let that = this;
       if (!reg.test(phone)) {
-        alert("手机号码有误!");
+        that.$message({
+          message: '手机号码有误',
+          type: 'warning'
+        });
       } else {
         if (this.codeStatus == 0) {
           this.codeStatus = 1;

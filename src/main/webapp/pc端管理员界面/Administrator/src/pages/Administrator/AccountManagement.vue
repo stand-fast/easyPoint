@@ -181,7 +181,10 @@ export default {
           let code = res.data.code;
           switch (code) {
             case 0:
-              alert("查询到0条数据");
+              that.$message({
+                message: '暂无数据',
+                type: 'warning'
+              });
               break;
             case 1:
               that.current = page;
@@ -196,10 +199,16 @@ export default {
               console.log("查询成功");
               break;
             case 3:
-              alert("页码超出最大范围");
+              that.$message({
+                message: '页码超出最大范围',
+                type: 'warning'
+              });
               break;
             case 110:
-              alert("非超级管理员，出现非法操作！");
+              that.$message({
+                message: '非超级管理员，出现非法操作！',
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);
@@ -223,20 +232,35 @@ export default {
           let code = res.data.code;
           switch (code) {
             case -1:
-              alert("修改失败");
+              that.$message({
+                message: '修改失败',
+                type: 'warning'
+              });
               break;
             case 0:
-              alert("账号不存在");
+              that.$message({
+                message: '账号不存在',
+                type: 'warning'
+              });
               break;
             case 1:
+              that.$message({
+                message: '修改成功',
+                type: 'success'
+              });
               that.handlePageChange(that.current);
-              //alert("修改成功");
               break;
             case 2:
-              alert("参数为空");
+              that.$message({
+                message: '参数为空',
+                type: 'warning'
+              });
               break;
             case 110:
-              alert("非超级管理员，出现非法操作！");
+              that.$message({
+                message: '非超级管理员，出现非法操作！',
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);
@@ -259,20 +283,35 @@ export default {
           let code = res.data.code;
           switch (code) {
             case -1:
-              alert("删除失败");
+              that.$message({
+                message: '删除失败',
+                type: 'warning'
+              });
               break;
             case 0:
-              alert("账号不存在");
+              that.$message({
+                message: '账号不存在',
+                type: 'warning'
+              });
               break;
             case 1:
+              that.$message({
+                message: '删除成功',
+                type: 'success'
+              });
               that.handlePageChange(that.current);
-              //alert("删除成功");
               break;
             case 2:
-              alert("参数为空");
+              that.$message({
+                message: '参数为空',
+                type: 'warning'
+              });
               break;
             case 110:
-              alert("非超级管理员，出现非法操作！");
+              that.$message({
+                message: '非超级管理员，出现非法操作！',
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);
@@ -288,7 +327,10 @@ export default {
       let that = this;
       let reg = /^[1][3458]\d{9}$/; //验证手机号码
       if (!reg.test(this.phone)) {
-        alert("手机号码有误!");
+        that.$message({
+          message: '手机号码有误',
+          type: 'warning'
+        });
       } else {
         let params = new URLSearchParams();
         params.append("phone", this.phone);
@@ -302,25 +344,40 @@ export default {
             let code = res.data.code;
             switch (code) {
               case -1:
-                alert("添加失败");
+                that.$message({
+                  message: '添加失败',
+                  type: 'warning'
+                });
                 break;
               case 1:
+                that.$message({
+                  message: '添加成功',
+                  type: 'success'
+                });
                 that.phone = "";
                 that.username = "";
                 that.password = "";
                 that.identity = 1;
                 that.showAddAccounts = false;
                 that.handlePageChange(that.current);
-                alert("添加成功");
                 break;
               case 2:
-                alert("参数为空");
+                that.$message({
+                  message: '参数为空',
+                  type: 'warning'
+                });
                 break;
               case 3:
-                alert("手机号已被注册");
+                that.$message({
+                  message: '手机号已被注册',
+                  type: 'warning'
+                });
                 break;
               case 110:
-                alert("非超级管理员，出现非法操作！");
+                that.$message({
+                  message: '非超级管理员，出现非法操作！',
+                  type: 'warning'
+                });
                 break;
               default:
                 that.$judgeToken(code);

@@ -5,6 +5,7 @@
         action="https://easypoint.club/administrator/imagesUpload"
         list-type="picture-card"
         :on-success="uploadSuccess"
+        :file-list="fileList"
         :before-upload = 'beforeUpload'
         :on-remove="handleRemove">
         <i class="el-icon-plus"></i>
@@ -72,6 +73,7 @@ export default {
         img:"",
         size:"",
       },
+      fileList:[],
       items: [{ specifc: "" }],//尺寸list
       dialogImageUrl: '',
       dialogVisible: false,
@@ -92,11 +94,8 @@ export default {
       message: "请输入商品类别价格"
     }
   },
-  props: {
-    index: {
-      type: Number
-    },
-  },
+  props:['index','variety','price','img','size']
+  ,
   computed: {
     //错误信息
     errors() {
@@ -112,6 +111,19 @@ export default {
         }
       }
       return boo;
+    },
+    imgs(){
+      return this.variety
+    }
+  },
+  mounted(){
+    this.datas.variety = this.variety;
+    this.datas.price = this.price;
+    this.datas.img = this.img;
+    this.items = JSON.parse(this.size);
+    if(this.img){
+      this.fileList.push({url: 'https://easypoint.club/images/'+ this.img});
+      document.getElementsByClassName('el-upload--picture-card')[this.index].style.display = 'none';
     }
   },
   methods: {
@@ -121,16 +133,7 @@ export default {
       let verifyList = ["datas.img","datas.variety", "datas.price"];
       // check() 校验所有规则，参数可以设置需要校验的数组
       if (this.$vuerify.check(verifyList) && !boo) {
-        let size = "";
-        for(let i=0;i < this.items.length;i++){
-          i ==  this.items.length-1?
-          size += this.items[i].specifc
-          :
-          size = size + this.items[i].specifc + '&'
-        }
-        this.datas.size = size;
-        console.log(this.datas)
-        this.$emit("items", this.index, this.datas);
+        this.$emit("items", this.index, {variety:this.datas.variety,size:JSON.stringify(this.items),price:this.datas.price,img:this.datas.img});
         this.$emit("errorSpecifications", true);
       }else{
         this.$emit("errorSpecifications", false);

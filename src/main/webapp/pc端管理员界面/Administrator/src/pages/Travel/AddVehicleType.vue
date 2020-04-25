@@ -74,20 +74,35 @@ export default {
     //检查输入数据是否合法
     check() {
       if (this.location == "") {
-        alert("车辆类型不能为空");
+        this.$message({
+          message: '车辆类型不能为空',
+          type: 'warning'
+        });
         return false;
       } else if (this.deposit == "") {
-        alert("定金不能为空");
+        this.$message({
+          message: '定金不能为空',
+          type: 'warning'
+        });
         return false;
       } else if (isNaN(Number(this.deposit))) {
-        alert("定金不是数字!");
+        this.$message({
+          message: '定金不是数字',
+          type: 'warning'
+        });
         return false;
       } else if ((this.deposit % 1 === 0) == false) {
-        alert("定金不是整数!");
+        this.$message({
+          message: '定金不是整数!',
+          type: 'warning'
+        });
         return false;
       } else if (this.deposit < 0) {
         //当输入不是数字的时候，Number后返回的值是NaN;然后用isNaN判断。
-        alert("定金不能为负数");
+        this.$message({
+          message: '定金不能为负数',
+          type: 'warning'
+        });
         return false;
       } else {
         return true;
@@ -119,7 +134,10 @@ export default {
               console.log("查询订单页数以及首页订单信息成功");
               break;
             case 201:
-              alert("暂无车辆类型数据，请管理员添加");
+              that.$message({
+                message: '暂无车辆类型数据，请管理员添加',
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);
@@ -147,7 +165,10 @@ export default {
               console.log(data.message);
               break;
             case 201:
-              alert("已经加载完全部数据");
+              that.$message({
+                message: '已经加载完全部数据',
+                type: 'warning'
+              });
               that.setData();
               break;
             default:
@@ -172,12 +193,18 @@ export default {
             let code = data.code;
             switch (code) {
               case 200:
-                alert("添加车辆类型成功");
+                that.$message({
+                  message: '添加车辆类型成功',
+                  type: 'success'
+                });
                 that.showAddVehicle = false;
                 that.setData();
                 break;
               case 400:
-                alert("该车辆类型已存在,请重新输入");
+                that.$message({
+                  message: '该车辆类型已存在,请重新输入',
+                  type: 'warning'
+                });
                 break;
               default:
                 that.$judgeToken(code);
@@ -201,7 +228,10 @@ export default {
           let code = data.code;
           switch (code) {
             case 200:
-              // alert("删除车辆类型成功");
+              that.$message({
+                message: '删除车辆类型成功',
+                type: 'success'
+              });
               that.setData();
               break;
             default:

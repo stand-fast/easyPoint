@@ -97,7 +97,7 @@ export default {
       navPlateName: "我的发布",
       showAddVehicle: false, //是否显示添加车辆类型弹窗
       datas: [], //车辆类型数据
-      state:3,//1：正在售卖；2：未发布 3：已下架
+      state:1,//1：正在售卖；2：未发布 3：已下架
       startIndex: 1, //当前页码
       totalNumber: null,//页码总数
       pageSize:8,//每页最大条数

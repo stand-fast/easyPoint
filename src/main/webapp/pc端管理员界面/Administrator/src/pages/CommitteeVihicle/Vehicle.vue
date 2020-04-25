@@ -56,19 +56,34 @@ export default {
     check() {
       let reg = /^[1][3458]\d{9}$/; //验证手机号码
       if (this.licensePlateNumber == "") {
-        alert("车牌号不能为空");
+        this.$message({
+          message: '车牌号不能为空',
+          type: 'warning'
+        });
         return false;
       } else if (this.vehicleType == "") {
-        alert("车辆类型不能为空");
+        this.$message({
+          message: '车辆类型不能为空',
+          type: 'warning'
+        });
         return false;
       } else if (this.color == "") {
-        alert("车身颜色不能为空");
+        this.$message({
+          message: '车身颜色不能为空',
+          type: 'warning'
+        });
         return false;
       } else if (this.driverName == "") {
-        alert("司机姓名不能为空");
+        this.$message({
+          message: '司机姓名不能为空',
+          type: 'warning'
+        });
         return false;
       } else if (!reg.test(this.driverPhone)) {
-        alert("司机联系方式有误!");
+        this.$message({
+          message: '司机联系方式有误',
+          type: 'warning'
+        });
         return false;
       } else {
         return true;
@@ -88,9 +103,12 @@ export default {
           let code = data.code;
           switch (code) {
             case -1:
-              alert("查询失败");
+              that.$message({
+                message: '查询失败',
+                type: 'warning'
+              });
               break;
-            case 1:
+            case 1:{
               console.log("查询成功");
               let info = data.data.ticketInfo;
               that.licensePlateNumber =
@@ -105,8 +123,12 @@ export default {
               that.driverPhone =
                 info.driverPhone == "未添加" ? "" : info.driverPhone;
               break;
+            }
             case 2:
-              alert("参数为空");
+              that.$message({
+                message: '参数为空',
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);
@@ -135,14 +157,23 @@ export default {
           let code = data.code;
           switch (code) {
             case -1:
-              alert("修改失败");
+              that.$message({
+                message: '修改失败',
+                type: 'warning'
+              });
               break;
             case 1:
-              alert("修改成功");
+              that.$message({
+                message: '修改成功',
+                type: 'success'
+              });
               this.findTicketInfo(this.id);
               break;
             case 2:
-              alert("参数为空");
+              that.$message({
+                message: '参数为空',
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);

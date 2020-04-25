@@ -13,12 +13,12 @@
         <div class="publish-content">
           <li class="content-item">
             <span class="item-title">选择主题：</span>
-            <el-select v-model="datas.goodsTypeId" clearable placeholder="请选择商品主题">
+            <el-select v-model="goodsTypeName" clearable placeholder="请选择商品主题">
               <el-option
                 v-for="item in themeData"
-                :key="item.value"
+                :key="item.goodsTypeId"
                 :label="item.goodsTypeName"
-                :value="item.goodsTypeId"
+                :value="item.goodsTypeName"
               ></el-option>
             </el-select>
             <span class="error" v-if="errors['datas.goodsTypeId']">{{errors['datas.goodsTypeId']}}</span>
@@ -64,7 +64,7 @@
               list-type="picture"
             >
               <el-button size="small" type="primary">点击上传</el-button>
-              <div slot="tip" class="el-upload__tip">第一张为页面图片，只能上传jpg/png文件，且不超过500kb</div>
+              <div slot="tip" class="el-upload__tip">第一张为封面图，只能上传jpg/png文件，且不超过500kb</div>
               <span class="error" v-if="errors['datas.proImg']">{{errors['datas.proImg']}}</span>
             </el-upload>
           </li>
@@ -151,9 +151,9 @@
         <div class="publish-title">
           <span>商品类别填写</span>
         </div>
-        <div class="publish-content textarea">
+        <div class="publish-content textarea" v-if="isRequestFinish">
           <li class="content-item" v-for="(item,index) in datas.goodVarietyList" :key="index">
-            <specifications :index="index" @items="handleItemsChange" @errorSpecifications="errorSpecifications" />
+            <specifications :index="index" :img="item.img" :size="item.size" :variety="item.variety" :price="item.price"  @items="handleItemsChange" @errorSpecifications="errorSpecifications" />
             <el-button @click="del(index)" class="delButton" type="primary">删除商品</el-button>
           </li>
           <div class="elButton">
@@ -162,8 +162,13 @@
         </div>
       </div>
       <div class="el-submit-button">
-        <el-button @click="onSubmit(1)">上传</el-button>
-        <el-button @click="onSubmit(2)">保存</el-button>
+        <div v-if="!modifyData">
+          <el-button  @click="onSubmit(1)">上传</el-button>
+          <el-button @click="onSubmit(2)">保存</el-button>
+        </div>
+        <div v-else>
+          <el-button  @click="onSubmitModify(goodId)">修改</el-button>
+        </div>
       </div>
     </el-main>
   </div>
@@ -177,10 +182,14 @@ import specifications from "../../components/specifications.vue";
 export default {
   data() {
     return {
+      rootUrl:'https://easypoint.club/images/',
       navName: "租赁闲置",
       navPlateName: "发布商品",
+      modifyData:false,//是否是修改数据状态
+      isRequestFinish:false,//请求详情数据是否成功，延缓商品类别加载
       fileList: [], //商品图片
-      upload_success_list:[],
+      upload_success_list:[],//上传成功照片list
+      goodsTypeName:"",//商品类别名
       status: false, //判断商品类别是否校验通过
       themeData: [],//商品类别数据
       verifyList:[
@@ -217,11 +226,10 @@ export default {
             variety: "",
             price: "",
             img: "",
-            size: "",
+            size: JSON.stringify([{ specifc: "" }]),
           }
         ]
       }, //发布商品数据
-      
     };
   },
   //vuerify表单验证
@@ -281,7 +289,11 @@ export default {
     const goodId = this.$route.params.goodId; //通过路由器获取id
     this.findAllGoodType();//获取商品种类
     if(goodId !== 'null'){
+      this.goodId = goodId; 
+      this.modifyData = true;
       this.getGoodDetails(goodId);//获取详情数据
+    }else{
+      this.isRequestFinish = true
     }
   },
   methods: {
@@ -295,43 +307,38 @@ export default {
           let data = res.data;
           let code = data.code;
           console.log(data);
-          // switch (code) {
-          //   case 200:
-          //     that.datas = data.data;
-          //     console.log(data.message);
-          //     break;
-          //   case 1:
-          //     break;
-          //   case 401:
-          //     alert(data.message);
-          //     break;
-          //   default:
-          //     that.$judgeToken(code);
-          //     break;
-          // }
-        })
-        .catch(function(e) {
-          console.log(e);
-        });
-    },
-    //获取商品种类
-    findAllGoodType(){
-      let that = this;
-      let params = {};
-      this.$http
-        .get("findAllGoodType", { params })
-        .then(res => {
-          let data = res.data;
-          let code = data.code;
           switch (code) {
             case 0:
-              this.$message({
-                message: '商品类目为空，请添加商品类目',
-                type: 'warning'
-              });
+              that.$message.error('该商品不存在');
               break;
-            case 1:
-              that.themeData = data.data;
+            case 1:{
+              let goodsDetails = data.data.goodsDetails;
+              that.goodsTypeName = goodsDetails.goodsType.goodsTypeName;
+              that.datas.goodName = goodsDetails.goodName;
+              that.datas.businessName = goodsDetails.businessName;
+              that.datas.lowestPrice = goodsDetails.lowestPrice;
+              that.datas.highestPrice = goodsDetails.highestPrice;
+              let upload_success_list =  JSON.parse(goodsDetails.goodImages);//将json字符串转换成json对象
+              that.upload_success_list = upload_success_list;//将json字符串转换成json对象
+              let fileList = [];
+              upload_success_list.map((item,index)=>{
+                fileList.push({name:item,url:that.rootUrl+item})
+              })
+              that.fileList = fileList;
+              that.datas.depositInstruction = goodsDetails.depositInstruction;
+              that.datas.takeGoodInstruction = goodsDetails.takeGoodInstruction;
+              that.datas.returnGoodInstruction = goodsDetails.returnGoodInstruction;
+              that.datas.businessHours = goodsDetails.businessHours;
+              that.datas.goodDescription = goodsDetails.goodDescription;
+              that.datas.goodVarietyList = goodsDetails.goodVarietyList;
+              that.datas.state = goodsDetails.state;
+              that.$nextTick(() => {
+                that.isRequestFinish = true
+              })
+              break;
+            }
+            case 2:
+              that.$message.error('该商品不存在');
               break;
             default:
               that.$judgeToken(code);
@@ -341,20 +348,24 @@ export default {
         .catch(function(e) {
           console.log(e);
         });
-
     },
     // 提交表单数据
     onSubmit(state) {
+      let that = this;
+      this.changeData();
       console.log(this.datas);
       if (this.$vuerify.check(this.verifyList) && this.status == true) { //校验
         this.datas.state = state;
         let that = this;
         let params = new URLSearchParams();
         for(let key in this.datas){
-          key== 'goodVarietyList'?
-            params.append('GoodVarietyString', JSON.stringify(this.datas[key]))
-            :
-            params.append(key, this.datas[key]);
+          switch(key){
+            case 'goodVarietyList':
+              params.append('GoodVarietyString', JSON.stringify(this.datas[key]))
+              break;
+            default:
+              params.append(key, this.datas[key]);
+          }
         }
         this.$http
           .post("addGoods", params)
@@ -364,7 +375,7 @@ export default {
             let code = data.code;
             switch (code) {
               case -1:
-                this.$message({
+                that.$message({
                   message: '添加失败！请稍后再试',
                   type: 'warning'
                 });
@@ -392,6 +403,107 @@ export default {
         return;
       }
     },
+    onSubmitModify(goodId){
+      let that = this;
+      this.changeData();
+      console.log(this.datas);
+      if (this.$vuerify.check(this.verifyList) && this.status == true) { //校验
+        let that = this;
+        let params = new URLSearchParams();
+        params.append('goodId', goodId);
+        for(let key in this.datas){
+          switch(key){
+            case 'goodVarietyList':
+              params.append('GoodVarietyString', JSON.stringify(this.datas[key]))
+              break;
+            default:
+              params.append(key, this.datas[key]);
+          }
+        }
+        this.$http
+          .post("updateGoods", params)
+          .then(res => {
+            console.log(res.data);
+            let data = res.data;
+            let code = data.code;
+            switch (code) {
+              case -1:
+                this.$message({
+                  message: '修改失败！请稍后再试',
+                  type: 'warning'
+                });
+                break;
+              case 0:
+                that.$message.error('该商品不存在');
+                break;
+              case 1:
+                that.$message({
+                  message: '修改成功',
+                  type: 'success'
+                });
+                // setTimeout(() => {
+                //  that.$router.go(0)
+                // }, 1500);
+                break;
+              case 2:
+                that.$message.error('参数有误');
+                break;
+              default:
+                that.$judgeToken(code);
+                break;
+            }
+          })
+          .catch(function(e) {
+            console.log(e);
+          });
+        return;
+      }
+    },
+    //转换规格数据
+    changeData(){
+      //解析转换goodsTypeName成goodsTypeId
+      this.themeData.map((item,index)=>{
+        if(item.goodsTypeName == this.goodsTypeName){
+          this.datas.goodsTypeId = item.goodsTypeId
+        }
+      })
+      //将list转换成json字符串
+      this.upload_success_list[0] == undefined?
+      this.datas.proImg = ""
+      :
+      this.datas.proImg = this.upload_success_list[0];
+      this.datas.goodImages = JSON.stringify(this.upload_success_list);
+    },
+    //获取商品种类
+    findAllGoodType(){
+      let that = this;
+      let params = {};
+      this.$http
+        .get("findAllGoodType", { params })
+        .then(res => {
+          // console.log(res.data);
+          let data = res.data;
+          let code = data.code;
+          switch (code) {
+            case 0:
+              this.$message({
+                message: '商品类目为空，请添加商品类目',
+                type: 'warning'
+              });
+              break;
+            case 1:
+              that.themeData = data.data;
+              break;
+            default:
+              that.$judgeToken(code);
+              break;
+          }
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
+
+    },
     //商品图片上传
     uploadSuccess(response){
       console.log(response);
@@ -404,7 +516,6 @@ export default {
           console.log('上传成功');
           this.upload_success_list.push(response.data.imgUrl);
           console.log(this.upload_success_list);
-          this.setUploadImg(this.upload_success_list);
           break;
       }
     },
@@ -412,30 +523,11 @@ export default {
     handleRemove(file) {
       console.log(file);
       let deleteIndex;
-      let fileurl = file.response.data.imgUrl;
+      let filename = file.name;
       this.upload_success_list.findIndex((url,index)=>{
-        if(url ==fileurl) deleteIndex = index;
+        if(url == filename) deleteIndex = index;
       })
-      // console.log(deleteIndex);
       this.upload_success_list.splice(deleteIndex,1);
-      // console.log(this.upload_success_list);
-      this.setUploadImg(this.upload_success_list)
-    },
-    //上传成功或者删除图片更新data.proImg、datas.goodImages
-    setUploadImg(list){
-      if(list[0]){
-        for(let i=0;i<list.length;i++){
-          if(i==0){
-            this.datas.proImg = list[0];
-            this.datas.goodImages = list[0];
-          }else{
-            this.datas.goodImages += '&' +list[i];
-          }
-        }
-      }else{
-        this.datas.proImg = "";
-        this.datas.goodImages = "";
-      }
     },
     //接受specifications组件数据
     handleItemsChange(index, data) {
@@ -454,7 +546,7 @@ export default {
         variety: "",
         price: "",
         img: "",
-        size: "",
+        size: JSON.stringify([{ specifc: "" }]),
       });
     },
     //商品分类删除商品分类

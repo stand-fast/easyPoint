@@ -118,7 +118,10 @@ export default {
               console.log("查询订单页数以及首页订单信息成功");
               break;
             case 201:
-              alert("暂无订单信息");
+              that.$message({
+                message: '暂无订单信息',
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);
@@ -146,7 +149,10 @@ export default {
               console.log(data.message);
               break;
             case 201:
-              alert("已经加载完全部数据");
+              that.$message({
+                message: '已经加载完全部数据',
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);

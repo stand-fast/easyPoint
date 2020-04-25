@@ -52,9 +52,13 @@ export default {
         .then(res => {
           console.log(res.data);
           var data = res.data;
-          switch (data.code) {
+          var code = data.code;
+          switch (code) {
             case 0:
-              alert("暂无购票信息");
+              that.$message({
+                message: '暂无购票信息',
+                type: 'warning'
+              });
               break;
             case 1:
               console.log("查询成功");
@@ -66,10 +70,16 @@ export default {
                   : parseInt(data.data.total / this.pageSize) + 1;
               break;
             case 2:
-              alert("参数为空");
+              that.$message({
+                message: '参数为空',
+                type: 'warning'
+              });
               break;
             case 3:
-              alert("页码超出最大范围");
+              that.$message({
+                message: '页码超出最大范围',
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);

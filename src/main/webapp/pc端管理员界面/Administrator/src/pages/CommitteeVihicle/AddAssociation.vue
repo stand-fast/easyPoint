@@ -40,7 +40,7 @@
             class="column-width-5"
             placement="top"
             width="230"
-            title="确认删除该车辆类型吗？"
+            title="确认删除该同乡会吗？"
             trigger="click"
             v-model="scope.row.visible"
           >
@@ -87,7 +87,10 @@ export default {
     //检查输入数据是否合法
     check() {
       if (this.addAssociation == "") {
-        alert("同乡会名称不能为空");
+        this.$message({
+          message: '同乡会名称不能为空',
+          type: 'warning'
+        });
         return false;
       } else {
         return true;
@@ -113,7 +116,10 @@ export default {
           let code = data.code;
           switch (code) {
             case 0:
-              alert("没有数据");
+              that.$message({
+                message: '没有数据',
+                type: 'warning'
+              });
               break;
             case 1:
               console.log("查询成功");
@@ -126,10 +132,16 @@ export default {
               this.current = page;
               break;
             case 2:
-              alert("参数错误");
+              that.$message({
+                message: '参数错误',
+                type: 'warning'
+              });
               break;
             case 3:
-              alert("页码超出最大范围");
+              that.$message({
+                message: '页码超出最大范围',
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);
@@ -154,17 +166,26 @@ export default {
             let code = data.code;
             switch (code) {
               case -1:
-                alert("同乡会添加失败！请稍后再试");
+                that.$message({
+                  message: '同乡会添加失败！请稍后再试',
+                  type: 'warning'
+                });
                 break;
               case 0:
-                alert("同乡会名字为空！");
+                that.$message({
+                  message: '同乡会名字为空！',
+                  type: 'warning'
+                });
                 break;
               case 1:
                 this.showAddAssociation = false;
                 this.getAssociation(this.current);
                 break;
               case 2:
-                alert("同乡会名已添加过！");
+                that.$message({
+                  message: '同乡会名已添加过！',
+                  type: 'warning'
+                });
                 break;
             }
           })
@@ -174,7 +195,12 @@ export default {
       }
     },
     //删除乡会
-    handleDelete(id) {},
+    handleDelete(id) {
+      this.$message({
+        message: '暂无接口',
+        type: 'warning'
+      });
+    },
     //跳转上下车地点
     addPlace(id) {
       this.$router.push("/AddLocation/" + id);

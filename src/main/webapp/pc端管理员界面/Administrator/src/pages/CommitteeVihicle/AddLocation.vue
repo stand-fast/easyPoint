@@ -76,7 +76,10 @@ export default {
     //检查输入数据是否合法
     check() {
       if (this.inputPlace == "") {
-        alert("上下车地点不能为空");
+        this.$message({
+          message: '上下车地点不能为空',
+          type: 'warning'
+        });
         return false;
       } else {
         return true;
@@ -105,9 +108,13 @@ export default {
           let code = data.code;
           switch (code) {
             case 0:
-              alert("没有查询到数据");
+              that.$message({
+                message: '没有查询到数据',
+                type: 'warning'
+              });
               break;
             case 1:
+              {
               console.log("查询成功");
               let newdata = [];
               data.data.placeList.forEach((res, index, arr) => {
@@ -117,11 +124,18 @@ export default {
               this.totalNumber = data.data.totalNum;
               this.current = page;
               break;
+              }
             case 2:
-              alert("参数为空");
+              that.$message({
+                message: '参数为空',
+                type: 'warning'
+              });
               break;
             case 3:
-              alert("页码超出最大范围");
+              that.$message({
+                message: '页码超出最大范围',
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);
@@ -147,19 +161,34 @@ export default {
             let code = data.code;
             switch (code) {
               case -3:
-                alert("此同乡会已经添加过该地址");
+                that.$message({
+                  message: '此同乡会已经添加过该地址',
+                  type: 'warning'
+                });
                 break;
               case -2:
-                alert("该同乡会不存在");
+                that.$message({
+                  message: '该同乡会不存在',
+                  type: 'warning'
+                });
                 break;
               case -1:
-                alert("添加失败,请稍后再试");
+                that.$message({
+                  message: '添加失败,请稍后再试',
+                  type: 'warning'
+                });
                 break;
               case 0:
-                alert("参数错误!");
+                that.$message({
+                  message: '参数错误!',
+                  type: 'warning'
+                });
                 break;
               case 1:
-                //alert("添加成功");
+                that.$message({
+                  message: '添加成功',
+                  type: 'success'
+                });
                 this.showAddPlace = false;
                 this.handlePageChange(this.current);
                 break;
@@ -187,17 +216,29 @@ export default {
           let code = data.code;
           switch (code) {
             case -1:
-              alert("删除失败");
+              that.$message({
+                message: '删除失败',
+                type: 'warning'
+              });
               break;
             case 0:
-              alert("参数为空");
+              that.$message({
+                message: '参数为空',
+                type: 'warning'
+              });
               break;
             case 1:
-              console.log("删除成功");
+              that.$message({
+                message: '删除成功',
+                type: 'success'
+              });
               this.handlePageChange(this.current);
               break;
             case 2:
-              alert("没添加过该地址或没有此同乡会");
+              that.$message({
+                message: '没添加过该地址或没有此同乡会',
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);

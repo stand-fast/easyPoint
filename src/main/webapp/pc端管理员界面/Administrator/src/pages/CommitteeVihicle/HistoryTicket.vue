@@ -127,9 +127,13 @@ export default {
         .then(res => {
           console.log(res.data);
           let data = res.data;
-          switch (data.code) {
+          let code = data.code;
+          switch (code) {
             case 0:
-              alert("没有查询到数据");
+              that.$message({
+                message: '没有查询到数据',
+                type: 'warning'
+              });
               break;
             case 1:
               console.log("查询成功");
@@ -142,10 +146,16 @@ export default {
               this.current = page;
               break;
             case 2:
-              alert("参数为空");
+              that.$message({
+                message: '参数为空',
+                type: 'warning'
+              });
               break;
             case 3:
-              alert("页码超出最大范围");
+              that.$message({
+                message: '页码超出最大范围',
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);
@@ -166,16 +176,26 @@ export default {
         .then(res => {
           console.log(res.data);
           let data = res.data;
-          switch (data.code) {
+          let code = data.code;
+          switch (code) {
             case -1:
-              alert("删除失败");
+              that.$message({
+                message: '删除失败',
+                type: 'warning'
+              });
               break;
             case 1:
-              alert("删除成功");
+              that.$message({
+                message: '删除成功',
+                type: 'success'
+              });
               this.handlePageChange(this.current);
               break;
             case 2:
-              alert("参数为空");
+              that.$message({
+                message: '参数为空',
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);

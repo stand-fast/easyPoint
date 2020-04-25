@@ -125,34 +125,64 @@ export default {
     //检查参数是否合法
     check() {
       if (this.committee == "") {
-        alert("同乡会名称不能为空");
+        this.$message({
+          message: '同乡会名称不能为空',
+          type: 'warning'
+        });
         return false;
       } else if (this.departure == "") {
-        alert("出发地不能为空");
+        this.$message({
+          message: '出发地不能为空',
+          type: 'warning'
+        });
         return false;
       } else if (this.destination == "") {
-        alert("目的地不能为空");
+        this.$message({
+          message: '目的地不能为空',
+          type: 'warning'
+        });
         return false;
       } else if (this.departure == this.destination) {
-        alert("出发地目的地不能相同");
+        this.$message({
+          message: '出发地目的地不能相同',
+          type: 'warning'
+        });
         return false;
       } else if (this.departureDay == "") {
-        alert("出发日期不能为空");
+        this.$message({
+          message: '出发日期不能为空',
+          type: 'warning'
+        });
         return false;
       } else if (this.epartureTime == "") {
-        alert("出发时间不能为空");
+        this.$message({
+          message: '出发时间不能为空',
+          type: 'warning'
+        });
         return false;
       } else if (this.epartureTime == "") {
-        alert("出发时间不能为空");
+        this.$message({
+          message: '出发时间不能为空',
+          type: 'warning'
+        });
         return false;
       } else if (this.smallint == "") {
-        alert("座位数不能为空");
+        this.$message({
+          message: '座位数不能为空',
+          type: 'warning'
+        });
         return false;
       } else if (this.price == "") {
-        alert("售价不能为空");
+        this.$message({
+          message: '售价不能为空',
+          type: 'warning'
+        });
         return false;
       } else if (this.type == "") {
-        alert("请选择是否预售");
+        this.$message({
+          message: '请选择是否预售',
+          type: 'warning'
+        });
         return false;
       } else {
         return true;
@@ -171,9 +201,13 @@ export default {
         .then(res => {
           console.log(res.data);
           let data = res.data;
-          switch (data.code) {
+          let code = data.code;
+          switch (code) {
             case 0:
-              alert("没有查询到数据");
+              that.$message({
+                message: '没有查询到数据',
+                type: 'warning'
+              });
               break;
             case 1:
               console.log("查询同乡会成功");
@@ -205,17 +239,26 @@ export default {
           this.departureOptions = "";
           switch (code) {
             case 0:
-              alert("没有查询到数据");
+              that.$message({
+                message: '没有查询到数据',
+                type: 'warning'
+              });
               break;
             case 1:
               console.log("查询上车地点成功");
               this.departureOptions = data.data.placeList;
               break;
             case 2:
-              alert("参数为空");
+              that.$message({
+                message: '参数为空',
+                type: 'warning'
+              });
               break;
             case 3:
-              alert("页码超出最大范围");
+              that.$message({
+                message: '页码超出最大范围',
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);
@@ -247,14 +290,23 @@ export default {
             let code = data.code;
             switch (code) {
               case -1:
-                alert("添加车票失败！");
+                that.$message({
+                  message: '添加车票失败！',
+                  type: 'warning'
+                });
                 break;
               case 1:
-                alert("添加车票成功！");
+                that.$message({
+                  message: '添加车票成功！',
+                  type: 'success'
+                });
                 this.departureOptions = data.data.placeList;
                 break;
               case 2:
-                alert("参数为空(欠缺)！	");
+                that.$message({
+                  message: '参数为空(欠缺)！',
+                  type: 'warning'
+                });
                 break;
               default:
                 that.$judgeToken(code);

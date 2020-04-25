@@ -102,7 +102,10 @@ export default {
       if (result) {
         this.$router.push("/"); //跳转到首页
       } else {
-        alert("账号密码错误");
+        this.$message({
+          message: '账号密码错误',
+          type: 'warning'
+        });
         this.loginId = "";
         this.loginPwd = "";
       }
@@ -111,7 +114,10 @@ export default {
     submitForgetPassword() {
       let that = this;
       if (this.forgetPassword != this.forgetComfirm) {
-        alert("两次密码输入不一致");
+        that.$message({
+          message: '两次密码输入不一致',
+          type: 'warning'
+        });
       } else {
         let params = new URLSearchParams();
         params.append("phone", this.forgetId);
@@ -125,27 +131,45 @@ export default {
             let code = res.data.code;
             switch (code) {
               case -1:
-                alert("修改失败");
+                that.$message({
+                  message: '修改失败',
+                  type: 'warning'
+                });
                 break;
               case 0:
-                alert("账户不存在");
+                that.$message({
+                  message: '账户不存在',
+                  type: 'warning'
+                });
                 break;
               case 1:
+                that.$message({
+                  message: '修改成功',
+                  type: 'success'
+                });
                 that.forgetId = "";
                 that.forgetCode = "";
                 that.forgetPassword = "";
                 that.forgetComfirm = "";
                 that.showForgetPasswords = false;
-                alert("修改成功");
                 break;
               case 2:
-                alert("参数为空");
+                that.$message({
+                  message: '参数为空',
+                  type: 'warning'
+                });
                 break;
               case 3:
-                alert("验证码错误");
+                that.$message({
+                  message: '验证码错误',
+                  type: 'warning'
+                });
                 break;
               case 4:
-                alert("两次密码输入不一致");
+                that.$message({
+                  message: '两次密码输入不一致',
+                  type: 'warning'
+                });
                 break;
             }
           })
@@ -160,7 +184,10 @@ export default {
       let num = 60;
       let that = this;
       if (!reg.test(phone)) {
-        alert("手机号码有误!");
+        that.$message({
+          message: '手机号码有误!',
+          type: 'warning'
+        });
       } else {
         if (this.codeStatus == 0) {
           this.codeStatus = 1;

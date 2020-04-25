@@ -110,10 +110,16 @@ export default {
               console.log(data.message);
               break;
             case 400:
-              alert(data.message);
+              that.$message({
+                message: data.message,
+                type: 'warning'
+              });
               break;
             case 401:
-              alert(data.message);
+              that.$message({
+                message: data.message,
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);
@@ -139,16 +145,28 @@ export default {
           console.log(data);
           switch (code) {
             case 200:
-              alert(data.message);
+              that.$message({
+                message: data.message,
+                type: 'success'
+              });
               break;
             case 201:
-              alert(data.message);
+              that.$message({
+                message: data.message,
+                type: 'warning'
+              });
               break;
             case 400:
-              alert(data.message);
+              that.$message({
+                message: data.message,
+                type: 'warning'
+              });
               break;
             case 401:
-              alert(data.message);
+              that.$message({
+                message: data.message,
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);
@@ -175,13 +193,22 @@ export default {
             console.log(data);
             switch (code) {
               case 200:
-                alert(data.message);
+                that.$message({
+                  message: data.message,
+                  type: 'success'
+                });
                 break;
               case 201:
-                alert(data.message);
+                that.$message({
+                  message: data.message,
+                  type: 'warning'
+                });
                 break;
               case 401:
-                alert(data.message);
+                that.$message({
+                  message: data.message,
+                  type: 'warning'
+                });
                 break;
               default:
                 that.$judgeToken(code);

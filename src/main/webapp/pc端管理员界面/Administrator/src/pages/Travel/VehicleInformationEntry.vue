@@ -64,19 +64,34 @@ export default {
     check() {
       var reg = /^[1][3458]\d{9}$/; //验证手机号码
       if (this.licensePlateNumber == "") {
-        alert("车牌号不能为空");
+        this.$message({
+          message: '车牌号不能为空',
+          type: 'warning'
+        });
         return false;
       } else if (this.vehicleType == "") {
-        alert("车辆类型不能为空");
+        this.$message({
+          message: '车辆类型不能为空',
+          type: 'warning'
+        });
         return false;
       } else if (this.color == "") {
-        alert("车身颜色不能为空");
+        this.$message({
+          message: '车身颜色不能为空',
+          type: 'warning'
+        });
         return false;
       } else if (this.driverName == "") {
-        alert("司机姓名不能为空");
+        this.$message({
+          message: '司机姓名不能为空',
+          type: 'warning'
+        });
         return false;
       } else if (!reg.test(this.driverPhone)) {
-        alert("司机联系方式有误!");
+        this.$message({
+          message: '司机联系方式有误!',
+          type: 'warning'
+        });
         return false;
       } else {
         return true;
@@ -104,10 +119,16 @@ export default {
               console.log("查询数据成功");
               break;
             case 201:
-              alert("已经加载完全部数据");
+              that.$message({
+                message: '已经加载完全部数据',
+                type: 'warning'
+              });
               break;
             case 401:
-              alert("订单已经完成，不能再修改车辆信息");
+              that.$message({
+                message: '订单已经完成，不能再修改车辆信息',
+                type: 'warning'
+              });
               break;
             default:
               that.$judgeToken(code);
@@ -152,13 +173,22 @@ export default {
               console.log(data);
               switch (code) {
                 case 200:
-                  alert("租车订单安排车辆信息成功");
+                  that.$message({
+                    message: '租车订单安排车辆信息成功',
+                    type: 'success'
+                  });
                   break;
                 case 201:
-                  alert("安排车辆信息失败,请稍后提交");
+                  that.$message({
+                    message: '安排车辆信息失败,请稍后提交',
+                    type: 'warning'
+                  });
                   break;
                 case 401:
-                  alert(data.message);
+                  that.$message({
+                    message: data.message,
+                    type: 'warning'
+                  });
                   break;
                 default:
                   that.$judgeToken(code);
@@ -188,10 +218,16 @@ export default {
             console.log(data);
             switch (code) {
               case 200:
-                alert("结单成功");
+                that.$message({
+                  message: '结单成功',
+                  type: 'success'
+                });
                 break;
               case 400:
-                alert("结单失败,请稍后重试");
+                that.$message({
+                  message: '结单失败,请稍后重试',
+                  type: 'warning'
+                });
                 break;
               default:
                 that.$judgeToken(code);
