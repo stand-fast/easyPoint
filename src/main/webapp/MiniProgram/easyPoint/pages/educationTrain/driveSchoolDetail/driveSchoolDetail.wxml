@@ -1,0 +1,107 @@
+<!--pages/educationTrain/driveSchoolDetail/driveSchoolDetail.wxml-->
+<view class="header">
+    <swiper indicator-dots="true"
+    autoplay="true" interval="5000" duration="1000" circular="true" class="swiper_images" indicator-color="#fff" 
+         indicator-active-color="#ffdd42">
+        <block wx:for="{{driving_school_info.defaultImgUrl}}" wx:key="key">
+            <swiper-item>
+                <image src="{{item}}" class="slide-image"/>
+            </swiper-item>
+        </block>
+    </swiper>
+    <view class="head_title">
+        <view class="namePrice">
+            <view class="schoolName">{{driving_school_info.drivingSchoolName}}</view>
+            <view class="schoolPrice">￥<text>{{driving_school_info.lowestPrice}}</text>起</view>
+        </view>
+        <view class="schoolAddress">{{driving_school_info.drivingSchoolAddress}}</view>
+    </view>
+</view>
+<view class="infomations">
+    <view class='nav_switch'>
+        <view class="{{currentTab==0 ? 'on' :''}} nav_text" data-current='0' bindtap="swichNav">详情</view>
+        <view class="{{currentTab==1 ? 'on' :''}} nav_text" data-current='1' bindtap="swichNav">介绍</view>
+        <view class="{{currentTab==2 ? 'on' :''}} nav_text" data-current='2' bindtap="swichNav">套餐</view>
+    </view>
+    <view class="hr"></view>
+    <block wx:if="{{currentTab==0}}">
+        <view class="detail_item">
+            <view class="item_title">
+                <view class="shu"></view>
+                <view class="title">学车时间：</view>
+            </view>
+            <view class="learntime_list"><view class="dot"></view>{{driving_school_info.studyTimeMorning}}</view>
+            <view class="learntime_list"><view class="dot"></view>{{driving_school_info.studyTimeNoon}}</view>
+            <view class="learntime_list"><view class="dot"></view>{{driving_school_info.studyTimeNight}}</view>
+            <view class="item_title next">
+                <view class="shu"></view>
+                <view class="title">报名须知：</view>
+            </view>
+            <view class="material"><text>驾校报道需携带资料：{{driving_school_info.conditionsOverleaf}}</text></view>
+        </view>
+    </block>
+    <block wx:if="{{currentTab==1}}">
+        <view class="detail_item">
+             <view class="item_title">
+                <view class="shu"></view>
+                <view class="title">驾校简介：</view>
+            </view>
+            <view class="introduce">{{driving_school_info.drivingSchoolProfile}}</view>
+            <view class="item_title pass">
+                <view class="shu"></view>
+                <view class="title pass_text">学员通过率：<text>{{driving_school_info.passRate}}</text></view>
+            </view>
+        </view>
+    </block>
+    <block wx:if="{{currentTab==2}}">
+        <view class="detail_item">
+            <view wx:for="{{driving_school_info.driving_school_setmeal}}" wx:key="{{index}}" wx:for-item="item" class="item_kong">
+                <view class="item_title" >
+                    <view class="shu"></view>
+                    <view class="title">{{item.setmealName}}:</view>
+                </view>
+                <view class="set_list"><view class="dot"></view>学车周期：{{item.studyCycle}}</view>
+                <view class="set_list"><view class="dot"></view>课程价格：{{item.price}}</view>
+                <view class="set_list"><view class="dot"></view>备注：{{item.note}}</view>
+            </view>
+        </view>
+    </block>
+</view>
+<view class="footer">
+    <view class="contactBtn">
+        <button open-type="contact" session-from="weapp">
+            <image src="/images/icon/cservice.png"></image>
+        </button>
+    </view>
+    <view class="protocal_text">
+        <view class='{{check?"circle1":"circle2"}}' bindtap="checkChange">
+            <image src="/images/icon/right.png"></image>
+        </view>
+        <text class="Text">浏览并同意易点协议</text>
+    </view>
+    <view class="submitBtn"><button bindtap="toSignUp">{{word}}</button></view>
+    <!-- 报名选择成功的弹窗 -->
+    <block wx:if='{{showmodal}}'>
+        <view class='mask_layer'/>
+        <view class='modal_box'>
+            <view class="model_success">支付成功</view>
+            <view class="success_text">您已报名成功，请保持手机畅通，我们会在24小时内联系您并进行后续手续办理</view>
+            <button class="success_btn" bindtap="successBtn">确定</button>
+        </view>
+    </block>
+</view>
+<!-- 显示底部弹框，选择套餐 -->
+<view class="dialog_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="dialog_attr_box" wx:if="{{showModalStatus}}">
+    <view class="dislog_item">
+        <view class='dialog_title'>套餐选择</view>
+        <view class="setprice">￥ <text>{{price}}</text></view>
+    </view>
+    <view class="hr"></view>
+    <view class="dialog_item_list">
+        <view wx:for="{{driving_school_info.driving_school_setmeal}}" wx:key="name" class='dialog_content' wx:for-item="item">
+            <view class="{{itemstatus==index?'type_pre':'type_nor'}}" bindtap='typeClick' data-index="{{index}}">{{item.setmealName}}</view>
+        </view>
+    </view>
+    <view class="confirmBtn"><button bindtap="chooseSet">确定</button></view>
+</view>

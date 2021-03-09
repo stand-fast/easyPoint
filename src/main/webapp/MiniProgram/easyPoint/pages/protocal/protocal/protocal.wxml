@@ -1,0 +1,7 @@
+<!--pages/protocal/protocal/protocal.wxml-->
+<view class="protocal-container">
+    <view wx:for="{{protocal_lists}}" wx:key="index" data-index="{{index}}" bindtap="jumpDetail" class="protocal-item">
+        <view class="protocal-text">{{item}}</view>
+        <image class="protocal-image" src="/images/icon/down.png"></image>
+    </view>
+</view>

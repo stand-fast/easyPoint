@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easyPoint.dao.travel.AssociationDao">
+
+    <insert id="addAssociation" useGeneratedKeys="true" keyProperty="associationId" keyColumn="association_id"
+            parameterType="association">
+        INSERT INTO hometown_association (association_name)
+        VALUES (#{associationName})
+    </insert>
+
+    <!-- 根据同乡会名称查询同乡会是否存在 -->
+    <select id="findAssociationByName" parameterType="string" resultType="Integer">
+        SELECT COUNT(*)
+        FROM hometown_association
+        WHERE association_name = #{associationName}
+    </select>
+
+    <!-- 根据同乡会id查询同乡会是否存在 -->
+    <select id="findAssociationById" parameterType="string" resultType="Integer">
+        SELECT COUNT(*)
+        FROM hometown_association
+        WHERE association_id = #{associationId}
+    </select>
+
+    <!-- 查询某同乡会是否添加过某个上下车地点 -->
+    <select id="findPlaceByIdAndPlace" resultType="Integer">
+        SELECT COUNT(*)
+        FROM association_place
+        WHERE association_id = #{associationId}
+          AND place = #{place}
+    </select>
+
+    <!-- 添加某同乡会的上下车地点 -->
+    <insert id="addPlace">
+        INSERT INTO association_place (association_id, place)
+        VALUES (#{associationId}, #{place})
+    </insert>
+
+
+    <!-- 删除某同乡会某个上下车地点 -->
+    <delete id="deletePlaceByIdAndPlace">
+        DELETE
+        FROM association_place
+        WHERE association_id = #{associationId}
+          AND place = #{place}
+    </delete>
+
+    <!-- 获取某同乡会的上下车地点 -->
+    <select id="findAllPlaces" resultType="string">
+        SELECT place
+        FROM association_place
+        WHERE association_id = #{associationId}
+        LIMIT #{startIndex}, #{pageSize}
+    </select>
+
+    <!-- 获取某同乡会的上下车地点总数量 -->
+    <select id="findPlacesNum" resultType="Integer" parameterType="string">
+        SELECT COUNT(*)
+        FROM association_place
+        WHERE association_id = #{associationId}
+    </select>
+
+    <!--获取所有同乡会（分页）-->
+    <select id="findAllAssociation" resultType="association">
+        SELECT *
+        FROM hometown_association
+        LIMIT #{startIndex}, #{pageSize}
+    </select>
+
+    <!-- 获取所有同乡会 -->
+    <select id="getAllAssociation" resultType="association">
+        SELECT *
+        FROM hometown_association
+    </select>
+
+    <!--查询同乡会数量-->
+    <select id="findAssociationNum" resultType="integer">
+        SELECT COUNT(*)
+        FROM hometown_association
+    </select>
+
+    <!-- 添加车票 -->
+    <insert id="addTicket" parameterType="ticketDto">
+        INSERT INTO ticket (association_id, departure_day, departure_time, departure_place, destination, price,
+                            seat_num,
+                            seat_surplus, type, issue_time, state)
+        VALUES (#{associationId}, #{departureDay}, #{departureTime}, #{departurePlace}, #{destination}, #{price},
+                #{seatNum}, #{seatSurplus}, #{type}, #{issueTime}, #{state})
+    </insert>
+
+    <!-- 获取车票 -->
+    <select id="getTicket" resultType="ticketDto">
+        SELECT t.ticket_id         AS ticketId,
+               t.association_id    AS associationId,
+               ha.association_name AS associationName,
+               t.departure_day     AS departureDay,
+               t.departure_time    AS departuretime,
+               t.departure_place   AS departurePlace,
+               t.destination,
+               t.price,
+               t.seat_num          AS seatNum,
+               t.seat_surplus      AS seatSurplus,
+               t.type,
+               t.issue_time        AS issueTime
+        FROM ticket t,
+             hometown_association ha
+        WHERE t.state = #{state}
+          AND t.association_id = ha.association_id
+        LIMIT #{startIndex}, #{pageSize}
+    </select>
+
+    <!-- 获取正在售卖（已下架）车票数量 -->
+    <select id="getTicketNum" parameterType="integer" resultType="integer">
+        SELECT COUNT(*)
+        FROM ticket
+        WHERE state = #{state}
+    </select>
+
+    <!--修改（添加）车辆信息-->
+    <update id="updateTicketInfo" parameterType="ticketInfoDto">
+        UPDATE ticket
+        SET license_plate_number = #{licensePlateNumber},
+            vehicle_type         = #{vehicleType},
+            color                = #{color},
+            driver_name          = #{driverName},
+            driver_phone         = #{driverPhone}
+        WHERE ticket_id = #{ticketId}
+    </update>
+
+    <!--查询某车票的车辆信息-->
+    <select id="findTicketInfo" resultType="ticketInfoDto" parameterType="integer">
+        SELECT license_plate_number AS licensePlateNumber,
+               vehicle_type         AS vehicleType,
+               color,
+               driver_name          AS driverName,
+               driver_phone         AS driverPhone
+        FROM ticket
+        WHERE ticket_id = #{ticketId}
+    </select>
+
+    <!--将某车票下架-->
+    <update id="endTicket" parameterType="Integer">
+        UPDATE ticket
+        SET state = 2
+        WHERE ticket_id = #{ticketId}
+    </update>
+
+    <!--删除历史发布的车票-->
+    <delete id="deleteTicket" parameterType="Integer">
+        DELETE
+        FROM ticket
+        WHERE ticket_id = #{ticketId}
+    </delete>
+
+    <!-- 查询车票的购票详情 -->
+    <select id="findBuyDetail" resultType="buyDetail">
+        SELECT ui.username AS name, ui.phone, ao.price, tor.travel_num AS buyNum, ao.make_order_time AS buyTime
+        FROM user_info ui,
+             association_order ao,
+             travel_order tor
+        WHERE ao.ticket_id = #{ticketId}
+          AND tor.travel_order_id = ao.travel_order_id
+          AND ui.uid = tor.uid
+        LIMIT #{startIndex}, #{pageSize}
+    </select>
+
+    <!-- 查询车票的购票数量 -->
+    <select id="findBuyDetailNum" resultType="int">
+        SELECT COUNT(*)
+        FROM user_info ui,
+             association_order ao,
+             travel_order tor
+        WHERE ao.ticket_id = #{ticketId}
+          AND tor.travel_order_id = ao.travel_order_id
+          AND ui.uid = tor.uid
+    </select>
+
+    <!--//根据同乡会id查询车票信息-->
+    <!--List<MiniBuyTicketPageDto> findTicketsById(int associationId);-->
+    <select id="findTicketsById" parameterType="int" resultType="MiniBuyTicketPageDto">
+        SELECT ticket_id AS ticketId,
+                departure_day AS departureDay,
+                departure_time AS departureTime,
+                departure_place AS departurePlace,
+                destination,
+                price,
+                type,
+
+                seat_surplus AS seatSurplus
+                FROM ticket
+                WHERE association_id = #{associationId} AND state = 1
+    </select>
+
+    <!--//根据车票Id查询车票信息-->
+    <!--Ticket findTicketInfoByid(int ticketId);-->
+    <select id="findTicketInfoByid" parameterType="int" resultType="Ticket">
+        SELECT departure_day AS departureDay,
+                departure_time AS departureTime,
+                departure_place AS departurePlace,
+                destination,
+                price,
+                seat_surplus AS seatSurplus,
+                version
+                FROM ticket
+                WHERE ticket_id = #{ticketId}
+    </select>
+
+    <!--//修改车票剩余数量-->
+    <!--int updateTicketSeatSurplus(@Param("ticketId")int ticketId,-->
+    <!--@Param("newSeatSurplus")int newSeatSurplus,-->
+    <!--@Param("version")int version);-->
+    <update id="updateTicketSeatSurplus">
+        UPDATE ticket SET seat_surplus = #{newSeatSurplus},
+                          version = version + 1
+                      WHERE ticket_id = #{ticketId}
+                      AND version = #{version}
+    </update>
+
+    <!--//订单过期，恢复购买的票数-->
+    <!--int updateExpireTicketSeatSurplus(@Param("ticketId")int ticketId,-->
+    <!--@Param("travelNum")int travelNum);-->
+    <update id="updateExpireTicketSeatSurplus">
+        UPDATE ticket SET seat_surplus = seat_surplus + #{travelNum},
+                          version = version + 1
+                      WHERE ticket_id = #{ticketId}
+    </update>
+
+    <!--//用户支付完押金后，提交订单插入数据库,分别插入travel_order、tourism_order表中-->
+    <!--Integer insertTravelOrderInfo(AssociationOrderInfo associationOrderInfo);-->
+    <insert id="insertTravelOrderInfo" parameterType="AssociationOrderInfo" keyProperty="travelOrderId" useGeneratedKeys="true">
+        INSERT INTO travel_order (uid,
+                                  departure_place,
+                                  destination,
+                                  travel_num,
+                                  departure_time,
+                                  type,
+                                  state) value (
+                                  #{uid},
+                                  #{departurePlace},
+                                  #{destination},
+                                  #{travelNum},
+                                  #{departureTime},
+                                  #{type},
+                                  #{state}
+                                  )
+    </insert>
+    <!--Integer insertAssociationOrderInfo(AssociationOrderInfo associationOrderInfo);-->
+    <insert id="insertAssociationOrderInfo" parameterType="AssociationOrderInfo">
+        INSERT INTO association_order (travel_order_id,
+                                        ticket_id,
+                                        passenger,
+                                        phone,
+                                        price,
+                                        out_trade_no,
+                                        transaction_id,
+                                        make_order_time
+                                        ) VALUE (
+                                        #{travelOrderId},
+                                        #{ticketId},
+                                        #{passenger},
+                                        #{phone},
+                                        #{price},
+                                        #{outTradeNo},
+                                        #{transactionId},
+                                        #{makeOrderTime}
+                                        )
+    </insert>
+
+    <!--&lt;!&ndash;//保存乘客人员信息&ndash;&gt;-->
+    <!--&lt;!&ndash;Integer insertAssociationPassengers(List<LinkedHashMap> passengers);&ndash;&gt;-->
+    <!--<insert id="insertAssociationPassengers">-->
+        <!--INSERT INTO association_passengers (travel_order_id,passenger_name,phone)-->
+                  <!--VALUES-->
+                  <!--<foreach collection="passengers" item="item" index="index" separator=",">-->
+                      <!--(#{travelOrderId}, #{item.passengerName}, #{item.phone})-->
+                  <!--</foreach>-->
+    <!--</insert>-->
+
+    <!--//查询小程序订单详情信息-->
+    <!--Map findAssociationOrderDetial(@Param("travelOrderId")int travelOrderId);-->
+    <select id="findAssociationOrderDetial" parameterType="int" resultType="Map">
+        SELECT departure_time AS departureTime,departure_place AS departurePlace,
+                destination, travel_num AS travelNum,price,passenger,phone
+                FROM travel_order t, association_order a
+                WHERE t.travel_order_id = #{travelOrderId}
+                AND t.travel_order_id = a.travel_order_id;
+    </select>
+
+
+</mapper>

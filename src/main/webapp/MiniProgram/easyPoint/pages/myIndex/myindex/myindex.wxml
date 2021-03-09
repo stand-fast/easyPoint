@@ -1,0 +1,53 @@
+<!--pages/myIndex/myindex/myindex.wxml-->
+<view class="search">
+    <view class="search_icon"><image src="/images/icon/search.png"></image></view>
+    <input type="text" placeholder="请输入需要的物品名称" placeholder-class="place" value="{{searchName}}" class="input" disabled="true" bindtap="toSearch"></input>
+    <image wx:if="{{hasAnnounce}}" src="/images/icon/announce_yes.png" bindtap="goToAnnounce"></image>
+    <image wx:else src="/images/icon/announce_nor.png"></image>
+</view>
+<view class="leavetop">
+    <swiper autoplay="true" interval="5000" duration="1000" circular="true" class="swiper_ad">
+        <block wx:for="{{ads}}"  wx:key="index">
+            <swiper-item class="swiper_item">
+                <image src="{{item}}" />
+            </swiper-item>
+        </block>
+    </swiper>
+    <view class="category_list">
+        <block wx:for="{{navs}}" wx:key="key">
+            <view class="list_item" bindtap="jumpToDetail" data-index="{{index}}">
+                <image src="{{item.imgurl}}"></image>
+                <view class="category_list_text">{{item.name}}</view>
+            </view>
+        </block>
+    </view>
+    <view class="hotTopic_item">
+        <view class="hotTopic_item_notice">
+            <image src="/images/icon/notice.png"></image>
+            <!-- <view class="notice_text">{{noticeText}}</view> -->
+            <swiper class="notice_text" vertical="true" autoplay="true" circular="true" interval="5000">
+                <block wx:for="{{announcementMessage}}" wx:key="key">
+                    <swiper-item>
+                        <view>{{item}}</view>
+                    </swiper-item>
+                </block>
+            </swiper>
+        </view>
+        <view class="hotTopic_item_title">
+            <view class="shu"></view>
+            <view class="title_text">近期热门</view>
+        </view>
+        <view class="hotTopic_item_lists">
+            <block wx:for="{{hot_list}}" wx:key="key">
+                <view class="hotTopic_item_list" bindtap="toHotDetail" data-index="{{index}}">
+                    <image src="{{item.imgUrl}}"></image>
+                    <view class="list_word">
+                        <image src="/images/icon/hotTopic.png"></image>
+                        <view class="hotname">{{item.recentHotName}}</view>
+                        <view class="hotprice">￥{{item.price}}<text>元起</text></view>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
+</view>

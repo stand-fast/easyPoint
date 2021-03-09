@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easyPoint.dao.business.GoodsDao">
+    <!-- 添加商品 -->
+    <insert id="addGoods" parameterType="goods">
+        INSERT INTO goods_table(good_id, good_name, business_name, lowest_price, highest_price, good_images, deposit,
+                                deposit_instruction, take_good_instruction, return_good_instruction, business_hours,
+                                good_description, lease_num, pro_img, goods_type_id, state)
+        VALUES (#{goodId}, #{goodName}, #{businessName}, #{lowestPrice}, #{highestPrice}, #{goodImages}, #{deposit},
+                #{depositInstruction}, #{takeGoodInstruction}, #{returnGoodInstruction}, #{businessHours},
+                #{goodDescription}, #{leaseNum}, #{proImg}, #{goodsTypeId}, #{state})
+    </insert>
+
+    <!-- 根据状态查询已发布过的所有商品 -->
+    <select id="findGoodsByState" resultType="goodsDto">
+        SELECT good_id       AS goodId,
+               good_name     AS goodName,
+               lowest_price  AS lowestPrice,
+               highest_price AS highestPrice,
+               pro_img       AS proImg,
+               business_name AS businessName,
+               lease_num     AS leaseNum
+        FROM goods_table
+        WHERE state = #{state}
+        LIMIT #{startIndex}, #{pageSize}
+    </select>
+
+    <select id="findGoodsNumByState" parameterType="Integer" resultType="Integer">
+        SELECT COUNT(*)
+        FROM goods_table
+        WHERE state = #{state}
+    </select>
+
+    <!-- 根据id修改商品状态 -->
+    <update id="updateStateById">
+        UPDATE goods_table
+        SET state = #{newState}
+        WHERE good_id = #{goodsId}
+    </update>
+
+    <!-- 根据id查询商品详情 -->
+    <select id="findGoodsDetailsById" parameterType="string" resultMap="goodsDetailsMap">
+        SELECT g.good_id,
+               g.good_name,
+               g.business_name,
+               g.lowest_price,
+               g.highest_price,
+               g.good_images,
+               g.deposit,
+               g.deposit_instruction,
+               g.take_good_instruction,
+               g.return_good_instruction,
+               g.business_hours,
+               g.good_description,
+               g.lease_num,
+               g.pro_img,
+               g.state,
+               t.goods_type_name,
+               t.state,
+               t.description,
+               v.variety,
+               v.size,
+               v.price,
+               v.img
+        FROM goods_table g, goods_type t, good_variety v
+        WHERE g.good_id = #{goodsId} AND g.goods_type_id = t.goods_type_id AND g.good_id = v.good_id
+    </select>
+
+    <resultMap id="goodsDetailsMap" type="goods">
+        <id column="good_id" property="goodId"/>
+        <result column="good_name" property="goodName"/>
+        <result column="business_name" property="businessName"/>
+        <result column="lowest_price" property="lowestPrice"/>
+        <result column="highest_price" property="highestPrice"/>
+        <result column="good_images" property="goodImages"/>
+        <result column="deposit" property="deposit"/>
+        <result column="deposit_instruction" property="depositInstruction"/>
+        <result column="take_good_instruction" property="takeGoodInstruction"/>
+        <result column="return_good_instruction" property="returnGoodInstruction"/>
+        <result column="business_hours" property="businessHours"/>
+        <result column="good_description" property="goodDescription"/>
+        <result column="lease_num" property="leaseNum"/>
+        <result column="pro_img" property="proImg"/>
+        <result column="state" property="state"/>
+        <association property="goodsType" javaType="goodsType">
+            <result column="goods_type_name" property="goodsTypeName"/>
+            <result column="state" property="state"/>
+            <result column="description" property="description"/>
+        </association>
+        <collection property="goodVarietyList" ofType="goodVariety">
+            <result column="variety" property="variety"/>
+            <result column="size" property="size"/>
+            <result column="price" property="price"/>
+            <result column="img" property="img"/>
+        </collection>
+    </resultMap>
+
+    <!-- 根据id删除商品 -->
+    <delete id="deleteGoodsById" parameterType="string">
+        DELETE
+        FROM goods_table
+        WHERE good_id = #{goodsId}
+    </delete>
+
+    <!-- 根据Id查询某商品是否存在 -->
+    <select id="findGoodsById" parameterType="string" resultType="string">
+        SELECT state
+        FROM goods_table
+        WHERE good_id = #{goodsId}
+    </select>
+
+    <!--  修改商品信息 -->
+    <update id="updateGoods" parameterType="goods">
+        UPDATE goods_table
+        <set>
+            <if test="goodName != null and goodName != ''">good_name = #{goodName},</if>
+            <if test="businessName != null and businessName != ''">business_name = #{businessName},</if>
+            <if test="lowestPrice != null and lowestPrice != ''">lowest_price = #{lowestPrice},</if>
+            <if test="highestPrice != null and highestPrice != ''">highest_price = #{highestPrice},</if>
+            <if test="goodImages !=  null and goodImages != ''">good_images = #{goodImages},</if>
+            <if test="deposit != null and deposit != ''">deposit = #{deposit},</if>
+            <if test="depositInstruction != null and depositInstruction != ''">deposit_instruction =
+                #{depositInstruction},
+            </if>
+            <if test="takeGoodInstruction != null and takeGoodInstruction != ''">take_good_instruction =
+                #{takeGoodInstruction},
+            </if>
+            <if test="returnGoodInstruction != null and returnGoodInstruction != ''">return_good_instruction =
+                #{returnGoodInstruction},
+            </if>
+            <if test="businessHours != null and businessHours != ''">business_hours = #{businessHours},</if>
+            <if test="goodDescription != null and goodDescription != ''">good_description = #{goodDescription},</if>
+            <if test="proImg != null and proImg != ''">pro_img = #{proImg},</if>
+            <if test="goodsTypeId != null and goodsTypeId != ''">goods_type_id = #{goodsTypeId}</if>
+        </set>
+        WHERE good_id = #{goodId}
+    </update>
+
+    <!-- 添加商品类别 -->
+    <insert id="addGoodVariety" parameterType="goodVariety">
+        INSERT INTO good_variety (good_id, variety, size, price, img)
+        VALUES (#{goodId}, #{variety}, #{size}, #{price}, #{img})
+    </insert>
+</mapper>

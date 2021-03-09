@@ -1,0 +1,69 @@
+<!--pages/user/user/user.wxml-->
+<!-- 顶部模块 -->
+<view class="header">
+    <image src="{{avatarUrl}}"></image>
+    <view wx:if="{{nickName}}" class="username">
+        <open-data type="userNickName"></open-data>
+    </view>
+    <view wx:else class="noname">
+        <button open-type="getUserInfo" bindgetuserinfo="getPermission">授权登录</button>
+    </view>
+</view>
+<!-- 编辑个人信息 -->
+<view class="editUserInfos" bindtap="toEditUserInfos" wx:if="{{!isUserInformation}}">
+    <image src="/images/icon/cusEdit.png"></image>
+    <view class="edit_text">编辑个人信息</view>
+</view>
+<view class="kong"></view>
+<!-- 跳转订单数据页面，1：我的报名，2：我的订单，3：我的发布 -->
+<view class="order_lists">
+    <view wx:for="{{order_lists}}" wx:key="key" class="order_list" bindtap="toOrder" data-index="{{index}}">
+        <image src="{{item.url}}"></image>
+        <view class="order_list_text">{{item.text}}</view>
+    </view>
+</view>
+<view class="kong"></view>
+<!-- 遍历页面跳转数据 -->
+<view class="item_lists">
+    <view class="item_list" wx:for="{{item_lists}}" wx:key="key" bindtap="toItem" data-index="{{index}}">
+        <image src="{{item.icon}}"></image>
+        <view class="item_list_text">{{item.text}}</view>
+    </view>
+</view>
+<!-- 协议说明的弹窗 -->
+<block wx:if='{{showProtocalModal}}'>
+    <view class='user_mask_layer' />
+    <view class='user_modal_box protocal'>
+        <view class="modal_box_title">易点校园协议说明</view>
+        <view class="modal_box_text">“易点平台”的所有权和运营权归易点互联（广州）网络科技有限公司所有。“易点平台”通过以下条款为您提供服务。您应当阅读并遵守《用户注册和隐私保护服务协议》（以下简称为“本协议”），本协议是您与“易点平台”之间的法律协议。您在使用“易点平台”提供的各项服务之前，<text style="font-weight:bold">请您务必审慎阅读、充分理解各条款内容，特别是隐私保护、用户信息、免责以及争议管辖与法律适用的条款</text>。除非您已阅读并接受本协议所有条款，否则您无权使用“易点平台”提供的服务。您使用“易点平台”的服务即视为您已阅读并同意本协议的约束，包括“易点平台”对本协议服务条款随时做的任何修改。</view>
+        <view class="modal_button">
+            <button class="btn cancle" bindtap="modalBtn" data-type="protocalcancle">取消</button>
+            <button class="btn comfirm" bindtap="modalBtn" data-type="protocalcomfirm">查看更多</button>
+        </view>
+    </view>
+</block>
+<!-- 关于我们的弹窗 -->
+<block wx:if='{{showAboutModal}}'>
+    <view class='user_mask_layer' />
+    <view class='user_modal_box about'>
+        <view class="modal_box_title">易点校园小程序</view>
+        <view class="modal_box_text"> <text decode="utf-8">易点校园，秉承着“让你的校园生活容易点“的经营理念，致力于为大学生提供省时省力的校园服务平台。\n易点校园，系广东金融学院创新创业中心精心打造的大学生创业团队。\n\n易点校园项目主打六大业务：\n1.包车出行&emsp;2.租赁闲置&emsp;3.旅游住宿\n4.兼职实习&emsp;5.教育培训&emsp;6.娱乐美食\n以上是易点校园现有的六大业务\n更多精彩、尽请期待。</text>
+</view>
+        <view class="modal_button">
+            <button class="btn cancle" bindtap="modalBtn" data-type="aboutcomfirm">查看更多</button>
+            <button class="btn comfirm" bindtap="modalBtn" data-type="aboutcancle">确定</button>
+        </view>
+    </view>
+</block>
+<!-- 退出账号的弹窗 -->
+<block wx:if='{{showQuitModal}}'>
+    <view class='user_mask_layer' />
+    <view class='user_modal_box quit'>
+        <view class="account_text">是否退出账号？
+</view>
+        <view class="modal_button">
+            <button class="btn cancle" bindtap="modalBtn" data-type="quitcancle">取消</button>
+            <button class="btn comfirm" bindtap="modalBtn" data-type="quitcomfirm">确定</button>
+        </view>
+    </view>
+</block>

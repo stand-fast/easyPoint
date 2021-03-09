@@ -1,0 +1,87 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"enhance": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.10.1",
+	"appid": "wx1c379b39de912818",
+	"projectname": "easyPoint",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 5,
+			"list": [
+				{
+					"id": -1,
+					"name": "search",
+					"pathName": "pages/myIndex/search/search",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "protocaldetail",
+					"pathName": "pages/protocal/protocaldetail/protocaldetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "protocal",
+					"pathName": "pages/protocal/protocal/protocal",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/easyPointCar/bookTicket/bookTicket",
+					"pathName": "pages/easyPointCar/bookTicket/bookTicket",
+					"scene": null
+				}
+			]
+		}
+	}
+}

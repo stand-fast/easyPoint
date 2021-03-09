@@ -1,0 +1,293 @@
+/* pages/easyPointCar/bookTicket/bookTicket.wxss */
+Page{
+    font-family: 黑体;
+}
+.header{
+    width: 100%;
+    height: 270rpx;
+    background-color: #7ecef4;
+}
+.kong{
+    width: 100%;
+    height: 36rpx;
+}
+.swiper_images{
+    width: 92%;
+    height: 300rpx;
+    margin: 0 auto;
+    box-shadow: 4rpx 4rpx 4rpx 4rpx gainsboro;
+    border-radius: 24rpx;
+}
+.slide-image{
+    width: 100%;
+    height: 300rpx;
+    border-radius: 24rpx;
+}
+.contain{
+    width: 100%;
+    margin-top: 90rpx;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+.nav_switch{
+    width: 60%;
+    height: 60rpx;
+    display: flex;
+    margin:0 auto;
+    flex-direction: row;
+    margin-top: 18rpx;
+}
+.on{
+    color: #7ecef4!important;
+    border-bottom: 2rpx solid #7ecef4;
+}
+.nav_text{
+    width: 50%;
+    height: 60rpx;
+    margin:0 auto;
+    text-align: center;
+    font-size: 34rpx;
+    color: #999;
+}
+.hr{
+    width: 92%;
+    border:2rpx solid #eee;
+    margin:0 auto;
+    background-color: #eee;
+}
+.fullcontainer{
+    width: 84%;
+    height: 696rpx;
+    margin: 0 auto;
+}
+.first{
+    margin-top: 24rpx!important;
+}
+.formContent{
+    width: 100%;
+    height: 70rpx;
+    margin-top: 22rpx;
+    display: flex;
+    flex-direction: row;
+}
+.formTitle{
+    width: 130rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 27rpx;
+    padding-top: 16rpx;
+    padding-left:50rpx; 
+    color: #999;
+}
+picker{
+    z-index: 1;
+}
+.formContent input{
+    width: 356rpx;
+    font-size: 30rpx;
+    height: 60rpx;
+    color: #333;
+    line-height: 60rpx;
+    padding-top:10rpx;
+    padding-left:26rpx;
+}
+.placehold,.accoplace{
+    font-size: 28rpx;
+    color: #999;
+}
+.formContent image{
+    margin-top: 28rpx;
+    width: 32rpx;
+    height: 32rpx;
+}
+.downImg image{
+    margin-top: 40rpx!important;
+    width: 50rpx;
+    height: 22rpx;
+}
+.association image{
+    margin-top: 20rpx!important;
+    width: 50rpx;
+    height: 22rpx;
+}
+.wang{
+    width: 88rpx!important;
+    padding-left:8rpx!important; 
+}
+.square1,.baosquare1{
+    width: 22rpx;
+    height: 22rpx;
+    border-radius: 0;
+    border:1rpx solid #bbb;
+    background-color: #fff;
+    margin: 31rpx 12rpx 16rpx 50rpx;
+}
+.square2,.baosquare2{
+    width: 22rpx;
+    height: 22rpx;
+    border-radius: 0;
+    border:1rpx solid #56b4f6;
+    background-color: #56b4f6;
+    margin: 31rpx 12rpx 16rpx 50rpx;
+}
+.square2 image{
+    width: 28rpx;
+    height: 28rpx;
+    position: absolute;
+    margin: -2rpx -1rpx!important;
+}
+.heng{
+    height: 2rpx;
+    background-color: #eee;
+}
+.Text{
+    color:#56b4f6;
+    font-size: 24rpx;
+    width: 210rpx;
+    height: 34rpx;
+    line-height: 34rpx;
+    text-decoration: underline;
+}
+ .baosquare1,.baosquare2{
+    margin: 6rpx 10rpx 0rpx 56rpx!important;
+}
+.insurance_text{
+    display: flex;
+    flex-direction: row;
+}
+.baosquare2 image{
+    width: 28rpx;
+    height: 28rpx;
+    position: fixed;
+    bottom: 20rpx;
+    left: 214rpx;
+}
+.traBottom{
+    width: 100%;
+    height: 110rpx;
+    position: fixed;
+    bottom: 0rpx;
+    display: flex;
+    flex-direction: row;
+    z-index: 1000;
+}
+.contactBtn{
+    width: 160rpx;
+    height: 110rpx;
+    background-color: #56b4f6;
+    box-sizing: border-box;
+}
+.contactBtn button{
+    width: 100%;
+    height: 100%;
+    border-radius: 0rpx;
+    background-color: #7ecef4;
+}
+.contactBtn image{
+    width: 70rpx;
+    height: 70rpx;
+    margin-top: 20rpx;
+}
+.payMoney{
+    width: 400rpx;
+    height: 110rpx;
+    text-align: center;
+    background-color: #fff;
+    border-top: 1rpx solid #eee;
+}
+.money_text{
+    width: 100%;
+    height: 50rpx;
+    line-height: 50rpx;
+    margin-top: 6rpx;
+    font-size: 26rpx;
+    color: #333;
+    margin-left: -70rpx;
+}
+.money_text text{
+    height: 40rpx;
+    line-height: 40rpx;
+    color: #333;
+    font-size: 30rpx;
+    font-family: 微软雅黑;
+}
+.submitBtn{
+    width: 190rpx;
+    height: 100rpx;
+}
+.submitBtn button{
+    width: 100%;
+    height: 110rpx;
+    padding-top:10rpx; 
+    color: #fff;
+    font-size: 36rpx;
+    background-color: #7ecef4;
+    border-radius: 0rpx;
+    border: none;
+}
+.submitBtn button::after,.contactBtn button::after,.searchBtn button::after,.success_btn::after{
+    border: none;
+}
+.association{
+    width: 84%;
+    height: 80rpx;
+    margin: 60rpx auto;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2rpx solid #eee;
+}
+.assoTitle{
+    width: 160rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 26rpx;
+    color: #999;
+    padding: 10rpx 10rpx 0rpx 50rpx;
+}
+.association input{
+    width: 350rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+    color: #333;
+    padding-top: 8rpx;
+}
+.searchBtn{
+    width: 84%;
+    height: 80rpx;
+    margin: 160rpx auto;
+}
+.searchBtn button{
+    border-radius: 0rpx;
+    background-color: #7ecef4;
+    color: #fff;
+    font-size: 30rpx;
+}
+.model_success{
+    margin:60rpx 0 30rpx 0;
+    text-align: center;
+    font-size: 36rpx;
+    color: #56b4f6;
+}
+.success_text{
+    text-align: center;
+    font-size: 26rpx;
+    color: #999;
+    height: 44rpx;
+    line-height: 44rpx;
+    padding: 0rpx 20%;
+}
+.success_btn{
+    background-color: #56b4f6;
+    color: #fff;
+    font-size: 30rpx;
+    margin-top: 88rpx;
+    margin-bottom: 20rpx;
+    width: 240rpx;
+    border-radius: 60rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+}
+.cnimg{
+    margin-left: 8rpx;
+}

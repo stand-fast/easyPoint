@@ -1,0 +1,190 @@
+/* pages/user/myOrderCarDetail/myOrderCarDetail.wxss */
+Page{
+    font-family: 黑体;
+    background-color: #fff;
+}
+.car_order_status{
+    width: 100%;
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 30rpx;
+    color: #56b4f6;
+    text-align: center;
+    border-top: 10rpx solid #f2f2f2;
+}
+.header{
+    width: 100%;
+    height: 200rpx;
+    border-bottom: 10rpx solid #f2f2f2;
+}
+.item{
+    width: 100%;
+    height: 60rpx;
+    display: flex;
+    flex-direction: row;
+}
+.first{
+    margin-top: 10rpx;
+}
+.item_text{
+    width: 120rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    color: #666;
+    font-size: 24rpx;
+    margin-left: 47rpx;
+    margin-top: 3rpx;
+}
+.time{
+    width: 300rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    color: #56b4f6;
+    font-size: 24rpx;
+}
+.item_address{
+    width: 540rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+    color: #333;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: normal !important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.passengers{
+    width: 100%;
+    height: 180rpx;
+    font-size: 30rpx;
+    color: #333;
+    border-bottom: 10rpx solid #f2f2f2;
+}
+.passen_text{
+    width: 310rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-family: 微软雅黑;
+    margin: 20rpx 0 10rpx 47rpx;
+}
+.passen_text text{
+    color: #56b4f6!important;
+}
+.passenNum,.passen_price{
+    width: 200rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    margin:20rpx 10rpx 0 150rpx;
+    text-align: right;
+}
+.passen_price{
+    font-family: 微软雅黑;
+}
+.passen_price text{
+    color: #56b4f6!important;
+}
+.responser{
+    width: 100%;
+    height: 130rpx;
+    font-size: 30rpx;
+    color: #333;
+}
+.responser_text{
+    width: 100%;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+    color: #56b4f6;
+    margin: 10rpx 0 0rpx 47rpx;
+}
+.responser_people{
+    width: 140rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    color: #333;
+    margin: 0rpx 10rpx 20rpx 47rpx;
+}
+.responser_phone{
+    width: 240rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    color: #333;
+    margin:0rpx 10rpx 20rpx 0rpx;
+}
+.driver_info{
+    background-color: #fff;
+    width: 100%;
+    height: 180rpx;
+    padding: 10rpx 0rpx;
+}
+.driver_info_item,.car_order_item{
+    width: 680rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    color: #333;
+    font-size: 30rpx;
+    margin: 16rpx 10rpx 16rpx 47rpx;
+}
+.driver_info_item text,.car_order_item text{
+    color: #56b4f6;
+}
+.insurance{
+    width: 100%;
+    font-size: 30rpx;
+    color: #333;
+}
+.insurance-item{
+    width:100%;
+    height: 80rpx;
+    display: flex;
+    flex-direction: row;
+}
+.insurance-item_text{
+    width: 310rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    margin: 0 0 0 47rpx;
+}
+.insurance-item_status{
+    width: 200rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    margin:0 10rpx 0 150rpx;
+    text-align: right;
+}
+.car_order{
+    width: 100%;
+}
+.button_footer{
+    width: 100%;
+    height: 100rpx;
+    display: flex;
+    flex-direction: row-reverse;
+    position: fixed;
+    bottom: 0rpx;
+    background-color: #fff;
+    box-shadow: 0rpx 10rpx 80rpx 30rpx rgba(85, 85, 85, 0.10);
+}
+.button_footer button{
+    width: 200rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+    border: 1rpx solid;
+    margin: auto 0;
+    margin-right: 30rpx;
+    background-color: #fff;
+    border-color:#56b4f6;
+    color: #56b4f6; 
+}
+.button_footer button::after{
+    border: none;
+}
+.hr{
+    width: 100%;
+    height: 10rpx;
+    background-color: #f2f2f2;
+}

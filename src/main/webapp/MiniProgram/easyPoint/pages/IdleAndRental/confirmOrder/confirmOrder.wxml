@@ -1,0 +1,59 @@
+<!--pages/IdleAndRental/confirmOrder/confirmOrder.wxml-->
+<form bindsubmit="formSubmit">
+<view class="header">
+    <view class="customer_name">{{name}}</view>
+    <view class="customer_phone">{{phone}}</view>
+    <image src="/images/icon/rentEdit.png" bindtap="toEdit"></image>
+</view>
+<view class="good_item">
+    <view class="provider">{{good_details_info.companyName}}</view>
+    <view class="good_content">
+        <image src="{{good_details_info.filesUrl}}"></image>
+        <view class="content_item">
+            <view class="good_name">{{good_details_info.category}} <text> {{good_details_info.chooseSize}}码</text></view>
+            <view class="good_price">￥{{good_details_info.price}} <text>×{{good_details_info.number}}</text></view>
+        </view>
+    </view>
+</view>
+<view class="order_items_list">
+    <view class="order_item">
+        <view class="order_item_title first">租借天数</view>
+        <view class="order_item_text first">{{good_details_info.leaseDate}} 天</view>
+    </view>
+    <view class="order_item">
+        <view class="order_item_title">租借押金</view>
+        <view class="order_item_text money">￥ {{good_details_info.deposit*good_details_info.number}}</view>
+    </view>
+    <view class="order_item">
+        <view class="order_item_title">取货时间</view>
+        <view class="order_item_text">{{good_details_info.pickTime}}</view>
+    </view>
+    <view class="order_item">
+        <view class="order_item_title last">备注信息</view>
+        <input placeholder="选填，请先跟客服协商一致" name="note" placeholder-class="place" type="text"></input>
+    </view>
+</view>
+<view class="footer">
+    <view class="footer_total">
+        <view class="total">合计：</view>
+        <text>￥{{good_details_info.price*good_details_info.number*good_details_info.leaseDate+good_details_info.deposit*good_details_info.number}}</text>
+    </view>
+    <button  form-type="submit">支付</button>
+</view>
+  </form>
+<block wx:if='{{showmodal_success}}'>
+    <view class='mask_layer'/>
+    <view class='modal_box'>
+        <view class="model_success">支付成功</view>
+        <view class="success_text">你已支付成功，请在预定的取货时间30分钟内到指定地点取货，如有其他情况可以联系客服</view>
+        <button class="success_btn" bindtap="successBtn">确定</button>
+    </view>
+</block>
+<block wx:if='{{showmodal_fail}}'>
+    <view class='mask_layer'/>
+    <view class='modal_box'>
+        <view class="model_fail">支付失败</view>
+        <view class="success_text">操作异常，请重新操作，如有其它问题可联系客服</view>
+        <button class="fail_btn" bindtap="failBtn">确定</button>
+    </view>
+</block>

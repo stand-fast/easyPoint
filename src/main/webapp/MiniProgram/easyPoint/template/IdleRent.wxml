@@ -1,0 +1,12 @@
+<template name='idleRent'>
+    <!-- <view class="item_list_picture"><image src="{{item.proImg}}"></image></view> -->
+    <view class="item_list_picture"><image src="/images/goodImg.png"></image></view>
+    <view class="list_content">
+        <view class="list_content_title">{{item.goodName}}</view>
+        <view class="list_content_rend">已租{{item.leaseNum}}次</view>
+        <view class="see">
+            <view class="list_content_price">￥<text>{{item.lowestPrice}}</text></view>
+            <image src="/images/icon/see.png"></image>
+        </view>
+    </view>
+</template>
